@@ -1,11 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css' // Tailwind styles (Hamesha isay upar rakhein)
-import './App.css'   // Global overrides (Hamesha isay niche rakhein)
+import { HelmetProvider } from 'react-helmet-async'
+
+import './index.css' 
+import './App.css'   
+
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  </StrictMode>
 )

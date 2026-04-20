@@ -1,9 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Hero from './sections/Hero';
 import TrustBar from './components/TrustBar';
+
+// Sections (Home Page Components)
+import Hero from './sections/Hero';
 import Services from './sections/Services';
 import Projects from './sections/Projects';
 import WhyUs from "./sections/WhyUs";
@@ -13,8 +17,9 @@ import Pricing from './sections/Pricing';
 import Testimonials from './sections/Testimonials';
 import FAQ from './sections/FAQ';
 
-// Yahan path fix kiya gaya hai - ./pages/Contact.jsx se import hoga
+// Pages (Separate Routes)
 import Contact from './pages/Contact'; 
+import Blogs from './pages/blogs'; // Blogs page import yahan add kiya gaya hai
 
 function App() {
   return (
@@ -23,7 +28,7 @@ function App() {
         <Navbar />
         <main>
           <Routes>
-            {/* Home Page Route */}
+            {/* --- Home Page Route --- */}
             <Route path="/" element={
               <>
                 <Hero />
@@ -39,8 +44,12 @@ function App() {
               </>
             } />
             
-            {/* Contact Page Route */}
+            {/* --- Contact Page Route --- */}
             <Route path="/contact" element={<Contact />} />
+
+            {/* --- Blogs Page Route (SEO Optimized) --- */}
+            <Route path="/blogs" element={<Blogs />} />
+            
           </Routes>
         </main>
         <Footer />
