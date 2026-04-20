@@ -56,11 +56,11 @@ const Navbar = () => {
         
         {/* --- BRAND IDENTITY --- */}
         <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3 group">
-          <div className="w-11 h-11 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center p-1.5 shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform">
+          <div className="w-12 h-12 bg-gradient-to-br from-purple-900 to-indigo-900 rounded-2xl flex items-center justify-center p-1.5 shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform">
             <img 
               src="/logo1.png" 
               alt="DevZore International Agency" 
-              className="w-full h-full object-contain filter brightness-0 invert" 
+              className="w-full h-full object-contain" 
             />
           </div>
           <span className="text-2xl font-black tracking-tighter text-white uppercase italic">

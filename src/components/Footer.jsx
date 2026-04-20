@@ -67,9 +67,9 @@ const Footer = () => {
               <div className="flex items-center gap-4 mb-8">
                 <div 
                   onClick={() => handleNavigation('/')}
-                  className="w-16 h-16 bg-gradient-to-tr from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center p-2 shadow-2xl shadow-purple-500/30 cursor-pointer"
+                  className="w-16 h-16 bg-gradient-to-tr from-purple-900 to-blue-900 rounded-2xl flex items-center justify-center p-2 shadow-2xl shadow-purple-500/30 cursor-pointer"
                 >
-                  <img src="/logo1.png" alt="DevZore Logo" className="w-full h-full object-contain brightness-0 invert" />
+                  <img src="/logo1.png" alt="DevZore Logo" className="w-full h-full object-contain " />
                 </div>
                 <h2 className="text-4xl font-black tracking-tighter text-white uppercase italic">
                   Dev<span className="text-purple-500 not-italic">Zore</span>
