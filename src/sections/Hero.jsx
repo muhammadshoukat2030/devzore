@@ -58,7 +58,7 @@ const Hero = () => {
         {stats.map((s, i) => (
           <div key={i} className="velocity-card">
             <div className="text-4xl mb-4">{s.icon}</div>
-            <div className="text-5xl font-bold mb-1">{s.value}</div>
+            <div className="text-4xl font-bold mb-1">{s.value}</div>
             <div className="text-white/70 font-bold text-[12px] uppercase tracking-widest">
               {s.label}
             </div>
