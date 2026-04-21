@@ -1,56 +1,145 @@
 import React from 'react';
 import SectionTag from '../components/SectionTag';
+import { Helmet } from "react-helmet-async";
 
 const Process = () => {
+
   const steps = [
-    { n: "1", t: "Discovery Call", d: "Free 30-minute consultation to understand your vision, goals, and requirements" },
-    { n: "2", t: "Proposal & Quote", d: "Detailed project scope, timeline, and fixed-price quote within 24 hours" },
-    { n: "3", t: "Design & Development", d: "Weekly updates, live previews, and your feedback incorporated in real-time" },
-    { n: "4", t: "Testing & Launch", d: "Thorough QA testing, deployment, and training on how to manage your platform" },
-    { n: "5", t: "Ongoing Support", d: "Post-launch support, maintenance, and feature updates included in every package" },
+    {
+      n: "1",
+      t: "Discovery Call & Requirement Analysis",
+      d: "We begin with a detailed consultation to understand your business goals, target audience, and technical requirements. This helps us define a clear roadmap for your web or mobile application."
+    },
+    {
+      n: "2",
+      t: "Project Planning & Strategy",
+      d: "We create a structured development plan including timeline, tech stack (MERN, Next.js, etc.), and milestones to ensure efficient project execution."
+    },
+    {
+      n: "3",
+      t: "UI/UX Design & Development",
+      d: "Our team designs modern UI/UX and develops your product using scalable technologies like React, Node.js, and cloud-based architecture."
+    },
+    {
+      n: "4",
+      t: "Testing, Optimization & Deployment",
+      d: "We perform QA testing, fix bugs, optimize performance, and deploy your application on secure cloud infrastructure with SEO optimization."
+    },
+    {
+      n: "5",
+      t: "Support, Maintenance & Scaling",
+      d: "After launch, we provide continuous support, updates, and scaling solutions to grow your business globally."
+    }
   ];
 
   return (
-    <section id="process" className="py-20 md:py-12 px-4 md:px-6 max-w-4xl mx-auto scroll-mt-20">
-      {/* Header Section */}
-      <div className="text-center mb-16 md:mb-24">
-        <SectionTag text="Our Process" />
-        <h2 className="text-3xl md:text-5xl font-bold text-white mt-4 leading-tight">
-          How We Work
-        </h2>
-        <p className="text-gray-400 mt-4 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
-          Simple, transparent process from idea to launch
-        </p>
-      </div>
+    <>
+      {/* 🔥 ADVANCED SEO */}
+      <Helmet>
+        <title>Software Development Process | DevZore Global Tech Company</title>
 
-      <div className="relative space-y-12 md:space-y-16">
-        {/* Animated Vertical Line - Adjusted for better mobile alignment */}
-        <div className="absolute left-6 md:left-6 top-2 bottom-2 w-px bg-linear-to-b from-purple-500 via-purple-500/30 to-transparent"></div>
-        
-        {steps.map((step, i) => (
-          <div key={i} className="relative pl-16 md:pl-24 group transition-all duration-500">
-            
-            {/* Step Number with 5px Radius */}
-            <div className="absolute left-0 w-12 h-12 rounded-[5px] bg-purple-600 flex items-center justify-center font-bold text-xl z-10 shadow-[0_0_20px_rgba(147,51,234,0.3)] group-hover:shadow-purple-500/60 group-hover:scale-110 transition-all duration-300 text-white border border-white/10">
-              {step.n}
-            </div>
-            
-            {/* Content Area */}
-            <div className="group-hover:translate-x-2 transition-transform duration-300">
-              <h3 className="text-xl md:text-2xl font-bold mb-2 text-white group-hover:text-purple-400 transition-colors">
-                {step.t}
-              </h3>
-              <p className="text-gray-500 group-hover:text-gray-400 leading-relaxed text-xs md:text-sm lg:text-base transition-colors">
-                {step.d}
-              </p>
-            </div>
+        <meta
+          name="description"
+          content="Learn DevZore's professional software development process including planning, UI/UX design, MERN stack development, testing, deployment, and ongoing support for global clients."
+        />
 
-            {/* Subtle Hover Background Card - Glass Effect */}
-            <div className="absolute -inset-y-4 -inset-x-4 bg-white/3 rounded-[5px] -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-white/5"></div>
-          </div>
-        ))}
-      </div>
-    </section>
+        <meta
+          name="keywords"
+          content="software development process, web development workflow, mobile app development process, MERN stack development, SaaS development lifecycle, agile development company, outsource software development"
+        />
+
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="DevZore Development Process" />
+        <meta property="og:description" content="Step-by-step process for building high-performance web and mobile apps." />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      {/* 🔥 STRUCTURED DATA (VERY IMPORTANT) */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          "name": "Software Development Process",
+          "description": "Professional development workflow for web and mobile applications",
+          "step": steps.map(step => ({
+            "@type": "HowToStep",
+            "name": step.t,
+            "text": step.d
+          }))
+        })}
+      </script>
+
+      <section id="process" className="py-20 md:py-24 px-4 md:px-6 max-w-6xl mx-auto">
+
+        {/* HEADER */}
+        <div className="text-center mb-20">
+          <SectionTag text="PROCESS" />
+          <h1 className="text-3xl md:text-5xl font-bold text-white mt-4">
+            Our Proven Software Development Process
+          </h1>
+          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+            We follow a structured and scalable development process to build high-performance web applications,
+            mobile apps, and SaaS platforms for startups and enterprises worldwide.
+          </p>
+        </div>
+
+        {/* TIMELINE */}
+        <div className="relative space-y-16">
+
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500 via-purple-500/30 to-transparent"></div>
+
+          {steps.map((step, i) => (
+            <div key={i} className="relative pl-16 group">
+
+              {/* Step Number */}
+              <div className="absolute left-0 w-12 h-12 rounded-md bg-purple-600 flex items-center justify-center font-bold text-lg text-white shadow-lg">
+                {step.n}
+              </div>
+
+              {/* Content */}
+              <div className="transition-all duration-300 group-hover:translate-x-2">
+                <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 group-hover:text-purple-400">
+                  {step.t}
+                </h2>
+                <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+                  {step.d}
+                </p>
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+
+        {/* 🔥 SEO CONTENT (HIGH IMPACT) */}
+        <div className="mt-24 max-w-4xl mx-auto text-center space-y-6">
+
+          <h2 className="text-2xl md:text-4xl font-bold text-white">
+            Professional Software Development Workflow for Global Clients
+          </h2>
+
+          <p className="text-gray-400">
+            At DevZore, we follow an agile and scalable software development process that ensures high-quality results.
+            Our workflow includes requirement analysis, UI/UX design, development using modern technologies like React,
+            Node.js, and Next.js, followed by testing and deployment.
+          </p>
+
+          <p className="text-gray-400">
+            We focus on building SEO-friendly, high-performance applications that help businesses grow online.
+            Our process is optimized for startups, SaaS platforms, and enterprise solutions.
+          </p>
+
+          <p className="text-gray-400">
+            If you are looking to outsource software development or hire expert developers,
+            DevZore provides reliable and cost-effective services for international clients.
+          </p>
+
+        </div>
+
+      </section>
+    </>
   );
 };
 

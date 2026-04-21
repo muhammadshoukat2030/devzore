@@ -19,7 +19,7 @@ import FAQ from './sections/FAQ';
 
 // Pages (Separate Routes)
 import Contact from './pages/Contact'; 
-import Blogs from './pages/blogs'; // Blogs page import yahan add kiya gaya hai
+import Blogs from './pages/BlogPost'; // Blogs page import yahan add kiya gaya hai
 
 function App() {
   return (
@@ -48,7 +48,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
 
             {/* --- Blogs Page Route (SEO Optimized) --- */}
-            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/BlogPost" element={<Blogs />} />
             
           </Routes>
         </main>

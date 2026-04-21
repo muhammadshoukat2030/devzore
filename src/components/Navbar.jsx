@@ -6,146 +6,156 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  // Scroll effect for high-end glassmorphism
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Global Navigation Links
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+  }, [isOpen]);
+
   const navLinks = [
     { name: "Services", path: "/#services" },
-    { name: "Portfolio", path: "/#projects" }, 
+    { name: "Portfolio", path: "/#projects" },
     { name: "Pricing", path: "/#pricing" },
-    { name: "FAQ", path: "/#faq" }, // FAQ Path Linked
-    { name: "Blogs", path: "/blogs" },
+    { name: "FAQ", path: "/#faq" },
+    { name: "Blog", path: "/BlogPost" },
   ];
 
-  // Professional Navigation Logic
-  const handleNavLinkClick = (path) => {
+  const handleClick = (path) => {
     setIsOpen(false);
-    
-    // Agar hum page change kar rahe hain (e.g., Contact ya Blog se Home ja rahe hain)
-    if (path.includes('#')) {
-      const id = path.split('#')[1];
-      
-      // Agar hum already Home page par hain
-      if (location.pathname === '/') {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+
+    if (path.includes("#")) {
+      const id = path.split("#")[1];
+
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          const yOffset = -80;
+          const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
         }
-      } 
-      // Agar hum kisi aur page se aa rahe hain, to URL automatic handles it
+      }, 100);
     } else {
-      // Normal page navigation ke liye top par scroll karein
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-[10000] transition-all duration-500 ${
-      scrolled 
-      ? 'bg-[#030303]/85 backdrop-blur-md border-b border-white/5 py-4' 
-      : 'bg-transparent py-7'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        
-        {/* --- BRAND IDENTITY --- */}
-        <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3 group">
-          <div className="w-12 h-12 bg-gradient-to-br from-purple-900 to-indigo-900 rounded-2xl flex items-center justify-center p-1.5 shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform">
-            <img 
-              src="/logo1.png" 
-              alt="DevZore International Agency" 
-              className="w-full h-full object-contain" 
-            />
-          </div>
-          <span className="text-2xl font-black tracking-tighter text-white uppercase italic">
-            Dev<span className="text-purple-500 not-italic">Zore</span>
-          </span>
-        </Link>
-        
-        {/* --- DESKTOP NAVIGATION --- */}
-        <div className="hidden md:flex items-center gap-12">
-          <ul className="flex items-center gap-9 text-[13px] font-bold uppercase tracking-[0.15em] text-gray-400">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link 
-                  to={link.path} 
-                  onClick={() => handleNavLinkClick(link.path)}
-                  className={`hover:text-white transition-all relative py-2 block ${
-                    location.pathname === link.path ? 'text-white' : ''
-                  }`}
-                >
-                  {link.name}
-                  {/* Premium Hover Underline */}
-                  <span className={`absolute bottom-0 left-0 h-[2px] bg-purple-600 transition-all duration-300 ${
-                    location.hash === link.path.replace('/', '') ? 'w-full' : 'w-0 hover:w-full'
-                  }`}></span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          
-          <Link 
-            to="/contact" 
-            onClick={() => window.scrollTo(0, 0)}
-            className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3.5 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-xl shadow-purple-600/25 active:scale-95 border border-purple-500/20"
-          >
-            Hire DevZore →
-          </Link>
-        </div>
+    <>
 
-        {/* --- MOBILE TOGGLE --- */}
-        <div className="md:hidden">
-          <button 
+      {/* 🔥 DARK OVERLAY (UX FIX) */}
+      {isOpen && (
+        <div
+          onClick={() => setIsOpen(false)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
+        />
+      )}
+
+      <nav className={`fixed top-0 w-full z-[9999] transition-all duration-500 ${
+        scrolled
+          ? 'bg-[#030303]/90 backdrop-blur-lg border-b border-white/10 py-3'
+          : 'bg-transparent py-5'
+      }`}>
+
+        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
+
+          {/* LOGO (IMPROVED LOOK) */}
+          <Link to="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-gradient-to-br from-purple-900 to-indigo-900 rounded-lg flex items-center justify-center p-1.5 shadow-lg shadow-purple-500/20">
+              <img src="/logo1.png" alt="DevZore" />
+            </div>
+            <span className="text-lg md:text-xl font-black text-white uppercase tracking-wide">
+              Dev<span className="text-purple-500">Zore</span>
+            </span>
+          </Link>
+
+          {/* DESKTOP */}
+          <div className="hidden md:flex items-center gap-10">
+
+            <ul className="flex gap-7 text-[12px] font-semibold uppercase text-gray-400 tracking-widest">
+              {navLinks.map((link) => {
+                const active = location.hash === link.path.replace('/', '');
+                return (
+                  <li key={link.name}>
+                    <Link
+                      to={link.path}
+                      onClick={() => handleClick(link.path)}
+                      className={`relative pb-2 transition ${
+                        active ? "text-white" : "hover:text-white"
+                      }`}
+                    >
+                      {link.name}
+                      <span className={`absolute left-0 bottom-0 h-[2px] bg-purple-500 transition-all duration-300 ${
+                        active ? "w-full" : "w-0 group-hover:w-full"
+                      }`}></span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <Link
+              to="/contact"
+              className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2.5 rounded-md text-xs font-bold tracking-widest"
+            >
+              Hire Us
+            </Link>
+          </div>
+
+          {/* MOBILE BUTTON (HAMBURGER ↔ X) */}
+          <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white p-2 focus:outline-none"
-            aria-label="Menu"
+            className="md:hidden z-[10000]"
           >
             <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`h-0.5 w-full bg-white rounded-full transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-              <span className={`h-0.5 w-full bg-white rounded-full transition-all duration-300 ${isOpen ? 'opacity-0' : 'w-3/4'}`}></span>
-              <span className={`h-0.5 w-full bg-white rounded-full transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+              <span className={`h-0.5 bg-white transition-all duration-300 ${
+                isOpen ? 'rotate-45 translate-y-2' : ''
+              }`}></span>
+
+              <span className={`h-0.5 bg-white transition-all duration-300 ${
+                isOpen ? 'opacity-0' : ''
+              }`}></span>
+
+              <span className={`h-0.5 bg-white transition-all duration-300 ${
+                isOpen ? '-rotate-45 -translate-y-2' : ''
+              }`}></span>
             </div>
           </button>
         </div>
-      </div>
 
-      {/* --- MOBILE FULLSCREEN MENU --- */}
-      <div className={`md:hidden fixed inset-0 bg-[#030303] transition-all duration-500 ${
-        isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-      }`}>
-        <div className="h-full flex flex-col items-center justify-center gap-10 px-8 text-center">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              to={link.path} 
-              onClick={() => handleNavLinkClick(link.path)}
-              className="text-5xl font-black text-white uppercase tracking-tighter hover:text-purple-500 transition-colors"
+        {/* MOBILE MENU (RIGHT SIDE SLIDE) */}
+        <div className={`fixed top-0 right-0 h-full w-[75%] bg-[#030303] z-[9999] shadow-2xl transform transition-all duration-500 ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
+
+          <div className="flex flex-col mt-24 px-6">
+
+            {navLinks.map((link) => (
+              <button
+                key={link.name}
+                onClick={() => handleClick(link.path)}
+                className="text-left text-lg text-white py-4 border-b border-white/10 hover:text-purple-500 transition"
+              >
+                {link.name}
+              </button>
+            ))}
+
+            <Link
+              to="/contact"
+              onClick={() => setIsOpen(false)}
+              className="mt-6 bg-purple-600 text-white py-3 rounded-lg text-center font-bold"
             >
-              {link.name}
+              Get Started
             </Link>
-          ))}
-          
-          <Link 
-            to="/contact" 
-            onClick={() => { setIsOpen(false); window.scrollTo(0, 0); }}
-            className="mt-6 bg-purple-600 text-white w-full py-5 rounded-2xl font-black uppercase tracking-widest text-lg shadow-2xl shadow-purple-600/30"
-          >
-            Get Started Now
-          </Link>
 
-          <div className="absolute bottom-12 flex gap-6 text-gray-500">
-            <span className="text-[10px] tracking-widest uppercase">Global Quality</span>
-            <span className="text-[10px] tracking-widest uppercase">Premium Support</span>
           </div>
         </div>
-      </div>
-    </nav>
+
+      </nav>
+    </>
   );
 };
 
