@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SectionTag from '../components/SectionTag';
 import { Helmet } from "react-helmet-async";
 
@@ -8,32 +9,38 @@ const Services = () => {
     {
       title: "Custom Web Development Services",
       desc: "We build high-performance, SEO-optimized websites and web applications using React, Next.js, and modern JavaScript frameworks for global businesses.",
-      icon: "🌐"
+      icon: "🌐",
+      path: "/web-development" // Links to WebDevelopment.jsx
     },
     {
       title: "Mobile App Development (iOS & Android)",
       desc: "Scalable and user-friendly mobile applications using React Native and Flutter for startups and enterprises worldwide.",
-      icon: "📱"
+      icon: "📱",
+      path: "/mobile-apps"
     },
     {
       title: "E-Commerce Website Development",
       desc: "Full-featured eCommerce platforms with secure payment integration, product management, and conversion-focused UI/UX.",
-      icon: "🛒"
+      icon: "🛒",
+      path: "/ecommerce"
     },
     {
       title: "Backend & API Development",
       desc: "Robust backend systems using Node.js, Express, and cloud architecture with secure REST APIs and scalable microservices.",
-      icon: "⚙️"
+      icon: "⚙️",
+      path: "/backend-api"
     },
     {
       title: "UI/UX Design & Optimization",
       desc: "Modern, responsive, and conversion-focused UI/UX design to enhance user experience and business growth.",
-      icon: "🎨"
+      icon: "🎨",
+      path: "/ui-ux-design"
     },
     {
       title: "Startup MVP Development",
       desc: "Launch your startup quickly with MVP development services in 2–4 weeks using agile methodology and modern tech stack.",
-      icon: "🚀"
+      icon: "🚀",
+      path: "/startup-mvp"
     }
   ];
 
@@ -52,21 +59,21 @@ const Services = () => {
 
   return (
     <>
-    
+
       {/* 🔥 ADVANCED META SEO */}
       <Helmet>
         <title>DevZore | Web Development, Mobile App & SaaS Development Company</title>
-         <title>DevZore | Software Development Company | Web, Mobile & SaaS Experts</title>
+        <title>DevZore | Software Development Company | Web, Mobile & SaaS Experts</title>
 
         <meta
           name="description"
           content="DevZore is a global software development company offering web development, mobile app development, SaaS solutions, MERN stack development, and SEO optimized applications for international clients."
         />
-        
+
         <meta name="description" content="
         DevZore is a professional software development company offering web development, mobile app development, SaaS platforms, MERN stack development, React.js, Next.js, Node.js backend systems, API development, and cloud-based scalable solutions for startups and enterprises worldwide." />
 
-        
+
         <meta name="keywords" content="
         software development company,
         web development services,
@@ -159,14 +166,28 @@ const Services = () => {
         {/* MAIN SERVICES */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
           {mainServices.map((service, i) => (
-            <div key={i} className="p-8 bg-[#0a0a0a] border border-white/10 rounded-[8px] hover:border-purple-500 transition-all">
-              <div className="text-4xl mb-6">{service.icon}</div>
-              <h2 className="text-xl font-bold mb-3 text-white">
-                {service.title}
-              </h2>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                {service.desc}
-              </p>
+            <div key={i} className="p-8 bg-[#0a0a0a] border border-white/10 rounded-[8px] hover:border-purple-500/50 transition-all flex flex-col justify-between group">
+              <div>
+                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
+                <h2 className="text-xl font-bold mb-3 text-white">
+                  {service.title}
+                </h2>
+                <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                  {service.desc}
+                </p>
+              </div>
+
+              {/* 🔥 Button Aligned to Right */}
+              <div className="flex justify-end">
+                <Link 
+                  to={service.path} 
+                  onClick={() => window.scrollTo(0, 0)}
+                  className="text-purple-500 text-xs font-black uppercase tracking-widest flex items-center gap-2 hover:text-white transition-all group/btn"
+                >
+                  Learn More 
+                  <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
+                </Link>
+              </div>
             </div>
           ))}
         </div>
