@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 // Components
 import Navbar from './components/Navbar';
@@ -19,14 +19,44 @@ import FAQ from './sections/FAQ';
 
 // Pages (Separate Routes)
 import Contact from './pages/Contact'; 
-import Blogs from './pages/BlogPost'; // Blogs page import yahan add kiya gaya hai
+import Blogs from './pages/BlogPost';
+
+// Service Pages Imports
+import WebDevelopment from './pages/WebDevelopment';
+import MobileApp from './pages/MobileApp';
+import ECommerce from './pages/ECommerce';
+import BackendApi from './pages/BackendApi';
+import UiUxDesign from './pages/UiUxDesign';
+import Maintenance from './pages/Maintenance';
+import StartupMVP from './pages/StartupMVP';
+
+// ScrollToTop: Page change hote hi scroll position zero karne ke liye
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
+// 404 Page: Agar user galat URL par jaye
+const NotFound = () => (
+  <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
+    <h1 className="text-9xl font-black text-purple-600">404</h1>
+    <p className="text-2xl font-bold mt-4">Page Not Found</p>
+    <a href="/" className="mt-8 px-6 py-3 bg-purple-600 rounded-lg font-bold hover:bg-purple-700 transition">Back to Home</a>
+  </div>
+);
 
 function App() {
   return (
     <Router>
-      <div className="bg-[#000000b5] min-h-screen text-white selection:bg-purple-500/30 font-sans">
+      <ScrollToTop />
+      <div className="bg-[#030303] min-h-screen text-white selection:bg-purple-500/30 font-sans flex flex-col">
         <Navbar />
-        <main>
+        
+        {/* Main Content Area */}
+        <main className="flex-grow">
           <Routes>
             {/* --- Home Page Route --- */}
             <Route path="/" element={
@@ -44,14 +74,24 @@ function App() {
               </>
             } />
             
-            {/* --- Contact Page Route --- */}
-            <Route path="/contact" element={<Contact />} />
+            {/* --- Service Routes --- */}
+            <Route path="/web-development" element={<WebDevelopment />} />
+            <Route path="/mobile-apps" element={<MobileApp />} />
+            <Route path="/ecommerce" element={<ECommerce />} />
+            <Route path="/backend-api" element={<BackendApi />} />
+            <Route path="/ui-ux-design" element={<UiUxDesign />} />
+            <Route path="/maintenance" element={<Maintenance />} />
+            <Route path="/startup-mvp" element={<StartupMVP />} />
 
-            {/* --- Blogs Page Route (SEO Optimized) --- */}
-            <Route path="/BlogPost" element={<Blogs />} />
-            
+            {/* --- Other Pages --- */}
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<Blogs />} />
+
+            {/* --- Catch All 404 --- */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
+
         <Footer />
       </div>
     </Router>

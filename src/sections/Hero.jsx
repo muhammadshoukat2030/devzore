@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const Hero = () => {
   const stats = [
@@ -39,41 +40,47 @@ const Hero = () => {
         We deliver scalable, SEO-optimized, and high-performance digital products in 2–8 weeks.
       </p>
 
+    
+
       <div className="flex justify-center gap-4 mb-20">
-        <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-          <a href="/contact" aria-label="Get Free Software Development Quote">
-            Get Free Quote →
-          </a>
-        </button>
+        <Link
+          to="/contact"
+          aria-label="Get Free Software Development Quote"
+          className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(168,85,247,0.4)] inline-block"
+        >
+          Get Free Quote →
+        </Link>
+      
 
-        <button className="bg-[#111] border border-white/10 px-8 py-3 rounded-xl font-bold hover:bg-white/5 transition-all">
-          <a href="#projects" aria-label="View Our Web Development Portfolio">
-            View Our Work
-          </a>
-        </button>
-      </div>
+      <button className="bg-[#111] border border-white/10 px-8 py-3 rounded-xl font-bold hover:bg-white/5 transition-all">
+        <a href="#projects" aria-label="View Our Web Development Portfolio">
+          View Our Work
+        </a>
+      </button>
+    </div>
+      
 
-      {/* Stats Section (SEO enhanced labels) */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {stats.map((s, i) => (
-          <div key={i} className="velocity-card">
-            <div className="text-4xl mb-4">{s.icon}</div>
-            <div className="text-4xl font-bold mb-1">{s.value}</div>
-            <div className="text-white/70 font-bold text-[12px] uppercase tracking-widest">
-              {s.label}
-            </div>
-          </div>
-        ))}
+      {/* Stats Section (SEO enhanced labels) */ }
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    {stats.map((s, i) => (
+      <div key={i} className="velocity-card">
+        <div className="text-4xl mb-4">{s.icon}</div>
+        <div className="text-4xl font-bold mb-1">{s.value}</div>
+        <div className="text-white/70 font-bold text-[12px] uppercase tracking-widest">
+          {s.label}
+        </div>
       </div>
+    ))}
+  </div>
 
-      {/* SEO Keywords Block (Hidden for ranking boost, safe) */}
-      <div className="hidden">
-        MERN Stack Developer, React JS Developer, Node JS Backend Development,
-        Next.js SEO Website, SaaS Development Company, Mobile App Development Agency,
-        Full Stack Web Development Services, Custom Software Development Company,
-        UI UX Design Services, E-commerce Development, API Development Services
-      </div>
-    </section>
+  {/* SEO Keywords Block (Hidden for ranking boost, safe) */ }
+  <div className="hidden">
+    MERN Stack Developer, React JS Developer, Node JS Backend Development,
+    Next.js SEO Website, SaaS Development Company, Mobile App Development Agency,
+    Full Stack Web Development Services, Custom Software Development Company,
+    UI UX Design Services, E-commerce Development, API Development Services
+  </div>
+    </section >
   );
 };
 
