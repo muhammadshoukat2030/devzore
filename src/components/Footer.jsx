@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
@@ -188,8 +189,10 @@ const Footer = () => {
             </div>
 
             <div className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-500">
-              <button className="hover:text-purple-500 transition-colors">Privacy</button>
-              <button className="hover:text-purple-500 transition-colors">Terms</button>
+              <button><Link to="/privacy-policy" className="hover:text-purple-500">Privacy Policy</Link></button>
+              <button ><Link to="/terms-and-conditions" className="hover:text-purple-500">Terms & Conditions</Link></button>
+              
+
               <button 
                 onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} 
                 className="text-white hover:text-purple-500 transition-all flex items-center gap-2"

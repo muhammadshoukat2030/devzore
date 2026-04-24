@@ -18,8 +18,8 @@ import Testimonials from './sections/Testimonials';
 import FAQ from './sections/FAQ';
 
 // Pages (Separate Routes)
-import About from './pages/About'; 
-import Contact from './pages/Contact'; 
+import About from './pages/About';
+import Contact from './pages/Contact';
 import Blogs from './pages/BlogPost';
 
 // Service Pages Imports
@@ -31,6 +31,9 @@ import UiUxDesign from './pages/UiUxDesign';
 import Maintenance from './pages/Maintenance';
 import StartupMVP from './pages/StartupMVP';
 import AboutPage from './pages/About';
+// PrivacyPolicy  & Terms
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Terms from './pages/Terms';
 
 // ScrollToTop: Page change hote hi scroll position zero karne ke liye
 const ScrollToTop = () => {
@@ -56,7 +59,7 @@ function App() {
       <ScrollToTop />
       <div className="bg-[#030303] min-h-screen text-white selection:bg-purple-500/30 font-sans flex flex-col">
         <Navbar />
-        
+
         {/* Main Content Area */}
         <main className="flex-grow">
           <Routes>
@@ -75,7 +78,7 @@ function App() {
                 <FAQ />
               </>
             } />
-            
+
             {/* --- Service Routes --- */}
             rou
             <Route path="/web-development" element={<WebDevelopment />} />
@@ -90,6 +93,9 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blogs />} />
+
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-and-conditions" element={<Terms />} />
 
             {/* --- Catch All 404 --- */}
             <Route path="*" element={<NotFound />} />

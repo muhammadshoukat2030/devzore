@@ -40,7 +40,7 @@ const FAQ = () => {
     <>
       {/* ✅ SEO META */}
       <Helmet>
-        <title>DevZore FAQ | Software Development Services</title>
+        <title>DevZore | Leading Software & Product Development Services</title>
         <meta name="description" content="DevZore provides MERN stack, Next.js, SaaS and mobile app development services worldwide with SEO optimized solutions." />
         <meta name="keywords" content="software company, MERN stack, React developer, Next.js, SaaS, mobile app development, SEO services" />
       </Helmet>

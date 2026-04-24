@@ -19,18 +19,16 @@ const Navbar = () => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
 
-  // 🔥 SERVICES LIST
   const services = [
     { name: "Web Development", icon: "🌐", path: "/web-development" },
     { name: "Mobile App Development", icon: "📱", path: "/mobile-apps" },
     { name: "E-Commerce Website", icon: "🛒", path: "/ecommerce" },
     { name: "Backend & API Development", icon: "⚙️", path: "/backend-api" },
     { name: "UI/UX Design", icon: "🎨", path: "/ui-ux-design" },
-    { name: "Website Maintenance", icon: "🛠️", path: "/maintenance" },
+    { name: "Bug Fixing & Maintenance", icon: "🛠️", path: "/maintenance" },
     { name: "Startup MVP Development", icon: "🚀", path: "/startup-mvp" },
   ];
 
-  // 🔥 UPDATED: Added 'Home' and 'About' to navLinks
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -42,184 +40,179 @@ const Navbar = () => {
   const handleClick = (path) => {
     setIsOpen(false);
     setServiceOpen(false);
-
-    // Anchor link handling for home page
-    if (path.includes("#") && location.pathname === "/") {
+    
+    if (path.includes("#")) {
       const id = path.split("#")[1];
-      setTimeout(() => {
+      // Agar hum home page par hain to scroll karein
+      if (location.pathname === "/") {
         const el = document.getElementById(id);
         if (el) {
-          const yOffset = -80;
-          const y = el.getBoundingClientRect().top + window.scrollY + yOffset;
-          window.scrollTo({ top: y, behavior: "smooth" });
+          window.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" });
         }
-      }, 100);
+      }
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
+  // 🔥 FIXED ACTIVE LOGIC: Checks both Path and Hash
+  const isLinkActive = (path) => {
+    if (path.includes("#")) {
+      const hash = path.split("#")[1];
+      return location.hash === `#${hash}`;
+    }
+    return location.pathname === path && location.hash === "";
+  };
+
   return (
     <>
-      {/* 🔥 OVERLAY */}
       {isOpen && (
-        <div
-          onClick={() => setIsOpen(false)}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
-        />
+        <div onClick={() => setIsOpen(false)} className="fixed inset-0 bg-black/60 backdrop-blur-md z-[9998]" />
       )}
 
-      <nav className={`fixed top-0 w-full z-[9999] transition-all duration-500 ${
-        scrolled
-          ? 'bg-[#030303]/95 backdrop-blur-lg border-b border-white/10 py-3'
-          : 'bg-transparent py-5'
+      <nav className={`fixed top-0 w-full z-[9999] transition-all duration-300 font-sans ${
+        scrolled ? 'bg-[#050505]/90 backdrop-blur-xl border-b border-white/5 py-3' : 'bg-transparent py-6'
       }`}>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
-
-          {/* 🔥 LOGO */}
-          <Link to="/" onClick={() => handleClick("/")} className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-700 rounded-xl flex items-center justify-center p-1.5 shadow-lg shadow-purple-500/20">
-              <img src="/logo1.png" alt="DevZore Logo" className="w-full h-full object-contain" />
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          
+          {/* LOGO */}
+          <Link to="/" onClick={() => handleClick("/")} className="flex items-center gap-2 group">
+            <div className="w-9 h-9 bg-purple-600 rounded-lg flex items-center justify-center transition-transform group-hover:rotate-6 shadow-lg shadow-purple-500/20">
+              <img src="/logo1.png" alt="DevZore" className="w-6 h-6 object-contain" />
             </div>
-            <span className="text-lg md:text-xl font-black text-white uppercase tracking-tighter">
+            <span className="text-xl font-bold text-white tracking-tight">
               Dev<span className="text-purple-500">Zore</span>
             </span>
           </Link>
 
-          {/* ================= DESKTOP ================= */}
-          <div className="hidden md:flex items-center gap-8">
-
-            {/* 🔥 NAV LINKS (Including Home & About) */}
-            <ul className="flex gap-7 text-[12px] font-bold uppercase text-gray-400 tracking-widest">
+          {/* DESKTOP NAV */}
+          <div className="hidden md:flex items-center gap-10">
+            <ul className="flex gap-8 items-center">
               {navLinks.map((link) => (
-                <li key={link.name}>
+                <li key={link.name} className="relative py-1 group">
                   <Link
                     to={link.path}
                     onClick={() => handleClick(link.path)}
-                    className={`transition-colors hover:text-white ${
-                      location.pathname === link.path ? "text-purple-500" : ""
+                    className={`text-[13px] font-medium transition-colors hover:text-white ${
+                      isLinkActive(link.path) ? "text-white" : "text-gray-400"
                     }`}
                   >
                     {link.name}
                   </Link>
+                  {/* Bottom Border - Active State */}
+                  <span className={`absolute -bottom-1 left-0 h-[2px] bg-purple-500 transition-all duration-300 ${
+                    isLinkActive(link.path) ? "w-full" : "w-0 group-hover:w-full"
+                  }`} />
                 </li>
               ))}
+
+              {/* SERVICES DROPDOWN */}
+              <li 
+                className="relative py-1 group cursor-pointer"
+                onMouseEnter={() => setServiceOpen(true)}
+                onMouseLeave={() => setServiceOpen(false)}
+              >
+                <div className={`flex items-center gap-1 text-[13px] font-medium transition-colors ${
+                  serviceOpen || location.pathname.includes('development') ? "text-white" : "text-gray-400 group-hover:text-white"
+                }`}>
+                  Services
+                  <span className={`text-[8px] transition-transform duration-300 ${serviceOpen ? "rotate-180" : ""}`}>▼</span>
+                </div>
+                <span className={`absolute -bottom-1 left-0 h-[2px] bg-purple-500 transition-all duration-300 ${serviceOpen ? "w-full" : "w-0"}`} />
+
+                <div className={`absolute top-full right-[-40px] pt-4 transition-all duration-300 ${
+                  serviceOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                }`}>
+                  <div className="w-64 bg-[#0a0a0a] border border-white/10 rounded-xl shadow-2xl p-2 backdrop-blur-2xl">
+                    {services.map((s, i) => (
+                      <Link
+                        key={i}
+                        to={s.path}
+                        onClick={() => handleClick(s.path)}
+                        className="flex items-center gap-3 px-4 py-3 rounded-lg text-[13px] text-gray-400 hover:bg-purple-600/10 hover:text-white transition-all border-b border-white/[0.03] last:border-0"
+                      >
+                        <span className="text-base">{s.icon}</span>
+                        {s.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </li>
             </ul>
 
-            {/* 🔥 SERVICES DROPDOWN */}
-            <div
-              className="relative group"
-              onMouseEnter={() => setServiceOpen(true)}
-              onMouseLeave={() => setServiceOpen(false)}
-            >
-              <button className="text-[12px] font-bold uppercase text-gray-400 hover:text-white flex items-center gap-1 transition-colors">
-                Services
-                <span className={`text-[10px] transition-transform duration-300 ${serviceOpen ? "rotate-180" : ""}`}>▼</span>
-              </button>
-
-              <div className={`absolute top-full pt-4 right-0 md:left-[-40px] transition-all duration-300 ${
-                serviceOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-3"
-              }`}>
-                <div className="w-72 rounded-2xl bg-[#0a0a0a] border border-white/10 shadow-2xl p-3 space-y-1">
-                  {services.map((s, i) => (
-                    <Link
-                      key={i}
-                      to={s.path}
-                      onClick={() => handleClick(s.path)}
-                      className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-gray-300 hover:bg-purple-600/20 hover:text-white transition group"
-                    >
-                      <span className="text-lg group-hover:scale-110 transition-transform">{s.icon}</span>
-                      {s.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* CTA */}
             <Link
               to="/contact"
-              onClick={() => handleClick("/contact")}
-              className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-lg text-xs font-black tracking-widest shadow-lg shadow-purple-500/30 transition-all hover:-translate-y-0.5 active:scale-95"
+              className="bg-white text-black px-6 py-2.5 rounded-full text-[13px] font-bold hover:bg-purple-600 hover:text-white transition-all shadow-xl active:scale-95"
             >
               Hire Us
             </Link>
           </div>
 
-          {/* ================= MOBILE BUTTON ================= */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden z-[10000] p-2"
-          >
-            <div className="w-6 h-4 flex flex-col justify-between">
-              <span className={`h-0.5 bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-              <span className={`h-0.5 bg-white transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
-              <span className={`h-0.5 bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-            </div>
+          {/* MOBILE TOGGLE */}
+          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden flex flex-col gap-1.5 p-2">
+            <span className={`w-6 h-[2px] bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`w-6 h-[2px] bg-white transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
+            <span className={`w-6 h-[2px] bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
           </button>
         </div>
 
-        {/* ================= MOBILE MENU ================= */}
-        <div className={`fixed top-0 right-0 h-full w-[85%] bg-[#030303] z-[9999] transform transition-transform duration-500 ease-in-out border-l border-white/5 ${
+        {/* MOBILE MENU */}
+        <div className={`fixed inset-y-0 right-0 w-full max-w-[300px] bg-[#080808] border-l border-white/10 shadow-2xl transform transition-transform duration-500 ease-in-out z-[10000] ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}>
+          <div className="flex flex-col p-8 h-full">
+             <div className="flex justify-between items-center mb-12">
+                <span className="text-lg font-bold text-white">Menu</span>
+                <button onClick={() => setIsOpen(false)} className="text-gray-400 text-sm">✕ Close</button>
+             </div>
+             
+             <div className="space-y-4 overflow-y-auto pr-2">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    onClick={() => handleClick(link.path)}
+                    className={`block text-xl font-bold py-2 transition-colors ${isLinkActive(link.path) ? "text-purple-500" : "text-white hover:text-purple-400"}`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
 
-          <div className="flex flex-col mt-24 px-8 overflow-y-auto h-full pb-20">
-
-            {/* OTHER LINKS (MOBILE) */}
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                onClick={() => handleClick(link.path)}
-                className="text-left text-xl font-black text-white py-4 border-b border-white/5 uppercase tracking-tighter hover:text-purple-500 transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
-
-            {/* 🔥 SERVICES DROPDOWN MOBILE */}
-            <div className="py-4 border-b border-white/5">
-              <button
-                onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
-                className="w-full flex justify-between items-center text-white text-xl font-black uppercase tracking-tighter"
-              >
-                Services
-                <span className={`transition-transform ${mobileServiceOpen ? "rotate-180" : ""}`}>▼</span>
-              </button>
-
-              <div className={`overflow-hidden transition-all duration-500 ${
-                mobileServiceOpen ? "max-h-[600px] opacity-100 mt-4" : "max-h-0 opacity-0"
-              }`}>
-                <div className="space-y-2 pl-4 border-l border-purple-500/30">
-                  {services.map((s, i) => (
-                    <Link
-                      key={i}
-                      to={s.path}
-                      onClick={() => handleClick(s.path)}
-                      className="flex items-center gap-3 text-sm text-gray-400 py-3 hover:text-purple-500 transition-colors"
-                    >
-                      <span className="text-base">{s.icon}</span>
-                      {s.name}
-                    </Link>
-                  ))}
+                {/* MOBILE SERVICES */}
+                <div className="pt-6 border-t border-white/5">
+                   <button 
+                    onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
+                    className="flex justify-between items-center w-full text-gray-300 text-xm uppercase tracking-[0.2em] font-black mb-4"
+                   >
+                     Our Services
+                     <span className={`transition-transform ${mobileServiceOpen ? "rotate-180" : ""}`}>▼</span>
+                   </button>
+                   
+                   <div className={`space-y-1 transition-all duration-300 overflow-hidden ${mobileServiceOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
+                      {services.map((s, i) => (
+                        <Link 
+                          key={i} 
+                          to={s.path} 
+                          onClick={() => setIsOpen(false)} 
+                          className="flex items-center gap-3 text-gray-300 py-3 border-b border-white/[0.03] text-sm active:bg-white/5"
+                        >
+                          <span className="text-lg">{s.icon}</span> {s.name}
+                        </Link>
+                      ))}
+                   </div>
                 </div>
-              </div>
-            </div>
+             </div>
 
-            {/* CTA MOBILE */}
-            <Link
+             <Link
               to="/contact"
               onClick={() => setIsOpen(false)}
-              className="mt-8 bg-purple-600 text-white py-4 rounded-xl text-center font-black tracking-widest shadow-xl shadow-purple-500/20 active:scale-95 transition-transform uppercase"
+              className="mt-auto bg-purple-600 text-white py-4 rounded-2xl text-center font-bold shadow-lg shadow-purple-500/20 active:scale-95 transition-transform"
             >
-              Get Started
+              Hire Us
             </Link>
-
           </div>
         </div>
-
       </nav>
     </>
   );

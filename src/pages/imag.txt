@@ -36,7 +36,7 @@ footer link and namee
                   { name: "Technical Blogs", path: "/blog" },
                   { name: "Hire Engineer", path: "/contact" }
 
-                   <div>
+              <div>
               <h4 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-12 opacity-40">Engineering</h4>
               <ul className="space-y-5 text-gray-500 text-[13px] font-medium">
                 <li className="hover:text-purple-400 cursor-default transition-colors">Enterprise React Integration</li>
