@@ -19,9 +19,8 @@ const Navbar = () => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
 
-  // 🔥 UPDATED: Har service ka apna unique route hai
+  // 🔥 SERVICES LIST
   const services = [
-    // { name: "Web Development", path: "/web-development" },
     { name: "Web Development", icon: "🌐", path: "/web-development" },
     { name: "Mobile App Development", icon: "📱", path: "/mobile-apps" },
     { name: "E-Commerce Website", icon: "🛒", path: "/ecommerce" },
@@ -29,21 +28,22 @@ const Navbar = () => {
     { name: "UI/UX Design", icon: "🎨", path: "/ui-ux-design" },
     { name: "Website Maintenance", icon: "🛠️", path: "/maintenance" },
     { name: "Startup MVP Development", icon: "🚀", path: "/startup-mvp" },
-    
   ];
 
+  // 🔥 UPDATED: Added 'Home' and 'About' to navLinks
   const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
     { name: "Portfolio", path: "/#projects" },
     { name: "Pricing", path: "/#pricing" },
-    { name: "FAQ", path: "/#faq" },
-    { name: "Blog", path: "/blog" }, // Updated to match App.jsx route
+    { name: "Blog", path: "/blog" },
   ];
 
   const handleClick = (path) => {
     setIsOpen(false);
     setServiceOpen(false);
 
-    // Agar hum home page par hain aur anchor link par click kiya
+    // Anchor link handling for home page
     if (path.includes("#") && location.pathname === "/") {
       const id = path.split("#")[1];
       setTimeout(() => {
@@ -55,7 +55,6 @@ const Navbar = () => {
         }
       }, 100);
     } else {
-      // Normal page navigation ke liye scroll top par le jaye
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
@@ -79,7 +78,7 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
 
           {/* 🔥 LOGO */}
-          <Link to="/" onClick={() => window.scrollTo(0,0)} className="flex items-center gap-2">
+          <Link to="/" onClick={() => handleClick("/")} className="flex items-center gap-2">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-700 rounded-xl flex items-center justify-center p-1.5 shadow-lg shadow-purple-500/20">
               <img src="/logo1.png" alt="DevZore Logo" className="w-full h-full object-contain" />
             </div>
@@ -89,7 +88,24 @@ const Navbar = () => {
           </Link>
 
           {/* ================= DESKTOP ================= */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-8">
+
+            {/* 🔥 NAV LINKS (Including Home & About) */}
+            <ul className="flex gap-7 text-[12px] font-bold uppercase text-gray-400 tracking-widest">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    onClick={() => handleClick(link.path)}
+                    className={`transition-colors hover:text-white ${
+                      location.pathname === link.path ? "text-purple-500" : ""
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
             {/* 🔥 SERVICES DROPDOWN */}
             <div
@@ -99,11 +115,10 @@ const Navbar = () => {
             >
               <button className="text-[12px] font-bold uppercase text-gray-400 hover:text-white flex items-center gap-1 transition-colors">
                 Services
-                <span className={`transition-transform duration-300 ${serviceOpen ? "rotate-180" : ""}`}>▼</span>
+                <span className={`text-[10px] transition-transform duration-300 ${serviceOpen ? "rotate-180" : ""}`}>▼</span>
               </button>
 
-              {/* Dropdown Container */}
-              <div className={`absolute top-full pt-4 left-[-40px] transition-all duration-300 ${
+              <div className={`absolute top-full pt-4 right-0 md:left-[-40px] transition-all duration-300 ${
                 serviceOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-3"
               }`}>
                 <div className="w-72 rounded-2xl bg-[#0a0a0a] border border-white/10 shadow-2xl p-3 space-y-1">
@@ -122,24 +137,10 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* 🔥 OTHER LINKS */}
-            <ul className="flex gap-7 text-[12px] font-bold uppercase text-gray-400 tracking-widest">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.path}
-                    onClick={() => handleClick(link.path)}
-                    className="hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
             {/* CTA */}
             <Link
               to="/contact"
+              onClick={() => handleClick("/contact")}
               className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-lg text-xs font-black tracking-widest shadow-lg shadow-purple-500/30 transition-all hover:-translate-y-0.5 active:scale-95"
             >
               Hire Us
@@ -164,38 +165,9 @@ const Navbar = () => {
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}>
 
-          <div className="flex flex-col mt-24 px-8">
+          <div className="flex flex-col mt-24 px-8 overflow-y-auto h-full pb-20">
 
-            {/* 🔥 SERVICES DROPDOWN MOBILE */}
-            <div className="mb-4">
-              <button
-                onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
-                className="w-full flex justify-between items-center text-white text-xl font-black uppercase tracking-tighter mb-4"
-              >
-                Services
-                <span className={`transition-transform ${mobileServiceOpen ? "rotate-180" : ""}`}>▼</span>
-              </button>
-
-              <div className={`overflow-hidden transition-all duration-500 ${
-                mobileServiceOpen ? "max-h-[500px] opacity-100 mb-4" : "max-h-0 opacity-0"
-              }`}>
-                <div className="space-y-2 pl-4 border-l border-purple-500/30">
-                  {services.map((s, i) => (
-                    <Link
-                      key={i}
-                      to={s.path}
-                      onClick={() => handleClick(s.path)}
-                      className="flex items-center gap-3 text-sm text-gray-400 py-2 hover:text-purple-500 transition-colors"
-                    >
-                      <span className="text-base">{s.icon}</span>
-                      {s.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* OTHER LINKS */}
+            {/* OTHER LINKS (MOBILE) */}
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -206,6 +178,35 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+
+            {/* 🔥 SERVICES DROPDOWN MOBILE */}
+            <div className="py-4 border-b border-white/5">
+              <button
+                onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
+                className="w-full flex justify-between items-center text-white text-xl font-black uppercase tracking-tighter"
+              >
+                Services
+                <span className={`transition-transform ${mobileServiceOpen ? "rotate-180" : ""}`}>▼</span>
+              </button>
+
+              <div className={`overflow-hidden transition-all duration-500 ${
+                mobileServiceOpen ? "max-h-[600px] opacity-100 mt-4" : "max-h-0 opacity-0"
+              }`}>
+                <div className="space-y-2 pl-4 border-l border-purple-500/30">
+                  {services.map((s, i) => (
+                    <Link
+                      key={i}
+                      to={s.path}
+                      onClick={() => handleClick(s.path)}
+                      className="flex items-center gap-3 text-sm text-gray-400 py-3 hover:text-purple-500 transition-colors"
+                    >
+                      <span className="text-base">{s.icon}</span>
+                      {s.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             {/* CTA MOBILE */}
             <Link

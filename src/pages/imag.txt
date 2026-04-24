@@ -19,3 +19,31 @@
             </div>
           </div>
         </div>
+
+footer link and namee
+
+        { name: "Services & Solutions", path: "/#services" },
+                  { name: "Global Portfolio", path: "/#projects" },
+                  { name: "Investment Plans", path: "/#pricing" },
+                  { name: "Client Testimonials", path: "/#testimonials" },
+                  { name: "Technical Blogs", path: "/blogs" },
+                  { name: "Hire Engineer", path: "/contact" }
+
+                  { name: "About DevZore", path: "/about" }, // Added About
+                  { name: "Services & Solutions", path: "/#services" },
+                  { name: "Global Portfolio", path: "/#projects" },
+                  { name: "Investment Plans", path: "/#pricing" },
+                  { name: "Technical Blogs", path: "/blog" },
+                  { name: "Hire Engineer", path: "/contact" }
+
+                   <div>
+              <h4 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-12 opacity-40">Engineering</h4>
+              <ul className="space-y-5 text-gray-500 text-[13px] font-medium">
+                <li className="hover:text-purple-400 cursor-default transition-colors">Enterprise React Integration</li>
+                <li className="hover:text-purple-400 cursor-default transition-colors">Next.js Server-Side Rendering</li>
+                <li className="hover:text-purple-400 cursor-default transition-colors">Node.js Microservices</li>
+                <li className="hover:text-purple-400 cursor-default transition-colors">MongoDB Data Modeling</li>
+                <li className="hover:text-purple-400 cursor-default transition-colors">AWS & Cloud Deployment</li>
+                <li className="hover:text-purple-400 cursor-default transition-colors">API Security & Optimization</li>
+              </ul>
+            </div>

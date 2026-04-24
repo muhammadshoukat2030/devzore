@@ -18,6 +18,7 @@ import Testimonials from './sections/Testimonials';
 import FAQ from './sections/FAQ';
 
 // Pages (Separate Routes)
+import About from './pages/About'; 
 import Contact from './pages/Contact'; 
 import Blogs from './pages/BlogPost';
 
@@ -29,6 +30,7 @@ import BackendApi from './pages/BackendApi';
 import UiUxDesign from './pages/UiUxDesign';
 import Maintenance from './pages/Maintenance';
 import StartupMVP from './pages/StartupMVP';
+import AboutPage from './pages/About';
 
 // ScrollToTop: Page change hote hi scroll position zero karne ke liye
 const ScrollToTop = () => {
@@ -75,6 +77,7 @@ function App() {
             } />
             
             {/* --- Service Routes --- */}
+            rou
             <Route path="/web-development" element={<WebDevelopment />} />
             <Route path="/mobile-apps" element={<MobileApp />} />
             <Route path="/ecommerce" element={<ECommerce />} />
@@ -84,6 +87,7 @@ function App() {
             <Route path="/startup-mvp" element={<StartupMVP />} />
 
             {/* --- Other Pages --- */}
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blogs />} />
 
