@@ -1,48 +1,49 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- BASIC -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/logo1.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="icon" type="image/png" href="/logo1.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/logo1.png" sizes="192x192" />
+    
+    <link rel="apple-touch-icon" href="/logo1.png" />
+    
+    <meta name="theme-color" content="#030303" />
+    <meta name="mobile-web-app-capable" content="yes" />
 
-    <!-- 🔥 PRIMARY SEO TITLE -->
     <title>
       DevZore - Software Development Company | MERN Stack, Web & Mobile App Development
     </title>
 
-    <!-- 🔥 META DESCRIPTION -->
     <meta
       name="description"
       content="DevZore is a leading software development company providing MERN stack development, custom web applications, mobile app development, SaaS platforms, and scalable backend systems for global startups and enterprises."
     />
 
-    <!-- 🔥 ADVANCED KEYWORDS -->
     <meta
       name="keywords"
       content="software development company, web development company, MERN stack development, React js developer, Node js development, full stack developer, mobile app development company, SaaS development, custom web application development, hire developers, React Native developer, Next js development, software house Pakistan, web agency Islamabad, backend API development, cloud deployment, scalable applications"
     />
 
-    <!-- AUTHOR -->
     <meta name="author" content="M-Shoukat Engineer" />
 
-    <!-- ROBOTS -->
     <meta name="robots" content="index, follow" />
 
-    <!-- CANONICAL -->
     <link rel="canonical" href="https://devzore.com/" />
 
-    <!-- 🔥 OPEN GRAPH (FACEBOOK / LINK PREVIEW) -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="DevZore" />
     <meta property="og:title" content="DevZore - Software Development Company" />
     <meta
       property="og:description"
       content="We build high-performance web apps, mobile apps, and SaaS platforms using MERN stack. Trusted by global clients."
     />
     <meta property="og:image" content="https://devzore.com/logo1.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://devzore.com/" />
 
-    <!-- 🔥 TWITTER SEO -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="DevZore Software Development Company" />
     <meta
@@ -51,11 +52,10 @@
     />
     <meta name="twitter:image" content="https://devzore.com/logo1.png" />
 
-    <!-- 🔥 PERFORMANCE BOOST -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
-    <!-- 🔥 STRUCTURED DATA (VERY IMPORTANT FOR GOOGLE RANKING) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -63,6 +63,7 @@
         "name": "DevZore",
         "url": "https://devzore.com",
         "logo": "https://devzore.com/logo1.png",
+        "image": "https://devzore.com/logo1.png",
         "description": "Professional software development company offering MERN stack development, web applications, mobile apps, and SaaS solutions.",
         "founder": {
           "@type": "Person",
@@ -81,12 +82,14 @@
     </script>
   </head>
 
-  <body>
+  <body style="background-color: #030303;">
     <div id="root"></div>
 
-    <!-- SEO fallback -->
     <noscript>
-      DevZore is a global software development company offering MERN stack development, web development, mobile apps, and SaaS solutions.
+      <div style="text-align: center; color: white; padding: 20px;">
+        DevZore is a global software development company offering MERN stack development, web development, mobile apps, and SaaS solutions. 
+        Please enable JavaScript to view the full site.
+      </div>
     </noscript>
 
     <script type="module" src="/src/main.jsx"></script>
