@@ -50,7 +50,7 @@ const Projects = () => {
           Our Global Software Development Projects
         </h2>
 
-        <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
+        <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
           We build <strong>MERN Stack Web Applications</strong>,{" "}
           <strong>React.js Frontend Systems</strong>, and{" "}
           <strong>Node.js Backend Solutions</strong> for startups, businesses, and enterprises worldwide.
@@ -59,7 +59,7 @@ const Projects = () => {
       </div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projectData.map((project, i) => (
           <ProjectCard key={i} {...project} />
         ))}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const stats = [
@@ -40,7 +40,7 @@ const Hero = () => {
         We deliver scalable, SEO-optimized, and high-performance digital products in 2–8 weeks.
       </p>
 
-    
+
 
       <div className="flex justify-center gap-4 mb-20">
         <Link
@@ -50,36 +50,39 @@ const Hero = () => {
         >
           Get Free Quote →
         </Link>
-      
 
-      <button className="bg-[#111] border border-white/10 px-8 py-3 rounded-xl font-bold hover:bg-white/5 transition-all">
-        <a href="#projects" aria-label="View Our Web Development Portfolio">
-          View Our Work
-        </a>
-      </button>
-    </div>
-      
 
-      {/* Stats Section (SEO enhanced labels) */ }
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-    {stats.map((s, i) => (
-      <div key={i} className="velocity-card">
-        <div className="text-4xl mb-4">{s.icon}</div>
-        <div className="text-4xl font-bold mb-1">{s.value}</div>
-        <div className="text-white/70 font-bold text-[12px] uppercase tracking-widest">
-          {s.label}
-        </div>
+        <button className="bg-[#111] border border-white/10 px-8 py-3 rounded-xl font-bold hover:bg-white/5 transition-all">
+          <a href="#projects" aria-label="View Our Web Development Portfolio">
+            View Our Work
+          </a>
+        </button>
       </div>
-    ))}
-  </div>
 
-  {/* SEO Keywords Block (Hidden for ranking boost, safe) */ }
-  <div className="hidden">
-    MERN Stack Developer, React JS Developer, Node JS Backend Development,
-    Next.js SEO Website, SaaS Development Company, Mobile App Development Agency,
-    Full Stack Web Development Services, Custom Software Development Company,
-    UI UX Design Services, E-commerce Development, API Development Services
-  </div>
+
+      {/* Stats Section (SEO enhanced labels) */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {stats.map((s, i) => (
+          <div key={i} className="velocity-card border border-gray-200/25 bg-gray-300/5 
+              transition-all duration-300 ease-out 
+              hover:-translate-y-2 
+              hover:shadow-[0_10px_30px_rgba(167,155,247,.1)]">
+            <div className="text-4xl mb-4">{s.icon}</div>
+            <div className="text-4xl font-bold mb-1">{s.value}</div>
+            <div className="text-white/70 font-bold text-[12px] uppercase tracking-widest">
+              {s.label}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* SEO Keywords Block (Hidden for ranking boost, safe) */}
+      <div className="hidden">
+        MERN Stack Developer, React JS Developer, Node JS Backend Development,
+        Next.js SEO Website, SaaS Development Company, Mobile App Development Agency,
+        Full Stack Web Development Services, Custom Software Development Company,
+        UI UX Design Services, E-commerce Development, API Development Services
+      </div>
     </section >
   );
 };

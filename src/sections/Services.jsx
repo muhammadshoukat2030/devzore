@@ -166,7 +166,7 @@ const Services = () => {
         {/* MAIN SERVICES */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
           {mainServices.map((service, i) => (
-            <div key={i} className="p-8 bg-[#0a0a0a] border border-white/10 rounded-[8px] hover:border-purple-500/50 transition-all flex flex-col justify-between group">
+            <div key={i} className="p-8 bg-gray-200/6 border border-white/30 rounded-[8px] hover:border-purple-700/50 transition-all flex flex-col justify-between group">
               <div>
                 <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
                 <h2 className="text-xl font-bold mb-3 text-white">
@@ -205,17 +205,17 @@ const Services = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {industries.map((item, i) => (
-            <div key={i} className="p-6 bg-[#0a0a0a] border border-white/10 rounded-[8px] text-center hover:border-purple-500 transition-all">
+            <div key={i} className="p-6 bg-gray-200/6 border border-white/30 rounded-[8px] text-center hover:border-purple-500 transition-all">
               <div className="text-3xl mb-4">{item.icon}</div>
-              <h3 className="font-bold text-lg text-white mb-2">{item.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+              <h3 className="font-bold text-lg text-white mb-1">{item.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
 
         {/* 🔥 SEO CONTENT BLOCK (VERY IMPORTANT) */}
         <div className="mt-24 max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
             Hire Professional Developers for Your Next Project
           </h2>
           <p className="text-gray-400 leading-relaxed">

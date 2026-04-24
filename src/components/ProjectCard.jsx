@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProjectCard = ({ title, desc, image, tags, link }) => (
-  <div className="velocity-card overflow-hidden p-0 group border border-white/10 hover:border-purple-800/80 transition-all duration-300">
+  <div className="velocity-card overflow-hidden p-0 group border border-white/20 hover:border-purple-800/90 transition-all duration-300 bg-gray-200/6 ">
     {/* Image Section */}
     <div className="relative h-64 bg-zinc-900 overflow-hidden">
       <img 
