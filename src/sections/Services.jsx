@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react'; // added useEffect
 import { Link } from 'react-router-dom';
 import SectionTag from '../components/SectionTag';
 import { Helmet } from "react-helmet-async";
 
 const Services = () => {
 
+  // 🔥 SEO optimized data for international clients
   const mainServices = [
     {
       title: "Custom Web Development Services",
@@ -41,6 +42,7 @@ const Services = () => {
       desc: "Launch your startup quickly with MVP development services in 2–4 weeks using agile methodology and modern tech stack.",
       icon: "🚀",
       path: "/startup-mvp"
+
     }
   ];
 
@@ -57,45 +59,98 @@ const Services = () => {
     { title: "Salon & Beauty Systems", icon: "💅", desc: "Appointment booking, memberships, and beauty service platforms." },
   ];
 
+  // 🔥 YOUR ADDED CODE: Dynamic Schema for SEO Boost
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "DevZore Services",
+      "itemListElement": [
+        {
+          "@type": "Service",
+          "position": 1,
+          "name": "Web Development",
+          "description": "Custom websites and web apps using React, Next.js and Node.js.",
+          "provider": { "@type": "Organization", "name": "DevZore" }
+        },
+        {
+          "@type": "Service",
+          "position": 2,
+          "name": "Mobile App Development",
+          "description": "iOS and Android apps using React Native and Flutter.",
+          "provider": { "@type": "Organization", "name": "DevZore" }
+        },
+        {
+          "@type": "Service",
+          "position": 3,
+          "name": "MERN Stack Development",
+          "description": "Full-stack apps with MongoDB, Express, React and Node.js.",
+          "provider": { "@type": "Organization", "name": "DevZore" }
+        }
+      ]
+    });
+    document.head.appendChild(script);
+    return () => document.head.removeChild(script);
+  }, []);
+
+
   return (
     <>
-
-      {/* 🔥 ADVANCED META SEO */}
+      {/* 🔥 ADVANCED META SEO: Refined for International Ranking */}
       <Helmet>
-        <title>DevZore | Web Development, Mobile App & SaaS Development Company</title>
+
+        <title>DevZore | Expert Web, Mobile & SaaS Development Company</title>
+        <meta name="description" content="DevZore is a leading software development agency providing enterprise-grade web development, React Native mobile apps, and scalable SaaS solutions globally." />
+        <meta name="keywords" content="DevZore, software house, web development services, hire MERN stack developer, React JS expert, Next.js developer, SaaS development agency, mobile app development Pakistan, custom software solutions" />
+        <meta name="robots" content="index, follow" />
+
+        <title>Web & App Development Services | DevZore</title>
+        <meta name="description" content="DevZore offers professional web development, mobile app development, MERN stack, and SaaS development services from Islamabad, Pakistan for clients worldwide." />
+        <meta name="keywords" content="web development services, mobile app development, MERN stack Pakistan, SaaS development, hire React developer Pakistan" />
+        <link rel="canonical" href="https://devzore.com/services" />
+        <meta property="og:title" content="Web & App Development Services | DevZore" />
+        <meta property="og:description" content="Professional web, mobile and SaaS development services from DevZore, Islamabad Pakistan." />
+        <meta property="og:url" content="https://devzore.com/services" />
+        <meta property="og:type" content="website" />
+
+        {/* Open Graph for Social Media Optimization */}
+        <meta property="og:title" content="DevZore - Architecting Future-Ready Digital Products" />
+        <meta property="og:description" content="Professional software engineering for global startups and enterprises." />
+        <meta property="og:type" content="website" />
+        <meta name="geo.region" content="PK" />
+        <meta name="geo.placename" content="Islamabad" />
         <title>DevZore | Software Development Company | Web, Mobile & SaaS Experts</title>
 
         <meta
           name="description"
           content="DevZore is a global software development company offering web development, mobile app development, SaaS solutions, MERN stack development, and SEO optimized applications for international clients."
         />
-
         <meta name="description" content="
-        DevZore is a professional software development company offering web development, mobile app development, SaaS platforms, MERN stack development, React.js, Next.js, Node.js backend systems, API development, and cloud-based scalable solutions for startups and enterprises worldwide." />
-
-
+        DevZore is a professional software development company offering web development, mobile app development, SaaS platforms, MERN stack development, React.js, Next.js, Node.js backend systems, API development, and cloud-based scalable solutions for startups and enterprises worldwide." />
         <meta name="keywords" content="
-        software development company,
-        web development services,
-        hire web developer,
-        MERN stack developer,
-        React developer,
-        Next.js development,
-        SaaS development company,
-        mobile app development,
-        custom software development,
-        outsource software development,
-        IT company Pakistan,
-        software house Islamabad,
-        global software agency,
-        full stack developer services,
-        API development services,
-        Node.js backend developer,
-        cloud application development,
-        hire developers remotely,
-        enterprise software solutions,
-        startup MVP development
-        " />
+        software development company,
+        web development services,
+        hire web developer,
+        MERN stack developer,
+        React developer,
+        Next.js development,
+        SaaS development company,
+        mobile app development,
+        custom software development,
+        outsource software development,
+        IT company Pakistan,
+        software house Islamabad,
+        global software agency,
+        full stack developer services,
+        API development services,
+        Node.js backend developer,
+        cloud application development,
+        hire developers remotely,
+        enterprise software solutions,
+        startup MVP development
+        " />
 
         <meta
           name="keywords"
@@ -120,53 +175,26 @@ const Services = () => {
         <meta property="og:description" content="Web, Mobile, SaaS & Cloud Solutions for global clients." />
         <meta property="og:type" content="website" />
 
-        {/* TWITTER SEO */}
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
-
-      {/* 🔥 SCHEMA MARKUP (GOOGLE BOOST) */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "serviceType": "Software Development",
-          "provider": {
-            "@type": "Organization",
-            "name": "DevZore",
-            "url": "https://devzore.com"
-          },
-          "areaServed": "Worldwide",
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Software Services",
-            "itemListElement": mainServices.map(service => ({
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": service.title
-              }
-            }))
-          }
-        })}
-      </script>
 
       <section id="services" className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
 
         {/* HEADER */}
         <div className="text-center mb-16 md:mb-20">
           <SectionTag text="SERVICES" />
-          <h1 className="text-3xl md:text-5xl font-bold mt-5 text-white">
-            Global Software Development Services for Modern Businesses
+          <h1 className="text-3xl md:text-5xl font-bold mt-5 text-white leading-tight">
+            Architecting High-Performance <br className="hidden md:block" /> Digital Excellence Globally
           </h1>
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            We provide custom web development, mobile applications, and SaaS solutions using modern technologies like React, Node.js, and cloud infrastructure for startups and enterprises worldwide.
+          <p className="text-gray-400 mt-6 max-w-2xl mx-auto text-lg">
+            We transform complex business requirements into scalable digital products using industry-leading technologies like React, Node.js, and Cloud Infrastructure.
           </p>
         </div>
 
-        {/* MAIN SERVICES */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+        {/* MAIN SERVICES GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {mainServices.map((service, i) => (
-            <div key={i} className="p-8 bg-gray-200/6 border border-white/30 rounded-[8px] hover:border-purple-700/50 transition-all flex flex-col justify-between group">
+            <div key={i} className="p-8 bg-gray-200/5 border border-white/10 rounded-xl hover:border-purple-600/50 transition-all flex flex-col justify-between group backdrop-blur-sm">
               <div>
                 <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
                 <h2 className="text-xl font-bold mb-3 text-white">
@@ -177,14 +205,13 @@ const Services = () => {
                 </p>
               </div>
 
-              {/* 🔥 Button Aligned to Right */}
               <div className="flex justify-end">
-                <Link 
-                  to={service.path} 
+                <Link
+                  to={service.path}
                   onClick={() => window.scrollTo(0, 0)}
-                  className="text-purple-500 text-xs font-black uppercase tracking-widest flex items-center gap-2 hover:text-white transition-all group/btn"
+                  className="text-purple-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:text-white transition-all group/btn"
                 >
-                  Learn More 
+                  Learn More
                   <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
                 </Link>
               </div>
@@ -192,20 +219,20 @@ const Services = () => {
           ))}
         </div>
 
-        {/* INDUSTRIES */}
+        {/* INDUSTRIES SECTION */}
         <div className="text-center mb-12">
           <SectionTag text="INDUSTRIES" />
           <h2 className="text-3xl md:text-5xl font-bold mt-4 text-white">
-            Industries We Serve Worldwide
+            Specialized Industry Solutions
           </h2>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            We deliver industry-specific software solutions tailored for different business sectors across the globe.
+            Delivering domain-specific software excellence across global business sectors.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {industries.map((item, i) => (
-            <div key={i} className="p-6 bg-gray-200/6 border border-white/30 rounded-[8px] text-center hover:border-purple-500 transition-all">
+            <div key={i} className="p-6 bg-gray-200/5 border border-white/10 rounded-lg text-center hover:border-purple-500 transition-all">
               <div className="text-3xl mb-4">{item.icon}</div>
               <h3 className="font-bold text-lg text-white mb-1">{item.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
@@ -213,14 +240,22 @@ const Services = () => {
           ))}
         </div>
 
-        {/* 🔥 SEO CONTENT BLOCK (VERY IMPORTANT) */}
-        <div className="mt-24 max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
-            Hire Professional Developers for Your Next Project
+        {/* 🔥 SEO CONTENT BLOCK (ENHANCED FOR CONVERSION) */}
+        <div className="mt-32 p-12 bg-purple-950/20 border border-purple-500/20 rounded-2xl max-w-5xl mx-auto text-center">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-6">
+            Hire Professional Developers for Your Vision
           </h2>
-          <p className="text-gray-400 leading-relaxed">
-            If you are looking to hire experienced developers for web development, mobile app development, or SaaS applications, DevZore is your trusted technology partner. We specialize in MERN stack development, React.js applications, and scalable backend systems using Node.js. Our team helps startups and enterprises build high-quality digital products that are optimized for performance, SEO, and user experience. Whether you want to outsource software development or build a custom solution, we deliver reliable and cost-effective services globally.
+          <p className="text-gray-400 leading-relaxed text-lg">
+            Looking for a trusted technology partner? <strong>DevZore</strong> offers world-class software engineering services. We specialize in <strong>MERN stack development</strong>, <strong>Next.js web applications</strong>, and <strong>secure API architectures</strong>. Our team empowers startups and global enterprises by building high-quality digital products optimized for speed, SEO, and superior user experience. Whether you need to <strong>outsource development</strong> or build a custom solution, we deliver scalable results globally.
           </p>
+          <div className="mt-10 flex justify-center">
+            <Link
+              to="/contact"
+              className="w-full sm:w-auto text-center bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 md:py-4 md:px-10 rounded-full transition-all text-base md:text-lg inline-block"
+            >
+              Start Your Project Today →
+            </Link>
+          </div>
         </div>
 
       </section>

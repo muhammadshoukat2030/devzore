@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+
 
 const BlogPage = () => {
   const [selectedBlog, setSelectedBlog] = useState(null); // Modal control state
@@ -16,12 +18,12 @@ const BlogPage = () => {
   }, [selectedBlog]);
 
   const blogPosts = [
-   {
-  id: 2,
-  category: 'Mobile App Development',
-  title: 'Top Features a Custom Mobile App Development Company Should Offer in 2026',
-  excerpt: 'Understanding essential development features that separate exceptional partners from adequate providers in the modern mobile landscape...',
-  content: `
+    {
+      id: 2,
+      category: 'Mobile App Development',
+      title: 'Top Features a Custom Mobile App Development Company Should Offer in 2026',
+      excerpt: 'Understanding essential development features that separate exceptional partners from adequate providers in the modern mobile landscape...',
+      content: `
     <p class="mb-6">Modern application success requires multifaceted expertise spanning design psychology, technical architecture, and security protocols. At <b>DevZore</b>, we believe behind every transformation stands a development partner who delivers capabilities beyond basic coding.</p>
     
     <h3 class="text-white text-2xl font-bold mt-10 mb-4">1. Advanced UI/UX Design Psychology</h3>
@@ -90,17 +92,17 @@ const BlogPage = () => {
     <h3 class="text-white text-2xl font-bold mt-10 mb-4">Final Verdict</h3>
     <p>Selecting a development partner determines application success beyond the initial launch. Prioritize comprehensive capabilities—strategic planning, design excellence, and full-stack expertise—over just pricing to drive sustained business value.</p>
   `,
-  author: 'M-Shoukat Engineer',
-  date: 'April 20, 2026',
-  image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800',
-  readTime: '20 min read'
-},
-  {
-    id: 2,
-    category: 'SaaS',
-    title: 'Multi-Tenant Architecture: The Enterprise SaaS Playbook',
-    excerpt: 'A deep dive into data isolation, schema strategies, and scaling SaaS platforms globally...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'April 20, 2026',
+      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800',
+      readTime: '20 min read'
+    },
+    {
+      id: 2,
+      category: 'SaaS',
+      title: 'Multi-Tenant Architecture: The Enterprise SaaS Playbook',
+      excerpt: 'A deep dive into data isolation, schema strategies, and scaling SaaS platforms globally...',
+      content: `
       <p>SaaS success depends on how you manage multiple clients (tenants) on a single platform. At <b>DevZore</b>, we architect systems that balance security with infrastructure costs. In the enterprise world, multi-tenancy is not just about sharing a database; it’s about ensuring that a spike in one tenant’s traffic doesn't crash the experience for another.</p>
       
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Strategic Data Isolation Models</h3>
@@ -120,17 +122,17 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Automated Infrastructure & Onboarding</h3>
       <p>The hallmark of a premium SaaS is zero-touch onboarding. We utilize <b>Terraform</b> scripts and <b>Node.js</b> event triggers. As soon as a user completes their subscription, our system automatically provisions isolated S3 buckets, dedicated Redis namespaces, and specific IAM roles without any manual intervention by the <b>DevZore</b> team.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'April 10, 2026',
-    image: 'https://images.unsplash.com/photo-1518433278981-16c02460bb9c?auto=format&fit=crop&q=80&w=800',
-    readTime: '18 min read'
-  },
-  {
-    id: 3,
-    category: 'UI/UX',
-    title: 'High-Conversion Design: Beyond Tailwind CSS Aesthetics',
-    excerpt: 'How to use cognitive load principles and design tokens to build trustworthy professional platforms...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'April 10, 2026',
+      image: 'https://images.unsplash.com/photo-1518433278981-16c02460bb9c?auto=format&fit=crop&q=80&w=800',
+      readTime: '18 min read'
+    },
+    {
+      id: 3,
+      category: 'UI/UX',
+      title: 'High-Conversion Design: Beyond Tailwind CSS Aesthetics',
+      excerpt: 'How to use cognitive load principles and design tokens to build trustworthy professional platforms...',
+      content: `
       <p>A beautiful site that doesn't convert is just expensive art. At <b>DevZore</b>, we believe UI/UX must serve the business logic. Our philosophy is rooted in <b>Conversion-Centered Design (CCD)</b>, ensuring that every pixel moves the user closer to a transaction or a lead.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">1. Reducing Cognitive Load</h3>
@@ -143,17 +145,17 @@ const BlogPage = () => {
         "Design is not just what it looks like and feels like. Design is how it works." — We apply this by ensuring accessibility (WCAG 2.1) is baked into every <b>DevZore</b> project.
       </blockquote>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'March 28, 2026',
-    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800',
-    readTime: '12 min read'
-  },
-  {
-    id: 4,
-    category: 'Cloud',
-    title: 'Serverless Excellence: Optimizing AWS Lambda for Node.js',
-    excerpt: 'Solving cold starts and memory leakage in global serverless deployments...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'March 28, 2026',
+      image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800',
+      readTime: '12 min read'
+    },
+    {
+      id: 4,
+      category: 'Cloud',
+      title: 'Serverless Excellence: Optimizing AWS Lambda for Node.js',
+      excerpt: 'Solving cold starts and memory leakage in global serverless deployments...',
+      content: `
       <p>Serverless architecture offers unparalleled cost-saving, but if misconfigured, it can lead to frustrating latencies. For a global SaaS platform, every millisecond counts. At <b>DevZore</b>, we've mastered the art of "Warm" serverless deployments.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">The Performance Checklist</h3>
@@ -165,17 +167,17 @@ const BlogPage = () => {
       </ul>
       <p class="mt-6 font-bold text-white italic">Result: 40% reduction in infrastructure costs compared to traditional EC2 hosting.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'March 12, 2026',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
-    readTime: '14 min read'
-  },
-  {
-    id: 5,
-    category: 'Engineering',
-    title: 'Redis Caching Patterns for Real-Time Performance',
-    excerpt: 'Mastering Write-Through, Write-Back, and Cache-Aside patterns for distributed MERN apps...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'March 12, 2026',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
+      readTime: '14 min read'
+    },
+    {
+      id: 5,
+      category: 'Engineering',
+      title: 'Redis Caching Patterns for Real-Time Performance',
+      excerpt: 'Mastering Write-Through, Write-Back, and Cache-Aside patterns for distributed MERN apps...',
+      content: `
       <p>If your backend is slow, your database is likely the bottleneck. <b>Redis</b> is the world’s fastest in-memory data store, but using it correctly is an art. At <b>DevZore</b>, we treat caching as a core architectural layer, not an afterthought.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">The Cache-Aside Architecture</h3>
@@ -192,17 +194,17 @@ const BlogPage = () => {
         await redis.setex(\`user:\${id}\`, 3600, JSON.stringify(dbData));
       </div>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'April 20, 2026',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800',
-    readTime: '16 min read'
-  },
-  {
-    id: 6,
-    category: 'SaaS',
-    title: 'Enterprise Security: Secure RBAC in Microservices',
-    excerpt: 'Building a bulletproof Authorization and Authentication layer using JWT and RSA256...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'April 20, 2026',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800',
+      readTime: '16 min read'
+    },
+    {
+      id: 6,
+      category: 'SaaS',
+      title: 'Enterprise Security: Secure RBAC in Microservices',
+      excerpt: 'Building a bulletproof Authorization and Authentication layer using JWT and RSA256...',
+      content: `
       <p>Security is the foundation of <b>DevZore</b>. For enterprise clients, a simple "isLoggedIn" check is a massive vulnerability. We implement <b>Role-Based Access Control (RBAC)</b> that scales across thousands of users and multiple microservices.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Asymmetric Encryption (RSA256)</h3>
@@ -211,17 +213,17 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Granular Scopes</h3>
       <p>We move beyond "Admin" and "User". Our systems support specific "Scopes" (e.g., <code>report:read</code>, <code>billing:write</code>). This allows business owners to grant temporary or restricted access to staff, drastically reducing the risk of internal data theft.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'April 22, 2026',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800',
-    readTime: '13 min read'
-  },
-  {
-    id: 7,
-    category: 'Cloud',
-    title: 'Dockerizing MERN: The Path to Infinite Deployment',
-    excerpt: 'Streamlining CI/CD pipelines with multi-stage Docker builds and GitHub Actions...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'April 22, 2026',
+      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800',
+      readTime: '13 min read'
+    },
+    {
+      id: 7,
+      category: 'Cloud',
+      title: 'Dockerizing MERN: The Path to Infinite Deployment',
+      excerpt: 'Streamlining CI/CD pipelines with multi-stage Docker builds and GitHub Actions...',
+      content: `
       <p>The "works on my machine" era is officially over. <b>Docker</b> allows us to package our entire MERN environment into a portable container. This portability is what allows <b>DevZore</b> to move projects from development to production in minutes instead of days.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Multi-Stage Build Optimization</h3>
@@ -230,17 +232,17 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Infrastructure as Code (IaC)</h3>
       <p>By combining Docker with <b>GitHub Actions</b>, we automate the entire pipeline. Every time we push code, a new image is built, scanned for security vulnerabilities, and deployed to our cloud cluster with zero human interaction. This ensures 100% consistency across <b>DevZore’s</b> global infrastructure.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'April 24, 2026',
-    image: 'https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&q=80&w=800',
-    readTime: '17 min read'
-  },
-  {
-    id: 8,
-    category: 'UI/UX',
-    title: 'Framer Motion: Enhancing User Trust with Interaction',
-    excerpt: 'Using physics-based animations to create a premium, high-end feel for SaaS dashboards...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'April 24, 2026',
+      image: 'https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&q=80&w=800',
+      readTime: '17 min read'
+    },
+    {
+      id: 8,
+      category: 'UI/UX',
+      title: 'Framer Motion: Enhancing User Trust with Interaction',
+      excerpt: 'Using physics-based animations to create a premium, high-end feel for SaaS dashboards...',
+      content: `
       <p>In the luxury software market, the "feel" of an application is just as critical as its backend performance. Static, jumpy interfaces feel cheap. Smooth, physics-based interactions feel expensive and trustworthy. At <b>DevZore</b>, we use <b>Framer Motion</b> to bridge this gap.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Layout Projections & visual Context</h3>
@@ -249,17 +251,17 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Micro-Animations for Feedback</h3>
       <p>We don't just use animations for show. Every animation serves a purpose—like a subtle button "bounce" when a form is submitted correctly, or a "shake" when an error occurs. These micro-interactions provide immediate psychological feedback, increasing user satisfaction by over 30%.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'April 25, 2026',
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800',
-    readTime: '11 min read'
-  },
-  {
-    id: 9,
-    category: 'Engineering',
-    title: 'Advanced MongoDB: Aggregations for Enterprise Reporting',
-    excerpt: 'Building high-performance data processing engines for massive business datasets...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'April 25, 2026',
+      image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800',
+      readTime: '11 min read'
+    },
+    {
+      id: 9,
+      category: 'Engineering',
+      title: 'Advanced MongoDB: Aggregations for Enterprise Reporting',
+      excerpt: 'Building high-performance data processing engines for massive business datasets...',
+      content: `
       <p>When dealing with millions of records—like in our recent project for a major paint industry client—standard <code>find()</code> queries are not enough. You need the <b>Aggregation Framework</b> to process data directly on the database level.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">The Pipeline Optimization Secret</h3>
@@ -268,17 +270,17 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Real-World Case Study</h3>
       <p>By implementing a custom facet-based aggregation, we enabled a client to generate complex annual inventory reports across 50+ warehouses in under 300ms—a process that originally took their manual team 45 seconds of wait time. This is the <b>DevZore</b> engineering standard.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'April 26, 2026',
-    image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800',
-    readTime: '19 min read'
-  },
-  {
-    id: 10,
-    category: 'Engineering',
-    title: 'Zero Downtime Deployment: The Blue-Green Strategy',
-    excerpt: 'How to update enterprise-grade applications without a single second of service interruption...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'April 26, 2026',
+      image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800',
+      readTime: '19 min read'
+    },
+    {
+      id: 10,
+      category: 'Engineering',
+      title: 'Zero Downtime Deployment: The Blue-Green Strategy',
+      excerpt: 'How to update enterprise-grade applications without a single second of service interruption...',
+      content: `
       <p>Modern software engineering demands 99.99% uptime. The "Under Maintenance" page is a relic of the past. At <b>DevZore</b>, we utilize <b>Blue-Green deployment</b> strategies to ensure that our updates are invisible to the end user.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">The Switch Mechanism</h3>
@@ -287,17 +289,17 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Expand and Contract Pattern</h3>
       <p>The real challenge is the database. We use the "Expand and Contract" pattern for schema migrations. This allows both the old and new versions of the application to read from the same database during the transition period without causing crashes.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'April 28, 2026',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
-    readTime: '16 min read'
-  },
-  {
-    id: 11,
-    category: 'SaaS',
-    title: 'Building Global SaaS: Handling Timezones and Localization',
-    excerpt: 'The complex engineering behind building multi-country platforms with UTC consistency...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'April 28, 2026',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      readTime: '16 min read'
+    },
+    {
+      id: 11,
+      category: 'SaaS',
+      title: 'Building Global SaaS: Handling Timezones and Localization',
+      excerpt: 'The complex engineering behind building multi-country platforms with UTC consistency...',
+      content: `
       <p>Building for a global market—spanning from the <b>Gulf (Qatar, Dubai)</b> to <b>South Asia (Pakistan)</b>—requires more than just translating text. It requires a deep understanding of data consistency across borders.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">The UTC-First Storage Rule</h3>
@@ -306,17 +308,17 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Internationalization (i18n) Architecture</h3>
       <p>We don't just use <b>React-i18next</b>; we architect it for performance. We use lazy-loading namespaces, which means an Arabic-speaking user in Qatar only loads the Arabic translation files, keeping the initial bundle size tiny and the load speed lightning fast.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'April 30, 2026',
-    image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=800',
-    readTime: '14 min read'
-  },
-  {
-    id: 12,
-    category: 'Cloud',
-    title: 'Micro-Frontends: Scaling Large Scale React Apps',
-    excerpt: 'Decoupling the frontend monolith into independently deployable modules using Module Federation...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'April 30, 2026',
+      image: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=800',
+      readTime: '14 min read'
+    },
+    {
+      id: 12,
+      category: 'Cloud',
+      title: 'Micro-Frontends: Scaling Large Scale React Apps',
+      excerpt: 'Decoupling the frontend monolith into independently deployable modules using Module Federation...',
+      content: `
       <p>As a project grows, a single <b>React</b> repository becomes a bottleneck. Compile times go up, and team collaboration becomes a nightmare. <b>Micro-frontends</b> are the solution to scaling the frontend as effectively as the backend.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Vite & Module Federation</h3>
@@ -325,17 +327,17 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Shared State Management</h3>
       <p>Managing state across different micro-apps is the biggest challenge. We use shared <b>Zustand</b> stores or custom browser events to pass data between modules without creating tight coupling, allowing different teams to deploy their features independently.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'May 02, 2026',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800',
-    readTime: '17 min read'
-  },
-  {
-    id: 13,
-    category: 'Engineering',
-    title: 'Advanced Node.js: Event Loop and Worker Threads',
-    excerpt: 'Mastering CPU-intensive tasks in a single-threaded environment without blocking the main thread...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'May 02, 2026',
+      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800',
+      readTime: '17 min read'
+    },
+    {
+      id: 13,
+      category: 'Engineering',
+      title: 'Advanced Node.js: Event Loop and Worker Threads',
+      excerpt: 'Mastering CPU-intensive tasks in a single-threaded environment without blocking the main thread...',
+      content: `
       <p>Node.js is famous for being single-threaded, which is great for I/O but terrible for heavy math or image processing. To build a professional-grade backend, you must know how to bypass this limitation.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Offloading to Worker Threads</h3>
@@ -344,17 +346,17 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Libuv Fine-Tuning</h3>
       <p>We deep-dive into the <b>Libuv</b> thread pool. By increasing the <code>UV_THREADPOOL_SIZE</code>, we can optimize how many concurrent database connections and encryption operations your server can handle before it hits a performance wall.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'May 05, 2026',
-    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=800',
-    readTime: '20 min read'
-  },
-  {
-    id: 14,
-    category: 'UI/UX',
-    title: 'The Psychology of Color in Enterprise Software',
-    excerpt: 'How our "Coffee-Dark" theme influences user focus, trust, and long-term retention...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'May 05, 2026',
+      image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=800',
+      readTime: '20 min read'
+    },
+    {
+      id: 14,
+      category: 'UI/UX',
+      title: 'The Psychology of Color in Enterprise Software',
+      excerpt: 'How our "Coffee-Dark" theme influences user focus, trust, and long-term retention...',
+      content: `
       <p>Color is more than just an aesthetic choice; it's a functional requirement. In the <b>DevZore</b> design system, every hex code is chosen based on its psychological impact on the user.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Visual Comfort and Retention</h3>
@@ -363,17 +365,17 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Semantic Alerts</h3>
       <p>We use vibrant colors sparingly. When a user sees a red button in a <b>DevZore</b> app, they know it’s critical. By limiting the use of "Alert Colors" to actual emergencies, we subconsciously train users to react faster and more accurately to system warnings.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'May 08, 2026',
-    image: 'https://images.unsplash.com/photo-1502691876148-a84978e59af8?auto=format&fit=crop&q=80&w=800',
-    readTime: '13 min read'
-  },
-  {
-    id: 15,
-    category: 'Engineering',
-    title: 'API Security: Beyond Basic Rate Limiting',
-    excerpt: 'Protecting your MERN stack from advanced DDoS and Brute Force attacks using Redis and IP-Fingerprinting...',
-    content: `
+      author: 'M-Shoukat Engineer',
+      date: 'May 08, 2026',
+      image: 'https://images.unsplash.com/photo-1502691876148-a84978e59af8?auto=format&fit=crop&q=80&w=800',
+      readTime: '13 min read'
+    },
+    {
+      id: 15,
+      category: 'Engineering',
+      title: 'API Security: Beyond Basic Rate Limiting',
+      excerpt: 'Protecting your MERN stack from advanced DDoS and Brute Force attacks using Redis and IP-Fingerprinting...',
+      content: `
       <p>Once your application goes global, it will be targeted by bots. Standard rate-limiting isn't enough to stop a sophisticated attack. At <b>DevZore</b>, we build defense-in-depth API layers.</p>
 
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">Dynamic Redis-Based Throttling</h3>
@@ -382,12 +384,12 @@ const BlogPage = () => {
       <h3 class="text-white text-2xl font-bold mt-8 mb-4">IP Fingerprinting & JA3</h3>
       <p>By analyzing request headers and JA3 fingerprints, we can identify a specific bot even if it rotates through thousands of proxy IPs. For our regional clients in <b>Qatar</b> or <b>Dubai</b>, we also implement <b>Geo-Fencing</b> to block traffic from high-risk, non-target regions, ensuring server resources are reserved for real customers.</p>
     `,
-    author: 'M-Shoukat Engineer',
-    date: 'May 10, 2026',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800',
-    readTime: '18 min read'
-  }
-];  
+      author: 'M-Shoukat Engineer',
+      date: 'May 10, 2026',
+      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800',
+      readTime: '18 min read'
+    }
+  ];
 
 
   const filteredPosts = activeCategory === 'All'
@@ -395,166 +397,179 @@ const BlogPage = () => {
     : blogPosts.filter(post => post.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-[#030303] text-white font-sans selection:bg-purple-500/30">
+    <>
+      {/*  STEP 1: SEO HELMET BLOCK (Sabse upar add kiya hai) */}
+      <Helmet>
+        <title>DevZore Blog | Web & App Development Tips & Insights</title>
+        <meta name="description" content="Read the DevZore blog for tips on web development, mobile apps, MERN stack, and software business insights from our team in Islamabad, Pakistan." />
+        <meta name="keywords" content="web development blog, MERN stack tutorial, React tips, software development Pakistan, mobile app tips" />
+        <link rel="canonical" href="https://devzore.com/blog" />
+        <meta property="og:title" content="DevZore Blog | Web & App Development Tips" />
+        <meta property="og:description" content="Tips, tutorials and insights on web development, mobile apps and SaaS from DevZore." />
+        <meta property="og:url" content="https://devzore.com/blog" />
+        <meta property="og:type" content="website" />
+      </Helmet>
 
-      {/* --- AMBIENT GLOWS --- */}
-      <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
-      <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+      <div className="min-h-screen bg-[#030303] text-white font-sans selection:bg-purple-500/30">
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
+        {/* --- AMBIENT GLOWS --- */}
+        <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
+        <div className="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
 
-        {/* --- HEADER SECTION --- */}
-        <div className="mb-20 text-center lg:text-left">
-          <span className="text-purple-500 text-[11px] font-black uppercase tracking-[0.4em] mb-4 block">
-            DevZore Insights
-          </span>
-          <h1 className="text-5xl lg:text-7xl font-black tracking-tighter mb-6 italic">
-            TECHNICAL <span className="text-gray-500 not-italic">BLOGS</span>
-          </h1>
-          <p className="text-gray-400 text-lg max-w-2xl leading-relaxed">
-            Exploring the frontiers of full-stack engineering, cloud architecture, and high-performance software design.
-          </p>
-        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
 
-        {/* --- CATEGORY TABS --- */}
-        <div className="flex flex-wrap gap-4 mb-16 justify-center lg:justify-start">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border ${activeCategory === cat
+          {/* --- HEADER SECTION --- */}
+          <div className="mb-20 text-center lg:text-left">
+            <span className="text-purple-500 text-[11px] font-black uppercase tracking-[0.4em] mb-4 block">
+              DevZore Insights
+            </span>
+            <h1 className="text-5xl lg:text-7xl font-black tracking-tighter mb-6 italic">
+              TECHNICAL <span className="text-gray-500 not-italic">BLOGS</span>
+            </h1>
+            <p className="text-gray-400 text-lg max-w-2xl leading-relaxed">
+              Exploring the frontiers of full-stack engineering, cloud architecture, and high-performance software design.
+            </p>
+          </div>
+
+          {/* --- CATEGORY TABS --- */}
+          <div className="flex flex-wrap gap-4 mb-16 justify-center lg:justify-start">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border ${activeCategory === cat
                   ? 'bg-white text-black border-white'
                   : 'bg-white/5 text-gray-500 border-white/5 hover:border-purple-500/50 hover:text-white'
-                }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* --- BLOG GRID --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPosts.map((post) => (
-            <div
-              key={post.id}
-              className="group bg-[#080808] border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-purple-600/40 hover:bg-[#0c0c0c] transition-all duration-500 flex flex-col cursor-pointer"
-              onClick={() => setSelectedBlog(post)}
-            >
-              <div className="h-60 overflow-hidden relative">
-                <div className="absolute top-6 left-6 z-20">
-                  <span className="bg-black/60 backdrop-blur-md text-white text-[9px] font-black px-4 py-2 rounded-lg uppercase tracking-widest border border-white/10">
-                    {post.category}
-                  </span>
-                </div>
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
-                />
-              </div>
-              <div className="p-8 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold mb-4 leading-tight group-hover:text-purple-400 transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-gray-500 text-sm mb-8 line-clamp-3 leading-relaxed">
-                  {post.excerpt}
-                </p>
-                <div className="mt-auto flex items-center justify-between pt-6 border-t border-white/5">
-                  <span className="text-[10px] text-gray-600 font-black uppercase tracking-widest">{post.date}</span>
-                  <span className="text-[10px] text-purple-500 font-black uppercase tracking-widest group-hover:translate-x-2 transition-transform">Read More →</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* --- NEWSLETTER CTA --- */}
-        <div className="mt-32 p-12 lg:p-24 rounded-[4rem] bg-gradient-to-tr from-purple-900/20 to-blue-900/20 border border-white/10 relative overflow-hidden text-center group">
-          <div className="relative z-10">
-            <h2 className="text-3xl lg:text-5xl font-black mb-6 italic uppercase tracking-tighter text-white">Stay <span className="text-purple-500">Engineered</span></h2>
-            <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">Get monthly engineering insights and architecture patterns directly in your inbox.</p>
-            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="name@company.com"
-                className="flex-grow bg-black border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-purple-500 transition-all text-sm text-white"
-              />
-              <button className="bg-purple-600 text-white font-black px-10 py-4 rounded-2xl hover:bg-purple-700 transition-all text-xs uppercase tracking-widest">
-                Join Circle
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      {/* --- FULL SCREEN MODAL --- */}
-      {selectedBlog && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-10">
-          {/* Backdrop Blur */}
-          <div
-            className="absolute inset-0 bg-black/90 backdrop-blur-xl animate-in fade-in duration-300"
-            onClick={() => setSelectedBlog(null)}
-          ></div>
-
-          {/* Modal Content */}
-          <div className="relative bg-[#0a0a0a] w-full max-w-5xl h-full max-h-[90vh] rounded-[3rem] border border-white/10 overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-300">
-
-            {/* Modal Header */}
-            <div className="p-6 border-b border-white/5 flex justify-between items-center bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-20">
-              <button
-                onClick={() => setSelectedBlog(null)}
-                className="flex items-center gap-2 text-gray-400 hover:text-white transition-all group"
+                  }`}
               >
-                <div className="bg-white/5 p-2 rounded-full group-hover:bg-purple-600 transition-all">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
-                </div>
-                <span className="text-[10px] font-black uppercase tracking-widest">Back to Blogs</span>
+                {cat}
               </button>
-              <div className="hidden md:block text-[10px] font-bold text-gray-600 tracking-[0.3em] uppercase">DevZore Architecture v2.0</div>
-            </div>
+            ))}
+          </div>
 
-            {/* Scrollable Body */}
-            <div className="flex-grow overflow-y-auto custom-scrollbar p-6 md:p-16 lg:p-20">
-              <div className="max-w-3xl mx-auto">
-                <div className="flex items-center gap-4 mb-8">
-                  <span className="bg-purple-600 text-white text-[9px] font-black px-4 py-1 rounded-full uppercase tracking-widest">
-                    {selectedBlog.category}
-                  </span>
-                  <span className="text-gray-500 text-[10px] uppercase font-bold tracking-widest">{selectedBlog.date} • {selectedBlog.readTime}</span>
-                </div>
-
-                <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-10 leading-tight italic text-white uppercase">
-                  {selectedBlog.title}
-                </h1>
-
-                <div className="w-full h-64 md:h-[450px] rounded-[2.5rem] overflow-hidden mb-12 border border-white/5 relative">
-                  <img src={selectedBlog.image} className="w-full h-full object-cover" alt="Cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                </div>
-
-                <div
-                  className="text-gray-400 text-lg leading-[1.8] space-y-6"
-                  dangerouslySetInnerHTML={{ __html: selectedBlog.content }}
-                />
-
-                {/* Author Card */}
-                <div className="mt-20 pt-12 border-t border-white/5 flex items-center gap-6">
-                  <div className="w-16 h-16 bg-gradient-to-tr from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-xl">
-                    MS
+          {/* --- BLOG GRID --- */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredPosts.map((post) => (
+              <div
+                key={post.id}
+                className="group bg-[#080808] border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-purple-600/40 hover:bg-[#0c0c0c] transition-all duration-500 flex flex-col cursor-pointer"
+                onClick={() => setSelectedBlog(post)}
+              >
+                <div className="h-60 overflow-hidden relative">
+                  <div className="absolute top-6 left-6 z-20">
+                    <span className="bg-black/60 backdrop-blur-md text-white text-[9px] font-black px-4 py-2 rounded-lg uppercase tracking-widest border border-white/10">
+                      {post.category}
+                    </span>
                   </div>
-                  <div>
-                    <h4 className="font-black text-white uppercase tracking-tight">{selectedBlog.author}</h4>
-                    <p className="text-sm text-gray-500 font-medium">Software Engineer | Full-Stack Architect</p>
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
+                  />
+                </div>
+                <div className="p-8 flex flex-col flex-grow">
+                  <h3 className="text-xl font-bold mb-4 leading-tight group-hover:text-purple-400 transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm mb-8 line-clamp-3 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <div className="mt-auto flex items-center justify-between pt-6 border-t border-white/5">
+                    <span className="text-[10px] text-gray-600 font-black uppercase tracking-widest">{post.date}</span>
+                    <span className="text-[10px] text-purple-500 font-black uppercase tracking-widest group-hover:translate-x-2 transition-transform">Read More →</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* --- NEWSLETTER CTA --- */}
+          <div className="mt-32 p-12 lg:p-24 rounded-[4rem] bg-gradient-to-tr from-purple-900/20 to-blue-900/20 border border-white/10 relative overflow-hidden text-center group">
+            <div className="relative z-10">
+              <h2 className="text-3xl lg:text-5xl font-black mb-6 italic uppercase tracking-tighter text-white">Stay <span className="text-purple-500">Engineered</span></h2>
+              <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto">Get monthly engineering insights and architecture patterns directly in your inbox.</p>
+              <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="email"
+                  placeholder="name@company.com"
+                  className="flex-grow bg-black border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-purple-500 transition-all text-sm text-white"
+                />
+                <button className="bg-purple-600 text-white font-black px-10 py-4 rounded-2xl hover:bg-purple-700 transition-all text-xs uppercase tracking-widest">
+                  Join Circle
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {/* --- FULL SCREEN MODAL --- */}
+        {selectedBlog && (
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-10">
+            {/* Backdrop Blur */}
+            <div
+              className="absolute inset-0 bg-black/90 backdrop-blur-xl animate-in fade-in duration-300"
+              onClick={() => setSelectedBlog(null)}
+            ></div>
+
+            {/* Modal Content */}
+            <div className="relative bg-[#0a0a0a] w-full max-w-5xl h-full max-h-[90vh] rounded-[3rem] border border-white/10 overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-300">
+
+              {/* Modal Header */}
+              <div className="p-6 border-b border-white/5 flex justify-between items-center bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-20">
+                <button
+                  onClick={() => setSelectedBlog(null)}
+                  className="flex items-center gap-2 text-gray-400 hover:text-white transition-all group"
+                >
+                  <div className="bg-white/5 p-2 rounded-full group-hover:bg-purple-600 transition-all">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest">Back to Blogs</span>
+                </button>
+                <div className="hidden md:block text-[10px] font-bold text-gray-600 tracking-[0.3em] uppercase">DevZore Architecture v2.0</div>
+              </div>
+
+              {/* Scrollable Body */}
+              <div className="flex-grow overflow-y-auto custom-scrollbar p-6 md:p-16 lg:p-20">
+                <div className="max-w-3xl mx-auto">
+                  <div className="flex items-center gap-4 mb-8">
+                    <span className="bg-purple-600 text-white text-[9px] font-black px-4 py-1 rounded-full uppercase tracking-widest">
+                      {selectedBlog.category}
+                    </span>
+                    <span className="text-gray-500 text-[10px] uppercase font-bold tracking-widest">{selectedBlog.date} • {selectedBlog.readTime}</span>
+                  </div>
+
+                  <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-10 leading-tight italic text-white uppercase">
+                    {selectedBlog.title}
+                  </h1>
+
+                  <div className="w-full h-64 md:h-[450px] rounded-[2.5rem] overflow-hidden mb-12 border border-white/5 relative">
+                    <img src={selectedBlog.image} className="w-full h-full object-cover" alt="Cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  </div>
+
+                  <div
+                    className="text-gray-400 text-lg leading-[1.8] space-y-6"
+                    dangerouslySetInnerHTML={{ __html: selectedBlog.content }}
+                  />
+
+                  {/* Author Card */}
+                  <div className="mt-20 pt-12 border-t border-white/5 flex items-center gap-6">
+                    <div className="w-16 h-16 bg-gradient-to-tr from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-xl">
+                      MS
+                    </div>
+                    <div>
+                      <h4 className="font-black text-white uppercase tracking-tight">{selectedBlog.author}</h4>
+                      <p className="text-sm text-gray-500 font-medium">Software Engineer | Full-Stack Architect</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* --- CUSTOM CSS --- */}
-      <style>{`
+        {/* --- CUSTOM CSS --- */}
+        <style>{`
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #050505; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #222; border-radius: 10px; }
@@ -566,7 +581,8 @@ const BlogPage = () => {
         .zoom-in-95 { animation-name: zoom-in-95; }
       `}</style>
 
-    </div>
+      </div>
+    </>
   );
 };
 
