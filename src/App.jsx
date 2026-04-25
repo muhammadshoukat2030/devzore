@@ -80,7 +80,6 @@ function App() {
             } />
 
             {/* --- Service Routes --- */}
-            rou
             <Route path="/web-development" element={<WebDevelopment />} />
             <Route path="/mobile-apps" element={<MobileApp />} />
             <Route path="/ecommerce" element={<ECommerce />} />

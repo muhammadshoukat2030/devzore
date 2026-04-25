@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Eye, ShieldCheck, Database, Fingerprint, Globe, 
-  ArrowLeft, Lock, ShieldAlert, Cookie 
-} from 'lucide-react'; // npm install lucide-react
+import { Eye, ShieldCheck, Database, Fingerprint, Globe, ArrowLeft, Cookie } from 'lucide-react';
+
+
+// Jahan icon use ho raha hai wahan bhi singular karein
 
 const PrivacyPolicy = () => {
   // SEO & Page Title
@@ -29,7 +29,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 grid grid-cols-1 lg:grid-cols-4 gap-16">
-        
+
         {/* SIDEBAR NAVIGATION */}
         <aside className="hidden lg:block">
           <div className="sticky top-32">
@@ -191,8 +191,8 @@ const PrivacyPolicy = () => {
             <section className="mt-20 p-10 rounded-[40px] bg-gradient-to-br from-purple-600/10 via-transparent to-indigo-600/10 border border-white/10 text-center">
               <h3 className="text-2xl font-bold text-white mb-4">Have questions about your data?</h3>
               <p className="mb-8 text-gray-500">Our Data Protection Officer is ready to assist you with any privacy concerns.</p>
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="inline-flex items-center gap-3 bg-white text-black px-10 py-4 rounded-full font-black hover:bg-purple-600 hover:text-white transition-all transform active:scale-95 shadow-2xl shadow-purple-500/20"
               >
                 Inquire Now

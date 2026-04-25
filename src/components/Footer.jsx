@@ -146,9 +146,9 @@ const Footer = () => {
                   <a href="mailto:shoukat@devzore.com" className="text-white text-base font-bold hover:text-purple-400 transition-colors">shoukat@devzore.com</a>
                 </div>
                 <div>
-                  <p className="text-[10px] text-blue-500 font-black uppercase mb-1">HQ Location</p>
+                  <p className="text-[10px] text-blue-500 font-black uppercase mb-1">Main Location</p>
                   <p className="text-gray-400 text-sm">Islamabad, PK</p>
-                  <p className="text-[11px] text-gray-600 italic">Serving Dubai & Qatar Clients</p>
+                  <p className="text-[11px] text-gray-600 italic">Serving with Internationally Clients Remotely</p>
                 </div>
               </div>
             </div>
