@@ -232,7 +232,7 @@ const Services = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {industries.map((item, i) => (
-            <div key={i} className="p-6 bg-gray-200/5 border border-white/10 rounded-lg text-center hover:border-purple-500 transition-all">
+            <div key={i} className="p-6 bg-gray-200/5 border border-white/10 rounded-lg text-left hover:border-purple-500 transition-all">
               <div className="text-3xl mb-4">{item.icon}</div>
               <h3 className="font-bold text-lg text-white mb-1">{item.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
