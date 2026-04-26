@@ -67,11 +67,12 @@ const Projects = () => {
 
       {/* SEO Keyword Boost Block (Hidden for ranking only) */}
       <div className="hidden">
-        MERN Stack Development Company, React JS Developer Portfolio,
+        <h1>MERN Stack Development Company, React JS Developer Portfolio,
         Node JS Backend Projects, Full Stack SaaS Development,
         Custom Web Application Development Services,
         E-commerce Website Development, Tourism Booking Platform Development,
         Food Delivery App Development, Enterprise Software Solutions
+        </h1>
       </div>
     </section>
   );
