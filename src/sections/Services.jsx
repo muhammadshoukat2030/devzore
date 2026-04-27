@@ -8,7 +8,7 @@ const Services = () => {
   // 🔥 SEO optimized data for international clients
   const mainServices = [
     {
-      title: "Custom Web Development Services",
+      title: "Custom Web Application Development",
       desc: "We build high-performance, SEO-optimized websites and web applications using React, Next.js, and modern JavaScript frameworks for global businesses.",
       icon: "🌐",
       path: "/web-development" // Links to WebDevelopment.jsx
@@ -32,6 +32,18 @@ const Services = () => {
       path: "/backend-api"
     },
     {
+      title: "MERN Stack Development",
+      desc: "Empower your business with scalable full-stack solutions. We specialize in building robust web applications using MongoDB, Express.js, React, and Node.js.",
+      icon: "🚀", // MERN stack ki speed ke liye rocket icon behtar lagta hai
+      path: "/mern-stack-development"
+    },
+    {
+      title: "SaaS Product Development",
+      desc: "Build scalable multi-tenant architectures and subscription-based platforms. We develop secure, high-performance SaaS solutions with seamless API integrations.",
+      icon: "☁️", // Cloud icon SaaS ke liye perfect hai
+      path: "/saas-product-development"
+    },
+    {
       title: "UI/UX Design & Optimization",
       desc: "Modern, responsive, and conversion-focused UI/UX design to enhance user experience and business growth.",
       icon: "🎨",
@@ -40,7 +52,7 @@ const Services = () => {
     {
       title: "Startup MVP Development",
       desc: "Launch your startup quickly with MVP development services in 2–4 weeks using agile methodology and modern tech stack.",
-      icon: "🚀",
+      icon: "💡",
       path: "/startup-mvp"
 
     }
@@ -182,7 +194,8 @@ const Services = () => {
 
         {/* HEADER */}
         <div className="text-center mb-16 md:mb-20">
-          <SectionTag text="SERVICES" />
+          {/* <SectionTag text="SERVICES" /> */}
+          <h2 class="inline-block px-3 py-3 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-[10px] font-bold uppercase tracking-widest mb-4">Our Core Services</h2>
           <h1 className="text-3xl md:text-5xl font-bold mt-5 text-white leading-tight">
             Architecting High-Performance <br className="hidden md:block" /> Digital Excellence Globally
           </h1>
@@ -197,9 +210,9 @@ const Services = () => {
             <div key={i} className="p-8 bg-gray-200/5 border border-white/10 rounded-xl hover:border-purple-600/50 transition-all flex flex-col justify-between group backdrop-blur-sm">
               <div>
                 <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
-                <h2 className="text-xl font-bold mb-3 text-white">
+                <h3 className="text-xl font-bold mb-3 text-white">
                   {service.title}
-                </h2>
+                </h3>
                 <p className="text-gray-400 text-sm leading-relaxed mb-6">
                   {service.desc}
                 </p>
@@ -221,7 +234,8 @@ const Services = () => {
 
         {/* INDUSTRIES SECTION */}
         <div className="text-center mb-12">
-          <SectionTag text="INDUSTRIES" />
+          {/* <SectionTag text="INDUSTRIES" /> */}
+          <h2 className='inline-block px-3 py-3 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-[10px] font-bold uppercase tracking-widest mb-4'>Industries We Serve</h2>
           <h2 className="text-3xl md:text-5xl font-bold mt-4 text-white">
             Specialized Industry Solutions
           </h2>

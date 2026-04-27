@@ -49,7 +49,7 @@ const FAQ = () => {
         <div className="text-center mb-16">
           <SectionTag text="FAQ" />
           <h2 className="text-4xl md:text-5xl font-bold mt-4 text-white">
-            Software Development FAQs
+            Frequently Asked Questions
           </h2>
           <p className="text-gray-400 mt-4">
             Everything about our web, mobile, and SEO services.

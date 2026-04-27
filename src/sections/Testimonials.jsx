@@ -67,11 +67,12 @@ const Testimonials = () => {
   }, [cardsPerView]);
 
   return (
-    <section className="py-24 px-4 md:px-6 max-w-6xl mx-auto bg-[#050505]">
+    <section id="testimonials" className="py-24 px-4 md:px-6 max-w-6xl mx-auto bg-[#050505]">
 
       {/* Heading */}
       <div className="text-center mb-16">
-        <SectionTag text="TESTIMONIALS" />
+        {/* <SectionTag text="TESTIMONIALS" /> */}
+         <h2 className='inline-block px-3 py-3 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-[10px] font-bold uppercase tracking-widest mb-4'>Client Results & Testimonials</h2>
         <h2 className="text-4xl md:text-5xl font-bold mt-4 text-white">
           What Our Clients Say About Devzore
         </h2>

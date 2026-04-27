@@ -9,7 +9,7 @@ const whyUsData = [
   },
   {
     icon: "⚡",
-    title: "Fast & Scalable Development",
+    title: "Agile Process, On-Time Delivery",
     desc: "We deliver high-performance web and mobile applications within 2–8 weeks. Our agile development process ensures speed, scalability, and quality for startups and enterprises."
   },
   {
@@ -24,8 +24,14 @@ const whyUsData = [
   },
   {
     icon: "📞",
-    title: "Direct Developer Communication",
+    title: "Transparent Communication",
     desc: "Communicate directly with experienced developers. No middlemen. This ensures faster decisions, better understanding, and high-quality results."
+  },
+  {
+    title: "Scalable & Production-Ready Code",
+    desc: "We write clean, maintainable, and high-quality code designed to handle millions of users. Our applications are rigorously tested and optimized for peak performance.",
+    icon: "🏗️", 
+    path: "/scalable-code-architecture"
   },
   {
     icon: "🔒",
@@ -71,7 +77,7 @@ export default function WhyUs() {
         {/* HEADER */}
         <div className="max-w-6xl mx-auto text-center mb-12 md:mb-20">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
-            Why Choose Our Software Development Company
+            Why Choose DevZore?
           </h2>
           <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
             We provide professional web development, mobile app development, and SaaS solutions tailored for startups, businesses, and international clients.

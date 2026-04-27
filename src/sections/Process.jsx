@@ -7,7 +7,7 @@ const Process = () => {
   const steps = [
     {
       n: "1",
-      t: "Discovery Call & Requirement Analysis",
+      t: "Discovery & Planning",
       d: "We begin with a detailed consultation to understand your business goals, target audience, and technical requirements. This helps us define a clear roadmap for your web or mobile application."
     },
     {
@@ -17,17 +17,17 @@ const Process = () => {
     },
     {
       n: "3",
-      t: "UI/UX Design & Development",
+      t: "Design & Prototyping",
       d: "Our team designs modern UI/UX and develops your product using scalable technologies like React, Node.js, and cloud-based architecture."
     },
     {
       n: "4",
-      t: "Testing, Optimization & Deployment",
+      t: " Development & Testing",
       d: "We perform QA testing, fix bugs, optimize performance, and deploy your application on secure cloud infrastructure with SEO optimization."
     },
     {
       n: "5",
-      t: "Support, Maintenance & Scaling",
+      t: "Launch & Ongoing Support",
       d: "After launch, we provide continuous support, updates, and scaling solutions to grow your business globally."
     }
   ];
@@ -76,9 +76,9 @@ const Process = () => {
         {/* HEADER */}
         <div className="text-center mb-20">
           <SectionTag text="PROCESS" />
-          <h1 className="text-3xl md:text-5xl font-bold text-white mt-4">
-            Our Proven Software Development Process
-          </h1>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mt-4">
+            Our Development Process
+          </h2>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
             We follow a structured and scalable development process to build high-performance web applications,
             mobile apps, and SaaS platforms for startups and enterprises worldwide.

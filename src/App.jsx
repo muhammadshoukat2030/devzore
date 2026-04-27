@@ -23,10 +23,13 @@ import Contact from './pages/Contact';
 import Blogs from './pages/BlogPost';
 
 // Service Pages Imports
+import AllServices from './pages/AllServices';
 import WebDevelopment from './pages/WebDevelopment';
 import MobileApp from './pages/MobileApp';
 import ECommerce from './pages/ECommerce';
 import BackendApi from './pages/BackendApi';
+import MernStackDevelopment from './pages/MernStackDevelopment';
+import SaaSProductDevelopment from './pages/SaaSProductDevelopment'
 import UiUxDesign from './pages/UiUxDesign';
 import Maintenance from './pages/Maintenance';
 import StartupMVP from './pages/StartupMVP';
@@ -80,10 +83,14 @@ function App() {
             } />
 
             {/* --- Service Routes --- */}
+           
+            <Route path="/AllServices" element={<AllServices/>}/>
             <Route path="/web-development" element={<WebDevelopment />} />
             <Route path="/mobile-apps" element={<MobileApp />} />
             <Route path="/ecommerce" element={<ECommerce />} />
             <Route path="/backend-api" element={<BackendApi />} />
+            <Route path="/MernStackDevelopment" element={<MernStackDevelopment />} />
+            <Route path="/saas-product-development" element={<SaaSProductDevelopment />} />
             <Route path="/ui-ux-design" element={<UiUxDesign />} />
             <Route path="/maintenance" element={<Maintenance />} />
             <Route path="/startup-mvp" element={<StartupMVP />} />

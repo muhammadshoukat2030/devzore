@@ -106,11 +106,18 @@ const Footer = () => {
               <h4 className="text-white font-black text-[11px] uppercase tracking-[0.3em] mb-8 opacity-50">Navigation</h4>
               <ul className="space-y-4">
                 {[
-                  { name: "About Agency", path: "/about" },
-                  { name: "Solutions", path: "/#services" },
-                  { name: "Our Work", path: "/#projects" },
-                  { name: "Pricing", path: "/#pricing" },
-                  { name: "Insights", path: "/blog" }
+                  // { name: "About Agency", path: "/about" },
+                  // { name: "Solutions", path: "/#services" },
+                  // { name: "Our Work", path: "/#projects" },
+                  // { name: "Pricing", path: "/#pricing" },
+                  // { name: "Insights", path: "/blog" }
+                  { name: "About DevZore", path: "/about" }, // Added About
+                  { name: "Services & Solutions", path: "/#services" },
+                  { name: "Global Portfolio", path: "/#projects" },
+                  { name: "Investment Plans", path: "/#pricing" },
+                  { name: "Client Testimonials", path: "/#testimonials" },
+                  { name: "Technical Blogs", path: "/blog" },
+                  { name: "Hire Engineer", path: "/contact" }
                 ].map((item) => (
                   <li key={item.name}>
                     <button 
@@ -127,6 +134,17 @@ const Footer = () => {
 
             {/* Services */}
             <div>
+              <h4 className="text-white font-black text-[11px] uppercase tracking-[0.3em] mb-8 opacity-50">Engineering</h4>
+              <ul className="space-y-4 text-gray-400 text-sm font-medium">
+                <li className="hover:text-purple-400 cursor-default transition-colors">Enterprise React Integration</li>
+                <li className="hover:text-purple-400 cursor-default transition-colors">Next.js Server-Side Rendering</li>
+                <li className="hover:text-purple-400 cursor-default transition-colors">Node.js Microservices</li>
+                <li className="hover:text-purple-400 cursor-default transition-colors">MongoDB Data Modeling</li>
+                <li className="hover:text-purple-400 cursor-default transition-colors">AWS & Cloud Deployment</li>
+                <li className="hover:text-purple-400 cursor-default transition-colors">API Security & Optimization</li>
+              </ul>
+            </div>
+            {/* <div>
               <h4 className="text-white font-black text-[11px] uppercase tracking-[0.3em] mb-8 opacity-50">Expertise</h4>
               <ul className="space-y-4 text-gray-500 text-sm font-medium">
                 <li className="hover:text-white transition-colors cursor-default">Cloud Microservices</li>
@@ -135,7 +153,7 @@ const Footer = () => {
                 <li className="hover:text-white transition-colors cursor-default">AWS Deployment</li>
                 <li className="hover:text-white transition-colors cursor-default">API Security</li>
               </ul>
-            </div>
+            </div> */}
 
             {/* Contact Info */}
             <div className="col-span-1">
