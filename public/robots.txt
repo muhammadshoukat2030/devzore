@@ -1,0 +1,15 @@
+# DevZore Robots.txt - Optimized for SEO
+User-agent: *
+Allow: /
+Allow: /static/
+Allow: /assets/
+
+# In pages ko Google search mein dikhane ki zaroorat nahi hai
+Disallow: /admin
+Disallow: /login
+Disallow: /dashboard
+Disallow: /private
+Disallow: /config
+
+# Aapka Sitemap Link
+Sitemap: https://devzore.com/sitemap.xml
