@@ -89,7 +89,7 @@ function App() {
             <Route path="/mobile-apps" element={<MobileApp />} />
             <Route path="/ecommerce" element={<ECommerce />} />
             <Route path="/backend-api" element={<BackendApi />} />
-            <Route path="/MernStackDevelopment" element={<MernStackDevelopment />} />
+            <Route path="/mern-stack-development" element={<MernStackDevelopment />} />
             <Route path="/saas-product-development" element={<SaaSProductDevelopment />} />
             <Route path="/ui-ux-design" element={<UiUxDesign />} />
             <Route path="/maintenance" element={<Maintenance />} />
