@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Database, 
   Layers, 
@@ -7,12 +7,42 @@ import {
   Zap, 
   Code2, 
   Globe, 
-  Server 
+  Server,
+  Plus
 } from 'lucide-react';
 
 const MernStackDevelopment = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const faqs = [
+    {
+      question: "How long does a MERN stack project take? ",
+      answer: " A focused MVP typically takes 8 to 14 weeks. A full-featured SaaS platform or enterprise application can take 4 to 8 months depending on complexity, number of integrations, and how much design work is needed. After our discovery call, we give you a milestone-based timeline with no hidden phases."
+    },
+    {
+      question: "Is MERN stack still a good choice in 2026?",
+      answer: "Absolutely. MERN is actively used by companies from early-stage startups to Fortune 500 enterprises. The ecosystem has grown stronger with React 19's Server Components, modern Next.js features, and excellent AI integration support. It remains one of the most in-demand full-stack skill sets on the market and shows no signs of declining relevance."
+    },
+    {
+      question: "What is the difference between MERN stack and Next.js? ",
+      answer: "Next.js is a framework built on top of React — you can think of it as the React layer of MERN upgraded with server-side rendering, static generation, and file-based routing. DevZore uses Next.js as the frontend layer for most client projects while keeping the Express and MongoDB backend structure. The two approaches complement each other rather than compete."
+    },
+    {
+      question: "Can DevZore take over an existing MERN project? ",
+      answer: "Yes. We regularly audit and inherit existing codebases. We start with a code and architecture review, identify technical debt and security issues, and produce a clear findings report before touching any code. Most rescue projects become long-term engagements."
+    },
+    {
+      question: "Do you provide ongoing maintenance after launch?  ",
+      answer: "Every project includes 30 days of post-launch support. After that, we offer flexible monthly maintenance plans covering bug fixes, dependency updates, security patches, performance monitoring, and feature development."
+    }
+  ];
+
+  const toggleFAQ = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-0.1">
+    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20">
       
       {/* --- TOP HEADER SPACE --- */}
       <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between">
@@ -51,7 +81,6 @@ const MernStackDevelopment = () => {
         <div className="relative group lg:justify-self-end hidden md:block">
           <div className="absolute -inset-4 bg-purple-500/10 blur-3xl rounded-full"></div>
           <div className="relative bg-[#0c0c0c] border border-gray-800/50 rounded-2xl overflow-hidden shadow-2xl max-w-[500px] p-8 flex items-center justify-center">
-             {/* Tech Stack Icons Grid */}
              <div className="grid grid-cols-2 gap-6">
                 <div className="flex flex-col items-center gap-2 p-6 bg-white/5 rounded-2xl border border-white/5">
                     <Database size={40} className="text-green-500" />
@@ -87,19 +116,19 @@ const MernStackDevelopment = () => {
           <ExpertiseCard 
             icon={<Cpu className="text-blue-400" size={22} />}
             title="Frontend Engineering"
-            desc="Developing highly interactive, state-driven interfaces with React.js and Redux for a buttery-smooth user experience and rapid page transitions."
+            desc="Developing highly interactive, state-driven interfaces with React.js and Redux for a buttery-smooth user experience."
             borderColor="border-l-blue-400"
           />
           <ExpertiseCard 
             icon={<Zap className="text-yellow-500" size={22} />}
             title="Backend Systems"
-            desc="Building lightning-fast server-side logic with Node.js and Express, designed to handle thousands of concurrent requests with ease."
+            desc="Building lightning-fast server-side logic with Node.js and Express, designed to handle thousands of concurrent requests."
             borderColor="border-l-yellow-500"
           />
           <ExpertiseCard 
             icon={<Database className="text-green-500" size={22} />}
             title="Database Design"
-            desc="Architecting flexible, schema-less NoSQL databases with MongoDB that scale horizontally as your user base and data grow."
+            desc="Architecting flexible, schema-less NoSQL databases with MongoDB that scale horizontally as your user base grows."
             borderColor="border-l-green-500"
           />
         </div>
@@ -128,17 +157,62 @@ const MernStackDevelopment = () => {
         </div>
       </section>
 
+      {/* --- FAQ SECTION --- */}
+      <section className="max-w-7xl mx-auto px-6 py-20">
+        <div className="mb-12">
+          <span className="text-[10px] font-black text-purple-500 uppercase tracking-[0.3em]">Common Queries</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-1">Frequently Asked Questions<span className="text-purple-500">FAQ</span></h2>
+          <div className="w-12 h-1 bg-purple-600 mt-2 rounded-full"></div>
+        </div>
+
+        <div className="max-w-4xl space-y-4">
+          {faqs.map((faq, i) => (
+            <div 
+              key={i}
+              className={`border rounded-xl transition-all duration-300 overflow-hidden ${
+                activeIndex === i 
+                ? 'border-purple-500/50 bg-purple-500/5' 
+                : 'border-white/5 bg-[#0A0A0A]'
+              }`}
+            >
+              <button 
+                onClick={() => toggleFAQ(i)}
+                className="w-full p-6 text-left flex justify-between items-center group"
+              >
+                <span className={`font-bold text-sm md:text-base transition-colors ${activeIndex === i ? 'text-purple-400' : 'text-white group-hover:text-purple-300'}`}>
+                  <h3>{faq.question}</h3>
+                </span>
+                <Plus 
+                  size={20} 
+                  className={`transition-transform duration-300 ${activeIndex === i ? 'rotate-45 text-purple-400' : 'text-gray-500'}`} 
+                />
+              </button>
+
+              <div 
+                className={`transition-all duration-300 ease-in-out ${
+                  activeIndex === i ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                }`}
+              >
+                <div className="p-6 pt-0 text-gray-400 text-sm md:text-base leading-relaxed border-t border-white/5">
+                  {faq.answer}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* --- FOOTER CTA --- */}
-      <section className="max-w-7xl mx-auto px-6 py-10 pb-10">
+      <section className="max-w-7xl mx-auto px-6 py-10">
         <div className="bg-[#0c0c0c] border border-white/10 rounded-[2rem] p-10 md:p-12 text-center relative overflow-hidden group shadow-2xl">
           <div className="absolute top-0 right-0 p-10 opacity-5">
               <Code2 size={200} className="text-purple-500" />
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-4 relative z-10 tracking-tight leading-tight">
-            Need a Robust Full-Stack App?
+            Ready to build your MERN stack application?
           </h2>
           <p className="text-gray-400 mb-8 relative z-10 max-w-lg mx-auto font-medium text-sm">
-            From database modeling to professional frontend design, we handle the entire MERN lifecycle. Let's discuss your technical requirements today.
+            Talk to our team — we respond within 24 hours with a clear plan and honest pricing.
           </p>
           <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold transition-all relative z-10 text-sm flex items-center gap-2 mx-auto">
             Book a Tech Call <ArrowRight size={18} />
