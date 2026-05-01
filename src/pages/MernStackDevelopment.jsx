@@ -87,9 +87,11 @@ const MernStackDevelopment = () => {
               The MERN stack — MongoDB, Express.js, React, and Node.js — has become the defining choice for modern web application development. One language across the entire product. At DevZore, we bring serious full-stack engineering to every layer of the MERN architecture, delivering applications that perform under real traffic and grow with your business.
             </p>
             <div className="flex flex-wrap gap-3">
+              <Link to="/contact">
               <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold flex items-center gap-2 group transition-all">
                 Start Project <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
+              </Link>
             </div>
           </div>
 
