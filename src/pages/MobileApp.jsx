@@ -181,7 +181,7 @@ const MobileApp = () => {
               <h3 className="text-xl font-bold mb-2">Build Your Vision</h3>
               <Link to="/contact">
                 <button className="cursor-pointer bg-white text-purple-600 px-6 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-transform hover:scale-105 active:scale-95">
-                  Get Started
+                  Get Started start
                 </button>
               </Link>
             </div>

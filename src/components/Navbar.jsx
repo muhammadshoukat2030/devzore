@@ -45,6 +45,7 @@ const Navbar = () => {
     { name: "E-Commerce Website", icon: <ShoppingCart size={18} />, path: "/ecommerce" },
     { name: "MERN Stack", icon: <Rocket size={18} />, path: "/mern-stack-development" },
     { name: "SaaS Development", icon: <Cloud size={18} />, path: "/saas-product-development" },
+    { name: "React Development", icon: <Cloud size={18} />, path: "/ReactDevelopment" },
     { name: "UI/UX Design", icon: <Palette size={18} />, path: "/ui-ux-design" },
     { name: "Startup MVP", icon: <Lightbulb size={18} />, path: "/startup-mvp" },
     { name: "Maintenance", icon: <Wrench size={18} />, path: "/maintenance" },
