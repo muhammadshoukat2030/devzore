@@ -269,64 +269,64 @@ function ReactDevelopment() {
 
 
         {/* --- WORKFLOW SECTION --- */}
-<section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
-  <div className="text-center mb-16">
-    <h2 className="text-3xl md:text-5xl font-bold italic">Our React <span className="text-purple-500 text-not-italic">Workflow</span></h2>
-  </div>
-  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <StepCard 
-      step="01" 
-      title="Component Architecture" 
-      desc="Breaking UI into reusable atomic modules to ensure long-term maintainability and system consistency." 
-      icon={<Layers size={20} />} 
-    />
-    <StepCard 
-      step="02" 
-      title="State Planning" 
-      desc="Defining efficient data flow strategies using TanStack Query or Zustand for high-performance logic." 
-      icon={<Database size={20} />} 
-    />
-    <StepCard 
-      step="03" 
-      title="UI Implementation" 
-      desc="Crafting pixel-perfect, responsive interfaces with Tailwind CSS and interactive Framer Motion animations." 
-      icon={<Layout size={20} />} 
-    />
-    <StepCard 
-      step="04" 
-      title="API Integration" 
-      desc="Seamlessly syncing frontend components with robust backend services and secure data fetching patterns." 
-      icon={<Repeat size={20} />} 
-    />
-    <StepCard 
-      step="05" 
-      title="Optimization" 
-      desc="Hardening performance, accessibility, and SEO scores to deliver a world-class user experience." 
-      icon={<Zap size={20} />} 
-    />
-    
-    <div className="p-8 bg-purple-600 rounded-3xl flex flex-col justify-center items-center text-center shadow-xl shadow-purple-500/20 group hover:bg-purple-700 transition-all">
-      <Rocket className="mb-4 animate-bounce text-white" size={32} />
-      <h3 className="font-bold text-white mb-2 text-xl">Ready to launch?</h3>
-      <p className="text-purple-100 text-xs mb-4">Let's build something extraordinary together.</p>
-      <Link to="/contact" className="text-xs font-black uppercase tracking-tighter bg-white text-purple-600 px-6 py-2.5 rounded-xl hover:scale-105 transition-transform">
-        Get Started
-      </Link>
-    </div>
-  </div>
-</section>
+        <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold italic">Our React <span className="text-purple-500 text-not-italic">Workflow</span></h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <StepCard
+              step="01"
+              title="Component Architecture"
+              desc="Breaking UI into reusable atomic modules to ensure long-term maintainability and system consistency."
+              icon={<Layers size={20} />}
+            />
+            <StepCard
+              step="02"
+              title="State Planning"
+              desc="Defining efficient data flow strategies using TanStack Query or Zustand for high-performance logic."
+              icon={<Database size={20} />}
+            />
+            <StepCard
+              step="03"
+              title="UI Implementation"
+              desc="Crafting pixel-perfect, responsive interfaces with Tailwind CSS and interactive Framer Motion animations."
+              icon={<Layout size={20} />}
+            />
+            <StepCard
+              step="04"
+              title="API Integration"
+              desc="Seamlessly syncing frontend components with robust backend services and secure data fetching patterns."
+              icon={<Repeat size={20} />}
+            />
+            <StepCard
+              step="05"
+              title="Optimization"
+              desc="Hardening performance, accessibility, and SEO scores to deliver a world-class user experience."
+              icon={<Zap size={20} />}
+            />
 
-      {/* --- IMAGES & PROCESS CARDS --- */}
+            <div className="p-8 bg-purple-600 rounded-3xl flex flex-col justify-center items-center text-center shadow-xl shadow-purple-500/20 group hover:bg-purple-700 transition-all">
+              <Rocket className="mb-4 animate-bounce text-white" size={32} />
+              <h3 className="font-bold text-white mb-2 text-xl">Ready to launch?</h3>
+              <p className="text-purple-100 text-xs mb-4">Let's build something extraordinary together.</p>
+              <Link to="/contact" className="text-xs font-black uppercase tracking-tighter bg-white text-purple-600 px-6 py-2.5 rounded-xl hover:scale-105 transition-transform">
+                Get Started
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* --- IMAGES & PROCESS CARDS --- */}
         <section className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid md:grid-cols-2 gap-8">
-            
+
             {/* Card 1: Modern Coding Standards */}
             <div className="bg-[#0c0c0c] border border-white/5 rounded-3xl overflow-hidden group hover:border-purple-500/30 transition-all shadow-2xl shadow-purple-500/5">
               <div className="relative overflow-hidden h-72">
-                <img 
-                  src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                  alt="React Coding Standards" 
+                <img
+                  src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  alt="React Coding Standards"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent"></div>
               </div>
@@ -349,10 +349,10 @@ function ReactDevelopment() {
             {/* Card 2: UI UX Excellence */}
             <div className="bg-[#0c0c0c] border border-white/5 rounded-3xl overflow-hidden group hover:border-purple-500/30 transition-all shadow-2xl shadow-purple-500/5">
               <div className="relative overflow-hidden h-72">
-                <img 
-                  src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1000" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                  alt="Interface Excellence" 
+                <img
+                  src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1000"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  alt="Interface Excellence"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] to-transparent"></div>
               </div>
