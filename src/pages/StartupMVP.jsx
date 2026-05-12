@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import {
   Rocket, Layers, ShieldCheck, ArrowRight,
   Target, Zap, Flame, Code2, Cpu

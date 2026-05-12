@@ -1,6 +1,7 @@
 import React from 'react';
 // ECommerce.jsx mein line 3 ko aise badlein:
-import { Helmet } from 'react-helmet-async'; import {
+import { Helmet } from 'react-helmet-async';
+import {
   ShoppingBag, CreditCard, Box, BarChart3,
   ArrowRight, ShieldCheck, Zap, Globe,
   Truck, Search, MousePointer2, Settings, Code, Layers, CheckCircle, HelpCircle, Laptop, Database, Activity

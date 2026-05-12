@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import {
   Settings, ShieldCheck, Activity, PenTool,
   Clock, LifeBuoy, Zap, Database,

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import {
   Palette, MousePointer2, Layers, Layout,
   Figma, PenTool, Eye, Zap, ArrowRight,

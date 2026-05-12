@@ -10,7 +10,6 @@ import {
 const AboutPage = () => {
   return (
     <>
-      {/*  STEP 1: SEO HELMET BLOCK (Sabse upar add kiya hai) */}
       <Helmet>
         <title>About DevZore | Software Agency Founded by Shoukat</title>
         <meta name="description" content="Learn about DevZore, a software development agency founded by Shoukat in Islamabad, Pakistan. We help businesses worldwide build scalable web and mobile applications." />
