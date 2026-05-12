@@ -1,14 +1,16 @@
 {
-  "name": "nextlywebapp",
+  "name": "devzore",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
+
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
     "lucide-react": "^0.563.0",
@@ -21,6 +23,7 @@
     "react-router-dom": "^7.14.1",
     "sweetalert2": "^11.26.18"
   },
+
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@types/react": "^19.2.5",
@@ -33,6 +36,9 @@
     "globals": "^16.5.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+
+    "vite-plugin-sitemap": "^0.8.2",
+    "vite-plugin-prerender": "^1.0.8"
   }
 }

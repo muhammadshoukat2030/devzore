@@ -12,16 +12,20 @@ const Hero = () => {
 
   return (
     <>
-      {/*  STEP 1: SEO HELMET BLOCK (Sabse upar add kiya hai) */}
+
       <Helmet>
         <title>DevZore — Web & App Development Agency | Islamabad</title>
         <meta name="description" content="DevZore is a software development agency in Islamabad, Pakistan. We build websites, mobile apps, MERN stack solutions and SaaS products for clients worldwide." />
-        <meta name="keywords" content="web development Pakistan, MERN stack development, mobile app development Islamabad, software agency Pakistan" />
+        <meta name="keywords" content="web development Pakistan, MERN stack development, mobile app development Islamabad, SaaS, software agency Pakistan, software company, Devzore " />
         <link rel="canonical" href="https://devzore.com/" />
         <meta property="og:title" content="DevZore — Web & App Development Agency" />
         <meta property="og:description" content="We build websites, mobile apps and SaaS products. Based in Islamabad, serving clients worldwide." />
         <meta property="og:url" content="https://devzore.com/" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://devzore.com/preview.jpg" />
+
+        <meta property="og:locale" content="en_US" />
+
       </Helmet>
 
       <section

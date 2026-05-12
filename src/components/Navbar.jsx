@@ -49,6 +49,7 @@ const Navbar = () => {
     { name: "UI/UX Design", icon: <Palette size={18} />, path: "/ui-ux-design" },
     { name: "Startup MVP", icon: <Lightbulb size={18} />, path: "/startup-mvp" },
     { name: "Maintenance", icon: <Wrench size={18} />, path: "/maintenance" },
+    { name: "Backend & API Development", icon: <Settings size={24} />, path: "/backend-api" },
   ];
 
   const navLinks = [
@@ -105,17 +106,17 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <ul className="flex gap-7 items-center">
+          <div className="hidden md:flex items-center gap-10">
+            <ul className="flex gap-8 items-center">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    onClick={() => handleLinkClick(link.path)}
-                    className={`text-[13px] font-bold uppercase tracking-widest transition-all hover:text-purple-400 ${isLinkActive(link.path) ? "text-purple-500" : "text-gray-400"
-                      }`}
+                    className={`relative text-[12px] font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:text-white ${isLinkActive(link.path) ? "text-purple-500" : "text-gray-400/80"
+                      } group`}
                   >
                     {link.name}
+                    <span className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 h-[2px] bg-purple-500 transition-all duration-300 ${isLinkActive(link.path) ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                   </Link>
                 </li>
               ))}
@@ -125,36 +126,71 @@ const Navbar = () => {
                 onMouseEnter={() => setServiceOpen(true)}
                 onMouseLeave={() => setServiceOpen(false)}
               >
-                <button className={`flex items-center gap-1.5 text-[13px] font-bold uppercase tracking-widest transition-colors ${serviceOpen ? 'text-purple-400' : 'text-gray-400'}`}>
-                  Services <ChevronDown size={14} className={`transition-transform duration-300 ${serviceOpen ? 'rotate-180' : ''}`} />
+                <button className={`flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.2em] transition-all duration-300 ${serviceOpen ? 'text-white' : 'text-gray-400/80 hover:text-white'}`}>
+                  Services
+                  <ChevronDown size={14} className={`transition-transform duration-500 ${serviceOpen ? 'rotate-180 text-purple-500' : ''}`} />
                 </button>
 
-                <div className={`absolute top-full -right-4 pt-2 w-80 transition-all duration-300 ${serviceOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}`}>
-                  <div className="bg-[#0c0c0c] border border-white/10 rounded-2xl shadow-2xl overflow-hidden p-2 backdrop-blur-2xl">
-                    <div className="grid grid-cols-1 gap-1">
-                      {services.map((s, i) => (
-                        <Link
-                          key={i}
-                          to={s.path}
-                          onClick={() => setServiceOpen(false)}
-                          className="flex items-center gap-3 px-4 py-3 text-[13px] font-semibold text-gray-400 hover:bg-purple-600/10 hover:text-white rounded-xl transition-all"
-                        >
-                          <span className="text-purple-500 bg-purple-500/10 p-2 rounded-lg">{s.icon}</span>
-                          {s.name}
-                        </Link>
-                      ))}
+                {/* DROPDOWN CONTAINER */}
+                <div className={`absolute top-full -right-12 pt-5 w-[400px] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${serviceOpen ? 'opacity-100 visible translate-y-0 scale-100' : 'opacity-0 invisible -translate-y-4 scale-[0.98]'
+                  }`}>
+                  {/* The "Glow" Border Container */}
+                  <div className="relative bg-[#080808]/95 border border-white/[0.08] rounded-[28px] shadow-[0_30px_100px_rgba(0,0,0,0.8)] backdrop-blur-3xl overflow-hidden">
+
+                    {/* Custom Scrollable Area */}
+                    <div className="p-3 max-h-[75vh] overflow-y-auto scrollbar-hide-standard">
+                      {/* Inner Heading */}
+                      <div className="px-5 py-3 flex justify-between items-center">
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-500">Expertise</span>
+                        <div className="h-[1px] flex-1 ml-4 bg-gradient-to-r from-white/10 to-transparent"></div>
+                      </div>
+
+                      <div className="grid grid-cols-1 gap-2">
+                        {services.map((s, i) => (
+                          <Link
+                            key={i}
+                            to={s.path}
+                            onClick={() => setServiceOpen(false)}
+                            className="group flex items-center gap-5 px-5 py-4 rounded-[22px] transition-all duration-500 hover:bg-white/[0.04] border border-transparent hover:border-white/[0.05]"
+                          >
+                            <div className="flex-shrink-0 text-purple-500 bg-[#121212] border border-white/5 p-3 rounded-[15px] group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-500 shadow-2xl group-hover:shadow-purple-500/20">
+                              {s.icon}
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[14px] font-bold text-gray-200 group-hover:text-white tracking-tight transition-colors">
+                                {s.name}
+                              </span>
+                              <span className="text-[11px] text-gray-500 font-medium group-hover:text-gray-400 transition-colors">
+                                {s.desc || "Next-gen digital architecture"}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Premium Footer */}
+                    <div className="bg-gradient-to-r from-transparent via-white/[0.02] to-transparent p-5 border-t border-white/[0.05] flex justify-between items-center">
+                      <div className="flex flex-col">
+                        <span className="text-[10px] text-gray-500 uppercase tracking-tighter">Ready to scale?</span>
+                        <span className="text-[12px] text-white font-bold">Start your project</span>
+                      </div>
+                      <Link to="/contact" className="px-5 py-2 bg-purple-600/10 hover:bg-purple-600 text-purple-400 hover:text-white text-[11px] font-bold rounded-full transition-all duration-300 border border-purple-500/20">
+                        Get Started
+                      </Link>
                     </div>
                   </div>
                 </div>
               </li>
             </ul>
 
-            <Link to="/contact" className="group relative px-6 py-2.5 overflow-hidden rounded-full bg-white text-black text-[12px] font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-xl shadow-white/5">
-              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Hire Us</span>
-              <div className="absolute inset-0 bg-purple-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            {/* CTA Button */}
+            <Link to="/contact" className="group relative px-9 py-3.5 overflow-hidden rounded-full bg-white text-black text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 hover:scale-105 active:scale-95">
+              <span className="relative z-10 group-hover:text-white transition-colors duration-500">Book a Call</span>
+              <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)]"></div>
             </Link>
           </div>
-          
+
           {/* Toggle Buttons */}
           <div className="md:hidden flex items-center z-[10002]">
             {!isOpen ? (

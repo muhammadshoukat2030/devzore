@@ -40,3 +40,20 @@
     -webkit-text-fill-color: transparent;
   }
 }
+/* Custom Scrollbar for Dropdown */
+.scrollbar-hide-standard::-webkit-scrollbar {
+  width: 4px; /* Bilkul patli line */
+}
+
+.scrollbar-hide-standard::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-hide-standard::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.2); /* Subtle purple color */
+  border-radius: 10px;
+}
+
+.scrollbar-hide-standard::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.5);
+}

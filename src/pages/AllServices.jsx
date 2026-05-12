@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 /* --- ICONS IMPORT --- */
-import { 
-  Globe, Smartphone, ShoppingCart, Settings, 
+import {
+  Globe, Smartphone, ShoppingCart, Settings,
   Palette, Wrench, Rocket, ArrowRight, Zap,
   Plus, Minus, CheckCircle2, MessageSquare,
-  Cloud, Lightbulb
+  Cloud, Lightbulb,CodeXml
 } from 'lucide-react';
 
 const AllServices = () => {
@@ -19,65 +19,73 @@ const AllServices = () => {
 
   /* --- SERVICES ARRAY --- */
   const services = [
-    { 
-      name: "Web Development", 
-      icon: <Globe size={24} className="text-purple-500" />, 
+    {
+      name: "Web Development",
+      icon: <Globe size={24} className="text-purple-500" />,
       path: "/web-development",
       desc: "Custom high-performance websites built with modern stacks like MERN and Next.js.",
       details: ["SEO Optimized", "Responsive Design", "Fast Loading"]
     },
-    { 
-      name: "Mobile App Development", 
-      icon: <Smartphone size={24} className="text-green-500" />, 
+    {
+      name: "Mobile App Development",
+      icon: <Smartphone size={24} className="text-green-500" />,
       path: "/mobile-apps",
       desc: "Native and cross-platform mobile apps with seamless user experiences for iOS/Android.",
       details: ["React Native", "Smooth UI", "App Store Ready"]
     },
-    { 
-      name: "E-Commerce Website", 
-      icon: <ShoppingCart size={24} className="text-blue-500" />, 
+    {
+      name: "E-Commerce Website",
+      icon: <ShoppingCart size={24} className="text-blue-500" />,
       path: "/ecommerce",
       desc: "Scalable online stores with secure payments and comprehensive inventory management.",
       details: ["Secure Payments", "Admin Panel", "Order Tracking"]
     },
-    { 
-      name: "MERN Stack Development", 
-      icon: <Rocket size={24} className="text-purple-500" />, 
+    {
+      name: "MERN Stack Development",
+      icon: <Rocket size={24} className="text-purple-500" />,
       path: "/mern-stack-development",
       desc: "End-to-end full-stack applications engineered with MongoDB, Express, React, and Node.js.",
       details: ["Full-stack Engineering", "RESTful APIs", "Real-time Solutions"]
     },
-    { 
-      name: "SaaS Product Development", 
-      icon: <Cloud size={24} className="text-blue-500" />, 
+    {
+      name: "SaaS Product Development",
+      icon: <Cloud size={24} className="text-blue-500" />,
       path: "/saas-product-development",
       desc: "End-to-end engineering of multi-tenant cloud platforms with scalable architecture.",
       details: ["Multi-Tenancy", "Cloud Infrastructure", "Subscription Engine"]
     },
-    { 
-      name: "UI/UX Design", 
-      icon: <Palette size={24} className="text-pink-500" />, 
+    {
+      name: "React Development",
+      // CodeXml icon React development ki coding nature ko suite karta hai
+      icon: <CodeXml size={24} className="text-blue-500" />,
+      path: "/ReactDevelopment",
+      desc: "Building scalable, high-performance web applications with React's component-based architecture.",
+      details: ["Custom Hooks", "State Management", "API Integration"]
+    },
+    {
+      name: "UI/UX Design",
+      icon: <Palette size={24} className="text-pink-500" />,
       path: "/ui-ux-design",
       desc: "User-centric designs focusing on conversion, usability, and aesthetic excellence.",
       details: ["Modern Assets", "Prototypes", "Brand Guidelines"]
     },
-    { 
-      name: "Bug Fixing & Maintenance", 
-      icon: <Wrench size={24} className="text-yellow-500" />, 
+    {
+      name: "Bug Fixing & Maintenance",
+      icon: <Wrench size={24} className="text-yellow-500" />,
       path: "/maintenance",
       desc: "Regular updates, performance optimization, and rapid bug resolution services.",
       details: ["24/7 Monitoring", "Code Audit", "Fast Fixes"]
     },
-    { 
-      name: "Startup MVP Development", 
-      icon: <Lightbulb size={24} className="text-cyan-500" />, 
+    {
+      name: "Startup MVP Development",
+      icon: <Lightbulb size={24} className="text-cyan-500" />,
       path: "/startup-mvp",
       desc: "Fast-track development to launch your core product to market and attract investors.",
       details: ["Rapid Prototyping", "Scalable MVP", "Lean Launch"]
     },
-    { 
-      name: "Backend & API Development", 
-      icon: <Settings size={24} className="text-orange-500" />, 
+    {
+      name: "Backend & API Development",
+      icon: <Settings size={24} className="text-orange-500" />,
       path: "/backend-api",
       desc: "Robust server-side logic and secure API architectures for high-traffic scalability.",
       details: ["Microservices", "Secure Auth", "Database Design"]
@@ -110,7 +118,7 @@ const AllServices = () => {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20">
-      
+
       {/* --- HERO SECTION --- */}
       <div className="max-w-7xl mx-auto px-6 pt-24 pb-12">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
@@ -130,7 +138,7 @@ const AllServices = () => {
               Architected to Scale
             </h1>
             <p className="text-gray-400 text-base md:text-lg mt-8 max-w-xl leading-relaxed font-medium text-center lg:text-left mx-auto lg:mx-0">
-              We transform complex business requirements into elegant digital products. 
+              We transform complex business requirements into elegant digital products.
               Our engineering team focuses on clean code and international standards.
             </p>
             <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-8">
@@ -145,7 +153,7 @@ const AllServices = () => {
 
           <div className="flex-1 bg-[#0c0c0c] border border-gray-900 rounded-3xl p-6 md:p-8 relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-               <Zap size={100} className="text-purple-500" />
+              <Zap size={100} className="text-purple-500" />
             </div>
             <h3 className="text-sm font-bold text-gray-300 mb-6 uppercase tracking-widest flex items-center gap-2">
               <div className="w-8 h-[1px] bg-purple-500"></div> Jump To Service
@@ -216,15 +224,14 @@ const AllServices = () => {
 
         <div className="max-w-4xl space-y-4">
           {faqs.map((faq, i) => (
-            <div 
+            <div
               key={i}
-              className={`border rounded-xl transition-all duration-300 overflow-hidden ${
-                activeIndex === i 
-                ? 'border-purple-500/50 bg-purple-500/5' 
-                : 'border-white/5 bg-[#0A0A0A]'
-              }`}
+              className={`border rounded-xl transition-all duration-300 overflow-hidden ${activeIndex === i
+                  ? 'border-purple-500/50 bg-purple-500/5'
+                  : 'border-white/5 bg-[#0A0A0A]'
+                }`}
             >
-              <button 
+              <button
                 onClick={() => toggleFAQ(i)}
                 className="w-full p-6 text-left flex justify-between items-center group"
               >
@@ -238,10 +245,9 @@ const AllServices = () => {
                 )}
               </button>
 
-              <div 
-                className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                  activeIndex === i ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                }`}
+              <div
+                className={`transition-all duration-300 ease-in-out overflow-hidden ${activeIndex === i ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
               >
                 <div className="p-6 pt-0 text-gray-400 text-sm md:text-base leading-relaxed border-t border-white/5">
                   <div className="mt-4">{faq.answer}</div>
@@ -255,18 +261,18 @@ const AllServices = () => {
       {/* --- FINAL CTA --- */}
       <section className="max-w-7xl mx-auto px-6 mt-12">
         <div className="bg-[#0c0c0c] border border-gray-900 rounded-[3rem] p-10 md:p-20 flex flex-col items-center text-center relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
-            <MessageSquare size={48} className="text-purple-500 mb-6" />
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Ready to start?</h2>
-            <p className="text-gray-400 max-w-xl mb-10 text-lg">
-                Let's build something extraordinary together.
-            </p>
-            <Link to="/contact" className="bg-purple-600 hover:bg-purple-700 text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-sm transition-all hover:scale-105 shadow-2xl shadow-purple-500/20">
-                Contact DevZore Today
-            </Link>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+          <MessageSquare size={48} className="text-purple-500 mb-6" />
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Ready to start?</h2>
+          <p className="text-gray-400 max-w-xl mb-10 text-lg">
+            Let's build something extraordinary together.
+          </p>
+          <Link to="/contact" className="bg-purple-600 hover:bg-purple-700 text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-sm transition-all hover:scale-105 shadow-2xl shadow-purple-500/20">
+            Contact DevZore Today
+          </Link>
         </div>
       </section>
-      
+
     </div>
   );
 };
