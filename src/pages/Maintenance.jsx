@@ -1,22 +1,58 @@
 
 import React from 'react';
-import { 
-  Settings, ShieldCheck, Activity, PenTool, 
-  Clock, LifeBuoy, Zap, Database, 
+import {
+  Settings, ShieldCheck, Activity, PenTool,
+  Clock, LifeBuoy, Zap, Database,
   ArrowRight, HardDrive, RefreshCcw
 } from 'lucide-react';
 
 const Maintenance = () => {
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-0.1">
-      
+      <Helmet>
+        <title>Site Under Maintenance | DevZore</title>
+
+        <meta
+          name="description"
+          content="DevZore website is currently under maintenance. We are improving our systems to serve you better. Please check back soon."
+        />
+
+        <link
+          rel="canonical"
+          href="https://devzore.com/maintenance"
+        />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Site Under Maintenance | DevZore" />
+        <meta
+          property="og:description"
+          content="DevZore website is currently under maintenance. We are improving performance and experience. Please check back soon."
+        />
+        <meta property="og:url" content="https://devzore.com/maintenance" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Social Image (optional but good) */}
+        <meta property="og:image" content="https://devzore.com/og/maintenance.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Site Under Maintenance | DevZore" />
+        <meta
+          name="twitter:description"
+          content="DevZore is currently under maintenance. We’ll be back shortly with improvements."
+        />
+        <meta name="twitter:image" content="https://devzore.com/og/maintenance.jpg" />
+      </Helmet>
       {/* --- 1. TOP HEADER --- */}
       <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em]">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
           24/7 System Reliability
         </div>
-        
+
         <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
           Support Portal
         </button>
@@ -33,7 +69,7 @@ const Maintenance = () => {
           <p className="text-gray-400 text-base md:text-lg max-w-lg leading-relaxed font-medium">
             We ensure your digital assets stay updated, secure, and lightning-fast. From server patching to performance tuning, we handle the technical debt.
           </p>
-          
+
           <div className="flex flex-nowrap gap-3 pt-2">
             <button className="flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
               Choose a Plan <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -43,13 +79,13 @@ const Maintenance = () => {
             </button>
           </div>
         </div>
-        
+
         <div className="relative group lg:justify-self-end hidden md:block">
           <div className="absolute -inset-4 bg-purple-500/10 blur-3xl rounded-full"></div>
           <div className="relative bg-[#111111] border border-gray-800/50 rounded-2xl overflow-hidden shadow-2xl max-w-[500px]">
-            <img 
-              src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop" 
-              alt="System Maintenance" 
+            <img
+              src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop"
+              alt="System Maintenance"
               className="w-full h-auto opacity-80 group-hover:scale-105 transition-transform duration-700"
             />
           </div>
@@ -64,21 +100,21 @@ const Maintenance = () => {
           </h2>
           <div className="w-12 h-1 bg-purple-600 mt-2 rounded-full"></div>
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-5">
-          <MaintenanceCard 
+          <MaintenanceCard
             icon={<ShieldCheck className="text-purple-500" size={22} />}
             title="Security Patching"
             desc="Continuous monitoring and patching of vulnerabilities to protect your system from evolving cyber threats and data breaches."
             borderColor="border-l-purple-600"
           />
-          <MaintenanceCard 
+          <MaintenanceCard
             icon={<Activity className="text-blue-500" size={22} />}
             title="Performance Tuning"
             desc="Regular code audits and database optimization to ensure sub-second load times and high-performance user experiences."
             borderColor="border-l-blue-500"
           />
-          <MaintenanceCard 
+          <MaintenanceCard
             icon={<RefreshCcw className="text-purple-500" size={22} />}
             title="Cloud Updates"
             desc="Managing version upgrades for React, Node.js, and cloud dependencies with zero downtime and regression testing."
@@ -97,12 +133,12 @@ const Maintenance = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          <StatusItem 
+          <StatusItem
             image="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2070&auto=format&fit=crop"
             title="Database Health Checks"
             subtitle="Automated Backups & Integrity"
           />
-          <StatusItem 
+          <StatusItem
             image="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
             title="Server Load Balancers"
             subtitle="Uptime & Traffic Management"
@@ -169,10 +205,10 @@ const MaintenanceCard = ({ icon, title, desc, borderColor }) => (
 const StatusItem = ({ image, title, subtitle }) => (
   <div className="group cursor-pointer">
     <div className="bg-[#0c0c0c] rounded-2xl overflow-hidden mb-3 border border-gray-900 shadow-xl group-hover:border-purple-500/50 transition-all">
-      <img 
-        src={image} 
-        alt={title} 
-        className="w-full h-[250px] md:h-[300px] object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" 
+      <img
+        src={image}
+        alt={title}
+        className="w-full h-[250px] md:h-[300px] object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
       />
     </div>
     <h3 className="text-lg font-bold mb-1 group-hover:text-purple-500 transition-colors">{title}</h3>

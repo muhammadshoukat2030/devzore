@@ -52,9 +52,40 @@ const MobileApp = () => {
   return (
     <>
       <Helmet>
-        <title> Mobile App Development Company — iOS & Android | DevZore</title>
-        <meta name="DevZore builds polished iOS and Android apps for startups and businesses. React Native, Swift, Kotlin — we choose what fits your product. Get a free mobile app consultation." />
-        <link rel="canonical" href="https://devzore.com/services/mobile-app-development" />
+        <title>Mobile App Development Company — iOS & Android | DevZore</title>
+
+        <meta
+          name="description"
+          content="DevZore builds polished iOS and Android apps for startups and businesses. React Native, Swift, Kotlin — we choose what fits your product. Get a free mobile app consultation."
+        />
+
+        <link
+          rel="canonical"
+          href="https://devzore.com/mobile-apps"
+        />
+        {/* Open Graph */}
+        <meta property="og:title" content="Mobile App Development Company — iOS & Android | DevZore" />
+        <meta
+          property="og:description"
+          content="High-quality mobile apps for iOS and Android using React Native, Swift, and Kotlin. Scalable and performance-focused solutions."
+        />
+        <meta property="og:url" content="https://devzore.com/mobile-apps" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Social Image */}
+        <meta property="og:image" content="https://devzore.com/og/mobile-apps.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Mobile App Development Company — DevZore" />
+        <meta
+          name="twitter:description"
+          content="We build iOS & Android apps using React Native, Swift, and Kotlin with scalable architecture."
+        />
+        <meta name="twitter:image" content="https://devzore.com/og/mobile-apps.jpg" />
       </Helmet>
 
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10 overflow-x-hidden">

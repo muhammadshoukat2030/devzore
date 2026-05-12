@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { 
-  Palette, MousePointer2, Layers, Layout, 
+import {
+  Palette, MousePointer2, Layers, Layout,
   Figma, PenTool, Eye, Zap, ArrowRight,
   Maximize2, Component, Smartphone
 } from 'lucide-react';
@@ -9,6 +9,40 @@ import {
 const UIUXDesign = () => {
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-0.1">
+      <Helmet>
+        <title>UI/UX Design Services | Modern Product Design | DevZore</title>
+        <meta
+          name="description"
+          content="DevZore offers professional UI/UX design services focused on modern, user-friendly and conversion-driven interfaces. We design web and mobile experiences that improve usability, engagement, and business growth."
+        />
+        <link
+          rel="canonical"
+          href="https://devzore.com/ui-ux-design"
+        />
+        {/* Open Graph */}
+        <meta property="og:title" content="UI/UX Design Services | DevZore" />
+        <meta
+          property="og:description"
+          content="Modern UI/UX design services focused on user experience, clean interfaces, and high-conversion digital products."
+        />
+        <meta property="og:url" content="https://devzore.com/ui-ux-design" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Social Image */}
+        <meta property="og:image" content="https://devzore.com/og/ui-ux-design.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="UI/UX Design Services | DevZore" />
+        <meta
+          name="twitter:description"
+          content="Professional UI/UX design services for web and mobile apps focused on user experience and conversion."
+        />
+        <meta name="twitter:image" content="https://devzore.com/og/ui-ux-design.jpg" />
+      </Helmet>
       
       {/* --- 1. TOP HEADER --- */}
       <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between">
@@ -16,7 +50,7 @@ const UIUXDesign = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
           Visual Strategy & Experience
         </div>
-        
+
         <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
           Design Audit
         </button>
@@ -33,7 +67,7 @@ const UIUXDesign = () => {
           <p className="text-gray-400 text-base md:text-lg max-w-lg leading-relaxed font-medium">
             We blend psychological research with pixel-perfect aesthetics to create interfaces that aren't just beautiful, but functional.
           </p>
-          
+
           <div className="flex flex-nowrap gap-3 pt-2">
             <button className="flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
               Start Designing <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -43,13 +77,13 @@ const UIUXDesign = () => {
             </button>
           </div>
         </div>
-        
+
         <div className="relative group lg:justify-self-end hidden md:block">
           <div className="absolute -inset-4 bg-purple-500/10 blur-3xl rounded-full"></div>
           <div className="relative bg-[#111111] border border-gray-800/50 rounded-2xl overflow-hidden shadow-2xl max-w-[500px]">
-            <img 
-              src="https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=2070&auto=format&fit=crop" 
-              alt="UI/UX Design Process" 
+            <img
+              src="https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=2070&auto=format&fit=crop"
+              alt="UI/UX Design Process"
               className="w-full h-auto opacity-80 group-hover:scale-105 transition-transform duration-700"
             />
           </div>
@@ -64,21 +98,21 @@ const UIUXDesign = () => {
           </h2>
           <div className="w-12 h-1 bg-purple-600 mt-2 rounded-full"></div>
         </div>
-        
+
         <div className="grid md:grid-cols-3 gap-5">
-          <DesignCard 
+          <DesignCard
             icon={<Layout className="text-purple-500" size={22} />}
             title="User Interface (UI)"
             desc="Creating high-fidelity visual assets, style guides, and design systems that ensure brand consistency across every digital touchpoint and screen resolution."
             borderColor="border-l-purple-600"
           />
-          <DesignCard 
+          <DesignCard
             icon={<MousePointer2 className="text-green-500" size={22} />}
             title="User Experience (UX)"
             desc="Mapping user journeys, wireframing, and interactive prototyping to solve complex usability challenges and minimize friction in the conversion funnel."
             borderColor="border-l-green-500"
           />
-          <DesignCard 
+          <DesignCard
             icon={<Maximize2 className="text-purple-500" size={22} />}
             title="Prototyping"
             desc="Building high-fidelity interactive prototypes that simulate real product behavior, allowing for early-stage testing and stakeholder alignment before development."
@@ -97,12 +131,12 @@ const UIUXDesign = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          <ProjectCard 
+          <ProjectCard
             image="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1964&auto=format&fit=crop"
             title="SaaS Dashboard Design"
             subtitle="Analytics & Data Visualization"
           />
-          <ProjectCard 
+          <ProjectCard
             image="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=2070&auto=format&fit=crop"
             title="Fintech Mobile Experience"
             subtitle="Digital Wallet Interface"

@@ -54,8 +54,42 @@ function ReactDevelopment() {
     <>
       <Helmet>
         <title>React Development Company — Next.js & React Apps | DevZore</title>
-        <meta name="Expert React and Next.js development for fast, scalable web interfaces. DevZore builds component-driven React apps with TypeScript, clean architecture, and great UX. Get a consultation." />
-        <link rel="canonical" href="https://devzore.com/services/react-development" />
+        <meta
+          name="description"
+          content="Expert React and Next.js development for fast, scalable web interfaces. DevZore builds component-driven React apps with TypeScript, clean architecture, and great UX. Get a consultation."
+        />
+        <link
+          rel="canonical"
+          href="https://devzore.com/services/react-development"
+        />
+
+        {/* Optional but recommended */}
+        <meta property="og:title" content="React Development Company — Next.js & React Apps | DevZore" />
+        <meta
+          property="og:description"
+          content="Expert React and Next.js development for fast, scalable web interfaces. Clean architecture, TypeScript, and high-performance UI."
+        />
+        <meta property="og:url" content="https://devzore.com/services/react-development" />
+        <meta property="og:type" content="website" />
+        {/* Open Graph (Facebook, LinkedIn, WhatsApp preview) */}
+        <meta property="og:title" content="React Development Company — Next.js & React Apps | DevZore" />
+        <meta
+          property="og:description"
+          content="Expert React and Next.js development for fast, scalable web interfaces. DevZore builds modern, component-driven apps with great UX."
+        />
+        {/* Optional image (VERY important for sharing) */}
+        <meta property="og:image" content="https://devzore.com/og/react-development.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="React Development Company — DevZore" />
+        <meta
+          name="twitter:description"
+          content="Fast, scalable React & Next.js development services by DevZore."
+        />
+        <meta name="twitter:image" content="https://devzore.com/og/react-development.jpg" />
       </Helmet>
 
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10 overflow-x-hidden">

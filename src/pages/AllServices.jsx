@@ -6,7 +6,7 @@ import {
   Globe, Smartphone, ShoppingCart, Settings,
   Palette, Wrench, Rocket, ArrowRight, Zap,
   Plus, Minus, CheckCircle2, MessageSquare,
-  Cloud, Lightbulb,CodeXml
+  Cloud, Lightbulb, CodeXml
 } from 'lucide-react';
 
 const AllServices = () => {
@@ -117,7 +117,43 @@ const AllServices = () => {
   ];
 
   return (
+
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20">
+
+      <Helmet>
+        <title>All Services | DevZore — Web, Mobile & Full-Stack Development</title>
+
+        <meta
+          name="description"
+          content="Explore all services by DevZore including React development, MERN stack apps, e-commerce solutions, mobile app development, and backend APIs. Scalable digital solutions for startups and enterprises."
+        />
+
+        <link rel="canonical" href="https://devzore.com/AllServices" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="All Services | DevZore" />
+        <meta
+          property="og:description"
+          content="Full range of development services: React, MERN stack, e-commerce, mobile apps, and backend APIs by DevZore."
+        />
+        <meta property="og:url" content="https://devzore.com/AllServices" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Social Image (VERY IMPORTANT) */}
+        <meta property="og:image" content="https://devzore.com/og/all-services.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="All Services | DevZore" />
+        <meta
+          name="twitter:description"
+          content="Explore DevZore full-stack development services including React, MERN, e-commerce, and mobile apps."
+        />
+        <meta name="twitter:image" content="https://devzore.com/og/all-services.jpg" />
+      </Helmet>
 
       {/* --- HERO SECTION --- */}
       <div className="max-w-7xl mx-auto px-6 pt-24 pb-12">
@@ -227,8 +263,8 @@ const AllServices = () => {
             <div
               key={i}
               className={`border rounded-xl transition-all duration-300 overflow-hidden ${activeIndex === i
-                  ? 'border-purple-500/50 bg-purple-500/5'
-                  : 'border-white/5 bg-[#0A0A0A]'
+                ? 'border-purple-500/50 bg-purple-500/5'
+                : 'border-white/5 bg-[#0A0A0A]'
                 }`}
             >
               <button

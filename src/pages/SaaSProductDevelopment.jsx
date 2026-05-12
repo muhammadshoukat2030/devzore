@@ -51,8 +51,37 @@ function SaaSProductDevelopment() {
     <>
       <Helmet>
         <title>SaaS Product Development Company | DevZore</title>
-        <meta name="description" content="DevZore builds scalable, multi-tenant SaaS platforms with subscription billing, user management, and production-ready infrastructure." />
-        <link rel="canonical" href="https://devzore.com/services/saas-development" />
+        <meta
+          name="description"
+          content="DevZore builds scalable, multi-tenant SaaS platforms with subscription billing, user management, and production-ready infrastructure."
+        />
+        <link
+          rel="canonical"
+          href="https://devzore.com/saas-product-development"
+        />
+        {/* Open Graph */}
+        <meta property="og:title" content="SaaS Product Development Company | DevZore" />
+        <meta
+          property="og:description"
+          content="We build scalable SaaS platforms with subscription billing, authentication, dashboards, and cloud-ready architecture."
+        />
+        <meta property="og:url" content="https://devzore.com/saas-product-development" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Social Image */}
+        <meta property="og:image" content="https://devzore.com/og/saas.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="SaaS Product Development Company | DevZore" />
+        <meta
+          name="twitter:description"
+          content="Scalable SaaS platforms with subscription billing, auth systems, and multi-tenant architecture."
+        />
+        <meta name="twitter:image" content="https://devzore.com/og/saas.jpg" />
       </Helmet>
 
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10 overflow-x-hidden">
@@ -278,7 +307,7 @@ function SaaSProductDevelopment() {
         {/* --- FAQ SECTION --- */}
         <section className="max-w-4xl mx-auto px-6 py-20">
           <div className="flex items-center gap-4 mb-12">
-            <div className="h-10 w-1 bg-purple-600 rounded-full"></div> 
+            <div className="h-10 w-1 bg-purple-600 rounded-full"></div>
             <h2 className="text-3xl font-bold italic">SaaS <span className="text-purple-500 text-not-italic">Frequently Asked Questions</span></h2>
           </div>
           <div className="space-y-4">

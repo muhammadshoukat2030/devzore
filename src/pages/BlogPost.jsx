@@ -401,13 +401,38 @@ const BlogPage = () => {
       {/*  STEP 1: SEO HELMET BLOCK (Sabse upar add kiya hai) */}
       <Helmet>
         <title>DevZore Blog | Web & App Development Tips & Insights</title>
-        <meta name="description" content="Read the DevZore blog for tips on web development, mobile apps, MERN stack, and software business insights from our team in Islamabad, Pakistan." />
-        <meta name="keywords" content="web development blog, MERN stack tutorial, React tips, software development Pakistan, mobile app tips" />
-        <link rel="canonical" href="https://devzore.com/blog" />
-        <meta property="og:title" content="DevZore Blog | Web & App Development Tips" />
-        <meta property="og:description" content="Tips, tutorials and insights on web development, mobile apps and SaaS from DevZore." />
+
+        <meta
+          name="description"
+          content="Read the DevZore blog for practical insights on web development, mobile apps, MERN stack, SaaS, and software engineering. Learn modern development practices from our team."
+        />
+        <link
+          rel="canonical"
+          href="https://devzore.com/blog"
+        />
+        {/* Open Graph */}
+        <meta property="og:title" content="DevZore Blog | Web & App Development Tips & Insights" />
+        <meta
+          property="og:description"
+          content="Explore tutorials, tips, and insights on web development, mobile apps, SaaS, and modern software engineering."
+        />
         <meta property="og:url" content="https://devzore.com/blog" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Social Image */}
+        <meta property="og:image" content="https://devzore.com/og/blog.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DevZore Blog | Web & App Development Insights" />
+        <meta
+          name="twitter:description"
+          content="Learn web development, React, MERN stack, SaaS, and mobile app development from DevZore."
+        />
+        <meta name="twitter:image" content="https://devzore.com/og/blog.jpg" />
       </Helmet>
 
       <div className="min-h-screen bg-[#030303] text-white font-sans selection:bg-purple-500/30">

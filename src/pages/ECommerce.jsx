@@ -1,6 +1,6 @@
 import React from 'react';
 // ECommerce.jsx mein line 3 ko aise badlein:
-   import { Helmet } from 'react-helmet-async';import {
+import { Helmet } from 'react-helmet-async'; import {
   ShoppingBag, CreditCard, Box, BarChart3,
   ArrowRight, ShieldCheck, Zap, Globe,
   Truck, Search, MousePointer2, Settings, Code, Layers, CheckCircle, HelpCircle, Laptop, Database, Activity
@@ -9,16 +9,41 @@ import React from 'react';
 const Ecommerce = () => {
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10">
-      
+
       {/* --- SEO & HELMET --- */}
       <Helmet>
         <title>E-Commerce Development Services | DevZore</title>
-        <meta name="description" content="DevZore builds fast, scalable custom e-commerce platforms using MERN stack. From product catalog to checkout — full-stack online store development for startups and growing businesses." />
-        <link rel="canonical" href="https://devzore.com/ecommerce" />
+        <meta
+          name="description"
+          content="DevZore builds fast, scalable custom e-commerce platforms using MERN stack. From product catalog to checkout, we deliver full-stack online store solutions for startups and growing businesses."
+        />
+        <link
+          rel="canonical"
+          href="https://devzore.com/ecommerce"
+        />
+        {/* Open Graph */}
         <meta property="og:title" content="E-Commerce Development Services | DevZore" />
-        <meta property="og:description" content="Custom e-commerce development using MERN stack. Fast, scalable online stores built for conversions — from DevZore, Islamabad." />
+        <meta
+          property="og:description"
+          content="Custom e-commerce development using MERN stack. Fast, scalable online stores built for conversions and growth."
+        />
         <meta property="og:url" content="https://devzore.com/ecommerce" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Social Image (important) */}
+        <meta property="og:image" content="https://devzore.com/og/ecommerce.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="E-Commerce Development Services | DevZore" />
+        <meta
+          name="twitter:description"
+          content="We build scalable e-commerce platforms using MERN stack with high conversion-focused design."
+        />
+        <meta name="twitter:image" content="https://devzore.com/og/ecommerce.jpg" />
       </Helmet>
 
       {/* --- 1. TOP NAVIGATION AREA --- */}
@@ -40,7 +65,7 @@ const Ecommerce = () => {
             Development That <span className="text-purple-500">Sells</span> — Not Just Looks Good
           </h1>
           <p className="text-gray-400 text-base md:text-lg max-w-lg leading-relaxed font-medium">
-            At DevZore, we build custom platforms from the ground up using the MERN stack. 
+            At DevZore, we build custom platforms from the ground up using the MERN stack.
             Not a Shopify theme someone else is already using—a platform built to work the way your business actually works.
           </p>
 
@@ -70,8 +95,8 @@ const Ecommerce = () => {
       <section className="max-w-4xl mx-auto px-6 py-12 text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">Why Custom Development Matters?</h2>
         <p className="text-gray-400 leading-relaxed">
-          In 2026, e-commerce competition is more intense than ever. Page speed is a direct ranking factor. 
-          Checkout friction directly reduces revenue. A custom-built platform lets you optimize every variable—fast by default, 
+          In 2026, e-commerce competition is more intense than ever. Page speed is a direct ranking factor.
+          Checkout friction directly reduces revenue. A custom-built platform lets you optimize every variable—fast by default,
           SEO-ready from day one, and architected to scale whether you have 20 products or 20,000.
         </p>
       </section>

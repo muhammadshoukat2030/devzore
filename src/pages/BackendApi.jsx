@@ -54,6 +54,44 @@ function BackendApi() {
         <title>Backend & API Development | Scalable Architecture | DevZore</title>
         <meta name="description" content="Expert backend engineering and API development services. We build scalable server-side solutions using Node.js, Python, and robust database architectures." />
       </Helmet>
+      <Helmet>
+        <title>Backend & API Development | Scalable Architecture | DevZore</title>
+
+        <meta
+          name="description"
+          content="Expert backend engineering and API development services. We build scalable server-side solutions using Node.js, Python, and robust database architectures for high-performance applications."
+        />
+
+        <link
+          rel="canonical"
+          href="https://devzore.com/backend-api"
+        />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Backend & API Development | DevZore" />
+        <meta
+          property="og:description"
+          content="Scalable backend systems and REST APIs built with Node.js, Python, and modern database architecture for high-performance apps."
+        />
+        <meta property="og:url" content="https://devzore.com/backend-api" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Social Image */}
+        <meta property="og:image" content="https://devzore.com/og/backend-api.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Backend & API Development | DevZore" />
+        <meta
+          name="twitter:description"
+          content="Scalable backend systems and API development using Node.js, Python, and modern database design."
+        />
+        <meta name="twitter:image" content="https://devzore.com/og/backend-api.jpg" />
+        <meta name="twitter:site" content="@devzore" />
+      </Helmet>
 
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10 overflow-x-hidden">
 
@@ -178,83 +216,83 @@ function BackendApi() {
         </section>
 
         {/* --- BACKEND TECHNOLOGY STACK --- */}
-<section className="max-w-7xl mx-auto px-6 py-24 border-t border-white/5">
-  <div className="text-center mb-16">
-    <h2 className="text-sm font-bold text-purple-500 uppercase tracking-[0.3em] mb-4">Core Stack</h2>
-    <h3 className="text-3xl md:text-5xl font-bold">Powering with <span className="text-purple-500">Modern</span> Tech</h3>
-  </div>
+        <section className="max-w-7xl mx-auto px-6 py-24 border-t border-white/5">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold text-purple-500 uppercase tracking-[0.3em] mb-4">Core Stack</h2>
+            <h3 className="text-3xl md:text-5xl font-bold">Powering with <span className="text-purple-500">Modern</span> Tech</h3>
+          </div>
 
-  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
-    {/* Node.js */}
-    <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-      <div className="mb-4 flex justify-center">
-        <div className="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform">
-          <i className="devicon-nodejs-plain text-3xl"></i>
-        </div>
-      </div>
-      <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Node.js</p>
-    </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+            {/* Node.js */}
+            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
+              <div className="mb-4 flex justify-center">
+                <div className="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform">
+                  <i className="devicon-nodejs-plain text-3xl"></i>
+                </div>
+              </div>
+              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Node.js</p>
+            </div>
 
-    {/* Express */}
-    <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-      <div className="mb-4 flex justify-center">
-        <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-          <i className="devicon-express-original text-3xl"></i>
-        </div>
-      </div>
-      <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Express</p>
-    </div>
+            {/* Express */}
+            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
+              <div className="mb-4 flex justify-center">
+                <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                  <i className="devicon-express-original text-3xl"></i>
+                </div>
+              </div>
+              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Express</p>
+            </div>
 
-    {/* MongoDB */}
-    <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-      <div className="mb-4 flex justify-center">
-        <div className="w-12 h-12 bg-green-600/10 rounded-2xl flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
-          <i className="devicon-mongodb-plain text-3xl"></i>
-        </div>
-      </div>
-      <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">MongoDB</p>
-    </div>
+            {/* MongoDB */}
+            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
+              <div className="mb-4 flex justify-center">
+                <div className="w-12 h-12 bg-green-600/10 rounded-2xl flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
+                  <i className="devicon-mongodb-plain text-3xl"></i>
+                </div>
+              </div>
+              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">MongoDB</p>
+            </div>
 
-    {/* PostgreSQL */}
-    <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-      <div className="mb-4 flex justify-center">
-        <div className="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
-          <i className="devicon-postgresql-plain text-3xl"></i>
-        </div>
-      </div>
-      <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">PostgreSQL</p>
-    </div>
+            {/* PostgreSQL */}
+            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
+              <div className="mb-4 flex justify-center">
+                <div className="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
+                  <i className="devicon-postgresql-plain text-3xl"></i>
+                </div>
+              </div>
+              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">PostgreSQL</p>
+            </div>
 
-    {/* Redis */}
-    <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-      <div className="mb-4 flex justify-center">
-        <div className="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-500 group-hover:scale-110 transition-transform">
-          <i className="devicon-redis-plain text-3xl"></i>
-        </div>
-      </div>
-      <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Redis</p>
-    </div>
+            {/* Redis */}
+            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
+              <div className="mb-4 flex justify-center">
+                <div className="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-500 group-hover:scale-110 transition-transform">
+                  <i className="devicon-redis-plain text-3xl"></i>
+                </div>
+              </div>
+              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Redis</p>
+            </div>
 
-    {/* Docker */}
-    <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-      <div className="mb-4 flex justify-center">
-        <div className="w-12 h-12 bg-blue-400/10 rounded-2xl flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
-          <i className="devicon-docker-plain text-3xl"></i>
-        </div>
-      </div>
-      <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Docker</p>
-    </div>
-  </div>
+            {/* Docker */}
+            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
+              <div className="mb-4 flex justify-center">
+                <div className="w-12 h-12 bg-blue-400/10 rounded-2xl flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                  <i className="devicon-docker-plain text-3xl"></i>
+                </div>
+              </div>
+              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Docker</p>
+            </div>
+          </div>
 
-  {/* Sub-text for backend features */}
-  <div className="mt-12 flex flex-wrap justify-center gap-4">
-    {['JWT Auth', 'REST APIs', 'GraphQL', 'Microservices', 'WebSockets', 'AWS'].map((item) => (
-      <span key={item} className="px-5 py-2 rounded-full border border-white/5 bg-white/[0.02] text-[10px] font-bold text-gray-500 uppercase tracking-widest hover:text-purple-500 hover:border-purple-500/30 transition-all">
-        {item}
-      </span>
-    ))}
-  </div>
-</section>
+          {/* Sub-text for backend features */}
+          <div className="mt-12 flex flex-wrap justify-center gap-4">
+            {['JWT Auth', 'REST APIs', 'GraphQL', 'Microservices', 'WebSockets', 'AWS'].map((item) => (
+              <span key={item} className="px-5 py-2 rounded-full border border-white/5 bg-white/[0.02] text-[10px] font-bold text-gray-500 uppercase tracking-widest hover:text-purple-500 hover:border-purple-500/30 transition-all">
+                {item}
+              </span>
+            ))}
+          </div>
+        </section>
 
         {/* --- SERVICES --- */}
         <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">

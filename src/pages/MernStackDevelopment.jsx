@@ -54,7 +54,27 @@ const MernStackDevelopment = () => {
     <>
       <Helmet>
         <title>MERN Stack Development Company | DevZore</title>
-        <meta name="description" content="DevZore builds scalable, production-ready apps using MERN stack — MongoDB, Express.js, React, and Node.js. Full-stack JavaScript development for startups and enterprises." />
+        <meta
+          name="description"
+          content="DevZore builds scalable, production-ready apps using MERN stack — MongoDB, Express.js, React, and Node.js. Full-stack JavaScript development for startups and enterprises."
+        />
+        <link
+          rel="canonical"
+          href="https://devzore.com/mern-stack-development"
+        />
+        <meta property="og:title" content="MERN Stack Development Company | DevZore" />
+        <meta
+          property="og:description"
+          content="Scalable MERN stack applications built for performance and growth. Full-stack solutions from DevZore."
+        />
+        <meta property="og:url" content="https://devzore.com/mern-stack-development" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="MERN Stack Development Company | DevZore" />
+        <meta name="twitter:description" content="Scalable MERN stack applications built for performance and growth." />
       </Helmet>
 
       {/* overflow-x-hidden yahan add kiya hai taake bottom scroll khatam ho jaye */}
@@ -88,9 +108,9 @@ const MernStackDevelopment = () => {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link to="/contact">
-              <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold flex items-center gap-2 group transition-all">
-                Start Project <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+                <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold flex items-center gap-2 group transition-all">
+                  Start Project <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </button>
               </Link>
             </div>
           </div>
@@ -241,7 +261,7 @@ const MernStackDevelopment = () => {
         </section>
 
         {/* --- WHY DEVZORE --- */}
-        <section className="max-w-7xl mx-auto px-6 py-20">  
+        <section className="max-w-7xl mx-auto px-6 py-20">
           <div className="mb-10">
             <h2 className="text-3xl font-bold">Why Choose <span className="text-purple-500">DevZore </span> for MERN Stack Development?</h2>
             <div className="w-12 h-1 bg-purple-600 mt-2 rounded-full"></div>
@@ -255,7 +275,7 @@ const MernStackDevelopment = () => {
 
         {/* --- FAQ --- */}
         <section className="max-w-4xl mx-auto px-6 py-1">
-           <div className="mb-10">
+          <div className="mb-10">
             <h2 className="text-3xl font-bold">Frequently <span className="text-purple-500">Asked </span> Questions</h2>
             <div className="w-12 h-1 bg-purple-600 mt-2 rounded-full"></div>
           </div>
@@ -278,11 +298,11 @@ const MernStackDevelopment = () => {
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to build your <br /> MERN stack application?</h2>
             <p className="text-gray-400 mb-8 max-w-lg mx-auto text-sm md:text-base">Talk to our team — we respond within 24 hours with a clear plan and honest pricing.</p>
             <Link to="/contact">
-            <button className="bg-purple-600 hover:bg-purple-700 px-10 py-4 rounded-xl font-bold flex items-center gap-2 mx-auto transition-all shadow-xl shadow-purple-500/20">
-              Book a Tech Call <ArrowRight size={18} />
-            </button>
+              <button className="bg-purple-600 hover:bg-purple-700 px-10 py-4 rounded-xl font-bold flex items-center gap-2 mx-auto transition-all shadow-xl shadow-purple-500/20">
+                Book a Tech Call <ArrowRight size={18} />
+              </button>
             </Link>
-            
+
             {/* --- INTERNAL LINKS --- */}
             <div className="mt-16 pt-10 border-t border-white/5">
               <p className="text-[10px] uppercase tracking-widest text-gray-500 mb-6 font-bold">Explore Our Services</p>

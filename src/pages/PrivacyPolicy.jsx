@@ -23,6 +23,46 @@ const PrivacyPolicy = () => {
   return (
     <article className="min-h-screen bg-[#030303] text-gray-400 font-sans selection:bg-purple-500/30">
       {/* Dynamic Background Mesh */}
+      <Helmet>
+        <title>Privacy Policy | DevZore</title>
+
+        <meta
+          name="description"
+          content="Read DevZore's Privacy Policy to understand how we collect, use, and protect your personal data and information."
+        />
+
+        <link
+          rel="canonical"
+          href="https://devzore.com/privacy-policy"
+        />
+
+        {/* Important: Do NOT index this page */}
+        <meta name="robots" content="noindex, nofollow" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="Privacy Policy | DevZore" />
+        <meta
+          property="og:description"
+          content="Learn how DevZore handles your data, privacy, and user information securely."
+        />
+        <meta property="og:url" content="https://devzore.com/privacy-policy" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Optional social image */}
+        <meta property="og:image" content="https://devzore.com/og/privacy.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Privacy Policy | DevZore" />
+        <meta
+          name="twitter:description"
+          content="DevZore privacy policy explains how user data is collected and protected."
+        />
+        <meta name="twitter:image" content="https://devzore.com/og/privacy.jpg" />
+      </Helmet>
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-[20%] w-[600px] h-[600px] bg-purple-600/5 blur-[140px] rounded-full" />
         <div className="absolute bottom-0 right-[20%] w-[600px] h-[600px] bg-indigo-600/5 blur-[140px] rounded-full" />
