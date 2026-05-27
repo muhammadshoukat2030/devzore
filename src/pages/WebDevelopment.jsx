@@ -380,10 +380,10 @@ const WebDevelopment = () => {
               <p className="text-[10px] uppercase tracking-[0.4em] text-gray-600 mb-8 font-black">Internal Links</p>
               <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
                 <FooterLink to="/mern-stack-development" label="MERN Stack Development" />
-                <FooterLink to="/react-development" label="React Development" />
-                <FooterLink to="/node-js-development" label="Node.js Development" />
-                <FooterLink to="/saas-development" label="SaaS Development" />
-                <FooterLink to="/mobile-app-development" label="Mobile App Development" />
+                <FooterLink to="/ReactDevelopment" label="React Development" />
+                <FooterLink to="/backend-api" label="Node.js Development" />
+                <FooterLink to="/saas-product-development" label="SaaS Development" />
+                <FooterLink to="/mobile-apps" label="Mobile App Development" />
                 <FooterLink to="/" label="Back to Home" />
               </div>
             </div>
