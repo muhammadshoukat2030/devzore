@@ -1,6 +1,6 @@
 import React from 'react';
-// ECommerce.jsx mein line 3 ko aise badlein:
 import { Helmet } from 'react-helmet-async';
+import { Link } from "react-router-dom";
 import {
   ShoppingBag, CreditCard, Box, BarChart3,
   ArrowRight, ShieldCheck, Zap, Globe,
@@ -48,20 +48,26 @@ const Ecommerce = () => {
       </Helmet>
 
       {/* --- 1. TOP NAVIGATION AREA --- */}
-      <div className="max-w-7xl mx-auto px-6 pt-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between relative z-20">
+
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-500 text-[10px] font-bold uppercase tracking-[0.2em]">
           <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
           Next-Gen Commerce
         </div>
-        <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+
+        <Link
+          to="/contact"
+          className="bg-purple-600 hover:bg-purple-700 hover:scale-105 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] active:scale-95 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 inline-block"
+        >
           Free Quote
-        </button>
+        </Link>
+
       </div>
 
       {/* --- 2. HERO SECTION --- */}
-      <section className="max-w-7xl mx-auto px-6 py-10 grid lg:grid-cols-2 gap-10 items-center">
-        <div className="space-y-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+      <section className="max-w-7xl mx-auto px-6 py- grid lg:grid-cols-2 gap-2 items-center">
+        <div className="space-y-2">
+          <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
             Custom E-Commerce <br />
             Development That <span className="text-purple-500">Sells</span> — Not Just Looks Good
           </h1>
@@ -71,9 +77,11 @@ const Ecommerce = () => {
           </p>
 
           <div className="flex flex-nowrap gap-3 pt-2">
-            <button className="flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
-              Launch Store <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            <Link to="/contact">
+              <button className="flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
+                Launch Store <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button></Link>
+
             <button className="flex-1 md:flex-none bg-[#111111] border border-gray-800 hover:bg-gray-800 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all">
               Live Demo
             </button>
@@ -181,7 +189,7 @@ const Ecommerce = () => {
       </section>
 
       {/* --- 7. TECH STACK & ANALYTICS --- */}
-      <section className="max-w-7xl mx-auto px-6 py-12">
+      <section className="max-w-7xl mx-auto px-6 py-2">
         <div className="bg-[#080808] border border-gray-900 rounded-[2.5rem] p-8 md:p-14 overflow-hidden relative">
           <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/5 blur-[100px]"></div>
           <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
@@ -217,22 +225,36 @@ const Ecommerce = () => {
       </section>
 
       {/* --- 9. FOOTER CTA --- */}
-      <section className="max-w-7xl mx-auto px-6 py-16 pb-20">
-        <div className="bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-white/10 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden group">
-          <div className="absolute inset-0 bg-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tighter">
+      <section className="max-w-7xl mx-auto px-6 py-1 pb-2 relative z-10">
+        <div className="bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-white/10 rounded-[3rem] p-12 md:p-10 text-center relative overflow-hidden group">
+
+          {/* Background Hover Effect */}
+          <div className="absolute inset-0 bg-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tighter relative z-10">
             Build Your <span className="text-purple-500">Retail</span> Empire
           </h2>
-          <p className="text-gray-400 mb-10 max-w-xl mx-auto text-base">
+
+          <p className="text-gray-400 mb-10 max-w-xl mx-auto text-base relative z-10">
             From single-product landing pages to massive global marketplaces—we provide the tools you need to dominate the digital shelf.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-purple-600 hover:bg-purple-700 px-10 py-4 rounded-2xl font-bold transition-all shadow-lg shadow-purple-900/20">
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-20">
+
+            <Link
+              to="/contact"
+              className="bg-purple-600 hover:bg-purple-700 hover:scale-105 hover:shadow-[0_0_25px_rgba(147,51,234,0.5)] active:scale-95 px-10 py-4 rounded-2xl font-bold transition-all duration-300 text-center inline-block"
+            >
               Get Started Now
-            </button>
-            <button className="bg-transparent border border-gray-800 hover:bg-gray-900 px-10 py-4 rounded-2xl font-bold transition-all">
+            </Link>
+
+            <Link
+              to="/contact"
+              className="bg-transparent border border-gray-800 hover:bg-gray-900 hover:border-purple-500 hover:scale-105 hover:shadow-[0_0_20px_rgba(147,51,234,0.3)] active:scale-95 px-10 py-4 rounded-2xl font-bold transition-all duration-300 text-center inline-block"
+            >
               Talk to Expert
-            </button>
+            </Link>
+
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from "react-router-dom";
 import {
   Palette, MousePointer2, Layers, Layout,
   Figma, PenTool, Eye, Zap, ArrowRight,
@@ -51,16 +52,17 @@ const UIUXDesign = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
           Visual Strategy & Experience
         </div>
-
-        <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+          <Link to="/contact">
+        <button className="cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
           Design Audit
         </button>
+        </Link>
       </div>
 
       {/* --- 2. HERO SECTION --- */}
-      <section className="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-2 gap-10 items-center">
+      <section className="max-w-7xl mx-auto px-6 py-3 grid lg:grid-cols-2 gap-10 items-center">
         <div className="space-y-6">
-          <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
             Design that <span className="text-purple-500">Converts</span> <br />
             Experience that <br />
             <span className="text-purple-500">Retains</span> Users
@@ -70,12 +72,16 @@ const UIUXDesign = () => {
           </p>
 
           <div className="flex flex-nowrap gap-3 pt-2">
-            <button className="flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
+            <Link to="/contact">
+            <button className="cursor-pointer flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
               Start Designing <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="flex-1 md:flex-none bg-[#111111] border border-gray-800 hover:bg-gray-800 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all">
+            </Link>
+            <Link to="/contact">
+            <button className="cursor-pointer flex-1 md:flex-none bg-[#111111] border border-gray-800 hover:bg-gray-800 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all">
               Our Process
             </button>
+            </Link>
           </div>
         </div>
 
@@ -167,9 +173,11 @@ const UIUXDesign = () => {
           <p className="text-gray-400 mb-8 relative z-10 max-w-lg mx-auto font-medium text-sm">
             Let's transform your idea into an award-winning interface. Our designers are ready to map out your user's next favorite experience.
           </p>
-          <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold transition-all relative z-10 text-sm shadow-xl">
+           <Link to="/contact">
+          <button className="cursor-pointer bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold transition-all relative z-10 text-sm shadow-xl">
             Book a Strategy Session →
           </button>
+          </Link>
         </div>
       </section>
     </div>

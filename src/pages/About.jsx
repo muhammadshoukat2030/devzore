@@ -37,9 +37,9 @@ const AboutPage = () => {
         </div>
 
         {/* --- HERO / INTRO SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight">
+        <section className="max-w-7xl mx-auto px-6 py-3 grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-3">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
               Engineering <br />
               <span className="text-purple-500">Digital Solutions</span> <br />
               With Precision.
@@ -64,8 +64,8 @@ const AboutPage = () => {
           <div className="relative lg:justify-self-end">
             <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 blur-2xl opacity-20 rounded-full"></div>
             <div className="relative w-full max-w-[400px] aspect-square rounded-2xl border border-gray-800 bg-[#080808] overflow-hidden flex items-center justify-center group">
-              <Terminal size={120} className="text-purple-500/20 group-hover:scale-110 transition-transform duration-700" />
-              <div className="absolute bottom-6 left-6 right-6 p-4 bg-[#0c0c0c]/80 backdrop-blur-md border border-white/5 rounded-xl text-center">
+              <Terminal size={350} className="text-purple-500/20 group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute bottom-6 left-6 right-4 p-4 bg-[#0c0c0c]/80 backdrop-blur-md border border-white/5 rounded-xl text-center">
                 <p className="text-xs font-mono text-purple-400">root@m-shoukat-engineer:~#</p>
               </div>
             </div>

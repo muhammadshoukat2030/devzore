@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from "react-router-dom";
 import {
   Rocket, Layers, ShieldCheck, ArrowRight,
   Target, Zap, Flame, Code2, Cpu
@@ -50,16 +51,17 @@ const StartupMVP = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
           Rapid Launch Protocol
         </div>
-
-        <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
-          Pitch Your Idea
-        </button>
+        <Link to="/contact">
+          <button className="cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+            Pitch Your Idea
+          </button>
+        </Link>
       </div>
 
       {/* --- HERO SECTION --- */}
-      <section className="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-2 gap-10 items-center">
-        <div className="space-y-6">
-          <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight">
+      <section className="max-w-7xl mx-auto px-6 py-4 grid lg:grid-cols-2 gap-10 items-center">
+        <div className="space-y-3">
+          <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
             From Concept to <br />
             <span className="text-purple-500">Market-Ready</span> <br />
             in <span className="text-purple-500">Record Time</span>
@@ -69,12 +71,16 @@ const StartupMVP = () => {
           </p>
 
           <div className="flex flex-nowrap gap-3 pt-2">
-            <button className="flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
-              Launch MVP <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="flex-1 md:flex-none bg-[#111111] border border-gray-800 hover:bg-gray-800 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all">
-              Pricing Models
-            </button>
+            <Link to="/contact">
+              <button className=" cursor-pointer flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
+                Launch MVP <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Link>
+            <Link to="/contact">
+              <button className=" cursor-pointer flex-1 md:flex-none bg-[#111111] border border-gray-800 hover:bg-gray-800 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all">
+                Pricing Models
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -171,9 +177,11 @@ const StartupMVP = () => {
           <p className="text-gray-400 mb-8 relative z-10 max-w-lg mx-auto font-medium text-sm">
             The market waits for no one. Let’s turn your pitch deck into a live product that users can actually pay for.
           </p>
-          <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold transition-all relative z-10 text-sm shadow-lg">
-            Get Started in 4 Weeks →
-          </button>
+          <Link to="/contact">
+            <button className="cursor-pointer bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold transition-all relative z-10 text-sm shadow-lg">
+              Get Started in 4 Weeks →
+            </button>
+          </Link>
         </div>
       </section>
     </div>

@@ -100,15 +100,17 @@ function ReactDevelopment() {
             <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
             Frontend Engineering Excellence
           </div>
-          <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all shadow-lg shadow-purple-500/20">
+          <Link to="/contact">
+          <button className=" cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all shadow-lg shadow-purple-500/20">
             Request Code Audit
           </button>
+          </Link>
         </div>
 
         {/* --- HERO SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-10 items-center">
-          <div className="space-y-8">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+        <section className="max-w-7xl mx-auto px-6 py-1 grid lg:grid-cols-2 gap-3 items-center">
+          <div className="space-y-3.5">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
               React Development Company — <span className="text-purple-500">Building Interfaces That Last</span>
             </h1>
             <p className="text-gray-400 text-base md:text-lg max-w-xl leading-relaxed">
@@ -426,8 +428,8 @@ function ReactDevelopment() {
         </section>
 
         {/* --- FINAL CTA WITH INTERNAL LINKS --- */}
-        <section className="max-w-7xl mx-auto px-6 py-10">
-          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#1a1a1a] border border-white/10 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden">
+        <section className="max-w-7xl mx-auto px-6 py-1">
+          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#1a1a1a] border border-white/10 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 text-center relative overflow-hidden">
 
             {/* Glow Effect Background */}
             <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-purple-600/10 blur-[100px] rounded-full pointer-events-none"></div>
@@ -444,30 +446,30 @@ function ReactDevelopment() {
             </Link>
 
             {/* Internal Links - Fixed for Mobile Click and Hover Pointer */}
-            <div className="border-t border-white/5 pt-10 relative z-10">
+            <div className="border-t border-white/5 pt-5 relative z-10">
               <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-x-4 gap-y-8 md:gap-x-8 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
 
-                <Link to="/services/mern-stack" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
+                <Link to="/mern-stack-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
                   MERN STACK
                   <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
                 </Link>
 
-                <Link to="/services/web-app" className="text-purple-500 flex items-center justify-center gap-1 group cursor-pointer py-2">
+                <Link to="/web-development" className="hover:text-purple-500 flex items-center justify-center gap-1 group cursor-pointer py-2">
                   WEB APP DEVELOPMENT
                   <ExternalLink size={11} className="opacity-100 transition-all" />
                 </Link>
 
-                <Link to="/services/nodejs-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
+                <Link to="/backend-api" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
                   NODE.JS
                   <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
                 </Link>
 
-                <Link to="/services/react-development" className="hover:text-purple-400 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
+                <Link to="/reactdevelopment" className="hover:text-purple-400 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
                   REACT DEVELOPMENT
                   <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
                 </Link>
 
-                <Link to="/services/saas-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
+                <Link to="/saas-product-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
                   SAAS SOLUTIONS
                   <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
                 </Link>

@@ -101,15 +101,17 @@ function BackendApi() {
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
             System Architecture & Engineering
           </div>
-          <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all shadow-lg shadow-purple-500/20">
-            System Audit
-          </button>
+          <Link to="/contact">
+            <button className="cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all shadow-lg shadow-purple-500/20">
+              System Audit
+            </button>
+          </Link>
         </div>
 
         {/* --- HERO SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-10 items-center">
+        <section className="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-2 gap-10 items-center">
           <div className="space-y-8">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.2] tracking-tight">
               Scalable <span className="text-purple-500">Backend</span> & Robust <span className="text-blue-400">API</span> Solutions
             </h1>
             <p className="text-gray-400 text-base md:text-lg max-w-xl leading-relaxed">
@@ -117,7 +119,7 @@ function BackendApi() {
             </p>
             <div className="flex gap-4">
               <Link to="/contact">
-                <button className="bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-xl font-bold text-sm flex items-center gap-2 transition-all active:scale-95">
+                <button className="cursor-pointer  bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-xl font-bold text-sm flex items-center gap-2 transition-all active:scale-95">
                   Start Project <ArrowRight size={18} />
                 </button>
               </Link>
@@ -222,7 +224,7 @@ function BackendApi() {
             <h3 className="text-3xl md:text-5xl font-bold">Powering with <span className="text-purple-500">Modern</span> Tech</h3>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6 ">
             {/* Node.js */}
             <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
               <div className="mb-4 flex justify-center">
@@ -264,24 +266,24 @@ function BackendApi() {
             </div>
 
             {/* Redis */}
-            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
+            {/* <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
               <div className="mb-4 flex justify-center">
                 <div className="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-500 group-hover:scale-110 transition-transform">
                   <i className="devicon-redis-plain text-3xl"></i>
                 </div>
               </div>
               <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Redis</p>
-            </div>
+            </div> */}
 
             {/* Docker */}
-            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
+            {/* <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
               <div className="mb-4 flex justify-center">
                 <div className="w-12 h-12 bg-blue-400/10 rounded-2xl flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
                   <i className="devicon-docker-plain text-3xl"></i>
                 </div>
               </div>
               <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Docker</p>
-            </div>
+            </div> */}
           </div>
 
           {/* Sub-text for backend features */}
@@ -409,7 +411,7 @@ function BackendApi() {
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-white">High-Availability Servers</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    Hum aapke backend ko dockerize karke AWS ya Google Cloud par deploy karte hain. Ye setup automatically scale hota hai taake high traffic par bhi performance down na ho.
+                    We containerize your backend using Docker and deploy it on AWS or Google Cloud. The infrastructure automatically scales to handle high traffic, ensuring consistent performance and reliability.
                   </p>
                 </div>
               </div>
@@ -433,7 +435,7 @@ function BackendApi() {
                   </div>
                   <h3 className="text-2xl font-bold mb-4 text-white">Complex Query Optimization</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    Data retrieve karna asli engineering hai. Hum advanced indexing use karte hain taake aapki reports aur dashboards milliseconds mein load hon.
+                    Retrieving data efficiently is real engineering. We use advanced indexing techniques to ensure your reports and dashboards load in milliseconds.
                   </p>
                 </div>
               </div>
@@ -459,8 +461,8 @@ function BackendApi() {
           </div>
         </section>
         {/* --- FINAL CTA WITH PURPLE THEME --- */}
-        <section className="max-w-7xl mx-auto px-6 py-10">
-          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#111111] border border-white/10 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden">
+        <section className="max-w-7xl mx-auto px-6 py-1">
+          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#111111] border border-white/10 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 text-center relative overflow-hidden">
 
             {/* Purple Glow Effects */}
             <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-purple-600/10 blur-[100px] rounded-full pointer-events-none"></div>
@@ -471,35 +473,34 @@ function BackendApi() {
             </h2>
 
             <p className="text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed text-sm md:text-lg">
-              Chahe aapko zero se backend architecture chahiye, ya apne existing system ko scale karna ho — DevZore ki engineering team aapki help ke liye tayyar hai.
+              Whether you require a backend architecture from the ground up or need to scale your existing system — DevZore’s engineering team is here to help.
             </p>
-
             <Link to="/contact" className="inline-block relative z-10">
-              <button className="group bg-purple-600 hover:bg-purple-700 px-8 py-4 md:px-12 md:py-5 rounded-2xl font-bold text-base md:text-xl flex items-center gap-3 mx-auto mb-16 transition-all active:scale-95 shadow-2xl shadow-purple-500/25 cursor-pointer text-white">
+              <button className="cursor-pointer group bg-purple-600 hover:bg-purple-700 px-8 py-4 md:px-12 md:py-5 rounded-2xl font-bold text-base md:text-xl flex items-center gap-3 mx-auto mb-16 transition-all active:scale-95 shadow-2xl shadow-purple-500/25 cursor-pointer text-white">
                 Start Backend Project <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </Link>
 
             {/* Internal Links for SEO & Navigation */}
-            <div className="border-t border-white/5 pt-10 relative z-10">
+            <div className="border-t border-white/5 pt-6 relative z-10">
               <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-x-4 gap-y-8 md:gap-x-8 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
 
-                <Link to="/services/mern-stack" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
+                <Link to="/mern-stack-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
                   MERN STACK
                   <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
                 </Link>
 
-                <Link to="/services/react-development" className="hover:text-purple-400 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
+                <Link to="/reactdevelopment" className="hover:text-purple-400 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
                   REACT FRONTEND
                   <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
                 </Link>
 
-                <Link to="/services/web-app" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
+                <Link to="/web-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
                   WEB DEVELOPMENT
                   <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
                 </Link>
 
-                <Link to="/services/saas-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
+                <Link to="/saas-product-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
                   SAAS SOLUTIONS
                   <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
                 </Link>

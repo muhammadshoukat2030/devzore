@@ -95,16 +95,19 @@ const MobileApp = () => {
           <Link to="/" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-[10px] font-bold uppercase tracking-widest group">
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
           </Link>
+          <Link to="/contact">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-500 text-[10px] font-bold uppercase tracking-[0.2em]">
             <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
             Next-Gen Mobility
           </div>
+          </Link>
         </div>
+        
 
         {/* --- HERO SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+        <section className="max-w-7xl mx-auto px-6 py-1 grid lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-3">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
               Mobile App <br /> Development <span className="text-purple-500">for iOS & Android </span>
             </h1>
             <h2 className="text-xl md:text-2xl font-bold text-gray-300 italic">
@@ -324,21 +327,25 @@ const MobileApp = () => {
         </section>
 
         {/* --- FOOTER CTA --- */}
-        <section className="max-w-7xl mx-auto px-6 py-10">
-          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#161616] border border-white/10 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+        <section className="max-w-7xl mx-auto px-6 py-1">
+          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#161616] border border-white/10 rounded-[3rem] p-12 md:p-8 text-center relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-purple-600/5 blur-[120px] rounded-full pointer-events-none"></div>
             <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Tell us about your app idea.</h2>
-            <p className="text-gray-400 mb-12 max-w-lg mx-auto text-sm md:text-base leading-relaxed font-medium">
+            <p className="text-gray-400 mb-10 max-w-lg mx-auto text-sm md:text-base leading-relaxed font-medium">
               We will tell you honestly what it takes to build it, what it will cost, and how long it will take.
             </p>
-            <button className="bg-purple-600 hover:bg-purple-700 px-12 py-5 rounded-2xl font-bold text-base transition-all shadow-2xl shadow-purple-500/30 active:scale-95 flex items-center gap-2 mx-auto">
+           
+            <Link to="/contact">
+            <button className="bg-purple-600 hover:bg-purple-700 px-13 py-5 rounded-2xl font-bold text-base transition-all shadow-2xl shadow-purple-500/30 active:scale-95 flex items-center gap-2 mx-auto">
               Free Consultation <ArrowRight size={20} />
             </button>
+            </Link>
+          
 
-            <div className="mt-20 pt-10 border-t border-white/5">
+            <div className="mt-10 pt-10 border-t border-white/5">
               <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
                 <FooterLink to="/mern-stack-development" label="MERN Stack Development" />
-                <FooterLink to="/react-native-development" label="React Native" />
+                <FooterLink to="/mobile-apps" label="React Native" />
                 <FooterLink to="/saas-product-development" label="SaaS Development" />
                 <FooterLink to="/web-development" label="Web App Development" />
                 <FooterLink to="/" label="Back to Home" />

@@ -388,7 +388,170 @@ const BlogPage = () => {
       date: 'May 10, 2026',
       image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800',
       readTime: '18 min read'
-    }
+    },
+    {
+id: 16,
+category: 'Engineering',
+title: 'Scaling Node.js Applications with Microservices',
+excerpt: 'Learn how microservices architecture helps growing businesses scale faster, deploy independently, and improve reliability...',
+content: `
+
+  <p>As your application grows, a monolithic backend can become difficult to maintain. At <b>DevZore</b>, we help businesses transition to scalable <b>Microservices Architecture</b> using Node.js and modern cloud technologies.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Why Microservices?</h3>
+  <p>Microservices break a large application into smaller independent services. Each service can be developed, tested, and deployed separately, reducing downtime and improving development speed.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Independent Scaling</h3>
+  <p>Instead of scaling the entire application, businesses can scale only the services experiencing high demand. This reduces infrastructure costs while maintaining excellent performance.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Improved Reliability</h3>
+  <p>If one service fails, the rest of the system can continue operating. This approach improves uptime and creates a more resilient application for growing businesses.</p>
+  `,
+  author: 'M-Shoukat Engineer',
+  date: 'May 18, 2026',
+  image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800',
+  readTime: '16 min read'
+},
+{
+id: 17,
+category: 'Engineering',
+title: 'Database Optimization Techniques for High-Traffic Applications',
+excerpt: 'Speed up your application with indexing, query optimization, caching, and database performance tuning strategies...',
+content: `
+
+  <p>Slow database queries are one of the most common reasons applications struggle under heavy traffic. At <b>DevZore</b>, we optimize databases to deliver fast and reliable user experiences.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Smart Indexing Strategies</h3>
+  <p>Proper indexing dramatically reduces query execution time. We analyze real-world usage patterns and create indexes that improve performance without increasing unnecessary storage costs.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Query Optimization</h3>
+  <p>Complex queries can slow down even powerful servers. We review execution plans, eliminate bottlenecks, and optimize database operations to ensure maximum efficiency.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Caching for Faster Responses</h3>
+  <p>By integrating Redis caching layers, frequently requested data can be delivered instantly, reducing database load and improving application responsiveness.</p>
+  `,
+  author: 'M-Shoukat Engineer',
+  date: 'May 24, 2026',
+  image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800',
+  readTime: '15 min read'
+},
+{
+id: 18,
+category: 'SaaS',
+title: 'Reducing SaaS Churn with Better Onboarding Experiences',
+excerpt: 'Discover how effective onboarding can increase user retention, reduce churn, and improve customer lifetime value...',
+content: `
+
+  <p>Many SaaS products lose users within the first few days after signup. The reason is often poor onboarding rather than a lack of product value. At <b>DevZore</b>, we help SaaS businesses create onboarding experiences that keep users engaged.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Guide Users to Their First Success</h3>
+  <p>New users should quickly understand how your product solves their problem. Interactive walkthroughs and progress indicators help users reach their first meaningful result faster.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Reduce Friction</h3>
+  <p>Every unnecessary form field or setup step increases the chance of abandonment. We streamline onboarding flows to minimize effort and maximize engagement.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Measure and Improve</h3>
+  <p>By tracking user behavior and onboarding completion rates, businesses can identify bottlenecks and continuously improve customer retention.</p>
+  `,
+  author: 'M-Shoukat Engineer',
+  date: 'May 27, 2026',
+  image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+  readTime: '12 min read'
+},
+{
+id: 19,
+category: 'UI/UX',
+title: 'The Psychology Behind High-Converting Landing Pages',
+excerpt: 'Learn how visual hierarchy, trust signals, and user behavior influence conversion rates on modern websites...',
+content: `
+
+  <p>A beautiful landing page is not enough. To generate leads and sales, every design element must guide visitors toward taking action. At <b>DevZore</b>, we combine design principles with user psychology to create high-converting experiences.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Clear Visual Hierarchy</h3>
+  <p>Users should instantly understand the most important message on the page. Strategic use of typography, spacing, and contrast helps direct attention effectively.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Build Trust Quickly</h3>
+  <p>Testimonials, client logos, ratings, and case studies reassure visitors that your business is credible and reliable.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Optimize Call-to-Actions</h3>
+  <p>Well-placed buttons, persuasive copy, and a frictionless user journey can significantly increase conversion rates and improve marketing performance.</p>
+  `,
+  author: 'M-Shoukat Engineer',
+  date: 'May 30, 2026',
+  image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+  readTime: '10 min read'
+},
+{
+id: 20,
+category: 'Cloud',
+title: 'Cloud Cost Optimization: How to Reduce Infrastructure Expenses',
+excerpt: 'Learn practical strategies to reduce cloud costs while maintaining performance, scalability, and reliability...',
+content: `
+
+  <p>Many businesses move to the cloud expecting lower costs, but poorly managed infrastructure can quickly become expensive. At <b>DevZore</b>, we help companies optimize cloud spending without sacrificing performance.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Right-Size Your Resources</h3>
+  <p>Overprovisioned servers are one of the biggest sources of waste. We analyze usage patterns and ensure resources match actual business needs.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Automate Scaling</h3>
+  <p>Cloud platforms allow resources to scale automatically based on demand. This ensures businesses only pay for what they use while maintaining excellent performance.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Monitor and Optimize Continuously</h3>
+  <p>Regular monitoring helps identify unused resources, inefficient workloads, and opportunities for further savings across your infrastructure.</p>
+  `,
+  author: 'M-Shoukat Engineer',
+  date: 'June 2, 2026',
+  image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
+  readTime: '13 min read'
+},
+{
+id: 21,
+category: 'Engineering',
+title: 'Building Scalable REST APIs with Node.js',
+excerpt: 'Best practices for designing secure, maintainable, and high-performance REST APIs for modern applications...',
+content: `
+
+  <p>APIs are the backbone of modern web and mobile applications. A well-designed API improves performance, scalability, and developer productivity. At <b>DevZore</b>, we build APIs designed for long-term growth.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Design Consistent Endpoints</h3>
+  <p>Consistent naming conventions and predictable responses make APIs easier to use and maintain across teams.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Implement Security Best Practices</h3>
+  <p>Authentication, authorization, input validation, and rate limiting help protect APIs from common security threats.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Plan for Growth</h3>
+  <p>Using caching, pagination, and optimized database queries ensures APIs remain responsive even as traffic and data volumes increase.</p>
+  `,
+  author: 'M-Shoukat Engineer',
+  date: 'June 5, 2026',
+  image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800',
+  readTime: '14 min read'
+},
+{
+id: 22,
+category: 'SaaS',
+title: 'Multi-Tenant SaaS Architecture Explained',
+excerpt: 'Learn how modern SaaS platforms serve thousands of customers securely using a single application architecture...',
+content: `
+
+  <p>Multi-tenant architecture is the foundation of most successful SaaS products. It allows multiple customers to use the same application while keeping their data completely isolated and secure.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Why Multi-Tenancy Matters</h3>
+  <p>Instead of managing separate applications for each customer, businesses can reduce costs and simplify maintenance with a shared infrastructure.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Data Isolation</h3>
+  <p>Proper tenant separation ensures that customer data remains secure and accessible only to authorized users within their organization.</p>
+
+  <h3 class="text-white text-2xl font-bold mt-8 mb-4">Scalable Growth</h3>
+  <p>As new customers join, the platform can grow efficiently without major infrastructure changes or operational complexity.</p>
+  `,
+  author: 'M-Shoukat Engineer',
+  date: 'June 8, 2026',
+  image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800',
+  readTime: '11 min read'
+},
+
+
   ];
 
 
@@ -444,7 +607,7 @@ const BlogPage = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
 
           {/* --- HEADER SECTION --- */}
-          <div className="mb-20 text-center lg:text-left">
+          <div className="mb-5 text-center lg:text-left">
             <span className="text-purple-500 text-[11px] font-black uppercase tracking-[0.4em] mb-4 block">
               DevZore Insights
             </span>
@@ -529,7 +692,7 @@ const BlogPage = () => {
 
         {/* --- FULL SCREEN MODAL --- */}
         {selectedBlog && (
-          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-10">
+          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-3">
             {/* Backdrop Blur */}
             <div
               className="absolute inset-0 bg-black/90 backdrop-blur-xl animate-in fade-in duration-300"
@@ -537,10 +700,10 @@ const BlogPage = () => {
             ></div>
 
             {/* Modal Content */}
-            <div className="relative bg-[#0a0a0a] w-full max-w-5xl h-full max-h-[90vh] rounded-[3rem] border border-white/10 overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-300">
+            <div className="relative bg-[#0a0a0a] w-full max-w-8xl h-full max-h-[150vh] rounded-[3rem] border border-white/10 overflow-hidden flex flex-col shadow-2xl animate-in zoom-in-95 duration-300">
 
               {/* Modal Header */}
-              <div className="p-6 border-b border-white/5 flex justify-between items-center bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-20">
+              <div className="p-4 border-b border-white/5 flex justify-between items-center bg-[#0a0a0a]/80 backdrop-blur-md sticky top-0 z-20">
                 <button
                   onClick={() => setSelectedBlog(null)}
                   className="flex items-center gap-2 text-gray-400 hover:text-white transition-all group"
@@ -554,9 +717,9 @@ const BlogPage = () => {
               </div>
 
               {/* Scrollable Body */}
-              <div className="flex-grow overflow-y-auto custom-scrollbar p-6 md:p-16 lg:p-20">
-                <div className="max-w-3xl mx-auto">
-                  <div className="flex items-center gap-4 mb-8">
+              <div className="flex-grow overflow-y-auto custom-scrollbar p-6 md:p-16 lg:p-10">
+                <div className="max-w-5xl mx-auto">
+                  <div className="flex items-center gap-4 mb-2">
                     <span className="bg-purple-600 text-white text-[9px] font-black px-4 py-1 rounded-full uppercase tracking-widest">
                       {selectedBlog.category}
                     </span>

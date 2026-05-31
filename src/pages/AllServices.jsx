@@ -158,7 +158,7 @@ const AllServices = () => {
       </Helmet>
 
       {/* --- HERO SECTION --- */}
-      <div className="max-w-7xl mx-auto px-6 pt-24 pb-12">
+      <div className="max-w-7xl mx-auto px-6 pt-24 pb-8">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
           <div className="flex-1">
             <div className="mb-6 flex justify-start">
@@ -171,7 +171,7 @@ const AllServices = () => {
               </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-center lg:text-left">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-center lg:text-left">
               Digital <span className="text-purple-500">Solutions</span> <br />
               Architected to Scale
             </h1>
@@ -297,8 +297,8 @@ const AllServices = () => {
       </section>
 
       {/* --- FINAL CTA --- */}
-      <section className="max-w-7xl mx-auto px-6 mt-12">
-        <div className="bg-[#0c0c0c] border border-gray-900 rounded-[3rem] p-10 md:p-20 flex flex-col items-center text-center relative overflow-hidden shadow-2xl">
+      <section className="max-w-7xl mx-auto px-6 mt-2">
+        <div className="bg-[#0c0c0c] border border-gray-900 rounded-[3rem] p-10 md:p-10 flex flex-col items-center text-center relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
           <MessageSquare size={48} className="text-purple-500 mb-6" />
           <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Ready to start?</h2>

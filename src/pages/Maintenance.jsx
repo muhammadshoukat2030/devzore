@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from "react-router-dom";
 import {
   Settings, ShieldCheck, Activity, PenTool,
   Clock, LifeBuoy, Zap, Database,
@@ -53,16 +54,17 @@ const Maintenance = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
           24/7 System Reliability
         </div>
-
-        <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
-          Support Portal
-        </button>
+        <Link to="/contact">
+            <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)]">
+              Support Portal
+            </button>
+          </Link>
       </div>
 
       {/* --- 2. HERO SECTION --- */}
-      <section className="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-2 gap-10 items-center">
-        <div className="space-y-6">
-          <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight">
+      <section className="max-w-7xl mx-auto px-6 py-2 grid lg:grid-cols-2 gap-10 items-center">
+        <div className="space-y-3">
+          <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
             Seamless <span className="text-purple-500">Support</span> <br />
             & Scalable <br />
             <span className="text-purple-500">Maintenance</span>
@@ -72,12 +74,16 @@ const Maintenance = () => {
           </p>
 
           <div className="flex flex-nowrap gap-3 pt-2">
+            <Link to="/contact">
             <button className="flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
               Choose a Plan <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
+            </Link>
+            <Link to="/contact">
             <button className="flex-1 md:flex-none bg-[#111111] border border-gray-800 hover:bg-gray-800 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all">
               SLA Details
             </button>
+            </Link>
           </div>
         </div>
 
@@ -185,9 +191,11 @@ const Maintenance = () => {
           <p className="text-gray-400 mb-8 relative z-10 max-w-lg mx-auto font-medium text-sm">
             Focus on growing your business while we handle the servers. Let’s set up a managed service plan for your digital ecosystem.
           </p>
+          <Link to="/contact">
           <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold transition-all relative z-10 text-sm shadow-xl">
             Request Managed Support →
           </button>
+          </Link>
         </div>
       </section>
     </div>

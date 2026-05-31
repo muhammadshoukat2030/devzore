@@ -49,7 +49,7 @@ const WebDevelopment = () => {
 
   return (
     <>
-      
+
       <Helmet>
         <title>Custom Web Application Development Company | DevZore</title>
         <meta
@@ -100,15 +100,15 @@ const WebDevelopment = () => {
         </div>
 
         {/* --- HERO SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+        <section className="max-w-7xl mx-auto px-6 py-1 grid lg:grid-cols-2 gap-8 items-center">
+          <div className="space-y-3">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1] tracking-tight">
               Custom Web <br /> Application <span className="text-purple-500">Development</span>
             </h1>
             <h2 className="text-xl md:text-2xl font-bold text-gray-300">
               That Performs Under Pressure
             </h2>
-            <p className="text-gray-400 text-sm md:text-base max-w-xl leading-relaxed font-medium">
+            <p className="text-gray-400 text-sm md:text-base max-w-x leading-relaxed font-medium">
               Off-the-shelf software has limits. When your business process doesn't fit into a template — when you need workflows, data structures, and user experiences built around exactly how your team works — custom web application development is the answer. DevZore designs and builds web applications that solve real business problems, handle real traffic, and grow with your company over years, not just months.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -237,7 +237,7 @@ const WebDevelopment = () => {
         </section>
 
         {/* --- TECHNOLOGY STACK --- */}
-        <section className="max-w-7xl mx-auto px-6 py-24">
+        <section className="max-w-7xl mx-auto px-6 py-7">
           <h2 className="text-2xl font-bold mb-12 text-center uppercase tracking-[0.3em] text-gray-500">Web Technology Stack</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {[
@@ -256,7 +256,7 @@ const WebDevelopment = () => {
 
 
         {/* --- NEW SECTION 1: PERFORMANCE ARCHITECTURE (IMAGE LEFT, INFO RIGHT) --- */}
-        <section className="max-w-7xl mx-auto px-6 py-24">
+        <section className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
               <div className="absolute -inset-4 bg-purple-500/20 blur-3xl rounded-full"></div>
@@ -295,7 +295,7 @@ const WebDevelopment = () => {
         </section>
 
         {/* --- NEW SECTION 2: CASE STUDY PREVIEW (IMAGE RIGHT, INFO LEFT) --- */}
-        <section className="max-w-7xl mx-auto px-6 py-24 border-t border-white/5">
+        <section className="max-w-7xl mx-auto px-6 py-14 border-t border-white/5">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 space-y-6">
               <div className="inline-block px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-500 text-[10px] font-bold uppercase tracking-widest">Case Study</div>
@@ -361,22 +361,22 @@ const WebDevelopment = () => {
         </section>
 
         {/* --- FOOTER CTA --- */}
-        <section className="max-w-7xl mx-auto px-6 py-10">
-          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#161616] border border-white/10 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+        <section className="max-w-7xl mx-auto px-6 py-1">
+          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#161616] border border-white/10 rounded-[3rem] p-12 md:p-10 text-center relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-purple-600/5 blur-[120px] rounded-full pointer-events-none"></div>
 
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Have a web application <br /> in mind?</h2>
-            <p className="text-gray-400 mb-12 max-w-lg mx-auto text-sm md:text-base leading-relaxed font-medium">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Have a web application <br /> in mind?</h2>
+            <p className="text-gray-400 mb-6 max-w-lg mx-auto text-sm md:text-base leading-relaxed font-medium">
               Share your requirements and we'll respond with a clear plan and realistic estimate within 24 hours.
             </p>
 
             <Link to="/contact">
-              <button className="bg-purple-600 hover:bg-purple-700 px-12 py-5 rounded-2xl font-bold text-base transition-all shadow-2xl shadow-purple-500/30 active:scale-95 flex items-center gap-2 mx-auto">
+              <button className="bg-purple-600 hover:bg-purple-700 px-13 py-5 rounded-2xl font-bold text-base transition-all shadow-2xl shadow-purple-500/30 active:scale-95 flex items-center gap-2 mx-auto">
                 Start Your Project <ArrowRight size={20} />
               </button>
             </Link>
 
-            <div className="mt-20 pt-10 border-t border-white/5">
+            <div className="mt-2 pt-6 border-t border-white/5">
               <p className="text-[10px] uppercase tracking-[0.4em] text-gray-600 mb-8 font-black">Internal Links</p>
               <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
                 <FooterLink to="/mern-stack-development" label="MERN Stack Development" />

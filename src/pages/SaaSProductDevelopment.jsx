@@ -92,16 +92,17 @@ function SaaSProductDevelopment() {
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
             Product Engineering Lab
           </div>
-
-          <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+          <Link to="/contact">
+          <button className=" cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
             Talk to Specialist
           </button>
+          </Link>
         </div>
 
         {/* --- HERO SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-12 grid lg:grid-cols-2 gap-10 items-center">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+        <section className="max-w-7xl mx-auto px-6 py-1 grid lg:grid-cols-2 gap-10 items-center">
+          <div className="space-y-3">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
               SaaS Product <br />
               <span className="text-purple-500">Development</span> — <br />
               Code to <span className="text-purple-500">MRR</span>
@@ -330,11 +331,11 @@ function SaaSProductDevelopment() {
         </section>
 
         {/* --- FOOTER CTA --- */}
-        <section className="max-w-7xl mx-auto px-6 py-10">
-          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#161616] border border-white/10 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+        <section className="max-w-7xl mx-auto px-6 py-1">
+          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#161616] border border-white/10 rounded-[3rem] p-12 md:p-13 text-center relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-purple-600/5 blur-[120px] rounded-full pointer-events-none"></div>
             <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Share your SaaS concept.</h2>
-            <p className="text-gray-400 mb-12 max-w-lg mx-auto text-sm md:text-base leading-relaxed font-medium">
+            <p className="text-gray-400 mb-8 max-w-lg mx-auto text-sm md:text-base leading-relaxed font-medium">
               We will map the technical path from idea to launch — with honest timelines, real pricing, and no surprises.
             </p>
             <Link to="/contact">
@@ -343,12 +344,12 @@ function SaaSProductDevelopment() {
               </button>
             </Link>
 
-            <div className="mt-20 pt-10 border-t border-white/5">
+            <div className="mt-8 pt-7 border-t border-white/5">
               <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-                <FooterLink to="/mern-stack-development" label="MERN Stack" />
+                <FooterLink to="/mern-stack-development" label="MERN Stack development" />
                 <FooterLink to="/web-development" label="Web App Development" />
-                <FooterLink to="/node-js-development" label="Node.js" />
-                <FooterLink to="/react-development" label="React Development" />
+                <FooterLink to="/backend-api" label="Node.js" />
+                <FooterLink to="/reactdevelopment" label="React Development" />
               </div>
             </div>
           </div>
