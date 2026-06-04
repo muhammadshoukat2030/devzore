@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
-import Group15Img from '../assets/Group 15.webp';
+import Group15Img from '../assets/Group15.webp';
 import {
   Smartphone,
   Layers,

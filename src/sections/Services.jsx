@@ -121,6 +121,7 @@ const Services = () => {
         <title>Web & App Development Services | DevZore</title>
         <meta name="description" content="DevZore offers professional web development, mobile app development, MERN stack, and SaaS development services from Islamabad, Pakistan for clients worldwide." />
         <meta name="keywords" content="web development services, mobile app development, MERN stack Pakistan, SaaS development, hire React developer Pakistan" />
+        
         <link rel="canonical" href="https://devzore.com/services" />
         <meta property="og:title" content="Web & App Development Services | DevZore" />
         <meta property="og:description" content="Professional web, mobile and SaaS development services from DevZore, Islamabad Pakistan." />
