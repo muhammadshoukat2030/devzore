@@ -110,85 +110,29 @@ const Services = () => {
 
   return (
     <>
-      {/* 🔥 ADVANCED META SEO: Refined for International Ranking */}
       <Helmet>
-
-        <title>DevZore | Expert Web, Mobile & SaaS Development Company</title>
-        <meta name="description" content="DevZore is a leading software development agency providing enterprise-grade web development, React Native mobile apps, and scalable SaaS solutions globally." />
-        <meta name="keywords" content="DevZore, software house, web development services, hire MERN stack developer, React JS expert, Next.js developer, SaaS development agency, mobile app development Pakistan, custom software solutions" />
-        <meta name="robots" content="index, follow" />
-
-        <title>Web & App Development Services | DevZore</title>
-        <meta name="description" content="DevZore offers professional web development, mobile app development, MERN stack, and SaaS development services from Islamabad, Pakistan for clients worldwide." />
-        <meta name="keywords" content="web development services, mobile app development, MERN stack Pakistan, SaaS development, hire React developer Pakistan" />
-        
+        {/* Basic SEO Tags for Services Subpage */}
+        <title>Mobile App Development Services — iOS & Android | DevZore</title>
+        <meta name="description" content="DevZore offers premium mobile app development services for startups and enterprises. We build high-performance iOS & Android apps using React Native, Swift, and Kotlin." />
         <link rel="canonical" href="https://devzore.com/services" />
-        <meta property="og:title" content="Web & App Development Services | DevZore" />
-        <meta property="og:description" content="Professional web, mobile and SaaS development services from DevZore, Islamabad Pakistan." />
+
+        {/* Open Graph (OG) / Facebook */}
+        <meta property="og:title" content="Mobile App Development Services — iOS & Android | DevZore" />
+        <meta property="og:description" content="Professional mobile app development services for iOS and Android using React Native, Swift, and Kotlin. Discover our scalable and performance-focused engineering." />
         <meta property="og:url" content="https://devzore.com/services" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DevZore" />
 
-        {/* Open Graph for Social Media Optimization */}
-        <meta property="og:title" content="DevZore - Architecting Future-Ready Digital Products" />
-        <meta property="og:description" content="Professional software engineering for global startups and enterprises." />
-        <meta property="og:type" content="website" />
-        <meta name="geo.region" content="PK" />
-        <meta name="geo.placename" content="Islamabad" />
-        <title>DevZore | Software Development Company | Web, Mobile & SaaS Experts</title>
+        {/* Social Image */}
+        <meta property="og:image" content="https://devzore.com/og/services-mobile-apps.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
 
-        <meta
-          name="description"
-          content="DevZore is a global software development company offering web development, mobile app development, SaaS solutions, MERN stack development, and SEO optimized applications for international clients."
-        />
-        <meta name="description" content="
-        DevZore is a professional software development company offering web development, mobile app development, SaaS platforms, MERN stack development, React.js, Next.js, Node.js backend systems, API development, and cloud-based scalable solutions for startups and enterprises worldwide." />
-        <meta name="keywords" content="
-        software development company,
-        web development services,
-        hire web developer,
-        MERN stack developer,
-        React developer,
-        Next.js development,
-        SaaS development company,
-        mobile app development,
-        custom software development,
-        outsource software development,
-        IT company Pakistan,
-        software house Islamabad,
-        global software agency,
-        full stack developer services,
-        API development services,
-        Node.js backend developer,
-        cloud application development,
-        hire developers remotely,
-        enterprise software solutions,
-        startup MVP development
-        " />
-
-        <meta
-          name="keywords"
-          content="software development company, web development services, hire MERN stack developer, React developer, Next.js development, SaaS development company, mobile app development, outsource software development, IT company Pakistan, hire developers globally"
-        />
-
-        <meta name="robots" content="index, follow" />
-
-        {/* Open Graph (for sharing) */}
-        <meta property="og:title" content="DevZore Software Development Services" />
-        <meta property="og:description" content="Professional web, mobile, and SaaS development services for global clients." />
-        <meta property="og:type" content="website" />
-
-        <meta name="robots" content="index, follow" />
-
-        {/* GEO SEO */}
-        <meta name="geo.region" content="PK" />
-        <meta name="geo.placename" content="Islamabad" />
-
-        {/* OPEN GRAPH */}
-        <meta property="og:title" content="DevZore - Software Development Company" />
-        <meta property="og:description" content="Web, Mobile, SaaS & Cloud Solutions for global clients." />
-        <meta property="og:type" content="website" />
-
+        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Mobile App Development Services — DevZore" />
+        <meta name="twitter:description" content="We design and develop high-fidelity iOS & Android applications tailored to your business goals with modern frameworks." />
+        <meta name="twitter:image" content="https://devzore.com/og/services-mobile-apps.jpg" />
       </Helmet>
 
       <section id="services" className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
