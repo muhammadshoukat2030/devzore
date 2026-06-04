@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
+import { assets } from "../assets/assets";
 import {
   ShoppingBag, CreditCard, Box, BarChart3,
   ArrowRight, ShieldCheck, Zap, Globe,
@@ -90,11 +91,19 @@ const Ecommerce = () => {
 
         <div className="relative group lg:justify-self-end hidden md:block">
           <div className="absolute -inset-4 bg-purple-500/10 blur-3xl rounded-full"></div>
-          <div className="relative bg-[#111111] border border-gray-800/50 rounded-[2.5rem] overflow-hidden shadow-2xl max-w-[500px]">
+
+          {/* Container ki max-width ko none kar diya taake image khul kar bada ho sake */}
+          <div className="relative bg-[#111111] border border-gray-800/50 rounded-[2.5rem] overflow-hidden shadow-2xl max-w-none">
             <img
-              src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1000"
-              alt="E-commerce Dashboard"
-              className="w-full h-auto opacity-80 group-hover:scale-105 transition-transform duration-700"
+              src={assets.ecommerce_storefront}
+              alt="DevZore Custom E-commerce Dashboard"
+              className="opacity-80 group-hover:scale-105 transition-transform duration-800"
+
+              style={{
+                width: '550px',  // Jitni width chahiye pixels me likh dein
+                height: '400px', // Agar aspect ratio kharab ho toh height auto rakh sakte hain ('auto')
+                objectFit: 'cover' // Is se image stretch (khinch) nahi hogi balki perfectly fit hogi
+              }}
             />
           </div>
         </div>
@@ -166,7 +175,7 @@ const Ecommerce = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <GalleryItem img="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=600" label="Fashion Store" />
+          <GalleryItem img={assets.ecom2} label="Fashion Store" />
           <GalleryItem img="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=600" label="Gadget Hub" />
           <GalleryItem img="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&q=80&w=600" label="Luxury Brands" />
           <GalleryItem img="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&q=80&w=600" label="Home Decor" />
