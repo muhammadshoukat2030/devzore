@@ -22,9 +22,13 @@
 // E-Commerce Website
 import ecommerce_storefront from './commerce_storefront.webp';
 import ecom2 from './ecom2.png';
-// import ecommerce_inventory from './ecommerce_inventory.webp';
-// import ecommerce_cart from './ecommerce_cart.webp';
-// import ecommerce_mobile from './ecommerce_mobile.webp';
+import ecommerce2 from './ecommerce2.png';
+// import ecommercshows3 from './ecommercshows3.png';
+import ecommer_home_decore from './ecommer_home_decore.png';
+import ecommer_decor from './ecommer_decor.png';
+import ecommrec_3 from './ecomrec_3.png';
+import ecommeranalytic from './ecommeranalytic.png';
+
 
 // MERN Stack
 // import mern_stack_architecture from './mern_stack_architecture.webp';
@@ -102,9 +106,12 @@ export const assets = {
   // E-Commerce
   ecommerce_storefront,
   ecom2,
-  // ecommerce_inventory,
-  // ecommerce_cart,
-  // ecommerce_mobile,
+  ecommerce2,
+  // ecommercshows3,
+  ecommer_home_decore,
+  ecommer_decor,
+  ecommrec_3,
+  ecommeranalytic,
 
   // MERN
   // mern_stack_architecture,

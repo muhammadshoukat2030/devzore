@@ -95,13 +95,13 @@ const Ecommerce = () => {
           {/* Container ki max-width ko none kar diya taake image khul kar bada ho sake */}
           <div className="relative bg-[#111111] border border-gray-800/50 rounded-[2.5rem] overflow-hidden shadow-2xl max-w-none">
             <img
-              src={assets.ecommerce_storefront}
+              src={assets.ecom2}
               alt="DevZore Custom E-commerce Dashboard"
               className="opacity-80 group-hover:scale-105 transition-transform duration-800"
 
               style={{
-                width: '550px',  // Jitni width chahiye pixels me likh dein
-                height: '400px', // Agar aspect ratio kharab ho toh height auto rakh sakte hain ('auto')
+                width: '500px',  // Jitni width chahiye pixels me likh dein
+                height: '430px', // Agar aspect ratio kharab ho toh height auto rakh sakte hain ('auto')
                 objectFit: 'cover' // Is se image stretch (khinch) nahi hogi balki perfectly fit hogi
               }}
             />
@@ -168,17 +168,62 @@ const Ecommerce = () => {
       </section>
 
       {/* --- 5. VISUAL GALLERY --- */}
-      <section className="max-w-7xl mx-auto px-6 py-12">
+      <section className="max-w-7x1 mx-auto px-6 py-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold">Modern <span className="text-purple-500">Storefronts</span></h2>
           <p className="text-gray-500 text-sm mt-2">Mobile-first designs for maximum conversion rates</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <GalleryItem img={assets.ecom2} label="Fashion Store" />
-          <GalleryItem img="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=600" label="Gadget Hub" />
-          <GalleryItem img="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&q=80&w=600" label="Luxury Brands" />
-          <GalleryItem img="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?auto=format&fit=crop&q=80&w=600" label="Home Decor" />
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1.5">
+          {[
+            { img: assets.ecom2, label: "Fashion Store", alt: "DevZore Premium Fashion Storefront and E-Commerce Platform Layout" },
+            { img: assets.ecommerce2, label: "Gadget Hub", alt: "Modern Electronics and Gadgets Store Dashboard Designed by DevZore" },
+            { img: assets.ecommrec_3, label: "Luxury Brands", alt: "High-End Premium Footwear Storefront E-Commerce Solution" },
+            { img: assets.ecommer_home_decore, label: "Home Decor", alt: "Minimalist Luxury Furniture and Home Decor Store Layout" }
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="relative group overflow-hidden rounded-[1rem] border border-gray-800/60 bg-[#111111] p-2 transition-all duration-300 hover:border-purple-500/30 flex flex-col justify-between h-full"
+            >
+              {/* Hover Cyberpunk Glow Effect */}
+              <div className="absolute-inset-1 bg-gradient-to-r from-purple-600/10 to-pink-600/10 opacity-0 blur-xl group-hover:opacity-100 transition duration-700 rounded-[1rem]"></div>
+
+              {/* IMAGE CONTAINER */}
+              <div className="relative overflow-hidden rounded-[0.5rem] bg-[#090909] w-full flex items-center justify-center">
+                <img
+                  src={item.img}
+                  alt={item.alt} // SEO Alt Tag directly added here
+
+                  className="w-full h-[290px] object-cover object-top opacity-90 group-hover:scale-102 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/4 via-transparent to-transparent"></div>
+              </div>
+
+              {/* INFO & DIRECT RIGHT SIDE CONTACT BUTTON */}
+              <div className="relative pt-8 px-1 flex items-center justify-between mt-auto">
+                <div>
+                  <span className="text-[10px] uppercase tracking-widest text-purple-400 font-bold block mb-0.5">
+                    Concept
+                  </span>
+                  <h3 className="text-white font-medium text-base group-hover:text-purple-400 transition-colors duration-300">
+                    {item.label}
+                  </h3>
+                </div>
+
+                {/* DIRECT CONTACT BUTTON (Right Side Arrow) */}
+                <Link
+                  to="/contact"
+                  className="w-9 h-9 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 hover:bg-purple-500 hover:text-white hover:scale-105 transition-all duration-300 transform"
+                  title="Get a direct quote for this storefront layout"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -214,7 +259,7 @@ const Ecommerce = () => {
             </div>
             <div className="bg-[#0c0c0c] border border-gray-800 p-4 rounded-3xl">
               <img
-                src="https://images.unsplash.com/photo-1551288049-bbbda5366392?q=80&w=2070&auto=format&fit=crop"
+                src={assets.ecommeranalytic}
                 alt="Analytics Dashboard"
                 className="rounded-2xl opacity-80"
               />
