@@ -73,10 +73,10 @@ export const servicesData = {
         highlight: "React & Next.js",
         subtitle: "Blazing fast single-page architectures with pixel-perfect dynamic interactive modules.",
         gallery: [
-            { img: assets.ecom2, label: "Crypto Live Pricing Stream", alt: "Highly interactive React.js front-end application displaying state-managed websocket tickers.", geo: "Expert React js front end developers in Islamabad Pakistan specializing in Next.js Tailwind CSS rapid UI rendering." },
-            { img: assets.ecommerce2, label: "Creative Media Hub UI", alt: "Sleek component-driven frontend asset architecture built for international streaming web portals.", geo: "Custom React web application UI development and single page application performance optimization." },
-            { img: assets.ecommrec_3, label: "Interactive Canvas Modeler", alt: "Advanced browser-based state management design board rendering optimized visual nodes cleanly.", geo: "Next.js performance optimization company in Pakistan achieving 100 percent core web vitals rankings." },
-            { img: assets.ecommer_home_decore, label: "Dynamic Form Architecture", alt: "Complex schema validation customer registration interface loaded with instant reactive transitions.", geo: "Front end software engineering studio delivering accessible rich web responsive designs." }
+            { img: assets.reaact_crypto_live, label: "Crypto Live Pricing Stream", alt: "Highly interactive React.js front-end application displaying state-managed websocket tickers.", geo: "Expert React js front end developers in Islamabad Pakistan specializing in Next.js Tailwind CSS rapid UI rendering." },
+            { img: assets.react_creative_media, label: "Creative Media Hub UI", alt: "Sleek component-driven frontend asset architecture built for international streaming web portals.", geo: "Custom React web application UI development and single page application performance optimization." },
+            { img: assets.react_interactive_canvas, label: "Interactive Canvas Modeler", alt: "Advanced browser-based state management design board rendering optimized visual nodes cleanly.", geo: "Next.js performance optimization company in Pakistan achieving 100 percent core web vitals rankings." },
+            { img: assets.react_dynamic_form, label: "Dynamic Form Architecture", alt: "Complex schema validation customer registration interface loaded with instant reactive transitions.", geo: "Front end software engineering studio delivering accessible rich web responsive designs." }
         ]
     },
     UiUxDesign: {

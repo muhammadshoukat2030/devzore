@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
+import { assets } from '../assets/assets';
 import {
   ArrowRight,
   Code2,
@@ -367,7 +368,7 @@ function ReactDevelopment() {
             <div className="bg-[#0c0c0c] border border-white/5 rounded-3xl overflow-hidden group hover:border-purple-500/30 transition-all shadow-2xl shadow-purple-500/5">
               <div className="relative overflow-hidden h-72">
                 <img
-                  src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1000"
+                  src={assets.react_coding}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   alt="React Coding Standards"
                 />
@@ -393,7 +394,7 @@ function ReactDevelopment() {
             <div className="bg-[#0c0c0c] border border-white/5 rounded-3xl overflow-hidden group hover:border-purple-500/30 transition-all shadow-2xl shadow-purple-500/5">
               <div className="relative overflow-hidden h-72">
                 <img
-                  src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1000"
+                  src={assets.react_interface}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   alt="Interface Excellence"
                 />

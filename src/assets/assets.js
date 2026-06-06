@@ -49,11 +49,13 @@ import saas_subscription from './saas_subscription.png';
 // import saas_cloud from './saas_cloud.webp';
 
 // React Development
-// import react_components from './react_components.webp';
-// import react_hooks from './react_hooks.webp';
-// import react_routing from './react_routing.webp';
-// import react_vitals from './react_vitals.webp';
-// import react_nextjs_ssr from './react_nextjs_ssr.webp';
+import reaact_crypto_live from './reaact_crypto_live.png';
+import react_creative_media from './react_creative_media.png';
+import react_dynamic_form from './react_dynamic_form.png';
+import react_interactive_canvas from './react_interactive_canvas.png';
+import react_interface from './react_interface.png';
+import react_coding from './react_coding.png';
+
 
 // UI/UX Design
 // import uiux_wireframes from './uiux_wireframes.webp';
@@ -135,11 +137,12 @@ export const assets = {
   saas_subscription,
 
   // React
-  // react_components,
-  // react_hooks,
-  // react_routing,
-  // react_vitals,
-  // react_nextjs_ssr,
+  reaact_crypto_live,
+  react_creative_media,
+  react_dynamic_form,
+  react_interactive_canvas,
+  react_interface,
+  react_coding,
 
   // UI/UX
   // uiux_wireframes,
