@@ -234,9 +234,7 @@ function SaaSProductDevelopment() {
           </div>
         </section>
 
-
-/* --- 2. PHIR ISAY GRID MEIN USE KAREN --- */
-        // Ye hissa aapke main return function ke andar aayega
+        
         <section className="max-w-7xl mx-auto px-6 py-24 border-t border-white/5">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {/* Framework & Backend */}

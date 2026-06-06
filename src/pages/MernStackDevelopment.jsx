@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
+import { assets } from '../assets/assets';
 import {
   Database,
   Layers,
@@ -191,7 +192,7 @@ const MernStackDevelopment = () => {
           </div>
         </section>
 
-        
+
         <div className="bg-black min-h-screen">
           {/* Baki sections yahan aayenge */}
           <ServiceGalleryTemplate pageKey="MernStackDevelopment" />
@@ -246,8 +247,23 @@ const MernStackDevelopment = () => {
             </div>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            <ProjectCard image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" title="SaaS Analytics Dashboard" subtitle="Next.js, Node.js, MongoDB" />
-            <ProjectCard image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" title="Fintech Payment Portal" subtitle="React, Express, PostgreSQL" />
+            {/* Project 1: SaaS Analytics */}
+            <ProjectCard
+              image={assets.mern_SaaS_Analytics}
+              title="SaaS Analytics Dashboard"
+              subtitle="Next.js, Node.js, MongoDB"
+              seoTags="Technical SEO Stack, Dynamic Metadata"
+              geoTargeting="Global CDN Deployment, Multi-Region Routing"
+            />
+
+            {/* Project 2: Fintech Portal */}
+            <ProjectCard
+              image={assets.Web_App_Development}
+              title="Fintech Payment Portal"
+              subtitle="React, Express, PostgreSQL"
+              seoTags="Schema Markup, SSR Indexed Pages"
+              geoTargeting="Localized Currency Routing, Latency-Based Geo-Load Balancing"
+            />
           </div>
         </section>
 

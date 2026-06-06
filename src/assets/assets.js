@@ -21,7 +21,7 @@ import mobile_Healthcare from './mobile_Healthcare.png';
 import mobile_dev_crossplatform from './mobile_dev_crossplatform.png';
 import mobile_dev_ios from './mobile_dev_ios.webp';
 import mobile_Fitness from './mobile_Fitness.png';
-import mobile_Fintech_App from './mobile_Fintech_App.png' ;
+import mobile_Fintech_App from './mobile_Fintech_App.png';
 
 // E-Commerce Website
 import ecommerce_storefront from './commerce_storefront.webp';
@@ -35,17 +35,17 @@ import ecommeranalytic from './ecommeranalytic.png';
 
 
 // MERN Stack
-// import mern_stack_architecture from './mern_stack_architecture.webp';
-// import mern_express_api from './mern_express_api.webp';
-// import mern_react_frontend from './mern_react_frontend.webp';
-// import mern_node_backend from './mern_node_backend.webp';
-// import mern_fullstack_scale from './mern_fullstack_scale.webp';
+import mern_SaaS_Analytics from './mern_SaaS_Analytics.png';
+import mern_matrix1 from './mern_matrix1.png';
+import mern_inventory from './mern_inventory.png';
+import mern_B2B_hr from './mern_B2B_hr.png';
+import mern_saas from './mern_saas.png';
 
 // SaaS Development
-// import saas_multi_tenancy from './saas_multi_tenancy.webp';
-// import saas_billing from './saas_billing.webp';
-// import saas_dashboard from './saas_dashboard.webp';
-// import saas_security from './saas_security.webp';
+import saas_hr_management from './saas_hr_management.png';
+import saas_marketing from './saas_marketing.png';
+import ssaas_project from './saas_project.png';
+import saas_subscription from './saas_subscription.png';
 // import saas_cloud from './saas_cloud.webp';
 
 // React Development
@@ -85,7 +85,7 @@ import ecommeranalytic from './ecommeranalytic.png';
 
 export const assets = {
   // logo_main,
-  
+
   // All Services
   // all_services_overview,
   // all_services_cloud,
@@ -94,22 +94,22 @@ export const assets = {
   // all_services_consulting,
 
   // Web Dev
-Web_App_Development,
-web_Automated,
-web_Logistics,
-webdevelopment2,
-web_Architecture_and_Speed2,
-web_Real_Estate,
+  Web_App_Development,
+  web_Automated,
+  web_Logistics,
+  webdevelopment2,
+  web_Architecture_and_Speed2,
+  web_Real_Estate,
 
   // Mobile Dev
-mobile_dev_android,
-mobile_Invoicing,
-mobile_Delivery_App,
-mobile_Healthcare,
-mobile_dev_crossplatform,
-mobile_dev_ios,
-mobile_Fitness,
-mobile_Fintech_App,
+  mobile_dev_android,
+  mobile_Invoicing,
+  mobile_Delivery_App,
+  mobile_Healthcare,
+  mobile_dev_crossplatform,
+  mobile_dev_ios,
+  mobile_Fitness,
+  mobile_Fintech_App,
 
   // E-Commerce
   ecommerce_storefront,
@@ -122,18 +122,17 @@ mobile_Fintech_App,
   ecommeranalytic,
 
   // MERN
-  // mern_stack_architecture,
-  // mern_express_api,
-  // mern_react_frontend,
-  // mern_node_backend,
-  // mern_fullstack_scale,
+  mern_SaaS_Analytics,
+  mern_matrix1,
+  mern_inventory,
+  mern_B2B_hr,
+  mern_saas,
 
   // SaaS
-  // saas_multi_tenancy,
-  // saas_billing,
-  // saas_dashboard,
-  // saas_security,
-  // saas_cloud,
+  saas_hr_management,
+  saas_marketing,
+  ssaas_project,
+  saas_subscription,
 
   // React
   // react_components,
@@ -169,5 +168,5 @@ mobile_Fintech_App,
   // backend_microservices,
   // backend_auth,
   // backend_caching
-  
+
 };

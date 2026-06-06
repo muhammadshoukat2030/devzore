@@ -51,10 +51,10 @@ export const servicesData = {
         highlight: "MERN Development",
         subtitle: "End-to-end dynamic web application systems powered fully by JavaScript architectures.",
         gallery: [
-            { img: assets.ecom2, label: "Live Collaboration Matrix", alt: "Professional full-stack MERN stack application interface deployed by DevZore developers in Pakistan.", geo: "Hire professional MERN stack developers in Pakistan for database-driven single page applications (SPAs)." },
-            { img: assets.ecommerce2, label: "Corporate Inventory Core", alt: "Custom MongoDB and Node.js business tracking software solution for international remote enterprises.", geo: "Top-rated MongoDB Express React Node js full stack software house in Islamabad Rawalpindi." },
-            { img: assets.ecommrec_3, label: "Real-time SaaS Telemetry", alt: "Single page dashboard displaying live websocket updates and encrypted server logs built with Mongo.", geo: "Full stack MERN application development specialists implementing high security web engines." },
-            { img: assets.ecommer_home_decore, label: "B2B HR Management Portal", alt: "Complete user permission management control panel built with Express, Node and React frontends.", geo: "Hire full-stack engineering team for customized web software prototypes in Pakistan." }
+            { img: assets.mern_matrix1, label: "Live Collaboration Matrix", alt: "Professional full-stack MERN stack application interface deployed by DevZore developers in Pakistan.", geo: "Hire professional MERN stack developers in Pakistan for database-driven single page applications (SPAs)." },
+            { img: assets.mern_inventory, label: "Corporate Inventory Core", alt: "Custom MongoDB and Node.js business tracking software solution for international remote enterprises.", geo: "Top-rated MongoDB Express React Node js full stack software house in Islamabad Rawalpindi." },
+            { img: assets.mern_saas, label: "Real-time SaaS Telemetry", alt: "Single page dashboard displaying live websocket updates and encrypted server logs built with Mongo.", geo: "Full stack MERN application development specialists implementing high security web engines." },
+            { img: assets.mern_B2B_hr, label: "B2B HR Management Portal", alt: "Complete user permission management control panel built with Express, Node and React frontends.", geo: "Hire full-stack engineering team for customized web software prototypes in Pakistan." }
         ]
     },
     SaaSProductDevelopment: {
@@ -62,10 +62,10 @@ export const servicesData = {
         highlight: "Engineering",
         subtitle: "Cloud-native, multi-tenant software systems built for international business distribution.",
         gallery: [
-            { img: assets.ecom2, label: "HR Cloud Management Engine", alt: "Multi-tenant B2B SaaS cloud subscription web app dashboard designed by DevZore.", geo: "SaaS product development agency in Pakistan building cloud-based software architectures and automated Stripe billing portals." },
-            { img: assets.ecommerce2, label: "Marketing Analytics Board", alt: "Advanced user tracking real-time data analytical SaaS product layout for international digital agencies.", geo: "Custom software as a service platform engineering and multi-tenant database structuring services." },
-            { img: assets.ecommrec_3, label: "Subscription Billing Hub", alt: "SaaS client checkout flow mapping multi tier usage plans and metered invoicing tracking systems.", geo: "Multi-tenant cloud platform development experts creating subscription architectures and custom backends." },
-            { img: assets.ecommer_home_decore, label: "Project Fleet Analytics", alt: "Centralized SaaS workspace dashboard displaying team efficiency matrices and cloud file repositories.", geo: "SaaS MVP rapid launch configuration and software engineering retainer packages." }
+            { img: assets.saas_hr_management, label: "HR Cloud Management Engine", alt: "Multi-tenant B2B SaaS cloud subscription web app dashboard designed by DevZore.", geo: "SaaS product development agency in Pakistan building cloud-based software architectures and automated Stripe billing portals." },
+            { img: assets.saas_marketing, label: "Marketing Analytics Board", alt: "Advanced user tracking real-time data analytical SaaS product layout for international digital agencies.", geo: "Custom software as a service platform engineering and multi-tenant database structuring services." },
+            { img: assets.saas_subscription, label: "Subscription Billing Hub", alt: "SaaS client checkout flow mapping multi tier usage plans and metered invoicing tracking systems.", geo: "Multi-tenant cloud platform development experts creating subscription architectures and custom backends." },
+            { img: assets.ssaas_project, label: "Project Fleet Analytics", alt: "Centralized SaaS workspace dashboard displaying team efficiency matrices and cloud file repositories.", geo: "SaaS MVP rapid launch configuration and software engineering retainer packages." }
         ]
     },
     ReactDevelopment: {
