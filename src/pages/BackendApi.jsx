@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
+import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
+
 import {
   Database,
   Server,
@@ -195,6 +197,12 @@ function BackendApi() {
             />
           </div>
         </section>
+
+        <div className="bg-black min-h-screen">
+          {/* Baki sections yahan aayenge */}
+          <ServiceGalleryTemplate pageKey="BackendApi" />
+        </div>
+
         {/* --- BACKEND STATS SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">

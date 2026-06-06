@@ -2,6 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
+import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
+
 import {
   ShoppingBag, CreditCard, Box, BarChart3,
   ArrowRight, ShieldCheck, Zap, Globe,
@@ -167,65 +169,10 @@ const Ecommerce = () => {
         </div>
       </section>
 
-      {/* --- 5. VISUAL GALLERY --- */}
-      <section className="max-w-7x1 mx-auto px-6 py-8">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold">Modern <span className="text-purple-500">Storefronts</span></h2>
-          <p className="text-gray-500 text-sm mt-2">Mobile-first designs for maximum conversion rates</p>
-        </div>
-
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1.5">
-          {[
-            { img: assets.ecom2, label: "Fashion Store", alt: "DevZore Premium Fashion Storefront and E-Commerce Platform Layout" },
-            { img: assets.ecommerce2, label: "Gadget Hub", alt: "Modern Electronics and Gadgets Store Dashboard Designed by DevZore" },
-            { img: assets.ecommrec_3, label: "Luxury Brands", alt: "High-End Premium Footwear Storefront E-Commerce Solution" },
-            { img: assets.ecommer_home_decore, label: "Home Decor", alt: "Minimalist Luxury Furniture and Home Decor Store Layout" }
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="relative group overflow-hidden rounded-[1rem] border border-gray-800/60 bg-[#111111] p-2 transition-all duration-300 hover:border-purple-500/30 flex flex-col justify-between h-full"
-            >
-              {/* Hover Cyberpunk Glow Effect */}
-              <div className="absolute-inset-1 bg-gradient-to-r from-purple-600/10 to-pink-600/10 opacity-0 blur-xl group-hover:opacity-100 transition duration-700 rounded-[1rem]"></div>
-
-              {/* IMAGE CONTAINER */}
-              <div className="relative overflow-hidden rounded-[0.5rem] bg-[#090909] w-full flex items-center justify-center">
-                <img
-                  src={item.img}
-                  alt={item.alt} // SEO Alt Tag directly added here
-
-                  className="w-full h-[290px] object-cover object-top opacity-90 group-hover:scale-102 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/4 via-transparent to-transparent"></div>
-              </div>
-
-              {/* INFO & DIRECT RIGHT SIDE CONTACT BUTTON */}
-              <div className="relative pt-8 px-1 flex items-center justify-between mt-auto">
-                <div>
-                  <span className="text-[10px] uppercase tracking-widest text-purple-400 font-bold block mb-0.5">
-                    Concept
-                  </span>
-                  <h3 className="text-white font-medium text-base group-hover:text-purple-400 transition-colors duration-300">
-                    {item.label}
-                  </h3>
-                </div>
-
-                {/* DIRECT CONTACT BUTTON (Right Side Arrow) */}
-                <Link
-                  to="/contact"
-                  className="w-9 h-9 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 hover:bg-purple-500 hover:text-white hover:scale-105 transition-all duration-300 transform"
-                  title="Get a direct quote for this storefront layout"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <div className="bg-black min-h-screen">
+        {/* Baki sections yahan aayenge */}
+        <ServiceGalleryTemplate pageKey="ECommerce" />
+      </div>
 
       {/* --- 6. DEVELOPMENT PROCESS (NEW CARDS) --- */}
       <section className="max-w-7xl mx-auto px-6 py-12 border-t border-white/5">

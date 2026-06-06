@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-
+import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
 
 /* --- ICONS IMPORT --- */
 import {
@@ -251,6 +251,11 @@ const AllServices = () => {
           </div>
         </div>
       </section>
+
+      <div className="bg-black min-h-screen">
+        {/* Baki sections yahan aayenge */}
+        <ServiceGalleryTemplate pageKey="AllServices" />
+      </div>
 
       {/* --- FAQ SECTION --- */}
       <section className="max-w-7xl mx-auto px-6 py-20">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
+import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
 import {
   ArrowRight,
   Code2,
@@ -101,9 +102,9 @@ function ReactDevelopment() {
             Frontend Engineering Excellence
           </div>
           <Link to="/contact">
-          <button className=" cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all shadow-lg shadow-purple-500/20">
-            Request Code Audit
-          </button>
+            <button className=" cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all shadow-lg shadow-purple-500/20">
+              Request Code Audit
+            </button>
           </Link>
         </div>
 
@@ -198,6 +199,12 @@ function ReactDevelopment() {
             />
           </div>
         </section>
+
+       
+        <div className="bg-black min-h-screen">
+          {/* Baki sections yahan aayenge */}
+          <ServiceGalleryTemplate pageKey="ReactDevelopment" />
+        </div>
 
         {/* --- SERVICES SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">

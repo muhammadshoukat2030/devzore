@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
-import Group15Img from '../assets/Group15.webp';
+import Group15Img from '../assets/Group15.webp';     
+import { assets } from '../assets/assets'; 
+import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
+
 import {
   Smartphone,
   Layers,
@@ -96,13 +99,13 @@ const MobileApp = () => {
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
           </Link>
           <Link to="/contact">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-500 text-[10px] font-bold uppercase tracking-[0.2em]">
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
-            Next-Gen Mobility
-          </div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-500 text-[10px] font-bold uppercase tracking-[0.2em]">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
+              Next-Gen Mobility
+            </div>
           </Link>
         </div>
-        
+
 
         {/* --- HERO SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-1 grid lg:grid-cols-2 gap-12 items-center">
@@ -129,9 +132,9 @@ const MobileApp = () => {
             <div className="absolute -inset-10 bg-purple-500/10 blur-[120px] rounded-full"></div>
             <div className="relative bg-[#0c0c0c] border border-gray-800/50 rounded-[3rem] p-4 shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800"
+                src={assets.mobile_dev_ios}
                 alt="Mobile Development"
-                className="rounded-[2.5rem] opacity-80 group-hover:opacity-100 transition-opacity duration-500 w-[350px]"
+                className="rounded-[2.5rem] opacity-80 group-hover:opacity-100 transition-opacity duration-500 w-[500px]"
               />
               <div className="absolute top-20 -right-12 bg-[#111] border border-white/10 p-5 rounded-2xl shadow-2xl animate-bounce-slow">
                 <div className="flex items-center gap-3">
@@ -181,6 +184,11 @@ const MobileApp = () => {
             />
           </div>
         </section>
+
+        <div className="bg-black min-h-screen">
+          {/* Baki sections yahan aayenge */}
+          <ServiceGalleryTemplate pageKey="MobileApp" />
+        </div>
 
         {/* --- SERVICES SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
@@ -250,7 +258,7 @@ const MobileApp = () => {
             <div className="group relative overflow-hidden rounded-[2.5rem] bg-[#0c0c0c] border border-white/5">
               <div className="aspect-[16/10] overflow-hidden">
                 <img
-                  src={Group15Img}
+                  src={assets.mobile_dev_crossplatform}
                   alt="E-commerce App"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-70 group-hover:opacity-100"
                 />
@@ -276,7 +284,7 @@ const MobileApp = () => {
             <div className="group relative overflow-hidden rounded-[2.5rem] bg-[#0c0c0c] border border-white/5">
               <div className="aspect-[16/10] overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?auto=format&fit=crop&q=80&w=1000"
+                  src={assets.mobile_Fintech_App}
                   alt="Fintech App"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-70 group-hover:opacity-100"
                 />
@@ -334,13 +342,13 @@ const MobileApp = () => {
             <p className="text-gray-400 mb-10 max-w-lg mx-auto text-sm md:text-base leading-relaxed font-medium">
               We will tell you honestly what it takes to build it, what it will cost, and how long it will take.
             </p>
-           
+
             <Link to="/contact">
-            <button className="bg-purple-600 hover:bg-purple-700 px-13 py-5 rounded-2xl font-bold text-base transition-all shadow-2xl shadow-purple-500/30 active:scale-95 flex items-center gap-2 mx-auto">
-              Free Consultation <ArrowRight size={20} />
-            </button>
+              <button className="bg-purple-600 hover:bg-purple-700 px-13 py-5 rounded-2xl font-bold text-base transition-all shadow-2xl shadow-purple-500/30 active:scale-95 flex items-center gap-2 mx-auto">
+                Free Consultation <ArrowRight size={20} />
+              </button>
             </Link>
-          
+
 
             <div className="mt-10 pt-10 border-t border-white/5">
               <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">

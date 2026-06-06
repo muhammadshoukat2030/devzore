@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
+import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
 import {
   Database,
   Layers,
@@ -82,10 +83,10 @@ const MernStackDevelopment = () => {
 
         {/* --- HEADER --- */}
         <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between">
-           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-500 text-[10px] font-bold uppercase tracking-[0.2em]">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
-              Full-Stack Engineering
-            </div>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-500 text-[10px] font-bold uppercase tracking-[0.2em]">
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
+            Full-Stack Engineering
+          </div>
           <Link to="/contact">
             <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all duration-300 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)]">
               Free Consultation
@@ -96,7 +97,7 @@ const MernStackDevelopment = () => {
         {/* --- HERO SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-3 grid lg:grid-cols-2 gap-1 items-center">
           <div className="space-y-3">
-           
+
             <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
               Custom <span className="text-purple-500">MERN Stack</span> <br />
               <span className="text-purple-500">Company</span> Built for Scale
@@ -189,6 +190,12 @@ const MernStackDevelopment = () => {
             />
           </div>
         </section>
+
+        
+        <div className="bg-black min-h-screen">
+          {/* Baki sections yahan aayenge */}
+          <ServiceGalleryTemplate pageKey="MernStackDevelopment" />
+        </div>
 
         {/* --- PROCESS SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-2">

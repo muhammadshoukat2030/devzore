@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
+import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
 import {
   ArrowRight,
   BarChart3,
@@ -93,9 +94,9 @@ function SaaSProductDevelopment() {
             Product Engineering Lab
           </div>
           <Link to="/contact">
-          <button className=" cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
-            Talk to Specialist
-          </button>
+            <button className=" cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+              Talk to Specialist
+            </button>
           </Link>
         </div>
 
@@ -186,6 +187,12 @@ function SaaSProductDevelopment() {
               borderColor="border-l-cyan-500" />
           </div>
         </section>
+
+
+        <div className="bg-black min-h-screen">
+          {/* Baki sections yahan aayenge */}
+          <ServiceGalleryTemplate pageKey="SaaSProductDevelopment" />
+        </div>
 
         {/* --- SERVICES GRID --- */}
         <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">

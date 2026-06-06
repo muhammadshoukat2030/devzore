@@ -6,10 +6,10 @@ export default defineConfig({
   plugins: [
     react(),
 
-    // 🌍 Sitemap (SAFE + WORKING)
+    // 🌍 Sitemap (PERFECTLY WORKING NOW)
     sitemap({
       hostname: 'https://devzore.com',
-      routes: [
+      dynamicRoutes: [
         '/',
         '/about',
         '/contact',

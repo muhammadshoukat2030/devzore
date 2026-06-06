@@ -6,18 +6,22 @@
 // import all_services_consulting from './all_services_consulting.webp';
 
 // Web Development
-// import web_dev_custom from './web_dev_custom.webp';
-// import web_dev_performance from './web_dev_performance.webp';
-// import web_dev_cms from './web_dev_cms.webp';
-// import web_dev_pwa from './web_dev_pwa.webp';
-// import web_dev_responsive from './web_dev_responsive.webp';
+import Web_App_Development from './Web_App_Development.png';
+import web_Automated from './web_Automated.png';
+import web_Logistics from './web_Logistics.png';
+import webdevelopment2 from './webdevelopment2.png';
+import web_Architecture_and_Speed2 from './web_Architecture_and_Speed2.png';
+import web_Real_Estate from './web_Real_Estate.png';
 
 // Mobile App Development
-// import mobile_dev_ios from './mobile_dev_ios.webp';
-// import mobile_dev_android from './mobile_dev_android.webp';
-// import mobile_dev_crossplatform from './mobile_dev_crossplatform.webp';
-// import mobile_dev_ui from './mobile_dev_ui.webp';
-// import mobile_dev_api from './mobile_dev_api.webp';
+import mobile_dev_android from './mobile_dev_android.webp';
+import mobile_Invoicing from './mobile_Invoicing.png';
+import mobile_Delivery_App from './mobile_Delivery_App.png';
+import mobile_Healthcare from './mobile_Healthcare.png';
+import mobile_dev_crossplatform from './mobile_dev_crossplatform.png';
+import mobile_dev_ios from './mobile_dev_ios.webp';
+import mobile_Fitness from './mobile_Fitness.png';
+import mobile_Fintech_App from './mobile_Fintech_App.png' ;
 
 // E-Commerce Website
 import ecommerce_storefront from './commerce_storefront.webp';
@@ -90,18 +94,22 @@ export const assets = {
   // all_services_consulting,
 
   // Web Dev
-  // web_dev_custom,
-  // web_dev_performance,
-  // web_dev_cms,
-  // web_dev_pwa,
-  // web_dev_responsive,
+Web_App_Development,
+web_Automated,
+web_Logistics,
+webdevelopment2,
+web_Architecture_and_Speed2,
+web_Real_Estate,
 
   // Mobile Dev
-  // mobile_dev_ios,
-  // mobile_dev_android,
-  // mobile_dev_crossplatform,
-  // mobile_dev_ui,
-  // mobile_dev_api,
+mobile_dev_android,
+mobile_Invoicing,
+mobile_Delivery_App,
+mobile_Healthcare,
+mobile_dev_crossplatform,
+mobile_dev_ios,
+mobile_Fitness,
+mobile_Fintech_App,
 
   // E-Commerce
   ecommerce_storefront,

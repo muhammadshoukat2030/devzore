@@ -1,4 +1,4 @@
-
+import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
@@ -45,17 +45,17 @@ const UIUXDesign = () => {
         />
         <meta name="twitter:image" content="https://devzore.com/og/ui-ux-design.jpg" />
       </Helmet>
-      
+
       {/* --- 1. TOP HEADER --- */}
       <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-[0.2em]">
           <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
           Visual Strategy & Experience
         </div>
-          <Link to="/contact">
-        <button className="cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
-          Design Audit
-        </button>
+        <Link to="/contact">
+          <button className="cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all hover:shadow-[0_0_15px_rgba(147,51,234,0.3)]">
+            Design Audit
+          </button>
         </Link>
       </div>
 
@@ -73,14 +73,14 @@ const UIUXDesign = () => {
 
           <div className="flex flex-nowrap gap-3 pt-2">
             <Link to="/contact">
-            <button className="cursor-pointer flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
-              Start Designing <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+              <button className="cursor-pointer flex-1 md:flex-none bg-purple-600 hover:bg-purple-700 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base flex items-center justify-center gap-2 group transition-all">
+                Start Designing <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
             </Link>
             <Link to="/contact">
-            <button className="cursor-pointer flex-1 md:flex-none bg-[#111111] border border-gray-800 hover:bg-gray-800 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all">
-              Our Process
-            </button>
+              <button className="cursor-pointer flex-1 md:flex-none bg-[#111111] border border-gray-800 hover:bg-gray-800 px-4 md:px-8 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-base transition-all">
+                Our Process
+              </button>
             </Link>
           </div>
         </div>
@@ -128,6 +128,12 @@ const UIUXDesign = () => {
         </div>
       </section>
 
+      
+      <div className="bg-black min-h-screen">
+        {/* Baki sections yahan aayenge */}
+        <ServiceGalleryTemplate pageKey="UiUxDesign" />
+      </div>
+
       {/* --- 4. PORTFOLIO SHOWCASE --- */}
       <section className="max-w-7xl mx-auto px-6 py-10">
         <div className="flex justify-between items-end mb-8">
@@ -173,10 +179,10 @@ const UIUXDesign = () => {
           <p className="text-gray-400 mb-8 relative z-10 max-w-lg mx-auto font-medium text-sm">
             Let's transform your idea into an award-winning interface. Our designers are ready to map out your user's next favorite experience.
           </p>
-           <Link to="/contact">
-          <button className="cursor-pointer bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold transition-all relative z-10 text-sm shadow-xl">
-            Book a Strategy Session →
-          </button>
+          <Link to="/contact">
+            <button className="cursor-pointer bg-purple-600 hover:bg-purple-700 px-8 py-3.5 rounded-xl font-bold transition-all relative z-10 text-sm shadow-xl">
+              Book a Strategy Session →
+            </button>
           </Link>
         </div>
       </section>

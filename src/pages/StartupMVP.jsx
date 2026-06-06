@@ -1,4 +1,4 @@
-
+import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
@@ -126,6 +126,11 @@ const StartupMVP = () => {
           />
         </div>
       </section>
+
+      <div className="bg-black min-h-screen">
+        {/* Baki sections yahan aayenge */}
+        <ServiceGalleryTemplate pageKey="StartupMVP" />
+      </div>
 
       {/* --- SUCCESSFUL LAUNCHES SECTION --- */}
       <section className="max-w-7xl mx-auto px-6 py-10">

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { assets } from "../assets/assets";
+import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
 import {
   Globe,
   Smartphone,
@@ -128,7 +130,7 @@ const WebDevelopment = () => {
             <div className="absolute -inset-10 bg-purple-500/10 blur-[120px] rounded-full"></div>
             <div className="relative bg-[#0c0c0c] border border-gray-800/50 rounded-3xl p-4 shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+                src={assets.Web_App_Development}
                 alt="Web App Development"
                 className="rounded-2xl opacity-80 group-hover:opacity-100 transition-opacity duration-500"
               />
@@ -193,6 +195,13 @@ const WebDevelopment = () => {
             />
           </div>
         </section>
+
+
+        <div className="bg-black min-h-screen">
+          {/* Baki sections yahan aayenge */}
+          <ServiceGalleryTemplate pageKey="WebDevelopment" />
+        </div>
+
 
         {/* --- PROCESS SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-20 bg-white/[0.01] rounded-[3rem] border border-white/5">
@@ -261,9 +270,9 @@ const WebDevelopment = () => {
             <div className="relative">
               <div className="absolute -inset-4 bg-purple-500/20 blur-3xl rounded-full"></div>
               <img
-                src="https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=1000"
+                src={assets.web_Architecture_and_Speed2}
                 alt="Architecture and Speed"
-                className="relative rounded-3xl border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
+                className="relative rounded-3xl border border-white/10 shadow-1xl grayscale hover:grayscale-0 transition-all duration-700"
               />
               <div className="absolute -bottom-6 -right-6 bg-[#0c0c0c] border border-purple-500/30 p-6 rounded-2xl shadow-2xl hidden md:block">
                 <div className="flex items-center gap-4 mb-2">
@@ -321,7 +330,7 @@ const WebDevelopment = () => {
               <div className="absolute -inset-10 bg-blue-500/5 blur-[120px] rounded-full"></div>
               <div className="relative overflow-hidden rounded-[2rem] border border-white/5">
                 <img
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000"
+                  src={assets.Web_App_Development}
                   alt="Web Project Dashboard"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
