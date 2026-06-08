@@ -58,11 +58,13 @@ import react_coding from './react_coding.png';
 
 
 // UI/UX Design
-// import uiux_wireframes from './uiux_wireframes.webp';
-// import uiux_prototypes from './uiux_prototypes.webp';
-// import uiux_design_system from './uiux_design_system.webp';
-// import uiux_user_research from './uiux_user_research.webp';
-// import uiux_dark_theme from './uiux_dark_theme.webp';
+import uiux_Process from './uiux_Process.png';
+import uiux_automotive from './uiux_automotive.png';
+import uiux_e_learning from './uiux_e_learning.png';
+import uiux_interface from './uiux_interface.png';
+import uiux_workspace from './uiux_workspace.png';
+import uiux_saas_sashboard from './uiux_saas_sashboard.png';
+import uiux_fintech_mobile from './uiux_fintech_mobile.png';
 
 // Startup MVP
 // import mvp_rapid_prototype from './mvp_rapid_prototype.webp';
@@ -145,11 +147,13 @@ export const assets = {
   react_coding,
 
   // UI/UX
-  // uiux_wireframes,
-  // uiux_prototypes,
-  // uiux_design_system,
-  // uiux_user_research,
-  // uiux_dark_theme,
+  uiux_Process,
+  uiux_automotive,
+  uiux_e_learning,
+  uiux_interface,
+  uiux_workspace,
+  uiux_saas_sashboard,
+  uiux_fintech_mobile,
 
   // MVP
   // mvp_rapid_prototype,

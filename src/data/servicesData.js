@@ -84,10 +84,10 @@ export const servicesData = {
         highlight: "Product Design",
         subtitle: "User-centered design systems, high-fidelity prototypes, and sleek interfaces.",
         gallery: [
-            { img: assets.ecom2, label: "Neo-Brutalist Trading Interface", alt: "Premium cyberpunk creative UI/UX Figma layout crafted by visual design experts at DevZore.", geo: "Top UI UX design services in Islamabad Karachi Lahore creating wireframes responsive user interfaces and modern mobile app wireframing." },
-            { img: assets.ecommerce2, label: "E-Learning Interaction Flow", alt: "User journey map and high-fidelity prototype dashboard designed for automated digital learning networks.", geo: "Professional Figma mockup creators and brand identity web design studio in Pakistan." },
-            { img: assets.ecommrec_3, label: "Immersive Workspace Layout", alt: "Dark theme glassmorphism interface style crafted with strict mathematical bounding blocks.", geo: "Mobile interface design systems and responsive dashboard component UI blueprints creators." },
-            { img: assets.ecommer_home_decore, label: "Automotive Dashboard Screen", alt: "Futuristic digital controller UI mockup mapping real-time speed vectors and controls.", geo: "Creative tech vector design layouts and comprehensive SaaS product branding packages." }
+            { img: assets.uiux_interface, label: "Neo-Brutalist Trading Interface", alt: "Premium cyberpunk creative UI/UX Figma layout crafted by visual design experts at DevZore.", geo: "Top UI UX design services in Islamabad Karachi Lahore creating wireframes responsive user interfaces and modern mobile app wireframing." },
+            { img: assets.uiux_e_learning, label: "E-Learning Interaction Flow", alt: "User journey map and high-fidelity prototype dashboard designed for automated digital learning networks.", geo: "Professional Figma mockup creators and brand identity web design studio in Pakistan." },
+            { img: assets.uiux_workspace, label: "Immersive Workspace Layout", alt: "Dark theme glassmorphism interface style crafted with strict mathematical bounding blocks.", geo: "Mobile interface design systems and responsive dashboard component UI blueprints creators." },
+            { img: assets.uiux_automotive, label: "Automotive Dashboard Screen", alt: "Futuristic digital controller UI mockup mapping real-time speed vectors and controls.", geo: "Creative tech vector design layouts and comprehensive SaaS product branding packages." }
         ]
     },
     Maintenance: {
