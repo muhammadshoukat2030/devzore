@@ -6,7 +6,7 @@ import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
 import {
   Palette, MousePointer2, Layers, Layout,
   Figma, PenTool, Eye, Zap, ArrowRight,
-  Maximize2, Component, Smartphone, CheckCircle, 
+  Maximize2, Component, Smartphone, CheckCircle,
   HelpCircle, ChevronDown, Monitor, Sparkles, Shield, Compass, Code
 } from 'lucide-react';
 
@@ -14,7 +14,7 @@ const UIUXDesign = () => {
   return (
     <HelmetProvider>
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20 overflow-x-hidden">
-        
+
         {/* --- SEO & HELMET --- */}
         <Helmet>
           <title>UI/UX Design Services | DevZore — Design Agency</title>
@@ -23,15 +23,15 @@ const UIUXDesign = () => {
           <meta property="og:title" content="UI/UX Design Services | DevZore" />
           <meta property="og:description" content="Research-driven UI/UX design for web, mobile and SaaS. Wireframes, Figma prototypes and production UI from DevZore, Islamabad." />
           <meta property="og:url" content="https://devzore.com/ui-ux-design" />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="DevZore" />
-          <meta property="og:image" content="https://devzore.com/og/ui-ux-design.jpg" />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
           <meta name="twitter:card" content="summary_large_image" />
+          <meta property="og:image" content="https://devzore.com/og/uiux_process.png" />
+          <meta name="twitter:image" content="https://devzore.com/og/uiux_process.png" />
           <meta name="twitter:title" content="UI/UX Design Services | DevZore" />
           <meta name="twitter:description" content="Professional UI/UX design services for web and mobile apps focused on user experience and conversion." />
-          <meta name="twitter:image" content="https://devzore.com/og/ui-ux-design.jpg" />
+
+          <meta property="og:type" content="website" />
         </Helmet>
 
         {/* --- 1. TOP NAVIGATION / BADGE AREA --- */}
@@ -50,9 +50,8 @@ const UIUXDesign = () => {
         {/* --- 2. HERO SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-12 md:py-20 grid lg:grid-cols-2 gap-12 items-center relative">
           <div className="absolute top-[-20%] left-[-10%] w-96 h-96 bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
-          
           <div className="space-y-6 relative z-10 text-center lg:text-left">
-            <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-black leading-[1.05] tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
               UI/UX Design Services Built Around Real Users — <span className="text-purple-500">Not Designer Preferences</span>
             </h1>
             <p className="text-gray-400 text-base md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
@@ -196,35 +195,35 @@ const UIUXDesign = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <DetailedProcessCard 
-              step="01" 
-              title="Discovery and Research" 
-              desc="We begin with a structured discovery session covering your business goals, your target users, your existing product if one exists, and your competitive landscape. This session produces the brief that drives every design decision that follows." 
+            <DetailedProcessCard
+              step="01"
+              title="Discovery and Research"
+              desc="We begin with a structured discovery session covering your business goals, your target users, your existing product if one exists, and your competitive landscape. This session produces the brief that drives every design decision that follows."
             />
-            <DetailedProcessCard 
-              step="02" 
-              title="User Flows & IA" 
-              desc="We map every path a user can take through your product. From first landing to core action to return visit. Every screen, every decision point, every error state. This map becomes the specification for your wireframes." 
+            <DetailedProcessCard
+              step="02"
+              title="User Flows & IA"
+              desc="We map every path a user can take through your product. From first landing to core action to return visit. Every screen, every decision point, every error state. This map becomes the specification for your wireframes."
             />
-            <DetailedProcessCard 
-              step="03" 
-              title="Wireframes & Review" 
-              desc="Low-fidelity wireframes for every primary screen are designed and reviewed with your team. We present the reasoning behind every structural decision — not just the output. Feedback is collected, changes are made, and the wireframe set is signed off before we move to visual design." 
+            <DetailedProcessCard
+              step="03"
+              title="Wireframes & Review"
+              desc="Low-fidelity wireframes for every primary screen are designed and reviewed with your team. We present the reasoning behind every structural decision — not just the output. Feedback is collected, changes are made, and the wireframe set is signed off before we move to visual design."
             />
-            <DetailedProcessCard 
-              step="04" 
-              title="Visual Design & Branding" 
-              desc="High-fidelity UI design built from your brand guidelines or developed as part of this engagement if starting from scratch. Color, typography, iconography, illustrations, and motion principles are defined here and applied consistently across the entire product." 
+            <DetailedProcessCard
+              step="04"
+              title="Visual Design & Branding"
+              desc="High-fidelity UI design built from your brand guidelines or developed as part of this engagement if starting from scratch. Color, typography, iconography, illustrations, and motion principles are defined here and applied consistently across the entire product."
             />
-            <DetailedProcessCard 
-              step="05" 
-              title="Prototype, Test & Refine" 
-              desc="An interactive prototype is built in Figma and tested against real user behavior where possible. We review edge cases, stress-test the flow with realistic data, and refine the design based on what we find. The goal is to answer every open design question before development begins." 
+            <DetailedProcessCard
+              step="05"
+              title="Prototype, Test & Refine"
+              desc="An interactive prototype is built in Figma and tested against real user behavior where possible. We review edge cases, stress-test the flow with realistic data, and refine the design based on what we find. The goal is to answer every open design question before development begins."
             />
-            <DetailedProcessCard 
-              step="06" 
-              title="Developer Handoff" 
-              desc="Final Figma files are organized with developer annotations, component documentation, spacing specifications, and exported assets. We conduct a handoff session with your development team to walk through the design system and answer implementation questions." 
+            <DetailedProcessCard
+              step="06"
+              title="Developer Handoff"
+              desc="Final Figma files are organized with developer annotations, component documentation, spacing specifications, and exported assets. We conduct a handoff session with your development team to walk through the design system and answer implementation questions."
             />
           </div>
         </section>
@@ -233,7 +232,7 @@ const UIUXDesign = () => {
         <section className="max-w-7xl mx-auto px-6 py-16">
           <div className="bg-[#080808] border border-white/5 rounded-[3rem] p-8 md:p-14 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-purple-600/5 blur-[120px] rounded-full pointer-events-none"></div>
-            
+
             <div className="grid lg:grid-cols-12 gap-12 items-center relative z-10">
               <div className="lg:col-span-5 space-y-4">
                 <span className="text-purple-500 font-mono text-xs tracking-[0.4em] uppercase block">Ecosystem</span>
@@ -281,21 +280,21 @@ const UIUXDesign = () => {
             </div>
 
             <div className="lg:col-span-2 grid md:grid-cols-2 gap-6">
-              <ValueCard 
-                title="Design & Development in One Place" 
-                desc="Our designers and developers work together from the start of every project. No handoff friction. No designs that look right in Figma but break in the browser. The design you see in prototype is the product you get in production." 
+              <ValueCard
+                title="Design & Development in One Place"
+                desc="Our designers and developers work together from the start of every project. No handoff friction. No designs that look right in Figma but break in the browser. The design you see in prototype is the product you get in production."
               />
-              <ValueCard 
-                title="Research Before Pixels" 
-                desc="We do not start designing until we understand who we are designing for. User research and information architecture always precede visual design. This is what separates design that converts from design that decorates." 
+              <ValueCard
+                title="Research Before Pixels"
+                desc="We do not start designing until we understand who we are designing for. User research and information architecture always precede visual design. This is what separates design that converts from design that decorates."
               />
-              <ValueCard 
-                title="You Keep Everything Complete" 
-                desc="All Figma source files, design system documentation, and exported assets belong to you. If you ever need to take the work elsewhere, you have everything required to do so seamlessly." 
+              <ValueCard
+                title="You Keep Everything Complete"
+                desc="All Figma source files, design system documentation, and exported assets belong to you. If you ever need to take the work elsewhere, you have everything required to do so seamlessly."
               />
-              <ValueCard 
-                title="Honest Timelines & Scope" 
-                desc="A UI/UX engagement for a focused product scope typically runs 3 to 6 weeks. Complex platforms with multiple user roles take longer. We scope honestly and deliver exactly what we promise." 
+              <ValueCard
+                title="Honest Timelines & Scope"
+                desc="A UI/UX engagement for a focused product scope typically runs 3 to 6 weeks. Complex platforms with multiple user roles take longer. We scope honestly and deliver exactly what we promise."
               />
             </div>
           </div>
@@ -309,25 +308,25 @@ const UIUXDesign = () => {
           </div>
 
           <div className="space-y-4">
-            <FAQAccordionItem 
-              q="What is the difference between UI design and UX design?" 
-              a="UX design is concerned with the logic, structure, and flow of a product — how users navigate it, what they can do, and how easy those tasks are to complete. UI design is concerned with the visual layer — what the product looks like, how it uses color and typography, and how interface elements communicate their function. Good digital products require both. We deliver both in every engagement." 
+            <FAQAccordionItem
+              q="What is the difference between UI design and UX design?"
+              a="UX design is concerned with the logic, structure, and flow of a product — how users navigate it, what they can do, and how easy those tasks are to complete. UI design is concerned with the visual layer — what the product looks like, how it uses color and typography, and how interface elements communicate their function. Good digital products require both. We deliver both in every engagement."
             />
-            <FAQAccordionItem 
-              q="Do you design mobile apps as well as web products?" 
-              a="Yes. We design for web applications, iOS apps, Android apps, and cross-platform mobile products. Mobile design work follows platform conventions for iOS (Human Interface Guidelines) and Android (Material Design) while applying your brand identity consistently across both platforms." 
+            <FAQAccordionItem
+              q="Do you design mobile apps as well as web products?"
+              a="Yes. We design for web applications, iOS apps, Android apps, and cross-platform mobile products. Mobile design work follows platform conventions for iOS (Human Interface Guidelines) and Android (Material Design) while applying your brand identity consistently across both platforms."
             />
-            <FAQAccordionItem 
-              q="Can you redesign an existing product?" 
-              a="Yes. Redesign projects begin with a design audit of your existing product — we review user flows, identify usability problems, audit the visual consistency, and produce a findings report before proposing any changes. Most redesign clients come to us because their product has grown faster than their design has kept up." 
+            <FAQAccordionItem
+              q="Can you redesign an existing product?"
+              a="Yes. Redesign projects begin with a design audit of your existing product — we review user flows, identify usability problems, audit the visual consistency, and produce a findings report before proposing any changes. Most redesign clients come to us because their product has grown faster than their design has kept up."
             />
-            <FAQAccordionItem 
-              q="Do I need to provide brand guidelines?" 
-              a="No. If your brand guidelines exist, we work within them. If they do not, we develop the visual identity as part of the design engagement — color palette, typography, component style — and deliver it as part of the design system handoff. Starting without brand guidelines does not slow the project down." 
+            <FAQAccordionItem
+              q="Do I need to provide brand guidelines?"
+              a="No. If your brand guidelines exist, we work within them. If they do not, we develop the visual identity as part of the design engagement — color palette, typography, component style — and deliver it as part of the design system handoff. Starting without brand guidelines does not slow the project down."
             />
-            <FAQAccordionItem 
-              q="Will my developers be able to build from your Figma files?" 
-              a="Yes. Our developer handoff process includes annotated Figma files, a component library with documented states, spacing specifications, and a handoff session with your development team. We have built from our own Figma files many times — we know exactly what developers need to implement a design accurately." 
+            <FAQAccordionItem
+              q="Will my developers be able to build from your Figma files?"
+              a="Yes. Our developer handoff process includes annotated Figma files, a component library with documented states, spacing specifications, and a handoff session with your development team. We have built from our own Figma files many times — we know exactly what developers need to implement a design accurately."
             />
           </div>
         </section>
@@ -404,10 +403,10 @@ const DesignCard = ({ icon, title, desc, accentColor }) => {
 const ProjectCard = ({ image, title, subtitle }) => (
   <div className="group cursor-pointer">
     <div className="bg-[#0c0c0c] rounded-2xl overflow-hidden mb-4 border border-white/5 shadow-xl group-hover:border-purple-500/30 transition-all duration-300">
-      <img 
-        src={image} 
-        alt={title} 
-        className="w-full h-[250px] md:h-[340px] object-cover opacity-75 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700" 
+      <img
+        src={image}
+        alt={title}
+        className="w-full h-[250px] md:h-[340px] object-cover opacity-75 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700"
       />
     </div>
     <div className="flex items-center justify-between px-2">
@@ -458,14 +457,14 @@ const FAQAccordionItem = ({ q, a }) => {
 
   return (
     <div className="rounded-2xl bg-[#080808] border border-white/5 overflow-hidden transition-all duration-300">
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-6 md:p-8 text-left flex justify-between items-center gap-4 cursor-pointer hover:bg-white/[0.01] transition-colors"
       >
         <h4 className="text-base md:text-lg font-bold text-white pr-2">{q}</h4>
-        <ChevronDown 
-          size={20} 
-          className={`text-purple-500 transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`} 
+        <ChevronDown
+          size={20}
+          className={`text-purple-500 transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
         />
       </button>
       <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-[500px] border-t border-white/5' : 'max-h-0'}`}>
