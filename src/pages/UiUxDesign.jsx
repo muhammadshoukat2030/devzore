@@ -35,7 +35,7 @@ const UIUXDesign = () => {
         </Helmet>
 
         {/* --- 1. TOP NAVIGATION / BADGE AREA --- */}
-        <div className="max-w-7xl mx-auto px-6 pt-16 flex items-center justify-between relative z-50">
+        <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between relative z-50">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-purple-400 text-[10px] font-bold uppercase tracking-[0.2em]">
             <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-ping"></span>
             Visual Strategy & Experience
@@ -48,13 +48,13 @@ const UIUXDesign = () => {
         </div>
 
         {/* --- 2. HERO SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-12 md:py-20 grid lg:grid-cols-2 gap-12 items-center relative">
+        <section className="max-w-7xl mx-auto px-6 py-1 grid lg:grid-cols-2 gap-12 items-center">
           <div className="absolute top-[-20%] left-[-10%] w-96 h-96 bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
-          <div className="space-y-6 relative z-10 text-center lg:text-left">
+          <div className="space-y-1">
             <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
               UI/UX Design Services Built Around Real Users — <span className="text-purple-500">Not Designer Preferences</span>
             </h1>
-            <p className="text-gray-400 text-base md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+            <p className="text-gray-400 text-base md:text-mxl max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
               Most products do not fail because of bad engineering. They fail because users open the app, cannot figure out what to do, and close it. Good UI/UX design is not about making things look attractive — it is about making the right action obvious, the next step clear, and the overall experience so natural that users do not think about the interface at all.
             </p>
             <p className="text-gray-500 text-sm max-w-xl mx-auto lg:mx-0">
@@ -77,7 +77,7 @@ const UIUXDesign = () => {
 
           <div className="relative group lg:justify-self-end hidden md:block">
             <div className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
-            <div className="relative bg-[#111111] border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-3 max-w-[550px]">
+            <div className="relative bg-[#111111] border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-1 max-w-[550px]">
               <img
                 src={assets.uiux_Process}
                 alt="UI/UX Design Process Ecosystem"
