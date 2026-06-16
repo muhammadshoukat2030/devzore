@@ -18,7 +18,7 @@ const UIUXDesign = () => {
         {/* --- SEO & HELMET --- */}
         <Helmet>
           <title>UI/UX Design Services | DevZore — Design Agency</title>
-          <meta name="description" content="DevZore delivers research-driven UI/UX design for web apps, mobile apps, and SaaS products. Wireframes, prototypes, and production-ready Figma design — built around how your users actually think." />
+          <meta name="description" content="DevZore delivers research-driven UI/UX design for web apps, mobile apps, and SaaS products. Wireframes, prototypes, and production-ready Figma design — built around how your users actually think. Canonical: https://devzore.com/ui-ux-design" />
           <link rel="canonical" href="https://devzore.com/ui-ux-design" />
           <meta property="og:title" content="UI/UX Design Services | DevZore" />
           <meta property="og:description" content="Research-driven UI/UX design for web, mobile and SaaS. Wireframes, Figma prototypes and production UI from DevZore, Islamabad." />
@@ -122,7 +122,7 @@ const UIUXDesign = () => {
             <DesignCard
               icon={<Compass size={24} />}
               title="UX Research and User Journey Mapping"
-              desc="Before any design work begins, we study your users. Competitive analysis, user persona development, job-to-be-done mapping, and information architecture. We identify what your users are trying to accomplish, where existing products fail them, and how your product can genuinely serve them better. This work is what separates design that performs from design that simply exists."
+              desc="Before any design work begins, we study your users. Competitive analysis, user persona development, job-to-be-done mapping, and information architecture. We identify what your users are trying to accomplish, where existing products fail them, and how your product can genuinely serve them better. This work is what separates design that performs from design that simply exists"
               accentColor="purple"
             />
             <DesignCard
@@ -357,15 +357,15 @@ const UIUXDesign = () => {
         <footer className="max-w-7xl mx-auto px-6 pt-8 pb-12 border-t border-white/5">
           <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-xs md:text-sm text-gray-500 font-medium">
             <span className="text-gray-600 uppercase tracking-widest text-[10px] font-bold">Internal Ecosystem:</span>
-            <Link to="/web-app-development" className="hover:text-purple-400 transition-colors">Web App Development</Link>
+            <Link to="/web-development" className="hover:text-purple-400 transition-colors">Web App Development</Link>
             <span className="w-1 h-1 rounded-full bg-white/20"></span>
-            <Link to="/mern-stack" className="hover:text-purple-400 transition-colors">MERN Stack Development</Link>
+            <Link to="/mern-stack-development" className="hover:text-purple-400 transition-colors">MERN Stack Development</Link>
             <span className="w-1 h-1 rounded-full bg-white/20"></span>
-            <Link to="/mvp" className="hover:text-purple-400 transition-colors">Startup MVP</Link>
+            <Link to="/startup-mvp" className="hover:text-purple-400 transition-colors">Startup MVP</Link>
             <span className="w-1 h-1 rounded-full bg-white/20"></span>
             <Link to="/ecommerce" className="hover:text-purple-400 transition-colors">E-Commerce Development</Link>
             <span className="w-1 h-1 rounded-full bg-white/20"></span>
-            <Link to="/mobile-development" className="hover:text-purple-400 transition-colors">Mobile App Development</Link>
+            <Link to="/mobile-apps" className="hover:text-purple-400 transition-colors">Mobile App Development</Link>
             <span className="w-1 h-1 rounded-full bg-white/20"></span>
             <Link to="/" className="hover:text-purple-400 transition-colors">Back to Home</Link>
           </div>

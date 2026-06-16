@@ -27,6 +27,7 @@ import {
   Activity,
   Key
 } from 'lucide-react';
+import { assets } from '../assets/assets';
 
 function BackendApi() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -398,8 +399,8 @@ function BackendApi() {
         </section>
 
         {/* --- BACKEND PROCESS & IMAGES (FIXED) --- */}
-        <section className="max-w-7xl mx-auto px-6 py-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <section className="max-w-7xl mx-auto px-6 py-10">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
 
             {/* Image 1 & Content */}
             <div className="group relative">
@@ -407,10 +408,10 @@ function BackendApi() {
               <div className="relative bg-[#0c0c0c] border border-white/10 rounded-3xl overflow-hidden">
                 <div className="h-80 w-full overflow-hidden bg-gray-900">
                   <img
-                    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=1200"
+                    src={assets.backend_aws}
                     alt="Server Infrastructure"
                     className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-in-out"
-                    onError={(e) => { e.target.src = "https://via.placeholder.com/800x600/111/555?text=Server+Infrastructure"; }}
+                    onError={(e) => { e.target.src = assets.backend_aws; }}
                   />
                 </div>
                 <div className="p-8">
@@ -431,7 +432,7 @@ function BackendApi() {
               <div className="relative bg-[#0c0c0c] border border-white/10 rounded-3xl overflow-hidden">
                 <div className="h-80 w-full overflow-hidden bg-gray-900">
                   <img
-                    src="https://images.unsplash.com/photo-1544383335-c533a4aa4afc?auto=format&fit=crop&q=80&w=1200"
+                    src={assets.backend_clean}
                     alt="Clean Database Code"
                     className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-in-out"
                     onError={(e) => { e.target.src = "https://via.placeholder.com/800x600/111/555?text=Database+Optimization"; }}

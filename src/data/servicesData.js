@@ -40,10 +40,10 @@ export const servicesData = {
         highlight: "& APIs",
         subtitle: "Robust server architectures, high-availability databases, and seamless integrations.",
         gallery: [
-            { img: assets.ecom2, label: "Microservices Router Gateway", alt: "Secure Node.js and Express API gateway architecture developed by expert backend engineers in Islamabad.", geo: "Expert node js backend development agency in Islamabad Pakistan creating fast RESTful APIs and secure server-side databases." },
-            { img: assets.ecommerce2, label: "Automated Webhooks System", alt: "Centralized third-party webhook sync system optimized for real-time secure enterprise data pipelines.", geo: "Scalable backend architectural engineers and custom database administration services in Pakistan." },
-            { img: assets.ecommrec_3, label: "GraphQL Data Aggregator", alt: "Complex unified schema layer engineered for multi-tenant server requests and optimized query logs.", geo: "Custom backend development services for enterprise data handling and secure cloud scaling." },
-            { img: assets.ecommer_home_decore, label: "Redis Caching Pipeline", alt: "High performance database response caching engine built to process concurrent background jobs.", geo: "Database structural consultants specializing in MongoDB scaling, PostgreSQL, and high security APIs." }
+            { img: assets.backend_microservices, label: "Microservices Router Gateway", alt: "Secure Node.js and Express API gateway architecture developed by expert backend engineers in Islamabad.", geo: "Expert node js backend development agency in Islamabad Pakistan creating fast RESTful APIs and secure server-side databases." },
+            { img: assets.backend_automated, label: "Automated Webhooks System", alt: "Centralized third-party webhook sync system optimized for real-time secure enterprise data pipelines.", geo: "Scalable backend architectural engineers and custom database administration services in Pakistan." },
+            { img: assets.backend_graphql, label: "GraphQL Data Aggregator", alt: "Complex unified schema layer engineered for multi-tenant server requests and optimized query logs.", geo: "Custom backend development services for enterprise data handling and secure cloud scaling." },
+            { img: assets.backend_redis, label: "Redis Caching Pipeline", alt: "High performance database response caching engine built to process concurrent background jobs.", geo: "Database structural consultants specializing in MongoDB scaling, PostgreSQL, and high security APIs." }
         ]
     },
     MernStackDevelopment: {
@@ -95,10 +95,10 @@ export const servicesData = {
         highlight: "& Reliability",
         subtitle: "Continuous optimization, performance tuning, security monitoring, and regular backups.",
         gallery: [
-            { img: assets.ecom2, label: "Server Health Monitor", alt: "Automated performance tracking and system health report panel managed by technical specialists.", geo: "Affordable website maintenance services in Islamabad Pakistan offering bug fixes speed optimization and SEO health checks." },
-            { img: assets.ecommerce2, label: "Disaster Recovery Engine", alt: "Cloud secure continuous data backup logs and security patch execution screen.", geo: "Website security monitoring full-stack web support packages and malware removal services in Pakistan." },
-            { img: assets.ecommrec_3, label: "Legacy Code Optimization", alt: "Refactoring database schemas and upgrading dynamic server dependencies seamlessly.", geo: "Long term software security retainer packages and full-stack web support application tuneups." },
-            { img: assets.ecommer_home_decore, label: "SEO Site-Health Analytics", alt: "Monitoring core vitals indexing logs and structured schema deployments efficiently.", geo: "Technical search console management and speed indexing optimization protocols for web portals." }
+            { img: assets.maintenance_server_health, label: "Server Health Monitor", alt: "Automated performance tracking and system health report panel managed by technical specialists.", geo: "Affordable website maintenance services in Islamabad Pakistan offering bug fixes speed optimization and SEO health checks." },
+            { img: assets.maintenance_disaster, label: "Disaster Recovery Engine", alt: "Cloud secure continuous data backup logs and security patch execution screen.", geo: "Website security monitoring full-stack web support packages and malware removal services in Pakistan." },
+            { img: assets.maintenance_legacy_code, label: "Legacy Code Optimization", alt: "Refactoring database schemas and upgrading dynamic server dependencies seamlessly.", geo: "Long term software security retainer packages and full-stack web support application tuneups." },
+            { img: assets.maintenance_SEO_site, label: "SEO Site-Health Analytics", alt: "Monitoring core vitals indexing logs and structured schema deployments efficiently.", geo: "Technical search console management and speed indexing optimization protocols for web portals." }
         ]
     },
     StartupMVP: {
@@ -106,10 +106,10 @@ export const servicesData = {
         highlight: "MVP Launch",
         subtitle: "Transforming software concepts into functional, pitch-ready products in record time.",
         gallery: [
-            { img: assets.ecom2, label: "Micro-SaaS Booking System", alt: "Minimum Viable Product (MVP) web solution developed for rapid user testing and funding pitches.", geo: "Startup MVP development company in Pakistan offering rapid agile software prototyping and low-code full-stack versions." },
-            { img: assets.ecommerce2, label: "PropTech MVP Engine", alt: "Fast-tracked initial validation platform built with core user features for seed-funding presentations.", geo: "Hire developers to build software MVP prototypes in Islamabad Rawalpindi for startup pitch validation." },
-            { img: assets.ecommrec_3, label: "EdTech Micro Platform", alt: "Functional lightweight version deployed swiftly for client demographic feedback loops.", geo: "Agile product lifecycle validation and minimum viable software architecture deployment strategies." },
-            { img: assets.ecommer_home_decore, label: "Agile Task Matrix", alt: "Sleek simplified project pipeline utility created to pitch product viability early.", geo: "Fast scalable software house engineering pitch-ready MVPs for international validation markets." }
+            { img: assets.startup_micro_saas, label: "Micro-SaaS Booking System", alt: "Minimum Viable Product (MVP) web solution developed for rapid user testing and funding pitches.", geo: "Startup MVP development company in Pakistan offering rapid agile software prototyping and low-code full-stack versions." },
+            { img: assets.startup_proptech, label: "PropTech MVP Engine", alt: "Fast-tracked initial validation platform built with core user features for seed-funding presentations.", geo: "Hire developers to build software MVP prototypes in Islamabad Rawalpindi for startup pitch validation." },
+            { img: assets.startup_edtech, label: "EdTech Micro Platform", alt: "Functional lightweight version deployed swiftly for client demographic feedback loops.", geo: "Agile product lifecycle validation and minimum viable software architecture deployment strategies." },
+            { img: assets.startup_agile_task_matrix, label: "Agile Task Matrix", alt: "Sleek simplified project pipeline utility created to pitch product viability early.", geo: "Fast scalable software house engineering pitch-ready MVPs for international validation markets." }
         ]
     },
     AllServices: {

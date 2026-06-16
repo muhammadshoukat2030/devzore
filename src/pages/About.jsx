@@ -11,12 +11,11 @@ const AboutPage = () => {
   return (
     <>
       <Helmet>
-        <title>About DevZore | Software Agency Founded by Shoukat</title>
-        <meta name="description" content="Learn about DevZore, a software development agency founded by Shoukat in Islamabad, Pakistan. We help businesses worldwide build scalable web and mobile applications." />
-        <meta name="keywords" content="about DevZore, Shoukat developer, software agency Islamabad, Pakistan software company" />
+        <title>About DevZore | Software Agency Founded by Shoukat — Islamabad</title>
+        <meta name="description" content="Learn about DevZore, a software development agency founded by Shoukat in Islamabad, Pakistan. We help startups and businesses worldwide build scalable web apps, mobile apps and SaaS products." />
         <link rel="canonical" href="https://devzore.com/about" />
-        <meta property="og:title" content="About DevZore | Software Agency Founded by Shoukat" />
-        <meta property="og:description" content="DevZore is a software agency in Islamabad helping businesses build web apps, mobile apps and SaaS products." />
+        <meta property="og:title" content="About DevZore | Software Agency by Shoukat" />
+        <meta property="og:description" content="DevZore is a software agency in Islamabad helping businesses build web apps, mobile apps and SaaS products worldwide." />
         <meta property="og:url" content="https://devzore.com/about" />
         <meta property="og:type" content="website" />
       </Helmet>

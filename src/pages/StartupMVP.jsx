@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
+import { assets } from '../assets/assets';
 import {
   Rocket, Layers, ShieldCheck, ArrowRight,
-  Target, Zap, Flame, Code2, Cpu, 
+  Target, Zap, Flame, Code2, Cpu,
   ChevronDown, CheckCircle, HelpCircle, Shield, Sparkles
 } from 'lucide-react';
 
@@ -12,11 +13,11 @@ const StartupMVP = () => {
   return (
     <HelmetProvider>
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20 overflow-x-hidden">
-        
+
         {/* --- SEO & HELMET MANAGEMENT --- */}
         <Helmet>
-          <title>Startup MVP Development Company | DevZore</title>
-          <meta name="description" content="DevZore builds investor-ready MVPs for startups in 8 to 14 weeks using MERN stack. Validate your idea, reach early users, and attract funding — without burning through your runway. Free consultation." />
+          <title>Startup MVP Development Company | DevZore Meta Description</title>
+          <meta name="description" content="DevZore builds investor-ready MVPs for startups in 8 to 14 weeks using MERN stack. Validate your idea, reach early users, and attract funding — without burning through your runway. Free consultation. Canonical: https://devzore.com/startup-mvp" />
           <link rel="canonical" href="https://devzore.com/startup-mvp" />
           <meta property="og:title" content="Startup MVP Development Company | DevZore" />
           <meta property="og:description" content="Investor-ready MVPs built in 8–14 weeks using MERN stack. From idea to launch — DevZore is your startup development partner." />
@@ -33,7 +34,7 @@ const StartupMVP = () => {
         </Helmet>
 
         {/* --- 1. TOP HEADER NAVIGATION --- */}
-        <div className="max-w-7xl mx-auto px-6 pt-16 flex items-center justify-between relative z-50">
+        <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between relative z-50">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-[10px] font-bold uppercase tracking-[0.2em]">
             <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-ping"></span>
             Rapid Launch Protocol
@@ -46,15 +47,15 @@ const StartupMVP = () => {
         </div>
 
         {/* --- 2. HERO SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-12 md:py-20 grid lg:grid-cols-2 gap-12 items-center relative">
+        <section className="max-w-7xl mx-auto px-6 py- grid lg:grid-cols-2 gap-2 items-center">
           <div className="absolute top-[-10%] left-[-5%] w-96 h-96 bg-purple-600/10 blur-[130px] rounded-full pointer-events-none"></div>
-          
-          <div className="space-y-6 relative z-10 text-center lg:text-left">
-            <h1 className="text-4xl md:text-6xl lg:text-[4.2rem] font-black leading-[1.05] tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">
-              Startup MVP Development Company — <span className="text-purple-500">From Idea to Launch in 8 to 14 Weeks</span>
+
+          <div className="space-y-2 ">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+              Startup MVP Development Company - <span className="text-purple-500">From Idea to Launch in 8 to 14 Weeks</span>
             </h1>
             <p className="text-gray-400 text-base md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
-              Most startup ideas do not fail because of the idea. They fail because the team spends six months and their entire pre-seed budget building a product that turns out to solve a problem nobody has — or that real users interact with in ways nobody predicted. 
+              Most startup ideas do not fail because of the idea. They fail because the team spends six months and their entire pre-seed budget building a product that turns out to solve a problem nobody has — or that real users interact with in ways nobody predicted.
             </p>
             <p className="text-gray-500 text-sm md:text-base max-w-sm md:max-w-xl mx-auto lg:mx-0 leading-relaxed">
               An MVP changes that equation. A Minimum Viable Product is not a half-finished application — it is the leanest version of your product that delivers genuine value to real users, fast enough to learn from before your runway runs out. At DevZore, we build MVPs that are production-ready, technically sound, and designed to tell you something true about your market — in 8 to 14 weeks.
@@ -78,7 +79,7 @@ const StartupMVP = () => {
             <div className="absolute -inset-2 bg-gradient-to-r from-orange-500 to-purple-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
             <div className="relative bg-[#111111] border border-white/10 rounded-2xl overflow-hidden shadow-2xl p-2 max-w-[500px]">
               <img
-                src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80&w=800"
+                src={assets.startup_mvp}
                 alt="Startup Scale Infrastructure Ecosystem"
                 className="w-full h-auto opacity-80 rounded-xl group-hover:scale-[1.02] transition-transform duration-700"
               />
@@ -110,7 +111,7 @@ const StartupMVP = () => {
         </section>
 
         {/* --- 4. MVP CORE SERVICES MATRIX --- */}
-        <section className="max-w-7xl mx-auto px-6 py-16">
+        <section className="max-w-7xl mx-auto px-6 py-6">
           <div className="mb-12">
             <span className="text-purple-500 font-mono text-xs tracking-[0.4em] uppercase block mb-2">Capabilities</span>
             <h2 className="text-3xl md:text-5xl font-black">MVP Development <span className="text-purple-500">Services We Offer</span></h2>
@@ -173,12 +174,12 @@ const StartupMVP = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             <LaunchCard
-              image="https://images.unsplash.com/photo-1551288049-bbbda536ad39?auto=format&fit=crop&q=80&w=800"
+              image={assets.startup_fintech_dashboard}
               title="Fintech Dashboard MVP"
               subtitle="Raised $1.2M in Seed Round"
             />
             <LaunchCard
-              image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
+              image={assets.startup_saas_collaboration}
               title="SaaS Collaboration Tool"
               subtitle="Zero to 10k Active Users"
             />
@@ -207,16 +208,16 @@ const StartupMVP = () => {
         <section className="max-w-7xl mx-auto px-6 py-10">
           <div className="bg-[#080808] border border-white/5 rounded-[3rem] p-8 md:p-14 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-80 h-80 bg-purple-600/5 blur-[120px] rounded-full pointer-events-none"></div>
-            
+
             <div className="text-center max-w-3xl mx-auto space-y-6 relative z-10">
               <span className="text-purple-400 font-mono text-xs tracking-[0.4em] uppercase block">Stack Architecture</span>
               <h3 className="text-2xl md:text-4xl font-black tracking-tight text-white">Technologies We Use for MVP Development</h3>
               <p className="text-gray-500 text-sm max-w-xl mx-auto">
                 We select highly scalable stack parameters to ensure your minimal system converts perfectly into robust enterprise-grade foundations as traction builds.
               </p>
-              
+
               <div className="flex flex-wrap justify-center gap-2 pt-4">
-                {["MongoDB & Atlas", "Express.js", "React 19", "Next.js 15", "Node.js 22 LTS", "TypeScript 5", "Stripe Core Payments", "JWT & OAuth 2.0", "TanStack Query", "Zustand State", "Tailwind CSS", "shadcn/ui", "Socket.io Realtime", "React Native Mobile", "Docker Containers", "GitHub Actions CI/CD", "AWS Cloud Infrastructure", "Vercel Systems", "Sentry Monitoring", "Datadog Diagnostics"].map((tech, i) => (
+                {["MongoDB & Atlas", "Express.js", "React 19", "Next.js 15", "Node.js 22 LTS", "TypeScript 5", "Stripe Core Payments", "JWT & OAuth 2.0", "TanStack Query", "Zustand State", "Tailwind CSS", "shadcn/ui", "Socket.io Realtime", "React Native Mobile", "GitHub Actions CI/CD", "AWS Cloud Infrastructure", "Vercel Systems", "Sentry Monitoring",].map((tech, i) => (
                   <span key={i} className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-semibold tracking-wide text-gray-300 hover:border-purple-500/30 hover:text-white transition-colors cursor-default">
                     {tech}
                   </span>
@@ -253,21 +254,21 @@ const StartupMVP = () => {
             </div>
 
             <div className="lg:col-span-2 grid md:grid-cols-2 gap-6">
-              <ValuePropCard 
-                title="We Have Shipped Real MVPs" 
-                desc="We understand the difference between a prototype that impresses at demo day and a product that holds up when real users interact with it under real conditions. Every MVP we build is production-ready — not a proof of concept that needs to be rebuilt before it can handle growth." 
+              <ValuePropCard
+                title="We Have Shipped Real MVPs"
+                desc="We understand the difference between a prototype that impresses at demo day and a product that holds up when real users interact with it under real conditions. Every MVP we build is production-ready — not a proof of concept that needs to be rebuilt before it can handle growth."
               />
-              <ValuePropCard 
-                title="We Challenge Scope Constantly" 
-                desc="Every feature you add to an MVP is a week you are not in front of real users. We push back on features that do not test your core hypothesis, and we help you prioritize what ships in the MVP against what waits for version two." 
+              <ValuePropCard
+                title="We Challenge Scope Constantly"
+                desc="Every feature you add to an MVP is a week you are not in front of real users. We push back on features that do not test your core hypothesis, and we help you prioritize what ships in the MVP against what waits for version two."
               />
-              <ValuePropCard 
-                title="Founders Talk Directly to Engineers" 
-                desc="No account managers relaying information between you and the people writing your code. You have direct communication with the team building your product, which means faster decisions and fewer misunderstandings." 
+              <ValuePropCard
+                title="Founders Talk Directly to Engineers"
+                desc="No account managers relaying information between you and the people writing your code. You have direct communication with the team building your product, which means faster decisions and fewer misunderstandings."
               />
-              <ValuePropCard 
-                title="Your Code Is Yours From Day One" 
-                desc="Source code lives in your GitHub organization. Infrastructure runs in your cloud accounts. When you hire your first in-house engineers, they inherit a well-documented codebase — not a black box." 
+              <ValuePropCard
+                title="Your Code Is Yours From Day One"
+                desc="Source code lives in your GitHub organization. Infrastructure runs in your cloud accounts. When you hire your first in-house engineers, they inherit a well-documented codebase — not a black box."
               />
             </div>
           </div>
@@ -281,25 +282,25 @@ const StartupMVP = () => {
           </div>
 
           <div className="space-y-4">
-            <MVPAccordionItem 
-              q="How long does MVP development take with DevZore?" 
-              a="A focused MVP — one core user flow, a defined feature set, and no external dependencies we cannot control — typically takes 8 to 14 weeks from the start of development. The discovery and scoping phase adds 1 to 2 weeks before development begins. Complex MVPs with marketplace logic, third-party integrations, or mobile and web platforms in parallel take longer. After discovery, we give you a milestone-based timeline with a clear scope attached to every delivery date." 
+            <MVPAccordionItem
+              q="How long does MVP development take with DevZore?"
+              a="A focused MVP — one core user flow, a defined feature set, and no external dependencies we cannot control — typically takes 8 to 14 weeks from the start of development. The discovery and scoping phase adds 1 to 2 weeks before development begins. Complex MVPs with marketplace logic, third-party integrations, or mobile and web platforms in parallel take longer. After discovery, we give you a milestone-based timeline with a clear scope attached to every delivery date."
             />
-            <MVPAccordionItem 
-              q="How do you decide what goes into the MVP and what does not?" 
-              a="We ask one question for every proposed feature: what does this feature prove that we cannot prove without it? If a feature does not test a core assumption and does not enable the core workflow, it goes on the version-two backlog. This is the hardest conversation in every MVP engagement — and the most valuable one." 
+            <MVPAccordionItem
+              q="How do you decide what goes into the MVP and what does not?"
+              a="We ask one question for every proposed feature: what does this feature prove that we cannot prove without it? If a feature does not test a core assumption and does not enable the core workflow, it goes on the version-two backlog. This is the hardest conversation in every MVP engagement — and the most valuable one."
             />
-            <MVPAccordionItem 
-              q="Can you build our MVP if we only have an idea and no technical specification?" 
-              a="Yes. The discovery and scoping phase is designed exactly for this situation. Many of our best MVP engagements started with a founding team that had a clear problem to solve and a target user in mind but had not yet produced a technical document. Discovery is where that document gets created." 
+            <MVPAccordionItem
+              q="Can you build our MVP if we only have an idea and no technical specification?"
+              a="Yes. The discovery and scoping phase is designed exactly for this situation. Many of our best MVP engagements started with a founding team that had a clear problem to solve and a target user in mind but had not yet produced a technical document. Discovery is where that document gets created."
             />
-            <MVPAccordionItem 
-              q="What happens after the MVP launches?" 
-              a="Every engagement includes 30 days of post-launch support. After that, we offer monthly retainer plans for iteration, feature development, and maintenance. Most MVP clients continue working with DevZore after launch because we already know the codebase and can move faster than a new team could." 
+            <MVPAccordionItem
+              q="What happens after the MVP launches?"
+              a="Every engagement includes 30 days of post-launch support. After that, we offer monthly retainer plans for iteration, feature development, and maintenance. Most MVP clients continue working with DevZore after launch because we already know the codebase and can move faster than a new team could."
             />
-            <MVPAccordionItem 
-              q="Do you help with investor pitch preparation?" 
-              a="Indirectly, yes. The interactive Figma prototype we produce before development begins can be shown to investors during fundraising. Many clients use their working MVP or prototype in pitch decks and demo days. We do not produce pitch decks directly, but the technical artifacts we deliver — a working product, clean architecture, documented codebase — are exactly what technical due diligence requires." 
+            <MVPAccordionItem
+              q="Do you help with investor pitch preparation?"
+              a="Indirectly, yes. The interactive Figma prototype we produce before development begins can be shown to investors during fundraising. Many clients use their working MVP or prototype in pitch decks and demo days. We do not produce pitch decks directly, but the technical artifacts we deliver — a working product, clean architecture, documented codebase — are exactly what technical due diligence requires."
             />
           </div>
         </section>
@@ -404,14 +405,14 @@ const MVPAccordionItem = ({ q, a }) => {
 
   return (
     <div className="rounded-2xl bg-[#080808] border border-white/5 overflow-hidden transition-all duration-300">
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-6 md:p-8 text-left flex justify-between items-center gap-4 cursor-pointer hover:bg-white/[0.01] transition-colors"
       >
         <h4 className="text-base md:text-lg font-bold text-white">{q}</h4>
-        <ChevronDown 
-          size={18} 
-          className={`text-purple-500 transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`} 
+        <ChevronDown
+          size={18}
+          className={`text-purple-500 transition-transform duration-300 shrink-0 ${isOpen ? 'rotate-180' : ''}`}
         />
       </button>
       <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-[500px] border-t border-white/5' : 'max-h-0'}`}>

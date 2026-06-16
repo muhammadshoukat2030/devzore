@@ -8,6 +8,7 @@ import {
   ArrowRight, HardDrive, RefreshCcw, ChevronDown, 
   HelpCircle, Server, Code, FileText, AlertTriangle
 } from 'lucide-react';
+import { assets } from '../assets/assets';
 
 const Maintenance = () => {
   return (
@@ -84,7 +85,7 @@ const Maintenance = () => {
               <span className="ml-2 text-gray-400">infrastructure-telemetry.log</span>
             </div>
             <img
-              src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop"
+              src={assets.maintenance_system}
               alt="System Engineering and Optimization Panel"
               className="w-full h-auto opacity-75 rounded-b-xl group-hover:scale-[1.01] transition-transform duration-700"
             />
@@ -281,12 +282,12 @@ const Maintenance = () => {
       <section className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid md:grid-cols-2 gap-8">
           <StatusTelemetryItem
-            image="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=2070&auto=format&fit=crop"
+            image={assets.maintenance_server_health}
             title="Database Health Checks"
             subtitle="Automated Backups & Integrity"
           />
           <StatusTelemetryItem
-            image="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
+            image={assets.maintenance_server_load}
             title="Server Load Balancers"
             subtitle="Uptime & Traffic Management"
           />

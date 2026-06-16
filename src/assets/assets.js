@@ -67,25 +67,36 @@ import uiux_saas_sashboard from './uiux_saas_sashboard.png';
 import uiux_fintech_mobile from './uiux_fintech_mobile.png';
 
 // Startup MVP
-// import mvp_rapid_prototype from './mvp_rapid_prototype.webp';
-// import mvp_agile from './mvp_agile.webp';
-// import mvp_scalable_base from './mvp_scalable_base.webp';
-// import mvp_cost_effective from './mvp_cost_effective.webp';
-// import mvp_launch from './mvp_launch.webp';
+// Startup MVP
+import startup_mvp from './startup_mvp.jpg'; // Changed to .jpg
+import startup_saas_collaboration from './startup_saas_collaboration.png';
+import startup_edtech from './startup_edtech.png';
+import startup_proptech from './startup_proptech.png';
+import startup_micro_saas from './startup_micro_saas.png';
+import startup_fintech_dashboard from './startup_fintech_dashboard.png'; // Added missing import
+import startup_agile_task_matrix from './startup_agile_task_matrix.png';
+// MVP
+
+
 
 // Maintenance
-// import maintenance_monitoring from './maintenance_monitoring.webp';
-// import maintenance_updates from './maintenance_updates.webp';
-// import maintenance_backup from './maintenance_backup.webp';
-// import maintenance_bugfix from './maintenance_bugfix.webp';
-// import maintenance_audit from './maintenance_audit.webp';
+import maintenance_disaster from './maintenance_disaster.png';
+import maintenance_legacy_code from './maintenance_legacy_code.png';
+import maintenance_SEO_site from './maintenance_SEO_site.png';
+import maintenance_server_health from './maintenance_server_health.png';
+import maintenance_server from './maintenance_server.png';
+import maintenance_system from './maintenance_system.png';
+import maintenance from './maintenance.png';
+import maintenance_server_load from './maintenance_server_load.png';
+
 
 // Backend & API Development
-// import backend_rest_api from './backend_rest_api.webp';
-// import backend_graphql from './backend_graphql.webp';
-// import backend_microservices from './backend_microservices.webp';
-// import backend_auth from './backend_auth.webp';
-// import backend_caching from './backend_caching.webp';
+import backend_automated from './backend_automated.png';
+import backend_aws from './backend_aws.png';
+import backend_clean from './backend_clean.png';
+import backend_graphql from './backend_graphql.png';
+import backend_microservices from './backend_microservices.png';
+import backend_redis from './backend_redis.png';
 
 export const assets = {
   // logo_main,
@@ -156,24 +167,30 @@ export const assets = {
   uiux_fintech_mobile,
 
   // MVP
-  // mvp_rapid_prototype,
-  // mvp_agile,
-  // mvp_scalable_base,
-  // mvp_cost_effective,
-  // mvp_launch,
+  startup_mvp,
+  startup_saas_collaboration,
+  startup_edtech,            // Ye missing tha, ab add ho gaya hai
+  startup_proptech,
+  startup_micro_saas,
+  startup_fintech_dashboard,
+  startup_agile_task_matrix,
 
   // Maintenance
-  // maintenance_monitoring,
-  // maintenance_updates,
-  // maintenance_backup,
-  // maintenance_bugfix,
-  // maintenance_audit,
-
+  maintenance_disaster,
+  maintenance_legacy_code,
+  maintenance_SEO_site,
+  maintenance_server_health,
+  maintenance_server,
+  maintenance_system,
+  maintenance,
+  maintenance_server_load,
+  
   // Backend
-  // backend_rest_api,
-  // backend_graphql,
-  // backend_microservices,
-  // backend_auth,
-  // backend_caching
+  backend_automated,
+  backend_aws,
+  backend_clean,
+  backend_graphql,
+  backend_microservices,
+  backend_redis,
 
 };
