@@ -13,7 +13,7 @@ import Projects from './sections/Projects'
 import WhyUs from "./sections/WhyUs"
 import Process from './sections/Process'
 import TechStack from './sections/TechStack'
-import Pricing from './sections/Pricing'
+// import Pricing from './sections/Pricing'
 import Testimonials from './sections/Testimonials'
 import FAQ from './sections/FAQ'
 
@@ -83,7 +83,7 @@ function App() {
                 <WhyUs />
                 <Process />
                 <TechStack />
-                <Pricing />
+                {/* <Pricing /> */}
                 <Testimonials />
                 <FAQ />
               </>

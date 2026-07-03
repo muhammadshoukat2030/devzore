@@ -149,7 +149,7 @@ const Contact = () => {
                           value={phoneNumber}
                           onChange={setPhoneNumber}
                           containerClass="phone-container"
-                          inputClass="modern-input !pl-[70px]"
+                          inputClass="modern-input !pl-[60px] !h-[56px] padding-40px"
                           buttonClass="phone-dropdown-btn"
                           dropdownClass="phone-dropdown-list"
                           searchClass="phone-search-field"
@@ -183,10 +183,9 @@ const Contact = () => {
                   </div>
 
                   {/* UX OPTIMIZED BUDGET DROPDOWN */}
-                  <div className="space-y-3">
+                  {/* <div className="space-y-3">
                     <label className="text-[11px] uppercase tracking-[0.3em] font-black text-purple-500/80 ml-1">Project Investment (Flexible)</label>
                     <div className="relative">
-                      {/* Humne modern-input class pehle hi di hui hai, bas CSS usay mobile pe handle karegi */}
                       <select name="budget" required className="modern-input appearance-none pr-10 cursor-pointer">
                         <option value="">Choose your investment range</option>
                         <option value="startup">$199 – $499 (Landing / Personal Portfolio)</option>
@@ -198,7 +197,7 @@ const Contact = () => {
                       <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none w-4 h-4" />
                     </div>
                     <p className="text-[10px] text-gray-500 italic ml-1">*Ranges are estimated. Final quote provided after brief analysis.</p>
-                  </div>
+                  </div> */}
 
                   <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500 ml-1">Technical Brief</label>
