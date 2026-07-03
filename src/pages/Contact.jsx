@@ -149,7 +149,7 @@ const Contact = () => {
                           value={phoneNumber}
                           onChange={setPhoneNumber}
                           containerClass="phone-container"
-                          inputClass="modern-input !pl-[60px] !h-[56px] padding-40px"
+                          inputClass="modern-input !pl-[60px] !h-[51px] padding-38px"
                           buttonClass="phone-dropdown-btn"
                           dropdownClass="phone-dropdown-list"
                           searchClass="phone-search-field"
