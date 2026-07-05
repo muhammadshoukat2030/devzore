@@ -53,39 +53,13 @@ const WebDevelopment = () => {
     <>
 
       <Helmet>
-        <title>Custom Web Application Development Company | DevZore</title>
-        <meta
-          name="description"
-          content="DevZore builds high-performance custom web applications for startups and enterprises. Full-stack development, cloud deployment, and ongoing support. Talk to our team today."
-        />
-        <link
-          rel="canonical"
-          href="https://devzore.com/web-development"
-        />
-
-        {/* Open Graph */}
-        <meta property="og:title" content="Custom Web Application Development Company | DevZore" />
-        <meta
-          property="og:description"
-          content="High-performance web applications built with modern technologies, scalable architecture, and cloud deployment by DevZore."
-        />
+        <title>Web Development Services | DevZore — React & Next.js Experts</title>
+        <meta name="description" content="DevZore builds fast, scalable websites and web applications using React, Next.js and Node.js. Custom web development for startups and businesses — based in Islamabad, Pakistan." />
+        <link rel="canonical" href="https://devzore.com/web-development" />
+        <meta property="og:title" content="Web Development Services | DevZore" />
+        <meta property="og:description" content="Custom web development using React, Next.js and Node.js. Fast, scalable websites built by DevZore, Islamabad." />
         <meta property="og:url" content="https://devzore.com/web-development" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DevZore" />
-
-        {/* Social Image */}
-        <meta property="og:image" content="https://devzore.com/og/web-development.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Custom Web Application Development | DevZore" />
-        <meta
-          name="twitter:description"
-          content="We build scalable, high-performance web applications with full-stack development and cloud deployment."
-        />
-        <meta name="twitter:image" content="https://devzore.com/og/web-development.jpg" />
       </Helmet>
 
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10 overflow-x-hidden">

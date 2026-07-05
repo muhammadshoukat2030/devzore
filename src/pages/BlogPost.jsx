@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-
 const BlogPage = () => {
   const [selectedBlog, setSelectedBlog] = useState(null); // Modal control state
   const [activeCategory, setActiveCategory] = useState('All');
@@ -390,11 +389,11 @@ const BlogPage = () => {
       readTime: '18 min read'
     },
     {
-id: 16,
-category: 'Engineering',
-title: 'Scaling Node.js Applications with Microservices',
-excerpt: 'Learn how microservices architecture helps growing businesses scale faster, deploy independently, and improve reliability...',
-content: `
+      id: 16,
+      category: 'Engineering',
+      title: 'Scaling Node.js Applications with Microservices',
+      excerpt: 'Learn how microservices architecture helps growing businesses scale faster, deploy independently, and improve reliability...',
+      content: `
 
   <p>As your application grows, a monolithic backend can become difficult to maintain. At <b>DevZore</b>, we help businesses transition to scalable <b>Microservices Architecture</b> using Node.js and modern cloud technologies.</p>
 
@@ -407,17 +406,17 @@ content: `
   <h3 class="text-white text-2xl font-bold mt-8 mb-4">Improved Reliability</h3>
   <p>If one service fails, the rest of the system can continue operating. This approach improves uptime and creates a more resilient application for growing businesses.</p>
   `,
-  author: 'M-Shoukat Engineer',
-  date: 'May 18, 2026',
-  image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800',
-  readTime: '16 min read'
-},
-{
-id: 17,
-category: 'Engineering',
-title: 'Database Optimization Techniques for High-Traffic Applications',
-excerpt: 'Speed up your application with indexing, query optimization, caching, and database performance tuning strategies...',
-content: `
+      author: 'M-Shoukat Engineer',
+      date: 'May 18, 2026',
+      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800',
+      readTime: '16 min read'
+    },
+    {
+      id: 17,
+      category: 'Engineering',
+      title: 'Database Optimization Techniques for High-Traffic Applications',
+      excerpt: 'Speed up your application with indexing, query optimization, caching, and database performance tuning strategies...',
+      content: `
 
   <p>Slow database queries are one of the most common reasons applications struggle under heavy traffic. At <b>DevZore</b>, we optimize databases to deliver fast and reliable user experiences.</p>
 
@@ -430,17 +429,17 @@ content: `
   <h3 class="text-white text-2xl font-bold mt-8 mb-4">Caching for Faster Responses</h3>
   <p>By integrating Redis caching layers, frequently requested data can be delivered instantly, reducing database load and improving application responsiveness.</p>
   `,
-  author: 'M-Shoukat Engineer',
-  date: 'May 24, 2026',
-  image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800',
-  readTime: '15 min read'
-},
-{
-id: 18,
-category: 'SaaS',
-title: 'Reducing SaaS Churn with Better Onboarding Experiences',
-excerpt: 'Discover how effective onboarding can increase user retention, reduce churn, and improve customer lifetime value...',
-content: `
+      author: 'M-Shoukat Engineer',
+      date: 'May 24, 2026',
+      image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80&w=800',
+      readTime: '15 min read'
+    },
+    {
+      id: 18,
+      category: 'SaaS',
+      title: 'Reducing SaaS Churn with Better Onboarding Experiences',
+      excerpt: 'Discover how effective onboarding can increase user retention, reduce churn, and improve customer lifetime value...',
+      content: `
 
   <p>Many SaaS products lose users within the first few days after signup. The reason is often poor onboarding rather than a lack of product value. At <b>DevZore</b>, we help SaaS businesses create onboarding experiences that keep users engaged.</p>
 
@@ -453,17 +452,17 @@ content: `
   <h3 class="text-white text-2xl font-bold mt-8 mb-4">Measure and Improve</h3>
   <p>By tracking user behavior and onboarding completion rates, businesses can identify bottlenecks and continuously improve customer retention.</p>
   `,
-  author: 'M-Shoukat Engineer',
-  date: 'May 27, 2026',
-  image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
-  readTime: '12 min read'
-},
-{
-id: 19,
-category: 'UI/UX',
-title: 'The Psychology Behind High-Converting Landing Pages',
-excerpt: 'Learn how visual hierarchy, trust signals, and user behavior influence conversion rates on modern websites...',
-content: `
+      author: 'M-Shoukat Engineer',
+      date: 'May 27, 2026',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+      readTime: '12 min read'
+    },
+    {
+      id: 19,
+      category: 'UI/UX',
+      title: 'The Psychology Behind High-Converting Landing Pages',
+      excerpt: 'Learn how visual hierarchy, trust signals, and user behavior influence conversion rates on modern websites...',
+      content: `
 
   <p>A beautiful landing page is not enough. To generate leads and sales, every design element must guide visitors toward taking action. At <b>DevZore</b>, we combine design principles with user psychology to create high-converting experiences.</p>
 
@@ -476,17 +475,17 @@ content: `
   <h3 class="text-white text-2xl font-bold mt-8 mb-4">Optimize Call-to-Actions</h3>
   <p>Well-placed buttons, persuasive copy, and a frictionless user journey can significantly increase conversion rates and improve marketing performance.</p>
   `,
-  author: 'M-Shoukat Engineer',
-  date: 'May 30, 2026',
-  image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
-  readTime: '10 min read'
-},
-{
-id: 20,
-category: 'Cloud',
-title: 'Cloud Cost Optimization: How to Reduce Infrastructure Expenses',
-excerpt: 'Learn practical strategies to reduce cloud costs while maintaining performance, scalability, and reliability...',
-content: `
+      author: 'M-Shoukat Engineer',
+      date: 'May 30, 2026',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      readTime: '10 min read'
+    },
+    {
+      id: 20,
+      category: 'Cloud',
+      title: 'Cloud Cost Optimization: How to Reduce Infrastructure Expenses',
+      excerpt: 'Learn practical strategies to reduce cloud costs while maintaining performance, scalability, and reliability...',
+      content: `
 
   <p>Many businesses move to the cloud expecting lower costs, but poorly managed infrastructure can quickly become expensive. At <b>DevZore</b>, we help companies optimize cloud spending without sacrificing performance.</p>
 
@@ -499,17 +498,17 @@ content: `
   <h3 class="text-white text-2xl font-bold mt-8 mb-4">Monitor and Optimize Continuously</h3>
   <p>Regular monitoring helps identify unused resources, inefficient workloads, and opportunities for further savings across your infrastructure.</p>
   `,
-  author: 'M-Shoukat Engineer',
-  date: 'June 2, 2026',
-  image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
-  readTime: '13 min read'
-},
-{
-id: 21,
-category: 'Engineering',
-title: 'Building Scalable REST APIs with Node.js',
-excerpt: 'Best practices for designing secure, maintainable, and high-performance REST APIs for modern applications...',
-content: `
+      author: 'M-Shoukat Engineer',
+      date: 'June 2, 2026',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
+      readTime: '13 min read'
+    },
+    {
+      id: 21,
+      category: 'Engineering',
+      title: 'Building Scalable REST APIs with Node.js',
+      excerpt: 'Best practices for designing secure, maintainable, and high-performance REST APIs for modern applications...',
+      content: `
 
   <p>APIs are the backbone of modern web and mobile applications. A well-designed API improves performance, scalability, and developer productivity. At <b>DevZore</b>, we build APIs designed for long-term growth.</p>
 
@@ -522,17 +521,17 @@ content: `
   <h3 class="text-white text-2xl font-bold mt-8 mb-4">Plan for Growth</h3>
   <p>Using caching, pagination, and optimized database queries ensures APIs remain responsive even as traffic and data volumes increase.</p>
   `,
-  author: 'M-Shoukat Engineer',
-  date: 'June 5, 2026',
-  image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800',
-  readTime: '14 min read'
-},
-{
-id: 22,
-category: 'SaaS',
-title: 'Multi-Tenant SaaS Architecture Explained',
-excerpt: 'Learn how modern SaaS platforms serve thousands of customers securely using a single application architecture...',
-content: `
+      author: 'M-Shoukat Engineer',
+      date: 'June 5, 2026',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=800',
+      readTime: '14 min read'
+    },
+    {
+      id: 22,
+      category: 'SaaS',
+      title: 'Multi-Tenant SaaS Architecture Explained',
+      excerpt: 'Learn how modern SaaS platforms serve thousands of customers securely using a single application architecture...',
+      content: `
 
   <p>Multi-tenant architecture is the foundation of most successful SaaS products. It allows multiple customers to use the same application while keeping their data completely isolated and secure.</p>
 
@@ -545,11 +544,11 @@ content: `
   <h3 class="text-white text-2xl font-bold mt-8 mb-4">Scalable Growth</h3>
   <p>As new customers join, the platform can grow efficiently without major infrastructure changes or operational complexity.</p>
   `,
-  author: 'M-Shoukat Engineer',
-  date: 'June 8, 2026',
-  image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800',
-  readTime: '11 min read'
-},
+      author: 'M-Shoukat Engineer',
+      date: 'June 8, 2026',
+      image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800',
+      readTime: '11 min read'
+    },
 
 
   ];
@@ -561,41 +560,15 @@ content: `
 
   return (
     <>
-      {/*  STEP 1: SEO HELMET BLOCK (Sabse upar add kiya hai) */}
+
       <Helmet>
         <title>DevZore Blog | Web & App Development Tips & Insights</title>
-
-        <meta
-          name="description"
-          content="Read the DevZore blog for practical insights on web development, mobile apps, MERN stack, SaaS, and software engineering. Learn modern development practices from our team."
-        />
-        <link
-          rel="canonical"
-          href="https://devzore.com/blog"
-        />
-        {/* Open Graph */}
-        <meta property="og:title" content="DevZore Blog | Web & App Development Tips & Insights" />
-        <meta
-          property="og:description"
-          content="Explore tutorials, tips, and insights on web development, mobile apps, SaaS, and modern software engineering."
-        />
+        <meta name="description" content="Read the DevZore blog for tips on web development, mobile apps, MERN stack, and software business insights from our team in Islamabad, Pakistan." />
+        <link rel="canonical" href="https://devzore.com/blog" />
+        <meta property="og:title" content="DevZore Blog | Web & App Development Tips" />
+        <meta property="og:description" content="Tips, tutorials and insights on web development, mobile apps and SaaS from DevZore, Islamabad." />
         <meta property="og:url" content="https://devzore.com/blog" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DevZore" />
-
-        {/* Social Image */}
-        <meta property="og:image" content="https://devzore.com/og/blog.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="DevZore Blog | Web & App Development Insights" />
-        <meta
-          name="twitter:description"
-          content="Learn web development, React, MERN stack, SaaS, and mobile app development from DevZore."
-        />
-        <meta name="twitter:image" content="https://devzore.com/og/blog.jpg" />
       </Helmet>
 
       <div className="min-h-screen bg-[#030303] text-white font-sans selection:bg-purple-500/30">

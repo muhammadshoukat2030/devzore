@@ -50,39 +50,15 @@ function SaaSProductDevelopment() {
 
   return (
     <>
+
       <Helmet>
-        <title>SaaS Product Development Company | DevZore</title>
-        <meta
-          name="description"
-          content="DevZore builds scalable, multi-tenant SaaS platforms with subscription billing, user management, and production-ready infrastructure."
-        />
-        <link
-          rel="canonical"
-          href="https://devzore.com/saas-product-development"
-        />
-        {/* Open Graph */}
-        <meta property="og:title" content="SaaS Product Development Company | DevZore" />
-        <meta
-          property="og:description"
-          content="We build scalable SaaS platforms with subscription billing, authentication, dashboards, and cloud-ready architecture."
-        />
+        <title>SaaS Product Development Company | DevZore — Islamabad</title>
+        <meta name="description" content="DevZore builds scalable SaaS products from scratch — dashboards, billing, multi-tenant architecture and more. End-to-end SaaS development for startups and enterprises from Islamabad, Pakistan." />
+        <link rel="canonical" href="https://devzore.com/saas-product-development" />
+        <meta property="og:title" content="SaaS Product Development | DevZore" />
+        <meta property="og:description" content="End-to-end SaaS development — dashboards, billing, multi-tenant apps. Built by DevZore, Islamabad." />
         <meta property="og:url" content="https://devzore.com/saas-product-development" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DevZore" />
-
-        {/* Social Image */}
-        <meta property="og:image" content="https://devzore.com/og/saas.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="SaaS Product Development Company | DevZore" />
-        <meta
-          name="twitter:description"
-          content="Scalable SaaS platforms with subscription billing, auth systems, and multi-tenant architecture."
-        />
-        <meta name="twitter:image" content="https://devzore.com/og/saas.jpg" />
       </Helmet>
 
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10 overflow-x-hidden">
@@ -234,7 +210,7 @@ function SaaSProductDevelopment() {
           </div>
         </section>
 
-        
+
         <section className="max-w-7xl mx-auto px-6 py-24 border-t border-white/5">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {/* Framework & Backend */}

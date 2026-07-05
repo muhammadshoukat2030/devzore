@@ -53,47 +53,15 @@ function BackendApi() {
 
   return (
     <>
+
       <Helmet>
-        <title>Backend & API Development | Scalable Architecture | DevZore</title>
-        <meta name="description" content="Expert backend engineering and API development services. We build scalable server-side solutions using Node.js, Python, and robust database architectures." />
-      </Helmet>
-      <Helmet>
-        <title>Backend & API Development | Scalable Architecture | DevZore</title>
-
-        <meta
-          name="description"
-          content="Expert backend engineering and API development services. We build scalable server-side solutions using Node.js, Python, and robust database architectures for high-performance applications."
-        />
-
-        <link
-          rel="canonical"
-          href="https://devzore.com/backend-api"
-        />
-
-        {/* Open Graph */}
+        <title>Backend & API Development Services | DevZore — Node.js Experts</title>
+        <meta name="description" content="DevZore builds robust, scalable backend systems and REST APIs using Node.js, Express.js and MongoDB. Secure, documented and production-ready API development from Islamabad, Pakistan." />
+        <link rel="canonical" href="https://devzore.com/backend-api" />
         <meta property="og:title" content="Backend & API Development | DevZore" />
-        <meta
-          property="og:description"
-          content="Scalable backend systems and REST APIs built with Node.js, Python, and modern database architecture for high-performance apps."
-        />
+        <meta property="og:description" content="Node.js, Express.js and MongoDB backend development. Scalable REST APIs built by DevZore, Islamabad." />
         <meta property="og:url" content="https://devzore.com/backend-api" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DevZore" />
-
-        {/* Social Image */}
-        <meta property="og:image" content="https://devzore.com/og/backend-api.jpg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Backend & API Development | DevZore" />
-        <meta
-          name="twitter:description"
-          content="Scalable backend systems and API development using Node.js, Python, and modern database design."
-        />
-        <meta name="twitter:image" content="https://devzore.com/og/backend-api.jpg" />
-        <meta name="twitter:site" content="@devzore" />
       </Helmet>
 
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10 overflow-x-hidden">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import { assets } from '../assets/assets';
 import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
@@ -12,27 +12,18 @@ import {
 
 const UIUXDesign = () => {
   return (
-    <HelmetProvider>
+    <>
+
+      <Helmet>
+        <title>UI/UX Design Services | DevZore — User-Centered Design Agency</title>
+        <meta name="description" content="DevZore creates intuitive, conversion-focused UI/UX designs for web apps, mobile apps and SaaS products. From wireframes to final UI — we design experiences users love." />
+        <link rel="canonical" href="https://devzore.com/ui-ux-design" />
+        <meta property="og:title" content="UI/UX Design Services | DevZore" />
+        <meta property="og:description" content="User-centered UI/UX design for web, mobile and SaaS. Wireframes, prototypes and production UI from DevZore." />
+        <meta property="og:url" content="https://devzore.com/ui-ux-design" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20 overflow-x-hidden">
-
-        {/* --- SEO & HELMET --- */}
-        <Helmet>
-          <title>UI/UX Design Services | DevZore — Design Agency</title>
-          <meta name="description" content="DevZore delivers research-driven UI/UX design for web apps, mobile apps, and SaaS products. Wireframes, prototypes, and production-ready Figma design — built around how your users actually think. Canonical: https://devzore.com/ui-ux-design" />
-          <link rel="canonical" href="https://devzore.com/ui-ux-design" />
-          <meta property="og:title" content="UI/UX Design Services | DevZore" />
-          <meta property="og:description" content="Research-driven UI/UX design for web, mobile and SaaS. Wireframes, Figma prototypes and production UI from DevZore, Islamabad." />
-          <meta property="og:url" content="https://devzore.com/ui-ux-design" />
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="630" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta property="og:image" content="https://devzore.com/og/uiux_process.png" />
-          <meta name="twitter:image" content="https://devzore.com/og/uiux_process.png" />
-          <meta name="twitter:title" content="UI/UX Design Services | DevZore" />
-          <meta name="twitter:description" content="Professional UI/UX design services for web and mobile apps focused on user experience and conversion." />
-
-          <meta property="og:type" content="website" />
-        </Helmet>
 
         {/* --- 1. TOP NAVIGATION / BADGE AREA --- */}
         <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between relative z-50">
@@ -372,7 +363,7 @@ const UIUXDesign = () => {
         </footer>
 
       </div>
-    </HelmetProvider>
+    </>
   );
 };
 

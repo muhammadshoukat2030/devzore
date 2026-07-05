@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
 import { assets } from '../assets/assets';
@@ -11,28 +11,19 @@ import {
 
 const StartupMVP = () => {
   return (
-    <HelmetProvider>
+    <>
+
+
+      <Helmet>
+        <title>Startup MVP Development Company | DevZore — Launch in 8 Weeks</title>
+        <meta name="description" content="DevZore builds investor-ready MVPs for startups in 8 to 14 weeks using MERN stack. Validate your idea, reach early users and attract funding — without burning through your runway." />
+        <link rel="canonical" href="https://devzore.com/startup-mvp" />
+        <meta property="og:title" content="Startup MVP Development | DevZore" />
+        <meta property="og:description" content="Investor-ready MVPs built in 8–14 weeks using MERN stack. From idea to launch — DevZore, Islamabad." />
+        <meta property="og:url" content="https://devzore.com/startup-mvp" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20 overflow-x-hidden">
-
-        {/* --- SEO & HELMET MANAGEMENT --- */}
-        <Helmet>
-          <title>Startup MVP Development Company | DevZore Meta Description</title>
-          <meta name="description" content="DevZore builds investor-ready MVPs for startups in 8 to 14 weeks using MERN stack. Validate your idea, reach early users, and attract funding — without burning through your runway. Free consultation. Canonical: https://devzore.com/startup-mvp" />
-          <link rel="canonical" href="https://devzore.com/startup-mvp" />
-          <meta property="og:title" content="Startup MVP Development Company | DevZore" />
-          <meta property="og:description" content="Investor-ready MVPs built in 8–14 weeks using MERN stack. From idea to launch — DevZore is your startup development partner." />
-          <meta property="og:url" content="https://devzore.com/startup-mvp" />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="DevZore" />
-          <meta property="og:image" content="https://devzore.com/og/startup-mvp.jpg" />
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="630" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Startup MVP Development Company | DevZore" />
-          <meta name="twitter:description" content="Fast MVP development for startups to validate ideas and launch quickly with scalable architecture." />
-          <meta name="twitter:image" content="https://devzore.com/og/startup-mvp.jpg" />
-        </Helmet>
-
         {/* --- 1. TOP HEADER NAVIGATION --- */}
         <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between relative z-50">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -346,7 +337,7 @@ const StartupMVP = () => {
         </footer>
 
       </div>
-    </HelmetProvider>
+    </>
   );
 };
 

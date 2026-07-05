@@ -55,14 +55,13 @@ const Contact = () => {
 
   return (
     <>
-      {/*  STEP 1: SEO HELMET BLOCK (Sabse upar add kiya hai) */}
+
       <Helmet>
-        <title>Contact DevZore | Hire a Developer in Islamabad</title>
-        <meta name="description" content="Get in touch with DevZore to start your web or mobile app project. Based in Islamabad, Pakistan — we work with clients globally. Free consultation available." />
-        <meta name="keywords" content="contact DevZore, hire developer Pakistan, hire React developer, web development quote Pakistan" />
+        <title>Contact DevZore | Hire a Developer in Islamabad, Pakistan</title>
+        <meta name="description" content="Get in touch with DevZore to start your web or mobile app project. Based in Islamabad, Pakistan — we work with clients globally. Free consultation, response within 24 hours." />
         <link rel="canonical" href="https://devzore.com/contact" />
         <meta property="og:title" content="Contact DevZore | Hire a Developer in Islamabad" />
-        <meta property="og:description" content="Start your project with DevZore. Free consultation for web, mobile and SaaS development." />
+        <meta property="og:description" content="Start your project with DevZore. Free consultation for web, mobile and SaaS development. Response within 24 hours." />
         <meta property="og:url" content="https://devzore.com/contact" />
         <meta property="og:type" content="website" />
       </Helmet>

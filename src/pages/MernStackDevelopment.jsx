@@ -54,29 +54,15 @@ const MernStackDevelopment = () => {
 
   return (
     <>
+
       <Helmet>
-        <title>MERN Stack Development Company | DevZore</title>
-        <meta
-          name="description"
-          content="DevZore builds scalable, production-ready apps using MERN stack — MongoDB, Express.js, React, and Node.js. Full-stack JavaScript development for startups and enterprises."
-        />
-        <link
-          rel="canonical"
-          href="https://devzore.com/mern-stack-development"
-        />
+        <title>MERN Stack Development Company | DevZore — Islamabad</title>
+        <meta name="description" content="DevZore builds scalable, production-ready apps using MERN stack — MongoDB, Express.js, React, and Node.js. Full-stack JavaScript development for startups and enterprises. Get a free consultation." />
+        <link rel="canonical" href="https://devzore.com/mern-stack-development" />
         <meta property="og:title" content="MERN Stack Development Company | DevZore" />
-        <meta
-          property="og:description"
-          content="Scalable MERN stack applications built for performance and growth. Full-stack solutions from DevZore."
-        />
+        <meta property="og:description" content="Full-stack MERN development — MongoDB, Express, React, Node.js. Production-ready apps from DevZore, Islamabad." />
         <meta property="og:url" content="https://devzore.com/mern-stack-development" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DevZore" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="MERN Stack Development Company | DevZore" />
-        <meta name="twitter:description" content="Scalable MERN stack applications built for performance and growth." />
       </Helmet>
 
       {/* overflow-x-hidden yahan add kiya hai taake bottom scroll khatam ho jaye */}
