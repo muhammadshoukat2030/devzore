@@ -1,14 +1,5 @@
 # robots.txt for devzore.com
-# Generated for React + Vite project
-
 User-agent: *
 Allow: /
 
-# Block pages you don't want Google to index
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /login/
-Disallow: /api/
-
-# Sitemap location — tells Google where to find it
-Sitemap: https://devzore.com/sitemap.xml 
+Sitemap: https://devzore.com/sitemap.xml
