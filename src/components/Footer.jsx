@@ -98,41 +98,27 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* --- MIDDLE SECTION: NAVIGATION GRID --- */}
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 py-20">
 
-            {/* Quick Links */}
+            {/* Services Column */}
             <div>
-              <h4 className="text-white font-black text-[11px] uppercase tracking-[0.3em] mb-8 opacity-50">Navigation</h4>
-              <ul className="space-y-4">
-                {[
-                  // { name: "About Agency", path: "/about" },
-                  // { name: "Solutions", path: "/#services" },
-                  // { name: "Our Work", path: "/#projects" },
-                  // { name: "Pricing", path: "/#pricing" },
-                  // { name: "Insights", path: "/blog" }
-                  { name: "About DevZore", path: "/about" }, // Added About
-                  { name: "Services & Solutions", path: "/#services" },
-                  { name: "Global Portfolio", path: "/#projects" },
-                  // { name: "Investment Plans", path: "/#pricing" },
-                  { name: "Client Testimonials", path: "/#testimonials" },
-                  { name: "Technical Blogs", path: "/blog" },
-                  { name: "Hire Engineer", path: "/contact" }
-                ].map((item) => (
-                  <li key={item.name}>
-                    <button
-                      onClick={() => handleNavigation(item.path)}
-                      className="text-gray-400 hover:text-purple-400 text-sm font-medium transition-all text-left flex items-center gap-2 group"
-                    >
-                      <span className="w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-all"></span>
-                      {item.name}
-                    </button>
-                  </li>
-                ))}
+              <h4 className="text-white font-black text-[11px] uppercase tracking-[0.3em] mb-7 opacity-50">Services</h4>
+              <ul className="space-y-2">
+                <li><Link to="/web-development" className="text-gray-400 hover:text-purple-400 transition text-sm font-medium">Web Development</Link></li>
+                <li><Link to="/mobile-apps" className="text-gray-400 hover:text-purple-400 transition text-sm font-medium">Mobile Apps</Link></li>
+                <li><Link to="/mern-stack-development" className="text-gray-400 hover:text-purple-400 transition text-sm font-medium">MERN Stack</Link></li>
+                <li><Link to="/ecommerce" className="text-gray-400 hover:text-purple-400 transition text-sm font-medium">E-Commerce</Link></li>
+                <li><Link to="/ui-ux-design" className="text-gray-400 hover:text-purple-400 transition text-sm font-medium">UI/UX Design</Link></li>
+                <li><Link to="/saas-product-development" className="text-gray-400 hover:text-purple-400 transition text-sm font-medium">SaaS Development</Link></li>
+                <li><Link to="/backend-api" className="text-gray-400 hover:text-purple-400 transition text-sm font-medium">Backend & API</Link></li>
+                <li><Link to="/startup-mvp" className="text-gray-400 hover:text-purple-400 transition text-sm font-medium">Startup MVP</Link></li>
+                <li><Link to="/maintenance" className="text-gray-400 hover:text-purple-400 transition text-sm font-medium">Maintenance</Link></li>
+                <li><Link to="/reactdevelopment" className="text-gray-400 hover:text-purple-400 transition text-sm font-medium">React Development</Link></li>
               </ul>
             </div>
 
-            {/* Services */}
+            {/* Engineering Column */}
             <div>
               <h4 className="text-white font-black text-[11px] uppercase tracking-[0.3em] mb-8 opacity-50">Engineering</h4>
               <ul className="space-y-4 text-gray-400 text-sm font-medium">
@@ -144,58 +130,32 @@ const Footer = () => {
                 <li className="hover:text-purple-400 cursor-default transition-colors">API Security & Optimization</li>
               </ul>
             </div>
-            {/* <div>
-              <h4 className="text-white font-black text-[11px] uppercase tracking-[0.3em] mb-8 opacity-50">Expertise</h4>
-              <ul className="space-y-4 text-gray-500 text-sm font-medium">
-                <li className="hover:text-white transition-colors cursor-default">Cloud Microservices</li>
-                <li className="hover:text-white transition-colors cursor-default">Custom CRM Core</li>
-                <li className="hover:text-white transition-colors cursor-default">Real-time WebSockets</li>
-                <li className="hover:text-white transition-colors cursor-default">AWS Deployment</li>
-                <li className="hover:text-white transition-colors cursor-default">API Security</li>
-              </ul>
-            </div> */}
 
-            {/* Contact Info */}
+            {/* Contact Info Column */}
             <div className="col-span-1">
               <h4 className="text-white font-black text-[11px] uppercase tracking-[0.3em] mb-8 opacity-50">Global Office</h4>
               <div className="space-y-6">
                 <div>
-                  <p className="text-[10px] text-purple-500 font-black uppercase mb-1">
-                    Project Inquiry
-                  </p>
-                  <a
-                    href="mailto:hellodevzore@gmail.com"
-                    className="text-white text-base font-bold hover:text-purple-400 transition-colors"
-                  >
+                  <p className="text-[10px] text-purple-500 font-black uppercase mb-1">Project Inquiry</p>
+                  <a href="mailto:hellodevzore@gmail.com" className="text-white text-base font-bold hover:text-purple-400 transition-colors">
                     hellodevzore@gmail.com
                   </a>
                 </div>
-
                 <div>
-                  <p className="text-[10px] text-green-500 font-black uppercase mb-1">
-                    Phone
-                  </p>
-                  <a
-                    href="tel:+923348004300"
-                    className="text-white text-base font-bold hover:text-green-400 transition-colors"
-                  >
+                  <p className="text-[10px] text-green-500 font-black uppercase mb-1">Phone</p>
+                  <a href="tel:+923348004300" className="text-white text-base font-bold hover:text-green-400 transition-colors">
                     +92 334 8004300
                   </a>
                 </div>
-
                 <div>
-                  <p className="text-[10px] text-blue-500 font-black uppercase mb-1">
-                    Main Location
-                  </p>
+                  <p className="text-[10px] text-blue-500 font-black uppercase mb-1">Main Location</p>
                   <p className="text-gray-400 text-sm">Islamabad, Pakistan</p>
-                  <p className="text-[11px] text-gray-600 italic">
-                    Serving international clients remotely.
-                  </p>
+                  <p className="text-[11px] text-gray-600 italic">Serving international clients remotely.</p>
                 </div>
               </div>
             </div>
 
-            {/* Social Authority */}
+            {/* Social Column */}
             <div>
               <h4 className="text-white font-black text-[11px] uppercase tracking-[0.3em] mb-8 opacity-50">Connect</h4>
               <div className="grid grid-cols-2 gap-3">
@@ -220,6 +180,7 @@ const Footer = () => {
                 ))}
               </div>
             </div>
+
           </div>
 
           {/* --- BOTTOM BAR --- */}

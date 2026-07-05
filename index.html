@@ -59,7 +59,41 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
- <!-- Paste this BELOW your existing Organization script, still in <head> -->
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "DevZore",
+  "url": "https://devzore.com",
+  "logo": "https://devzore.com/logo1.png",
+  "founder": {
+    "@type": "Person",
+    "name": "Muhammad Shoukat"
+  },
+  "description": "DevZore is a software development agency based in Islamabad, Pakistan, offering web development, mobile app development, MERN stack, and SaaS solutions.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Islamabad",
+    "addressCountry": "PK"
+  },
+  "areaServed": "Worldwide",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "email": "hellodevzore@gmail.com",
+    "telephone": "+92-334-8004300",
+    "availableLanguage": ["English", "Urdu"]
+  },
+  "sameAs": [
+    "https://github.com/muhammadshoukat2030",
+    "https://www.linkedin.com/in/dev-zore-833893418",
+    "https://www.instagram.com/devz.ore/"
+  ]
+}
+</script>
+
+<!-- WebSite Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
