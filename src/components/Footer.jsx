@@ -66,7 +66,7 @@ const Footer = () => {
                 className="flex items-center gap-4 mb-6 cursor-pointer group"
               >
                 <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-blue-700 rounded-xl flex items-center justify-center p-2 shadow-xl group-hover:scale-105 transition-transform">
-                  <img src="/logo1.png" alt="DevZore" className="w-full h-full object-contain" />
+                  <img src="/logo1.webp" alt="DevZore" className="w-full h-full object-contain" />
                 </div>
                 <div>
                   <h2 className="text-3xl font-black tracking-tighter text-white uppercase italic leading-none">

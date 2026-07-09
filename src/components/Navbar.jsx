@@ -109,7 +109,7 @@ const Navbar = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-purple-600 rounded-xl blur-md opacity-50 group-hover:opacity-80 transition-opacity"></div>
               <div className="relative w-9 h-9 bg-gradient-to-br from-purple-500 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-                <img src="/logo1.png" alt="DevZore — Software Development Agency Islamabad" className="w-5 h-5 object-contain" />
+                <img src="/logo1.webp" alt="DevZore — Software Development Agency Islamabad" className="w-5 h-5 object-contain" />
               </div>
             </div>
             <div className="flex flex-col leading-none">
@@ -265,7 +265,7 @@ const Navbar = () => {
         {/* Top brand in sidebar */}
         <div className="relative z-10 px-6 pt-6 pb-4 border-b border-white/[0.06] flex items-center gap-3">
           <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-700 rounded-lg flex items-center justify-center">
-            <img src="/logo1.png" alt="DevZore" className="w-5 h-5 object-contain" />
+            <img src="/logo1.webp" alt="DevZore" className="w-5 h-5 object-contain" />
           </div>
           <div>
             <p className="text-white text-base font-black tracking-tight">Dev<span className="text-purple-400">Zore</span></p>

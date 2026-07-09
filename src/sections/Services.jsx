@@ -124,7 +124,7 @@ const Services = () => {
         <meta property="og:site_name" content="DevZore" />
 
         {/* Social Image */}
-        <meta property="og:image" content="https://devzore.com/og/services-mobile-apps.jpg" />
+        <meta property="og:image" content="https://devzore.com/og/services-mobile-apps.webp" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
 
@@ -132,7 +132,7 @@ const Services = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Mobile App Development Services — DevZore" />
         <meta name="twitter:description" content="We design and develop high-fidelity iOS & Android applications tailored to your business goals with modern frameworks." />
-        <meta name="twitter:image" content="https://devzore.com/og/services-mobile-apps.jpg" />
+        <meta name="twitter:image" content="https://devzore.com/og/services-mobile-apps.webp" />
       </Helmet>
 
       <section id="services" className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
