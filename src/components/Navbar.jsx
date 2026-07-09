@@ -109,7 +109,7 @@ const Navbar = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-purple-600 rounded-xl blur-md opacity-50 group-hover:opacity-80 transition-opacity"></div>
               <div className="relative w-9 h-9 bg-gradient-to-br from-purple-500 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-                <img src="/logo1.webp" alt="DevZore — Software Development Agency Islamabad" className="w-5 h-5 object-contain" />
+                <img src="/logo1.png" alt="DevZore — Software Development Agency Islamabad" className="w-7 h-7 object-contain" />
               </div>
             </div>
             <div className="flex flex-col leading-none">
