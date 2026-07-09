@@ -3,9 +3,9 @@ import SectionTag from '../components/SectionTag';
 import ProjectCard from '../components/ProjectCard';
 
 // Images
-import gulfDunes from '../assets/gulf-dunes.png';
-import dweldonpaint from '../assets/weldonpaint.png';
-import foodimage from '../assets/food.png';
+import gulfDunes from '../assets/gulf-dunes.webp';
+import dweldonpaint from '../assets/weldonpaint.webp';
+import foodimage from '../assets/food.webp';
 
 const Projects = () => {
   const projectData = [

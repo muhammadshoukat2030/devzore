@@ -6,97 +6,97 @@
 // import all_services_consulting from './all_services_consulting.webp';
 
 // Web Development
-import Web_App_Development from './Web_App_Development.png';
-import web_Automated from './web_Automated.png';
-import web_Logistics from './web_Logistics.png';
-import webdevelopment2 from './webdevelopment2.png';
-import web_Architecture_and_Speed2 from './web_Architecture_and_Speed2.png';
-import web_Real_Estate from './web_Real_Estate.png';
+import Web_App_Development from './Web_App_Development.webp';
+import web_Automated from './web_Automated.webp';
+import web_Logistics from './web_Logistics.webp';
+import webdevelopment2 from './webdevelopment2.webp';
+import web_Architecture_and_Speed2 from './web_Architecture_and_Speed2.webp';
+import web_Real_Estate from './web_Real_Estate.webp';
 
 // Mobile App Development
 import mobile_dev_android from './mobile_dev_android.webp';
-import mobile_Invoicing from './mobile_Invoicing.png';
-import mobile_Delivery_App from './mobile_Delivery_App.png';
-import mobile_Healthcare from './mobile_Healthcare.png';
-import mobile_dev_crossplatform from './mobile_dev_crossplatform.png';
+import mobile_Invoicing from './mobile_Invoicing.webp';
+import mobile_Delivery_App from './mobile_Delivery_App.webp';
+import mobile_Healthcare from './mobile_Healthcare.webp';
+import mobile_dev_crossplatform from './mobile_dev_crossplatform.webp';
 import mobile_dev_ios from './mobile_dev_ios.webp';
-import mobile_Fitness from './mobile_Fitness.png';
-import mobile_Fintech_App from './mobile_Fintech_App.png';
+import mobile_Fitness from './mobile_Fitness.webp';
+import mobile_Fintech_App from './mobile_Fintech_App.webp';
 
 // E-Commerce Website
 import ecommerce_storefront from './commerce_storefront.webp';
-import ecom2 from './ecom2.png';
-import ecommerce2 from './ecommerce2.png';
-// import ecommercshows3 from './ecommercshows3.png';
-import ecommer_home_decore from './ecommer_home_decore.png';
-import ecommer_decor from './ecommer_decor.png';
-import ecommrec_3 from './ecomrec_3.png';
-import ecommeranalytic from './ecommeranalytic.png';
+import ecom2 from './ecom2.webp';
+import ecommerce2 from './ecommerce2.webp';
+// import ecommercshows3 from './ecommercshows3.webp';
+import ecommer_home_decore from './ecommer_home_decore.webp';
+import ecommer_decor from './ecommer_decor.webp';
+import ecommrec_3 from './ecomrec_3.webp';
+import ecommeranalytic from './ecommeranalytic.webp';
 
 
 // MERN Stack
-import mern_SaaS_Analytics from './mern_SaaS_Analytics.png';
-import mern_matrix1 from './mern_matrix1.png';
-import mern_inventory from './mern_inventory.png';
-import mern_B2B_hr from './mern_B2B_hr.png';
-import mern_saas from './mern_saas.png';
+import mern_SaaS_Analytics from './mern_SaaS_Analytics.webp';
+import mern_matrix1 from './mern_matrix1.webp';
+import mern_inventory from './mern_inventory.webp';
+import mern_B2B_hr from './mern_B2B_hr.webp';
+import mern_saas from './mern_saas.webp';
 
 // SaaS Development
-import saas_hr_management from './saas_hr_management.png';
-import saas_marketing from './saas_marketing.png';
-import ssaas_project from './saas_project.png';
-import saas_subscription from './saas_subscription.png';
+import saas_hr_management from './saas_hr_management.webp';
+import saas_marketing from './saas_marketing.webp';
+import ssaas_project from './saas_project.webp';
+import saas_subscription from './saas_subscription.webp';
 // import saas_cloud from './saas_cloud.webp';
 
 // React Development
-import reaact_crypto_live from './reaact_crypto_live.png';
-import react_creative_media from './react_creative_media.png';
-import react_dynamic_form from './react_dynamic_form.png';
-import react_interactive_canvas from './react_interactive_canvas.png';
-import react_interface from './react_interface.png';
-import react_coding from './react_coding.png';
+import reaact_crypto_live from './reaact_crypto_live.webp';
+import react_creative_media from './react_creative_media.webp';
+import react_dynamic_form from './react_dynamic_form.webp';
+import react_interactive_canvas from './react_interactive_canvas.webp';
+import react_interface from './react_interface.webp';
+import react_coding from './react_coding.webp';
 
 
 // UI/UX Design
-import uiux_Process from './uiux_Process.png';
-import uiux_automotive from './uiux_automotive.png';
-import uiux_e_learning from './uiux_e_learning.png';
-import uiux_interface from './uiux_interface.png';
-import uiux_workspace from './uiux_workspace.png';
-import uiux_saas_sashboard from './uiux_saas_sashboard.png';
-import uiux_fintech_mobile from './uiux_fintech_mobile.png';
+import uiux_Process from './uiux_Process.webp';
+import uiux_automotive from './uiux_automotive.webp';
+import uiux_e_learning from './uiux_e_learning.webp';
+import uiux_interface from './uiux_interface.webp';
+import uiux_workspace from './uiux_workspace.webp';
+import uiux_saas_sashboard from './uiux_saas_sashboard.webp';
+import uiux_fintech_mobile from './uiux_fintech_mobile.webp';
 
 // Startup MVP
 // Startup MVP
-import startup_mvp from './startup_mvp.jpg'; // Changed to .jpg
-import startup_saas_collaboration from './startup_saas_collaboration.png';
-import startup_edtech from './startup_edtech.png';
-import startup_proptech from './startup_proptech.png';
-import startup_micro_saas from './startup_micro_saas.png';
-import startup_fintech_dashboard from './startup_fintech_dashboard.png'; // Added missing import
-import startup_agile_task_matrix from './startup_agile_task_matrix.png';
+import startup_mvp from './startup_mvp.webp'; // Changed to .jpg
+import startup_saas_collaboration from './startup_saas_collaboration.webp';
+import startup_edtech from './startup_edtech.webp';
+import startup_proptech from './startup_proptech.webp';
+import startup_micro_saas from './startup_micro_saas.webp';
+import startup_fintech_dashboard from './startup_fintech_dashboard.webp'; // Added missing import
+import startup_agile_task_matrix from './startup_agile_task_matrix.webp';
 // MVP
 
 
 
 // Maintenance
-import maintenance_disaster from './maintenance_disaster.png';
-import maintenance_legacy_code from './maintenance_legacy_code.png';
-import maintenance_SEO_site from './maintenance_SEO_site.png';
-import maintenance_server_health from './maintenance_server_health.png';
-import maintenance_server from './maintenance_server.png';
-import maintenance_system from './maintenance_system.png';
-import maintenance from './maintenance.png';
-import maintenance_server_load from './maintenance_server_load.png';
+import maintenance_disaster from './maintenance_disaster.webp';
+import maintenance_legacy_code from './maintenance_legacy_code.webp';
+import maintenance_SEO_site from './maintenance_SEO_site.webp';
+import maintenance_server_health from './maintenance_server_health.webp';
+import maintenance_server from './maintenance_server.webp';
+import maintenance_system from './maintenance_system.webp';
+import maintenance from './maintenance.webp';
+import maintenance_server_load from './maintenance_server_load.webp';
 
 
 // Backend & API Development
-import backend_automated from './backend_automated.png';
-import backend_aws from './backend_aws.png';
-import backend_clean from './backend_clean.png';
-import backend_graphql from './backend_graphql.png';
-import backend_microservices from './backend_microservices.png';
-import backend_redis from './backend_redis.png';
+import backend_automated from './backend_automated.webp';
+import backend_aws from './backend_aws.webp';
+import backend_clean from './backend_clean.webp';
+import backend_graphql from './backend_graphql.webp';
+import backend_microservices from './backend_microservices.webp';
+import backend_redis from './backend_redis.webp';
 
 export const assets = {
   // logo_main,
