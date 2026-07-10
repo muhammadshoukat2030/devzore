@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
-import Group15Img from '../assets/Group15.webp';
 import { assets } from '../assets/assets';
 import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
 
@@ -14,20 +13,15 @@ import {
   Database,
   Layout,
   ShieldCheck,
-  Search,
   Code2,
   Plus,
   ExternalLink,
   Settings,
-  Monitor,
   Cpu,
   Rocket,
   TrendingUp,
-  CheckCircle2,
   AppWindow,
-  Cloud,
-  Users,
-  Target
+  Users
 } from 'lucide-react';
 
 const MobileApp = () => {
@@ -36,19 +30,19 @@ const MobileApp = () => {
   const faqs = [
     {
       question: "How much does mobile app development cost?",
-      answer: "A simple MVP with core features built in React Native typically costs between $20,000 and $50,000. A feature-rich consumer app with a custom backend, complex UI, and third-party integrations can range from $60,000 to $150,000 or more. Native development for a single platform adds roughly 40 to 60 percent compared to cross-platform."
+      answer: "A simple MVP with core features built in React Native typically costs between $20,000 and $50,000. A feature-rich consumer app with a custom backend, complex UI, and third-party integrations can range from $60,000 to $150,000 or more."
     },
     {
       question: "How long does it take to build a mobile app?",
-      answer: "An MVP with focused features typically takes 12 to 16 weeks from kickoff to App Store submission. More complex apps with custom backends, payment flows, and advanced features can take 5 to 9 months. App Store review adds 1 to 7 days on top of development time."
+      answer: "An MVP with focused features typically takes 12 to 16 weeks from kickoff to App Store submission. More complex apps with custom backends can take 5 to 9 months."
     },
     {
       question: "Does DevZore build the backend as well as the app?",
-      answer: "Yes. Most mobile apps need a server-side API for data storage, authentication, push notifications, and business logic. We build and maintain the full backend as part of the mobile app engagement, so you have one team accountable for the entire product rather than two teams blaming each other when something goes wrong."
+      answer: "Yes. Most mobile apps need a server-side API for data storage, authentication, push notifications, and business logic. We build and maintain the full backend as part of the mobile app engagement."
     },
     {
       question: "Can you update an app that another team built?",
-      answer: " Yes. We review the existing codebase, provide an honest assessment of its quality and maintainability, and take over development. Sometimes the existing code is good and can be built upon. Sometimes it is not and a rebuild is more economical than maintenance. We tell you which is true regardless of which answer is more lucrative for us."
+      answer: "Yes. We review the existing codebase, provide an honest assessment of its quality and maintainability, and take over development."
     }
   ];
 
@@ -79,7 +73,6 @@ const MobileApp = () => {
           </Link>
         </div>
 
-
         {/* --- HERO SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-1 grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-3">
@@ -90,11 +83,14 @@ const MobileApp = () => {
               Experiences That Users Actually Love
             </h2>
             <p className="text-gray-400 text-sm md:text-base max-w-xl leading-relaxed font-medium">
-              A great mobile app is more than a small-screen version of your website. It is a product that feels right in someone's hand — fast, intuitive, and built specifically for the way people interact with a phone. DevZore builds mobile applications that users return to because the experience is genuinely good, not because they have no other option.            </p>
+              A great mobile app is more than a small-screen version of your website. It is a product that feels right in someone's hand — fast, intuitive, and built specifically for the way people interact with a phone. DevZore builds mobile applications that users return to because the experience is genuinely good.
+            </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-xl font-bold text-sm flex items-center gap-2 group transition-all shadow-xl shadow-purple-500/20 active:scale-95">
-                Start Consultation <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              <Link to="/contact">
+                <button className="bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-xl font-bold text-sm flex items-center gap-2 group transition-all shadow-xl shadow-purple-500/20 active:scale-95">
+                  Start Consultation <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
               <div className="flex items-center gap-3 px-4 py-3 bg-white/5 border border-white/10 rounded-xl">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">iOS • Android • Cross-Platform</span>
               </div>
@@ -125,89 +121,89 @@ const MobileApp = () => {
         {/* --- STRATEGY SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
           <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 italic">Native vs. Cross-Platform<span className="text-purple-500 text-not-italic">— We Help You Choose Correctly</span></h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 italic">Native vs. Cross-Platform <span className="text-purple-500 font-normal">— We Help You Choose Correctly</span></h2>
             <p className="text-gray-400 max-w-3xl text-sm md:text-base leading-relaxed">
-              The most important mobile development decision you will make is the platform strategy. The wrong choice costs you either money or performance — sometimes both.            </p>
+              The most important mobile development decision you will make is the platform strategy. The wrong choice costs you either money or performance — sometimes both.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
             <ExpertiseCard
               icon={<Code2 className="text-blue-400" size={24} />}
-              title={<h3>React Native — One Codebase, Both Platforms</h3>}
-              desc=" React Native lets a single development team ship an iOS and Android app from one shared JavaScript codebase. For most businesses, this means roughly 60 to 80 percent cost reduction compared to building two separate native apps, without meaningfully sacrificing performance or user experience. If you are launching an MVP, running a startup with limited budget, or building a B2B app where feature completeness matters more than platform-native animations, React Native is almost certainly the right choice."
+              title="React Native — One Codebase, Both Platforms"
+              desc="React Native lets a single development team ship an iOS and Android app from one shared JavaScript codebase. For most businesses, this means roughly 60 to 80 percent cost reduction compared to building two separate native apps."
               borderColor="border-l-blue-400"
             />
             <ExpertiseCard
               icon={<Zap className="text-orange-400" size={24} />}
-              title={<h3>Native iOS Development with Swift</h3>}
-              desc=" When your app genuinely requires deep Apple platform integration — HealthKit, ARKit, CoreML, Face ID, CarPlay, or the kind of smooth animations that React Native struggles to match — native Swift development is worth the additional investment. We build apps that feel like they were designed by Apple, because they follow Apple's patterns from the ground up.."
+              title="Native iOS Development with Swift"
+              desc="When your app genuinely requires deep Apple platform integration — HealthKit, ARKit, CoreML, Face ID, CarPlay, or complex custom animations — native Swift development is worth the investment."
               borderColor="border-l-orange-400"
             />
             <ExpertiseCard
               icon={<Cpu className="text-green-400" size={24} />}
-              title={<h3>Native Android Development with Kotlin</h3>}
-              desc=" Full access to the Android ecosystem with Kotlin: background services, complex device integrations, Google Play compliance, material design, and the kind of reliability that enterprise Android users expect. Kotlin's modern syntax makes the codebase maintainable in a way older Java Android code rarely is."
+              title="Native Android Development with Kotlin"
+              desc="Full access to the Android ecosystem with Kotlin: background services, complex device integrations, Google Play compliance, material design, and the kind of reliability that enterprise Android users expect."
               borderColor="border-l-green-400"
             />
             <ExpertiseCard
               icon={<Layers className="text-purple-500" size={24} />}
-              title={<h3>Flutter for Performance-Critical Cross-Platform Apps</h3>}
-              desc=" Flutter produces genuinely beautiful cross-platform UIs with native-level performance for complex animations and rendering. We use it when React Native's JavaScript bridge becomes a limitation and the team has the right background to support it."
+              title="Flutter for Performance-Critical Cross-Platform Apps"
+              desc="Flutter produces genuinely beautiful cross-platform UIs with native-level performance for complex animations and rendering. We use it when React Native's JavaScript bridge becomes a limitation."
               borderColor="border-l-purple-500"
             />
           </div>
         </section>
 
-        <div className="bg-black min-h-screen">
-          {/* Baki sections yahan aayenge */}
+        <div className="bg-black">
           <ServiceGalleryTemplate pageKey="MobileApp" />
         </div>
 
         {/* --- SERVICES SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 italic">Our Mobile App Development <span className="text-purple-500 text-not-italic">Services</span></h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 italic">Our Mobile App Development <span className="text-purple-500 font-normal">Services</span></h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-sm">Everything you need to go from an idea to the top of the App Store charts.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ServiceCard icon={<Layout />} title={<h3>Product Strategy and UX Research</h3>} desc="Before design, we research your users. Competitive analysis, user interviews, journey mapping, and information architecture review — so the product we design solves real problems rather than assumed ones." />
-            <ServiceCard icon={<Database />} title={<h3>Mobile UI/UX Design</h3>} desc="High-fidelity Figma prototypes with real interactions that you can test on your actual phone before development begins. We follow platform design guidelines (Human Interface Guidelines for iOS, Material Design for Android) while creating interfaces that reflect your brand." />
-            <ServiceCard icon={<TrendingUp />} title={<h3>Backend API and Infrastructure</h3>} desc="Most mobile apps need a server. We build the Node.js or Python backend, REST or GraphQL API, push notification infrastructure, and database your app depends on — so you have one team responsible for the full product." />
-            <ServiceCard icon={<ShieldCheck />} title={<h3>App Store Submission and ASO </h3>} desc="We handle the App Store and Play Store submission process — compliance review, screenshot preparation, metadata optimization, and the back-and-forth with Apple's review team that most first-time app publishers find unexpectedly time-consuming." />
-            <ServiceCard icon={<Settings />} title={<h3> Post-Launch Support and Updates</h3>} desc="Mobile apps require ongoing maintenance: OS updates break things, user feedback reveals missing features, and analytics expose flows where users are dropping off. We offer maintenance plans that keep your app current and competitive." />
+            <ServiceCard icon={<Layout />} title="Product Strategy and UX Research" desc="Before design, we research your users. Competitive analysis, user interviews, journey mapping, and information architecture review." />
+            <ServiceCard icon={<Database />} title="Mobile UI/UX Design" desc="High-fidelity Figma prototypes with real interactions that you can test on your actual phone before development begins. We follow platform guidelines." />
+            <ServiceCard icon={<TrendingUp />} title="Backend API and Infrastructure" desc="Most mobile apps need a server. We build the Node.js or Python backend, REST or GraphQL API, push notification infrastructure, and database." />
+            <ServiceCard icon={<ShieldCheck />} title="App Store Submission and ASO" desc="We handle the App Store and Play Store submission process — compliance review, screenshot preparation, metadata optimization, and the back-and-forth." />
+            <ServiceCard icon={<Settings />} title="Post-Launch Support and Updates" desc="Mobile apps require ongoing maintenance: OS updates break things, user feedback reveals missing features, and analytics expose drop-off flows." />
           </div>
         </section>
 
         {/* --- PROCESS SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-20 bg-white/[0.01] rounded-[3rem] border border-white/5"> Process
+        <section className="max-w-7xl mx-auto px-6 py-20 bg-white/[0.01] rounded-[3rem] border border-white/5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 italic">Mobile App Development <span className="text-purple-500 text-not-italic">Process</span></h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 italic">Mobile App Development <span className="text-purple-500 font-normal">Process</span></h2>
             <div className="w-20 h-1 bg-purple-600 mx-auto rounded-full"></div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <ProcessCard step="Step 1" title={<h3>Discovery & Platform Decision</h3>} desc=" We analyze your target audience, feature requirements, budget, and timeline to recommend the right platform strategy. This conversation happens before any design work begins because it determines everything that follows" />
-            <ProcessCard step="Step 2" title={<h3>Design Sprints and User Testing</h3>} desc=" Wireframes first, then high-fidelity prototypes, then user testing with real people from your target audience. Design changes before development cost almost nothing. Design changes during development are expensive." />
-            <ProcessCard step="Step 3" title={<h3>Development with Regular Builds</h3>} desc="Two-week development sprints with TestFlight (iOS) and Play Console internal testing (Android) builds at the end of every cycle. You test on real devices throughout development — not just when the project is supposedly finished." />
-            <ProcessCard step="Step 4" title={<h3>Device and OS Testing</h3>} desc=" We test on a matrix of real devices across iOS versions, Android versions, screen sizes, and network conditions. Simulators are useful for development but never sufficient for release." />
-            <ProcessCard step="Step 5" title={<h3>Launch and Growth Support</h3>} desc="App Store and Play Store launch, monitoring setup, crash reporting configuration, and the first analytics review two weeks post-launch to identify and address the user experience issues that always emerge with real-world usage." />
+            <ProcessCard step="Step 1" title="Discovery & Platform Decision" desc="We analyze your target audience, feature requirements, budget, and timeline to recommend the right platform strategy." />
+            <ProcessCard step="Step 2" title="Design Sprints and User Testing" desc="Wireframes first, then high-fidelity prototypes, then user testing with real people from your target audience. Design changes are cheaper now." />
+            <ProcessCard step="Step 3" title="Development with Regular Builds" desc="Two-week development sprints with TestFlight (iOS) and Play Console internal testing (Android) builds at the end of every cycle." />
+            <ProcessCard step="Step 4" title="Device and OS Testing" desc="We test on a matrix of real devices across iOS versions, Android versions, screen sizes, and network conditions." />
+            <ProcessCard step="Step 5" title="Launch and Growth Support" desc="App Store and Play Store launch, monitoring setup, crash reporting configuration, and analytics review to address early real-world issues." />
             <div className="p-8 bg-purple-600 rounded-3xl flex flex-col justify-center items-center text-center">
               <Rocket className="mb-4 animate-bounce" size={40} />
               <h3 className="text-xl font-bold mb-2">Build Your Vision</h3>
               <Link to="/contact">
                 <button className="cursor-pointer bg-white text-purple-600 px-6 py-2 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-transform hover:scale-105 active:scale-95">
-                  Get Started start
+                  Get Started
                 </button>
               </Link>
             </div>
           </div>
         </section>
 
-        {/* --- NEW SELECTED WORK / IMAGES SECTION --- */}
+        {/* --- SELECTED WORK SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-24 border-t border-white/5">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 italic">Selected <span className="text-purple-500 text-not-italic">Projects</span></h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 italic">Selected <span className="text-purple-500 font-normal">Projects</span></h2>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed">
                 Take a look at some of the high-performance mobile applications we've built for our global clients.
               </p>
@@ -281,12 +277,11 @@ const MobileApp = () => {
           </div>
         </section>
 
-
         {/* --- FAQ SECTION --- */}
         <section className="max-w-4xl mx-auto px-6 py-20">
           <div className="flex items-center gap-4 mb-12">
             <div className="h-10 w-1 bg-purple-600 rounded-full"></div>
-            <h2 className="text-3xl font-bold italic">Mobile App <span className="text-purple-500 text-not-italic">Frequently Asked Questions</span></h2>
+            <h2 className="text-3xl font-bold italic">Mobile App <span className="text-purple-500 font-normal">Frequently Asked Questions</span></h2>
           </div>
           <div className="space-y-4">
             {faqs.map((faq, i) => (
@@ -317,11 +312,10 @@ const MobileApp = () => {
             </p>
 
             <Link to="/contact">
-              <button className="bg-purple-600 hover:bg-purple-700 px-13 py-5 rounded-2xl font-bold text-base transition-all shadow-2xl shadow-purple-500/30 active:scale-95 flex items-center gap-2 mx-auto">
+              <button className="bg-purple-600 hover:bg-purple-700 px-12 py-5 rounded-2xl font-bold text-base transition-all shadow-2xl shadow-purple-500/30 active:scale-95 flex items-center gap-2 mx-auto">
                 Free Consultation <ArrowRight size={20} />
               </button>
             </Link>
-
 
             <div className="mt-10 pt-10 border-t border-white/5">
               <div className="flex flex-wrap justify-center gap-x-8 gap-y-4">
