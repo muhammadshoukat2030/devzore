@@ -35,7 +35,7 @@ const Process = () => {
   return (
     <>
       {/* 🔥 ADVANCED SEO */}
-      <Helmet>
+      {/* <Helmet>
         <title>Software Development Process | DevZore Global Tech Company</title>
 
         <meta
@@ -48,16 +48,16 @@ const Process = () => {
           content="software development process, web development workflow, mobile app development process, MERN stack development, SaaS development lifecycle, agile development company, outsource software development"
         />
 
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="index, follow" /> */}
 
         {/* Open Graph */}
-        <meta property="og:title" content="DevZore Development Process" />
+        {/* <meta property="og:title" content="DevZore Development Process" />
         <meta property="og:description" content="Step-by-step process for building high-performance web and mobile apps." />
         <meta property="og:type" content="website" />
-      </Helmet>
+      </Helmet> */}
 
       {/* 🔥 STRUCTURED DATA (VERY IMPORTANT) */}
-      <script type="application/ld+json">
+      {/* <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "HowTo",
@@ -69,7 +69,7 @@ const Process = () => {
             "text": step.d
           }))
         })}
-      </script>
+      </script> */}
 
       <section id="process" className="py-20 md:py-24 px-4 md:px-6 max-w-6xl mx-auto">
 

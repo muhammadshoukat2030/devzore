@@ -110,30 +110,30 @@ const Services = () => {
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet> */}
         {/* Basic SEO Tags for Services Subpage */}
-        <title>Mobile App Development Services — iOS & Android | DevZore</title>
+        {/* <title>Mobile App Development Services — iOS & Android | DevZore</title>
         <meta name="description" content="DevZore offers premium mobile app development services for startups and enterprises. We build high-performance iOS & Android apps using React Native, Swift, and Kotlin." />
-        <link rel="canonical" href="https://devzore.com/services" />
+        <link rel="canonical" href="https://devzore.com/services" /> */}
 
         {/* Open Graph (OG) / Facebook */}
-        <meta property="og:title" content="Mobile App Development Services — iOS & Android | DevZore" />
+        {/* <meta property="og:title" content="Mobile App Development Services — iOS & Android | DevZore" />
         <meta property="og:description" content="Professional mobile app development services for iOS and Android using React Native, Swift, and Kotlin. Discover our scalable and performance-focused engineering." />
         <meta property="og:url" content="https://devzore.com/services" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="DevZore" />
+        <meta property="og:site_name" content="DevZore" /> */}
 
         {/* Social Image */}
-        <meta property="og:image" content="https://devzore.com/og/services-mobile-apps.webp" />
+        {/* <meta property="og:image" content="https://devzore.com/og/services-mobile-apps.webp" />
         <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image:height" content="630" /> */}
 
         {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
+        {/* <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Mobile App Development Services — DevZore" />
         <meta name="twitter:description" content="We design and develop high-fidelity iOS & Android applications tailored to your business goals with modern frameworks." />
         <meta name="twitter:image" content="https://devzore.com/og/services-mobile-apps.webp" />
-      </Helmet>
+      </Helmet> */}
 
       <section id="services" className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
 

@@ -30,7 +30,7 @@ const whyUsData = [
   {
     title: "Scalable & Production-Ready Code",
     desc: "We write clean, maintainable, and high-quality code designed to handle millions of users. Our applications are rigorously tested and optimized for peak performance.",
-    icon: "🏗️", 
+    icon: "🏗️",
     path: "/scalable-code-architecture"
   },
   {
@@ -44,7 +44,7 @@ export default function WhyUs() {
   return (
     <>
       {/* 🔥 SEO META */}
-      <Helmet>
+      {/* <Helmet>
         <title>Why Choose DevZore | Software Development Company for Global Clients</title>
 
         <meta
@@ -58,10 +58,10 @@ export default function WhyUs() {
         />
 
         <meta name="robots" content="index, follow" />
-      </Helmet>
+      </Helmet> */}
 
       {/* 🔥 STRUCTURED DATA (SEO BOOST) */}
-      <script type="application/ld+json">
+      {/* <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
@@ -70,10 +70,10 @@ export default function WhyUs() {
           "description": "Professional software development company providing web, mobile, and SaaS solutions globally",
           "areaServed": "Worldwide"
         })}
-      </script>
+      </script> */}
 
       <section className="py-16 md:py-24 px-4 md:px-6 bg-[#080808]">
-        
+
         {/* HEADER */}
         <div className="max-w-6xl mx-auto text-center mb-12 md:mb-20">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">

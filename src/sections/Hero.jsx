@@ -28,9 +28,9 @@ const Hero = () => {
         aria-label="Hero Section - DevZore Software Development Services"
       >
         {/* SEO Hidden Text */}
-        <h2 className="sr-only">
+        <h1 className="sr-only">
           Custom MERN Stack Web Development, React Native Mobile Apps, SaaS Development, and Full Stack Software Solutions Worldwide
-        </h2>
+        </h1>
 
         {/* Available Badge */}
         <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/20 bg-green-500/5 text-green-300 text-xs">
