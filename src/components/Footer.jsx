@@ -206,7 +206,7 @@ const Footer = () => {
               
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="text-white hover:text-purple-00 transition-all flex items-center justify-center bg-white/8 border border-white/10 w-7 h-7 rounded-lg text-sm font-normal"
+                className="text-white hover:text-purple-00 transition-all flex items-center justify-center bg-white/8 border border-white/10 w-8 h-8 rounded-lg text-sm font-normal"
                 title="Scroll back to top"
               >
                 ↑
