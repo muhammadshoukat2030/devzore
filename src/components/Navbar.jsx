@@ -9,12 +9,60 @@ import {
 
 const Navbar = () => {
   // --- STATE MANAGEMENT ---
-  const [isOpen, setIsOpen] = useState(false); // Controls mobile sidebar visibility
-  const [scrolled, setScrolled] = useState(false); // Triggers background change on scroll
-  const [serviceOpen, setServiceOpen] = useState(false); // Controls desktop services dropdown
-  const [mobileServiceOpen, setMobileServiceOpen] = useState(false); // Controls mobile services accordion
+  const [isOpen, setIsOpen] = useState(false); 
+  const [scrolled, setScrolled] = useState(false); 
+  const [serviceOpen, setServiceOpen] = useState(false); 
+  const [mobileServiceOpen, setMobileServiceOpen] = useState(false); 
 
   const location = useLocation();
+
+  // --- OPTIMIZATION EFFECT: Dynamic Metadata & Open Graph Injection ---
+  useEffect(() => {
+    const currentUrl = `https://devzore.com${location.pathname}`;
+    
+    // Helper function to create or update meta tags safely
+    const setMetaTag = (property, attributeName, value) => {
+      let element = document.querySelector(`meta[${property}="${attributeName}"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(property, attributeName);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', value);
+    };
+
+    // Auto-generate human-readable titles based on routes
+    let pageTitle = "DevZore — Product Engineering Lab";
+    let pageDesc = "Expert full-stack development, MERN stack solutions, and scalable cloud application engineering.";
+    
+    if (location.pathname !== "/") {
+      const formattedName = location.pathname
+        .replace('/', '')
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+      pageTitle = `${formattedName} | DevZore`;
+      pageDesc = `Premium software development services for ${formattedName}. Explore high-performance web applications built with precision.`;
+    }
+
+    // Inject Meta Headers for Ahrefs, Google, and Social Media bots
+    setMetaTag('property', 'og:url', currentUrl);
+    setMetaTag('property', 'og:title', pageTitle);
+    setMetaTag('property', 'og:description', pageDesc);
+    setMetaTag('property', 'og:type', 'website');
+    setMetaTag('name', 'twitter:title', pageTitle);
+    setMetaTag('name', 'twitter:description', pageDesc);
+
+    // Dynamic Canonical Validation Synchronization
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', currentUrl);
+
+  }, [location]);
 
   // --- EFFECT: Handle Scroll State Changes ---
   useEffect(() => {
@@ -84,7 +132,6 @@ const Navbar = () => {
       />
 
       {/* ── Top Announcement Message Bar ── */}
-      {/* Dynamic visibility: hides perfectly once the user starts scrolling down the page */}
       {!scrolled && !isOpen && (
         <div className="fixed top-0 w-full z-[10000] bg-gradient-to-r from-purple-600/20 via-purple-500/10 to-blue-600/20 border-b border-white/5 py-2 px-4 text-center hidden md:block transition-all duration-300">
           <p className="text-[11px] text-gray-400 tracking-widest uppercase">
@@ -98,7 +145,6 @@ const Navbar = () => {
       )}
 
       {/* ── Navigation Container ── */}
-      {/* The navbar shifts positions gracefully depending on whether top announcement bar is visible */}
       <nav
         className={`fixed w-full transition-all duration-500 z-[9999] ${
           scrolled || isOpen
@@ -119,7 +165,7 @@ const Navbar = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-purple-600 rounded-xl blur-md opacity-50 group-hover:opacity-80 transition-opacity"></div>
               <div className="relative w-9 h-9 bg-gradient-to-br from-purple-500 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-                <img src="/logo1.png" alt="DevZore — Software Development Agency" className="w-7 h-7 object-contain" />
+                <img src="/logo1.png" alt="DevZore" className="w-7 h-7 object-contain" />
               </div>
             </div>
             <div className="flex flex-col leading-none">
@@ -130,7 +176,7 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* ── Desktop Desktop Nav Items ── */}
+          {/* ── Desktop Nav Items ── */}
           <div className="hidden md:flex items-center gap-8">
             <ul className="flex items-center gap-1">
               {navLinks.map((link) => (
@@ -193,6 +239,7 @@ const Navbar = () => {
                         <Link
                           key={i}
                           to={s.path}
+                          rel="next"
                           onClick={() => { setServiceOpen(false); handleLinkClick(s.path); }}
                           className="group flex items-start gap-3 px-4 py-3 rounded-xl transition-all duration-200 hover:bg-white/[0.05] border border-transparent hover:border-white/[0.06]"
                         >
