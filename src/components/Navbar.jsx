@@ -8,22 +8,19 @@ import {
 } from 'lucide-react';
 
 const Navbar = () => {
-  // --- STATE MANAGEMENT ---
-  const [isOpen, setIsOpen] = useState(false); // Controls mobile sidebar visibility
-  const [scrolled, setScrolled] = useState(false); // Triggers background change on scroll
-  const [serviceOpen, setServiceOpen] = useState(false); // Controls desktop services dropdown
-  const [mobileServiceOpen, setMobileServiceOpen] = useState(false); // Controls mobile services accordion
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [serviceOpen, setServiceOpen] = useState(false);
+  const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
 
   const location = useLocation();
 
-  // --- EFFECT: Handle Scroll State Changes ---
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // --- EFFECT: Handle Hash Scrolling (e.g., #projects) ---
   useEffect(() => {
     if (location.hash) {
       const element = document.getElementById(location.hash.slice(1));
@@ -33,14 +30,12 @@ const Navbar = () => {
     }
   }, [location]);
 
-  // --- EFFECT: Lock Page Scroll When Mobile Menu is Open ---
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
   }, [isOpen]);
 
-  // --- SERVICES STATIC DATA ---
   const services = [
-    { name: "All Services",           icon: <LayoutGrid size={16} />,  path: "/allservices",            desc: "Browse everything we offer" },
+    { name: "All Services",              icon: <LayoutGrid size={16} />,  path: "/allservices",            desc: "Browse everything we offer" },
     { name: "Web Development",           icon: <Globe size={16} />,        path: "/web-development",        desc: "React, Next.js, modern web apps" },
     { name: "Mobile App Development",    icon: <Smartphone size={16} />,   path: "/mobile-apps",            desc: "iOS & Android with React Native" },
     { name: "E-Commerce",                icon: <ShoppingCart size={16} />, path: "/ecommerce",              desc: "Custom online stores that convert" },
@@ -53,7 +48,6 @@ const Navbar = () => {
     { name: "Backend & API",             icon: <Settings size={16} />,     path: "/backend-api",            desc: "Node.js, Express, REST & GraphQL" },
   ];
 
-  // --- CORE NAVIGATION LINKS ---
   const navLinks = [
     { name: "Home",      path: "/" },
     { name: "About",     path: "/about" },
@@ -61,7 +55,6 @@ const Navbar = () => {
     { name: "Blog",      path: "/blog" },
   ];
 
-  // --- HANDLERS ---
   const handleLinkClick = (path) => {
     setIsOpen(false);
     setMobileServiceOpen(false);
@@ -75,7 +68,7 @@ const Navbar = () => {
 
   return (
     <>
-      {/* ── Mobile Overlay Backdropper ── */}
+      {/* Mobile Overlay */}
       <div
         onClick={() => setIsOpen(false)}
         className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998] transition-opacity duration-300 ${
@@ -83,10 +76,9 @@ const Navbar = () => {
         }`}
       />
 
-      {/* ── Top Announcement Message Bar ── */}
-      {/* Dynamic visibility: hides perfectly once the user starts scrolling down the page */}
+      {/* Top announcement bar */}
       {!scrolled && !isOpen && (
-        <div className="fixed top-0 w-full z-[10000] bg-gradient-to-r from-purple-600/20 via-purple-500/10 to-blue-600/20 border-b border-white/5 py-2 px-4 text-center hidden md:block transition-all duration-300">
+        <div className="fixed top-0 w-full z-[10000] bg-gradient-to-r from-purple-600/20 via-purple-500/10 to-blue-600/20 border-b border-white/5 py-2 px-4 text-center hidden md:block">
           <p className="text-[11px] text-gray-400 tracking-widest uppercase">
             <span className="text-purple-400 font-bold">✦ Now Available</span>
             &nbsp;— Free consultation for your next project &nbsp;
@@ -97,18 +89,16 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* ── Navigation Container ── */}
-      {/* The navbar shifts positions gracefully depending on whether top announcement bar is visible */}
       <nav
         className={`fixed w-full transition-all duration-500 z-[9999] ${
           scrolled || isOpen
             ? 'top-0 bg-[#050505]/98 backdrop-blur-3xl border-b border-white/[0.06] shadow-[0_1px_40px_rgba(0,0,0,0.8)] h-[70px]'
-            : 'top-0 md:top-[36px] bg-transparent h-[80px]'
+            : 'top-[36px] bg-transparent h-[80px]'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
 
-          {/* ── Logo Branding ── */}
+          {/* ── Logo ── */}
           <Link
             to="/"
             onClick={() => handleLinkClick("/")}
@@ -119,7 +109,7 @@ const Navbar = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-purple-600 rounded-xl blur-md opacity-50 group-hover:opacity-80 transition-opacity"></div>
               <div className="relative w-9 h-9 bg-gradient-to-br from-purple-500 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-                <img src="/logo1.png" alt="DevZore — Software Development Agency" className="w-7 h-7 object-contain" />
+                <img src="/logo1.png" alt="DevZore — Software Development Agency Islamabad" className="w-7 h-7 object-contain" />
               </div>
             </div>
             <div className="flex flex-col leading-none">
@@ -130,8 +120,10 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* ── Desktop Desktop Nav Items ── */}
+          {/* ── Desktop Nav ── */}
           <div className="hidden md:flex items-center gap-8">
+
+            {/* Nav Links */}
             <ul className="flex items-center gap-1">
               {navLinks.map((link) => (
                 <li key={link.name}>
@@ -152,7 +144,7 @@ const Navbar = () => {
                 </li>
               ))}
 
-              {/* Mega Dropdown Triggers */}
+              {/* Services Dropdown */}
               <li
                 className="relative"
                 onMouseEnter={() => setServiceOpen(true)}
@@ -165,13 +157,15 @@ const Navbar = () => {
                   <ChevronDown size={13} className={`transition-transform duration-300 ${serviceOpen ? 'rotate-180 text-purple-400' : ''}`} />
                 </button>
 
-                {/* ── Desktop Services Mega Dropdown Card ── */}
+                {/* Mega Dropdown */}
                 <div className={`absolute top-full right-0 mt-3 w-[480px] transition-all duration-300 ${
                   serviceOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}>
-                  <div className="absolute -top-1.5 right-16 w-3 h-3 bg-[#0a0a0a] border-l border-t border-white/10 rotate-45"></div>
+                  {/* Arrow */}
+                  <div className="absolute -top-1.5 right-16 w-3 h-3 bg-[#0e0e0e] border-l border-t border-white/10 rotate-45"></div>
+
                   <div className="bg-[#0a0a0a] border border-white/[0.08] rounded-2xl shadow-[0_20px_80px_rgba(0,0,0,0.9)] overflow-hidden">
-                    
+
                     {/* Header */}
                     <div className="px-5 py-4 border-b border-white/[0.06] flex items-center justify-between">
                       <div>
@@ -187,7 +181,7 @@ const Navbar = () => {
                       </Link>
                     </div>
 
-                    {/* Content Grid */}
+                    {/* Services Grid */}
                     <div className="p-3 grid grid-cols-2 gap-1 max-h-[60vh] overflow-y-auto">
                       {services.slice(1).map((s, i) => (
                         <Link
@@ -207,7 +201,7 @@ const Navbar = () => {
                       ))}
                     </div>
 
-                    {/* Footer Callout */}
+                    {/* Footer CTA */}
                     <div className="px-5 py-4 border-t border-white/[0.06] bg-gradient-to-r from-purple-600/5 to-indigo-600/5 flex items-center justify-between">
                       <div>
                         <p className="text-[11px] text-gray-500">Not sure what you need?</p>
@@ -226,7 +220,7 @@ const Navbar = () => {
               </li>
             </ul>
 
-            {/* Direct Consultation Link */}
+            {/* CTA Button */}
             <Link
               to="/contact"
               onClick={() => handleLinkClick("/contact")}
@@ -237,13 +231,12 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* ── Mobile Hamburger Toggle Button ── */}
+          {/* ── Mobile Toggle ── */}
           <div className="md:hidden z-[10002]">
             {!isOpen ? (
               <button
                 onClick={() => setIsOpen(true)}
                 className="w-10 h-10 flex flex-col items-center justify-center gap-1.5 group"
-                aria-label="Open Menu"
               >
                 <span className="w-6 h-0.5 bg-white rounded-full transition-all group-hover:w-7"></span>
                 <span className="w-5 h-0.5 bg-purple-400 rounded-full transition-all group-hover:w-7"></span>
@@ -253,7 +246,6 @@ const Navbar = () => {
               <button
                 onClick={() => setIsOpen(false)}
                 className="fixed top-5 right-6 w-9 h-9 flex items-center justify-center bg-white/10 border border-white/20 rounded-lg text-white z-[10003] hover:bg-white/20 transition-all"
-                aria-label="Close Menu"
               >
                 <X size={18} />
               </button>
@@ -262,16 +254,18 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* ── Mobile Sidebar Menu ── */}
+      {/* ── Mobile Sidebar ── */}
       <div className={`fixed inset-y-0 right-0 w-[85%] max-w-[360px] h-screen z-[10001] flex flex-col transition-transform duration-400 ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
+
+        {/* Glassmorphism bg */}
         <div className="absolute inset-0 bg-[#060606]/98 backdrop-blur-3xl border-l border-white/[0.08]"></div>
 
-        {/* Brand Header */}
+        {/* Top brand in sidebar */}
         <div className="relative z-10 px-6 pt-6 pb-4 border-b border-white/[0.06] flex items-center gap-3">
           <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-700 rounded-lg flex items-center justify-center">
-            <img src="/logo1.png" alt="DevZore" className="w-5 h-5 object-contain" />
+            <img src="/logo1.webp" alt="DevZore" className="w-5 h-5 object-contain" />
           </div>
           <div>
             <p className="text-white text-base font-black tracking-tight">Dev<span className="text-purple-400">Zore</span></p>
@@ -279,12 +273,13 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Dynamic Navigation Content */}
         <div className="relative z-10 flex-1 overflow-y-auto px-4 py-5">
+
+          {/* Nav Links */}
           <div className="mb-6">
             <p className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-600 mb-3 px-2">Navigation</p>
             <div className="flex flex-col gap-1">
-              {navLinks.map((link) => (
+              {navLinks.map((link, index) => (
                 <Link
                   key={link.name}
                   to={link.path}
@@ -305,7 +300,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Dropdown Accordion */}
+          {/* Mobile Services */}
           <div>
             <button
               onClick={() => setMobileServiceOpen(!mobileServiceOpen)}
@@ -343,7 +338,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Bottom Call-To-Action Hooks */}
+        {/* Bottom CTA */}
         <div className="relative z-10 p-4 border-t border-white/[0.06] space-y-3">
           <Link
             to="/contact"
@@ -353,7 +348,7 @@ const Navbar = () => {
             <Mail size={14} /> Hire Us Now
           </Link>
           <a
-            href="https://wa.me/923348004300?text=Hi%20DevZore!%20I%20want%20to%20discuss%20a%20project."
+            href="https://wa.me/923348004300?text=Hi DevZore! I want to discuss a project."
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] py-3 rounded-xl font-bold text-[11px] uppercase tracking-widest hover:bg-[#25D366]/20 transition-all"
