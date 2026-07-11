@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     react(),
 
-    // 🌍 Sitemap (PERFECTLY WORKING NOW)
+    // 🌍 Sitemap Configuration (Optimized for Ahrefs & GSC)
     sitemap({
       hostname: 'https://devzore.com',
       dynamicRoutes: [
@@ -23,7 +23,6 @@ export default defineConfig({
         '/saas-product-development',
         '/reactdevelopment',
         '/ui-ux-design',
-        '/maintenance',
         '/startup-mvp',
         '/privacy-policy',
         '/terms-and-conditions'
