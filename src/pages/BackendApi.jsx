@@ -55,11 +55,11 @@ function BackendApi() {
     <>
 
       <Helmet>
-        <title>Backend & API Development Services | DevZore — Node.js Experts</title>
-        <meta name="description" content="DevZore builds robust, scalable backend systems and REST APIs using Node.js, Express.js and MongoDB. Secure, documented and production-ready API development from Islamabad, Pakistan." />
+        <title>Scalable Backend Engine & Secure REST/GraphQL API Design | DevZore</title>
+        <meta name="description" content="Bulletproof microservices architecture using Node.js, Express, and high-throughput SQL/NoSQL databases built for multi-tenant integrations." />
         <link rel="canonical" href="https://devzore.com/backend-api" />
-        <meta property="og:title" content="Backend & API Development | DevZore" />
-        <meta property="og:description" content="Node.js, Express.js and MongoDB backend development. Scalable REST APIs built by DevZore, Islamabad." />
+        <meta property="og:title" content="Scalable Backend Engine & Secure REST/GraphQL API Design | DevZore" />
+        <meta property="og:description" content="Robust microservices, flawless payload encryption, and high-concurrency cloud server optimization." />
         <meta property="og:url" content="https://devzore.com/backend-api" />
         <meta property="og:type" content="website" />
       </Helmet>

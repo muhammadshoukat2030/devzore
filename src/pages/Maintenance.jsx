@@ -15,14 +15,15 @@ const Maintenance = () => {
     <>
 
       <Helmet>
-        <title>Website Maintenance & Support Services | DevZore</title>
-        <meta name="description" content="DevZore provides professional website maintenance and support — bug fixes, security updates, performance monitoring and feature additions. Keep your site fast, secure and running every day." />
+        <title>Enterprise Website Maintenance & Technical Support Services | DevZore</title>
+        <meta name="description" content="DevZore provides professional website maintenance and continuous technical support—including cloud bug fixes, hot patches, security compliance monitoring, and performance scaling." />
         <link rel="canonical" href="https://devzore.com/maintenance" />
-        <meta property="og:title" content="Website Maintenance & Support | DevZore" />
-        <meta property="og:description" content="Professional website maintenance — bug fixes, security patches, performance tuning from DevZore, Islamabad." />
+        <meta property="og:title" content="Enterprise Website Maintenance & Technical Support Services | DevZore" />
+        <meta property="og:description" content="Keep your applications fast, secure, and resilient. Continuous uptime monitoring, optimization, and expert code auditing by global engineers." />
         <meta property="og:url" content="https://devzore.com/maintenance" />
         <meta property="og:type" content="website" />
       </Helmet>
+
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20 overflow-x-hidden">
 
         {/* --- 1. TOP NAVBAR BRAND STRIP --- */}

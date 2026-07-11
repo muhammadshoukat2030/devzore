@@ -122,16 +122,14 @@ const AllServices = () => {
     <>
 
       <Helmet>
-        <title>All Services | DevZore — Software Development Agency Islamabad</title>
-        <meta name="description" content="Explore all software development services offered by DevZore — web development, mobile apps, MERN stack, SaaS, UI/UX design, e-commerce and more. Based in Islamabad, Pakistan." />
+        <title>Full-Stack Digital Engineering Services Portfolio | DevZore</title>
+        <meta name="description" content="Explore DevZore's end-to-end global technical services: including advanced web architectures, cross-platform apps, cloud infrastructure, and custom APIs." />
         <link rel="canonical" href="https://devzore.com/allservices" />
-        <meta property="og:title" content="All Services | DevZore Software Development" />
-        <meta property="og:description" content="Web development, mobile apps, MERN stack, SaaS, UI/UX and more — all from DevZore, Islamabad." />
+        <meta property="og:title" content="Full-Stack Digital Engineering Services Portfolio | DevZore" />
+        <meta property="og:description" content="Comprehensive overview of modern software development capabilities engineered for corporate growth." />
         <meta property="og:url" content="https://devzore.com/allservices" />
         <meta property="og:type" content="website" />
       </Helmet>
-
-
 
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20">
 

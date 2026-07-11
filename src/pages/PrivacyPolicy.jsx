@@ -24,11 +24,15 @@ const PrivacyPolicy = () => {
   return (
     <>
 
+
       <Helmet>
-        <title>Privacy Policy | DevZore</title>
-        <meta name="description" content="Read DevZore's privacy policy to understand how we collect, use and protect your personal information." />
+        <title>Privacy Policy | Global Data Protection Compliance | DevZore</title>
+        <meta name="description" content="Review DevZore's transparent user privacy indicators, international cookies governance, and standard data integrity metrics." />
         <link rel="canonical" href="https://devzore.com/privacy-policy" />
-        <meta name="robots" content="noindex, follow" />
+        <meta property="og:title" content="Privacy Policy | Global Data Protection Compliance | DevZore" />
+        <meta property="og:description" content="Our official regulatory statement explaining global user data safety matrices." />
+        <meta property="og:url" content="https://devzore.com/privacy-policy" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <article className="min-h-screen bg-[#030303] text-gray-400 font-sans selection:bg-purple-500/30">
 

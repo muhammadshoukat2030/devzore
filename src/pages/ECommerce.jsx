@@ -15,11 +15,11 @@ const Ecommerce = () => {
     <>
 
       <Helmet>
-        <title>E-Commerce Development Services | DevZore — Online Store Experts</title>
-        <meta name="description" content="DevZore builds fast, scalable custom e-commerce platforms using MERN stack. From product catalog to checkout — full-stack online store development for startups and growing businesses." />
+        <title>Enterprise E-Commerce & Custom Marketplace Development | DevZore</title>
+        <meta name="description" content="Maximize conversions with automated checkout workflows, distributed database architectures, and secure international payment gateways." />
         <link rel="canonical" href="https://devzore.com/ecommerce" />
-        <meta property="og:title" content="E-Commerce Development Services | DevZore" />
-        <meta property="og:description" content="Custom e-commerce development using MERN stack. Fast, scalable online stores built for conversions — DevZore, Islamabad." />
+        <meta property="og:title" content="Enterprise E-Commerce & Custom Marketplace Development | DevZore" />
+        <meta property="og:description" content="Custom high-speed digital store systems built to scale transactional loads smoothly." />
         <meta property="og:url" content="https://devzore.com/ecommerce" />
         <meta property="og:type" content="website" />
       </Helmet>

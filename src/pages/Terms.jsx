@@ -24,11 +24,15 @@ const Terms = () => {
     <>
 
       <Helmet>
-        <title>Terms & Conditions | DevZore</title>
-        <meta name="description" content="Read DevZore's terms and conditions for using our software development services and website." />
+        <title>Terms of Service & Engineering Service Agreements | DevZore</title>
+        <meta name="description" content="Review the official legal frameworks, delivery milestones clauses, and international code ownership structures governing DevZore software solutions." />
         <link rel="canonical" href="https://devzore.com/terms-and-conditions" />
-        <meta name="robots" content="noindex, follow" />
+        <meta property="og:title" content="Terms of Service & Engineering Service Agreements | DevZore" />
+        <meta property="og:description" content="Professional developer engagement boundaries and system deployment legal metrics." />
+        <meta property="og:url" content="https://devzore.com/terms-and-conditions" />
+        <meta property="og:type" content="website" />
       </Helmet>
+
       <article className="min-h-screen bg-[#030303] text-gray-400 font-sans selection:bg-purple-500/30">
         {/* Premium Background Ambient Decor */}
         <div className="fixed inset-0 pointer-events-none z-0">

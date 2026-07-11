@@ -1,5 +1,5 @@
 import React from 'react';
-import {Helmet} from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -12,13 +12,13 @@ const Hero = () => {
 
   return (
     <>
-      
+
       <Helmet>
-        <title>DevZore | MERN Stack & Web App Development Company — Islamabad</title>
-        <meta name="description" content="DevZore builds fast, scalable web apps, mobile apps and SaaS products using MERN stack. Based in Islamabad, Pakistan — trusted by startups and businesses worldwide. Get a free consultation." />
+        <title>DevZore | Premium MERN Stack & Custom Software Development Agency</title>
+        <meta name="description" content="We engineer high-performance, enterprise-grade web applications, cross-platform mobile apps, and scalable SaaS platforms. Worldwide agile delivery." />
         <link rel="canonical" href="https://devzore.com/" />
-        <meta property="og:title" content="DevZore | MERN Stack & Web App Development Company" />
-        <meta property="og:description" content="We build web apps, mobile apps and SaaS products using MERN stack. Based in Islamabad, serving clients worldwide." />
+        <meta property="og:title" content="DevZore | Premium MERN Stack & Custom Software Development Agency" />
+        <meta property="og:description" content="Next-gen digital engineering, scalable MERN architectures, and secure cloud solutions tailored for global enterprises." />
         <meta property="og:url" content="https://devzore.com/" />
         <meta property="og:type" content="website" />
       </Helmet>

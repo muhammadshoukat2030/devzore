@@ -56,11 +56,11 @@ function ReactDevelopment() {
     <>
 
       <Helmet>
-        <title>React Development Services | DevZore — React.js Experts Pakistan</title>
-        <meta name="description" content="DevZore specialises in React.js development — fast, component-driven web applications with modern state management and optimised performance. React development from Islamabad, Pakistan." />
+        <title>Professional React.js Development Services | Frontend Experts | DevZore</title>
+        <meta name="description" content="Accelerate your UI rendering using clean, decoupled component-driven design patterns, dynamic state management, and strict technical optimization." />
         <link rel="canonical" href="https://devzore.com/reactdevelopment" />
-        <meta property="og:title" content="React Development Services | DevZore" />
-        <meta property="og:description" content="Expert React.js development — fast, scalable component-driven web apps from DevZore, Islamabad." />
+        <meta property="og:title" content="Professional React.js Development Services | Frontend Experts | DevZore" />
+        <meta property="og:description" content="Next-gen user interfaces optimized for web performance, SEO, and extreme modularity." />
         <meta property="og:url" content="https://devzore.com/reactdevelopment" />
         <meta property="og:type" content="website" />
       </Helmet>

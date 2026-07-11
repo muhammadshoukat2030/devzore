@@ -56,12 +56,13 @@ const Contact = () => {
   return (
     <>
 
+
       <Helmet>
-        <title>Contact DevZore | Hire a Developer in Islamabad, Pakistan</title>
-        <meta name="description" content="Get in touch with DevZore to start your web or mobile app project. Based in Islamabad, Pakistan — we work with clients globally. Free consultation, response within 24 hours." />
+        <title>Contact Us | Book a Free Global Consultation | DevZore</title>
+        <meta name="description" content="Scale your business infrastructure today. Get in touch with DevZore's technical consultants for scoping, MVPs, or full-scale team augmentation." />
         <link rel="canonical" href="https://devzore.com/contact" />
-        <meta property="og:title" content="Contact DevZore | Hire a Developer in Islamabad" />
-        <meta property="og:description" content="Start your project with DevZore. Free consultation for web, mobile and SaaS development. Response within 24 hours." />
+        <meta property="og:title" content="Contact Us | Book a Free Global Consultation | DevZore" />
+        <meta property="og:description" content="Let's build something extraordinary. Hire dedicated remote developers and scale up your engineering." />
         <meta property="og:url" content="https://devzore.com/contact" />
         <meta property="og:type" content="website" />
       </Helmet>

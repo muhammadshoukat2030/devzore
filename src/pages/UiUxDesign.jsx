@@ -15,14 +15,15 @@ const UIUXDesign = () => {
     <>
 
       <Helmet>
-        <title>UI/UX Design Services | DevZore — User-Centered Design Agency</title>
-        <meta name="description" content="DevZore creates intuitive, conversion-focused UI/UX designs for web apps, mobile apps and SaaS products. From wireframes to final UI — we design experiences users love." />
+        <title>User-Centric UI/UX Prototyping & Digital Interaction Design | DevZore</title>
+        <meta name="description" content="Elevate digital experiences with advanced Figma design systems, interactive web wireframes, and scientific user journeys built for conversion." />
         <link rel="canonical" href="https://devzore.com/ui-ux-design" />
-        <meta property="og:title" content="UI/UX Design Services | DevZore" />
-        <meta property="og:description" content="User-centered UI/UX design for web, mobile and SaaS. Wireframes, prototypes and production UI from DevZore." />
+        <meta property="og:title" content="User-Centric UI/UX Prototyping & Digital Interaction Design | DevZore" />
+        <meta property="og:description" content="High-fidelity interface prototypes and streamlined wireframes designed for global brand success." />
         <meta property="og:url" content="https://devzore.com/ui-ux-design" />
         <meta property="og:type" content="website" />
       </Helmet>
+
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20 overflow-x-hidden">
 
         {/* --- 1. TOP NAVIGATION / BADGE AREA --- */}

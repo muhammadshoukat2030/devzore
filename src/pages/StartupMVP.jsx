@@ -13,16 +13,16 @@ const StartupMVP = () => {
   return (
     <>
 
-
       <Helmet>
-        <title>Startup MVP Development Company | DevZore — Launch in 8 Weeks</title>
-        <meta name="description" content="DevZore builds investor-ready MVPs for startups in 8 to 14 weeks using MERN stack. Validate your idea, reach early users and attract funding — without burning through your runway." />
+        <title>Rapid MVP Development for High-Growth Tech Startups | DevZore</title>
+        <meta name="description" content="Launch your minimal viable software product within weeks. Validate features quickly, minimize investment risk, and raise capital with confidence." />
         <link rel="canonical" href="https://devzore.com/startup-mvp" />
-        <meta property="og:title" content="Startup MVP Development | DevZore" />
-        <meta property="og:description" content="Investor-ready MVPs built in 8–14 weeks using MERN stack. From idea to launch — DevZore, Islamabad." />
+        <meta property="og:title" content="Rapid MVP Development for High-Growth Tech Startups | DevZore" />
+        <meta property="og:description" content="Agile MVP blueprints built for optimal time-to-market performance and seamless scalability." />
         <meta property="og:url" content="https://devzore.com/startup-mvp" />
         <meta property="og:type" content="website" />
       </Helmet>
+
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20 overflow-x-hidden">
         {/* --- 1. TOP HEADER NAVIGATION --- */}
         <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between relative z-50">

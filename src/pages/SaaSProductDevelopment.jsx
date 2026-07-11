@@ -52,11 +52,11 @@ function SaaSProductDevelopment() {
     <>
 
       <Helmet>
-        <title>SaaS Product Development Company | DevZore — Islamabad</title>
-        <meta name="description" content="DevZore builds scalable SaaS products from scratch — dashboards, billing, multi-tenant architecture and more. End-to-end SaaS development for startups and enterprises from Islamabad, Pakistan." />
+        <title>Custom SaaS Product Architecture & Multi-Tenant Solutions | DevZore</title>
+        <meta name="description" content="Convert your business logic into a modern cloud platform with automated Stripe/PayPal metering, secure multi-tenancy, and isolated environments." />
         <link rel="canonical" href="https://devzore.com/saas-product-development" />
-        <meta property="og:title" content="SaaS Product Development | DevZore" />
-        <meta property="og:description" content="End-to-end SaaS development — dashboards, billing, multi-tenant apps. Built by DevZore, Islamabad." />
+        <meta property="og:title" content="Custom SaaS Product Architecture & Multi-Tenant Solutions | DevZore" />
+        <meta property="og:description" content="Production-ready multi-tenant SaaS systems engineered for immediate global scaling." />
         <meta property="og:url" content="https://devzore.com/saas-product-development" />
         <meta property="og:type" content="website" />
       </Helmet>

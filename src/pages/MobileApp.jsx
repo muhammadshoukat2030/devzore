@@ -48,12 +48,13 @@ const MobileApp = () => {
 
   return (
     <>
+    
       <Helmet>
-        <title>Mobile App Development Services | DevZore — iOS & Android</title>
-        <meta name="description" content="DevZore builds cross-platform and native mobile apps for iOS and Android using React Native. Fast, scalable mobile development for startups and businesses from Islamabad, Pakistan." />
+        <title>Cross-Platform Mobile App Development | iOS & Android | DevZore</title>
+        <meta name="description" content="High-end React Native engineering delivering pixel-perfect UI/UX, fast performance, and robust hardware integration on both iOS and Android." />
         <link rel="canonical" href="https://devzore.com/mobile-apps" />
-        <meta property="og:title" content="Mobile App Development | DevZore" />
-        <meta property="og:description" content="iOS and Android app development using React Native — from DevZore, Islamabad, Pakistan." />
+        <meta property="og:title" content="Cross-Platform Mobile App Development | iOS & Android | DevZore" />
+        <meta property="og:description" content="Seamless native-grade applications with secure backends deployed globally on App Stores." />
         <meta property="og:url" content="https://devzore.com/mobile-apps" />
         <meta property="og:type" content="website" />
       </Helmet>

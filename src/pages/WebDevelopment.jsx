@@ -52,12 +52,13 @@ const WebDevelopment = () => {
   return (
     <>
 
+
       <Helmet>
-        <title>Web Development Services | DevZore — React & Next.js Experts</title>
-        <meta name="description" content="DevZore builds fast, scalable websites and web applications using React, Next.js and Node.js. Custom web development for startups and businesses — based in Islamabad, Pakistan." />
+        <title>Custom Web Application Development Services | DevZore</title>
+        <meta name="description" content="Bespoke, secure, and enterprise-grade web systems engineered for performance, flawless responsiveness, and global scalability." />
         <link rel="canonical" href="https://devzore.com/web-development" />
-        <meta property="og:title" content="Web Development Services | DevZore" />
-        <meta property="og:description" content="Custom web development using React, Next.js and Node.js. Fast, scalable websites built by DevZore, Islamabad." />
+        <meta property="og:title" content="Custom Web Application Development Services | DevZore" />
+        <meta property="og:description" content="High-performance modern web architectures built using secure, industry-standard development patterns." />
         <meta property="og:url" content="https://devzore.com/web-development" />
         <meta property="og:type" content="website" />
       </Helmet>

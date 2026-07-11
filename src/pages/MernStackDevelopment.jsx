@@ -56,11 +56,11 @@ const MernStackDevelopment = () => {
     <>
 
       <Helmet>
-        <title>MERN Stack Development Company | DevZore — Islamabad</title>
-        <meta name="description" content="DevZore builds scalable, production-ready apps using MERN stack — MongoDB, Express.js, React, and Node.js. Full-stack JavaScript development for startups and enterprises. Get a free consultation." />
+        <title>Dedicated MERN Stack Development Experts | DevZore</title>
+        <meta name="description" content="Hire elite full-stack engineers specializing in MongoDB, Express.js, React, and Node.js to architect secure, continuous-deployment systems." />
         <link rel="canonical" href="https://devzore.com/mern-stack-development" />
-        <meta property="og:title" content="MERN Stack Development Company | DevZore" />
-        <meta property="og:description" content="Full-stack MERN development — MongoDB, Express, React, Node.js. Production-ready apps from DevZore, Islamabad." />
+        <meta property="og:title" content="Dedicated MERN Stack Development Experts | DevZore" />
+        <meta property="og:description" content="Full-spectrum MERN architecture engineered for optimal speeds and enterprise scaling." />
         <meta property="og:url" content="https://devzore.com/mern-stack-development" />
         <meta property="og:type" content="website" />
       </Helmet>

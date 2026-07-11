@@ -562,11 +562,11 @@ const BlogPage = () => {
     <>
 
       <Helmet>
-        <title>DevZore Blog | Web & App Development Tips & Insights</title>
-        <meta name="description" content="Read the DevZore blog for tips on web development, mobile apps, MERN stack, and software business insights from our team in Islamabad, Pakistan." />
+        <title>DevZore Chronicles | Technical Engineering & Optimization Insights</title>
+        <meta name="description" content="Deep-dives into technical documentation tutorials, web optimization methodologies, MERN clean-code execution, and modern cloud deployment trends." />
         <link rel="canonical" href="https://devzore.com/blog" />
-        <meta property="og:title" content="DevZore Blog | Web & App Development Tips" />
-        <meta property="og:description" content="Tips, tutorials and insights on web development, mobile apps and SaaS from DevZore, Islamabad." />
+        <meta property="og:title" content="DevZore Chronicles | Technical Engineering & Optimization Insights" />
+        <meta property="og:description" content="Industrial software insights and programming guidelines shared straight from our production engineers." />
         <meta property="og:url" content="https://devzore.com/blog" />
         <meta property="og:type" content="website" />
       </Helmet>

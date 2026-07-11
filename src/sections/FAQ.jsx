@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SectionTag from '../components/SectionTag';
-import { Helmet } from "react-helmet-async"; // ✅ sirf ye rakho
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -38,12 +37,7 @@ const FAQ = () => {
 
   return (
     <>
-      {/* ✅ SEO META */}
-      <Helmet>
-        <title>DevZore | Leading Software & Product Development Services</title>
-        <meta name="description" content="DevZore provides MERN stack, Next.js, SaaS and mobile app development services worldwide with SEO optimized solutions." />
-        <meta name="keywords" content="software company, MERN stack, React developer, Next.js, SaaS, mobile app development, SEO services" />
-      </Helmet>
+    
 
       <section id="faq" className="py-24 px-6 max-w-4xl mx-auto bg-[#050505]">
         <div className="text-center mb-16">

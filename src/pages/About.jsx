@@ -1,5 +1,5 @@
 import React from 'react';
-import {Helmet} from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
 import {
   User, Code2, Rocket, Globe2,
@@ -10,12 +10,13 @@ import {
 const AboutPage = () => {
   return (
     <>
+
       <Helmet>
-        <title>About DevZore | Software Agency Founded by Shoukat — Islamabad</title>
-        <meta name="description" content="Learn about DevZore, a software development agency founded by Shoukat in Islamabad, Pakistan. We help startups and businesses worldwide build scalable web apps, mobile apps and SaaS products." />
+        <title>About Us | Global Digital Engineering & Software House | DevZore</title>
+        <meta name="description" content="Discover DevZore's engineering philosophy, elite technology stack, and track record of delivering clean-code digital solutions to international clients." />
         <link rel="canonical" href="https://devzore.com/about" />
-        <meta property="og:title" content="About DevZore | Software Agency Founded by Shoukat" />
-        <meta property="og:description" content="DevZore is a software agency in Islamabad helping businesses build web apps, mobile apps and SaaS products worldwide." />
+        <meta property="og:title" content="About Us | Global Digital Engineering & Software House | DevZore" />
+        <meta property="og:description" content="Meet the full-stack experts pushing boundaries in scalable web development and custom product architecture." />
         <meta property="og:url" content="https://devzore.com/about" />
         <meta property="og:type" content="website" />
       </Helmet>

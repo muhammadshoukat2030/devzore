@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'; // added useEffect
 import { Link } from 'react-router-dom';
 import SectionTag from '../components/SectionTag';
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 
 const Services = () => {
 
