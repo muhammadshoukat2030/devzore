@@ -16,54 +16,6 @@ const Navbar = () => {
 
   const location = useLocation();
 
-  // --- OPTIMIZATION EFFECT: Dynamic Metadata & Open Graph Injection ---
-  useEffect(() => {
-    const currentUrl = `https://devzore.com${location.pathname}`;
-    
-    // Helper function to create or update meta tags safely
-    const setMetaTag = (property, attributeName, value) => {
-      let element = document.querySelector(`meta[${property}="${attributeName}"]`);
-      if (!element) {
-        element = document.createElement('meta');
-        element.setAttribute(property, attributeName);
-        document.head.appendChild(element);
-      }
-      element.setAttribute('content', value);
-    };
-
-    // Auto-generate human-readable titles based on routes
-    let pageTitle = "DevZore — Product Engineering Lab";
-    let pageDesc = "Expert full-stack development, MERN stack solutions, and scalable cloud application engineering.";
-    
-    if (location.pathname !== "/") {
-      const formattedName = location.pathname
-        .replace('/', '')
-        .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-      pageTitle = `${formattedName} | DevZore`;
-      pageDesc = `Premium software development services for ${formattedName}. Explore high-performance web applications built with precision.`;
-    }
-
-    // Inject Meta Headers for Ahrefs, Google, and Social Media bots
-    setMetaTag('property', 'og:url', currentUrl);
-    setMetaTag('property', 'og:title', pageTitle);
-    setMetaTag('property', 'og:description', pageDesc);
-    setMetaTag('property', 'og:type', 'website');
-    setMetaTag('name', 'twitter:title', pageTitle);
-    setMetaTag('name', 'twitter:description', pageDesc);
-
-    // Dynamic Canonical Validation Synchronization
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', currentUrl);
-
-  }, [location]);
-
   // --- EFFECT: Handle Scroll State Changes ---
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -91,7 +43,7 @@ const Navbar = () => {
     { name: "All Services",           icon: <LayoutGrid size={16} />,  path: "/allservices",            desc: "Browse everything we offer" },
     { name: "Web Development",           icon: <Globe size={16} />,        path: "/web-development",        desc: "React, Next.js, modern web apps" },
     { name: "Mobile App Development",    icon: <Smartphone size={16} />,   path: "/mobile-apps",            desc: "iOS & Android with React Native" },
-    { name: "E-Commerce",                icon: <ShoppingCart size={16} />, path: "/ecommerce",              desc: "Custom online stores that convert" },
+    { name: "E-Commerce",                icon: <ShoppingCart size={16} />, path: "/ecommerce",               desc: "Custom online stores that convert" },
     { name: "MERN Stack",                icon: <Rocket size={16} />,       path: "/mern-stack-development", desc: "Full-stack JS from DB to UI" },
     { name: "SaaS Development",          icon: <Cloud size={16} />,        path: "/saas-product-development", desc: "Scalable SaaS products" },
     { name: "React Development",         icon: <Zap size={16} />,          path: "/reactdevelopment",       desc: "Component-driven React UIs" },
@@ -403,7 +355,7 @@ const Navbar = () => {
             href="https://wa.me/923348004300?text=Hi%20DevZore!%20I%20want%20to%20discuss%20a%20project."
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] py-3 rounded-xl font-bold text-[11px] uppercase tracking-widest hover:bg-[#25D366]/20 transition-all"
+            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-[#25D366]/10 to-[#128C7E]/10 border border-[#25D366]/20 text-[#25D366] py-3 rounded-xl font-bold text-[11px] uppercase tracking-widest hover:bg-[#25D366]/20 transition-all"
           >
             <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z"/>
