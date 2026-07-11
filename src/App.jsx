@@ -39,13 +39,13 @@ import StartupMVP from './pages/StartupMVP'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Terms from './pages/Terms'
 
-// ✅ SUPERCHARGED SEO & SOCIAL GRAPH ENGINE: Fixes missing Open Graph & Twitter Card warnings instantly.
+// ✅ 100% SEO ENGINE: Automatically manages dynamic meta tags, unique canonical tags, and updates DOM safely.
 const SEOManager = () => {
   const location = useLocation();
 
   useEffect(() => {
+    const siteTitle = "DevZore International | Premium Software Engineering Agency";
     const baseUrl = "https://devzore.com";
-    const defaultImage = `${baseUrl}/logo1.png`;
     
     // Exact mapping tracking all custom production routes
     const routeSeoData = {
@@ -125,10 +125,10 @@ const SEOManager = () => {
       desc: "Requested software pipeline resource cannot be correctly resolved within our primary architectural server mapping."
     };
 
-    // 1. Title Tag Update
+    // 1. Dynamic Title Tag Update (Ahrefs Empty Title Bug Fix)
     document.title = currentData.title;
 
-    // 2. Meta Description Injection
+    // 2. Dynamic Meta Description Injection
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       metaDescription = document.createElement('meta');
@@ -137,7 +137,7 @@ const SEOManager = () => {
     }
     metaDescription.content = currentData.desc;
 
-    // 3. Canonical Tag Injection
+    // 3. Dynamic Canonical Tag Injection (Ahrefs Duplicate Pages Without Canonical Fix)
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
       canonicalLink = document.createElement('link');
@@ -145,32 +145,6 @@ const SEOManager = () => {
       document.head.appendChild(canonicalLink);
     }
     canonicalLink.href = `${baseUrl}${currentPath}`;
-
-    // Helper function to set or create meta tags dynamically
-    const setMetaTag = (attrName, attrValue, content) => {
-      let element = document.querySelector(`meta[${attrName}="${attrValue}"]`);
-      if (!element) {
-        element = document.createElement('meta');
-        element.setAttribute(attrName, attrValue);
-        document.head.appendChild(element);
-      }
-      element.content = content;
-    };
-
-    // 4. Dynamic Open Graph (OG) Social Tags Injection
-    setMetaTag('property', 'og:type', 'website');
-    setMetaTag('property', 'og:url', `${baseUrl}${currentPath}`);
-    setMetaTag('property', 'og:title', currentData.title);
-    setMetaTag('property', 'og:description', currentData.desc);
-    setMetaTag('property', 'og:image', defaultImage);
-
-    // 5. Dynamic X / Twitter Cards Tags Injection
-    setMetaTag('name', 'twitter:card', 'summary_large_image');
-    setMetaTag('name', 'twitter:url', `${baseUrl}${currentPath}`);
-    setMetaTag('name', 'twitter:title', currentData.title);
-    setMetaTag('name', 'twitter:description', currentData.desc);
-    setMetaTag('name', 'twitter:image', defaultImage);
-
   }, [location]);
 
   return null;
@@ -202,7 +176,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <SEOManager />
+      <SEOManager /> {/* ✅ Runs dynamically on every navigation loop to keep SEO nodes populated */}
 
       <div className="bg-[#030303] min-h-screen text-white selection:bg-purple-500/30 font-sans flex flex-col">
         <Navbar />
