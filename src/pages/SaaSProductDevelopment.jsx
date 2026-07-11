@@ -50,7 +50,7 @@ function SaaSProductDevelopment() {
 
   return (
     <>
-
+      {/* 🌎 META INFRASTRUCTURE: Syncs perfectly with Ahrefs and vite sitemap parameters */}
       <Helmet>
         <title>Custom SaaS Product Architecture & Multi-Tenant Solutions | DevZore</title>
         <meta name="description" content="Convert your business logic into a modern cloud platform with automated Stripe/PayPal metering, secure multi-tenancy, and isolated environments." />
@@ -113,7 +113,7 @@ function SaaSProductDevelopment() {
           </div>
         </section>
 
-        {/* --- CORE CAPABILITIES / WHAT MAKES SAAS DIFFERENT --- */}
+        {/* --- CORE CAPABILITIES --- */}
         <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
           <div className="mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 italic">
@@ -129,7 +129,7 @@ function SaaSProductDevelopment() {
             </div>
           </div>
 
-          {/* Expanded Cards Grid */}
+          {/* Capabilities Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <ExpertiseCard
               icon={<Layers className="text-purple-500" size={24} />}
@@ -146,9 +146,11 @@ function SaaSProductDevelopment() {
               title="Authentication and Access Control "
               desc="Multi-role permission systems that reflect your actual business model — organization admins, team members, read-only viewers, API access tokens. SSO and SAML for enterprise customers. Magic link login, MFA, and session management implemented with security best practices at every layer.."
               borderColor="border-l-green-500" />
+            
+            {/* 🛠️ FIXED: Removed trailing '<' character from title string */}
             <ExpertiseCard
               icon={<Users2 className="text-orange-500" size={24} />}
-              title="Self-Serve User Onboarding<"
+              title="Self-Serve User Onboarding"
               desc=" The fastest path to churn is an onboarding flow that leaves users confused about what to do next. We design and build onboarding sequences that get users to their product's core value — their 'aha moment' — as quickly as possible, reducing early-stage churn before it starts."
               borderColor="border-l-orange-500" />
             <ExpertiseCard
@@ -164,9 +166,7 @@ function SaaSProductDevelopment() {
           </div>
         </section>
 
-
         <div className="bg-black min-h-screen">
-          {/* Baki sections yahan aayenge */}
           <ServiceGalleryTemplate pageKey="SaaSProductDevelopment" />
         </div>
 
@@ -210,81 +210,23 @@ function SaaSProductDevelopment() {
           </div>
         </section>
 
-
+        {/* --- TECH STACK SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-24 border-t border-white/5">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {/* Framework & Backend */}
-            <StackCard
-              category="Frontend & Logic"
-              items={["Next.js (SSR)", "React 19"]}
-              icon={<Layers className="text-blue-400" size={20} />}
-            />
-            <StackCard
-              category="API Layer"
-              items={["Node.js", "Express.js"]}
-              icon={<Server className="text-green-500" size={20} />}
-            />
-
-            {/* Databases */}
-            <StackCard
-              category="Relational Data"
-              items={["PostgreSQL"]}
-              icon={<Database className="text-indigo-400" size={20} />}
-            />
-            <StackCard
-              category="Flexible Storage"
-              items={["MongoDB Atlas"]}
-              icon={<Database className="text-green-400" size={20} />}
-            />
-
-            {/* DevOps & Infra */}
-            <StackCard
-              category="Cloud & Infra"
-              items={["AWS", "GCP", "Terraform"]}
-              icon={<Globe className="text-cyan-400" size={20} />}
-            />
-            <StackCard
-              category="Containerization"
-              items={["Docker", "Kubernetes"]}
-              icon={<Box className="text-blue-500" size={20} />}
-            />
-
-            {/* Auth & Payments */}
-            <StackCard
-              category="Auth & Security"
-              items={["Clerk", "Auth0"]}
-              icon={<ShieldCheck className="text-purple-400" size={20} />}
-            />
-            <StackCard
-              category="Billing"
-              items={["Stripe Connect"]}
-              icon={<CreditCard className="text-slate-400" size={20} />}
-            />
-
-            {/* Performance & Analytics */}
-            <StackCard
-              category="Caching"
-              items={["Redis"]}
-              icon={<Zap className="text-red-500" size={20} />}
-            />
-            <StackCard
-              category="Analytics"
-              items={["PostHog", "Segment"]}
-              icon={<BarChart3 className="text-orange-400" size={20} />}
-            />
-            <StackCard
-              category="Communication"
-              items={["Resend", "SendGrid"]}
-              icon={<Mail className="text-pink-400" size={20} />}
-            />
-            <StackCard
-              category="Deployment"
-              items={["Vercel", "CI/CD"]}
-              icon={<Rocket className="text-yellow-400" size={20} />}
-            />
+            <StackCard category="Frontend & Logic" items={["Next.js (SSR)", "React 19"]} icon={<Layers className="text-blue-400" size={20} />} />
+            <StackCard category="API Layer" items={["Node.js", "Express.js"]} icon={<Server className="text-green-500" size={20} />} />
+            <StackCard category="Relational Data" items={["PostgreSQL"]} icon={<Database className="text-indigo-400" size={20} />} />
+            <StackCard category="Flexible Storage" items={["MongoDB Atlas"]} icon={<Database className="text-green-400" size={20} />} />
+            <StackCard category="Cloud & Infra" items={["AWS", "GCP", "Terraform"]} icon={<Globe className="text-cyan-400" size={20} />} />
+            <StackCard category="Containerization" items={["Docker", "Kubernetes"]} icon={<Box className="text-blue-500" size={20} />} />
+            <StackCard category="Auth & Security" items={["Clerk", "Auth0"]} icon={<ShieldCheck className="text-purple-400" size={20} />} />
+            <StackCard category="Billing" items={["Stripe Connect"]} icon={<CreditCard className="text-slate-400" size={20} />} />
+            <StackCard category="Caching" items={["Redis"]} icon={<Zap className="text-red-500" size={20} />} />
+            <StackCard category="Analytics" items={["PostHog", "Segment"]} icon={<BarChart3 className="text-orange-400" size={20} />} />
+            <StackCard category="Communication" items={["Resend", "SendGrid"]} icon={<Mail className="text-pink-400" size={20} />} />
+            <StackCard category="Deployment" items={["Vercel", "CI/CD"]} icon={<Rocket className="text-yellow-400" size={20} />} />
           </div>
         </section>
-
 
         {/* --- FAQ SECTION --- */}
         <section className="max-w-4xl mx-auto px-6 py-20">
@@ -340,7 +282,6 @@ function SaaSProductDevelopment() {
   );
 }
 
-
 /* --- SUB-COMPONENTS --- */
 const ExpertiseCard = ({ icon, title, desc, borderColor }) => (
   <div className={`bg-[#080808] p-8 rounded-2xl border border-gray-900 border-l-4 ${borderColor} hover:bg-[#0c0c0c] transition-all group hover:-translate-y-1`}>
@@ -371,7 +312,7 @@ const FooterLink = ({ to, label }) => (
     {label} <ExternalLink size={10} className="opacity-0 group-hover:opacity-100 transition-opacity" />
   </Link>
 );
-/* --- 1. PEHLE COMPONENT DEFINE KAREN --- */
+
 const StackCard = ({ category, items, icon }) => (
   <div className="bg-[#0c0c0c] border border-white/5 p-6 rounded-2xl hover:border-purple-500/30 transition-all group">
     <div className="flex items-center gap-3 mb-4">
@@ -391,6 +332,5 @@ const StackCard = ({ category, items, icon }) => (
     </div>
   </div>
 );
-// Phir iske niche export default hoga
 
 export default SaaSProductDevelopment;

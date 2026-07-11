@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom' // ✅ FIX COMMENT: Added 'Link' import for client-side navigation inside NotFound component
 
 // Components
 import Navbar from './components/Navbar'
@@ -55,9 +55,10 @@ const NotFound = () => (
   <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
     <h1 className="text-9xl font-black text-purple-600">404</h1>
     <p className="text-2xl font-bold mt-4">Page Not Found</p>
-    <a href="/" className="mt-8 px-6 py-3 bg-purple-600 rounded-lg font-bold hover:bg-purple-700 transition">
+    {/* ✅ CRITICAL FIX: Changed standard HTML anchor <a> to React Router <Link> to stop full page reloads on 404 navigation */}
+    <Link to="/" className="mt-8 px-6 py-3 bg-purple-600 rounded-lg font-bold hover:bg-purple-700 transition">
       Back to Home
-    </a>
+    </Link>
   </div>
 )
 
@@ -70,9 +71,7 @@ function App() {
         <Navbar />
 
         <main className="flex-grow">
-
           <Routes>
-
             {/* HOME */}
             <Route path="/" element={
               <>
@@ -112,9 +111,7 @@ function App() {
 
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
-
           </Routes>
-
         </main>
 
         <Footer />
@@ -123,4 +120,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

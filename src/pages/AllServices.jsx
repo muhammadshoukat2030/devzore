@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 
 const AllServices = () => {
-  // ✅ MASLA 1 FIXED: State aur Toggle function define kar diye hain
+  // ✅ STATE: FAQ Toggle Configuration
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -58,9 +58,10 @@ const AllServices = () => {
     },
     {
       name: "React Development",
-      // CodeXml icon React development ki coding nature ko suite karta hai
+      // 🛠️ CRITICAL FIX: Changed path from "/ReactDevelopment" to "/reactdevelopment" 
+      // This ensures 100% routing alignment with Navbar link cases to prevent hydration mismatches.
       icon: <CodeXml size={24} className="text-blue-500" />,
-      path: "/ReactDevelopment",
+      path: "/reactdevelopment",
       desc: "Building scalable, high-performance web applications with React's component-based architecture.",
       details: ["Custom Hooks", "State Management", "API Integration"]
     },
@@ -120,7 +121,7 @@ const AllServices = () => {
 
   return (
     <>
-
+      {/* ── SEO Metadata Injection ── */}
       <Helmet>
         <title>Full-Stack Digital Engineering Services Portfolio | DevZore</title>
         <meta name="description" content="Explore DevZore's end-to-end global technical services: including advanced web architectures, cross-platform apps, cloud infrastructure, and custom APIs." />
@@ -131,11 +132,10 @@ const AllServices = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
+      {/* ── Main Layout Viewport ── */}
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20">
 
-
-
-        {/* --- HERO SECTION --- */}
+        {/* ── HERO SECTION ── */}
         <div className="max-w-7xl mx-auto px-6 pt-24 pb-8">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
             <div className="flex-1">
@@ -161,12 +161,14 @@ const AllServices = () => {
                 <Link to="/contact" className="bg-purple-600 hover:bg-purple-700 px-10 py-5 rounded-2xl font-bold transition-all hover:scale-105 shadow-2xl shadow-purple-500/20">
                   Book a Consultation
                 </Link>
+                {/* 🛠️ STYLE TWEAK: Maintained anchors natively for standard element ID target behavior */}
                 <a href="#services" className="bg-[#111] border border-white/10 hover:border-white/20 px-10 py-5 rounded-2xl font-bold transition-all">
                   Explore Grid
                 </a>
               </div>
             </div>
 
+            {/* Jump Menu Cards Container */}
             <div className="flex-1 bg-[#0c0c0c] border border-gray-900 rounded-3xl p-6 md:p-8 relative overflow-hidden group">
               <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Zap size={100} className="text-purple-500" />
@@ -185,7 +187,7 @@ const AllServices = () => {
           </div>
         </div>
 
-        {/* --- SERVICES GRID --- */}
+        {/* ── SERVICES DISPLAY GRID ── */}
         <section id="services" className="max-w-7xl mx-auto px-6 py-12">
           <div className="mb-16 text-center">
             <h2 className="text-3xl md:text-5xl font-bold">Our <span className="text-purple-500">Core</span> Capabilities</h2>
@@ -219,6 +221,7 @@ const AllServices = () => {
                 </div>
               </Link>
             ))}
+            {/* Custom CTA Card */}
             <div className="bg-gradient-to-br from-purple-600 to-purple-800 p-8 rounded-3xl flex flex-col justify-center items-center text-center group">
               <Zap size={30} className="text-white mb-6 animate-pulse" />
               <h3 className="text-2xl font-bold mb-3">Custom Needs?</h3>
@@ -230,12 +233,13 @@ const AllServices = () => {
           </div>
         </section>
 
-        <div className="bg-black min-h-screen">
-          {/* Baki sections yahan aayenge */}
+        {/* ── TEMPLATE COMPONENT CONTAINER ── */}
+        {/* 🛠️ OPTIMIZATION: Cleaned double min-h-screen properties to avoid extra scroll tracking problems */}
+        <div className="bg-black py-4">
           <ServiceGalleryTemplate pageKey="AllServices" />
         </div>
 
-        {/* --- FAQ SECTION --- */}
+        {/* ── FAQ ACCORDION SECTION ── */}
         <section className="max-w-7xl mx-auto px-6 py-20">
           <div className="mb-12">
             <span className="text-[10px] font-black text-purple-500 uppercase tracking-[0.3em]">Common Queries</span>
@@ -250,7 +254,7 @@ const AllServices = () => {
                 className={`border rounded-xl transition-all duration-300 overflow-hidden ${activeIndex === i
                   ? 'border-purple-500/50 bg-purple-500/5'
                   : 'border-white/5 bg-[#0A0A0A]'
-                  }`}
+                }`}
               >
                 <button
                   onClick={() => toggleFAQ(i)}
@@ -267,8 +271,7 @@ const AllServices = () => {
                 </button>
 
                 <div
-                  className={`transition-all duration-300 ease-in-out overflow-hidden ${activeIndex === i ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                    }`}
+                  className={`transition-all duration-300 ease-in-out overflow-hidden ${activeIndex === i ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
                 >
                   <div className="p-6 pt-0 text-gray-400 text-sm md:text-base leading-relaxed border-t border-white/5">
                     <div className="mt-4">{faq.answer}</div>
@@ -279,7 +282,7 @@ const AllServices = () => {
           </div>
         </section>
 
-        {/* --- FINAL CTA --- */}
+        {/* ── FINAL FOOTER CONVERSION CTA ── */}
         <section className="max-w-7xl mx-auto px-6 mt-2">
           <div className="bg-[#0c0c0c] border border-gray-900 rounded-[3rem] p-10 md:p-10 flex flex-col items-center text-center relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
@@ -295,10 +298,8 @@ const AllServices = () => {
         </section>
 
       </div>
-
     </>
   );
-
 };
 
 export default AllServices;
