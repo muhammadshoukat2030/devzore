@@ -90,8 +90,8 @@ const Navbar = () => {
 
       <nav
         className={`fixed w-full transition-all duration-500 z-[9999] ${scrolled || isOpen
-            ? 'top-0 bg-[#050505]/98 backdrop-blur-3xl border-b border-white/[0.06] shadow-[0_1px_40px_rgba(0,0,0,0.8)] h-[70px]'
-            : 'top-[36px] bg-transparent h-[80px]'
+          ? 'top-0 bg-[#050505]/98 backdrop-blur-3xl border-b border-white/[0.06] shadow-[0_1px_40px_rgba(0,0,0,0.8)] h-[70px]'
+          : 'top-[36px] bg-transparent h-[80px]'
           }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
@@ -133,8 +133,8 @@ const Navbar = () => {
                     to={link.path}
                     onClick={() => handleLinkClick(link.path)}
                     className={`relative px-4 py-2 rounded-lg text-[12px] font-semibold uppercase tracking-[0.15em] transition-all duration-200 ${isLinkActive(link.path)
-                        ? "text-white bg-white/[0.06]"
-                        : "text-gray-400 hover:text-white hover:bg-white/[0.04]"
+                      ? "text-white bg-white/[0.06]"
+                      : "text-gray-400 hover:text-white hover:bg-white/[0.04]"
                       }`}
                   >
                     {isLinkActive(link.path) && (
@@ -163,10 +163,10 @@ const Navbar = () => {
                   {/* Arrow */}
                   <div className="absolute -top-1.5 right-16 w-3 h-3 bg-[#0e0e0e] border-l border-t border-white/10 rotate-45"></div>
 
-                  <div className="bg-[#0a0a0a] border border-white/[0.08] rounded-2xl shadow-[0_20px_80px_rgba(0,0,0,0.9)] overflow-hidden">
+                  <div className="bg-[#0a0a0a] border border-white/[0.1] rounded-2xl shadow-[0_20px_80px_rgba(0,0,0,0.9)] overflow-hidden">
 
                     {/* Header */}
-                    <div className="px-5 py-4 border-b border-white/[0.06] flex items-center justify-between">
+                    <div className="px-5 py-4 border-b border-white/[0.1] flex items-center justify-between">
                       <div>
                         <p className="text-[11px] font-black uppercase tracking-[0.3em] text-gray-500">Our Expertise</p>
                         <p className="text-white text-sm font-bold mt-0.5">What can we build for you?</p>
@@ -181,7 +181,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Services Grid */}
-                    <div className="p-3 grid grid-cols-2 gap-1 max-h-[60vh] overflow-y-auto">
+                    <div className="p-1 grid grid-cols-2 gap-0.5 max-h-[58vh] overflow-y-auto">
                       {services.slice(1).map((s, i) => (
                         <Link
                           key={i}
@@ -283,8 +283,8 @@ const Navbar = () => {
                   to={link.path}
                   onClick={() => handleLinkClick(link.path)}
                   className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 ${isLinkActive(link.path)
-                      ? "bg-purple-600/15 border border-purple-500/30 text-white"
-                      : "text-gray-400 hover:text-white hover:bg-white/[0.04] border border-transparent"
+                    ? "bg-purple-600/15 border border-purple-500/30 text-white"
+                    : "text-gray-400 hover:text-white hover:bg-white/[0.04] border border-transparent"
                     }`}
                 >
                   <span className="text-[15px] font-semibold">{link.name}</span>
