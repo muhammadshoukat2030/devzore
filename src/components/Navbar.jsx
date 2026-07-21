@@ -35,24 +35,24 @@ const Navbar = () => {
   }, [isOpen]);
 
   const services = [
-    { name: "All Services",              icon: <LayoutGrid size={16} />,  path: "/allservices",            desc: "Browse everything we offer" },
-    { name: "Web Development",           icon: <Globe size={16} />,        path: "/web-development",        desc: "React, Next.js, modern web apps" },
-    { name: "Mobile App Development",    icon: <Smartphone size={16} />,   path: "/mobile-apps",            desc: "iOS & Android with React Native" },
-    { name: "E-Commerce",                icon: <ShoppingCart size={16} />, path: "/ecommerce",              desc: "Custom online stores that convert" },
-    { name: "MERN Stack",                icon: <Rocket size={16} />,       path: "/mern-stack-development", desc: "Full-stack JS from DB to UI" },
-    { name: "SaaS Development",          icon: <Cloud size={16} />,        path: "/saas-product-development", desc: "Scalable SaaS products" },
-    { name: "React Development",         icon: <Zap size={16} />,          path: "/reactdevelopment",       desc: "Component-driven React UIs" },
-    { name: "UI/UX Design",              icon: <Palette size={16} />,      path: "/ui-ux-design",           desc: "Figma to pixel-perfect design" },
-    { name: "Startup MVP",               icon: <Lightbulb size={16} />,    path: "/startup-mvp",            desc: "Launch in 8–14 weeks" },
-    { name: "Maintenance & Support",     icon: <Wrench size={16} />,       path: "/maintenance",            desc: "Keep your site running perfectly" },
-    { name: "Backend & API",             icon: <Settings size={16} />,     path: "/backend-api",            desc: "Node.js, Express, REST & GraphQL" },
+    { name: "All Services", icon: <LayoutGrid size={16} />, path: "/allservices", desc: "Browse everything we offer" },
+    { name: "Web Development", icon: <Globe size={16} />, path: "/web-development", desc: "React, Next.js, modern web apps" },
+    { name: "Mobile App Development", icon: <Smartphone size={16} />, path: "/mobile-apps", desc: "iOS & Android with React Native" },
+    { name: "E-Commerce", icon: <ShoppingCart size={16} />, path: "/ecommerce", desc: "Custom online stores that convert" },
+    { name: "MERN Stack", icon: <Rocket size={16} />, path: "/mern-stack-development", desc: "Full-stack JS from DB to UI" },
+    { name: "SaaS Development", icon: <Cloud size={16} />, path: "/saas-product-development", desc: "Scalable SaaS products" },
+    { name: "React Development", icon: <Zap size={16} />, path: "/reactdevelopment", desc: "Component-driven React UIs" },
+    { name: "UI/UX Design", icon: <Palette size={16} />, path: "/ui-ux-design", desc: "Figma to pixel-perfect design" },
+    { name: "Startup MVP", icon: <Lightbulb size={16} />, path: "/startup-mvp", desc: "Launch in 8–14 weeks" },
+    { name: "Maintenance & Support", icon: <Wrench size={16} />, path: "/maintenance", desc: "Keep your site running perfectly" },
+    { name: "Backend & API", icon: <Settings size={16} />, path: "/backend-api", desc: "Node.js, Express, REST & GraphQL" },
   ];
 
   const navLinks = [
-    { name: "Home",      path: "/" },
-    { name: "About",     path: "/about" },
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
     { name: "Portfolio", path: "/#projects" },
-    { name: "Blog",      path: "/blog" },
+    { name: "Blog", path: "/blog" },
   ];
 
   const handleLinkClick = (path) => {
@@ -71,9 +71,8 @@ const Navbar = () => {
       {/* Mobile Overlay */}
       <div
         onClick={() => setIsOpen(false)}
-        className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998] transition-opacity duration-300 ${
-          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+        className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-[9998] transition-opacity duration-300 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
       />
 
       {/* Top announcement bar */}
@@ -90,11 +89,10 @@ const Navbar = () => {
       )}
 
       <nav
-        className={`fixed w-full transition-all duration-500 z-[9999] ${
-          scrolled || isOpen
+        className={`fixed w-full transition-all duration-500 z-[9999] ${scrolled || isOpen
             ? 'top-0 bg-[#050505]/98 backdrop-blur-3xl border-b border-white/[0.06] shadow-[0_1px_40px_rgba(0,0,0,0.8)] h-[70px]'
             : 'top-[36px] bg-transparent h-[80px]'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
 
@@ -102,21 +100,25 @@ const Navbar = () => {
           <Link
             to="/"
             onClick={() => handleLinkClick("/")}
-            className={`flex items-center gap-3 group transition-all duration-300 ${
-              isOpen ? "opacity-0 pointer-events-none" : "opacity-100"
-            }`}
+            className={`flex items-center gap-0 leading-none -ml-3 group transition-all duration-300 ${isOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+              }`}
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-purple-600 rounded-xl blur-md opacity-50 group-hover:opacity-80 transition-opacity"></div>
-              <div className="relative w-9 h-9 bg-gradient-to-br from-purple-500 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-                <img src="/logo1.png" alt="DevZore — Software Development Agency Islamabad" className="w-7 h-7 object-contain" />
-              </div>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-[22px] font-black text-white tracking-tight">
+            {/* Logo */}
+            <img
+              src="/logo.png"
+              alt="DevZore — Software Development Agency Islamabad"
+              className="w-[80px] h-[80px] object-contain flex-shrink-0 transition-transform duration-300 group-hover:scale-105"
+            />
+
+            {/* Brand */}
+            <div className="flex flex-col leading-none -ml-5">
+              <span className="text-[23px] font-extrabold tracking-tight text-white">
                 Dev<span className="text-purple-400">Zore</span>
               </span>
-              <span className="text-[8px] text-gray-500 tracking-[0.25em] uppercase font-semibold -mt-0.5">Software Agency</span>
+
+              <span className="text-[9px] uppercase tracking-[0.22em] text-gray-400 mt-0.5">
+                Software Agency
+              </span>
             </div>
           </Link>
 
@@ -130,11 +132,10 @@ const Navbar = () => {
                   <Link
                     to={link.path}
                     onClick={() => handleLinkClick(link.path)}
-                    className={`relative px-4 py-2 rounded-lg text-[12px] font-semibold uppercase tracking-[0.15em] transition-all duration-200 ${
-                      isLinkActive(link.path)
+                    className={`relative px-4 py-2 rounded-lg text-[12px] font-semibold uppercase tracking-[0.15em] transition-all duration-200 ${isLinkActive(link.path)
                         ? "text-white bg-white/[0.06]"
                         : "text-gray-400 hover:text-white hover:bg-white/[0.04]"
-                    }`}
+                      }`}
                   >
                     {isLinkActive(link.path) && (
                       <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-purple-500"></span>
@@ -150,17 +151,15 @@ const Navbar = () => {
                 onMouseEnter={() => setServiceOpen(true)}
                 onMouseLeave={() => setServiceOpen(false)}
               >
-                <button className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-[12px] font-semibold uppercase tracking-[0.15em] transition-all duration-200 ${
-                  serviceOpen ? 'text-white bg-white/[0.06]' : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
-                }`}>
+                <button className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-[12px] font-semibold uppercase tracking-[0.15em] transition-all duration-200 ${serviceOpen ? 'text-white bg-white/[0.06]' : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
+                  }`}>
                   Services
                   <ChevronDown size={13} className={`transition-transform duration-300 ${serviceOpen ? 'rotate-180 text-purple-400' : ''}`} />
                 </button>
 
                 {/* Mega Dropdown */}
-                <div className={`absolute top-full right-0 mt-3 w-[480px] transition-all duration-300 ${
-                  serviceOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                }`}>
+                <div className={`absolute top-full right-0 mt-3 w-[480px] transition-all duration-300 ${serviceOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                  }`}>
                   {/* Arrow */}
                   <div className="absolute -top-1.5 right-16 w-3 h-3 bg-[#0e0e0e] border-l border-t border-white/10 rotate-45"></div>
 
@@ -255,9 +254,8 @@ const Navbar = () => {
       </nav>
 
       {/* ── Mobile Sidebar ── */}
-      <div className={`fixed inset-y-0 right-0 w-[85%] max-w-[360px] h-screen z-[10001] flex flex-col transition-transform duration-400 ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}>
+      <div className={`fixed inset-y-0 right-0 w-[85%] max-w-[360px] h-screen z-[10001] flex flex-col transition-transform duration-400 ${isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}>
 
         {/* Glassmorphism bg */}
         <div className="absolute inset-0 bg-[#060606]/98 backdrop-blur-3xl border-l border-white/[0.08]"></div>
@@ -284,11 +282,10 @@ const Navbar = () => {
                   key={link.name}
                   to={link.path}
                   onClick={() => handleLinkClick(link.path)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 ${
-                    isLinkActive(link.path)
+                  className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 ${isLinkActive(link.path)
                       ? "bg-purple-600/15 border border-purple-500/30 text-white"
                       : "text-gray-400 hover:text-white hover:bg-white/[0.04] border border-transparent"
-                  }`}
+                    }`}
                 >
                   <span className="text-[15px] font-semibold">{link.name}</span>
                   {isLinkActive(link.path)
@@ -318,9 +315,8 @@ const Navbar = () => {
               <ChevronDown size={15} className={`text-gray-500 transition-transform duration-300 ${mobileServiceOpen ? 'rotate-180 text-purple-400' : ''}`} />
             </button>
 
-            <div className={`overflow-hidden transition-all duration-400 ${
-              mobileServiceOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
-            }`}>
+            <div className={`overflow-hidden transition-all duration-400 ${mobileServiceOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
+              }`}>
               <div className="flex flex-col gap-0.5 pt-1 pl-2">
                 {services.map((s, i) => (
                   <Link
@@ -354,7 +350,7 @@ const Navbar = () => {
             className="flex items-center justify-center gap-2 w-full bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] py-3 rounded-xl font-bold text-[11px] uppercase tracking-widest hover:bg-[#25D366]/20 transition-all"
           >
             <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z"/>
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z" />
             </svg>
             WhatsApp Us
           </a>

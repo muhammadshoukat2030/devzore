@@ -67,41 +67,64 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row justify-between items-start gap-8 pb-8 border-b border-white/5">
             <div className="max-w-2xl">
               <div
-                onClick={() => handleNavigation('/')}
-                className="flex items-center gap-4 mb-4 cursor-pointer group"
+                onClick={() => handleNavigation("/")}
+                className="flex items-center gap-0 mb-4 cursor-pointer group"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-700 rounded-xl flex items-center justify-center p-2 shadow-xl group-hover:scale-105 transition-transform">
-                  <img src="/logo1.png" alt="DevZore" className="w-full h-full object-contain" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-black tracking-tighter text-white uppercase italic leading-none">
+                {/* Logo */}
+                <img
+                  src="/logo.png"
+                  alt="DevZore"
+                  className="w-[80px] h-[80px] object-contain flex-shrink-0 -mr-5"
+                />
+
+                {/* Brand */}
+                <div className="leading-none">
+                  <h2 className="text-2xl font-black tracking-tighter text-white uppercase italic">
                     Dev<span className="text-purple-500 not-italic">Zore</span>
                   </h2>
-                  <span className="text-[9px] text-gray-500 tracking-[0.3em] uppercase font-bold">International Agency</span>
+
+                  <span className="text-[9px] text-gray-500 tracking-[0.3em] uppercase font-bold">
+                    International Agency
+                  </span>
                 </div>
               </div>
+
               <p className="text-gray-400 text-base leading-relaxed">
-                Architecting <span className="text-white font-semibold">high-performance digital engines</span>. We specialize in MERN stack ecosystem, delivering scalable SaaS and enterprise solutions for global clients.
+                Architecting{" "}
+                <span className="text-white font-semibold">
+                  high-performance digital engines
+                </span>
+                . We specialize in MERN stack ecosystem, delivering scalable SaaS and
+                enterprise solutions for global clients.
               </p>
             </div>
 
             <div className="w-full lg:w-auto">
               <div className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm relative group overflow-hidden">
-                <h3 className="text-lg font-bold text-white mb-3">Ready to Scale?</h3>
-                <form className="flex flex-col sm:flex-row gap-3" onSubmit={(e) => e.preventDefault()}>
+                <h3 className="text-lg font-bold text-white mb-3">
+                  Ready to Scale?
+                </h3>
+
+                <form
+                  className="flex flex-col sm:flex-row gap-3"
+                  onSubmit={(e) => e.preventDefault()}
+                >
                   <input
                     type="email"
                     placeholder="Business Email"
                     className="bg-black/50 border border-white/10 rounded-xl px-4 py-2.5 outline-none focus:border-purple-500 transition-all text-white text-sm min-w-[230px]"
                   />
+
                   <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl transition-all text-xs uppercase tracking-widest whitespace-nowrap">
                     Get Roadmap
                   </button>
                 </form>
+
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-purple-500/10 blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
               </div>
             </div>
           </div>
+
 
           {/* --- LINKS LAYOUT GRID (Reduced vertical padding from py-20 to py-10) --- */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10">
@@ -203,7 +226,7 @@ const Footer = () => {
             <div className="flex flex-wrap justify-center items-center gap-6 text-[9px] font-bold uppercase tracking-widest text-gray-500">
               <Link to="/privacy-policy" className="hover:text-purple-500 transition-colors">Privacy Policy</Link>
               <Link to="/terms-and-conditions" className="hover:text-purple-500 transition-colors">Terms & Conditions</Link>
-              
+
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className="text-white hover:text-purple-00 transition-all flex items-center justify-center bg-white/8 border border-white/10 w-7 h-7 rounded-lg text-sm font-normal"
@@ -230,7 +253,7 @@ const Footer = () => {
             <path d="M12.004 2c-5.517 0-9.996 4.477-9.996 9.995 0 1.763.459 3.418 1.259 4.865l-1.267 4.624 4.745-1.243c1.412.766 3.017 1.201 4.722 1.201 5.517 0 9.996-4.477 9.996-9.995 0-5.517-4.479-9.995-9.996-9.995zm4.992 14.073c-.219.613-1.285 1.135-1.767 1.181-.462.046-.906.231-2.956-.583-2.622-1.042-4.29-3.719-4.421-3.894-.131-.175-1.056-1.403-1.056-2.677 0-1.273.656-1.901.897-2.164.241-.262.525-.328.7-.328.175 0 .35 0 .503.009.166.009.385-.061.604.464.219.525.744 1.815.81 1.946.066.131.109.284.022.459-.088.175-.131.284-.262.437-.131.153-.276.341-.394.459-.131.131-.269.273-.116.536.153.262.68 1.114 1.455 1.802.996.886 1.836 1.159 2.099 1.29.262.131.415.109.569-.066.153-.175.656-.765.831-1.028.175-.262.35-.219.591-.131.241.087 1.531.722 1.794.853.262.131.437.197.481.273.044.077.044.448-.175 1.061z" />
           </svg>
         </a>
-        
+
         {/* Modern Label Overlay */}
         <div className="absolute hidden sm:block right-16 top-1/2 -translate-y-1/2 bg-white text-black px-3 py-1.5 rounded-lg font-bold text-[9px] uppercase tracking-widest shadow-2xl opacity-0 group-hover:opacity-100 translate-x-3 group-hover:translate-x-0 transition-all duration-300 whitespace-nowrap pointer-events-none">
           Let's Build Something 🚀
