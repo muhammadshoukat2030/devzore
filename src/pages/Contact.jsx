@@ -77,9 +77,9 @@ const Contact = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
 
           {/* HEADER */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 pt-8">
             <SectionTag text="GLOBAL PARTNER" />
-            <h1 className="text-4xl md:text-6xl font-black mt-6 tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-black mt-1 tracking-tight">
               Work with <span className="text-purple-500">DevZore</span>
             </h1>
             <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">

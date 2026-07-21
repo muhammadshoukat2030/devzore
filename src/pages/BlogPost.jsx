@@ -123,7 +123,7 @@ const BlogPage = () => {
     `,
       author: 'M-Shoukat Engineer',
       date: 'April 10, 2026',
-      image: 'https://images.unsplash.com/photo-1518433278981-16c02460bb9c?auto=format&fit=crop&q=80&w=800',
+      image: 'https://medium.com/@arunseetharaman/multi-tenant-saas-architecture-a-deep-dive-into-database-patterns-281320fd8816',
       readTime: '18 min read'
     },
     {
@@ -195,7 +195,7 @@ const BlogPage = () => {
     `,
       author: 'M-Shoukat Engineer',
       date: 'April 20, 2026',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800',
+      image: 'https://thenewstack.io/how-redis-simplifies-microservices-design-patterns/',
       readTime: '16 min read'
     },
     {
@@ -233,7 +233,7 @@ const BlogPage = () => {
     `,
       author: 'M-Shoukat Engineer',
       date: 'April 24, 2026',
-      image: 'https://images.unsplash.com/photo-1605745341112-85968b193ef5?auto=format&fit=crop&q=80&w=800',
+      image: 'https://www.google.com/imgres?q=Dockerizing%20MERN%3A%20The%20Path%20to%20Infinite%20Deployment&imgurl=https%3A%2F%2Fmiro.medium.com%2Fv2%2Fda%3Atrue%2Fresize%3Afit%3A1200%2F0*yfywgFC-aarzd6eu&imgrefurl=https%3A%2F%2Fharsh05.medium.com%2Fdockerizing-and-deploying-a-mern-stack-application-on-docker-swarm-ce56ff3a79fe&docid=utnzcULlh22NIM&tbnid=QjHnmB4dm4khPM&vet=12ahUKEwiJls3E3eOVAxWJSKQEHaxWHesQnPAOegQIRRAA..i&w=1200&h=686&hcb=2&itg=1&ved=2ahUKEwiJls3E3eOVAxWJSKQEHaxWHesQnPAOegQIRRAA',
       readTime: '17 min read'
     },
     {
@@ -580,14 +580,14 @@ const BlogPage = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
 
           {/* --- HEADER SECTION --- */}
-          <div className="mb-5 text-center lg:text-left">
-            <span className="text-purple-500 text-[11px] font-black uppercase tracking-[0.4em] mb-4 block">
+          <div className="mb-1 pt-4 text-center lg:text-left">
+            <span className="text-purple-500 text-[11px] font-black uppercase tracking-[0.4em] mb-1 block">
               DevZore Insights
             </span>
-            <h1 className="text-5xl lg:text-7xl font-black tracking-tighter mb-6 italic">
+            <h1 className="text-3xl lg:text-4xl font-black tracking-tighter mb-3 italic">
               TECHNICAL <span className="text-gray-500 not-italic">BLOGS</span>
             </h1>
-            <p className="text-gray-400 text-lg max-w-2xl leading-relaxed">
+            <p className="text-gray-400 text-m max-w-2xl leading-relaxed">
               Exploring the frontiers of full-stack engineering, cloud architecture, and high-performance software design.
             </p>
           </div>

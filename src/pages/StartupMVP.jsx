@@ -25,7 +25,7 @@ const StartupMVP = () => {
 
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20 overflow-x-hidden">
         {/* --- 1. TOP HEADER NAVIGATION --- */}
-        <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between relative z-50">
+        <div className="max-w-7xl mx-auto px-6 pt-30 flex items-center justify-between relative z-50">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 text-[10px] font-bold uppercase tracking-[0.2em]">
             <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-ping"></span>
             Rapid Launch Protocol
@@ -42,7 +42,7 @@ const StartupMVP = () => {
           <div className="absolute top-[-10%] left-[-5%] w-96 h-96 bg-purple-600/10 blur-[130px] rounded-full pointer-events-none"></div>
 
           <div className="space-y-2 ">
-            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+            <h1 className="text-3xl md:text-3xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
               Startup MVP Development Company - <span className="text-purple-500">From Idea to Launch in 8 to 14 Weeks</span>
             </h1>
             <p className="text-gray-400 text-base md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">

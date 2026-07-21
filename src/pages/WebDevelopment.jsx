@@ -66,7 +66,7 @@ const WebDevelopment = () => {
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10 overflow-x-hidden">
 
         {/* --- NAVIGATION / HEADER --- */}
-        <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 pt-30 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-[10px] font-bold uppercase tracking-widest group">
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Home
           </Link>

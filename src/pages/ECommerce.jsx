@@ -26,7 +26,7 @@ const Ecommerce = () => {
 
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10">
         {/* --- 1. TOP NAVIGATION AREA --- */}
-        <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between relative z-20">
+        <div className="max-w-7xl mx-auto px-6 pt-30 flex items-center justify-between relative z-20">
 
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-500 text-[10px] font-bold uppercase tracking-[0.2em]">
             <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
@@ -49,7 +49,7 @@ const Ecommerce = () => {
               Custom E-Commerce <br />
               Development That <span className="text-purple-500">Sells</span> — Not Just Looks Good
             </h1>
-            <p className="text-gray-400 text-base md:text-lg max-w-lg leading-relaxed font-medium">
+            <p className="text-gray-400 text-base md:text-md max-w-lg leading-relaxed font-medium">
               At DevZore, we build custom platforms from the ground up using the MERN stack.
               Not a Shopify theme someone else is already using—a platform built to work the way your business actually works.
             </p>

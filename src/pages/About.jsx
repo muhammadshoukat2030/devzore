@@ -24,7 +24,7 @@ const AboutPage = () => {
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-0.1">
 
         {/* --- TOP HEADER --- */}
-        <div className="max-w-7xl mx-auto px-6 pt-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 pt-30 flex items-center justify-between">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-[0.2em]">
             <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
             The Mind Behind DevZore
@@ -38,13 +38,13 @@ const AboutPage = () => {
 
         {/* --- HERO / INTRO SECTION --- */}
         <section className="max-w-7xl mx-auto px-6 py-3 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-3">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
+          <div className="space-y-2">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
               Engineering <br />
               <span className="text-purple-500">Digital Solutions</span> <br />
               With Precision.
             </h1>
-            <p className="text-gray-400 text-base md:text-lg max-w-lg leading-relaxed font-medium">
+            <p className="text-gray-400 text-base md:text-lg max-w-mg leading-relaxed font-medium">
               M-Shoukat here—a Full-Stack Engineer dedicated to building scalable, high-performance web applications. I turn complex logic into elegant, user-centric experiences.
             </p>
 

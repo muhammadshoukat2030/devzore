@@ -27,7 +27,7 @@ const Maintenance = () => {
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20 overflow-x-hidden">
 
         {/* --- 1. TOP NAVBAR BRAND STRIP --- */}
-        <div className="max-w-7xl mx-auto px-6 pt-16 flex items-center justify-between relative z-50">
+        <div className="max-w-7xl mx-auto px-6 pt-30 flex items-center justify-between relative z-50">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-[0.2em]">
             <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
             24/7 System Reliability Protocol Active
@@ -40,11 +40,11 @@ const Maintenance = () => {
         </div>
 
         {/* --- 2. HERO HEADER VIEW --- */}
-        <section className="max-w-7xl mx-auto px-6 py-12 md:py-20 grid lg:grid-cols-2 gap-12 items-center relative">
+        <section className="max-w-7xl mx-auto px-6 py-3 grid lg:grid-cols-2 gap-1 items-center">
           <div className="absolute top-[-10%] left-[-5%] w-96 h-96 bg-purple-600/5 blur-[130px] rounded-full pointer-events-none"></div>
 
-          <div className="space-y-6 relative z-10 text-left">
-            <h1 className="text-3xl md:text-5xl lg:text-[3.5rem] font-black leading-[1.1] tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/70">
+          <div className="space-y-3">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1] tracking-tight">
               Website Maintenance and Support Services — <span className="text-purple-500">So Your Site Never Costs You a Customer</span>
             </h1>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed font-medium">

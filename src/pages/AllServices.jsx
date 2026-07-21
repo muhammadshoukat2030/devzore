@@ -136,7 +136,7 @@ const AllServices = () => {
       <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-20">
 
         {/* ── HERO SECTION ── */}
-        <div className="max-w-7xl mx-auto px-6 pt-24 pb-8">
+        <div className="max-w-7xl mx-auto px-6 pt-30 pb-8">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
             <div className="flex-1">
               <div className="mb-6 flex justify-start">
