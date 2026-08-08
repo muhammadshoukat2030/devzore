@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom'
 
 // Components
@@ -13,7 +13,6 @@ import Projects from './sections/Projects'
 import WhyUs from "./sections/WhyUs"
 import Process from './sections/Process'
 import TechStack from './sections/TechStack'
-// import Pricing from './sections/Pricing'
 import Testimonials from './sections/Testimonials'
 import FAQ from './sections/FAQ'
 
@@ -39,196 +38,293 @@ import StartupMVP from './pages/StartupMVP'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Terms from './pages/Terms'
 
-// ✅ 100% SEO ENGINE: Automatically manages dynamic meta tags, unique canonical tags, and updates DOM safely.
+// ─────────────────────────────────────────
+// ✅ FULL SEO + GEO ENGINE
+// Manages: title, description, canonical,
+// geo meta tags — per route, dynamically
+// ─────────────────────────────────────────
 const SEOManager = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const siteTitle = "DevZore International | Premium Software Engineering Agency";
     const baseUrl = "https://devzore.com";
-    
-    // Exact mapping tracking all custom production routes
+
     const routeSeoData = {
       "/": {
         title: "DevZore International | MERN Stack & Software Engineering Agency",
-        desc: "Premium Software Engineering Agency specializing in high-performance web development, scalable SaaS engines, and enterprise software solutions."
+        desc: "Premium Software Engineering Agency specializing in high-performance web development, scalable SaaS engines, and enterprise software solutions.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/allservices": {
         title: "Our Services | Software Architecture & Product Engineering | DevZore",
-        desc: "Explore our full suite of digital solutions, from MERN stack engineering to modern UI/UX workflows designed for global performance."
+        desc: "Explore our full suite of digital solutions — MERN stack engineering, UI/UX design, mobile apps and SaaS products built for global performance.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/web-development": {
         title: "Custom Web Development Services | Next.js & React | DevZore",
-        desc: "High-speed, scalable, and secure custom web applications engineered with precision to drive operational business metrics."
+        desc: "High-speed, scalable, and secure custom web applications engineered with precision using React and Next.js from Islamabad, Pakistan.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/mobile-apps": {
         title: "Cross-Platform Mobile App Development | iOS & Android | DevZore",
-        desc: "Native-grade hybrid mobile application ecosystems built using React Native and secure optimized mobile microservices architectures."
+        desc: "Native-grade hybrid mobile applications built using React Native. iOS and Android app development from Islamabad, Pakistan.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/ecommerce": {
-        title: "Enterprise E-Commerce Platforms & Digital Scale | DevZore",
-        desc: "High-conversion architecture engineered with advanced payment gateways, fluid responsive funnels, and real-time analytical capabilities."
+        title: "Enterprise E-Commerce Development | Online Store Experts | DevZore",
+        desc: "High-conversion e-commerce platforms built with MERN stack. Custom online stores with payment gateways, inventory and analytics.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/backend-api": {
-        title: "Robust Backend Engineering & Scalable API Systems | DevZore",
-        desc: "Secure RESTful and GraphQL API layers built on Node.js microservices with bulletproof multi-layer token security."
+        title: "Backend Engineering & Scalable API Development | DevZore",
+        desc: "Secure RESTful and GraphQL APIs built on Node.js and Express. Scalable backend systems from DevZore, Islamabad.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/mern-stack-development": {
-        title: "Full-Stack MERN Stack Engineering Specialists | DevZore",
-        desc: "Production-grade single page architectures deployed natively on MongoDB, Express.js, React.js, and Node.js infrastructure."
+        title: "Full-Stack MERN Stack Development Company | DevZore",
+        desc: "Production-ready MERN stack applications — MongoDB, Express.js, React, Node.js. Full-stack JavaScript development from Islamabad.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/saas-product-development": {
-        title: "SaaS Product Development & Cloud Architecture Engines | DevZore",
-        desc: "End-to-end multi-tenant SaaS application development featuring scalable subscription engines, modular dashboards, and cloud scaling."
+        title: "SaaS Product Development Company | DevZore Islamabad",
+        desc: "End-to-end SaaS product development — multi-tenant architecture, dashboards, subscriptions and cloud scaling from DevZore.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/reactdevelopment": {
-        title: "Advanced React.js & Next.js Performance Optimization | DevZore",
-        desc: "Component-driven development prioritizing optimized bundle assets, modern custom hooks, and state trees."
+        title: "React.js Development Services | React Experts | DevZore",
+        desc: "Component-driven React development with optimized performance, modern hooks and clean state management from DevZore, Islamabad.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/ui-ux-design": {
-        title: "Premium User Experience UI/UX & Interaction Design | DevZore",
-        desc: "Strategic conversion-oriented UI layouts built on comprehensive wireframing paradigms and interactive high-fidelity wireframes."
+        title: "UI/UX Design Services | User-Centered Design Agency | DevZore",
+        desc: "Conversion-focused UI/UX design — wireframes, Figma prototypes and pixel-perfect interfaces from DevZore, Islamabad.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/maintenance": {
-        title: "24/7 Software Maintenance & Technical Infrastructure DevOps | DevZore",
-        desc: "Continuous deployment optimization, security profiling adjustments, cloud environment health tracking, and codebase scaling."
+        title: "Website Maintenance & Support Services | DevZore",
+        desc: "24/7 website maintenance — bug fixes, security updates, performance monitoring and ongoing support from DevZore, Islamabad.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/startup-mvp": {
-        title: "Rapid Startup MVP Development & Scalable Verification | DevZore",
-        desc: "Accelerated development execution delivering core high-value features built cleanly for continuous enterprise scaling."
+        title: "Startup MVP Development Company | Launch in 8 Weeks | DevZore",
+        desc: "Investor-ready MVPs built in 8 to 14 weeks using MERN stack. From idea to launch — DevZore, Islamabad, Pakistan.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/about": {
-        title: "About Us | DevZore International Team & Core Mission",
-        desc: "Discover the elite product engineering principles guiding our core team across international delivery nodes."
+        title: "About DevZore | Software Agency Founded by Shoukat — Islamabad",
+        desc: "Learn about DevZore, a software development agency founded by Shoukat in Islamabad, Pakistan. Building scalable web apps, mobile apps and SaaS products.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/contact": {
-        title: "Contact Our Engineering Specialists | Project Estimates | DevZore",
-        desc: "Initiate project discovery phases. Connect with our principal cloud architects to secure specialized technical estimations."
+        title: "Contact DevZore | Hire a Developer in Islamabad, Pakistan",
+        desc: "Get in touch with DevZore. Start your web or mobile app project. Based in Islamabad — free consultation, response within 24 hours.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/blog": {
-        title: "Chronicle Global Tech Insights | Official Development Blog | DevZore",
-        desc: "In-depth modern technical assessments evaluating structural software strategies, scalable engineering practices, and framework variations."
+        title: "DevZore Blog | Web & App Development Tips & Insights",
+        desc: "Read the DevZore blog for tips on web development, mobile apps, MERN stack, and software business insights from Islamabad, Pakistan.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/privacy-policy": {
-        title: "Privacy Policy | Legal Data Protocols | DevZore International",
-        desc: "Official processing documentation governing secure analytical metrics, storage provisions, and regulatory international frameworks."
+        title: "Privacy Policy | DevZore International",
+        desc: "Read DevZore's privacy policy — how we collect, use and protect your personal information.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       },
       "/terms-and-conditions": {
-        title: "Terms and Conditions | Software Provision Agreements | DevZore",
-        desc: "Contractual compliance outlines governing delivered source code ownership, intellectual protections, and support agreements."
+        title: "Terms & Conditions | DevZore International",
+        desc: "DevZore terms and conditions governing our software development services, source code ownership and support agreements.",
+        geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
       }
     };
 
     const currentPath = location.pathname;
     const currentData = routeSeoData[currentPath] || {
       title: "404 Page Not Found | DevZore International",
-      desc: "Requested software pipeline resource cannot be correctly resolved within our primary architectural server mapping."
+      desc: "The page you are looking for does not exist. Return to DevZore homepage.",
+      geo: { region: "PK-IS", placename: "Islamabad", position: "33.6844;73.0479" }
     };
 
-    // 1. Dynamic Title Tag Update (Ahrefs Empty Title Bug Fix)
+    // ── 1. Title ──
     document.title = currentData.title;
 
-    // 2. Dynamic Meta Description Injection
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.name = 'description';
-      document.head.appendChild(metaDescription);
+    // ── 2. Meta Description ──
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.name = 'description';
+      document.head.appendChild(metaDesc);
     }
-    metaDescription.content = currentData.desc;
+    metaDesc.content = currentData.desc;
 
-    // 3. Dynamic Canonical Tag Injection (Ahrefs Duplicate Pages Without Canonical Fix)
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement('link');
-      canonicalLink.rel = 'canonical';
-      document.head.appendChild(canonicalLink);
+    // ── 3. Canonical Tag ──
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
     }
-    canonicalLink.href = `${baseUrl}${currentPath}`;
+    canonical.href = `${baseUrl}${currentPath}`;
+
+    // ── 4. GEO Meta Tags ──
+    const geoTags = [
+      { name: 'geo.region',    content: currentData.geo.region },
+      { name: 'geo.placename', content: currentData.geo.placename },
+      { name: 'geo.position',  content: currentData.geo.position },
+      { name: 'ICBM',          content: currentData.geo.position.replace(';', ', ') },
+    ];
+
+    geoTags.forEach(({ name, content }) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.name = name;
+        document.head.appendChild(tag);
+      }
+      tag.content = content;
+    });
+
+    // ── 5. OG Tags (dynamic per page) ──
+    const ogTags = [
+      { property: 'og:title',       content: currentData.title },
+      { property: 'og:description', content: currentData.desc },
+      { property: 'og:url',         content: `${baseUrl}${currentPath}` },
+      { property: 'og:type',        content: 'website' },
+    ];
+
+    ogTags.forEach(({ property, content }) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.content = content;
+    });
+
   }, [location]);
 
   return null;
 };
 
-// Scroll To Top Actions
+// ─────────────────────────────────────────
+// ✅ SCROLL TO TOP
+// ─────────────────────────────────────────
 const ScrollToTop = () => {
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+};
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
-
-  return null
-}
-
-// 404 Page Component
+// ─────────────────────────────────────────
+// ✅ 404 PAGE
+// ─────────────────────────────────────────
 const NotFound = () => (
-  <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
+  <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-[var(--bg-primary)]">
     <h1 className="text-9xl font-black text-purple-600">404</h1>
-    <p className="text-2xl font-bold mt-4">Page Not Found</p>
-    <Link to="/" className="mt-8 px-6 py-3 bg-purple-600 rounded-lg font-bold hover:bg-purple-700 transition">
+    <p className="text-2xl font-bold mt-4 text-[var(--text-primary)]">Page Not Found</p>
+    <p className="text-[var(--text-muted)] mt-2 mb-8">The page you are looking for doesn't exist.</p>
+    <Link
+      to="/"
+      className="px-6 py-3 bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-700 transition"
+    >
       Back to Home
     </Link>
   </div>
-)
+);
 
+// ─────────────────────────────────────────
+// ✅ MAIN APP — with Dark/Light Theme
+// ─────────────────────────────────────────
 function App() {
+
+  // ── Theme State ──
+  // Default: light mode (as requested)
+  // localStorage se save hoga — page refresh pe bhi yaad rahega
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('devzore-theme');
+    if (saved) return saved === 'dark';
+    return false; // default = light mode
+  });
+
+  // ── Apply theme to <html> tag ──
+  useEffect(() => {
+    const html = document.documentElement;
+    if (isDark) {
+      html.classList.add('dark');
+      localStorage.setItem('devzore-theme', 'dark');
+    } else {
+      html.classList.remove('dark');
+      localStorage.setItem('devzore-theme', 'light');
+    }
+  }, [isDark]);
+
+  // ── Toggle Function ──
+  const toggleTheme = () => setIsDark(prev => !prev);
+
   return (
     <Router>
       <ScrollToTop />
-      <SEOManager /> {/* ✅ Runs dynamically on every navigation loop to keep SEO nodes populated */}
+      <SEOManager />
 
-      <div className="bg-[#030303] min-h-screen text-white selection:bg-purple-500/30 font-sans flex flex-col">
-        <Navbar />
+      <div className={`
+        min-h-screen font-sans flex flex-col
+        transition-colors duration-300
+        ${isDark
+          ? 'bg-[#030303] text-white selection:bg-purple-500/30'
+          : 'bg-[#fafafa] text-[#111827] selection:bg-purple-200'
+        }
+      `}>
+        {/* Navbar gets toggleTheme + isDark */}
+        <Navbar isDark={isDark} toggleTheme={toggleTheme} />
 
         <main className="flex-grow">
           <Routes>
+
             {/* HOME */}
             <Route path="/" element={
               <>
-                <Hero />
-                <TrustBar />
-                <Services />
-                <Projects />
-                <WhyUs />
-                <Process />
-                <TechStack />
-                {/* <Pricing /> */}
-                <Testimonials />
-                <FAQ />
+                <Hero isDark={isDark} />
+                <TrustBar isDark={isDark} />
+                <Services isDark={isDark} />
+                <Projects isDark={isDark} />
+                <WhyUs isDark={isDark} />
+                <Process isDark={isDark} />
+                <TechStack isDark={isDark} />
+                <Testimonials isDark={isDark} />
+                <FAQ isDark={isDark} />
               </>
             } />
 
-            {/* SERVICES */}
-            <Route path="/allservices" element={<AllServices />} />
-            <Route path="/web-development" element={<WebDevelopment />} />
-            <Route path="/mobile-apps" element={<MobileApp />} />
-            <Route path="/ecommerce" element={<ECommerce />} />
-            <Route path="/backend-api" element={<BackendApi />} />
-            <Route path="/mern-stack-development" element={<MernStackDevelopment />} />
-            <Route path="/saas-product-development" element={<SaaSProductDevelopment />} />
-            <Route path="/reactdevelopment" element={<ReactDevelopment />} />
-            <Route path="/ui-ux-design" element={<UiUxDesign />} />
-            <Route path="/maintenance" element={<Maintenance />} />
-            <Route path="/startup-mvp" element={<StartupMVP />} />
+            {/* SERVICE PAGES */}
+            <Route path="/allservices"            element={<AllServices isDark={isDark} />} />
+            <Route path="/web-development"        element={<WebDevelopment isDark={isDark} />} />
+            <Route path="/mobile-apps"            element={<MobileApp isDark={isDark} />} />
+            <Route path="/ecommerce"              element={<ECommerce isDark={isDark} />} />
+            <Route path="/backend-api"            element={<BackendApi isDark={isDark} />} />
+            <Route path="/mern-stack-development" element={<MernStackDevelopment isDark={isDark} />} />
+            <Route path="/saas-product-development" element={<SaaSProductDevelopment isDark={isDark} />} />
+            <Route path="/reactdevelopment"       element={<ReactDevelopment isDark={isDark} />} />
+            <Route path="/ui-ux-design"           element={<UiUxDesign isDark={isDark} />} />
+            <Route path="/maintenance"            element={<Maintenance isDark={isDark} />} />
+            <Route path="/startup-mvp"            element={<StartupMVP isDark={isDark} />} />
 
             {/* OTHER PAGES */}
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blogs />} />
-
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-and-conditions" element={<Terms />} />
+            <Route path="/about"                  element={<About isDark={isDark} />} />
+            <Route path="/contact"                element={<Contact isDark={isDark} />} />
+            <Route path="/blog"                   element={<Blogs isDark={isDark} />} />
+            <Route path="/privacy-policy"         element={<PrivacyPolicy isDark={isDark} />} />
+            <Route path="/terms-and-conditions"   element={<Terms isDark={isDark} />} />
 
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
+
           </Routes>
         </main>
 
-        <Footer />
+        <Footer isDark={isDark} />
       </div>
     </Router>
-  )
+  );
 }
 
 export default App;

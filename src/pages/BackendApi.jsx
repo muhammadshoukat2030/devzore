@@ -1,538 +1,371 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from "react-router-dom";
-import ServiceGalleryTemplate from '../components/ServiceGalleryTemplate';
-
+import { Link } from 'react-router-dom';
 import {
-  Database,
-  Server,
-  Shield,
-  Cpu,
-  ArrowRight,
-  Code2,
-  Zap,
-  Globe,
-  Layers,
-  Lock,
-  Plus,
-  Rocket,
-  Layout,
-  Repeat,
-  CheckCircle2,
-  BarChart3,
-  ExternalLink,
-  Settings2,
-  Box,
-  Terminal,
-  Activity,
-  Key
+  Server, ArrowRight, CheckCircle, MapPin,
+  Shield, Zap, Code2, Clock, Globe, Lock,
+  Database, Layers, Settings, TrendingUp,
+  Plus, Minus, ExternalLink, Activity, Key
 } from 'lucide-react';
-import { assets } from '../assets/assets';
 
-function BackendApi() {
-  const [activeIndex, setActiveIndex] = useState(null);
+const BackendApi = ({ isDark }) => {
+  const d = isDark;
+  const [activeFaq, setActiveFaq] = useState(null);
+
+  const features = [
+    { icon: <Server size={20} />, color: 'purple', title: 'REST API Development', desc: 'Scalable, well-documented REST APIs built with Node.js and Express. Clean endpoint design, versioning, rate limiting, pagination and comprehensive Postman documentation included.' },
+    { icon: <Code2 size={20} />, color: 'blue', title: 'GraphQL API Development', desc: 'Flexible GraphQL APIs with schema-first design, resolvers, subscriptions, mutations and query optimisation — ideal for complex data requirements and mobile clients.' },
+    { icon: <Database size={20} />, color: 'green', title: 'Database Design & Optimisation', desc: 'MongoDB schema design, PostgreSQL relational modeling, query optimisation, indexing strategies, connection pooling and database migration scripts for production environments.' },
+    { icon: <Shield size={20} />, color: 'red', title: 'API Security & Authentication', desc: 'JWT authentication, OAuth 2.0, refresh token rotation, role-based access control, CORS configuration, input sanitisation, SQL injection prevention and OWASP security compliance.' },
+    { icon: <Activity size={20} />, color: 'amber', title: 'Real-time APIs with Socket.io', desc: 'WebSocket-based real-time APIs for live chat, notifications, collaborative features, live dashboards and multiplayer functionality using Socket.io and Redis Pub/Sub.' },
+    { icon: <Layers size={20} />, color: 'indigo', title: 'Microservices Architecture', desc: 'Event-driven microservices with RabbitMQ or Kafka message queues, Docker containerisation, API gateway configuration and inter-service communication patterns.' },
+    { icon: <Key size={20} />, color: 'cyan', title: 'Third-Party API Integration', desc: 'Stripe, Twilio, SendGrid, Firebase, Google Maps, OpenAI, payment gateways and any third-party API integrated cleanly with error handling, webhooks and retry logic.' },
+    { icon: <TrendingUp size={20} />, color: 'orange', title: 'Performance & Caching', desc: 'Redis caching strategies, CDN configuration, query optimisation, N+1 problem resolution, database connection pooling and load testing to handle millions of daily requests.' },
+    { icon: <Settings size={20} />, color: 'pink', title: 'DevOps & Cloud Deployment', desc: 'AWS EC2, ECS, Lambda and RDS deployment, Docker containerisation, GitHub Actions CI/CD pipelines, Nginx reverse proxy, SSL setup and uptime monitoring configuration.' },
+  ];
+
+  const techStack = [
+    { category: 'Runtime & Framework', items: ['Node.js 22 LTS', 'Express.js 5', 'NestJS', 'Fastify', 'TypeScript'] },
+    { category: 'API Design', items: ['REST APIs', 'GraphQL', 'WebSockets', 'Socket.io', 'gRPC'] },
+    { category: 'Databases', items: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'Elasticsearch'] },
+    { category: 'Auth & Security', items: ['JWT', 'OAuth 2.0', 'bcrypt', 'Helmet.js', 'OWASP Standards'] },
+    { category: 'Cloud & DevOps', items: ['AWS EC2 & Lambda', 'Docker', 'GitHub Actions', 'Nginx', 'PM2'] },
+    { category: 'Testing & Docs', items: ['Jest', 'Supertest', 'Postman', 'Swagger/OpenAPI', 'Insomnia'] },
+  ];
+
+  const process = [
+    { n: '01', title: 'API Architecture Planning', desc: 'We design the full API architecture — endpoints, data models, authentication strategy, third-party integrations and scaling approach before writing any code.' },
+    { n: '02', title: 'Database Schema Design', desc: 'Entity-relationship modeling, MongoDB schema design or PostgreSQL table structure, indexing strategy and migration planning for production-ready data architecture.' },
+    { n: '03', title: 'Core API Development', desc: 'Authentication system, core CRUD endpoints, middleware stack, error handling and logging framework built in sprint one with full test coverage.' },
+    { n: '04', title: 'Integrations & Advanced Features', desc: 'Third-party API integrations, real-time features, payment webhooks, email/SMS services and any complex business logic implemented and tested.' },
+    { n: '05', title: 'Security Audit & Performance', desc: 'OWASP security testing, penetration testing for common vulnerabilities, load testing with k6 or Artillery, query optimisation and caching implementation.' },
+    { n: '06', title: 'Deployment & Documentation', desc: 'Production deployment with CI/CD, comprehensive Postman collection, Swagger documentation, environment setup guide and 30 days of post-launch support.' },
+  ];
 
   const faqs = [
-    {
-      question: "Which database should I choose: SQL or NoSQL?",
-      answer: "It depends on your data structure. For structured data with complex relationships (Fintech, ERPs), we use PostgreSQL (SQL). For high-velocity, unstructured data or rapid scaling (Content platforms, Real-time apps), we recommend MongoDB (NoSQL). We often use a hybrid approach to get the best of both worlds."
-    },
-    {
-      question: "How do you ensure API security?",
-      answer: "We implement multi-layer security: JWT (JSON Web Tokens) for authentication, Role-Based Access Control (RBAC), Rate Limiting to prevent DDoS, and data encryption at rest and in transit. We also follow OWASP Top 10 guidelines to prevent common vulnerabilities."
-    },
-    {
-      question: "Can you help migrate a monolith to Microservices?",
-      answer: "Yes. We specialize in the 'Strangler Fig' pattern, where we incrementally migrate features from your monolith to independent services. This ensures zero downtime and minimizes business risk during the transition."
-    },
-    {
-      question: "How do you handle high-traffic spikes?",
-      answer: "We build with horizontal scalability in mind. Using Redis for caching, message queues like RabbitMQ for asynchronous processing, and load balancing on GCP or AWS to ensure your system stays online during traffic surges."
-    }
+    { q: 'How much does backend and API development cost?', a: 'The cost of backend and API development depends on your project’s complexity, required features, and integration needs. We carefully evaluate every project before providing a customized proposal with transparent deliverables and timelines. Get in touch for a free consultation and a tailored solution.' },
+    { q: 'What is the difference between REST and GraphQL APIs?', a: 'REST APIs use fixed endpoints — each URL returns a specific data structure. They are simpler, widely understood and ideal for most applications. GraphQL uses a single endpoint where clients request exactly the data they need — reducing over-fetching and under-fetching. GraphQL is particularly valuable for complex frontends and mobile apps where bandwidth efficiency matters. We recommend the right approach based on your specific use case.' },
+    { q: 'Do you provide API documentation?', a: 'Yes. Every API we build includes comprehensive documentation — a Postman collection with all endpoints, example requests and responses, a Swagger or OpenAPI specification file, and an environment setup guide. Documentation is delivered as part of the project, not an optional extra.' },
+    { q: 'Can you build a scalable API that handles high traffic?', a: 'Yes. We design for scale from the first sprint — horizontal scaling on cloud infrastructure, Redis caching for frequently accessed data, database query optimisation, connection pooling, rate limiting and load testing before launch. Our backends are designed to handle 100,000+ requests per day from day one.' },
+    { q: 'Do you integrate payment gateways like Stripe and JazzCash?', a: 'Yes. We integrate Stripe, PayPal, JazzCash, Easypaisa, Razorpay and local bank payment APIs with proper webhook handling, idempotency keys, subscription billing, refund flows and comprehensive error handling. We have delivered payment integrations for clients in Pakistan, UAE, UK and USA.' },
+    { q: 'Can you integrate my backend with a mobile app or React frontend?', a: 'Yes. We regularly build backends specifically designed to serve React.js, Next.js and React Native frontends. We design APIs with frontend consumption in mind — proper CORS configuration, efficient data shapes, real-time subscriptions and authentication flows that work seamlessly across web and mobile.' },
+    { q: 'Do you follow security best practices for APIs?', a: 'Yes. Every API we build follows OWASP security standards — JWT authentication with refresh token rotation, input validation and sanitisation, SQL injection prevention, rate limiting, CORS configuration, Helmet.js security headers, encrypted sensitive data storage and regular dependency vulnerability scanning.' },
+    { q: 'Which countries do you serve for backend development?', a: 'DevZore is based in Islamabad, Pakistan and serves clients worldwide. We have delivered backend and API development projects for clients in the USA, UK, UAE, Canada, Australia, Saudi Arabia and Pakistan. We work fully remotely with flexible meeting times and asynchronous communication across all time zones.' },
   ];
+
+  const colorMap = {
+    purple: d ? 'bg-purple-500/10 border-purple-500/20 text-purple-400' : 'bg-purple-50 border-purple-100 text-purple-600',
+    blue: d ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' : 'bg-blue-50 border-blue-100 text-blue-600',
+    green: d ? 'bg-green-500/10 border-green-500/20 text-green-400' : 'bg-green-50 border-green-100 text-green-600',
+    red: d ? 'bg-red-500/10 border-red-500/20 text-red-400' : 'bg-red-50 border-red-100 text-red-600',
+    amber: d ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' : 'bg-amber-50 border-amber-100 text-amber-600',
+    indigo: d ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' : 'bg-indigo-50 border-indigo-100 text-indigo-600',
+    cyan: d ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400' : 'bg-cyan-50 border-cyan-100 text-cyan-600',
+    orange: d ? 'bg-orange-500/10 border-orange-500/20 text-orange-400' : 'bg-orange-50 border-orange-100 text-orange-600',
+    pink: d ? 'bg-pink-500/10 border-pink-500/20 text-pink-400' : 'bg-pink-50 border-pink-100 text-pink-600',
+  };
 
   return (
     <>
-
       <Helmet>
-        <title>Scalable Backend Engine & Secure REST/GraphQL API Design | DevZore</title>
-        <meta name="description" content="Bulletproof microservices architecture using Node.js, Express, and high-throughput SQL/NoSQL databases built for multi-tenant integrations." />
+        <title>Backend & API Development Services | Node.js Express GraphQL | DevZore Pakistan</title>
+        <meta name="description" content="DevZore builds scalable REST and GraphQL APIs, Node.js backend systems and microservices from Islamabad, Pakistan. OWASP security, Stripe integration, AWS deployment for clients across USA, UK, UAE and worldwide. Free consultation available." />
         <link rel="canonical" href="https://devzore.com/backend-api" />
-        <meta property="og:title" content="Scalable Backend Engine & Secure REST/GraphQL API Design | DevZore" />
-        <meta property="og:description" content="Robust microservices, flawless payload encryption, and high-concurrency cloud server optimization." />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DevZore — Muhammad Shoukat" />
+        <meta name="keywords" content="backend development Pakistan, API development Islamabad, Node.js development Pakistan, Express.js API Pakistan, REST API development Pakistan, GraphQL development Pakistan, backend developer Islamabad, microservices development Pakistan, API integration Pakistan, Node.js backend Pakistan, backend developer hire Pakistan, server-side development Islamabad, API security Pakistan, AWS backend deployment Pakistan, backend development USA clients Pakistan" />
+        <meta name="geo.region" content="PK-IS" />
+        <meta name="geo.placename" content="Islamabad" />
+        <meta name="geo.position" content="33.6844;73.0479" />
+        <meta name="ICBM" content="33.6844, 73.0479" />
+        <meta property="og:title" content="Backend & API Development Services | Node.js GraphQL | DevZore Pakistan" />
+        <meta property="og:description" content="Scalable REST and GraphQL APIs from DevZore, Islamabad. Node.js, Express, MongoDB, PostgreSQL. OWASP security. AWS deployment." />
         <meta property="og:url" content="https://devzore.com/backend-api" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://devzore.com/logo.png" />
+        <meta property="og:site_name" content="DevZore" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Backend & API Development | DevZore Pakistan" />
+        <meta name="twitter:description" content="Node.js, GraphQL and REST API development from Islamabad. Scalable, secure, documented." />
+        <meta name="twitter:image" content="https://devzore.com/logo.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Backend & API Development Services",
+          "description": "DevZore builds scalable REST and GraphQL APIs, Node.js backend systems and microservices from Islamabad, Pakistan.",
+          "url": "https://devzore.com/backend-api",
+          "provider": { "@type": "Organization", "name": "DevZore", "url": "https://devzore.com", "telephone": "+92-334-8004300", "email": "hellodevzore@gmail.com", "address": { "@type": "PostalAddress", "addressLocality": "Islamabad", "addressCountry": "PK" } },
+          "serviceType": "Backend and API Development",
+          "areaServed": "Worldwide"
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://devzore.com" },
+            { "@type": "ListItem", "position": 2, "name": "All Services", "item": "https://devzore.com/allservices" },
+            { "@type": "ListItem", "position": 3, "name": "Backend & API Development", "item": "https://devzore.com/backend-api" }
+          ]
+        })}</script>
       </Helmet>
 
-      <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-500/30 pb-10 overflow-x-hidden">
+      <main className={`min-h-screen transition-colors duration-300 ${d ? 'bg-[#030303]' : 'bg-white'}`}>
+        {/* Hero */}
+        <section aria-labelledby="backend-heading" className={`pt-27 pb-10 border-b ${d ? 'border-white/[0.06]' : 'border-gray-100'}`}>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="flex flex-wrap gap-1 mb-6">
+                  <div className={`inline-flex items-center gap-1 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border ${d ? 'bg-purple-600/10 border-purple-500/20 text-purple-400' : 'bg-purple-50 border-purple-200 text-purple-700'}`}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />Backend & API Development
+                  </div>
+                  <div className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold border ${d ? 'bg-green-500/10 border-green-500/20 text-green-400' : 'bg-green-50 border-green-200 text-green-700'}`}>
+                    <Globe size={10} />Worldwide Clients
+                  </div>
+                </div>
 
-        {/* --- HEADER --- */}
-        <div className="max-w-7xl mx-auto px-6 pt-30 flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em]">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-            System Architecture & Engineering
+                <h1 id="backend-heading" className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4 ${d ? 'text-white' : 'text-gray-900'}`}>
+                  Scalable Backend & API Development{' '}
+                  <span className="text-purple-600">Built for Production</span>
+                </h1>
+
+                <h2 className={`text-lg font-semibold mb-5 ${d ? 'text-gray-300' : 'text-gray-700'}`}>
+                  Node.js · Express · GraphQL · REST · MongoDB · PostgreSQL · Islamabad Pakistan
+                </h2>
+
+                <p className={`text-base leading-relaxed mb-5 ${d ? 'text-gray-400' : 'text-gray-600'}`}>
+                  DevZore is a backend and API development company based in Islamabad, Pakistan,
+                  building scalable REST and GraphQL APIs, Node.js microservices and cloud-deployed
+                  backend systems for startups and enterprises across USA, UK, UAE, Canada and Australia.
+                  Every API we build is documented, tested, secured to OWASP standards and deployed
+                  with CI/CD pipelines.
+                </p>
+
+                <p className={`text-base leading-relaxed mb-8 ${d ? 'text-gray-500' : 'text-gray-500'}`}>
+                  Whether you need a simple CRUD API, a complex microservices architecture,
+                  real-time WebSocket features, or third-party integrations — DevZore delivers
+                  senior-level backend engineering with transparent fixed pricing and full code ownership.
+                </p>
+
+                <div className="grid grid-cols-2 gap-3 mb-8">
+                  {[
+                    { val: '50+', label: 'APIs Built' },
+                    { val: '99.9%', label: 'Uptime Target' },
+                    { val: 'OWASP', label: 'Security Standard' },
+                    { val: '24hr', label: 'Response Time' },
+                  ].map((s, i) => (
+                    <div key={i} className={`p-3 rounded-xl border ${d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-gray-50 border-gray-200'}`}>
+                      <div className={`text-xl font-black ${d ? 'text-white' : 'text-gray-900'}`}>{s.val}</div>
+                      <div className={`text-[11px] ${d ? 'text-gray-500' : 'text-gray-400'}`}>{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-4">
+                  <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]">
+                    Get Free Backend Quote <ArrowRight size={14} />
+                  </Link>
+                  <a href="https://wa.me/923348004300?text=Hi DevZore! I need a backend/API development quote."
+                    target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all">
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z" /></svg>
+                    WhatsApp Us
+                  </a>
+                </div>
+              </div>
+
+              {/* Right panel */}
+              <div className={`p-8 rounded-3xl border ${d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-[#fafafa] border-gray-200'}`}>
+                <p className={`text-[11px] font-black uppercase tracking-widest mb-5 ${d ? 'text-gray-500' : 'text-gray-400'}`}>What Every API We Build Includes</p>
+                <div className="space-y-3">
+                  {[
+                    { title: 'Full REST or GraphQL architecture', desc: 'Clean endpoint design, versioning, pagination and filtering' },
+                    { title: 'JWT auth with refresh token rotation', desc: 'Secure, stateless authentication for web and mobile' },
+                    { title: 'Role-based access control (RBAC)', desc: 'Admin, user, moderator and custom role systems' },
+                    { title: 'Input validation and sanitisation', desc: 'Joi or Zod validation on every endpoint' },
+                    { title: 'Rate limiting and DDoS protection', desc: 'Express rate limiter with Redis-backed counters' },
+                    { title: 'Comprehensive error handling', desc: 'Consistent error responses with proper HTTP status codes' },
+                    { title: 'Postman collection + Swagger docs', desc: 'Full API documentation delivered with every project' },
+                    { title: 'CI/CD pipeline and Docker deployment', desc: 'GitHub Actions, Docker and AWS or Vercel deployment' },
+                  ].map((item, i) => (
+                    <div key={i} className={`flex items-start gap-3 pb-3 border-b last:border-0 ${d ? 'border-white/[0.05]' : 'border-gray-100'}`}>
+                      <CheckCircle size={13} className="text-purple-500 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className={`text-[13px] font-bold ${d ? 'text-white' : 'text-gray-900'}`}>{item.title}</p>
+                        <p className={`text-[11px] ${d ? 'text-gray-500' : 'text-gray-400'}`}>{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className={`mt-5 p-3 rounded-xl ${d ? 'bg-purple-600/5' : 'bg-purple-50'}`}>
+                  <p className={`text-[11px] font-semibold text-center ${d ? 'text-purple-400' : 'text-purple-700'}`}>
+                    🌍 Serving: Pakistan · USA · UK · UAE · Canada · Australia
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <Link to="/contact">
-            <button className="cursor-pointer bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-lg text-xs md:text-sm font-bold transition-all shadow-lg shadow-purple-500/20">
-              System Audit
-            </button>
-          </Link>
-        </div>
+        </section>
 
-        {/* --- HERO SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-2 gap-10 items-center">
-          <div className="space-y-8">
-            <h1 className="text-4xl md:text-6xl lg:text-6xl font-bold leading-[1.2] tracking-tight">
-              Scalable <span className="text-purple-500">Backend</span> & Robust <span className="text-blue-400">API</span> Solutions
-            </h1>
-            <p className="text-gray-400 text-base md:text-lg max-w-xl leading-relaxed">
-              We build the invisible engine that powers your business. From high-performance database schemas to secure REST and GraphQL APIs, we ensure your infrastructure is built for 99.9% uptime.
+        {/* Features */}
+        <section aria-labelledby="features-heading" className={`py-10 border-b ${d ? 'border-white/[0.06] bg-[#050505]' : 'border-gray-100 bg-[#fafafa]'}`}>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-3xl mb-12">
+              <h2 id="features-heading" className={`text-3xl font-black mb-4 ${d ? 'text-white' : 'text-gray-900'}`}>
+                Backend & API Development Services We Offer
+              </h2>
+              <p className={`text-base leading-relaxed ${d ? 'text-gray-400' : 'text-gray-600'}`}>
+                From simple REST APIs to complex microservices architectures — DevZore engineers
+                backend systems that are secure, documented, scalable and maintainable.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {features.map((item, i) => (
+                <div key={i} className={`p-6 rounded-2xl border transition-all hover:border-purple-500/25 ${d ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]' : 'bg-white border-gray-200 hover:shadow-sm'}`}>
+                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${colorMap[item.color]}`}>{item.icon}</div>
+                  <h3 className={`text-[14px] font-bold mb-2 ${d ? 'text-white' : 'text-gray-900'}`}>{item.title}</h3>
+                  <p className={`text-[13px] leading-relaxed ${d ? 'text-gray-400' : 'text-gray-600'}`}>{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Tech Stack */}
+        <section aria-labelledby="tech-heading" className={`py-10 border-b ${d ? 'border-white/[0.06]' : 'border-gray-100'}`}>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 id="tech-heading" className={`text-3xl font-black mb-3 ${d ? 'text-white' : 'text-gray-900'}`}>Backend Technology Stack</h2>
+              <p className={`text-base ${d ? 'text-gray-400' : 'text-gray-600'}`}>Production-proven technologies for scalable, secure backend systems</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {techStack.map((cat, i) => (
+                <div key={i} className={`p-5 rounded-2xl border ${d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-[#fafafa] border-gray-200'}`}>
+                  <p className="text-[11px] font-black uppercase tracking-widest mb-3 text-purple-500">{cat.category}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {cat.items.map((tech, j) => (
+                      <span key={j} className={`text-[11px] font-medium px-2.5 py-1 rounded-md border ${d ? 'bg-white/[0.04] border-white/[0.08] text-gray-300' : 'bg-white border-gray-200 text-gray-700'}`}>{tech}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process */}
+        <section aria-labelledby="process-heading" className={`py-10 border-b ${d ? 'border-white/[0.06] bg-[#050505]' : 'border-gray-100 bg-[#fafafa]'}`}>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 id="process-heading" className={`text-3xl font-black mb-3 ${d ? 'text-white' : 'text-gray-900'}`}>Our Backend Development Process</h2>
+              <p className={`text-base max-w-2xl mx-auto ${d ? 'text-gray-400' : 'text-gray-600'}`}>From API architecture to production deployment — a transparent 6-step process</p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {process.map((step, i) => (
+                <div key={i} className={`p-6 rounded-2xl border ${d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-white border-gray-200'}`}>
+                  <div className={`text-[13px] font-black mb-3 ${d ? 'text-purple-400' : 'text-purple-600'}`}>{step.n}</div>
+                  <h3 className={`text-[14px] font-bold mb-2 ${d ? 'text-white' : 'text-gray-900'}`}>{step.title}</h3>
+                  <p className={`text-[13px] leading-relaxed ${d ? 'text-gray-400' : 'text-gray-600'}`}>{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section aria-labelledby="faq-heading" className={`py-10 border-b ${d ? 'border-white/[0.06]' : 'border-gray-100'}`}>
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 id="faq-heading" className={`text-3xl font-black mb-3 ${d ? 'text-white' : 'text-gray-900'}`}>Backend & API Development FAQ</h2>
+              <p className={`text-base ${d ? 'text-gray-400' : 'text-gray-600'}`}>Common questions about our backend development services</p>
+            </div>
+            <div className="space-y-3">
+              {faqs.map((faq, i) => (
+                <div key={i} className={`rounded-xl border overflow-hidden transition-all duration-300 ${activeFaq === i ? d ? 'border-purple-500/40 bg-purple-600/5' : 'border-purple-200 bg-purple-50/50' : d ? 'border-white/[0.06] bg-white/[0.02]' : 'border-gray-200 bg-white'}`}>
+                  <button onClick={() => setActiveFaq(activeFaq === i ? null : i)} aria-expanded={activeFaq === i}
+                    className="w-full p-5 text-left flex items-start justify-between gap-4">
+                    <span className={`text-[14px] font-bold ${activeFaq === i ? 'text-purple-500' : d ? 'text-white' : 'text-gray-900'}`}>{faq.q}</span>
+                    <div className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${activeFaq === i ? 'bg-purple-600 text-white' : d ? 'bg-white/[0.06] text-gray-500' : 'bg-gray-100 text-gray-500'}`}>
+                      {activeFaq === i ? <Minus size={13} /> : <Plus size={13} />}
+                    </div>
+                  </button>
+                  <div className={`overflow-hidden transition-all duration-300 ${activeFaq === i ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <div className={`px-5 pb-5 pt-0 border-t text-[14px] leading-relaxed ${d ? 'border-white/[0.06] text-gray-400' : 'border-purple-100 text-gray-600'}`}>
+                      <p className="pt-4">{faq.a}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Internal Links */}
+        <section aria-label="Related services" className={`py-12 border-b ${d ? 'border-white/[0.06] bg-[#050505]' : 'border-gray-100 bg-[#fafafa]'}`}>
+          <div className="max-w-7xl mx-auto px-6">
+            <p className={`text-[11px] font-black uppercase tracking-widest mb-5 ${d ? 'text-gray-600' : 'text-gray-400'}`}>Related Services</p>
+            <div className="flex flex-wrap gap-3">
+              {[
+                { label: 'Web Development', path: '/web-development' },
+                { label: 'MERN Stack Development', path: '/mern-stack-development' },
+                { label: 'SaaS Development', path: '/saas-product-development' },
+                { label: 'Mobile App Development', path: '/mobile-apps' },
+                { label: 'E-Commerce Development', path: '/ecommerce' },
+                { label: 'React Development', path: '/reactdevelopment' },
+                { label: 'Startup MVP', path: '/startup-mvp' },
+                { label: 'All Services', path: '/allservices' },
+              ].map((link, i) => (
+                <Link key={i} to={link.path} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className={`flex items-center gap-1.5 text-[12px] font-semibold px-4 py-2 rounded-lg border transition-all ${d ? 'bg-white/[0.03] border-white/[0.08] text-gray-400 hover:border-purple-500/30 hover:text-purple-400' : 'bg-white border-gray-200 text-gray-600 hover:border-purple-200 hover:text-purple-700'}`}>
+                  {link.label} <ExternalLink size={10} />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="pt-10 pb-18">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className={`text-3xl font-black mb-4 ${d ? 'text-white' : 'text-gray-900'}`}>Ready to Build Your Backend?</h2>
+            <p className={`text-base mb-3 max-w-xl mx-auto ${d ? 'text-gray-400' : 'text-gray-600'}`}>
+              Get a free consultation and fixed-price quote for your API or backend system.
+              Node.js, GraphQL, AWS deployment — based in Islamabad, Pakistan.
             </p>
-            <div className="flex gap-4">
-              <Link to="/contact">
-                <button className="cursor-pointer  bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-xl font-bold text-sm flex items-center gap-2 transition-all active:scale-95">
-                  Start Project <ArrowRight size={18} />
-                </button>
+            <p className={`text-[13px] mb-8 ${d ? 'text-gray-600' : 'text-gray-400'}`}>
+              📍 Islamabad, Pakistan · Node.js · GraphQL · REST · MongoDB · PostgreSQL · AWS
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="flex items-center gap-2 px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]">
+                Get Free Backend Quote <ArrowRight size={15} />
               </Link>
-            </div>
-          </div>
-
-          <div className="hidden lg:block relative">
-            <div className="absolute -inset-10 bg-blue-600/20 blur-[120px] rounded-full"></div>
-            <div className="relative border border-white/10 bg-[#0a0a0a] rounded-[2rem] p-8 shadow-2xl">
-              <div className="flex gap-2 mb-6">
-                <div className="w-3 h-3 rounded-full bg-gray-700"></div>
-                <div className="w-3 h-3 rounded-full bg-gray-700"></div>
-                <div className="w-3 h-3 rounded-full bg-gray-700"></div>
-              </div>
-              <div className="font-mono text-sm space-y-2 text-green-400/80">
-                <div className="animate-pulse">{">"} initializing server...</div>
-                <div className="delay-75 animate-pulse">{">"} connecting database: MongoDB Atlas</div>
-                <div className="delay-150 animate-pulse">{">"} api_gateway: online</div>
-                <div className="delay-300 animate-pulse text-purple-400">{">"} server listening on port 5000</div>
-                <div className="pt-4 flex gap-2">
-                  <span className="h-2 w-20 bg-blue-500/20 rounded"></span>
-                  <span className="h-2 w-12 bg-white/5 rounded"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- EXPERTISE --- */}
-        <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 italic">
-              Core <span className="text-purple-500 text-not-italic">Backend Capabilities</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ExpertiseCard
-              icon={<Database className="text-purple-500" />}
-              title="Database Modeling"
-              desc="We design high-performance schemas for PostgreSQL, MongoDB, and Redis, focusing on data integrity, efficient indexing, and horizontal scalability."
-              borderColor="border-l-purple-600"
-            />
-            <ExpertiseCard
-              icon={<Terminal className="text-blue-500" />}
-              title="API Development"
-              desc="Building secure RESTful and GraphQL APIs with comprehensive documentation (Swagger/Postman) and strict versioning for seamless frontend integration."
-              borderColor="border-l-blue-500"
-            />
-            <ExpertiseCard
-              icon={<Shield className="text-green-500" />}
-              title="Security & Identity"
-              desc="Implementing JWT, OAuth2, and multi-factor authentication (MFA) to ensure that your user data and business logic are protected against all threats."
-              borderColor="border-l-green-500"
-            />
-            <ExpertiseCard
-              icon={<Cpu className="text-orange-500" />}
-              title="Microservices"
-              desc="Breaking down complex systems into manageable, independent services that communicate via high-speed gRPC or Message Queues (RabbitMQ/Kafka)."
-              borderColor="border-l-orange-500"
-            />
-            <ExpertiseCard
-              icon={<Activity className="text-pink-500" />}
-              title="Performance Tuning"
-              desc="Server-side caching, load balancing, and background task processing to handle thousands of requests per second without latency."
-              borderColor="border-l-pink-500"
-            />
-            <ExpertiseCard
-              icon={<Server className="text-cyan-500" />}
-              title="Cloud Infrastructure"
-              desc="Deploying and managing server environments on AWS, GCP, and DigitalOcean using Docker and CI/CD pipelines for automated scaling."
-              borderColor="border-l-cyan-500"
-            />
-          </div>
-        </section>
-
-        <div className="bg-black min-h-screen">
-          {/* Baki sections yahan aayenge */}
-          <ServiceGalleryTemplate pageKey="BackendApi" />
-        </div>
-
-        {/* --- BACKEND STATS SECTION --- */}
-        <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-8 bg-white/[0.02] rounded-3xl border border-white/5">
-              <div className="text-4xl md:text-5xl font-black text-purple-500 mb-2">99.9%</div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500">System Uptime</div>
-            </div>
-            <div className="text-center p-8 bg-white/[0.02] rounded-3xl border border-white/5">
-              <div className="text-4xl md:text-5xl font-black text-blue-500 mb-2">500ms</div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Avg Response Time</div>
-            </div>
-            <div className="text-center p-8 bg-white/[0.02] rounded-3xl border border-white/5">
-              <div className="text-4xl md:text-5xl font-black text-green-500 mb-2">50+</div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500">API Integrations</div>
-            </div>
-            <div className="text-center p-8 bg-white/[0.02] rounded-3xl border border-white/5">
-              <div className="text-4xl md:text-5xl font-black text-orange-500 mb-2">1M+</div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Requests Handled</div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- BACKEND TECHNOLOGY STACK --- */}
-        <section className="max-w-7xl mx-auto px-6 py-24 border-t border-white/5">
-          <div className="text-center mb-16">
-            <h2 className="text-sm font-bold text-purple-500 uppercase tracking-[0.3em] mb-4">Core Stack</h2>
-            <h3 className="text-3xl md:text-5xl font-bold">Powering with <span className="text-purple-500">Modern</span> Tech</h3>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6 ">
-            {/* Node.js */}
-            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-              <div className="mb-4 flex justify-center">
-                <div className="w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform">
-                  <i className="devicon-nodejs-plain text-3xl"></i>
-                </div>
-              </div>
-              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Node.js</p>
-            </div>
-
-            {/* Express */}
-            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-              <div className="mb-4 flex justify-center">
-                <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                  <i className="devicon-express-original text-3xl"></i>
-                </div>
-              </div>
-              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Express</p>
-            </div>
-
-            {/* MongoDB */}
-            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-              <div className="mb-4 flex justify-center">
-                <div className="w-12 h-12 bg-green-600/10 rounded-2xl flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
-                  <i className="devicon-mongodb-plain text-3xl"></i>
-                </div>
-              </div>
-              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">MongoDB</p>
-            </div>
-
-            {/* PostgreSQL */}
-            <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-              <div className="mb-4 flex justify-center">
-                <div className="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
-                  <i className="devicon-postgresql-plain text-3xl"></i>
-                </div>
-              </div>
-              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">PostgreSQL</p>
-            </div>
-
-            {/* Redis */}
-            {/* <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-              <div className="mb-4 flex justify-center">
-                <div className="w-12 h-12 bg-red-500/10 rounded-2xl flex items-center justify-center text-red-500 group-hover:scale-110 transition-transform">
-                  <i className="devicon-redis-plain text-3xl"></i>
-                </div>
-              </div>
-              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Redis</p>
-            </div> */}
-
-            {/* Docker */}
-            {/* <div className="group p-8 bg-white/[0.02] border border-white/5 rounded-3xl hover:border-purple-500/30 transition-all text-center">
-              <div className="mb-4 flex justify-center">
-                <div className="w-12 h-12 bg-blue-400/10 rounded-2xl flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
-                  <i className="devicon-docker-plain text-3xl"></i>
-                </div>
-              </div>
-              <p className="text-sm font-bold text-gray-400 group-hover:text-white transition-colors">Docker</p>
-            </div> */}
-          </div>
-
-          {/* Sub-text for backend features */}
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
-            {['JWT Auth', 'REST APIs', 'GraphQL', 'Microservices', 'WebSockets', 'AWS'].map((item) => (
-              <span key={item} className="px-5 py-2 rounded-full border border-white/5 bg-white/[0.02] text-[10px] font-bold text-gray-500 uppercase tracking-widest hover:text-purple-500 hover:border-purple-500/30 transition-all">
-                {item}
-              </span>
-            ))}
-          </div>
-        </section>
-
-        {/* --- SERVICES --- */}
-        <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
-          <h2 className="text-3xl md:text-5xl font-bold mb-16 italic text-center md:text-left">
-            Backend <span className="text-purple-500 text-not-italic">Services</span>
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ServiceCard
-              icon={<Settings2 />}
-              title="Custom Backend Logic"
-              desc="Building the core business logic of your application with Node.js or Python, ensuring it's modular, testable, and ready for future feature expansions."
-            />
-            <ServiceCard
-              icon={<Repeat />}
-              title="Third-Party Integrations"
-              desc="Seamlessly connecting your platform with Stripe, PayPal, Twilio, SendGrid, and other external APIs to extend your application's capabilities."
-            />
-            <ServiceCard
-              icon={<Box />}
-              title="Serverless Solutions"
-              desc="Utilizing AWS Lambda or Google Cloud Functions to build cost-effective, event-driven backends that scale automatically with your traffic."
-            />
-            <ServiceCard
-              icon={<Key />}
-              title="Auth & Session Mgmt"
-              desc="Advanced session handling, password hashing (Bcrypt/Argon2), and secure cookie management to keep your user sessions bulletproof."
-            />
-            <ServiceCard
-              icon={<Layers />}
-              title="Real-time Systems"
-              desc="Implementing WebSockets (Socket.io) for live chats, real-time notifications, and collaborative tools that require instant data synchronization."
-            />
-            <ServiceCard
-              icon={<Lock />}
-              title="Data Migration"
-              desc="Expertly migrating legacy data systems to modern databases without data loss or significant downtime, including sanitization and re-formatting."
-            />
-          </div>
-        </section>
-
-        {/* --- METHODOLOGY --- */}
-        <section className="max-w-7xl mx-auto px-6 py-24 bg-white/[0.02] rounded-[3rem] border border-white/5">
-          <div className="max-w-3xl mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Backend Engineering <span className="text-purple-500">Standards</span></h2>
-            <p className="text-gray-400">Reliability is not an accident; it is the result of disciplined engineering. We follow a strict protocol for every line of server-side code we write.</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <MethodologyItem
-                title="Test-Driven Development (TDD)"
-                desc="We write unit and integration tests for every API endpoint before deployment. This ensures that a new feature doesn't break existing functionality (Regression)."
-              />
-              <MethodologyItem
-                title="Stateless Architecture"
-                desc="Our servers are designed to be stateless, allowing for infinite horizontal scaling. Session data is handled via distributed stores like Redis."
-              />
-            </div>
-            <div className="space-y-8">
-              <MethodologyItem
-                title="Security by Design"
-                desc="Input validation, sanitization, and parameterized queries are default practices to prevent SQL Injection, XSS, and other common attacks."
-              />
-              <MethodologyItem
-                title="Automated CI/CD"
-                desc="Every code push is automatically audited, tested, and deployed to staging/production environments, ensuring a rapid and safe release cycle."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* --- WORKFLOW --- */}
-        <section className="max-w-7xl mx-auto px-6 py-20 border-t border-white/5">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold italic">Our Engineering <span className="text-purple-500 text-not-italic">Workflow</span></h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <StepCard step="Step 1" title="Data Modeling" desc="Mapping out entities and relationships to ensure optimal performance and flexibility." icon={<Database size={20} />} />
-            <StepCard step="Step 2" title="Auth & Security" desc="Setting up the security layer before a single business route is even created." icon={<Lock size={20} />} />
-            <StepCard step="Step 3" title="API Development" desc="Implementing business logic and endpoints with strict type-checking and validation." icon={<Code2 size={20} />} />
-            <StepCard step="Step 4" title="Integration" desc="Connecting with external services and ensuring smooth communication with the frontend." icon={<Repeat size={20} />} />
-            <StepCard step="Step 5" title="Load Testing" desc="Simulating high traffic to identify and eliminate performance bottlenecks before launch." icon={<Zap size={20} />} />
-
-            <div className="p-8 bg-purple-600 rounded-3xl flex flex-col justify-center items-center text-center shadow-xl shadow-purple-500/20 group hover:bg-purple-700 transition-all">
-              <Rocket className="mb-4 animate-bounce text-white" size={32} />
-              <h3 className="font-bold text-white mb-2 text-xl">Ready to launch?</h3>
-              <p className="text-purple-100 text-xs mb-4">Let's build something extraordinary together.</p>
-              <Link to="/contact" className="text-xs font-black uppercase tracking-tighter bg-white text-purple-600 px-6 py-2.5 rounded-xl hover:scale-105 transition-transform">
-                Get Started
+              <Link to="/allservices" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className={`flex items-center gap-2 px-8 py-4 font-bold rounded-xl text-sm border transition-all ${d ? 'border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]' : 'border-gray-200 text-gray-700 hover:border-gray-300'}`}>
+                View All Services <ArrowRight size={15} />
               </Link>
             </div>
           </div>
         </section>
 
-        {/* --- BACKEND PROCESS & IMAGES (FIXED) --- */}
-        <section className="max-w-7xl mx-auto px-6 py-10">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-
-            {/* Image 1 & Content */}
-            <div className="group relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-900 rounded-3xl blur opacity-20 group-hover:opacity-50 transition duration-1000"></div>
-              <div className="relative bg-[#0c0c0c] border border-white/10 rounded-3xl overflow-hidden">
-                <div className="h-80 w-full overflow-hidden bg-gray-900">
-                  <img
-                    src={assets.backend_aws}
-                    alt="Server Infrastructure"
-                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-in-out"
-                    onError={(e) => { e.target.src = assets.backend_aws; }}
-                  />
-                </div>
-                <div className="p-8">
-                  <div className="inline-flex items-center gap-2 text-purple-400 font-bold text-[10px] uppercase tracking-[0.2em] mb-4">
-                    <Server size={14} /> Global Infrastructure
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 text-white">High-Availability Servers</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    We containerize your backend using Docker and deploy it on AWS or Google Cloud. The infrastructure automatically scales to handle high traffic, ensuring consistent performance and reliability.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Image 2 & Content */}
-            <div className="group relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl blur opacity-20 group-hover:opacity-50 transition duration-1000"></div>
-              <div className="relative bg-[#0c0c0c] border border-white/10 rounded-3xl overflow-hidden">
-                <div className="h-80 w-full overflow-hidden bg-gray-900">
-                  <img
-                    src={assets.backend_clean}
-                    alt="Clean Database Code"
-                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-in-out"
-                    onError={(e) => { e.target.src = "https://via.placeholder.com/800x600/111/555?text=Database+Optimization"; }}
-                  />
-                </div>
-                <div className="p-8">
-                  <div className="inline-flex items-center gap-2 text-purple-400 font-bold text-[10px] uppercase tracking-[0.2em] mb-4">
-                    <Database size={14} /> Optimized Databases
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 text-white">Complex Query Optimization</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Retrieving data efficiently is real engineering. We use advanced indexing techniques to ensure your reports and dashboards load in milliseconds.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* --- FAQ --- */}
-        <section className="max-w-4xl mx-auto px-6 py-24">
-          <h2 className="text-3xl font-bold mb-12 italic text-center">Backend <span className="text-purple-500 text-not-italic">Deep Dive</span></h2>
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <div key={i} className={`border rounded-2xl transition-all ${activeIndex === i ? 'border-purple-500/50 bg-purple-500/5' : 'border-white/5 bg-[#0A0A0A]'}`}>
-                <button onClick={() => setActiveIndex(activeIndex === i ? null : i)} className="w-full p-6 text-left flex justify-between items-center group">
-                  <h3 className="font-bold text-sm md:text-base">{faq.question}</h3>
-                  <Plus size={18} className={`${activeIndex === i ? 'rotate-45 text-purple-500' : 'text-gray-600'}`} />
-                </button>
-                {activeIndex === i && <div className="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">{faq.answer}</div>}
-              </div>
-            ))}
-          </div>
-        </section>
-        {/* --- FINAL CTA WITH PURPLE THEME --- */}
-        <section className="max-w-7xl mx-auto px-6 py-1">
-          <div className="bg-gradient-to-br from-[#0c0c0c] to-[#111111] border border-white/10 rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-10 text-center relative overflow-hidden">
-
-            {/* Purple Glow Effects */}
-            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-purple-600/10 blur-[100px] rounded-full pointer-events-none"></div>
-            <div className="absolute -top-20 -left-20 w-64 h-64 bg-purple-900/10 blur-[100px] rounded-full pointer-events-none"></div>
-
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight text-white">
-              Ready to build a <span className="text-purple-500">reliable</span> engine?
-            </h2>
-
-            <p className="text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed text-sm md:text-lg">
-              Whether you require a backend architecture from the ground up or need to scale your existing system — DevZore’s engineering team is here to help.
-            </p>
-            <Link to="/contact" className="inline-block relative z-10">
-              <button className="cursor-pointer group bg-purple-600 hover:bg-purple-700 px-8 py-4 md:px-12 md:py-5 rounded-2xl font-bold text-base md:text-xl flex items-center gap-3 mx-auto mb-16 transition-all active:scale-95 shadow-2xl shadow-purple-500/25 cursor-pointer text-white">
-                Start Backend Project <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-            </Link>
-
-            {/* Internal Links for SEO & Navigation */}
-            <div className="border-t border-white/5 pt-6 relative z-10">
-              <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-x-4 gap-y-8 md:gap-x-8 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
-
-                <Link to="/mern-stack-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
-                  MERN STACK
-                  <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
-                </Link>
-
-                <Link to="/reactdevelopment" className="hover:text-purple-400 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
-                  REACT FRONTEND
-                  <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
-                </Link>
-
-                <Link to="/web-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
-                  WEB DEVELOPMENT
-                  <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
-                </Link>
-
-                <Link to="/saas-product-development" className="hover:text-purple-500 transition-all flex items-center justify-center gap-1 group cursor-pointer py-2">
-                  SAAS SOLUTIONS
-                  <ExternalLink size={11} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-purple-500" />
-                </Link>
-
-                <Link to="/" className="hover:text-white transition-all text-gray-400 flex items-center justify-center gap-1 group cursor-pointer py-2 border-l border-white/10 pl-4 ml-4 hidden md:flex">
-                  BACK TO HOME
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </div>
+        {/* SEO + AI Hidden */}
+        <div className="sr-only" aria-hidden="false">
+          <h2>Backend and API Development Services — DevZore Islamabad Pakistan</h2>
+          <p>DevZore is a backend and API development company based in Islamabad, Pakistan. We build scalable REST and GraphQL APIs, Node.js microservices, real-time WebSocket backends and cloud-deployed server-side systems for clients across USA, UK, UAE, Canada, Australia and Pakistan. Our backend development services include Node.js API development, Express.js backend development, GraphQL API design, MongoDB and PostgreSQL database architecture, JWT authentication systems, payment gateway integration with Stripe and JazzCash, microservices architecture, Docker containerisation and AWS deployment with CI/CD pipelines.</p>
+          <h2>Frequently Asked Questions</h2>
+          {faqs.map((f, i) => <div key={i}><h3>{f.q}</h3><p>{f.a}</p></div>)}
+          <p>Keywords: backend development Pakistan, API development Islamabad, Node.js development Pakistan, REST API company Pakistan, GraphQL development Pakistan, backend developer hire Pakistan, microservices Pakistan, AWS backend deployment Pakistan, API security Pakistan, Node.js Express Pakistan.</p>
+          <p>AI Search: Best backend developer in Pakistan. Who builds Node.js APIs in Islamabad? REST API development company Pakistan. How much does API development cost in Pakistan? Best GraphQL developer Pakistan. Backend development company serving USA UK UAE from Pakistan.</p>
+        </div>
+      </main>
     </>
   );
-}
-
-/* --- REUSABLE COMPONENTS --- */
-
-const ServiceCard = ({ icon, title, desc }) => (
-  <div className="bg-[#080808] p-8 rounded-3xl border border-white/5 hover:border-purple-500/30 transition-all group">
-    <div className="mb-4 text-purple-500 group-hover:scale-110 transition-transform duration-300">
-      {React.cloneElement(icon, { size: 35 })}
-    </div>
-    <h3 className="text-xl font-bold mb-3">{title}</h3>
-    <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
-  </div>
-);
-
-const MethodologyItem = ({ title, desc }) => (
-  <div className="flex gap-4">
-    <div className="mt-1"><CheckCircle2 className="text-purple-500" size={20} /></div>
-    <div>
-      <h4 className="text-lg font-bold mb-2">{title}</h4>
-      <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
-    </div>
-  </div>
-);
-
-const StepCard = ({ step, title, desc, icon }) => (
-  <div className="p-8 bg-[#0c0c0c] border border-white/5 rounded-3xl relative group hover:border-purple-500/30 transition-all">
-    <div className="flex justify-between items-start mb-6">
-      <div className="text-[10px] font-black text-purple-500 uppercase tracking-widest">{step}</div>
-      <div className="p-2 bg-purple-500/10 rounded-lg text-purple-500">{icon}</div>
-    </div>
-    <h3 className="text-lg font-bold mb-2">{title}</h3>
-    <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
-  </div>
-);
-
-const ExpertiseCard = ({ icon, title, desc, borderColor }) => (
-  <div className={`bg-[#080808] p-8 rounded-2xl border border-gray-900 border-l-4 ${borderColor} hover:bg-[#0c0c0c] transition-all group`}>
-    <div className="mb-6 p-3 bg-white/5 inline-block rounded-xl group-hover:scale-110 transition-transform">{icon}</div>
-    <h3 className="text-lg font-bold mb-3 text-gray-100">{title}</h3>
-    <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
-  </div>
-);
+};
 
 export default BackendApi;

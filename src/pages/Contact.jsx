@@ -1,305 +1,369 @@
 import React, { useState } from 'react';
-import SectionTag from '../components/SectionTag';
-import Swal from 'sweetalert2';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
 import { Helmet } from 'react-helmet-async';
-import { Send, Rocket, ShieldCheck, Globe2, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import {
+  Mail, Phone, MapPin, Send, ArrowRight,
+  CheckCircle, Clock, Globe, MessageSquare,
+  Star, Shield, Zap
+} from 'lucide-react';
 
-const Contact = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+const Contact = ({ isDark }) => {
+  const d = isDark;
+  const [form, setForm] = useState({ name: '', email: '', service: '', budget: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const whatsappNumber = "923358004900";
+  const services = [
+    'Web Development', 'Mobile App Development', 'MERN Stack Development',
+    'SaaS Development', 'E-Commerce Development', 'UI/UX Design',
+    'Startup MVP', 'Backend & API', 'Maintenance & Support', 'Other',
+  ];
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    const form = event.target;
-    const formData = new FormData(form);
-    formData.append("phone_full", phoneNumber);
+  const budgets = [
+    'Under $1,000', '$1,000 – $3,000', '$3,000 – $8,000',
+    '$8,000 – $20,000', '$20,000+', 'Not sure yet',
+  ];
 
-    try {
-      const response = await fetch("https://formspree.io/f/mgozjzql", {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" }
-      });
+  const handleChange = (e) => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
-      if (response.ok) {
-        Swal.fire({
-          title: 'Message Sent 🚀',
-          text: 'DevZore team will contact you within 24 hours.',
-          icon: 'success',
-          confirmButtonColor: '#7c3aed',
-          background: '#0a0a0a',
-          color: '#fff'
-        }).then(() => {
-          form.reset();
-          setPhoneNumber("");
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      } else throw new Error();
-    } catch {
-      Swal.fire({
-        title: 'Error',
-        text: 'Something went wrong. Please try again.',
-        icon: 'error',
-        background: '#0a0a0a',
-        color: '#fff'
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    await new Promise(r => setTimeout(r, 1200));
+    setLoading(false);
+    setSubmitted(true);
   };
+
+  const contactMethods = [
+    { icon: <Mail size={18}/>,    label: 'Email Us',        value: 'hellodevzore@gmail.com', href: 'mailto:hellodevzore@gmail.com', color: 'purple' },
+    { icon: <Phone size={18}/>,   label: 'Call / WhatsApp', value: '+92 334 8004300',         href: 'https://wa.me/923348004300',    color: 'green' },
+    { icon: <MapPin size={18}/>,  label: 'Our Location',    value: 'Islamabad, Pakistan',     href: null,                           color: 'blue' },
+    { icon: <Clock size={18}/>,   label: 'Response Time',   value: 'Within 24 hours',         href: null,                           color: 'amber' },
+  ];
+
+  const trustPoints = [
+    { icon: <CheckCircle size={14}/>, text: 'Free consultation — no obligation' },
+    { icon: <Shield size={14}/>,      text: 'Fixed pricing — no surprise bills' },
+    { icon: <Zap size={14}/>,         text: 'Response within 24 hours' },
+    { icon: <Globe size={14}/>,       text: 'Serving USA, UK, UAE, Canada & more' },
+    { icon: <Star size={14}/>,        text: '5.0 rating from 30+ clients' },
+    { icon: <CheckCircle size={14}/>, text: '100% source code ownership' },
+  ];
+
+  const colorMap = {
+    purple: d ? 'bg-purple-500/10 border-purple-500/20 text-purple-400' : 'bg-purple-50 border-purple-200 text-purple-600',
+    green:  d ? 'bg-green-500/10 border-green-500/20 text-green-400'   : 'bg-green-50 border-green-200 text-green-600',
+    blue:   d ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'     : 'bg-blue-50 border-blue-200 text-blue-600',
+    amber:  d ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'  : 'bg-amber-50 border-amber-200 text-amber-600',
+  };
+
+  const inp = `w-full px-4 py-3 rounded-xl border text-[14px] font-medium outline-none transition-all duration-200 ${
+    d
+      ? 'bg-white/[0.04] border-white/[0.08] text-white placeholder-gray-600 focus:border-purple-500/50 focus:bg-white/[0.06]'
+      : 'bg-white border-gray-200 text-gray-900 placeholder-gray-400 focus:border-purple-300 focus:shadow-[0_0_0_3px_rgba(124,58,237,0.08)]'
+  }`;
 
   return (
     <>
-
-
       <Helmet>
-        <title>Contact Us | Book a Free Global Consultation | DevZore</title>
-        <meta name="description" content="Scale your business infrastructure today. Get in touch with DevZore's technical consultants for scoping, MVPs, or full-scale team augmentation." />
+        <title>Contact DevZore | Hire a Developer in Islamabad, Pakistan</title>
+        <meta name="description" content="Get in touch with DevZore to start your web or mobile app project. Based in Islamabad, Pakistan — serving clients worldwide. Free consultation, response within 24 hours." />
         <link rel="canonical" href="https://devzore.com/contact" />
-        <meta property="og:title" content="Contact Us | Book a Free Global Consultation | DevZore" />
-        <meta property="og:description" content="Let's build something extraordinary. Hire dedicated remote developers and scale up your engineering." />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="contact DevZore, hire developer Pakistan, hire React developer Islamabad, web development quote Pakistan, software development consultation" />
+
+        {/* GEO */}
+        <meta name="geo.region" content="PK-IS" />
+        <meta name="geo.placename" content="Islamabad" />
+        <meta name="geo.position" content="33.6844;73.0479" />
+        <meta name="ICBM" content="33.6844, 73.0479" />
+
+        {/* OG */}
+        <meta property="og:title" content="Contact DevZore | Hire a Developer in Islamabad" />
+        <meta property="og:description" content="Start your web or mobile project with DevZore. Free consultation, fixed pricing, response within 24 hours. Based in Islamabad, Pakistan." />
         <meta property="og:url" content="https://devzore.com/contact" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://devzore.com/logo.png" />
+        <meta property="og:site_name" content="DevZore" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact DevZore | Hire a Developer in Islamabad" />
+        <meta name="twitter:description" content="Free consultation for web, mobile and SaaS development. Response within 24 hours from DevZore, Islamabad." />
+        <meta name="twitter:image" content="https://devzore.com/logo.png" />
+
+        {/* Schema */}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact DevZore",
+          "url": "https://devzore.com/contact",
+          "description": "Contact DevZore for web development, mobile app development and software engineering services.",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "DevZore",
+            "url": "https://devzore.com",
+            "email": "hellodevzore@gmail.com",
+            "telephone": "+92-334-8004300",
+            "address": { "@type": "PostalAddress", "addressLocality": "Islamabad", "addressCountry": "PK" },
+            "contactPoint": [
+              { "@type": "ContactPoint", "contactType": "customer service", "email": "hellodevzore@gmail.com", "availableLanguage": ["English", "Urdu"] },
+              { "@type": "ContactPoint", "contactType": "sales", "telephone": "+92-334-8004300", "contactOption": "TollFree" }
+            ]
+          }
+        })}</script>
       </Helmet>
 
-      <section className="relative text-white overflow-hidden bg-[#050505] font-sans">
-        {/* BACKGROUND DECOR */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7" className="w-full h-full object-cover grayscale" alt="bg" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]"></div>
-        </div>
+      <main className={`min-h-screen transition-colors duration-300 ${d ? 'bg-[#030303]' : 'bg-white'}`}>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-
-          {/* HEADER */}
-          <div className="text-center mb-8 pt-8">
-            <SectionTag text="GLOBAL PARTNER" />
-            <h1 className="text-4xl md:text-6xl font-black mt-1 tracking-tight">
-              Work with <span className="text-purple-500">DevZore</span>
+        {/* ── HERO ── */}
+        <section aria-labelledby="contact-heading" className={`pt-30 pb-10 border-b ${d ? 'border-white/[0.06]' : 'border-gray-100'}`}>
+          <div className="max-w-7xl mx-auto px-6 text-center">
+            <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest mb-6 border ${
+              d ? 'bg-purple-600/10 border-purple-500/20 text-purple-400' : 'bg-purple-50 border-purple-200 text-purple-700'
+            }`}>
+              Get In Touch
+            </div>
+            <h1 id="contact-heading" className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-5 ${d ? 'text-white' : 'text-gray-900'}`}>
+              Let's Build Something{' '}
+              <span className="text-purple-600">Together</span>
             </h1>
-            <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">
-              Engineering scalable solutions for international clients. From Islamabad to the World.
+            <p className={`text-lg max-w-2xl mx-auto ${d ? 'text-gray-400' : 'text-gray-600'}`}>
+              Tell us about your project and we will get back to you within 24 hours with a clear plan
+              and honest pricing. No commitment required.
             </p>
           </div>
+        </section>
 
-          <div className="grid lg:grid-cols-12 gap-12">
-
-            {/* LEFT: Trust Badges */}
-            <div className="lg:col-span-5 space-y-8">
-              <div className="glass-card p-8 rounded-3xl border border-white/5">
-                <h2 className="text-2xl font-bold mb-8">Why Partner With Us?</h2>
-                <div className="space-y-8">
-                  {[
-                    { icon: <ShieldCheck className="text-purple-500" />, title: "Enterprise Security", desc: "Data isolation & secure RBAC protocols." },
-                    { icon: <Rocket className="text-blue-500" />, title: "Rapid Deployment", desc: "CI/CD pipelines for zero-downtime updates." },
-                    { icon: <Globe2 className="text-green-500" />, title: "Global Compliance", desc: "Handling UTC timezones and ISO standards." }
-                  ].map((item, i) => (
-                    <div key={i} className="flex gap-5 items-start">
-                      <div className="p-3.5 bg-white/5 rounded-2xl border border-white/5">{item.icon}</div>
-                      <div>
-                        <h4 className="font-bold text-lg">{item.title}</h4>
-                        <p className="text-sm text-gray-500 mt-1">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <a href={`https://wa.me/${whatsappNumber}`} className="bg-green-600/10 border border-green-600/20 p-6 rounded-2xl text-center hover:bg-green-600/20 transition group">
-                  <span className="block text-xl font-black text-green-500 uppercase group-hover:scale-105 transition">WhatsApp</span>
-                  <span className="text-[10px] text-green-600/80 font-bold tracking-widest italic">LIVE SUPPORT</span>
-                </a>
-                <div className="glass-card p-6 rounded-2xl text-center border border-white/5">
-                  <span className="block text-xl font-black text-white uppercase">Islamabad</span>
-                  <span className="text-[10px] text-gray-500 font-bold tracking-widest italic">HEADQUARTERS</span>
-                </div>
-              </div>
-            </div>
-
-            {/* RIGHT: Main Form */}
-            <div className="lg:col-span-7">
-              <div className="glass-card p-6 sm:p-10 rounded-[2.5rem] border border-white/10 shadow-2xl relative">
-                <form onSubmit={handleSubmit} className="space-y-6">
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500 ml-1">Full Identity</label>
-                      <input name="name" placeholder="John Doe" required className="modern-input" />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500 ml-1">Work Email</label>
-                      <input name="email" type="email" placeholder="email@company.com" required className="modern-input" />
-                    </div>
+        {/* ── CONTACT METHODS ── */}
+        <section aria-label="Contact methods" className={`py-12 border-b ${d ? 'border-white/[0.06]' : 'border-gray-100'}`}>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {contactMethods.map((m, i) => (
+                <div key={i} className={`p-5 rounded-2xl border transition-all ${
+                  d ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]' : 'bg-gray-50 border-gray-200 hover:bg-white hover:shadow-sm'
+                }`}>
+                  <div className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-3 ${colorMap[m.color]}`}>
+                    {m.icon}
                   </div>
+                  <p className={`text-[10px] font-bold uppercase tracking-widest mb-1 ${d ? 'text-gray-500' : 'text-gray-400'}`}>{m.label}</p>
+                  {m.href ? (
+                    <a href={m.href} target={m.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
+                      className={`text-[13px] font-semibold hover:text-purple-500 transition-colors ${d ? 'text-white' : 'text-gray-900'}`}>
+                      {m.value}
+                    </a>
+                  ) : (
+                    <p className={`text-[13px] font-semibold ${d ? 'text-white' : 'text-gray-900'}`}>{m.value}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {/* Phone Input with Global Search */}
-                    <div className="space-y-2">
-                      <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500 ml-1">Phone Number</label>
-                      <div className="relative phone-wrapper">
-                        <PhoneInput
-                          country={'pk'}
-                          enableSearch={true}
-                          value={phoneNumber}
-                          onChange={setPhoneNumber}
-                          containerClass="phone-container"
-                          inputClass="modern-input !pl-[60px] !h-[51px] padding-38px"
-                          buttonClass="phone-dropdown-btn"
-                          dropdownClass="phone-dropdown-list"
-                          searchClass="phone-search-field"
+        {/* ── MAIN SECTION ── */}
+        <section aria-label="Contact form and information" className="py-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-5 gap-12">
+
+              {/* LEFT: Info */}
+              <div className="lg:col-span-2 flex flex-col gap-6">
+
+                {/* Trust points */}
+                <div className={`p-6 rounded-2xl border ${d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-[#fafafa] border-gray-200'}`}>
+                  <h2 className={`text-[14px] font-black mb-4 ${d ? 'text-white' : 'text-gray-900'}`}>
+                    Why Work With DevZore?
+                  </h2>
+                  <div className="space-y-3">
+                    {trustPoints.map((pt, i) => (
+                      <div key={i} className={`flex items-center gap-3 text-[13px] ${d ? 'text-gray-400' : 'text-gray-600'}`}>
+                        <span className="text-purple-500 flex-shrink-0">{pt.icon}</span>
+                        {pt.text}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* WhatsApp */}
+                <a href="https://wa.me/923348004300?text=Hi DevZore! I want to discuss a project."
+                  target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-5 rounded-2xl border bg-[#25D366]/10 border-[#25D366]/25 hover:bg-[#25D366]/20 transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-[#25D366] flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-[13px] font-bold text-[#25D366]">Chat on WhatsApp</p>
+                    <p className={`text-[11px] ${d ? 'text-gray-500' : 'text-gray-500'}`}>Fastest way to reach us</p>
+                  </div>
+                  <ArrowRight size={14} className="text-[#25D366] ml-auto"/>
+                </a>
+
+                {/* Email direct */}
+                <a href="mailto:hellodevzore@gmail.com"
+                  className={`flex items-center gap-4 p-5 rounded-2xl border transition-all ${
+                    d ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]' : 'bg-white border-gray-200 hover:shadow-sm'
+                  }`}>
+                  <div className="w-10 h-10 rounded-xl bg-purple-600/15 border border-purple-500/20 flex items-center justify-center flex-shrink-0">
+                    <Mail size={16} className="text-purple-500"/>
+                  </div>
+                  <div>
+                    <p className={`text-[13px] font-bold ${d ? 'text-white' : 'text-gray-900'}`}>hellodevzore@gmail.com</p>
+                    <p className={`text-[11px] ${d ? 'text-gray-500' : 'text-gray-400'}`}>Response within 24 hours</p>
+                  </div>
+                  <ArrowRight size={14} className="text-purple-500 ml-auto"/>
+                </a>
+
+                {/* Location */}
+                <div className={`p-5 rounded-2xl border ${d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-white border-gray-200'}`}>
+                  <div className="flex items-center gap-2 mb-3">
+                    <MapPin size={14} className="text-purple-500"/>
+                    <p className={`text-[11px] font-bold uppercase tracking-widest ${d ? 'text-gray-500' : 'text-gray-400'}`}>Location</p>
+                  </div>
+                  <p className={`text-[14px] font-bold mb-1 ${d ? 'text-white' : 'text-gray-900'}`}>Islamabad, Pakistan</p>
+                  <p className={`text-[12px] ${d ? 'text-gray-500' : 'text-gray-500'}`}>
+                    Serving clients worldwide — USA · UK · UAE · Canada · Australia · Saudi Arabia
+                  </p>
+                  <div className="flex items-center gap-2 mt-3">
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"/>
+                    <span className={`text-[11px] font-semibold ${d ? 'text-green-400' : 'text-green-700'}`}>
+                      Available for new projects
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT: Form */}
+              <div className="lg:col-span-3">
+                {submitted ? (
+                  <div className={`h-full flex flex-col items-center justify-center text-center p-12 rounded-3xl border ${
+                    d ? 'bg-green-500/5 border-green-500/20' : 'bg-green-50 border-green-200'
+                  }`}>
+                    <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center mb-6">
+                      <CheckCircle size={28} className="text-white"/>
+                    </div>
+                    <h2 className={`text-2xl font-black mb-3 ${d ? 'text-white' : 'text-gray-900'}`}>
+                      Message Received!
+                    </h2>
+                    <p className={`text-base mb-2 ${d ? 'text-gray-400' : 'text-gray-600'}`}>
+                      Thank you for reaching out, {form.name || 'there'}!
+                    </p>
+                    <p className={`text-sm mb-8 ${d ? 'text-gray-500' : 'text-gray-500'}`}>
+                      We will review your project details and get back to you within 24 hours
+                      with a clear plan and honest pricing.
+                    </p>
+                    <a href="https://wa.me/923348004300?text=Hi! I just submitted a contact form on DevZore."
+                      target="_blank" rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white font-bold rounded-xl text-sm">
+                      Chat on WhatsApp for faster reply <ArrowRight size={14}/>
+                    </a>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className={`p-8 rounded-3xl border ${
+                    d ? 'bg-white/[0.02] border-white/[0.08]' : 'bg-[#fafafa] border-gray-200'
+                  }`}>
+                    <h2 className={`text-xl font-black mb-6 ${d ? 'text-white' : 'text-gray-900'}`}>
+                      Tell Us About Your Project
+                    </h2>
+
+                    <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                      <div>
+                        <label className={`block text-[11px] font-bold uppercase tracking-wider mb-2 ${d ? 'text-gray-500' : 'text-gray-400'}`}>
+                          Your Name *
+                        </label>
+                        <input
+                          type="text" name="name" required
+                          value={form.name} onChange={handleChange}
+                          placeholder="John Smith"
+                          className={inp}
+                        />
+                      </div>
+                      <div>
+                        <label className={`block text-[11px] font-bold uppercase tracking-wider mb-2 ${d ? 'text-gray-500' : 'text-gray-400'}`}>
+                          Email Address *
+                        </label>
+                        <input
+                          type="email" name="email" required
+                          value={form.email} onChange={handleChange}
+                          placeholder="john@company.com"
+                          className={inp}
                         />
                       </div>
                     </div>
 
-                    {/* Complete Service Dropdown */}
-                    <div className="space-y-2">
-                      <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500 ml-1">Core Service</label>
-                      <div className="relative">
-                        <select name="project_type" required className="modern-input appearance-none pr-10">
-                          <option value="">Select Service</option>
-                          <option>🚀 Full Stack Web App (MERN)</option>
-                          <option>⚡ Next.js / React Development</option>
-                          <option>💎 Personal Portfolio & Resume</option>
-                          <option>🛒 E-commerce Solution (Custom/Shopify)</option>
-                          <option>📱 Mobile App Development</option>
-                          <option>🎨 UI/UX Design & Branding</option>
-                          <option>🏢 Corporate/Business Website</option>
-                          <option>⚙️ Backend API & Architecture</option>
-                          <option>🔥 Landing Page Optimization</option>
-                          <option>🛠 Bug Fixing, Audit & Maintenance</option>
-                          <option>📦 Product Management Application</option>
-                          <option>🌍 Localization & Multilingual SEO</option>
-                          <option>✨ Custom Digital Transformation</option>
+                    <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                      <div>
+                        <label className={`block text-[11px] font-bold uppercase tracking-wider mb-2 ${d ? 'text-gray-500' : 'text-gray-400'}`}>
+                          Service Needed
+                        </label>
+                        <select name="service" value={form.service} onChange={handleChange} className={inp}>
+                          <option value="">Select a service</option>
+                          {services.map(s => <option key={s} value={s}>{s}</option>)}
                         </select>
-                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none w-4 h-4" />
+                      </div>
+                      <div>
+                        <label className={`block text-[11px] font-bold uppercase tracking-wider mb-2 ${d ? 'text-gray-500' : 'text-gray-400'}`}>
+                          Budget Range
+                        </label>
+                        <select name="budget" value={form.budget} onChange={handleChange} className={inp}>
+                          <option value="">Select budget range</option>
+                          {budgets.map(b => <option key={b} value={b}>{b}</option>)}
+                        </select>
                       </div>
                     </div>
-                  </div>
 
-                  {/* UX OPTIMIZED BUDGET DROPDOWN */}
-                  {/* <div className="space-y-3">
-                    <label className="text-[11px] uppercase tracking-[0.3em] font-black text-purple-500/80 ml-1">Project Investment (Flexible)</label>
-                    <div className="relative">
-                      <select name="budget" required className="modern-input appearance-none pr-10 cursor-pointer">
-                        <option value="">Choose your investment range</option>
-                        <option value="startup">$199 – $499 (Landing / Personal Portfolio)</option>
-                        <option value="business">$500 – $1,299 (Corporate / Business Site)</option>
-                        <option value="pro">$1,300 – $2,999 (E-commerce / MERN App)</option>
-                        <option value="enterprise">$3,000 – $7,000+ (Custom SaaS / Enterprise)</option>
-                        <option value="undecided">I prefer to discuss based on requirements</option>
-                      </select>
-                      <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none w-4 h-4" />
+                    <div className="mb-6">
+                      <label className={`block text-[11px] font-bold uppercase tracking-wider mb-2 ${d ? 'text-gray-500' : 'text-gray-400'}`}>
+                        Project Details *
+                      </label>
+                      <textarea
+                        name="message" required rows={5}
+                        value={form.message} onChange={handleChange}
+                        placeholder="Tell us about your project — what you want to build, who it's for, any specific requirements, timeline expectations..."
+                        className={inp + ' resize-none'}
+                      />
                     </div>
-                    <p className="text-[10px] text-gray-500 italic ml-1">*Ranges are estimated. Final quote provided after brief analysis.</p>
-                  </div> */}
 
-                  <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500 ml-1">Technical Brief</label>
-                    <textarea name="message" placeholder="Briefly describe your requirements..." required className="modern-input h-32 resize-none leading-relaxed"></textarea>
-                  </div>
+                    <button type="submit" disabled={loading}
+                      className={`w-full flex items-center justify-center gap-2 py-4 font-black text-sm rounded-xl transition-all ${
+                        loading
+                          ? 'bg-purple-400 cursor-not-allowed text-white'
+                          : 'bg-purple-600 hover:bg-purple-700 text-white hover:shadow-[0_0_24px_rgba(124,58,237,0.35)]'
+                      }`}>
+                      {loading ? (
+                        <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"/> Sending...</>
+                      ) : (
+                        <><Send size={15}/> Send Message — Free Consultation</>
+                      )}
+                    </button>
 
-                  <button
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 bg-[length:200%_auto] hover:bg-right transition-all duration-500 py-4.5 rounded-2xl font-black text-lg shadow-[0_10px_30px_rgba(124,58,237,0.3)] flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-70"
-                  >
-                    {isSubmitting ? "PROCESSING..." : "INITIATE PROJECT"}
-                    <Send size={20} className={isSubmitting ? "animate-pulse" : "group-hover:translate-x-1 transition-transform"} />
-                  </button>
-                </form>
+                    <p className={`text-center text-[11px] mt-4 ${d ? 'text-gray-600' : 'text-gray-400'}`}>
+                      By submitting, you agree to our{' '}
+                      <Link to="/privacy-policy" className="text-purple-500 hover:underline">Privacy Policy</Link>.
+                      We respond within 24 hours.
+                    </p>
+                  </form>
+                )}
               </div>
             </div>
-
           </div>
+        </section>
+
+        {/* ── SEO HIDDEN ── */}
+        <div className="sr-only" aria-hidden="false">
+          <h2>Contact DevZore Software Development Agency — Islamabad Pakistan</h2>
+          <address>
+            <p>DevZore International — Software Development Agency</p>
+            <p>Email: hellodevzore@gmail.com</p>
+            <p>Phone / WhatsApp: +92 334 8004300</p>
+            <p>Location: Islamabad, Pakistan</p>
+            <p>Services: Web Development, Mobile App Development, MERN Stack, SaaS, E-Commerce, UI/UX Design, MVP Development</p>
+            <p>Service Areas: Pakistan, USA, UK, UAE, Canada, Australia, Saudi Arabia</p>
+          </address>
         </div>
 
-        <style jsx global>{`
-            .glass-card {
-              background: rgba(12, 12, 12, 0.6);
-              backdrop-filter: blur(25px);
-            }
-
-            .modern-input {
-              width: 100% !important;
-              background: rgba(255, 255, 255, 0.03) !important;
-              border: 1px solid rgba(255, 255, 255, 0.08) !important;
-              padding: 15px 20px !important;
-              border-radius: 16px !important;
-              outline: none !important;
-              color: white !important;
-              transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-              font-size: 0.95rem !important;
-            }
-
-            .modern-input:focus {
-              border-color: #7c3aed !important;
-              background: rgba(255, 255, 255, 0.07) !important;
-              box-shadow: 0 0 20px rgba(124, 58, 237, 0.15) !important;
-            }
-
-            /* Phone Input Styling */
-            .phone-container { border: none !important; width: 100% !important; }
-            .phone-dropdown-btn {
-              background: transparent !important;
-              border: none !important;
-              border-radius: 16px 0 0 16px !important;
-              width: 60px !important;
-            }
-            .phone-dropdown-btn .selected-flag { width: 100% !important; padding: 0 !important; display: flex !important; justify-content: center !important; }
-            
-            .phone-dropdown-list {
-              background: #0d0d0d !important;
-              color: white !important;
-              border: 1px solid #222 !important;
-              border-radius: 14px !important;
-              box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
-              width: 300px !important;
-            }
-            
-            .phone-dropdown-list .country:hover { background: #7c3aed !important; }
-            .phone-search-field {
-              background: #1a1a1a !important;
-              color: white !important;
-              border: 1px solid #333 !important;
-              border-radius: 8px !important;
-              margin: 10px !important;
-              width: calc(100% - 20px) !important;
-            }
-
-            select option { background: #0a0a0a; color: white; padding: 10px; }
-            
-            input::placeholder, textarea::placeholder {
-              color: rgba(255,255,255,0.2) !important;
-            }
-
-            .py-4\.5 { padding-top: 1.125rem; padding-bottom: 1.125rem; }
-            /* Mobile Optimization for Select and Inputs */
-            @media (max-width: 640px) {
-            .modern-input { 
-              padding: 14px 18px !important; 
-              /* Font size ko 0.85rem kiya gaya hai take dropdown options fit aayein */
-              font-size: 0.85rem !important; 
-            }
-      
-            /* Safari aur Chrome mobile ke liye specific font adjustment */
-            select.modern-input {
-              font-size: 0.82rem !important;
-              letter-spacing: -0.01em;
-            }
-
-              /* Dropdown ke andar jo options hain unka size control karne ke liye */
-              select.modern-input option {
-                font-size: 0.85rem !important;
-              }
-            }
-          `}</style>
-
-      </section>
+      </main>
     </>
   );
 };

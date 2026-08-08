@@ -1,265 +1,422 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  ArrowRight,
+  Github,
+  Linkedin,
+  Instagram,
+  ExternalLink,
+} from 'lucide-react';
 
-const Footer = () => {
+const Footer = ({ isDark }) => {
+  const d = isDark;
+
   const currentYear = new Date().getFullYear();
-  const whatsappNumber = "923348004300";
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  // Custom professional message for WhatsApp conversion
-  const customMessage = encodeURIComponent(
-    "Hi DevZore! I checked your official website and I'm interested in discussing a custom software/web development project with you. Let's connect!"
-  );
+  const services = [
+    { name: 'Web Development', path: '/web-development' },
+    { name: 'Mobile App Development', path: '/mobile-apps' },
+    { name: 'MERN Stack Development', path: '/mern-stack-development' },
+    { name: 'E-Commerce Development', path: '/ecommerce' },
+    { name: 'SaaS Development', path: '/saas-product-development' },
+    { name: 'React Development', path: '/reactdevelopment' },
+    { name: 'UI/UX Design', path: '/ui-ux-design' },
+    { name: 'Startup MVP', path: '/startup-mvp' },
+    { name: 'Backend & API', path: '/backend-api' },
+    { name: 'Maintenance & Support', path: '/maintenance' },
+  ];
 
-  const handleNavigation = (path) => {
-    if (path.includes('#')) {
-      const id = path.split('#')[1];
-      if (location.pathname === '/') {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      } else {
-        navigate(`/${path}`);
-      }
-    } else {
-      navigate(path);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
+  const company = [
+    { name: 'About DevZore', path: '/about' },
+    { name: 'Our Work', path: '/#projects' },
+    { name: 'All Services', path: '/allservices' },
+    { name: 'Blog & Insights', path: '/blog' },
+    { name: 'Contact Us', path: '/contact' },
+    { name: 'Privacy Policy', path: '/privacy-policy' },
+    { name: 'Terms & Conditions', path: '/terms-and-conditions' },
+  ];
+const socials = [
+  {
+    name: 'GitHub',
+    icon: Github,
+    href: 'https://github.com/muhammadshoukat2030',
+    label: 'DevZore on GitHub',
+  },
+  {
+    name: 'LinkedIn',
+    icon: Linkedin,
+    href: 'https://www.linkedin.com/in/dev-zore-833893418',
+    label: 'DevZore on LinkedIn',
+  },
+  {
+    name: 'Instagram',
+    icon: Instagram,
+    href: 'https://www.instagram.com/devz.ore/',
+    label: 'DevZore on Instagram',
+  },
+  {
+    name: 'Upwork',
+    icon: ExternalLink,
+    href: 'https://www.upwork.com',
+    label: 'Hire DevZore on Upwork',
+  },
+  {
+    name: 'Facebook',
+    icon: ExternalLink,
+    href: '#',
+    label: 'DevZore on Facebook',
+  },
+  {
+    name: 'TikTok',
+    icon: ExternalLink,
+    href: '#',
+    label: 'DevZore on TikTok',
+  },
+  {
+    name: 'Fiverr',
+    icon: ExternalLink,
+    href: '#',
+    label: 'DevZore on Fiverr',
+  },
+  {
+    name: 'X',
+    icon: ExternalLink,
+    href: '#',
+    label: 'DevZore on X',
+  },
+];
+  const stats = [
+    { num: '50+', label: 'Projects Delivered' },
+    { num: '30+', label: 'Happy Clients' },
+    { num: '15+', label: 'Countries Served' },
+    { num: '98%', label: 'Client Satisfaction' },
+  ];
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "DevZore",
-    "alternateName": "DevZore International",
-    "url": "https://devzore.com",
-    "author": {
-      "@type": "Person",
-      "name": "M-Shoukat Engineer"
-    },
-    "description": "Premium MERN Stack Software Development Agency specializing in scalable web and mobile applications.",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "All",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "120"
-    }
+  const handleLinkClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <>
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+    <footer
+      aria-label="DevZore footer — software development agency Islamabad Pakistan"
+      className={`transition-colors duration-300 ${d ? 'bg-[#050505] border-t border-white/[0.05]' : 'bg-[#111827] border-t border-white/[0.04]'}`}
+    >
 
-      {/* --- REDUCED PADDING FROM pt-24 TO pt-12 FOR COMPACT SLEEK LOOK --- */}
-      <footer className="relative bg-[#050505] pt-12 pb-6 px-6 overflow-hidden border-t border-white/10 font-sans">
-        {/* --- LUXURY AMBIENT BACKGROUND --- */}
-        <div className="absolute -top-24 -left-20 w-[500px] h-[500px] bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
-        <div className="absolute -bottom-24 -right-20 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-
-          {/* --- TOP SECTION: BRAND & STRATEGY (Reduced pb-16 to pb-8) --- */}
-          <div className="flex flex-col lg:flex-row justify-between items-start gap-8 pb-8 border-b border-white/5">
-            <div className="max-w-2xl">
-              <div
-                onClick={() => handleNavigation("/")}
-                className="flex items-center gap-0 mb-4 cursor-pointer group"
-              >
-                {/* Logo */}
-                <img
-                  src="/logo.png"
-                  alt="DevZore"
-                  className="w-[80px] h-[80px] object-contain flex-shrink-0 -mr-5"
-                />
-
-                {/* Brand */}
-                <div className="leading-none">
-                  <h2 className="text-2xl font-black tracking-tighter text-white uppercase italic">
-                    Dev<span className="text-purple-500 not-italic">Zore</span>
-                  </h2>
-
-                  <span className="text-[9px] text-gray-500 tracking-[0.3em] uppercase font-bold">
-                    International Agency
-                  </span>
-                </div>
-              </div>
-
-              <p className="text-gray-400 text-base leading-relaxed">
-                Architecting{" "}
-                <span className="text-white font-semibold">
-                  high-performance digital engines
-                </span>
-                . We specialize in MERN stack ecosystem, delivering scalable SaaS and
-                enterprise solutions for global clients.
-              </p>
-            </div>
-
-            <div className="w-full lg:w-auto">
-              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm relative group overflow-hidden">
-                <h3 className="text-lg font-bold text-white mb-3">
-                  Ready to Scale?
-                </h3>
-
-                <form
-                  className="flex flex-col sm:flex-row gap-3"
-                  onSubmit={(e) => e.preventDefault()}
-                >
-                  <input
-                    type="email"
-                    placeholder="Business Email"
-                    className="bg-black/50 border border-white/10 rounded-xl px-4 py-2.5 outline-none focus:border-purple-500 transition-all text-white text-sm min-w-[230px]"
-                  />
-
-                  <button className="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 py-2.5 rounded-xl transition-all text-xs uppercase tracking-widest whitespace-nowrap">
-                    Get Roadmap
-                  </button>
-                </form>
-
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-purple-500/10 blur-2xl group-hover:bg-purple-500/20 transition-all"></div>
-              </div>
-            </div>
+      {/* ── TOP CTA STRIP ── */}
+      <div className={`border-b ${d ? 'border-white/[0.06]' : 'border-white/[0.06]'}`}>
+        <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-purple-400 mb-1">
+              ✦ Available for New Projects
+            </p>
+            <h2 className="text-2xl font-black text-white leading-tight">
+              Got a project in mind?{' '}
+              <span className="text-purple-400">Let's build it.</span>
+            </h2>
+            <p className="text-sm text-gray-500 mt-1">
+              Free consultation · Response within 24 hours · No commitment required
+            </p>
           </div>
-
-
-          {/* --- LINKS LAYOUT GRID (Reduced vertical padding from py-20 to py-10) --- */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10">
-
-            {/* Services Column */}
-            <div>
-              <h4 className="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-5 opacity-50">Services</h4>
-              <ul className="space-y-1.5">
-                <li><Link to="/web-development" className="text-gray-400 hover:text-purple-400 transition text-xs font-medium">Web Development</Link></li>
-                <li><Link to="/mobile-apps" className="text-gray-400 hover:text-purple-400 transition text-xs font-medium">Mobile Apps</Link></li>
-                <li><Link to="/mern-stack-development" className="text-gray-400 hover:text-purple-400 transition text-xs font-medium">MERN Stack</Link></li>
-                <li><Link to="/ecommerce" className="text-gray-400 hover:text-purple-400 transition text-xs font-medium">E-Commerce</Link></li>
-                <li><Link to="/ui-ux-design" className="text-gray-400 hover:text-purple-400 transition text-xs font-medium">UI/UX Design</Link></li>
-                <li><Link to="/saas-product-development" className="text-gray-400 hover:text-purple-400 transition text-xs font-medium">SaaS Development</Link></li>
-                <li><Link to="/backend-api" className="text-gray-400 hover:text-purple-400 transition text-xs font-medium">Backend & API</Link></li>
-                <li><Link to="/startup-mvp" className="text-gray-400 hover:text-purple-400 transition text-xs font-medium">Startup MVP</Link></li>
-                <li><Link to="/maintenance" className="text-gray-400 hover:text-purple-400 transition text-xs font-medium">Maintenance</Link></li>
-                <li><Link to="/reactdevelopment" className="text-gray-400 hover:text-purple-400 transition text-xs font-medium">React Development</Link></li>
-              </ul>
-            </div>
-
-            {/* Engineering Column */}
-            <div>
-              <h4 className="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-5 opacity-50">Engineering</h4>
-              <ul className="space-y-3 text-gray-400 text-xs font-medium">
-                <li className="hover:text-purple-400 cursor-default transition-colors">Enterprise React Integration</li>
-                <li className="hover:text-purple-400 cursor-default transition-colors">Next.js Server-Side Rendering</li>
-                <li className="hover:text-purple-400 cursor-default transition-colors">Node.js Microservices</li>
-                <li className="hover:text-purple-400 cursor-default transition-colors">MongoDB Data Modeling</li>
-                <li className="hover:text-purple-400 cursor-default transition-colors">AWS & Cloud Deployment</li>
-                <li className="hover:text-purple-400 cursor-default transition-colors">API Security & Optimization</li>
-              </ul>
-            </div>
-
-            {/* Contact Info Column */}
-            <div className="col-span-1">
-              <h4 className="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-5 opacity-50">Global Office</h4>
-              <div className="space-y-4">
-                <div>
-                  <p className="text-[9px] text-purple-500 font-black uppercase mb-0.5">Project Inquiry</p>
-                  <a href="mailto:hellodevzore@gmail.com" className="text-white text-sm font-bold hover:text-purple-400 transition-colors">
-                    hellodevzore@gmail.com
-                  </a>
-                </div>
-                <div>
-                  <p className="text-[9px] text-green-500 font-black uppercase mb-0.5">Phone</p>
-                  <a href="tel:+923348004300" className="text-white text-sm font-bold hover:text-green-400 transition-colors">
-                    +92 334 8004300
-                  </a>
-                </div>
-                <div>
-                  <p className="text-[9px] text-blue-500 font-black uppercase mb-0.5">Main Location</p>
-                  <p className="text-gray-400 text-xs">Islamabad, Pakistan</p>
-                  <p className="text-[10px] text-gray-600 italic mt-0.5">Serving international clients remotely.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Column */}
-            <div>
-              <h4 className="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-5 opacity-50">Connect</h4>
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { name: "GitHub", link: "https://github.com/muhammadshoukat2030" },
-                  { name: "LinkedIn", link: "https://www.linkedin.com/in/dev-zore-833893418" },
-                  { name: "Instagram", link: "https://www.instagram.com/devz.ore/" },
-                  { name: "Facebook", link: "#" },
-                  { name: "Upwork", link: "#" },
-                  { name: "Fiverr", link: "#" },
-                  { name: "X (Twitter)", link: "#" }
-                ].map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center py-2 rounded-xl bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all text-[9px] font-bold text-gray-400 hover:text-white uppercase tracking-widest text-center"
-                  >
-                    {social.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-
+          <div className="flex flex-wrap gap-3 flex-shrink-0">
+            <Link
+              to="/contact"
+              onClick={handleLinkClick}
+              aria-label="Contact DevZore for a free software development consultation"
+              className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.35)]"
+            >
+              Get Free Consultation <ArrowRight size={14} />
+            </Link>
+            <a
+              href="https://wa.me/923348004300?text=Hi DevZore! I want to discuss a project."
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp DevZore for project inquiry"
+              className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+            >
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z" />
+              </svg>
+              WhatsApp Us
+            </a>
           </div>
-
-          {/* --- BOTTOM BAR --- */}
-          <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-center md:text-left">
-              <p className="text-gray-500 text-[9px] uppercase tracking-[0.2em]">
-                © {currentYear} <span className="text-white font-bold">DevZore International</span>. All Rights Reserved.
-              </p>
-              <p className="text-[8px] text-gray-700 uppercase tracking-[0.3em] mt-0.5">
-                Engineered with precision by M-Shoukat Engineer
-              </p>
-            </div>
-
-            {/* --- FIX: ADJUSTED FOR TEXT LAYOUT TO REMOVE INTERACTION CODES UNDER WHATSAPP --- */}
-            <div className="flex flex-wrap justify-center items-center gap-6 text-[9px] font-bold uppercase tracking-widest text-gray-500">
-              <Link to="/privacy-policy" className="hover:text-purple-500 transition-colors">Privacy Policy</Link>
-              <Link to="/terms-and-conditions" className="hover:text-purple-500 transition-colors">Terms & Conditions</Link>
-
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="text-white hover:text-purple-00 transition-all flex items-center justify-center bg-white/8 border border-white/10 w-7 h-7 rounded-lg text-sm font-normal"
-                title="Scroll back to top"
-              >
-                ↑
-              </button>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      {/* --- WHATSAPP FLOATING BUTTON (Official Clean UI Fix) --- */}
-      <div className="fixed bottom-5 right-5 sm:bottom-15 sm:right-4 z-[9999] group">
-        <div className="absolute inset-0 bg-[#25D366] rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-all duration-500"></div>
-        <a
-          href={`https://wa.me/${whatsappNumber}?text=${customMessage}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative bg-[#25D366] w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-300"
-        >
-          {/* Official Clean SVG Vector */}
-          <svg className="w-8 h-8 text-white fill-current" viewBox="0 0 24 24">
-            <path d="M12.004 2c-5.517 0-9.996 4.477-9.996 9.995 0 1.763.459 3.418 1.259 4.865l-1.267 4.624 4.745-1.243c1.412.766 3.017 1.201 4.722 1.201 5.517 0 9.996-4.477 9.996-9.995 0-5.517-4.479-9.995-9.996-9.995zm4.992 14.073c-.219.613-1.285 1.135-1.767 1.181-.462.046-.906.231-2.956-.583-2.622-1.042-4.29-3.719-4.421-3.894-.131-.175-1.056-1.403-1.056-2.677 0-1.273.656-1.901.897-2.164.241-.262.525-.328.7-.328.175 0 .35 0 .503.009.166.009.385-.061.604.464.219.525.744 1.815.81 1.946.066.131.109.284.022.459-.088.175-.131.284-.262.437-.131.153-.276.341-.394.459-.131.131-.269.273-.116.536.153.262.68 1.114 1.455 1.802.996.886 1.836 1.159 2.099 1.29.262.131.415.109.569-.066.153-.175.656-.765.831-1.028.175-.262.35-.219.591-.131.241.087 1.531.722 1.794.853.262.131.437.197.481.273.044.077.044.448-.175 1.061z" />
-          </svg>
-        </a>
-
-        {/* Modern Label Overlay */}
-        <div className="absolute hidden sm:block right-16 top-1/2 -translate-y-1/2 bg-white text-black px-3 py-1.5 rounded-lg font-bold text-[9px] uppercase tracking-widest shadow-2xl opacity-0 group-hover:opacity-100 translate-x-3 group-hover:translate-x-0 transition-all duration-300 whitespace-nowrap pointer-events-none">
-          Let's Build Something 🚀
         </div>
       </div>
-    </>
+
+      {/* ── STATS ROW ── */}
+      <div className={`border-b ${d ? 'border-white/[0.04]' : 'border-white/[0.04]'}`}>
+        <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((s, i) => (
+            <div key={i} className="text-center">
+              <div className="text-3xl font-black text-white mb-1">{s.num}</div>
+              <div className="text-[11px] text-gray-500 uppercase tracking-widest font-medium">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── MAIN FOOTER GRID ── */}
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+          {/* ── Col 1: Brand ── */}
+          <div className="lg:col-span-1">
+            <Link to="/" onClick={handleLinkClick} aria-label="DevZore homepage" className="flex items-center gap-0 leading-none -ml-1 mb-4 group">
+              <img
+                src="/logo.png"
+                alt="DevZore software development agency Islamabad Pakistan"
+                className="w-[64px] h-[64px] object-contain flex-shrink-0 group-hover:scale-105 transition-transform"
+              />
+              <div className="flex flex-col leading-none -ml-4">
+                <span className="text-[20px] font-extrabold tracking-tight text-white">
+                  Dev<span className="text-purple-400">Zore</span>
+                </span>
+                <span className="text-[8px] uppercase tracking-[0.22em] text-gray-500">Software Agency</span>
+              </div>
+            </Link>
+
+            <p className="text-sm text-gray-400 leading-relaxed mb-6">
+              Premium software engineering agency based in Islamabad, Pakistan.
+              We architect and deliver high-performance web apps, mobile apps,
+              SaaS platforms and e-commerce solutions for clients worldwide.
+            </p>
+
+            {/* Contact info */}
+            <div className="space-y-3 mb-6">
+              <a
+                href="mailto:hellodevzore@gmail.com"
+                aria-label="Email DevZore"
+                className="flex items-center gap-3 text-sm text-gray-400 hover:text-purple-400 transition-colors group"
+              >
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600/20 group-hover:border-purple-500/30 transition-all">
+                  <Mail size={13} className="text-purple-400" />
+                </div>
+                hellodevzore@gmail.com
+              </a>
+              <a
+                href="tel:+923348004300"
+                aria-label="Call DevZore"
+                className="flex items-center gap-3 text-sm text-gray-400 hover:text-purple-400 transition-colors group"
+              >
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600/20 group-hover:border-purple-500/30 transition-all">
+                  <Phone size={13} className="text-purple-400" />
+                </div>
+                +92 334 8004300
+              </a>
+              <div className="flex items-center gap-3 text-sm text-gray-400">
+                <div className="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center flex-shrink-0">
+                  <MapPin size={13} className="text-purple-400" />
+                </div>
+                <div>
+                  <p className="text-gray-400">Islamabad, Pakistan</p>
+                  <p className="text-[11px] text-gray-600">Serving USA · UK · UAE · Canada · Australia</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Social links */}
+<div className="grid grid-cols-2 gap-2 max-w-[350px]">
+  {socials.map((s, i) => {
+    const Icon = s.icon;
+
+    return (
+      <a
+        key={i}
+        href={s.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={s.label}
+        className="h-9 rounded-lg bg-white/[0.04] border border-white/[0.10] flex items-center justify-center gap-2 text-gray-400 hover:text-white hover:bg-purple-600/10 hover:border-purple-500/30 transition-all duration-200"
+      >
+        <Icon size={16} strokeWidth={1.8} />
+        <span className="text-[11px] font-semibold tracking-wider uppercase">
+          {s.name}
+        </span>
+      </a>
+    );
+  })}
+</div>
+          </div>
+
+          {/* ── Col 2: Services ── */}
+          <div>
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-5">
+              Services
+            </h3>
+            <ul className="space-y-3" aria-label="DevZore services">
+              {services.map((s, i) => (
+                <li key={i}>
+                  <Link
+                    to={s.path}
+                    onClick={handleLinkClick}
+                    className="text-sm text-gray-400 hover:text-white hover:translate-x-0.5 transition-all duration-150 flex items-center gap-1.5 group"
+                  >
+                    <span className="w-0 group-hover:w-3 overflow-hidden transition-all duration-200">
+                      <ArrowRight size={10} className="text-purple-400 flex-shrink-0" />
+                    </span>
+                    {s.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ── Col 3: Company ── */}
+          <div>
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-5">
+              Company
+            </h3>
+            <ul className="space-y-3 mb-8" aria-label="DevZore company pages">
+              {company.map((c, i) => (
+                <li key={i}>
+                  <Link
+                    to={c.path}
+                    onClick={handleLinkClick}
+                    className="text-sm text-gray-400 hover:text-white hover:translate-x-0.5 transition-all duration-150 flex items-center gap-1.5 group"
+                  >
+                    <span className="w-0 group-hover:w-3 overflow-hidden transition-all duration-200">
+                      <ArrowRight size={10} className="text-purple-400 flex-shrink-0" />
+                    </span>
+                    {c.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Trust badges */}
+            <div className="space-y-2">
+              <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-3">
+                Trusted By
+              </h3>
+              {[
+                '🇵🇰 Pakistan — Local & Enterprise',
+                '🇺🇸 United States — Startups & SMEs',
+                '🇬🇧 United Kingdom — Agencies',
+                '🇦🇪 UAE — Real Estate & Fintech',
+                '🇨🇦 Canada — Construction Tech',
+                '🇦🇺 Australia — EdTech Platforms',
+              ].map((item, i) => (
+                <div key={i} className="text-[11px] text-gray-500 flex items-center gap-2">
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Col 4: GEO + Tech ── */}
+          <div>
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-5">
+              Technologies
+            </h3>
+            <div className="flex flex-wrap gap-1.5 mb-8">
+              {[
+                'React.js', 'Next.js', 'Node.js', 'Express.js',
+                'MongoDB', 'PostgreSQL', 'React Native',
+                'TypeScript', 'Tailwind CSS', 'AWS',
+                'Docker', 'Stripe', 'Socket.io', 'GraphQL',
+              ].map((tech, i) => (
+                <span key={i} className="text-[10px] font-medium px-2 py-1 rounded-md bg-white/[0.04] border border-white/[0.07] text-gray-400">
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-500 mb-4">
+              Quick Contact
+            </h3>
+            <Link
+              to="/contact"
+              onClick={handleLinkClick}
+              className="flex items-center justify-between w-full px-4 py-3 bg-purple-600/10 border border-purple-500/20 rounded-xl hover:bg-purple-600/20 hover:border-purple-500/30 transition-all group"
+            >
+              <div>
+                <p className="text-[12px] font-bold text-white">Start a Project</p>
+                <p className="text-[10px] text-gray-500">Free consultation available</p>
+              </div>
+              <ArrowRight size={14} className="text-purple-400 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+
+            <div className="mt-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.05]">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-[11px] font-bold text-green-400">Currently Available</span>
+              </div>
+              <p className="text-[11px] text-gray-500">
+                Currently accepting new projects. Most inquiries receive a response within 1 hours.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── BOTTOM BAR ── */}
+      <div className={`border-t ${d ? 'border-white/[0.05]' : 'border-white/[0.05]'}`}>
+        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
+
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <p className="text-[11px] text-gray-600">
+              © {currentYear} DevZore International. All rights reserved.
+            </p>
+            <span className="text-gray-700 hidden md:inline">·</span>
+            <p className="text-[11px] text-gray-600">
+              Registered in Islamabad, Pakistan
+            </p>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <Link to="/privacy-policy" onClick={handleLinkClick} className="text-[11px] text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</Link>
+            <span className="text-gray-700">·</span>
+            <Link to="/terms-and-conditions" onClick={handleLinkClick} className="text-[11px] text-gray-600 hover:text-gray-400 transition-colors">Terms of Service</Link>
+            <span className="text-gray-700">·</span>
+            <span className="text-[11px] text-purple-500 font-semibold">Engineered with precision </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── SEO + GEO Hidden Block ── */}
+      <div className="sr-only" aria-hidden="false">
+        <address>
+          <p>DevZore International</p>
+          <p>Software Development Agency</p>
+          <p>Islamabad, Pakistan</p>
+          <p>Email: hellodevzore@gmail.com</p>
+          <p>Phone: +92 334 8004300</p>
+          <p>Service Area: Worldwide — USA, UK, UAE, Canada, Australia, Saudi Arabia, Pakistan</p>
+        </address>
+        <nav aria-label="Footer SEO navigation">
+          <h2>DevZore Software Development Services</h2>
+          <ul>
+            <li><a href="/web-development">Web Development Services Pakistan</a></li>
+            <li><a href="/mobile-apps">Mobile App Development Islamabad</a></li>
+            <li><a href="/mern-stack-development">MERN Stack Development Company</a></li>
+            <li><a href="/ecommerce">E-Commerce Development Pakistan</a></li>
+            <li><a href="/saas-product-development">SaaS Development Company Islamabad</a></li>
+            <li><a href="/ui-ux-design">UI UX Design Agency Pakistan</a></li>
+            <li><a href="/startup-mvp">Startup MVP Development Pakistan</a></li>
+            <li><a href="/backend-api">Backend API Development Node.js</a></li>
+            <li><a href="/maintenance">Website Maintenance Services Pakistan</a></li>
+            <li><a href="/reactdevelopment">React Development Company Islamabad</a></li>
+          </ul>
+          <p>
+            DevZore is a premium software engineering agency headquartered in Islamabad, Pakistan.
+            We specialise in MERN stack development, React.js web applications, React Native mobile apps,
+            SaaS product engineering, e-commerce development, UI/UX design and startup MVP development.
+            Serving clients across United States, United Kingdom, United Arab Emirates, Canada, Australia,
+            Saudi Arabia and Pakistan since 2022.
+          </p>
+          <p>
+            Keywords: software development company Islamabad, web development agency Pakistan,
+            MERN stack development Pakistan, hire React developer Islamabad, Node.js development company,
+            React Native mobile app Pakistan, SaaS development Islamabad, e-commerce development Pakistan,
+            software house Islamabad, full stack developer Pakistan, UI UX design Pakistan,
+            startup MVP development Pakistan, custom software development Islamabad.
+          </p>
+        </nav>
+      </div>
+
+    </footer>
   );
 };
 
