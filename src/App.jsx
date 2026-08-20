@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
@@ -5,6 +6,7 @@ import {
   Route,
   useLocation,
   Link,
+  Navigate,
 } from "react-router-dom";
 
 // ======================================================
@@ -40,7 +42,8 @@ import FAQ from "./sections/FAQ";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Blogs from "./pages/BlogPost";
+import BlogPost from "./pages/BlogPost";
+import BlogDetails from "./pages/BlogDetails";
 
 // ======================================================
 // SERVICE PAGES
@@ -86,6 +89,7 @@ const SEOManager = () => {
 
   useEffect(() => {
     const baseUrl = "https://devzore.com";
+    const currentPath = location.pathname;
 
     // ==================================================
     // PUBLIC SEO DATA
@@ -168,7 +172,7 @@ const SEOManager = () => {
         title:
           "Full-Stack MERN Stack Development Company | DevZore",
         desc:
-          "Production-ready MERN stack applications — MongoDB, Express.js, React, Node.js. Full-stack JavaScript development from Islamabad.",
+          "Production-ready MERN stack applications — MongoDB, Express, React, Node.js. Full-stack JavaScript development from Islamabad.",
         geo: {
           region: "PK-IS",
           placename: "Islamabad",
@@ -260,6 +264,10 @@ const SEOManager = () => {
         },
       },
 
+      // ==================================================
+      // BLOG PAGE
+      // ==================================================
+
       "/blog": {
         title:
           "DevZore Blog | Web & App Development Tips & Insights",
@@ -298,7 +306,7 @@ const SEOManager = () => {
     };
 
     // ==================================================
-    // ADMIN SEO
+    // ADMIN SEO DATA
     // ==================================================
 
     const adminSeoData = {
@@ -308,6 +316,11 @@ const SEOManager = () => {
       },
 
       "/admin": {
+        title: "Admin Dashboard | DevZore",
+        desc: "DevZore admin dashboard.",
+      },
+
+      "/admin/dashboard": {
         title: "Admin Dashboard | DevZore",
         desc: "DevZore admin dashboard.",
       },
@@ -333,17 +346,16 @@ const SEOManager = () => {
       },
     };
 
-    const currentPath = location.pathname;
-
     // ==================================================
     // ADMIN ROUTES
     // ==================================================
 
     if (currentPath.startsWith("/admin")) {
-      const adminData = adminSeoData[currentPath] || {
-        title: "Admin | DevZore",
-        desc: "DevZore administration panel.",
-      };
+      const adminData =
+        adminSeoData[currentPath] || {
+          title: "Admin | DevZore",
+          desc: "DevZore administration panel.",
+        };
 
       document.title = adminData.title;
 
@@ -363,19 +375,20 @@ const SEOManager = () => {
     }
 
     // ==================================================
-    // PUBLIC ROUTES
+    // PUBLIC ROUTE DATA
     // ==================================================
 
-    const currentData = routeSeoData[currentPath] || {
-      title: "404 Page Not Found | DevZore International",
-      desc:
-        "The page you are looking for does not exist. Return to DevZore homepage.",
-      geo: {
-        region: "PK-IS",
-        placename: "Islamabad",
-        position: "33.6844;73.0479",
-      },
-    };
+    const currentData =
+      routeSeoData[currentPath] || {
+        title: "404 Page Not Found | DevZore International",
+        desc:
+          "The page you are looking for does not exist. Return to DevZore homepage.",
+        geo: {
+          region: "PK-IS",
+          placename: "Islamabad",
+          position: "33.6844;73.0479",
+        },
+      };
 
     // ==================================================
     // TITLE
@@ -634,10 +647,9 @@ const AppContent = ({
         flex-col
         transition-colors
         duration-300
-        ${
-          isDark
-            ? "bg-[#030303] text-white selection:bg-purple-500/30"
-            : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
+        ${isDark
+          ? "bg-[#030303] text-white selection:bg-purple-500/30"
+          : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
         }
       `}
     >
@@ -686,27 +698,37 @@ const AppContent = ({
 
           <Route
             path="/allservices"
-            element={<AllServices isDark={isDark} />}
+            element={
+              <AllServices isDark={isDark} />
+            }
           />
 
           <Route
             path="/web-development"
-            element={<WebDevelopment isDark={isDark} />}
+            element={
+              <WebDevelopment isDark={isDark} />
+            }
           />
 
           <Route
             path="/mobile-apps"
-            element={<MobileApp isDark={isDark} />}
+            element={
+              <MobileApp isDark={isDark} />
+            }
           />
 
           <Route
             path="/ecommerce"
-            element={<ECommerce isDark={isDark} />}
+            element={
+              <ECommerce isDark={isDark} />
+            }
           />
 
           <Route
             path="/backend-api"
-            element={<BackendApi isDark={isDark} />}
+            element={
+              <BackendApi isDark={isDark} />
+            }
           />
 
           <Route
@@ -769,17 +791,34 @@ const AppContent = ({
 
           <Route
             path="/about"
-            element={<About isDark={isDark} />}
+            element={
+              <About isDark={isDark} />
+            }
           />
 
           <Route
             path="/contact"
-            element={<Contact isDark={isDark} />}
+            element={
+              <Contact isDark={isDark} />
+            }
           />
+
+          {/* =================================================
+              BLOG PAGE
+              /blog -> BlogPost.jsx
+              ================================================= */}
 
           <Route
             path="/blog"
-            element={<Blogs isDark={isDark} />}
+            element={
+              <BlogPost isDark={isDark} />
+            }
+          />
+
+          <Route
+            path="/blog/:slug"
+            element={
+            <BlogDetails isDark={isDark}/>}
           />
 
           <Route
@@ -824,10 +863,25 @@ const AppContent = ({
               />
             }
           >
-            {/* Dashboard */}
+
+            {/* /admin -> /admin/dashboard */}
 
             <Route
               index
+              element={
+                <Navigate
+                  to="dashboard"
+                  replace
+                />
+              }
+            />
+
+            {/* =================================================
+                DASHBOARD
+                ================================================= */}
+
+            <Route
+              path="dashboard"
               element={
                 <AdminDashboard
                   isDark={isDark}
@@ -835,7 +889,9 @@ const AppContent = ({
               }
             />
 
-            {/* Posts */}
+            {/* =================================================
+                POSTS
+                ================================================= */}
 
             <Route
               path="posts"
@@ -846,7 +902,9 @@ const AppContent = ({
               }
             />
 
-            {/* Create Post */}
+            {/* =================================================
+                CREATE POST
+                ================================================= */}
 
             <Route
               path="posts/new"
@@ -857,7 +915,9 @@ const AppContent = ({
               }
             />
 
-            {/* Edit Post */}
+            {/* =================================================
+                EDIT POST
+                ================================================= */}
 
             <Route
               path="posts/edit/:id"
@@ -868,7 +928,9 @@ const AppContent = ({
               }
             />
 
-            {/* Categories */}
+            {/* =================================================
+                CATEGORIES
+                ================================================= */}
 
             <Route
               path="categories"
@@ -879,7 +941,9 @@ const AppContent = ({
               }
             />
 
-            {/* Comments */}
+            {/* =================================================
+                COMMENTS
+                ================================================= */}
 
             <Route
               path="comments"
@@ -889,6 +953,7 @@ const AppContent = ({
                 />
               }
             />
+
           </Route>
 
           {/* =================================================

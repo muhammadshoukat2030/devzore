@@ -4,16 +4,64 @@ import authService from "../services/authService";
 export const AuthContext = createContext(null);
 
 const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState(authService.getCurrentUser());
+  const [user, setUser] = useState(() => {
+    return authService.getCurrentUser();
+  });
+
   const [loading, setLoading] = useState(true);
 
+  // =====================================================
+  // CHECK LOGIN STATE ON PAGE LOAD
+  // =====================================================
   useEffect(() => {
-    setLoading(false);
+    const initializeAuth = async () => {
+      try {
+        const token = authService.getToken();
+
+        if (!token) {
+          setUser(null);
+          return;
+        }
+
+        // First use saved user
+        const savedUser = authService.getCurrentUser();
+
+        if (savedUser) {
+          setUser(savedUser);
+        }
+
+        // Verify token with backend
+        const currentUser = await authService.getMe();
+
+        if (currentUser) {
+          setUser(currentUser);
+
+          localStorage.setItem(
+            "adminUser",
+            JSON.stringify(currentUser)
+          );
+        }
+      } catch (error) {
+        console.error("Auth initialization failed:", error);
+
+        authService.logout();
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeAuth();
   }, []);
 
-  // Login
+  // =====================================================
+  // LOGIN
+  // =====================================================
   const login = async (email, password) => {
-    const data = await authService.login(email, password);
+    const data = await authService.login(
+      email,
+      password
+    );
 
     const token =
       data?.token ||
@@ -30,48 +78,52 @@ const AuthContextProvider = ({ children }) => {
       );
     }
 
-    // Save token
-    localStorage.setItem("adminToken", token);
-
-    // Save admin user
-    if (loggedInUser) {
-      localStorage.setItem(
-        "adminUser",
-        JSON.stringify(loggedInUser)
+    if (!loggedInUser) {
+      throw new Error(
+        "Login successful but user data was not received."
       );
     }
 
-    // Update React state
-    setUser(loggedInUser || null);
+    // authService.login() already saves token/user
+    setUser(loggedInUser);
 
     return data;
   };
 
-  // Logout
+  // =====================================================
+  // LOGOUT
+  // =====================================================
   const logout = () => {
     authService.logout();
-
-    localStorage.removeItem("adminToken");
-    localStorage.removeItem("adminUser");
-
     setUser(null);
   };
 
-  // Check authentication
+  // =====================================================
+  // AUTHENTICATION STATUS
+  // =====================================================
   const isAuthenticated = Boolean(
-    localStorage.getItem("adminToken")
+    authService.getToken()
   );
 
+  // =====================================================
+  // ADMIN STATUS
+  // =====================================================
+  const isAdmin = user?.role === "admin";
+
+  // =====================================================
+  // CONTEXT
+  // =====================================================
+  const value = {
+    user,
+    loading,
+    login,
+    logout,
+    isAuthenticated,
+    isAdmin,
+  };
+
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        logout,
-        isAuthenticated,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

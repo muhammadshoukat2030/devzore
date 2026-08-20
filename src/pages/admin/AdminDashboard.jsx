@@ -30,37 +30,59 @@ const AdminDashboard = () => {
     const loadDashboard = async () => {
       try {
         setLoading(true);
+        console.log("📊 Loading dashboard data...");
 
-        const [postsData, categoriesData, commentsData] =
-          await Promise.all([
-            postService.getPosts(),
-            categoryService.getCategories(),
-            commentService.getComments(),
-          ]);
+        // Load each separately to avoid full failure if one fails
+        let postsData = [];
+        let categoriesData = [];
+        let commentsData = [];
 
-        const posts = extractArray(postsData);
-        const categories = extractArray(categoriesData);
-        const comments = extractArray(commentsData);
+        try {
+          const postsResult = await postService.getPosts();
+          postsData = extractArray(postsResult);
+          console.log("✅ Posts loaded:", postsData.length);
+        } catch (err) {
+          console.error("❌ Posts load error:", err);
+          // Fallback to empty array
+        }
 
-        const published = posts.filter(
+        try {
+          const catsResult = await categoryService.getCategories();
+          categoriesData = extractArray(catsResult);
+          console.log("✅ Categories loaded:", categoriesData.length);
+        } catch (err) {
+          console.error("❌ Categories load error:", err);
+        }
+
+        try {
+          const commentsResult = await commentService.getComments();
+          commentsData = extractArray(commentsResult);
+          console.log("✅ Comments loaded:", commentsData.length);
+        } catch (err) {
+          console.error("❌ Comments load error:", err);
+        }
+
+        const published = postsData.filter(
           (post) =>
             post.status === "published" ||
             post.published === true
         );
 
         setStats({
-          posts: posts.length,
-          categories: categories.length,
-          comments: comments.length,
+          posts: postsData.length,
+          categories: categoriesData.length,
+          comments: commentsData.length,
           published: published.length,
         });
 
-        setRecentPosts(posts.slice(0, 5));
+        setRecentPosts(postsData.slice(0, 5));
+        console.log("✅ Dashboard stats updated");
       } catch (error) {
         console.error(
-          "Dashboard error:",
+          "❌ Dashboard error:",
           error
         );
+        // Keep the current state if something goes wrong
       } finally {
         setLoading(false);
       }

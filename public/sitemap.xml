@@ -193,6 +193,15 @@
     </image:image>
   </url>
 
+  <url>
+  <loc>https://devzore.com/seo-services</loc>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://devzore.com/digital-marketing</loc>
+  <priority>0.90</priority>
+</url>
+
   <!-- PRIVACY POLICY -->
   <url>
     <loc>https://devzore.com/privacy-policy</loc>
