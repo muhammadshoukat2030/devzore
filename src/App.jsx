@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
@@ -9,23 +8,11 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// ======================================================
-// AUTH
-// ======================================================
-
 import AuthContextProvider from "./context/AuthContext";
-
-// ======================================================
-// PUBLIC COMPONENTS
-// ======================================================
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import TrustBar from "./components/TrustBar";
-
-// ======================================================
-// HOME SECTIONS
-// ======================================================
 
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
@@ -36,18 +23,10 @@ import TechStack from "./sections/TechStack";
 import Testimonials from "./sections/Testimonials";
 import FAQ from "./sections/FAQ";
 
-// ======================================================
-// PUBLIC PAGES
-// ======================================================
-
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import BlogPost from "./pages/BlogPost";
 import BlogDetails from "./pages/BlogDetails";
-
-// ======================================================
-// SERVICE PAGES
-// ======================================================
 
 import AllServices from "./pages/AllServices";
 import WebDevelopment from "./pages/WebDevelopment";
@@ -60,17 +39,11 @@ import ReactDevelopment from "./pages/ReactDevelopment";
 import UiUxDesign from "./pages/UiUxDesign";
 import Maintenance from "./pages/Maintenance";
 import StartupMVP from "./pages/StartupMVP";
-
-// ======================================================
-// EXTRA PAGES
-// ======================================================
+import SeoServices from "./pages/SeoServices";
+import DigitalMarketing from "./pages/DigitalMarketing";
 
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
-
-// ======================================================
-// ADMIN PAGES
-// ======================================================
 
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -80,288 +53,220 @@ import AdminPostEditor from "./pages/admin/AdminPostEditor";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminComments from "./pages/admin/AdminComments";
 
-// ======================================================
-// SEO MANAGER
-// ======================================================
+const baseUrl = "https://devzore.com";
+
+const defaultGeo = {
+  region: "PK-IS",
+  placename: "Islamabad, Pakistan",
+  position: "33.6844;73.0479",
+};
 
 const SEOManager = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const baseUrl = "https://devzore.com";
     const currentPath = location.pathname;
-
-    // ==================================================
-    // PUBLIC SEO DATA
-    // ==================================================
 
     const routeSeoData = {
       "/": {
         title:
-          "DevZore International | MERN Stack & Software Engineering Agency",
+          "DevZore International | Web Development, SaaS & Software Engineering",
         desc:
-          "Premium Software Engineering Agency specializing in high-performance web development, scalable SaaS engines, and enterprise software solutions.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "DevZore is a software engineering agency serving clients worldwide with custom web development, MERN stack applications, SaaS products, mobile apps, UI/UX design, SEO and digital solutions.",
+        keywords:
+          "software development company, web development agency, web development company, MERN stack development, React development, Node.js development, SaaS development, mobile app development, software engineering agency, custom software development, digital solutions, Pakistan software company, global software agency",
       },
 
       "/allservices": {
         title:
-          "Our Services | Software Architecture & Product Engineering | DevZore",
+          "Software Development Services | Web, Mobile, SaaS & Digital Solutions | DevZore",
         desc:
-          "Explore our full suite of digital solutions — MERN stack engineering, UI/UX design, mobile apps and SaaS products built for global performance.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Explore DevZore's software development services including custom web applications, MERN stack development, mobile apps, SaaS products, UI/UX design, SEO and digital marketing for businesses worldwide.",
+        keywords:
+          "software development services, web development services, mobile app development, SaaS development, MERN development, UI UX design, SEO services, digital marketing, custom software solutions",
       },
 
       "/web-development": {
         title:
-          "Custom Web Development Services | Next.js & React | DevZore",
+          "Custom Web Development Services | React, Next.js & Full-Stack | DevZore",
         desc:
-          "High-speed, scalable, and secure custom web applications engineered with precision using React and Next.js from Islamabad, Pakistan.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Custom web development services for startups and businesses worldwide. DevZore builds fast, scalable and secure React, Next.js and full-stack web applications.",
+        keywords:
+          "web development company, custom web development, web development services, React web development, Next.js development, full stack development, responsive web development, business website development",
       },
 
       "/mobile-apps": {
         title:
-          "Cross-Platform Mobile App Development | iOS & Android | DevZore",
+          "Mobile App Development Services | iOS & Android | DevZore",
         desc:
-          "Native-grade hybrid mobile applications built using React Native. iOS and Android app development from Islamabad, Pakistan.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Build scalable iOS and Android mobile applications with DevZore. We develop modern cross-platform mobile apps for startups and businesses worldwide.",
+        keywords:
+          "mobile app development, mobile application development, iOS app development, Android app development, React Native development, cross platform app development",
       },
 
       "/ecommerce": {
         title:
-          "Enterprise E-Commerce Development | Online Store Experts | DevZore",
+          "E-Commerce Development Services | Custom Online Stores | DevZore",
         desc:
-          "High-conversion e-commerce platforms built with MERN stack. Custom online stores with payment gateways, inventory and analytics.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Custom e-commerce development for businesses worldwide with modern storefronts, secure checkout, product management, inventory and scalable backend systems.",
+        keywords:
+          "ecommerce development, ecommerce website development, online store development, custom ecommerce website, ecommerce software development, MERN ecommerce",
       },
 
       "/backend-api": {
         title:
-          "Backend Engineering & Scalable API Development | DevZore",
+          "Backend & API Development Services | Node.js & Express | DevZore",
         desc:
-          "Secure RESTful and GraphQL APIs built on Node.js and Express. Scalable backend systems from DevZore, Islamabad.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Secure and scalable backend and API development using Node.js, Express, REST APIs and modern server-side technologies for web and mobile applications.",
+        keywords:
+          "backend development, API development, Node.js development, Express.js development, REST API development, scalable backend development, custom API development",
       },
 
       "/mern-stack-development": {
         title:
-          "Full-Stack MERN Stack Development Company | DevZore",
+          "MERN Stack Development Company | MongoDB, Express, React & Node.js | DevZore",
         desc:
-          "Production-ready MERN stack applications — MongoDB, Express, React, Node.js. Full-stack JavaScript development from Islamabad.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "DevZore provides full-stack MERN development for scalable web applications, SaaS platforms, dashboards and custom business software for clients worldwide.",
+        keywords:
+          "MERN stack development, MERN development company, MERN stack developer, MongoDB Express React Node, full stack JavaScript development, MERN web development",
       },
 
       "/saas-product-development": {
         title:
-          "SaaS Product Development Company | DevZore Islamabad",
+          "SaaS Product Development Company | Custom SaaS Solutions | DevZore",
         desc:
-          "End-to-end SaaS product development — multi-tenant architecture, dashboards, subscriptions and cloud scaling from DevZore.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "End-to-end SaaS product development including architecture, authentication, dashboards, subscriptions, APIs, multi-tenant systems and cloud-ready applications.",
+        keywords:
+          "SaaS development company, SaaS product development, SaaS application development, custom SaaS development, SaaS software development, startup SaaS development",
       },
 
       "/reactdevelopment": {
         title:
-          "React.js Development Services | React Experts | DevZore",
+          "React.js Development Services | React Development Company | DevZore",
         desc:
-          "Component-driven React development with optimized performance, modern hooks and clean state management from DevZore, Islamabad.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Professional React.js development for fast, scalable and maintainable web applications, dashboards and business platforms.",
+        keywords:
+          "React development, React.js development company, React developer, React web development, frontend development, React application development",
       },
 
       "/ui-ux-design": {
         title:
-          "UI/UX Design Services | User-Centered Design Agency | DevZore",
+          "UI/UX Design Services | Web & App Product Design | DevZore",
         desc:
-          "Conversion-focused UI/UX design — wireframes, Figma prototypes and pixel-perfect interfaces from DevZore, Islamabad.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "User-focused UI/UX design services including wireframes, user flows, prototypes and modern interfaces designed for web and mobile products.",
+        keywords:
+          "UI UX design services, UI design agency, UX design agency, Figma design, website UI design, mobile app UI UX, product design",
       },
 
       "/maintenance": {
         title:
           "Website Maintenance & Support Services | DevZore",
         desc:
-          "24/7 website maintenance — bug fixes, security updates, performance monitoring and ongoing support from DevZore, Islamabad.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Reliable website maintenance and technical support including bug fixes, security updates, performance improvements and ongoing website management.",
+        keywords:
+          "website maintenance, website support, web maintenance services, website security updates, website bug fixing, technical support",
       },
 
       "/startup-mvp": {
         title:
-          "Startup MVP Development Company | Launch in 8 Weeks | DevZore",
+          "Startup MVP Development Company | Build & Launch Your MVP | DevZore",
         desc:
-          "Investor-ready MVPs built in 8 to 14 weeks using MERN stack. From idea to launch — DevZore, Islamabad, Pakistan.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Turn your startup idea into a working MVP with scalable architecture, modern UI, backend APIs and production-ready technology.",
+        keywords:
+          "MVP development company, startup MVP development, MVP software development, startup app development, SaaS MVP development, product development",
+      },
+
+      "/seo-services": {
+        title:
+          "SEO Services | Technical SEO & Organic Growth Agency | DevZore",
+        desc:
+          "Professional SEO services covering technical SEO, on-page optimization, content strategy, website performance, search visibility and long-term organic growth.",
+        keywords:
+          "SEO services, SEO agency, search engine optimization, technical SEO, on page SEO, SEO company, organic growth, website SEO services",
+      },
+
+      "/digital-marketing": {
+        title:
+          "Digital Marketing Services | Performance & Growth Marketing | DevZore",
+        desc:
+          "Data-driven digital marketing services including social media marketing, paid advertising, Google Ads, Meta Ads, campaign strategy and performance optimization.",
+        keywords:
+          "digital marketing services, digital marketing agency, performance marketing, social media marketing, Meta Ads, Google Ads, online marketing",
       },
 
       "/about": {
         title:
-          "About DevZore | Software Agency Founded by Shoukat — Islamabad",
+          "About DevZore | Software Development & Digital Solutions Agency",
         desc:
-          "Learn about DevZore, a software development agency founded by Shoukat in Islamabad, Pakistan. Building scalable web apps, mobile apps and SaaS products.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Learn about DevZore, a software development and digital solutions agency building scalable websites, web applications, SaaS products and mobile applications for clients worldwide.",
+        keywords:
+          "about DevZore, DevZore software agency, software development agency, web development agency, software company Pakistan, global software agency",
       },
 
       "/contact": {
         title:
-          "Contact DevZore | Hire a Developer in Islamabad, Pakistan",
+          "Contact DevZore | Hire a Software Development Agency",
         desc:
-          "Get in touch with DevZore. Start your web or mobile app project. Based in Islamabad — free consultation, response within 24 hours.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Contact DevZore for custom web development, mobile apps, SaaS products, UI/UX design, SEO and digital solutions. Start your project with our software engineering team.",
+        keywords:
+          "contact software company, hire web developer, hire software development agency, web development company contact, software development services",
       },
-
-      // ==================================================
-      // BLOG PAGE
-      // ==================================================
 
       "/blog": {
         title:
-          "DevZore Blog | Web & App Development Tips & Insights",
+          "DevZore Blog | Web Development, SaaS, SEO & Technology Insights",
         desc:
-          "Read the DevZore blog for tips on web development, mobile apps, MERN stack, and software business insights from Islamabad, Pakistan.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Explore DevZore's technology blog covering web development, MERN stack, React, Node.js, SaaS, SEO, digital marketing and software engineering insights.",
+        keywords:
+          "web development blog, software development blog, MERN blog, React blog, Node.js blog, SaaS blog, SEO blog, technology insights",
       },
 
       "/privacy-policy": {
-        title:
-          "Privacy Policy | DevZore International",
+        title: "Privacy Policy | DevZore",
         desc:
-          "Read DevZore's privacy policy — how we collect, use and protect your personal information.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Read DevZore's privacy policy covering how information is collected, used and protected.",
       },
 
       "/terms-and-conditions": {
-        title:
-          "Terms & Conditions | DevZore International",
+        title: "Terms & Conditions | DevZore",
         desc:
-          "DevZore terms and conditions governing our software development services, source code ownership and support agreements.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "Read DevZore's terms and conditions for software development, digital services, projects and support.",
       },
     };
-
-    // ==================================================
-    // ADMIN SEO DATA
-    // ==================================================
 
     const adminSeoData = {
       "/admin/login": {
         title: "Admin Login | DevZore",
-        desc: "DevZore administrator login.",
       },
-
       "/admin": {
         title: "Admin Dashboard | DevZore",
-        desc: "DevZore admin dashboard.",
       },
-
       "/admin/dashboard": {
         title: "Admin Dashboard | DevZore",
-        desc: "DevZore admin dashboard.",
       },
-
       "/admin/posts": {
         title: "Manage Posts | DevZore Admin",
-        desc: "Manage DevZore blog posts.",
       },
-
       "/admin/posts/new": {
         title: "Create Post | DevZore Admin",
-        desc: "Create a new DevZore blog post.",
       },
-
       "/admin/categories": {
         title: "Manage Categories | DevZore Admin",
-        desc: "Manage DevZore blog categories.",
       },
-
       "/admin/comments": {
         title: "Manage Comments | DevZore Admin",
-        desc: "Manage DevZore blog comments.",
       },
     };
-
-    // ==================================================
-    // ADMIN ROUTES
-    // ==================================================
 
     if (currentPath.startsWith("/admin")) {
       const adminData =
         adminSeoData[currentPath] || {
           title: "Admin | DevZore",
-          desc: "DevZore administration panel.",
         };
 
       document.title = adminData.title;
 
-      let robots = document.querySelector(
-        'meta[name="robots"]'
-      );
+      let robots = document.querySelector('meta[name="robots"]');
 
       if (!robots) {
         robots = document.createElement("meta");
@@ -374,160 +279,289 @@ const SEOManager = () => {
       return;
     }
 
-    // ==================================================
-    // PUBLIC ROUTE DATA
-    // ==================================================
+    const isBlogPost =
+      currentPath.startsWith("/blog/") &&
+      currentPath !== "/blog/";
 
     const currentData =
       routeSeoData[currentPath] || {
-        title: "404 Page Not Found | DevZore International",
+        title: "Page Not Found | DevZore",
         desc:
-          "The page you are looking for does not exist. Return to DevZore homepage.",
-        geo: {
-          region: "PK-IS",
-          placename: "Islamabad",
-          position: "33.6844;73.0479",
-        },
+          "The requested page could not be found. Visit DevZore to explore our software development and digital solutions.",
+        keywords:
+          "DevZore, software development, web development, digital solutions",
       };
 
-    // ==================================================
-    // TITLE
-    // ==================================================
+    const geo = {
+      ...defaultGeo,
+      ...(currentData.geo || {}),
+    };
 
-    document.title = currentData.title;
+    const pageUrl =
+      currentPath === "/"
+        ? baseUrl
+        : `${baseUrl}${currentPath}`;
 
-    // ==================================================
-    // META DESCRIPTION
-    // ==================================================
+    const title = isBlogPost
+      ? "DevZore Blog Article | Web Development & Technology Insights"
+      : currentData.title;
 
-    let metaDesc = document.querySelector(
-      'meta[name="description"]'
-    );
+    const description = isBlogPost
+      ? "Read this DevZore technology article for practical insights into web development, software engineering, SaaS and digital technology."
+      : currentData.desc;
 
-    if (!metaDesc) {
-      metaDesc = document.createElement("meta");
-      metaDesc.name = "description";
-      document.head.appendChild(metaDesc);
-    }
+    document.title = title;
 
-    metaDesc.content = currentData.desc;
-
-    // ==================================================
-    // CANONICAL
-    // ==================================================
-
-    let canonical = document.querySelector(
-      'link[rel="canonical"]'
-    );
-
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-
-    canonical.href = `${baseUrl}${currentPath}`;
-
-    // ==================================================
-    // GEO META TAGS
-    // ==================================================
-
-    const geoTags = [
-      {
-        name: "geo.region",
-        content: currentData.geo.region,
-      },
-      {
-        name: "geo.placename",
-        content: currentData.geo.placename,
-      },
-      {
-        name: "geo.position",
-        content: currentData.geo.position,
-      },
-      {
-        name: "ICBM",
-        content: currentData.geo.position.replace(
-          ";",
-          ", "
-        ),
-      },
-    ];
-
-    geoTags.forEach(({ name, content }) => {
-      let tag = document.querySelector(
-        `meta[name="${name}"]`
-      );
+    const setMeta = (selector, attributes, content) => {
+      let tag = document.head.querySelector(selector);
 
       if (!tag) {
         tag = document.createElement("meta");
-        tag.name = name;
+
+        Object.entries(attributes).forEach(([key, value]) => {
+          tag.setAttribute(key, value);
+        });
+
         document.head.appendChild(tag);
       }
 
-      tag.content = content;
-    });
+      tag.setAttribute("content", content);
+    };
 
-    // ==================================================
-    // OPEN GRAPH
-    // ==================================================
-
-    const ogTags = [
-      {
-        property: "og:title",
-        content: currentData.title,
-      },
-      {
-        property: "og:description",
-        content: currentData.desc,
-      },
-      {
-        property: "og:url",
-        content: `${baseUrl}${currentPath}`,
-      },
-      {
-        property: "og:type",
-        content: "website",
-      },
-    ];
-
-    ogTags.forEach(({ property, content }) => {
-      let tag = document.querySelector(
-        `meta[property="${property}"]`
-      );
+    const setLink = (selector, attributes) => {
+      let tag = document.head.querySelector(selector);
 
       if (!tag) {
-        tag = document.createElement("meta");
-        tag.setAttribute("property", property);
+        tag = document.createElement("link");
+
+        Object.entries(attributes).forEach(([key, value]) => {
+          tag.setAttribute(key, value);
+        });
+
         document.head.appendChild(tag);
+      } else {
+        Object.entries(attributes).forEach(([key, value]) => {
+          tag.setAttribute(key, value);
+        });
       }
+    };
 
-      tag.content = content;
-    });
-
-    // ==================================================
-    // ROBOTS
-    // ==================================================
-
-    let robots = document.querySelector(
-      'meta[name="robots"]'
+    setMeta(
+      'meta[name="description"]',
+      { name: "description" },
+      description
     );
 
-    if (!robots) {
-      robots = document.createElement("meta");
-      robots.name = "robots";
-      document.head.appendChild(robots);
+    setMeta(
+      'meta[name="keywords"]',
+      { name: "keywords" },
+      currentData.keywords ||
+        "DevZore, software development, web development, software engineering"
+    );
+
+    setMeta(
+      'meta[name="author"]',
+      { name: "author" },
+      "DevZore"
+    );
+
+    setMeta(
+      'meta[name="robots"]',
+      { name: "robots" },
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    );
+
+    setMeta(
+      'meta[name="googlebot"]',
+      { name: "googlebot" },
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    );
+
+    setMeta(
+      'meta[name="geo.region"]',
+      { name: "geo.region" },
+      geo.region
+    );
+
+    setMeta(
+      'meta[name="geo.placename"]',
+      { name: "geo.placename" },
+      geo.placename
+    );
+
+    setMeta(
+      'meta[name="geo.position"]',
+      { name: "geo.position" },
+      geo.position
+    );
+
+    setMeta(
+      'meta[name="ICBM"]',
+      { name: "ICBM" },
+      geo.position.replace(";", ", ")
+    );
+
+    setMeta(
+      'meta[property="og:title"]',
+      { property: "og:title" },
+      title
+    );
+
+    setMeta(
+      'meta[property="og:description"]',
+      { property: "og:description" },
+      description
+    );
+
+    setMeta(
+      'meta[property="og:url"]',
+      { property: "og:url" },
+      pageUrl
+    );
+
+    setMeta(
+      'meta[property="og:type"]',
+      { property: "og:type" },
+      isBlogPost ? "article" : "website"
+    );
+
+    setMeta(
+      'meta[property="og:site_name"]',
+      { property: "og:site_name" },
+      "DevZore"
+    );
+
+    setMeta(
+      'meta[property="og:locale"]',
+      { property: "og:locale" },
+      "en_US"
+    );
+
+    setMeta(
+      'meta[name="twitter:card"]',
+      { name: "twitter:card" },
+      "summary_large_image"
+    );
+
+    setMeta(
+      'meta[name="twitter:title"]',
+      { name: "twitter:title" },
+      title
+    );
+
+    setMeta(
+      'meta[name="twitter:description"]',
+      { name: "twitter:description" },
+      description
+    );
+
+    setLink('link[rel="canonical"]', {
+      rel: "canonical",
+      href: pageUrl,
+    });
+
+    let structuredData = document.getElementById(
+      "devzore-structured-data"
+    );
+
+    if (!structuredData) {
+      structuredData = document.createElement("script");
+      structuredData.id = "devzore-structured-data";
+      structuredData.type = "application/ld+json";
+      document.head.appendChild(structuredData);
     }
 
-    robots.content = "index, follow";
+    const schema = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": `${baseUrl}/#organization`,
+          name: "DevZore",
+          url: baseUrl,
+          description:
+            "Software development and digital solutions agency serving clients worldwide.",
+          areaServed: "Worldwide",
+          knowsAbout: [
+            "Web Development",
+            "MERN Stack Development",
+            "React Development",
+            "Node.js Development",
+            "SaaS Product Development",
+            "Mobile App Development",
+            "E-Commerce Development",
+            "UI/UX Design",
+            "SEO",
+            "Digital Marketing",
+            "Software Engineering",
+          ],
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": `${baseUrl}/#business`,
+          name: "DevZore",
+          url: baseUrl,
+          description:
+            "Custom software development, web development, SaaS, mobile app, SEO and digital solutions for businesses worldwide.",
+          areaServed: [
+            {
+              "@type": "GeoShape",
+              name: "Worldwide",
+            },
+          ],
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Islamabad",
+            addressCountry: "PK",
+          },
+          knowsAbout: [
+            "Custom Software Development",
+            "Web Development",
+            "MERN Stack",
+            "React",
+            "Node.js",
+            "SaaS",
+            "Mobile App Development",
+            "E-Commerce",
+            "UI/UX Design",
+            "SEO",
+            "Digital Marketing",
+          ],
+        },
+        {
+          "@type": "WebSite",
+          "@id": `${baseUrl}/#website`,
+          url: baseUrl,
+          name: "DevZore",
+          description:
+            "Software engineering and digital solutions for businesses worldwide.",
+          publisher: {
+            "@id": `${baseUrl}/#organization`,
+          },
+          inLanguage: "en-US",
+        },
+        {
+          "@type": "WebPage",
+          "@id": `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: title,
+          description,
+          isPartOf: {
+            "@id": `${baseUrl}/#website`,
+          },
+          about: {
+            "@id": `${baseUrl}/#organization`,
+          },
+          inLanguage: "en-US",
+        },
+      ],
+    };
+
+    structuredData.textContent = JSON.stringify(schema);
   }, [location.pathname]);
 
   return null;
 };
-
-// ======================================================
-// SCROLL TO TOP
-// ======================================================
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -538,10 +572,6 @@ const ScrollToTop = () => {
 
   return null;
 };
-
-// ======================================================
-// 404 PAGE
-// ======================================================
 
 const NotFound = () => {
   return (
@@ -568,15 +598,7 @@ const NotFound = () => {
   );
 };
 
-// ======================================================
-// MAIN APP
-// ======================================================
-
 function App() {
-  // ====================================================
-  // THEME STATE
-  // ====================================================
-
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("devzore-theme");
 
@@ -586,10 +608,6 @@ function App() {
 
     return false;
   });
-
-  // ====================================================
-  // APPLY THEME
-  // ====================================================
 
   useEffect(() => {
     const html = document.documentElement;
@@ -603,10 +621,6 @@ function App() {
     }
   }, [isDark]);
 
-  // ====================================================
-  // TOGGLE THEME
-  // ====================================================
-
   const toggleTheme = () => {
     setIsDark((prev) => !prev);
   };
@@ -614,7 +628,6 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-
       <SEOManager />
 
       <AppContent
@@ -624,10 +637,6 @@ function App() {
     </Router>
   );
 }
-
-// ======================================================
-// APP CONTENT
-// ======================================================
 
 const AppContent = ({
   isDark,
@@ -647,16 +656,13 @@ const AppContent = ({
         flex-col
         transition-colors
         duration-300
-        ${isDark
-          ? "bg-[#030303] text-white selection:bg-purple-500/30"
-          : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
+        ${
+          isDark
+            ? "bg-[#030303] text-white selection:bg-purple-500/30"
+            : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
         }
       `}
     >
-      {/* =================================================
-          PUBLIC NAVBAR
-          ================================================= */}
-
       {!isAdminRoute && (
         <Navbar
           isDark={isDark}
@@ -664,17 +670,8 @@ const AppContent = ({
         />
       )}
 
-      {/* =================================================
-          MAIN ROUTES
-          ================================================= */}
-
       <main className="flex-grow">
         <Routes>
-
-          {/* =================================================
-              HOME
-              ================================================= */}
-
           <Route
             path="/"
             element={
@@ -692,141 +689,113 @@ const AppContent = ({
             }
           />
 
-          {/* =================================================
-              SERVICE PAGES
-              ================================================= */}
-
           <Route
             path="/allservices"
-            element={
-              <AllServices isDark={isDark} />
-            }
+            element={<AllServices isDark={isDark} />}
           />
 
           <Route
             path="/web-development"
-            element={
-              <WebDevelopment isDark={isDark} />
-            }
+            element={<WebDevelopment isDark={isDark} />}
           />
 
           <Route
             path="/mobile-apps"
-            element={
-              <MobileApp isDark={isDark} />
-            }
+            element={<MobileApp isDark={isDark} />}
           />
 
           <Route
             path="/ecommerce"
-            element={
-              <ECommerce isDark={isDark} />
-            }
+            element={<ECommerce isDark={isDark} />}
           />
 
           <Route
             path="/backend-api"
-            element={
-              <BackendApi isDark={isDark} />
-            }
+            element={<BackendApi isDark={isDark} />}
           />
 
           <Route
             path="/mern-stack-development"
             element={
-              <MernStackDevelopment
-                isDark={isDark}
-              />
+              <MernStackDevelopment isDark={isDark} />
             }
           />
 
           <Route
             path="/saas-product-development"
             element={
-              <SaaSProductDevelopment
-                isDark={isDark}
-              />
+              <SaaSProductDevelopment isDark={isDark} />
             }
           />
 
           <Route
             path="/reactdevelopment"
             element={
-              <ReactDevelopment
-                isDark={isDark}
-              />
+              <ReactDevelopment isDark={isDark} />
             }
           />
 
           <Route
             path="/ui-ux-design"
             element={
-              <UiUxDesign
-                isDark={isDark}
-              />
+              <UiUxDesign isDark={isDark} />
             }
           />
 
           <Route
             path="/maintenance"
             element={
-              <Maintenance
-                isDark={isDark}
-              />
+              <Maintenance isDark={isDark} />
             }
           />
 
           <Route
             path="/startup-mvp"
             element={
-              <StartupMVP
-                isDark={isDark}
-              />
+              <StartupMVP isDark={isDark} />
             }
           />
 
-          {/* =================================================
-              OTHER PUBLIC PAGES
-              ================================================= */}
+          <Route
+            path="/seo-services"
+            element={
+              <SeoServices isDark={isDark} />
+            }
+          />
+
+          <Route
+            path="/digital-marketing"
+            element={
+              <DigitalMarketing isDark={isDark} />
+            }
+          />
 
           <Route
             path="/about"
-            element={
-              <About isDark={isDark} />
-            }
+            element={<About isDark={isDark} />}
           />
 
           <Route
             path="/contact"
-            element={
-              <Contact isDark={isDark} />
-            }
+            element={<Contact isDark={isDark} />}
           />
-
-          {/* =================================================
-              BLOG PAGE
-              /blog -> BlogPost.jsx
-              ================================================= */}
 
           <Route
             path="/blog"
-            element={
-              <BlogPost isDark={isDark} />
-            }
+            element={<BlogPost isDark={isDark} />}
           />
 
           <Route
             path="/blog/:slug"
             element={
-            <BlogDetails isDark={isDark}/>}
+              <BlogDetails isDark={isDark} />
+            }
           />
 
           <Route
             path="/privacy-policy"
             element={
-              <PrivacyPolicy
-                isDark={isDark}
-              />
+              <PrivacyPolicy isDark={isDark} />
             }
           />
 
@@ -837,22 +806,12 @@ const AppContent = ({
             }
           />
 
-          {/* =================================================
-              ADMIN LOGIN
-              ================================================= */}
-
           <Route
             path="/admin/login"
             element={
-              <AdminLogin
-                isDark={isDark}
-              />
+              <AdminLogin isDark={isDark} />
             }
           />
-
-          {/* =================================================
-              ADMIN PANEL
-              ================================================= */}
 
           <Route
             path="/admin"
@@ -863,9 +822,6 @@ const AppContent = ({
               />
             }
           >
-
-            {/* /admin -> /admin/dashboard */}
-
             <Route
               index
               element={
@@ -876,10 +832,6 @@ const AppContent = ({
               }
             />
 
-            {/* =================================================
-                DASHBOARD
-                ================================================= */}
-
             <Route
               path="dashboard"
               element={
@@ -888,10 +840,6 @@ const AppContent = ({
                 />
               }
             />
-
-            {/* =================================================
-                POSTS
-                ================================================= */}
 
             <Route
               path="posts"
@@ -902,10 +850,6 @@ const AppContent = ({
               }
             />
 
-            {/* =================================================
-                CREATE POST
-                ================================================= */}
-
             <Route
               path="posts/new"
               element={
@@ -914,10 +858,6 @@ const AppContent = ({
                 />
               }
             />
-
-            {/* =================================================
-                EDIT POST
-                ================================================= */}
 
             <Route
               path="posts/edit/:id"
@@ -928,10 +868,6 @@ const AppContent = ({
               }
             />
 
-            {/* =================================================
-                CATEGORIES
-                ================================================= */}
-
             <Route
               path="categories"
               element={
@@ -941,10 +877,6 @@ const AppContent = ({
               }
             />
 
-            {/* =================================================
-                COMMENTS
-                ================================================= */}
-
             <Route
               path="comments"
               element={
@@ -953,24 +885,14 @@ const AppContent = ({
                 />
               }
             />
-
           </Route>
-
-          {/* =================================================
-              404
-              ================================================= */}
 
           <Route
             path="*"
             element={<NotFound />}
           />
-
         </Routes>
       </main>
-
-      {/* =================================================
-          PUBLIC FOOTER
-          ================================================= */}
 
       {!isAdminRoute && (
         <Footer isDark={isDark} />
@@ -978,10 +900,6 @@ const AppContent = ({
     </div>
   );
 };
-
-// ======================================================
-// ROOT EXPORT
-// ======================================================
 
 export default function RootApp() {
   return (

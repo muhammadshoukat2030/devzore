@@ -44,7 +44,7 @@ const ECommerce = ({ isDark }) => {
   ];
 
   const faqs = [
-    { q: 'How much does custom e-commerce development cost?', a: 'The cost of a custom e-commerce solution depends on your specific requirements, features, and business objectives. We provide a personalized proposal after understanding your project needs. Get in touch for a free consultation and a tailored solution.' }, 
+    { q: 'How much does custom e-commerce development cost?', a: 'The cost of a custom e-commerce solution depends on your specific requirements, features, and business objectives. We provide a personalized proposal after understanding your project needs. Get in touch for a free consultation and a tailored solution.' },
     { q: 'How long does it take to build a custom e-commerce website?', a: 'A standard custom e-commerce store takes 6 to 10 weeks. A multi-vendor marketplace takes 12 to 18 weeks. A basic product catalogue with checkout takes 3 to 5 weeks. Every project starts with a discovery session that produces a milestone-based timeline you can rely on.' },
     { q: 'Do you integrate JazzCash and Easypaisa for Pakistani e-commerce?', a: 'Yes. We have extensive experience integrating JazzCash, Easypaisa and local bank payment gateways for Pakistani e-commerce platforms, alongside international gateways like Stripe and PayPal for businesses serving global customers.' },
     { q: 'Can you build a marketplace like Daraz or Amazon?', a: 'Yes. We build full multi-vendor marketplace platforms with vendor onboarding, individual vendor dashboards, commission management, product approval workflows, dispute resolution and customer-facing vendor storefronts. These projects typically take 12 to 18 weeks.' },
@@ -126,7 +126,7 @@ const ECommerce = ({ isDark }) => {
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" /> E-Commerce Development
                   </div>
                   <div className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold border ${d ? 'bg-green-500/10 border-green-500/20 text-green-400' : 'bg-green-50 border-green-200 text-green-700'}`}>
-                    <Globe size={10}/> Worldwide Clients
+                    <Globe size={10} /> Worldwide Clients
                   </div>
                 </div>
 
