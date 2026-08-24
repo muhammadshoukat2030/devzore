@@ -173,12 +173,12 @@ const SeoServices = ({ isDark }) => {
         <meta property="og:description" content="Professional SEO services — technical audit, on-page optimisation, keyword research, link building, local SEO and monthly reporting. Free audit available." />
         <meta property="og:url" content="https://devzore.com/seo-services" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://devzore.com/logo1.png" />
+        <meta property="og:image" content="https://devzore.com/logo.png" />
         <meta property="og:site_name" content="DevZore" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="SEO Services | DevZore" />
         <meta name="twitter:description" content="Technical SEO, on-page optimisation, link building and local SEO. Free audit from DevZore." />
-        <meta name="twitter:image" content="https://devzore.com/logo1.png" />
+        <meta name="twitter:image" content="https://devzore.com/logo.png" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Service",

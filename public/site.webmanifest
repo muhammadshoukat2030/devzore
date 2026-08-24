@@ -1,6 +1,7 @@
 {
   "name": "DevZore",
   "short_name": "DevZore",
+  "description": "Premium Software Development Agency — Web, Mobile & SaaS",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -15,5 +16,7 @@
   ],
   "theme_color": "#030303",
   "background_color": "#030303",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
 }

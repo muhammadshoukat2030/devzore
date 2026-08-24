@@ -1,6 +1,6 @@
 # =====================================================
 # DevZore.com — robots.txt
-# Updated: 2026-08-07
+# Updated: 2026-08-24
 # =====================================================
 
 # Allow all crawlers
@@ -13,6 +13,7 @@ Disallow: /_next/
 Disallow: /node_modules/
 Disallow: /.env
 Disallow: /.git/
+Disallow: /admin/
 
 # Crawl delay for aggressive bots
 User-agent: AhrefsBot
@@ -52,6 +53,3 @@ Allow: /
 
 User-agent: YouBot
 Allow: /
-
-# Sitemap location
-Sitemap: https://devzore.com/sitemap.xml
