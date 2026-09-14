@@ -1,287 +1,254 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  CheckCircle, ArrowRight, Shield, Zap, Code2,
-  Users, Clock, Globe, Award, TrendingUp, Lock, HeartHandshake
+  Shield, Zap, Code2, Users, Clock, Award,
+  CheckCircle, ArrowRight, Star, Lock,
+  TrendingUp, HeartHandshake
 } from 'lucide-react';
 
 const WhyUs = ({ isDark }) => {
   const d = isDark;
-  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const reasons = [
     {
-      icon: <Code2 size={20} />,
-      title: 'Senior Engineers Only',
-      desc: 'Every DevZore project is handled by senior-level engineers with 4+ years of production experience — not junior developers learning on your budget.',
-      stat: '4+ yrs avg experience',
+      icon: <Code2 size={20}/>,
       color: 'purple',
+      title: 'Senior Engineers Only',
+      desc: 'Every DevZore project is handled by senior full-stack engineers — no juniors, no outsourcing, no handoffs. You work directly with the people building your product.',
     },
     {
-      icon: <Zap size={20} />,
-      title: 'Fast Delivery, Zero Compromise',
-      desc: 'We move fast without cutting corners. Most MVPs delivered in 8–14 weeks. Fortnightly sprint reviews keep you in control of every milestone.',
-      stat: '8–14 weeks MVP delivery',
-      color: 'amber',
-    },
-    {
-      icon: <Shield size={20} />,
-      title: 'You Own Everything',
-      desc: 'Source code, repositories, cloud accounts, design files — everything is yours from day one. We never hold your product hostage.',
-      stat: '100% code ownership',
-      color: 'green',
-    },
-    {
-      icon: <Globe size={20} />,
-      title: 'Global Standards, Local Rates',
-      desc: 'US and UK quality software engineered from Islamabad, Pakistan — at a fraction of Western agency rates. More value, same excellence.',
-      stat: 'USA · UK · UAE · 15+ countries',
+      icon: <Shield size={20}/>,
       color: 'blue',
+      title: 'Production-Ready Code',
+      desc: 'TypeScript, comprehensive testing, CI/CD pipelines, security best practices and documentation — delivered as standard on every project, not as add-ons.',
     },
     {
-      icon: <Clock size={20} />,
-      title: '24-Hour Response Guarantee',
-      desc: 'Every message, question and concern gets a response within 24 hours — including weekends. You will never be left wondering what is happening.',
-      stat: '< 24hr response time',
-      color: 'cyan',
+      icon: <Zap size={20}/>,
+      color: 'amber',
+      title: 'Fast, Predictable Delivery',
+      desc: 'Milestone-based timelines with fortnightly staging builds. You interact with the actual product every two weeks — not slide decks or wireframes.',
     },
     {
-      icon: <Users size={20} />,
-      title: 'Direct Access to Engineers',
-      desc: 'No account managers. No middlemen. You talk directly to the engineers building your product — faster decisions, fewer misunderstandings.',
-      stat: 'Direct communication',
+      icon: <Lock size={20}/>,
+      color: 'green',
+      title: '100% Code Ownership',
+      desc: 'All source code, design files and assets are transferred to your GitHub and cloud accounts on final payment. No licensing fees, no vendor lock-in.',
+    },
+    {
+      icon: <Award size={20}/>,
       color: 'indigo',
+      title: 'Fixed Pricing — No Surprises',
+      desc: 'Written proposals with fixed milestone-based pricing before work begins. No hourly billing, no surprise invoices and no scope creep without your written approval.',
     },
     {
-      icon: <TrendingUp size={20} />,
-      title: 'Built to Scale From Day One',
-      desc: 'Every codebase we write is architected for growth. Clean code, solid testing, and scalable infrastructure mean you never have to rebuild.',
-      stat: 'Scalable architecture',
+      icon: <Users size={20}/>,
+      color: 'cyan',
+      title: 'Direct Communication',
+      desc: 'One point of contact throughout your project. WhatsApp, email and video calls — no ticket systems, no account managers between you and the engineers.',
+    },
+    {
+      icon: <TrendingUp size={20}/>,
+      color: 'rose',
+      title: 'SEO & Performance Built In',
+      desc: 'Every website DevZore builds achieves Lighthouse 95+ performance scores, proper semantic HTML structure, schema markup and Core Web Vitals compliance from day one.',
+    },
+    {
+      icon: <HeartHandshake size={20}/>,
       color: 'orange',
-    },
-    {
-      icon: <Lock size={20} />,
-      title: 'Security-First Development',
-      desc: 'JWT auth, HTTPS, input validation, SQL injection prevention, rate limiting — security best practices are built into every layer, not bolted on after.',
-      stat: 'Enterprise-grade security',
-      color: 'red',
-    },
-    {
-      icon: <HeartHandshake size={20} />,
       title: 'Long-Term Partnership',
-      desc: 'We do not disappear after launch. Most of our clients continue with DevZore for ongoing development, maintenance and scaling long after go-live.',
-      stat: '80% client retention rate',
-      color: 'pink',
+      desc: 'We do not disappear after launch. Maintenance plans, feature development and ongoing support keep your product growing after delivery.',
+    },
+    {
+      icon: <Clock size={20}/>,
+      color: 'teal',
+      title: '24-Hour Response Guarantee',
+      desc: 'Every query, bug report or change request acknowledged within 24 hours — and critical issues resolved faster. You are never left waiting or wondering.',
     },
   ];
 
   const colorMap = {
-    purple: { icon: d ? 'bg-purple-500/15 border-purple-500/20 text-purple-400 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-600' : 'bg-purple-50 border-purple-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-600', stat: d ? 'text-purple-400' : 'text-purple-600', card: d ? 'hover:border-purple-500/25' : 'hover:border-purple-200' },
-    amber:  { icon: d ? 'bg-amber-500/15 border-amber-500/20 text-amber-400 group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500' : 'bg-amber-50 border-amber-100 text-amber-600 group-hover:bg-amber-500 group-hover:text-white group-hover:border-amber-500', stat: d ? 'text-amber-400' : 'text-amber-600', card: d ? 'hover:border-amber-500/25' : 'hover:border-amber-200' },
-    green:  { icon: d ? 'bg-green-500/15 border-green-500/20 text-green-400 group-hover:bg-green-600 group-hover:text-white group-hover:border-green-600' : 'bg-green-50 border-green-100 text-green-600 group-hover:bg-green-600 group-hover:text-white group-hover:border-green-600', stat: d ? 'text-green-400' : 'text-green-600', card: d ? 'hover:border-green-500/25' : 'hover:border-green-200' },
-    blue:   { icon: d ? 'bg-blue-500/15 border-blue-500/20 text-blue-400 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600' : 'bg-blue-50 border-blue-100 text-blue-600 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600', stat: d ? 'text-blue-400' : 'text-blue-600', card: d ? 'hover:border-blue-500/25' : 'hover:border-blue-200' },
-    cyan:   { icon: d ? 'bg-cyan-500/15 border-cyan-500/20 text-cyan-400 group-hover:bg-cyan-600 group-hover:text-white group-hover:border-cyan-600' : 'bg-cyan-50 border-cyan-100 text-cyan-600 group-hover:bg-cyan-600 group-hover:text-white group-hover:border-cyan-600', stat: d ? 'text-cyan-400' : 'text-cyan-600', card: d ? 'hover:border-cyan-500/25' : 'hover:border-cyan-200' },
-    indigo: { icon: d ? 'bg-indigo-500/15 border-indigo-500/20 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600' : 'bg-indigo-50 border-indigo-100 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600', stat: d ? 'text-indigo-400' : 'text-indigo-600', card: d ? 'hover:border-indigo-500/25' : 'hover:border-indigo-200' },
-    orange: { icon: d ? 'bg-orange-500/15 border-orange-500/20 text-orange-400 group-hover:bg-orange-500 group-hover:text-white group-hover:border-orange-500' : 'bg-orange-50 border-orange-100 text-orange-600 group-hover:bg-orange-500 group-hover:text-white group-hover:border-orange-500', stat: d ? 'text-orange-400' : 'text-orange-600', card: d ? 'hover:border-orange-500/25' : 'hover:border-orange-200' },
-    red:    { icon: d ? 'bg-red-500/15 border-red-500/20 text-red-400 group-hover:bg-red-600 group-hover:text-white group-hover:border-red-600' : 'bg-red-50 border-red-100 text-red-600 group-hover:bg-red-600 group-hover:text-white group-hover:border-red-600', stat: d ? 'text-red-400' : 'text-red-600', card: d ? 'hover:border-red-500/25' : 'hover:border-red-200' },
-    pink:   { icon: d ? 'bg-pink-500/15 border-pink-500/20 text-pink-400 group-hover:bg-pink-600 group-hover:text-white group-hover:border-pink-600' : 'bg-pink-50 border-pink-100 text-pink-600 group-hover:bg-pink-600 group-hover:text-white group-hover:border-pink-600', stat: d ? 'text-pink-400' : 'text-pink-600', card: d ? 'hover:border-pink-500/25' : 'hover:border-pink-200' },
+    purple: d ? 'bg-purple-500/10 border-purple-500/20 text-purple-400' : 'bg-purple-50 border-purple-100 text-purple-600',
+    blue:   d ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'      : 'bg-blue-50 border-blue-100 text-blue-600',
+    amber:  d ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'   : 'bg-amber-50 border-amber-100 text-amber-600',
+    green:  d ? 'bg-green-500/10 border-green-500/20 text-green-400'   : 'bg-green-50 border-green-100 text-green-600',
+    indigo: d ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400': 'bg-indigo-50 border-indigo-100 text-indigo-600',
+    cyan:   d ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'      : 'bg-cyan-50 border-cyan-100 text-cyan-600',
+    rose:   d ? 'bg-rose-500/10 border-rose-500/20 text-rose-400'      : 'bg-rose-50 border-rose-100 text-rose-600',
+    orange: d ? 'bg-orange-500/10 border-orange-500/20 text-orange-400': 'bg-orange-50 border-orange-100 text-orange-600',
+    teal:   d ? 'bg-teal-500/10 border-teal-500/20 text-teal-400'      : 'bg-teal-50 border-teal-100 text-teal-600',
   };
 
-  const highlights = [
-    { val: '50+',  label: 'Projects Delivered' },
-    { val: '30+',  label: 'Happy Clients' },
-    { val: '98%',  label: 'On-Time Delivery' },
-    { val: '0',    label: 'Projects Abandoned' },
+  const compare = [
+    { aspect: 'Senior engineers on every project', devzore: true,  others: false },
+    { aspect: 'Fixed pricing — no hourly billing',  devzore: true,  others: false },
+    { aspect: '100% code ownership on delivery',    devzore: true,  others: false },
+    { aspect: 'TypeScript + testing as standard',   devzore: true,  others: false },
+    { aspect: 'Lighthouse 95+ performance scores',  devzore: true,  others: false },
+    { aspect: 'Direct WhatsApp communication',      devzore: true,  others: false },
+    { aspect: 'No outsourcing or subcontracting',   devzore: true,  others: false },
+    { aspect: '24-hour response guarantee',         devzore: true,  others: false },
   ];
 
   return (
     <section
+      id="why-us"
       aria-labelledby="whyus-heading"
-      className={`py-24 transition-colors duration-300 ${d ? 'bg-[#050505]' : 'bg-[#fafafa]'}`}
+      className={`py-16 sm:py-20 transition-colors duration-300 ${
+        d ? 'bg-[#050505]' : 'bg-slate-50'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ── Header ── */}
-        <div className="max-w-3xl mb-16">
-          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest mb-5 border ${
+        <div className="max-w-3xl mb-10 sm:mb-14">
+          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border mb-4 ${
             d ? 'bg-purple-600/10 border-purple-500/20 text-purple-400' : 'bg-purple-50 border-purple-200 text-purple-700'
           }`}>
+            <span className="w-1.5 h-1.5 rounded-full bg-purple-500"/>
             Why DevZore
           </div>
-
-          <h2
-            id="whyus-heading"
-            className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-5 ${
-              d ? 'text-white' : 'text-gray-900'
-            }`}
-          >
-            Why 30+ Clients Chose DevZore{' '}
-            <span className="text-purple-600">Over Other Agencies</span>
+          <h2 id="whyus-heading" className={`text-3xl sm:text-4xl font-black tracking-tight mb-4 ${
+            d ? 'text-white' : 'text-slate-950'
+          }`}>
+            Why Clients Choose DevZore Over{' '}
+            <span className="text-purple-600">Other Agencies</span>
           </h2>
-
-          <p className={`text-lg leading-relaxed ${d ? 'text-gray-400' : 'text-gray-600'}`}>
-            There are hundreds of software agencies in Pakistan. Here is why startups and businesses
-            from USA, UK, UAE and beyond consistently choose DevZore — and keep coming back.
+          <p className={`text-base leading-relaxed ${d ? 'text-gray-400' : 'text-slate-600'}`}>
+            Senior engineers, fixed pricing, full code ownership and direct communication —
+            DevZore gives you everything a premium agency offers at a price that makes sense
+            for startups and growing businesses worldwide.
           </p>
-        </div>
-
-        {/* ── Highlights row ── */}
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 p-6 rounded-2xl border ${
-          d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-white border-gray-200'
-        }`}>
-          {highlights.map((h, i) => (
-            <div key={i} className="text-center py-2">
-              <div className={`text-3xl font-black mb-1 ${d ? 'text-white' : 'text-gray-900'}`}>
-                {h.val}
-              </div>
-              <div className={`text-[11px] font-medium uppercase tracking-widest ${
-                d ? 'text-gray-500' : 'text-gray-400'
-              }`}>{h.label}</div>
-            </div>
-          ))}
         </div>
 
         {/* ── Reasons Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {reasons.map((r, i) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12 sm:mb-16">
+          {reasons.map((item, i) => (
             <div
               key={i}
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className={`group flex flex-col p-6 rounded-2xl border transition-all duration-300 ${
+              className={`p-5 sm:p-6 rounded-2xl border transition-all duration-300 hover:border-purple-500/25 hover:-translate-y-0.5 ${
                 d
-                  ? `bg-white/[0.02] border-white/[0.06] ${colorMap[r.color].card} hover:bg-white/[0.04]`
-                  : `bg-white border-gray-200 ${colorMap[r.color].card} hover:shadow-sm`
+                  ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]'
+                  : 'bg-white border-slate-200 hover:shadow-md'
               }`}
             >
-              {/* Icon */}
-              <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 transition-all duration-200 ${colorMap[r.color].icon}`}>
-                {r.icon}
+              <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${colorMap[item.color]}`}>
+                {item.icon}
               </div>
-
-              {/* Title */}
-              <h3 className={`text-[15px] font-bold mb-2 ${d ? 'text-white' : 'text-gray-900'}`}>
-                {r.title}
+              <h3 className={`text-[14px] font-bold mb-2 ${d ? 'text-white' : 'text-slate-900'}`}>
+                {item.title}
               </h3>
-
-              {/* Desc */}
-              <p className={`text-[13px] leading-relaxed flex-grow mb-4 ${d ? 'text-gray-400' : 'text-gray-600'}`}>
-                {r.desc}
+              <p className={`text-[13px] leading-relaxed ${d ? 'text-gray-400' : 'text-slate-600'}`}>
+                {item.desc}
               </p>
+            </div>
+          ))}
+        </div>
 
-              {/* Stat */}
-              <div className={`flex items-center gap-2 text-[11px] font-bold pt-4 border-t ${
-                d ? 'border-white/[0.06]' : 'border-gray-100'
-              } ${colorMap[r.color].stat}`}>
-                <CheckCircle size={12}/>
-                {r.stat}
+        {/* ── Comparison Table ── */}
+        <div className={`rounded-2xl border overflow-hidden mb-10 ${
+          d ? 'border-white/[0.08]' : 'border-slate-200'
+        }`}>
+          {/* Table header */}
+          <div className={`grid grid-cols-3 px-4 sm:px-6 py-4 border-b ${
+            d ? 'bg-white/[0.03] border-white/[0.08]' : 'bg-slate-50 border-slate-200'
+          }`}>
+            <div className={`text-[11px] font-black uppercase tracking-widest ${d ? 'text-gray-500' : 'text-slate-500'}`}>
+              What You Get
+            </div>
+            <div className="text-center text-[11px] font-black uppercase tracking-widest text-purple-500">
+              DevZore ✓
+            </div>
+            <div className={`text-center text-[11px] font-black uppercase tracking-widest ${d ? 'text-gray-600' : 'text-slate-400'}`}>
+              Other Agencies
+            </div>
+          </div>
+
+          {/* Table rows */}
+          {compare.map((row, i) => (
+            <div
+              key={i}
+              className={`grid grid-cols-3 px-4 sm:px-6 py-3.5 border-b last:border-0 transition-colors ${
+                d
+                  ? 'border-white/[0.05] hover:bg-white/[0.02]'
+                  : 'border-slate-100 hover:bg-slate-50/50'
+              }`}
+            >
+              <span className={`text-[13px] font-medium ${d ? 'text-gray-300' : 'text-slate-700'}`}>
+                {row.aspect}
+              </span>
+              <div className="flex justify-center">
+                <CheckCircle size={16} className="text-purple-500"/>
+              </div>
+              <div className="flex justify-center">
+                <span className={`text-[18px] leading-none ${d ? 'text-gray-600' : 'text-slate-300'}`}>✗</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* ── Comparison table ── */}
-        <div className={`mt-16 p-8 lg:p-12 rounded-3xl border ${
-          d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-white border-gray-200'
-        }`}>
-          <h2 className={`text-2xl font-black mb-2 ${d ? 'text-white' : 'text-gray-900'}`}>
-            DevZore vs Other Agencies
-          </h2>
-          <p className={`text-sm mb-8 ${d ? 'text-gray-400' : 'text-gray-600'}`}>
-            Here is an honest comparison of what you get with DevZore versus a typical software agency.
-          </p>
+        {/* ── Rating + CTA Row ── */}
+        <div className="grid sm:grid-cols-2 gap-4">
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm" aria-label="DevZore vs other agencies comparison">
-              <thead>
-                <tr className={`border-b ${d ? 'border-white/[0.08]' : 'border-gray-100'}`}>
-                  <th className={`text-left py-3 px-4 text-[11px] font-bold uppercase tracking-wider ${d ? 'text-gray-500' : 'text-gray-400'}`}>Feature</th>
-                  <th className="text-center py-3 px-4">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-purple-500 bg-purple-500/10 px-3 py-1 rounded-full">
-                      ✦ DevZore
-                    </span>
-                  </th>
-                  <th className={`text-center py-3 px-4 text-[11px] font-bold uppercase tracking-wider ${d ? 'text-gray-500' : 'text-gray-400'}`}>
-                    Other Agencies
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ['Senior engineers on every project',      '✓', '✗ Often juniors'],
-                  ['Direct access to your developer',        '✓', '✗ Account manager relay'],
-                  ['Full source code ownership',             '✓', '✗ Sometimes locked'],
-                  ['Response within 24 hours',               '✓', '✗ 48–72 hours typical'],
-                  ['Transparent milestone tracking',         '✓', '✗ Black box delivery'],
-                  ['Post-launch support included',           '✓', '✗ Extra cost'],
-                  ['Scalable architecture from day one',     '✓', '✗ Rebuild often needed'],
-                  ['Fixed-scope honest pricing',             '✓', '✗ Scope creep common'],
-                ].map(([feature, devzore, others], i) => (
-                  <tr key={i} className={`border-b ${d ? 'border-white/[0.04]' : 'border-gray-50'} ${i % 2 === 0 ? d ? 'bg-white/[0.01]' : 'bg-gray-50/50' : ''}`}>
-                    <td className={`py-3.5 px-4 text-[13px] ${d ? 'text-gray-300' : 'text-gray-700'}`}>{feature}</td>
-                    <td className="py-3.5 px-4 text-center">
-                      <span className="inline-flex items-center gap-1 text-[12px] font-bold text-green-500">
-                        <CheckCircle size={13}/> {devzore}
-                      </span>
-                    </td>
-                    <td className={`py-3.5 px-4 text-center text-[12px] ${d ? 'text-gray-500' : 'text-gray-400'}`}>
-                      {others}
-                    </td>
-                  </tr>
+          {/* Rating card */}
+          <div className={`flex items-center gap-5 p-5 sm:p-6 rounded-2xl border ${
+            d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-white border-slate-200'
+          }`}>
+            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 ${
+              d ? 'bg-yellow-500/10' : 'bg-yellow-50'
+            }`}>
+              <Star size={24} className="fill-yellow-400 text-yellow-400"/>
+            </div>
+            <div>
+              <div className="flex gap-0.5 mb-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={13} className="fill-yellow-400 text-yellow-400"/>
                 ))}
-              </tbody>
-            </table>
+              </div>
+              <p className={`text-xl font-black ${d ? 'text-white' : 'text-slate-900'}`}>5.0 / 5.0</p>
+              <p className={`text-[12px] ${d ? 'text-gray-500' : 'text-slate-500'}`}>
+                Verified rating from 30+ clients worldwide
+              </p>
+            </div>
+          </div>
+
+          {/* CTA card */}
+          <div className={`flex flex-col justify-center p-5 sm:p-6 rounded-2xl border ${
+            d ? 'bg-purple-600/5 border-purple-500/20' : 'bg-purple-50 border-purple-100'
+          }`}>
+            <h3 className={`text-base font-black mb-1.5 ${d ? 'text-white' : 'text-slate-900'}`}>
+              Ready to work with a team you can trust?
+            </h3>
+            <p className={`text-[13px] mb-4 ${d ? 'text-gray-400' : 'text-slate-600'}`}>
+              Free consultation · Fixed pricing · Senior engineers · 24hr response
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                to="/contact"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_16px_rgba(124,58,237,0.3)]"
+              >
+                Get Free Consultation <ArrowRight size={14}/>
+              </Link>
+              <a
+                href="https://wa.me/923348004300?text=Hi%20DevZore!%20I%20want%20to%20discuss%20a%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z"/>
+                </svg>
+                WhatsApp Us
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* ── CTA ── */}
-        <div className={`mt-12 p-10 rounded-3xl border text-center ${
-          d ? 'bg-purple-600/5 border-purple-500/15' : 'bg-purple-50 border-purple-100'
-        }`}>
-          <h2 className={`text-2xl font-black mb-3 ${d ? 'text-white' : 'text-gray-900'}`}>
-            Ready to Work With a Team You Can Trust?
-          </h2>
-          <p className={`text-sm mb-8 max-w-md mx-auto ${d ? 'text-gray-400' : 'text-gray-600'}`}>
-            Free consultation. Honest pricing. No commitment.
-            Response within 24 hours from our Islamabad team.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              to="/contact"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="flex items-center gap-2 px-8 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
-            >
-              Start Free Consultation <ArrowRight size={15}/>
-            </Link>
-            <Link
-              to="/allservices"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className={`flex items-center gap-2 px-8 py-3.5 font-bold rounded-xl text-sm transition-all border ${
-                d ? 'border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]' : 'border-purple-200 text-purple-700 hover:bg-purple-100'
-              }`}
-            >
-              View Our Services <ArrowRight size={15}/>
-            </Link>
-          </div>
-        </div>
-
-        {/* ── SEO Hidden Block ── */}
+        {/* ── SEO Hidden ── */}
         <div className="sr-only" aria-hidden="false">
-          <h2>Why Choose DevZore Software Development Agency Islamabad</h2>
-          <p>
-            DevZore is a trusted software development agency based in Islamabad, Pakistan,
-            known for delivering high-quality web applications, mobile apps, SaaS products
-            and e-commerce platforms to clients across USA, UK, UAE, Canada and Australia.
-            We offer senior-only engineering teams, direct developer communication, full source
-            code ownership, 24-hour response guarantee and post-launch support — making us
-            the top choice for startups and enterprises seeking reliable software development in Pakistan.
-          </p>
-          <p>
-            Keywords: best software development company Pakistan, reliable web development agency Islamabad,
-            top MERN stack developers Pakistan, hire senior React developer Islamabad,
-            trusted software agency Pakistan, software development company USA clients Pakistan,
-            web development company UK clients Pakistan, affordable software development Pakistan.
-          </p>
+          <h2>Why Choose DevZore Software Development Agency</h2>
+          <p>DevZore is trusted by clients worldwide because we provide senior engineers on every project, fixed pricing with no hourly billing surprises, 100% code ownership transferred on delivery, TypeScript and comprehensive testing as standard, Lighthouse 95+ performance scores, direct WhatsApp communication, no outsourcing or subcontracting, 24-hour response guarantee and a 5.0 rating from 30+ verified clients across USA, UK, UAE, Canada, Australia and Pakistan.</p>
+          {reasons.map((r, i) => <div key={i}><h3>{r.title}</h3><p>{r.desc}</p></div>)}
         </div>
 
       </div>
