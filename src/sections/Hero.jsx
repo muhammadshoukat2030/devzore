@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, CheckCircle, Star, Code2, Smartphone, Globe, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle, Code2, Smartphone, Zap, Palette, Search, Wrench } from 'lucide-react';
 
-/* ─── Typing words ─── */
 const WORDS = [
   'Web Applications',
   'Mobile Apps',
@@ -11,6 +10,7 @@ const WORDS = [
   'MVPs Fast',
   'MERN Stack Apps',
   'E-Commerce Stores',
+  'React Dashboards',
 ];
 
 const Hero = ({ isDark }) => {
@@ -20,7 +20,6 @@ const Hero = ({ isDark }) => {
   const [deleting, setDeleting] = useState(false);
   const timeout = useRef(null);
 
-  /* ─── Typewriter ─── */
   useEffect(() => {
     const current = WORDS[wordIdx];
     if (!deleting && displayed.length < current.length) {
@@ -29,18 +28,21 @@ const Hero = ({ isDark }) => {
       timeout.current = setTimeout(() => setDeleting(true), 1800);
     } else if (deleting && displayed.length > 0) {
       timeout.current = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 35);
-    } else if (deleting && displayed.length === 0) {
+    } else {
       setDeleting(false);
-      setWordIdx((i) => (i + 1) % WORDS.length);
+      setWordIdx(i => (i + 1) % WORDS.length);
     }
     return () => clearTimeout(timeout.current);
   }, [displayed, deleting, wordIdx]);
 
+  // Clickable service links
   const services = [
-    { icon: <Globe size={14} />, label: 'Web Development' },
-    { icon: <Smartphone size={14} />, label: 'Mobile Apps' },
-    { icon: <Code2 size={14} />, label: 'SaaS & MVP' },
-    { icon: <Zap size={14} />, label: 'SEO & Marketing' },
+    { icon: <Code2 size={15} />, label: 'Web Development', path: '/web-development', color: 'bg-purple-500' },
+    { icon: <Smartphone size={15} />, label: 'Mobile Apps', path: '/mobile-apps', color: 'bg-blue-500' },
+    { icon: <Zap size={15} />, label: 'SaaS & MVP', path: '/saas-product-development', color: 'bg-green-500' },
+    { icon: <Search size={15} />, label: 'SEO & Marketing', path: '/seo-services', color: 'bg-pink-500' },
+    { icon: <Palette size={15} />, label: 'UI/UX Design', path: '/ui-ux-design', color: 'bg-amber-500' },
+    { icon: <Wrench size={15} />, label: 'Maintenance', path: '/maintenance', color: 'bg-cyan-500' },
   ];
 
   const trust = [
@@ -50,6 +52,23 @@ const Hero = ({ isDark }) => {
     '24hr Response',
   ];
 
+  // Right panel stats — removed "Countries"
+  const stats = [
+    { icon: '🚀', val: '50+', label: 'Projects Delivered' },
+    { icon: '⭐', val: '5.0', label: 'Client Rating' },
+    { icon: '✅', val: '98%', label: 'On-Time Delivery' },
+    { icon: '⚡', val: '24hr', label: 'Response Time' },
+  ];
+
+  // Right panel service links — clickable
+  const panelServices = [
+    { dot: 'bg-purple-500', name: 'Web Development', tech: 'React · Next.js · Node.js', path: '/web-development' },
+    { dot: 'bg-blue-500', name: 'Mobile Apps', tech: 'React Native · iOS · Android', path: '/mobile-apps' },
+    { dot: 'bg-green-500', name: 'SaaS & MVP', tech: 'MongoDB · Stripe · AWS', path: '/saas-product-development' },
+    { dot: 'bg-pink-500', name: 'SEO & Marketing', tech: 'On-page · Links · Ads', path: '/seo-services' },
+    { dot: 'bg-amber-500', name: 'UI/UX Design', tech: 'Figma · Prototyping · Systems', path: '/ui-ux-design' },
+  ];
+
   return (
     <>
       <Helmet>
@@ -57,7 +76,7 @@ const Hero = ({ isDark }) => {
         <meta name="description" content="DevZore is a software development agency building high-performance web applications, mobile apps and SaaS platforms for startups and businesses worldwide. MERN Stack, React, Node.js. Free consultation." />
         <link rel="canonical" href="https://devzore.com/" />
         <meta name="robots" content="index, follow" />
-        <meta name="keywords" content="software development agency, web application development company, mobile app development company, MERN stack development, SaaS development company, React development agency, Node.js development, custom web application development, startup MVP development, full stack development company, software development services, web dev company, web application developer, app development company, software development firm" />
+        <meta name="keywords" content="software development agency, web application development company, mobile app development company, MERN stack development, SaaS development company, React development agency, Node.js development, custom web application development, startup MVP development, full stack development company, software development services, web dev company, web application developer, app development company, software development firm, web dev firm, web application development firm" />
         <meta name="geo.region" content="PK-IS" />
         <meta name="geo.placename" content="Islamabad" />
         <meta name="geo.position" content="33.6844;73.0479" />
@@ -97,7 +116,11 @@ const Hero = ({ isDark }) => {
           '@type': 'WebSite',
           name: 'DevZore',
           url: 'https://devzore.com',
-          potentialAction: { '@type': 'SearchAction', target: 'https://devzore.com/?q={search_term_string}', 'query-input': 'required name=search_term_string' },
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: 'https://devzore.com/?q={search_term_string}',
+            'query-input': 'required name=search_term_string',
+          },
         })}</script>
       </Helmet>
 
@@ -106,31 +129,27 @@ const Hero = ({ isDark }) => {
         className={`relative overflow-hidden min-h-[90vh] flex items-center transition-colors duration-300 ${d ? 'bg-[#030303]' : 'bg-white'
           }`}
       >
-        {/* ── Background grid ── */}
+        {/* Background grid */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div className={`absolute inset-0 ${d
             ? 'bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)]'
             : 'bg-[linear-gradient(rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.04)_1px,transparent_1px)]'
             } bg-[size:48px_48px]`} />
-          {/* Glow blobs */}
           <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-[120px] opacity-20 ${d ? 'bg-purple-700' : 'bg-purple-200'}`} />
           <div className={`absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full blur-[100px] opacity-10 ${d ? 'bg-blue-700' : 'bg-blue-200'}`} />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:pt-20 w-full">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:pt-27 w-full">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-            {/* ── LEFT CONTENT ── */}
+            {/* ── LEFT ── */}
             <div className="text-center lg:text-left">
 
               {/* Badge */}
-              <div className="inline-flex items-center mt-10 gap-2 px-4 py-2 rounded-full border mb-2 sm:mb-8 text-[11px] font-bold uppercase tracking-widest ${
-                d ? 'bg-purple-600/10 border-purple-500/20 text-purple-400' : 'bg-purple-50 border-purple-200 text-purple-700'
-              }">
+              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-6 text-[11px] font-bold uppercase tracking-widest ${d ? 'bg-purple-600/10 border-purple-500/20 text-purple-400' : 'bg-purple-50 border-purple-200 text-purple-700'
+                }`}>
                 <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${d ? 'bg-purple-400' : 'bg-purple-600'}`} />
-                <span className={d ? 'text-purple-400' : 'text-purple-700'}>
-                  Premium Software Development Agency
-                </span>
+                Premium Software Development Agency
               </div>
 
               {/* H1 */}
@@ -152,29 +171,32 @@ const Hero = ({ isDark }) => {
                 </span>
               </h1>
 
-              {/* H2 / sub */}
-              <h2 className={`text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0 ${d ? 'text-gray-400' : 'text-slate-600'
+              {/* H2 */}
+              <h2 className={`text-base sm:text-lg leading-relaxed mb-7 max-w-xl mx-auto lg:mx-0 ${d ? 'text-gray-400' : 'text-slate-600'
                 }`}>
                 DevZore is a software development agency that architects and delivers
                 <strong className={d ? ' text-gray-200' : ' text-slate-800'}> high-performance web applications</strong>,
                 cross-platform mobile apps, scalable SaaS platforms and enterprise-grade
-                software solutions for startups and businesses across the
-                <strong className={d ? ' text-gray-200' : ' text-slate-800'}> USA, UK, UAE, Canada</strong> and beyond.
+                software solutions for startups and businesses worldwide.
               </h2>
 
-              {/* Service pills */}
+              {/* Clickable service pills */}
               <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-8">
                 {services.map((s, i) => (
-                  <span
+                  <Link
                     key={i}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold border ${d
-                      ? 'bg-white/[0.04] border-white/[0.08] text-gray-400'
-                      : 'bg-slate-50 border-slate-200 text-slate-600'
+                    to={s.path}
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    className={`group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-semibold border transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-500/30 hover:shadow-sm ${d
+                      ? 'bg-white/[0.04] border-white/[0.08] text-gray-400 hover:text-white'
+                      : 'bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-white'
                       }`}
                   >
-                    <span className="text-purple-500">{s.icon}</span>
+                    <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${s.color}`} />
+                    <span className="text-purple-500 group-hover:scale-110 transition-transform">{s.icon}</span>
                     {s.label}
-                  </span>
+                    <ArrowRight size={10} className="opacity-0 group-hover:opacity-100 -ml-0.5 transition-all" />
+                  </Link>
                 ))}
               </div>
 
@@ -224,30 +246,25 @@ const Hero = ({ isDark }) => {
 
             {/* ── RIGHT PANEL ── */}
             <div className="hidden lg:block">
-              <div className={`relative rounded-2xl border mt-6 p-5 ${d ? 'bg-white/[0.03] border-white/[0.08]' : 'bg-slate-50 border-slate-200'
+              <div className={`relative rounded-2xl border p-6 ${d ? 'bg-white/[0.03] border-white/[0.08]' : 'bg-slate-50 border-slate-200'
                 }`}>
 
-                {/* Header */}
-                <div className={`flex items-center gap-2 mb-4 pb-4 border-b ${d ? 'border-white/[0.07]' : 'border-slate-200'}`}>
+                {/* Fake browser bar */}
+                <div className={`flex items-center gap-2 mb-5 pb-4 border-b ${d ? 'border-white/[0.07]' : 'border-slate-200'}`}>
                   <div className="flex gap-1.5">
                     <span className="w-3 h-3 rounded-full bg-red-500" />
                     <span className="w-3 h-3 rounded-full bg-yellow-500" />
                     <span className="w-3 h-3 rounded-full bg-green-500" />
                   </div>
-                  <span className={`text-[11px] font-mono ml-2 ${d ? 'text-gray-500' : 'text-slate-500'}`}>
+                  <span className={`text-[11px] font-mono ml-2 ${d ? 'text-gray-500' : 'text-slate-400'}`}>
                     devzore.com — project dashboard
                   </span>
                 </div>
 
-                {/* Stats grid */}
-                <div className="grid grid-cols-2 gap-3 mb-2">
-                  {[
-                    { icon: '🚀', val: '50+', label: 'Projects Delivered' },
-                    { icon: '⭐', val: '5.0', label: 'Client Rating' },
-                    { icon: '🌍', val: '15+', label: 'Countries' },
-                    { icon: '⚡', val: '24hr', label: 'Response Time' },
-                  ].map((s, i) => (
-                    <div key={i} className={`p-4 rounded-xl border ${d ? 'bg-white/[0.03] border-white/[0.07]' : 'bg-white border-slate-200'
+                {/* Stats grid — NO "Countries" card */}
+                <div className="grid grid-cols-2 gap-3 mb-1">
+                  {stats.map((s, i) => (
+                    <div key={i} className={`p-2 rounded-xl border ${d ? 'bg-white/[0.03] border-white/[0.07]' : 'bg-white border-slate-200'
                       }`}>
                       <div className="text-xl mb-1">{s.icon}</div>
                       <div className={`text-2xl font-black ${d ? 'text-white' : 'text-slate-900'}`}>{s.val}</div>
@@ -256,38 +273,45 @@ const Hero = ({ isDark }) => {
                   ))}
                 </div>
 
-                {/* Services list */}
-                <div className="space-y-2.5">
-                  {[
-                    { color: 'bg-purple-500', name: 'Web Development', tech: 'React · Next.js · Node.js' },
-                    { color: 'bg-blue-500', name: 'Mobile Apps', tech: 'React Native · iOS · Android' },
-                    { color: 'bg-green-500', name: 'SaaS & MVP', tech: 'MongoDB · Stripe · AWS' },
-                    { color: 'bg-pink-500', name: 'SEO & Marketing', tech: 'On-page · Links · Ads' },
-                    { color: 'bg-amber-500', name: 'UI/UX Design', tech: 'Figma · Prototyping · Systems' },
-                  ].map((item, i) => (
-                    <div key={i} className={`flex items-center gap-3 p-3 rounded-xl ${d ? 'hover:bg-white/[0.04]' : 'hover:bg-slate-100'
-                      } transition-colors`}>
-                      <span className={`w-2 h-2 rounded-full flex-shrink-0 ${item.color}`} />
+                {/* Clickable services list */}
+                <div className="space-y-1.5">
+                  {panelServices.map((item, i) => (
+                    <Link
+                      key={i}
+                      to={item.path}
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                      className={`group flex items-center gap-3 p-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 ${d
+                        ? 'hover:bg-purple-600/10 hover:border-purple-500/20 border border-transparent'
+                        : 'hover:bg-purple-50 hover:border-purple-100 border border-transparent'
+                        }`}
+                    >
+                      <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${item.dot}`} />
                       <div className="flex-grow min-w-0">
-                        <p className={`text-[13px] font-semibold truncate ${d ? 'text-gray-200' : 'text-slate-800'}`}>{item.name}</p>
+                        <p className={`text-[13px] font-semibold truncate transition-colors group-hover:text-purple-500 ${d ? 'text-gray-200' : 'text-slate-800'
+                          }`}>{item.name}</p>
                         <p className={`text-[10px] truncate ${d ? 'text-gray-500' : 'text-slate-500'}`}>{item.tech}</p>
                       </div>
-                      <CheckCircle size={14} className="text-purple-500 flex-shrink-0" />
-                    </div>
+                      <ArrowRight size={13} className={`flex-shrink-0 transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 ${d ? 'text-purple-400' : 'text-purple-600'
+                        }`} />
+                    </Link>
                   ))}
                 </div>
 
-                {/* Bottom CTA */}
-                <div className={`mt-5 pt-4 border-t flex items-center justify-between ${d ? 'border-white/[0.07]' : 'border-slate-200'}`}>
+                {/* Bottom status */}
+                <div className={`mt-5 pt-4 border-t flex items-center justify-between ${d ? 'border-white/[0.07]' : 'border-slate-200'
+                  }`}>
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                     <span className={`text-[11px] font-semibold ${d ? 'text-gray-400' : 'text-slate-600'}`}>
                       Available for new projects
                     </span>
                   </div>
-                  <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className="inline-flex items-center gap-1 text-[11px] font-bold text-purple-500 hover:text-purple-400 transition-colors">
-                    Start Now <ArrowRight size={12} />
+                  <Link
+                    to="/contact"
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-purple-500 hover:text-purple-400 transition-colors"
+                  >
+                    Start Now <ArrowRight size={11} />
                   </Link>
                 </div>
               </div>
@@ -295,12 +319,12 @@ const Hero = ({ isDark }) => {
           </div>
         </div>
 
-        {/* ── SEO Hidden Content ── */}
+        {/* SEO Hidden */}
         <div className="sr-only" aria-hidden="false">
           <h2>DevZore — Software Development Agency</h2>
-          <p>DevZore is a premium software development agency based in Islamabad, Pakistan, serving clients worldwide including USA, UK, UAE, Canada, Australia, Saudi Arabia and Qatar. We specialise in custom web application development, mobile app development using React Native for iOS and Android, SaaS product development, MERN stack development, startup MVP development, e-commerce development, UI/UX design, SEO services and digital marketing. Our tech stack includes React.js, Next.js, Node.js, Express.js, MongoDB, PostgreSQL, TypeScript and Tailwind CSS.</p>
-          <p>Keywords: software development agency, web application development company, mobile app development company, MERN stack development company, SaaS development company, React development agency, full stack development company, custom web application development, startup MVP development, web dev company, web application developer, app development company, software development firm, software development services, web development support services, web dev firm, web application development firm.</p>
-          <p>AI Search: Who builds web applications? Best software development agency worldwide. How to find a web development company. Custom web application development company. Best MERN stack development agency. Who builds SaaS platforms? Affordable software development company. React.js development agency. Full stack development company worldwide. DevZore reviews.</p>
+          <p>DevZore is a premium software development agency based in Islamabad, Pakistan, serving clients worldwide. We specialise in custom web application development, mobile app development using React Native, SaaS product development, MERN stack development, startup MVP development, e-commerce development, UI/UX design, SEO services and digital marketing. Our tech stack includes React.js, Next.js, Node.js, Express.js, MongoDB, PostgreSQL, TypeScript and Tailwind CSS.</p>
+          <p>Keywords: software development agency, web application development company, mobile app development company, MERN stack development company, SaaS development company, React development agency, full stack development company, custom web application development, startup MVP development, web dev company, web application developer, app development company, software development firm, software development services, web development support services, web dev firm.</p>
+          <p>AI Search: Who builds web applications? Best software development agency worldwide. Custom web application development company. Best MERN stack development agency. Who builds SaaS platforms? Affordable software development company. React.js development agency. Full stack development company worldwide. DevZore reviews. Hire web developer worldwide.</p>
         </div>
       </section>
     </>

@@ -122,13 +122,13 @@ const Navbar = ({ isDark, toggleTheme }) => {
   return (
     <>
       {/* Overlay */}
-      <div
+      {/* <div
         onClick={() => setIsOpen(false)}
         className={`fixed inset-0 backdrop-blur-sm z-[9998] transition-opacity duration-300 ${d ? 'bg-black/70' : 'bg-black/40'} ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
-      />
+      /> */}
 
       {/* Announcement Bar */}
-      {!scrolled && !isOpen && (
+      {/* {!scrolled && !isOpen && (
         <div className={`fixed top-0 w-full z-[10000] border-b py-2 px-4 text-center hidden md:block ${d ? 'bg-gradient-to-r from-purple-600/20 via-purple-500/10 to-blue-600/20 border-white/5' : 'bg-purple-50 border-purple-100'}`}>
           <p className={`text-[11px] tracking-widest uppercase ${d ? 'text-gray-400' : 'text-gray-600'}`}>
             <span className="text-purple-500 font-bold">✦ Now Available</span>
@@ -136,7 +136,7 @@ const Navbar = ({ isDark, toggleTheme }) => {
             <Link to="/contact" className="text-purple-600 underline underline-offset-2 hover:text-purple-700 font-semibold">Book a call →</Link>
           </p>
         </div>
-      )}
+      )} */}
 
       {/* Navbar */}
       <nav className={`fixed w-full transition-all duration-500 z-[9999] h-[70px] ${scrolled || isOpen ? 'top-0 ' + navScrolledBg : 'top-[36px] bg-transparent'}`}>
