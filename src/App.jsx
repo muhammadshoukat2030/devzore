@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Routes,
   Route,
   useLocation,
   Link,
   Navigate,
 } from "react-router-dom";
-
-import AuthContextProvider from "./context/AuthContext";
+import { Helmet } from "react-helmet-async";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -53,599 +52,294 @@ import AdminPostEditor from "./pages/admin/AdminPostEditor";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminComments from "./pages/admin/AdminComments";
 
-const baseUrl = "https://devzore.com";
+const BASE_URL = "https://devzore.com";
 
-const defaultGeo = {
-  region: "PK-IS",
-  placename: "Islamabad, Pakistan",
-  position: "33.6844;73.0479",
+const seoData = {
+  "/": {
+    title:
+      "DevZore | Software Development, Web, SaaS & Mobile App Agency",
+    description:
+      "DevZore builds high-performance websites, SaaS platforms, mobile apps and custom software solutions for startups and businesses worldwide.",
+  },
+
+  "/allservices": {
+    title:
+      "Software Development Services | Web, Mobile & SaaS | DevZore",
+    description:
+      "Explore DevZore software development services including web applications, MERN development, mobile apps, SaaS, UI/UX, SEO and digital solutions.",
+  },
+
+  "/web-development": {
+    title:
+      "Web Development Services | Custom Websites & Web Apps | DevZore",
+    description:
+      "DevZore builds fast, secure and scalable websites and web applications using modern technologies for startups and businesses worldwide.",
+  },
+
+  "/mobile-apps": {
+    title:
+      "Mobile App Development Services | iOS & Android | DevZore",
+    description:
+      "Build modern iOS, Android and cross-platform mobile applications with DevZore for startups, businesses and digital products.",
+  },
+
+  "/ecommerce": {
+    title:
+      "E-Commerce Development Services | Online Stores | DevZore",
+    description:
+      "Build scalable e-commerce websites with secure checkout, product management, inventory and modern shopping experiences.",
+  },
+
+  "/backend-api": {
+    title:
+      "Backend & API Development | Node.js & Express | DevZore",
+    description:
+      "Secure and scalable backend development using Node.js, Express, REST APIs and modern server-side technologies.",
+  },
+
+  "/mern-stack-development": {
+    title:
+      "MERN Stack Development Services | React & Node.js | DevZore",
+    description:
+      "DevZore builds scalable MERN applications using MongoDB, Express, React and Node.js for businesses and SaaS products.",
+  },
+
+  "/saas-product-development": {
+    title:
+      "SaaS Product Development Company | DevZore",
+    description:
+      "Build scalable SaaS products with modern architecture, dashboards, authentication, APIs, subscriptions and cloud-ready infrastructure.",
+  },
+
+  "/reactdevelopment": {
+    title:
+      "React Development Services | React.js Development | DevZore",
+    description:
+      "Professional React development for fast, scalable web applications, dashboards and modern digital products.",
+  },
+
+  "/ui-ux-design": {
+    title:
+      "UI/UX Design Services | Figma & Product Design | DevZore",
+    description:
+      "UI/UX design services for web and mobile products including research, wireframes, Figma interfaces, prototypes and design systems.",
+  },
+
+  "/maintenance": {
+    title:
+      "Website Maintenance & Support Services | DevZore",
+    description:
+      "Website maintenance and technical support including bug fixes, security updates, performance improvements and ongoing management.",
+  },
+
+  "/startup-mvp": {
+    title:
+      "Startup MVP Development | Build & Launch Your MVP | DevZore",
+    description:
+      "Turn your startup idea into a production-ready MVP with modern UI, scalable architecture, APIs and reliable technology.",
+  },
+
+  "/seo-services": {
+    title:
+      "SEO Services | Technical SEO & Organic Growth | DevZore",
+    description:
+      "Improve search visibility with technical SEO, on-page optimization, content strategy and performance-focused SEO services.",
+  },
+
+  "/digital-marketing": {
+    title:
+      "Digital Marketing Services | Growth Marketing | DevZore",
+    description:
+      "Grow your business with digital marketing, social media, Google Ads, Meta Ads and performance-focused campaign strategies.",
+  },
+
+  "/about": {
+    title:
+      "About DevZore | Software Development Agency",
+    description:
+      "Learn about DevZore, a software development agency building modern websites, SaaS products, mobile apps and digital solutions.",
+  },
+
+  "/contact": {
+    title:
+      "Contact DevZore | Start Your Software Project",
+    description:
+      "Contact DevZore to discuss your website, SaaS platform, mobile app, UI/UX or custom software development project.",
+  },
+
+  "/blog": {
+    title:
+      "DevZore Blog | Software, Web Development & SEO",
+    description:
+      "Read practical insights about software development, React, MERN, SaaS, web development, SEO and digital technology.",
+  },
+
+  "/privacy-policy": {
+    title: "Privacy Policy | DevZore",
+    description:
+      "Read the DevZore privacy policy and learn how information is collected, used and protected.",
+  },
+
+  "/terms-and-conditions": {
+    title: "Terms & Conditions | DevZore",
+    description:
+      "Read the DevZore terms and conditions for software development, digital services and support.",
+  },
 };
 
-const SEOManager = () => {
-  const location = useLocation();
+function SEOManager() {
+  const { pathname } = useLocation();
 
-  useEffect(() => {
-    const currentPath = location.pathname;
-
-    const routeSeoData = {
-      "/": {
-        title:
-          "DevZore International | Web Development, SaaS & Software Engineering",
-        desc:
-          "DevZore is a software engineering agency serving clients worldwide with custom web development, MERN stack applications, SaaS products, mobile apps, UI/UX design, SEO and digital solutions.",
-        keywords:
-          "software development company, web development agency, web development company, MERN stack development, React development, Node.js development, SaaS development, mobile app development, software engineering agency, custom software development, digital solutions, Pakistan software company, global software agency",
-      },
-
-      "/allservices": {
-        title:
-          "Software Development Services | Web, Mobile, SaaS & Digital Solutions | DevZore",
-        desc:
-          "Explore DevZore's software development services including custom web applications, MERN stack development, mobile apps, SaaS products, UI/UX design, SEO and digital marketing for businesses worldwide.",
-        keywords:
-          "software development services, web development services, mobile app development, SaaS development, MERN development, UI UX design, SEO services, digital marketing, custom software solutions",
-      },
-
-      "/web-development": {
-        title:
-          "Custom Web Development Services | React, Next.js & Full-Stack | DevZore",
-        desc:
-          "Custom web development services for startups and businesses worldwide. DevZore builds fast, scalable and secure React, Next.js and full-stack web applications.",
-        keywords:
-          "web development company, custom web development, web development services, React web development, Next.js development, full stack development, responsive web development, business website development",
-      },
-
-      "/mobile-apps": {
-        title:
-          "Mobile App Development Services | iOS & Android | DevZore",
-        desc:
-          "Build scalable iOS and Android mobile applications with DevZore. We develop modern cross-platform mobile apps for startups and businesses worldwide.",
-        keywords:
-          "mobile app development, mobile application development, iOS app development, Android app development, React Native development, cross platform app development",
-      },
-
-      "/ecommerce": {
-        title:
-          "E-Commerce Development Services | Custom Online Stores | DevZore",
-        desc:
-          "Custom e-commerce development for businesses worldwide with modern storefronts, secure checkout, product management, inventory and scalable backend systems.",
-        keywords:
-          "ecommerce development, ecommerce website development, online store development, custom ecommerce website, ecommerce software development, MERN ecommerce",
-      },
-
-      "/backend-api": {
-        title:
-          "Backend & API Development Services | Node.js & Express | DevZore",
-        desc:
-          "Secure and scalable backend and API development using Node.js, Express, REST APIs and modern server-side technologies for web and mobile applications.",
-        keywords:
-          "backend development, API development, Node.js development, Express.js development, REST API development, scalable backend development, custom API development",
-      },
-
-      "/mern-stack-development": {
-        title:
-          "MERN Stack Development Company | MongoDB, Express, React & Node.js | DevZore",
-        desc:
-          "DevZore provides full-stack MERN development for scalable web applications, SaaS platforms, dashboards and custom business software for clients worldwide.",
-        keywords:
-          "MERN stack development, MERN development company, MERN stack developer, MongoDB Express React Node, full stack JavaScript development, MERN web development",
-      },
-
-      "/saas-product-development": {
-        title:
-          "SaaS Product Development Company | Custom SaaS Solutions | DevZore",
-        desc:
-          "End-to-end SaaS product development including architecture, authentication, dashboards, subscriptions, APIs, multi-tenant systems and cloud-ready applications.",
-        keywords:
-          "SaaS development company, SaaS product development, SaaS application development, custom SaaS development, SaaS software development, startup SaaS development",
-      },
-
-      "/reactdevelopment": {
-        title:
-          "React.js Development Services | React Development Company | DevZore",
-        desc:
-          "Professional React.js development for fast, scalable and maintainable web applications, dashboards and business platforms.",
-        keywords:
-          "React development, React.js development company, React developer, React web development, frontend development, React application development",
-      },
-
-      "/ui-ux-design": {
-        title:
-          "UI/UX Design Services | Web & App Product Design | DevZore",
-        desc:
-          "User-focused UI/UX design services including wireframes, user flows, prototypes and modern interfaces designed for web and mobile products.",
-        keywords:
-          "UI UX design services, UI design agency, UX design agency, Figma design, website UI design, mobile app UI UX, product design",
-      },
-
-      "/maintenance": {
-        title:
-          "Website Maintenance & Support Services | DevZore",
-        desc:
-          "Reliable website maintenance and technical support including bug fixes, security updates, performance improvements and ongoing website management.",
-        keywords:
-          "website maintenance, website support, web maintenance services, website security updates, website bug fixing, technical support",
-      },
-
-      "/startup-mvp": {
-        title:
-          "Startup MVP Development Company | Build & Launch Your MVP | DevZore",
-        desc:
-          "Turn your startup idea into a working MVP with scalable architecture, modern UI, backend APIs and production-ready technology.",
-        keywords:
-          "MVP development company, startup MVP development, MVP software development, startup app development, SaaS MVP development, product development",
-      },
-
-      "/seo-services": {
-        title:
-          "SEO Services | Technical SEO & Organic Growth Agency | DevZore",
-        desc:
-          "Professional SEO services covering technical SEO, on-page optimization, content strategy, website performance, search visibility and long-term organic growth.",
-        keywords:
-          "SEO services, SEO agency, search engine optimization, technical SEO, on page SEO, SEO company, organic growth, website SEO services",
-      },
-
-      "/digital-marketing": {
-        title:
-          "Digital Marketing Services | Performance & Growth Marketing | DevZore",
-        desc:
-          "Data-driven digital marketing services including social media marketing, paid advertising, Google Ads, Meta Ads, campaign strategy and performance optimization.",
-        keywords:
-          "digital marketing services, digital marketing agency, performance marketing, social media marketing, Meta Ads, Google Ads, online marketing",
-      },
-
-      "/about": {
-        title:
-          "About DevZore | Software Development & Digital Solutions Agency",
-        desc:
-          "Learn about DevZore, a software development and digital solutions agency building scalable websites, web applications, SaaS products and mobile applications for clients worldwide.",
-        keywords:
-          "about DevZore, DevZore software agency, software development agency, web development agency, software company Pakistan, global software agency",
-      },
-
-      "/contact": {
-        title:
-          "Contact DevZore | Hire a Software Development Agency",
-        desc:
-          "Contact DevZore for custom web development, mobile apps, SaaS products, UI/UX design, SEO and digital solutions. Start your project with our software engineering team.",
-        keywords:
-          "contact software company, hire web developer, hire software development agency, web development company contact, software development services",
-      },
-
-      "/blog": {
-        title:
-          "DevZore Blog | Web Development, SaaS, SEO & Technology Insights",
-        desc:
-          "Explore DevZore's technology blog covering web development, MERN stack, React, Node.js, SaaS, SEO, digital marketing and software engineering insights.",
-        keywords:
-          "web development blog, software development blog, MERN blog, React blog, Node.js blog, SaaS blog, SEO blog, technology insights",
-      },
-
-      "/privacy-policy": {
-        title: "Privacy Policy | DevZore",
-        desc:
-          "Read DevZore's privacy policy covering how information is collected, used and protected.",
-      },
-
-      "/terms-and-conditions": {
-        title: "Terms & Conditions | DevZore",
-        desc:
-          "Read DevZore's terms and conditions for software development, digital services, projects and support.",
-      },
-    };
-
-    const adminSeoData = {
-      "/admin/login": {
-        title: "Admin Login | DevZore",
-      },
-      "/admin": {
-        title: "Admin Dashboard | DevZore",
-      },
-      "/admin/dashboard": {
-        title: "Admin Dashboard | DevZore",
-      },
-      "/admin/posts": {
-        title: "Manage Posts | DevZore Admin",
-      },
-      "/admin/posts/new": {
-        title: "Create Post | DevZore Admin",
-      },
-      "/admin/categories": {
-        title: "Manage Categories | DevZore Admin",
-      },
-      "/admin/comments": {
-        title: "Manage Comments | DevZore Admin",
-      },
-    };
-
-    if (currentPath.startsWith("/admin")) {
-      const adminData =
-        adminSeoData[currentPath] || {
-          title: "Admin | DevZore",
-        };
-
-      document.title = adminData.title;
-
-      let robots = document.querySelector('meta[name="robots"]');
-
-      if (!robots) {
-        robots = document.createElement("meta");
-        robots.name = "robots";
-        document.head.appendChild(robots);
-      }
-
-      robots.content = "noindex, nofollow";
-
-      return;
-    }
-
-    const isBlogPost =
-      currentPath.startsWith("/blog/") &&
-      currentPath !== "/blog/";
-
-    const currentData =
-      routeSeoData[currentPath] || {
-        title: "Page Not Found | DevZore",
-        desc:
-          "The requested page could not be found. Visit DevZore to explore our software development and digital solutions.",
-        keywords:
-          "DevZore, software development, web development, digital solutions",
-      };
-
-    const geo = {
-      ...defaultGeo,
-      ...(currentData.geo || {}),
-    };
-
-    const pageUrl =
-      currentPath === "/"
-        ? baseUrl
-        : `${baseUrl}${currentPath}`;
-
-    const title = isBlogPost
-      ? "DevZore Blog Article | Web Development & Technology Insights"
-      : currentData.title;
-
-    const description = isBlogPost
-      ? "Read this DevZore technology article for practical insights into web development, software engineering, SaaS and digital technology."
-      : currentData.desc;
-
-    document.title = title;
-
-    const setMeta = (selector, attributes, content) => {
-      let tag = document.head.querySelector(selector);
-
-      if (!tag) {
-        tag = document.createElement("meta");
-
-        Object.entries(attributes).forEach(([key, value]) => {
-          tag.setAttribute(key, value);
-        });
-
-        document.head.appendChild(tag);
-      }
-
-      tag.setAttribute("content", content);
-    };
-
-    const setLink = (selector, attributes) => {
-      let tag = document.head.querySelector(selector);
-
-      if (!tag) {
-        tag = document.createElement("link");
-
-        Object.entries(attributes).forEach(([key, value]) => {
-          tag.setAttribute(key, value);
-        });
-
-        document.head.appendChild(tag);
-      } else {
-        Object.entries(attributes).forEach(([key, value]) => {
-          tag.setAttribute(key, value);
-        });
-      }
-    };
-
-    setMeta(
-      'meta[name="description"]',
-      { name: "description" },
-      description
+  if (pathname.startsWith("/admin")) {
+    return (
+      <Helmet>
+        <title>DevZore Admin</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
+      </Helmet>
     );
+  }
 
-    setMeta(
-      'meta[name="keywords"]',
-      { name: "keywords" },
-      currentData.keywords ||
-        "DevZore, software development, web development, software engineering"
+  // BlogDetails should eventually provide its own dynamic SEO.
+  if (pathname.startsWith("/blog/")) {
+    return null;
+  }
+
+  const page = seoData[pathname];
+
+  if (!page) {
+    return (
+      <Helmet>
+        <title>Page Not Found | DevZore</title>
+        <meta
+          name="description"
+          content="The requested page could not be found on DevZore."
+        />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
     );
+  }
 
-    setMeta(
-      'meta[name="author"]',
-      { name: "author" },
-      "DevZore"
-    );
+  const canonical =
+    pathname === "/" ? BASE_URL : `${BASE_URL}${pathname}`;
 
-    setMeta(
-      'meta[name="robots"]',
-      { name: "robots" },
-      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    );
+  return (
+    <Helmet>
+      <html lang="en" />
 
-    setMeta(
-      'meta[name="googlebot"]',
-      { name: "googlebot" },
-      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    );
+      <title>{page.title}</title>
 
-    setMeta(
-      'meta[name="geo.region"]',
-      { name: "geo.region" },
-      geo.region
-    );
+      <meta
+        name="description"
+        content={page.description}
+      />
 
-    setMeta(
-      'meta[name="geo.placename"]',
-      { name: "geo.placename" },
-      geo.placename
-    );
+      <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      />
 
-    setMeta(
-      'meta[name="geo.position"]',
-      { name: "geo.position" },
-      geo.position
-    );
+      <meta
+        name="googlebot"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+      />
 
-    setMeta(
-      'meta[name="ICBM"]',
-      { name: "ICBM" },
-      geo.position.replace(";", ", ")
-    );
+      <link
+        rel="canonical"
+        href={canonical}
+      />
 
-    setMeta(
-      'meta[property="og:title"]',
-      { property: "og:title" },
-      title
-    );
+      <meta
+        property="og:title"
+        content={page.title}
+      />
 
-    setMeta(
-      'meta[property="og:description"]',
-      { property: "og:description" },
-      description
-    );
+      <meta
+        property="og:description"
+        content={page.description}
+      />
 
-    setMeta(
-      'meta[property="og:url"]',
-      { property: "og:url" },
-      pageUrl
-    );
+      <meta
+        property="og:url"
+        content={canonical}
+      />
 
-    setMeta(
-      'meta[property="og:type"]',
-      { property: "og:type" },
-      isBlogPost ? "article" : "website"
-    );
+      <meta
+        property="og:type"
+        content="website"
+      />
 
-    setMeta(
-      'meta[property="og:site_name"]',
-      { property: "og:site_name" },
-      "DevZore"
-    );
+      <meta
+        property="og:site_name"
+        content="DevZore"
+      />
 
-    setMeta(
-      'meta[property="og:locale"]',
-      { property: "og:locale" },
-      "en_US"
-    );
+      <meta
+        property="og:locale"
+        content="en_US"
+      />
 
-    setMeta(
-      'meta[name="twitter:card"]',
-      { name: "twitter:card" },
-      "summary_large_image"
-    );
+      <meta
+        name="twitter:card"
+        content="summary_large_image"
+      />
 
-    setMeta(
-      'meta[name="twitter:title"]',
-      { name: "twitter:title" },
-      title
-    );
+      <meta
+        name="twitter:title"
+        content={page.title}
+      />
 
-    setMeta(
-      'meta[name="twitter:description"]',
-      { name: "twitter:description" },
-      description
-    );
+      <meta
+        name="twitter:description"
+        content={page.description}
+      />
+    </Helmet>
+  );
+}
 
-    setLink('link[rel="canonical"]', {
-      rel: "canonical",
-      href: pageUrl,
-    });
-
-    let structuredData = document.getElementById(
-      "devzore-structured-data"
-    );
-
-    if (!structuredData) {
-      structuredData = document.createElement("script");
-      structuredData.id = "devzore-structured-data";
-      structuredData.type = "application/ld+json";
-      document.head.appendChild(structuredData);
-    }
-
-    const schema = {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": `${baseUrl}/#organization`,
-          name: "DevZore",
-          url: baseUrl,
-          description:
-            "Software development and digital solutions agency serving clients worldwide.",
-          areaServed: "Worldwide",
-          knowsAbout: [
-            "Web Development",
-            "MERN Stack Development",
-            "React Development",
-            "Node.js Development",
-            "SaaS Product Development",
-            "Mobile App Development",
-            "E-Commerce Development",
-            "UI/UX Design",
-            "SEO",
-            "Digital Marketing",
-            "Software Engineering",
-          ],
-        },
-        {
-          "@type": "ProfessionalService",
-          "@id": `${baseUrl}/#business`,
-          name: "DevZore",
-          url: baseUrl,
-          description:
-            "Custom software development, web development, SaaS, mobile app, SEO and digital solutions for businesses worldwide.",
-          areaServed: [
-            {
-              "@type": "GeoShape",
-              name: "Worldwide",
-            },
-          ],
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Islamabad",
-            addressCountry: "PK",
-          },
-          knowsAbout: [
-            "Custom Software Development",
-            "Web Development",
-            "MERN Stack",
-            "React",
-            "Node.js",
-            "SaaS",
-            "Mobile App Development",
-            "E-Commerce",
-            "UI/UX Design",
-            "SEO",
-            "Digital Marketing",
-          ],
-        },
-        {
-          "@type": "WebSite",
-          "@id": `${baseUrl}/#website`,
-          url: baseUrl,
-          name: "DevZore",
-          description:
-            "Software engineering and digital solutions for businesses worldwide.",
-          publisher: {
-            "@id": `${baseUrl}/#organization`,
-          },
-          inLanguage: "en-US",
-        },
-        {
-          "@type": "WebPage",
-          "@id": `${pageUrl}#webpage`,
-          url: pageUrl,
-          name: title,
-          description,
-          isPartOf: {
-            "@id": `${baseUrl}/#website`,
-          },
-          about: {
-            "@id": `${baseUrl}/#organization`,
-          },
-          inLanguage: "en-US",
-        },
-      ],
-    };
-
-    structuredData.textContent = JSON.stringify(schema);
-  }, [location.pathname]);
-
-  return null;
-};
-
-const ScrollToTop = () => {
+function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
   }, [pathname]);
 
   return null;
-};
+}
 
-const NotFound = () => {
+function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-[var(--bg-primary)]">
-      <h1 className="text-9xl font-black text-purple-600">
-        404
-      </h1>
-
-      <p className="text-2xl font-bold mt-4 text-[var(--text-primary)]">
-        Page Not Found
+    <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4">
+      <p className="text-sm font-bold uppercase tracking-[0.25em] text-purple-600">
+        Error 404
       </p>
 
-      <p className="text-[var(--text-muted)] mt-2 mb-8">
-        The page you are looking for doesn't exist.
+      <h1 className="mt-3 text-5xl sm:text-7xl font-black">
+        Page Not Found
+      </h1>
+
+      <p className="mt-4 max-w-lg text-[var(--text-muted)]">
+        The page you're looking for doesn't exist or may have been moved.
       </p>
 
       <Link
         to="/"
-        className="px-6 py-3 bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-700 transition"
+        className="mt-8 inline-flex items-center justify-center rounded-xl bg-purple-600 px-6 py-3 font-bold text-white transition hover:bg-purple-700"
       >
         Back to Home
       </Link>
     </div>
   );
-};
-
-function App() {
-  const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem("devzore-theme");
-
-    if (saved) {
-      return saved === "dark";
-    }
-
-    return false;
-  });
-
-  useEffect(() => {
-    const html = document.documentElement;
-
-    if (isDark) {
-      html.classList.add("dark");
-      localStorage.setItem("devzore-theme", "dark");
-    } else {
-      html.classList.remove("dark");
-      localStorage.setItem("devzore-theme", "light");
-    }
-  }, [isDark]);
-
-  const toggleTheme = () => {
-    setIsDark((prev) => !prev);
-  };
-
-  return (
-    <Router>
-      <ScrollToTop />
-      <SEOManager />
-
-      <AppContent
-        isDark={isDark}
-        toggleTheme={toggleTheme}
-      />
-    </Router>
-  );
 }
 
-const AppContent = ({
-  isDark,
-  toggleTheme,
-}) => {
-  const location = useLocation();
+function AppContent({ isDark, toggleTheme }) {
+  const { pathname } = useLocation();
 
-  const isAdminRoute =
-    location.pathname.startsWith("/admin");
+  const isAdminRoute = pathname.startsWith("/admin");
 
   return (
     <div
@@ -716,58 +410,42 @@ const AppContent = ({
 
           <Route
             path="/mern-stack-development"
-            element={
-              <MernStackDevelopment isDark={isDark} />
-            }
+            element={<MernStackDevelopment isDark={isDark} />}
           />
 
           <Route
             path="/saas-product-development"
-            element={
-              <SaaSProductDevelopment isDark={isDark} />
-            }
+            element={<SaaSProductDevelopment isDark={isDark} />}
           />
 
           <Route
             path="/reactdevelopment"
-            element={
-              <ReactDevelopment isDark={isDark} />
-            }
+            element={<ReactDevelopment isDark={isDark} />}
           />
 
           <Route
             path="/ui-ux-design"
-            element={
-              <UiUxDesign isDark={isDark} />
-            }
+            element={<UiUxDesign isDark={isDark} />}
           />
 
           <Route
             path="/maintenance"
-            element={
-              <Maintenance isDark={isDark} />
-            }
+            element={<Maintenance isDark={isDark} />}
           />
 
           <Route
             path="/startup-mvp"
-            element={
-              <StartupMVP isDark={isDark} />
-            }
+            element={<StartupMVP isDark={isDark} />}
           />
 
           <Route
             path="/seo-services"
-            element={
-              <SeoServices isDark={isDark} />
-            }
+            element={<SeoServices isDark={isDark} />}
           />
 
           <Route
             path="/digital-marketing"
-            element={
-              <DigitalMarketing isDark={isDark} />
-            }
+            element={<DigitalMarketing isDark={isDark} />}
           />
 
           <Route
@@ -787,30 +465,22 @@ const AppContent = ({
 
           <Route
             path="/blog/:slug"
-            element={
-              <BlogDetails isDark={isDark} />
-            }
+            element={<BlogDetails isDark={isDark} />}
           />
 
           <Route
             path="/privacy-policy"
-            element={
-              <PrivacyPolicy isDark={isDark} />
-            }
+            element={<PrivacyPolicy isDark={isDark} />}
           />
 
           <Route
             path="/terms-and-conditions"
-            element={
-              <Terms isDark={isDark} />
-            }
+            element={<Terms isDark={isDark} />}
           />
 
           <Route
             path="/admin/login"
-            element={
-              <AdminLogin isDark={isDark} />
-            }
+            element={<AdminLogin isDark={isDark} />}
           />
 
           <Route
@@ -824,66 +494,37 @@ const AppContent = ({
           >
             <Route
               index
-              element={
-                <Navigate
-                  to="dashboard"
-                  replace
-                />
-              }
+              element={<Navigate to="dashboard" replace />}
             />
 
             <Route
               path="dashboard"
-              element={
-                <AdminDashboard
-                  isDark={isDark}
-                />
-              }
+              element={<AdminDashboard isDark={isDark} />}
             />
 
             <Route
               path="posts"
-              element={
-                <AdminPosts
-                  isDark={isDark}
-                />
-              }
+              element={<AdminPosts isDark={isDark} />}
             />
 
             <Route
               path="posts/new"
-              element={
-                <AdminPostEditor
-                  isDark={isDark}
-                />
-              }
+              element={<AdminPostEditor isDark={isDark} />}
             />
 
             <Route
               path="posts/edit/:id"
-              element={
-                <AdminPostEditor
-                  isDark={isDark}
-                />
-              }
+              element={<AdminPostEditor isDark={isDark} />}
             />
 
             <Route
               path="categories"
-              element={
-                <AdminCategories
-                  isDark={isDark}
-                />
-              }
+              element={<AdminCategories isDark={isDark} />}
             />
 
             <Route
               path="comments"
-              element={
-                <AdminComments
-                  isDark={isDark}
-                />
-              }
+              element={<AdminComments isDark={isDark} />}
             />
           </Route>
 
@@ -894,17 +535,47 @@ const AppContent = ({
         </Routes>
       </main>
 
-      {!isAdminRoute && (
-        <Footer isDark={isDark} />
-      )}
+      {!isAdminRoute && <Footer isDark={isDark} />}
     </div>
   );
-};
+}
 
-export default function RootApp() {
+function App() {
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    return localStorage.getItem("devzore-theme") === "dark";
+  });
+
+  useEffect(() => {
+    const html = document.documentElement;
+
+    html.classList.toggle("dark", isDark);
+
+    localStorage.setItem(
+      "devzore-theme",
+      isDark ? "dark" : "light"
+    );
+  }, [isDark]);
+
+  const toggleTheme = () => {
+    setIsDark((current) => !current);
+  };
+
   return (
-    <AuthContextProvider>
-      <App />
-    </AuthContextProvider>
+    <BrowserRouter>
+      <ScrollToTop />
+
+      <SEOManager />
+
+      <AppContent
+        isDark={isDark}
+        toggleTheme={toggleTheme}
+      />
+    </BrowserRouter>
   );
 }
+
+export default App;

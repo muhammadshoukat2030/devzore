@@ -1,15 +1,21 @@
-import { HelmetProvider } from "react-helmet-async";
+import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./App.css";
-import "./index.css";
+import { HelmetProvider } from "react-helmet-async";
 
+import App from "./App";
 import AuthContextProvider from "./context/AuthContext";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <HelmetProvider>
-    <AuthContextProvider>
-      <App />
-    </AuthContextProvider>
-  </HelmetProvider>
+import "./index.css";
+import "./App.css";
+
+const rootElement = document.getElementById("root");
+
+ReactDOM.createRoot(rootElement).render(
+  <React.StrictMode>
+    <HelmetProvider>
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
+    </HelmetProvider>
+  </React.StrictMode>
 );

@@ -2,134 +2,337 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import {
-  Wrench, ArrowRight, CheckCircle, Globe,
-  Shield, Zap, Clock, Activity, RefreshCw,
-  AlertTriangle, Lock, BarChart3, Server,
-  Plus, Minus, ExternalLink, Bell, Database,
-  Settings, TrendingUp, Award, Users, Eye
+  Wrench,
+  ArrowRight,
+  CheckCircle,
+  Globe,
+  Shield,
+  Activity,
+  RefreshCw,
+  AlertTriangle,
+  BarChart3,
+  Server,
+  Plus,
+  Minus,
+  Bell,
+  Database,
+  Settings,
+  Eye,
+  Code2,
 } from 'lucide-react';
 
 const Maintenance = ({ isDark }) => {
   const d = isDark;
+
   const [activeFaq, setActiveFaq] = useState(null);
   const [activePlan, setActivePlan] = useState(1);
 
+  const whatsappUrl =
+    'https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20website%20maintenance%20and%20support.';
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const services = [
-    { icon: <Shield size={20}/>,    color: 'blue',   title: 'Security Updates & Patching',        desc: 'Regular dependency vulnerability scanning with npm audit and Snyk, critical security patch deployment within 24 hours, SSL certificate renewal, security header hardening and OWASP vulnerability remediation.' },
-    { icon: <Activity size={20}/>,  color: 'green',  title: 'Uptime Monitoring & Alerting',        desc: '24/7 uptime monitoring with Uptime Robot, Datadog or Better Uptime. Instant alerts for downtime, slow response times, certificate expiry and critical error spikes — before your users notice.' },
-    { icon: <RefreshCw size={20}/>, color: 'purple', title: 'Dependency Updates & Testing',        desc: 'Monthly npm, pip and gem dependency updates with full regression testing before deployment. Framework upgrades (React, Next.js, Node.js) managed safely with rollback plans.' },
-    { icon: <AlertTriangle size={20}/>, color: 'amber', title: 'Bug Fixing & Error Resolution',   desc: 'Sentry error monitoring with intelligent alerting, triage and resolution. Critical production bugs fixed within 24 hours. Full root cause analysis and regression tests added to prevent recurrence.' },
-    { icon: <BarChart3 size={20}/>, color: 'cyan',   title: 'Performance Optimisation',            desc: 'Monthly Lighthouse audits, Core Web Vitals monitoring, database query optimisation, Redis cache tuning, CDN configuration review and bundle analysis — keeping your product fast as it grows.' },
-    { icon: <Database size={20}/>,  color: 'indigo', title: 'Database Backup & Recovery',          desc: 'Automated daily database backups to AWS S3 or equivalent, backup integrity testing, point-in-time recovery configuration and documented disaster recovery runbooks tested quarterly.' },
-    { icon: <Settings size={20}/>,  color: 'orange', title: 'Infrastructure Management',           desc: 'Server health monitoring, disk space management, memory leak detection, log rotation, auto-scaling configuration review and cloud cost optimisation recommendations on every monthly report.' },
-    { icon: <Bell size={20}/>,      color: 'red',    title: 'Incident Response & RCA',             desc: 'On-call incident response, systematic root cause analysis, post-incident reports with timeline and actionable preventive measures — so the same issue never happens twice.' },
-    { icon: <Eye size={20}/>,       color: 'pink',   title: 'Monthly Health Reports',              desc: 'Detailed monthly reports covering uptime statistics, error rates, performance metrics, security scan results, completed work, recommendations and upcoming maintenance tasks.' },
+    {
+      icon: <Shield size={20} />,
+      color: 'blue',
+      title: 'Security Updates & Patching',
+      desc: 'Dependency reviews, security updates, SSL checks and application hardening to help reduce avoidable security risks in production.',
+    },
+    {
+      icon: <Activity size={20} />,
+      color: 'green',
+      title: 'Website & Application Monitoring',
+      desc: 'Availability, application errors and important operational signals can be monitored so technical issues are easier to identify and investigate.',
+    },
+    {
+      icon: <RefreshCw size={20} />,
+      color: 'purple',
+      title: 'Dependency & Framework Updates',
+      desc: 'Planned dependency updates for React, Next.js, Node.js and other project packages, with testing before production deployment where appropriate.',
+    },
+    {
+      icon: <AlertTriangle size={20} />,
+      color: 'amber',
+      title: 'Bug Fixing & Troubleshooting',
+      desc: 'Investigation and resolution of frontend, backend, API, database and integration issues affecting your website or web application.',
+    },
+    {
+      icon: <BarChart3 size={20} />,
+      color: 'cyan',
+      title: 'Performance Optimisation',
+      desc: 'Frontend performance reviews, bundle analysis, image optimisation, caching improvements and backend or database tuning where required.',
+    },
+    {
+      icon: <Database size={20} />,
+      color: 'indigo',
+      title: 'Backup & Recovery Support',
+      desc: 'Support for database and application backup strategies, recovery procedures and safer operational practices based on your hosting environment.',
+    },
+    {
+      icon: <Settings size={20} />,
+      color: 'orange',
+      title: 'Infrastructure Maintenance',
+      desc: 'Review and maintenance of deployment configuration, server resources, logs, environment settings and cloud infrastructure related to your application.',
+    },
+    {
+      icon: <Bell size={20} />,
+      color: 'red',
+      title: 'Issue & Incident Support',
+      desc: 'Structured investigation of production issues with clear communication, technical diagnosis and recommended steps to reduce repeat problems.',
+    },
+    {
+      icon: <Eye size={20} />,
+      color: 'pink',
+      title: 'Maintenance Reports',
+      desc: 'Clear summaries of completed maintenance work, identified issues, updates performed and recommendations for upcoming technical improvements.',
+    },
   ];
 
   const plans = [
     {
       name: 'Essential',
-      desc: 'For small business websites and simple web apps',
+      desc: 'For business websites and smaller web applications.',
       features: [
-        'Monthly security dependency updates',
-        'Uptime monitoring (1-minute intervals)',
-        'Weekly automated backups',
-        'Monthly Lighthouse performance audit',
-        'Bug fixes up to 5 hours per month',
-        'Monthly health report',
-        'Email support — response within 48 hours',
-        'SSL certificate management',
+        'Routine dependency and security reviews',
+        'Website availability monitoring',
+        'Backup configuration review',
+        'Performance health checks',
+        'General bug fixing allocation',
+        'SSL and deployment checks',
+        'Maintenance summary',
+        'Email support',
       ],
-      cta: 'Get Essential Plan',
+      cta: 'Discuss Essential',
     },
     {
       name: 'Professional',
-      desc: 'For production web applications and e-commerce',
+      desc: 'For active web applications, stores and growing digital products.',
       features: [
-        'Everything in Essential, plus:',
-        'Bi-weekly dependency updates with testing',
-        '1-minute uptime monitoring with SMS alerts',
-        'Daily automated backups with integrity testing',
-        'Bug fixes up to 10 hours per month',
-        'Critical bug response within 24 hours',
-        'Monthly Core Web Vitals optimisation',
-        'Sentry error monitoring integration',
-        'Priority email + WhatsApp support',
-        'Quarterly security penetration scan',
+        'Everything in Essential',
+        'More frequent dependency reviews',
+        'Application error monitoring',
+        'Database and API health checks',
+        'Performance optimisation work',
+        'Priority issue handling',
+        'Deployment and infrastructure support',
+        'Technical recommendations',
+        'Email and WhatsApp communication',
       ],
-      cta: 'Get Professional Plan',
-      highlighted: true,
+      cta: 'Discuss Professional',
     },
     {
-      name: 'Enterprise',
-      desc: 'For complex platforms, SaaS and high-traffic apps',
+      name: 'Advanced',
+      desc: 'For SaaS platforms and applications with broader maintenance requirements.',
       features: [
-        'Everything in Professional, plus:',
-        'Weekly dependency updates and testing',
-        '30-second uptime monitoring',
-        'Real-time error alerting with PagerDuty',
-        'Bug fixes up to 20 hours per month',
-        'Critical bug response within 4 hours',
-        'Database query optimisation monthly',
-        'Custom infrastructure monitoring',
-        'Dedicated engineer point of contact',
-        'Quarterly architecture review call',
-        'On-call incident response coverage',
+        'Everything in Professional',
+        'Custom monitoring requirements',
+        'Infrastructure health reviews',
+        'Database performance reviews',
+        'Deployment workflow support',
+        'Architecture and technical-debt reviews',
+        'Incident investigation support',
+        'Maintenance planning',
+        'Ongoing technical coordination',
       ],
-      cta: 'Get Enterprise Plan',
+      cta: 'Discuss Advanced',
     },
   ];
 
   const process = [
-    { n: '01', title: 'Onboarding & Codebase Audit', desc: 'We review your codebase, infrastructure, deployment pipeline and current monitoring setup — producing an initial health report with immediate recommendations.' },
-    { n: '02', title: 'Monitoring & Alerting Setup',  desc: 'Uptime monitoring, error tracking with Sentry, performance monitoring and alerting configured. You and we both get notified the moment anything is wrong.' },
-    { n: '03', title: 'Backup & Recovery Configuration', desc: 'Automated backup schedules configured, tested and documented. Recovery procedures validated — so you know exactly what happens if something goes wrong.' },
-    { n: '04', title: 'Monthly Maintenance Cycle',    desc: 'Security updates, dependency patches, performance audit, database maintenance and any bug fixes performed on a predictable monthly schedule.' },
-    { n: '05', title: 'Monthly Report Delivery',      desc: 'Detailed report covering uptime, errors, performance, completed work, security findings and recommendations — delivered the first week of every month.' },
-    { n: '06', title: 'Ongoing Improvement Roadmap',  desc: 'Quarterly review calls to discuss performance trends, upcoming framework updates, infrastructure improvements and feature work if needed.' },
+    {
+      n: '01',
+      title: 'Codebase & Infrastructure Review',
+      desc: 'We review the application stack, deployment setup, dependencies, database, integrations and current maintenance requirements.',
+    },
+    {
+      n: '02',
+      title: 'Maintenance Scope',
+      desc: 'We identify the areas that need ongoing attention and define a maintenance scope based on the application, hosting environment and business needs.',
+    },
+    {
+      n: '03',
+      title: 'Monitoring & Backup Review',
+      desc: 'Monitoring, logging and backup arrangements are reviewed or configured where they are part of the agreed maintenance scope.',
+    },
+    {
+      n: '04',
+      title: 'Updates & Issue Resolution',
+      desc: 'Dependencies, bugs, security concerns and operational issues are handled according to priority and the agreed maintenance plan.',
+    },
+    {
+      n: '05',
+      title: 'Testing & Deployment',
+      desc: 'Relevant changes are reviewed and tested before production deployment to reduce the risk of regressions and unexpected behaviour.',
+    },
+    {
+      n: '06',
+      title: 'Reporting & Improvement',
+      desc: 'We summarise completed work and highlight technical recommendations that can improve maintainability, security and performance over time.',
+    },
   ];
 
   const faqs = [
-    { q: 'What is included in a website maintenance plan?', a: 'A DevZore website maintenance plan covers security dependency updates, uptime monitoring with alerting, automated database backups, bug fixing hours, monthly Lighthouse performance audits, error monitoring with Sentry, Core Web Vitals tracking, SSL certificate management, monthly health reports and priority support. The exact scope depends on your chosen plan — we offer Essential, Professional and Enterprise tiers.' },
-    { q: 'How quickly do you respond to critical bugs?', a: 'On the Professional plan, critical production bugs receive a response within 24 hours. On the Enterprise plan, critical bugs receive a response within 4 hours. We define a critical bug as any issue that prevents users from completing core actions, causes data loss or takes the site offline. Routine bug fixes and improvements are handled within the monthly hours allocation.' },
-    { q: 'Can you maintain a site you did not build?', a: 'Yes. We regularly take on maintenance for websites and applications we did not build — including React, Next.js, Node.js, MERN stack and various other tech stacks. We start every new maintenance client with a codebase audit to understand the architecture, identify immediate risks and document the system. This typically takes one to two weeks before active maintenance begins.' },
-    { q: 'What monitoring tools do you use?', a: 'Our monitoring stack includes Uptime Robot or Better Uptime for availability monitoring, Sentry for error tracking and alerting, Datadog or custom dashboards for application performance monitoring, Lighthouse CI for Core Web Vitals tracking, npm audit and Snyk for security vulnerability scanning, and AWS CloudWatch or similar for infrastructure metrics.' },
-    { q: 'Do you provide emergency support outside business hours?', a: 'Enterprise plan clients receive on-call incident response coverage for critical outages. Professional plan clients receive next-business-day response for non-critical issues and 24-hour response for critical production outages. All clients can reach us via WhatsApp for urgent communication regardless of plan.' },
-    { q: 'What happens if you discover a security vulnerability?', a: 'When we discover a security vulnerability — via automated scanning, CVE databases or manual review — we assess the severity, notify you immediately for critical issues, apply the fix or mitigation, test in staging, deploy to production and include a full write-up in the monthly report. We treat all security issues as high priority regardless of plan tier.' },
-    { q: 'Can I upgrade or downgrade my maintenance plan?', a: 'Yes. You can change plans at any time with 30 days notice. We do not lock clients into long-term contracts — all plans are month-to-month. If your traffic or complexity grows significantly, we will proactively recommend an upgrade with clear justification before any issues arise.' },
-    { q: 'What is included in the monthly health report?', a: 'The monthly health report includes uptime percentage and downtime incidents, error rate trends from Sentry, Core Web Vitals scores compared to previous month, security scan results and patches applied, dependency update log, completed bug fixes and hours used, upcoming maintenance tasks and recommendations, and any infrastructure cost optimisation suggestions.' },
+    {
+      q: 'What is included in website maintenance services?',
+      a: 'Website maintenance can include dependency updates, bug fixing, security reviews, monitoring, backups, performance improvements, deployment support and technical reporting. The exact scope depends on your website or application and the maintenance arrangement you choose.',
+    },
+    {
+      q: 'Can DevZore maintain a website you did not build?',
+      a: 'Yes. We can review existing websites and web applications before taking over maintenance. We first inspect the codebase, technology stack, deployment setup and known issues so the maintenance scope can be defined properly.',
+    },
+    {
+      q: 'Which technologies can you maintain?',
+      a: 'Our maintenance work can cover modern JavaScript web applications including React, Next.js, Node.js, Express, MERN stack applications, REST APIs, databases and custom web platforms. We review each project before confirming the exact support scope.',
+    },
+    {
+      q: 'Do you provide React and Node.js maintenance?',
+      a: 'Yes. Maintenance can include React frontend issues, Node.js and Express backend work, API troubleshooting, dependency updates, database-related issues and deployment configuration.',
+    },
+    {
+      q: 'Do you provide maintenance for SaaS applications?',
+      a: 'Yes. SaaS maintenance may include frontend and backend updates, authentication issues, API integrations, database work, deployment support, monitoring and performance improvements depending on the platform architecture.',
+    },
+    {
+      q: 'Can you fix bugs in an existing web application?',
+      a: 'Yes. We can investigate frontend, backend, API, database, authentication, integration and deployment issues. We normally review the issue and relevant code first before estimating the work required.',
+    },
+    {
+      q: 'Do you monitor website uptime and application errors?',
+      a: 'Monitoring can be included in a maintenance arrangement. The exact tools and monitoring configuration depend on the application, infrastructure and level of visibility required.',
+    },
+    {
+      q: 'Do you handle website security updates?',
+      a: 'We can review dependencies, framework updates, security configuration and identified vulnerabilities as part of maintenance. Security work reduces risk, but no website or application can reasonably be described as completely risk-free.',
+    },
+    {
+      q: 'How much does website maintenance cost?',
+      a: 'Maintenance pricing depends on the technology stack, application size, existing technical condition, required support level and expected workload. After reviewing the project, DevZore can provide a maintenance scope and tailored proposal.',
+    },
+    {
+      q: 'Can I request performance optimisation as part of maintenance?',
+      a: 'Yes. Depending on the project, maintenance can include frontend optimisation, image and asset improvements, bundle reviews, caching, API performance work and database query optimisation.',
+    },
+  ];
+
+  const relatedServices = [
+    {
+      icon: <Code2 size={22} />,
+      title: 'Web Development',
+      desc: 'Modern business websites and custom web applications built around your requirements.',
+      path: '/web-development',
+    },
+    {
+      icon: <Server size={22} />,
+      title: 'Backend & API Development',
+      desc: 'Node.js, Express, REST APIs, authentication, databases and third-party integrations.',
+      path: '/backend-api',
+    },
+    {
+      icon: <Activity size={22} />,
+      title: 'SaaS Product Development',
+      desc: 'Frontend, backend and product development for scalable SaaS applications.',
+      path: '/saas-product-development',
+    },
   ];
 
   const colorMap = {
-    blue:   d ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'      : 'bg-blue-50 border-blue-100 text-blue-600',
-    green:  d ? 'bg-green-500/10 border-green-500/20 text-green-400'   : 'bg-green-50 border-green-100 text-green-600',
-    purple: d ? 'bg-purple-500/10 border-purple-500/20 text-purple-400': 'bg-purple-50 border-purple-100 text-purple-600',
-    amber:  d ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'   : 'bg-amber-50 border-amber-100 text-amber-600',
-    cyan:   d ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'      : 'bg-cyan-50 border-cyan-100 text-cyan-600',
-    indigo: d ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400': 'bg-indigo-50 border-indigo-100 text-indigo-600',
-    orange: d ? 'bg-orange-500/10 border-orange-500/20 text-orange-400': 'bg-orange-50 border-orange-100 text-orange-600',
-    red:    d ? 'bg-red-500/10 border-red-500/20 text-red-400'         : 'bg-red-50 border-red-100 text-red-600',
-    pink:   d ? 'bg-pink-500/10 border-pink-500/20 text-pink-400'      : 'bg-pink-50 border-pink-100 text-pink-600',
+    blue: d
+      ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'
+      : 'bg-blue-50 border-blue-100 text-blue-600',
+
+    green: d
+      ? 'bg-green-500/10 border-green-500/20 text-green-400'
+      : 'bg-green-50 border-green-100 text-green-600',
+
+    purple: d
+      ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
+      : 'bg-purple-50 border-purple-100 text-purple-600',
+
+    amber: d
+      ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
+      : 'bg-amber-50 border-amber-100 text-amber-600',
+
+    cyan: d
+      ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'
+      : 'bg-cyan-50 border-cyan-100 text-cyan-600',
+
+    indigo: d
+      ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'
+      : 'bg-indigo-50 border-indigo-100 text-indigo-600',
+
+    orange: d
+      ? 'bg-orange-500/10 border-orange-500/20 text-orange-400'
+      : 'bg-orange-50 border-orange-100 text-orange-600',
+
+    red: d
+      ? 'bg-red-500/10 border-red-500/20 text-red-400'
+      : 'bg-red-50 border-red-100 text-red-600',
+
+    pink: d
+      ? 'bg-pink-500/10 border-pink-500/20 text-pink-400'
+      : 'bg-pink-50 border-pink-100 text-pink-600',
   };
 
   const CtaStrip = ({ heading, sub }) => (
-    <div className={`p-8 rounded-2xl border text-center ${d ? 'bg-purple-600/5 border-purple-500/15' : 'bg-purple-50 border-purple-100'}`}>
-      <h3 className={`text-lg font-black mb-2 ${d ? 'text-white' : 'text-gray-900'}`}>{heading}</h3>
-      <p className={`text-sm mb-5 ${d ? 'text-gray-400' : 'text-gray-600'}`}>{sub}</p>
+    <div
+      className={`p-8 rounded-2xl border text-center ${
+        d
+          ? 'bg-purple-600/5 border-purple-500/15'
+          : 'bg-purple-50 border-purple-100'
+      }`}
+    >
+      <h3
+        className={`text-xl font-black mb-2 ${
+          d ? 'text-white' : 'text-gray-900'
+        }`}
+      >
+        {heading}
+      </h3>
+
+      <p
+        className={`text-sm mb-6 ${
+          d ? 'text-gray-400' : 'text-gray-600'
+        }`}
+      >
+        {sub}
+      </p>
+
       <div className="flex flex-wrap gap-3 justify-center">
-        <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_16px_rgba(124,58,237,0.3)]">
-          Get Free Audit <ArrowRight size={13}/>
+        <Link
+          to="/contact"
+          onClick={scrollTop}
+          className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+        >
+          Discuss Maintenance
+          <ArrowRight size={14} />
         </Link>
-        <a href="https://wa.me/923348004300?text=Hi DevZore! I need website maintenance services."
-          target="_blank" rel="noopener noreferrer"
-          className="flex items-center gap-2 px-5 py-2.5 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all">
-          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z"/></svg>
+
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+        >
           WhatsApp
         </a>
-        <Link to="/allservices" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className={`flex items-center gap-2 px-5 py-2.5 font-bold rounded-xl text-sm border transition-all ${d ? 'border-white/10 text-gray-300 hover:bg-white/[0.04]' : 'border-gray-200 text-gray-700 hover:bg-gray-50'}`}>
+
+        <Link
+          to="/allservices"
+          onClick={scrollTop}
+          className={`flex items-center gap-2 px-6 py-3 font-bold rounded-xl text-sm border transition-all ${
+            d
+              ? 'border-white/10 text-gray-300 hover:bg-white/[0.04]'
+              : 'border-gray-200 text-gray-700 hover:bg-gray-50'
+          }`}
+        >
           All Services
+          <ArrowRight size={14} />
         </Link>
       </div>
     </div>
@@ -138,162 +341,336 @@ const Maintenance = ({ isDark }) => {
   return (
     <>
       <Helmet>
-        <title>Website Maintenance & Support Services | Monthly Retainer | DevZore</title>
-        <meta name="description" content="Professional website maintenance and support services — security updates, uptime monitoring, bug fixes, performance optimisation, database backups and monthly reports. DevZore keeps your web application secure, fast and growing. Free site audit available." />
-        <link rel="canonical" href="https://devzore.com/maintenance" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DevZore" />
-        <meta name="keywords" content="website maintenance services, web app maintenance, website support services, monthly website maintenance, website security updates, uptime monitoring service, bug fixing service, website performance optimisation, database backup service, website maintenance company, web application support, React maintenance service, Node.js maintenance, MERN stack maintenance, SaaS maintenance support, website retainer service, monthly maintenance plan, technical support service, website health monitoring, emergency website support" />
-        <meta name="geo.region" content="PK-IS" />
-        <meta name="geo.placename" content="Islamabad" />
-        <meta name="geo.position" content="33.6844;73.0479" />
-        <meta name="ICBM" content="33.6844, 73.0479" />
-        <meta property="og:title" content="Website Maintenance & Support Services | DevZore" />
-        <meta property="og:description" content="Security updates, uptime monitoring, bug fixes and monthly reports. Keep your web app secure, fast and growing with DevZore maintenance plans." />
-        <meta property="og:url" content="https://devzore.com/maintenance" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://devzore.com/logo.png" />
-        <meta property="og:site_name" content="DevZore" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Website Maintenance & Support Services | DevZore" />
-        <meta name="twitter:description" content="Security, monitoring, bug fixes and performance. Monthly maintenance plans for web applications. Free audit." />
-        <meta name="twitter:image" content="https://devzore.com/logo.png" />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": "Website Maintenance and Support Services",
-          "alternateName": ["Web App Maintenance", "Website Support Retainer", "Monthly Maintenance Plan"],
-          "description": "DevZore provides website maintenance and support services including security updates, uptime monitoring, bug fixing, performance optimisation and monthly health reports for web applications worldwide.",
-          "url": "https://devzore.com/maintenance",
-          "provider": { "@type": "Organization", "name": "DevZore", "url": "https://devzore.com", "telephone": "+92-334-8004300", "email": "hellodevzore@gmail.com", "address": { "@type": "PostalAddress", "addressLocality": "Islamabad", "addressCountry": "PK" }, "areaServed": "Worldwide" },
-          "serviceType": "Website Maintenance",
-          "areaServed": "Worldwide",
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Maintenance Plans",
-            "itemListElement": plans.map((p, i) => ({ "@type": "Offer", "position": i + 1, "name": p.name, "description": p.desc }))
-          }
-        })}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": faqs.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }))
-        })}</script>
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://devzore.com" },
-            { "@type": "ListItem", "position": 2, "name": "All Services", "item": "https://devzore.com/allservices" },
-            { "@type": "ListItem", "position": 3, "name": "Maintenance & Support", "item": "https://devzore.com/maintenance" }
-          ]
-        })}</script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            '@id': 'https://devzore.com/maintenance#service',
+            name: 'Website Maintenance and Support Services',
+            description:
+              'Website and web application maintenance services including updates, bug fixing, monitoring, backups, performance optimisation and technical support.',
+            url: 'https://devzore.com/maintenance',
+            serviceType: 'Website Maintenance and Support',
+            provider: {
+              '@id': 'https://devzore.com/#organization',
+            },
+            areaServed: 'Worldwide',
+            hasOfferCatalog: {
+              '@type': 'OfferCatalog',
+              name: 'Website Maintenance Services',
+              itemListElement: services.map((service) => ({
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: service.title,
+                  description: service.desc,
+                },
+              })),
+            },
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqs.map((faq) => ({
+              '@type': 'Question',
+              name: faq.q,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.a,
+              },
+            })),
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://devzore.com/',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'All Services',
+                item: 'https://devzore.com/allservices',
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: 'Maintenance & Support',
+                item: 'https://devzore.com/maintenance',
+              },
+            ],
+          })}
+        </script>
       </Helmet>
 
-      <main className={`min-h-screen transition-colors duration-300 ${d ? 'bg-[#030303]' : 'bg-white'}`}>
-
-        {/* Hero */}
-        <section aria-labelledby="maint-heading" className={`pt-27 pb-10 border-b ${d ? 'border-white/[0.06]' : 'border-gray-100'}`}>
+      <div
+        className={`min-h-screen transition-colors duration-300 ${
+          d ? 'bg-[#030303]' : 'bg-white'
+        }`}
+      >
+        {/* HERO */}
+        <section
+          aria-labelledby="maintenance-heading"
+          className={`pt-28 pb-16 border-b ${
+            d ? 'border-white/[0.06]' : 'border-gray-100'
+          }`}
+        >
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div>
                 <div className="flex flex-wrap gap-3 mb-6">
-                  <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border ${d ? 'bg-purple-600/10 border-purple-500/20 text-purple-400' : 'bg-purple-50 border-purple-200 text-purple-700'}`}>
-                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"/> Currently Accepting Clients
+                  <div
+                    className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border ${
+                      d
+                        ? 'bg-purple-600/10 border-purple-500/20 text-purple-400'
+                        : 'bg-purple-50 border-purple-200 text-purple-700'
+                    }`}
+                  >
+                    <Wrench size={12} />
+                    Maintenance & Support
                   </div>
-                  <div className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold border ${d ? 'bg-green-500/10 border-green-500/20 text-green-400' : 'bg-green-50 border-green-200 text-green-700'}`}>
-                    <Globe size={10}/> Worldwide Clients
+
+                  <div
+                    className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold border ${
+                      d
+                        ? 'bg-green-500/10 border-green-500/20 text-green-400'
+                        : 'bg-green-50 border-green-200 text-green-700'
+                    }`}
+                  >
+                    <Globe size={11} />
+                    Available Worldwide
                   </div>
                 </div>
 
-                <h1 id="maint-heading" className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4 ${d ? 'text-white' : 'text-gray-900'}`}>
+                <h1
+                  id="maintenance-heading"
+                  className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-5 ${
+                    d ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
                   Website Maintenance &{' '}
-                  <span className="text-purple-600">Support Services</span> That Keep You Online
+                  <span className="text-purple-600">
+                    Support Services
+                  </span>
                 </h1>
 
-                <h2 className={`text-lg font-semibold mb-5 ${d ? 'text-gray-300' : 'text-gray-700'}`}>
-                  Security Updates · Uptime Monitoring · Bug Fixes · Performance · Monthly Reports · Worldwide
-                </h2>
-
-                <p className={`text-base leading-relaxed mb-5 ${d ? 'text-gray-400' : 'text-gray-600'}`}>
-                  DevZore provides professional website maintenance and web application support services
-                  for businesses worldwide. Our maintenance plans cover everything a live web product
-                  needs to stay secure, fast and available — security patches, uptime monitoring,
-                  bug fixing, performance optimisation, database backups and detailed monthly reports.
+                <p
+                  className={`text-lg font-semibold mb-5 ${
+                    d ? 'text-gray-300' : 'text-gray-700'
+                  }`}
+                >
+                  Updates · Monitoring · Bug Fixes · Backups · Performance ·
+                  Technical Support
                 </p>
 
-                <p className={`text-base leading-relaxed mb-5 ${d ? 'text-gray-400' : 'text-gray-600'}`}>
-                  We maintain React, Next.js, Node.js, MERN stack, SaaS platforms and custom web
-                  applications — whether we built them or not. Our monitoring stack catches issues
-                  before your users do, and our response times mean problems get solved, not escalated.
+                <p
+                  className={`text-base leading-relaxed mb-5 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  DevZore provides website maintenance and web application
+                  support for businesses that need ongoing technical care after
+                  launch. We help maintain modern websites, dashboards, APIs,
+                  SaaS products and custom web applications.
                 </p>
 
-                <p className={`text-base leading-relaxed mb-8 ${d ? 'text-gray-500' : 'text-gray-500'}`}>
-                  Month-to-month plans, no long-term contracts, transparent monthly reports and
-                  a dedicated team who treats your product like it is their own.
+                <p
+                  className={`text-base leading-relaxed mb-8 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  Our maintenance work can cover React, Next.js, Node.js,
+                  Express, MERN stack applications, databases, APIs,
+                  integrations and deployment environments. Existing projects
+                  can also be reviewed before maintenance begins.
                 </p>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
                   {[
-                    { val: '99.9%', label: 'Uptime Target' },
-                    { val: '24hr',  label: 'Critical Response' },
-                    { val: '5.0',   label: 'Client Rating' },
-                    { val: '0',     label: 'Long-term Contracts' },
-                  ].map((s, i) => (
-                    <div key={i} className={`p-3 rounded-xl border text-center ${d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-gray-50 border-gray-200'}`}>
-                      <div className={`text-xl font-black ${d ? 'text-white' : 'text-gray-900'}`}>{s.val}</div>
-                      <div className={`text-[10px] ${d ? 'text-gray-500' : 'text-gray-400'}`}>{s.label}</div>
-                    </div>
-                  ))}
-                </div>
+                    {
+                      icon: <Shield size={18} />,
+                      title: 'Security',
+                      label: 'Updates & reviews',
+                    },
+                    {
+                      icon: <Activity size={18} />,
+                      title: 'Monitoring',
+                      label: 'Application health',
+                    },
+                    {
+                      icon: <Wrench size={18} />,
+                      title: 'Support',
+                      label: 'Bug resolution',
+                    },
+                    {
+                      icon: <RefreshCw size={18} />,
+                      title: 'Updates',
+                      label: 'Ongoing maintenance',
+                    },
+                  ].map((item) => (
+                    <div
+                      key={item.title}
+                      className={`p-4 rounded-xl border ${
+                        d
+                          ? 'bg-white/[0.02] border-white/[0.06]'
+                          : 'bg-gray-50 border-gray-200'
+                      }`}
+                    >
+                      <div className="text-purple-500 mb-2">
+                        {item.icon}
+                      </div>
 
-                <div className="flex flex-wrap gap-3 mb-4">
-                  <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]">
-                    Get Free Site Audit <ArrowRight size={14}/>
-                  </Link>
-                  <a href="https://wa.me/923348004300?text=Hi DevZore! I need website maintenance services."
-                    target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all">
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z"/></svg>
-                    WhatsApp
-                  </a>
-                  <Link to="/allservices" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className={`flex items-center gap-2 px-5 py-3 font-bold rounded-xl text-sm border transition-all ${d ? 'border-white/10 text-gray-300 hover:bg-white/[0.04]' : 'border-gray-200 text-gray-700 hover:bg-gray-50'}`}>
-                    All Services
-                  </Link>
-                </div>
-                <p className={`text-[12px] ${d ? 'text-gray-600' : 'text-gray-400'}`}>
-                  ⚡ Free initial audit · Month-to-month · No lock-in contracts · We can maintain sites we did not build
-                </p>
-              </div>
+                      <div
+                        className={`text-sm font-black ${
+                          d ? 'text-white' : 'text-gray-900'
+                        }`}
+                      >
+                        {item.title}
+                      </div>
 
-              {/* Right: Why maintenance matters */}
-              <div className={`p-8 rounded-3xl border ${d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-[#fafafa] border-gray-200'}`}>
-                <p className={`text-[11px] font-black uppercase tracking-widest mb-6 ${d ? 'text-gray-500' : 'text-gray-400'}`}>
-                  What Happens Without Maintenance
-                </p>
-                <div className="space-y-4">
-                  {[
-                    { icon: '🔓', issue: 'Security vulnerabilities accumulate',      consequence: 'npm packages have known CVEs within 90 days on average — exploited within weeks.' },
-                    { icon: '🐌', issue: 'Performance degrades silently',            consequence: 'Every 100ms of load time reduces conversion by 1%. Most degradation is invisible until it is severe.' },
-                    { icon: '📦', issue: 'Dependencies fall critically behind',      consequence: 'Packages more than 2 major versions behind often cannot be updated safely — requiring expensive rewrites.' },
-                    { icon: '💥', issue: 'Unmonitored errors accumulate',           consequence: 'Without Sentry, hundreds of users may hit errors you never know about — silently churning.' },
-                    { icon: '🚨', issue: 'Downtime goes undetected',               consequence: 'Without monitoring, you learn about outages from angry customers — not from your own systems.' },
-                    { icon: '💾', issue: 'No backup = no recovery',                consequence: 'Database corruption, accidental deletion or hosting failure with no backups means permanent data loss.' },
-                  ].map((item, i) => (
-                    <div key={i} className={`flex items-start gap-3 p-3 rounded-lg border ${d ? 'bg-white/[0.02] border-white/[0.05]' : 'bg-white border-gray-100'}`}>
-                      <span className="text-lg flex-shrink-0">{item.icon}</span>
-                      <div>
-                        <p className={`text-[12px] font-bold mb-0.5 ${d ? 'text-white' : 'text-gray-900'}`}>{item.issue}</p>
-                        <p className={`text-[11px] ${d ? 'text-gray-500' : 'text-gray-500'}`}>{item.consequence}</p>
+                      <div
+                        className={`text-[10px] mt-1 ${
+                          d ? 'text-gray-500' : 'text-gray-500'
+                        }`}
+                      >
+                        {item.label}
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className={`mt-5 p-3 rounded-xl ${d ? 'bg-green-500/10' : 'bg-green-50'}`}>
-                  <p className={`text-[11px] font-semibold text-center ${d ? 'text-green-400' : 'text-green-700'}`}>
-                    ✅ DevZore maintenance prevents all of the above — proactively
+
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    to="/contact"
+                    onClick={scrollTop}
+                    className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                  >
+                    Discuss Maintenance
+                    <ArrowRight size={14} />
+                  </Link>
+
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+                  >
+                    WhatsApp
+                  </a>
+
+                  <Link
+                    to="/allservices"
+                    onClick={scrollTop}
+                    className={`flex items-center gap-2 px-6 py-3 font-bold rounded-xl text-sm border transition-all ${
+                      d
+                        ? 'border-white/10 text-gray-300 hover:bg-white/[0.04]'
+                        : 'border-gray-200 text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    All Services
+                  </Link>
+                </div>
+              </div>
+
+              {/* RIGHT PANEL */}
+              <div
+                className={`p-7 lg:p-8 rounded-3xl border ${
+                  d
+                    ? 'bg-white/[0.02] border-white/[0.06]'
+                    : 'bg-[#fafafa] border-gray-200'
+                }`}
+              >
+                <p
+                  className={`text-[11px] font-black uppercase tracking-widest mb-6 ${
+                    d ? 'text-gray-500' : 'text-gray-400'
+                  }`}
+                >
+                  Ongoing Maintenance Can Help With
+                </p>
+
+                <div className="space-y-3">
+                  {[
+                    {
+                      title: 'Outdated dependencies',
+                      desc: 'Review and update packages as the application evolves.',
+                    },
+                    {
+                      title: 'Production bugs',
+                      desc: 'Investigate application errors and unexpected behaviour.',
+                    },
+                    {
+                      title: 'Performance issues',
+                      desc: 'Identify frontend, backend and database bottlenecks.',
+                    },
+                    {
+                      title: 'Deployment problems',
+                      desc: 'Review build, environment and hosting configuration.',
+                    },
+                    {
+                      title: 'Security maintenance',
+                      desc: 'Review updates, dependencies and application configuration.',
+                    },
+                    {
+                      title: 'Backup readiness',
+                      desc: 'Review backup and recovery arrangements for important data.',
+                    },
+                  ].map((item) => (
+                    <div
+                      key={item.title}
+                      className={`flex items-start gap-3 p-4 rounded-xl border ${
+                        d
+                          ? 'bg-white/[0.02] border-white/[0.05]'
+                          : 'bg-white border-gray-100'
+                      }`}
+                    >
+                      <CheckCircle
+                        size={15}
+                        className="text-purple-500 flex-shrink-0 mt-0.5"
+                      />
+
+                      <div>
+                        <p
+                          className={`text-[13px] font-bold mb-1 ${
+                            d ? 'text-white' : 'text-gray-900'
+                          }`}
+                        >
+                          {item.title}
+                        </p>
+
+                        <p
+                          className={`text-[11px] leading-relaxed ${
+                            d ? 'text-gray-500' : 'text-gray-500'
+                          }`}
+                        >
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className={`mt-5 p-4 rounded-xl ${
+                    d ? 'bg-purple-500/10' : 'bg-purple-50'
+                  }`}
+                >
+                  <p
+                    className={`text-[12px] font-semibold text-center ${
+                      d ? 'text-purple-300' : 'text-purple-700'
+                    }`}
+                  >
+                    Existing applications can be reviewed before an ongoing
+                    maintenance plan is defined.
                   </p>
                 </div>
               </div>
@@ -301,243 +678,641 @@ const Maintenance = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Mid CTA */}
-        <div className={`py-6 border-b ${d ? 'border-white/[0.06] bg-green-500/5' : 'border-gray-100 bg-green-50'}`}>
-          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <p className={`font-black text-base ${d ? 'text-white' : 'text-gray-900'}`}>Your site has not been audited recently?</p>
-              <p className={`text-sm ${d ? 'text-gray-400' : 'text-gray-600'}`}>Free security and performance audit — we will show you exactly what needs attention</p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm">
-                Free Audit <ArrowRight size={13}/>
-              </Link>
-              <a href="https://wa.me/923348004300" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] font-bold rounded-xl text-sm">
-                WhatsApp <ArrowRight size={13}/>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Services */}
-        <section aria-labelledby="services-heading" className={`py-10 border-b ${d ? 'border-white/[0.06] bg-[#050505]' : 'border-gray-100 bg-[#fafafa]'}`}>
+        {/* SERVICES */}
+        <section
+          aria-labelledby="services-heading"
+          className={`py-16 border-b ${
+            d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-gray-100 bg-[#fafafa]'
+          }`}
+        >
           <div className="max-w-7xl mx-auto px-6">
             <div className="max-w-3xl mb-12">
-              <h2 id="services-heading" className={`text-3xl font-black mb-4 ${d ? 'text-white' : 'text-gray-900'}`}>
-                What Our Maintenance Service Covers
+              <p className="text-purple-500 text-xs font-black uppercase tracking-[0.2em] mb-3">
+                Maintenance Services
+              </p>
+
+              <h2
+                id="services-heading"
+                className={`text-3xl font-black mb-4 ${
+                  d ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                Website & Web Application Maintenance
               </h2>
-              <p className={`text-base leading-relaxed ${d ? 'text-gray-400' : 'text-gray-600'}`}>
-                Every maintenance plan includes a core set of proactive services — keeping your product
-                secure, fast and available without you having to think about it.
+
+              <p
+                className={`text-base leading-relaxed ${
+                  d ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                Maintenance can be tailored around the technologies, risks and
+                operational requirements of your existing website or
+                application.
               </p>
             </div>
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {services.map((item, i) => (
-                <div key={i} className={`p-6 rounded-2xl border transition-all hover:border-purple-500/25 ${d ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]' : 'bg-white border-gray-200 hover:shadow-sm'}`}>
-                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${colorMap[item.color]}`}>{item.icon}</div>
-                  <h3 className={`text-[14px] font-bold mb-2 ${d ? 'text-white' : 'text-gray-900'}`}>{item.title}</h3>
-                  <p className={`text-[13px] leading-relaxed ${d ? 'text-gray-400' : 'text-gray-600'}`}>{item.desc}</p>
+              {services.map((item) => (
+                <div
+                  key={item.title}
+                  className={`p-6 rounded-2xl border transition-all hover:border-purple-500/25 ${
+                    d
+                      ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]'
+                      : 'bg-white border-gray-200 hover:shadow-sm'
+                  }`}
+                >
+                  <div
+                    className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${
+                      colorMap[item.color]
+                    }`}
+                  >
+                    {item.icon}
+                  </div>
+
+                  <h3
+                    className={`text-[14px] font-bold mb-2 ${
+                      d ? 'text-white' : 'text-gray-900'
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
+
+                  <p
+                    className={`text-[13px] leading-relaxed ${
+                      d ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Plans */}
-        <section aria-labelledby="plans-heading" className={`py-10 border-b ${d ? 'border-white/[0.06]' : 'border-gray-100'}`}>
+        {/* SUPPORT OPTIONS */}
+        <section
+          aria-labelledby="plans-heading"
+          className={`py-16 border-b ${
+            d ? 'border-white/[0.06]' : 'border-gray-100'
+          }`}
+        >
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 id="plans-heading" className={`text-3xl font-black mb-3 ${d ? 'text-white' : 'text-gray-900'}`}>
-                Maintenance Plans
-              </h2>
-              <p className={`text-base max-w-xl mx-auto mb-2 ${d ? 'text-gray-400' : 'text-gray-600'}`}>
-                Month-to-month plans — no long-term contracts. Upgrade or cancel anytime.
+              <p className="text-purple-500 text-xs font-black uppercase tracking-[0.2em] mb-3">
+                Flexible Support
               </p>
-              <p className={`text-sm ${d ? 'text-gray-600' : 'text-gray-400'}`}>
-                Contact us for exact pricing — every plan is customised to your stack and needs
+
+              <h2
+                id="plans-heading"
+                className={`text-3xl font-black mb-3 ${
+                  d ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                Maintenance Support Options
+              </h2>
+
+              <p
+                className={`text-base max-w-2xl mx-auto ${
+                  d ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                The final maintenance scope and pricing depend on your
+                application, technology stack and support requirements.
               </p>
             </div>
 
-            {/* Plan tabs */}
-            <div className="flex justify-center gap-2 mb-8">
-              {plans.map((plan, i) => (
-                <button key={i} onClick={() => setActivePlan(i)}
-                  className={`px-5 py-2 rounded-lg text-[12px] font-bold transition-all border ${
-                    activePlan === i
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {plans.map((plan, index) => (
+                <button
+                  key={plan.name}
+                  type="button"
+                  onClick={() => setActivePlan(index)}
+                  className={`px-5 py-2.5 rounded-lg text-[12px] font-bold transition-all border ${
+                    activePlan === index
                       ? 'bg-purple-600 text-white border-purple-600'
-                      : d ? 'bg-white/[0.03] border-white/[0.08] text-gray-400 hover:text-white' : 'bg-white border-gray-200 text-gray-500 hover:text-gray-900'
-                  }`}>
+                      : d
+                        ? 'bg-white/[0.03] border-white/[0.08] text-gray-400 hover:text-white'
+                        : 'bg-white border-gray-200 text-gray-500 hover:text-gray-900'
+                  }`}
+                >
                   {plan.name}
                 </button>
               ))}
             </div>
 
-            {/* Active plan */}
-            <div className={`max-w-2xl mx-auto p-8 rounded-3xl border ${
-              plans[activePlan].highlighted
-                ? d ? 'border-purple-500/40 bg-purple-600/5' : 'border-purple-200 bg-purple-50'
-                : d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-[#fafafa] border-gray-200'
-            }`}>
-              {plans[activePlan].highlighted && (
-                <div className="text-center mb-4">
-                  <span className="inline-block px-4 py-1 bg-purple-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full">
-                    Most Popular
-                  </span>
-                </div>
-              )}
-              <h3 className={`text-2xl font-black mb-1 ${d ? 'text-white' : 'text-gray-900'}`}>{plans[activePlan].name}</h3>
-              <p className={`text-sm mb-6 ${d ? 'text-gray-400' : 'text-gray-600'}`}>{plans[activePlan].desc}</p>
+            <div
+              className={`max-w-2xl mx-auto p-7 md:p-8 rounded-3xl border ${
+                activePlan === 1
+                  ? d
+                    ? 'border-purple-500/40 bg-purple-600/5'
+                    : 'border-purple-200 bg-purple-50'
+                  : d
+                    ? 'bg-white/[0.02] border-white/[0.06]'
+                    : 'bg-[#fafafa] border-gray-200'
+              }`}
+            >
+              <h3
+                className={`text-2xl font-black mb-2 ${
+                  d ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                {plans[activePlan].name}
+              </h3>
+
+              <p
+                className={`text-sm mb-7 ${
+                  d ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                {plans[activePlan].desc}
+              </p>
+
               <div className="space-y-3 mb-8">
-                {plans[activePlan].features.map((feature, i) => (
-                  <div key={i} className={`flex items-center gap-3 text-[13px] ${d ? 'text-gray-300' : 'text-gray-700'}`}>
-                    <CheckCircle size={14} className="text-purple-500 flex-shrink-0"/>
-                    {feature}
+                {plans[activePlan].features.map((feature) => (
+                  <div
+                    key={feature}
+                    className={`flex items-start gap-3 text-[13px] ${
+                      d ? 'text-gray-300' : 'text-gray-700'
+                    }`}
+                  >
+                    <CheckCircle
+                      size={14}
+                      className="text-purple-500 flex-shrink-0 mt-0.5"
+                    />
+
+                    <span>{feature}</span>
                   </div>
                 ))}
               </div>
+
               <div className="flex flex-wrap gap-3">
-                <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_16px_rgba(124,58,237,0.3)]">
-                  {plans[activePlan].cta} <ArrowRight size={13}/>
+                <Link
+                  to="/contact"
+                  onClick={scrollTop}
+                  className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all"
+                >
+                  {plans[activePlan].cta}
+                  <ArrowRight size={13} />
                 </Link>
-                <a href="https://wa.me/923348004300?text=Hi DevZore! I am interested in the maintenance plan."
-                  target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm">
-                  Discuss via WhatsApp
+
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+                >
+                  Discuss on WhatsApp
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Process */}
-        <section aria-labelledby="process-heading" className={`py-10 border-b ${d ? 'border-white/[0.06] bg-[#050505]' : 'border-gray-100 bg-[#fafafa]'}`}>
+        {/* PROCESS */}
+        <section
+          aria-labelledby="process-heading"
+          className={`py-16 border-b ${
+            d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-gray-100 bg-[#fafafa]'
+          }`}
+        >
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 id="process-heading" className={`text-3xl font-black mb-3 ${d ? 'text-white' : 'text-gray-900'}`}>How Our Maintenance Service Works</h2>
-              <p className={`text-base max-w-2xl mx-auto ${d ? 'text-gray-400' : 'text-gray-600'}`}>From onboarding to ongoing monthly care — a transparent, predictable process</p>
+              <p className="text-purple-500 text-xs font-black uppercase tracking-[0.2em] mb-3">
+                Our Process
+              </p>
+
+              <h2
+                id="process-heading"
+                className={`text-3xl font-black mb-3 ${
+                  d ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                How Website Maintenance Works
+              </h2>
+
+              <p
+                className={`text-base max-w-2xl mx-auto ${
+                  d ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                A structured process for understanding, maintaining and
+                improving an existing application.
+              </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-              {process.map((step, i) => (
-                <div key={i} className={`p-6 rounded-2xl border ${d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-white border-gray-200'}`}>
-                  <div className={`text-[13px] font-black mb-3 ${d ? 'text-purple-400' : 'text-purple-600'}`}>{step.n}</div>
-                  <h3 className={`text-[14px] font-bold mb-2 ${d ? 'text-white' : 'text-gray-900'}`}>{step.title}</h3>
-                  <p className={`text-[13px] leading-relaxed ${d ? 'text-gray-400' : 'text-gray-600'}`}>{step.desc}</p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+              {process.map((step) => (
+                <div
+                  key={step.n}
+                  className={`p-6 rounded-2xl border ${
+                    d
+                      ? 'bg-white/[0.02] border-white/[0.06]'
+                      : 'bg-white border-gray-200'
+                  }`}
+                >
+                  <div
+                    className={`text-[13px] font-black mb-3 ${
+                      d ? 'text-purple-400' : 'text-purple-600'
+                    }`}
+                  >
+                    {step.n}
+                  </div>
+
+                  <h3
+                    className={`text-[14px] font-bold mb-2 ${
+                      d ? 'text-white' : 'text-gray-900'
+                    }`}
+                  >
+                    {step.title}
+                  </h3>
+
+                  <p
+                    className={`text-[13px] leading-relaxed ${
+                      d ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    {step.desc}
+                  </p>
                 </div>
               ))}
             </div>
-            <CtaStrip heading="Ready to hand off your maintenance?" sub="Free initial audit. Month-to-month. No contracts. We respond within 24 hours." />
+
+            <CtaStrip
+              heading="Need ongoing technical support for your website?"
+              sub="Share your current stack and maintenance requirements with DevZore so we can review the right support approach."
+            />
+          </div>
+        </section>
+
+        {/* SEARCH INTENT CONTENT */}
+        <section
+          className={`py-16 border-b ${
+            d ? 'border-white/[0.06]' : 'border-gray-100'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-8">
+              <div>
+                <p className="text-purple-500 text-xs font-black uppercase tracking-[0.2em] mb-3">
+                  Technical Maintenance
+                </p>
+
+                <h2
+                  className={`text-3xl font-black mb-4 ${
+                    d ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                  Maintenance for React, Node.js, MERN & SaaS Applications
+                </h2>
+
+                <p
+                  className={`text-base leading-relaxed mb-6 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  Modern web application maintenance goes beyond changing
+                  content. Frontend packages, APIs, authentication, databases,
+                  integrations, deployment settings and hosting infrastructure
+                  may all require ongoing technical attention.
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    'React Maintenance',
+                    'Next.js Support',
+                    'Node.js Maintenance',
+                    'MERN Stack Support',
+                    'SaaS Maintenance',
+                    'API Support',
+                    'Database Maintenance',
+                    'Bug Fixing',
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className={`text-[11px] font-semibold px-3 py-1.5 rounded-lg border ${
+                        d
+                          ? 'bg-white/[0.03] border-white/[0.08] text-gray-300'
+                          : 'bg-gray-50 border-gray-200 text-gray-700'
+                      }`}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div
+                className={`p-7 rounded-2xl border ${
+                  d
+                    ? 'bg-white/[0.02] border-white/[0.06]'
+                    : 'bg-[#fafafa] border-gray-200'
+                }`}
+              >
+                <h3
+                  className={`text-lg font-black mb-5 ${
+                    d ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                  Projects We Can Review
+                </h3>
+
+                <div className="space-y-3">
+                  {[
+                    'Business websites and web applications',
+                    'React and Next.js applications',
+                    'Node.js and Express backends',
+                    'MERN stack applications',
+                    'SaaS products and dashboards',
+                    'E-commerce applications',
+                    'REST APIs and integrations',
+                    'Existing custom software projects',
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className={`flex items-center gap-3 text-sm ${
+                        d ? 'text-gray-300' : 'text-gray-700'
+                      }`}
+                    >
+                      <CheckCircle
+                        size={14}
+                        className="text-purple-500 flex-shrink-0"
+                      />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* FAQ */}
-        <section aria-labelledby="faq-heading" className={`py-20 border-b ${d ? 'border-white/[0.06]' : 'border-gray-100'}`}>
+        <section
+          aria-labelledby="faq-heading"
+          className={`py-16 border-b ${
+            d ? 'border-white/[0.06]' : 'border-gray-100'
+          }`}
+        >
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 id="faq-heading" className={`text-3xl font-black mb-3 ${d ? 'text-white' : 'text-gray-900'}`}>Maintenance & Support FAQ</h2>
-              <p className={`text-base ${d ? 'text-gray-400' : 'text-gray-600'}`}>Common questions about our website maintenance service</p>
+              <p className="text-purple-500 text-xs font-black uppercase tracking-[0.2em] mb-3">
+                FAQ
+              </p>
+
+              <h2
+                id="faq-heading"
+                className={`text-3xl font-black mb-3 ${
+                  d ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                Website Maintenance & Support FAQ
+              </h2>
+
+              <p
+                className={`text-base ${
+                  d ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                Common questions about maintaining existing websites and web
+                applications.
+              </p>
             </div>
-            <div className="space-y-3 mb-10">
-              {faqs.map((faq, i) => (
-                <div key={i} className={`rounded-xl border overflow-hidden transition-all duration-300 ${activeFaq === i ? d ? 'border-purple-500/40 bg-purple-600/5' : 'border-purple-200 bg-purple-50/50' : d ? 'border-white/[0.06] bg-white/[0.02]' : 'border-gray-200 bg-white'}`}>
-                  <button onClick={() => setActiveFaq(activeFaq === i ? null : i)} aria-expanded={activeFaq === i}
-                    className="w-full p-5 text-left flex items-start justify-between gap-4">
-                    <span className={`text-[14px] font-bold ${activeFaq === i ? 'text-purple-500' : d ? 'text-white' : 'text-gray-900'}`}>{faq.q}</span>
-                    <div className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${activeFaq === i ? 'bg-purple-600 text-white' : d ? 'bg-white/[0.06] text-gray-500' : 'bg-gray-100 text-gray-500'}`}>
-                      {activeFaq === i ? <Minus size={13}/> : <Plus size={13}/>}
-                    </div>
-                  </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${activeFaq === i ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <div className={`px-5 pb-5 pt-0 border-t text-[14px] leading-relaxed ${d ? 'border-white/[0.06] text-gray-400' : 'border-purple-100 text-gray-600'}`}>
-                      <p className="pt-4">{faq.a}</p>
+
+            <div className="space-y-3 mb-12">
+              {faqs.map((faq, index) => {
+                const isOpen = activeFaq === index;
+
+                return (
+                  <div
+                    key={faq.q}
+                    className={`rounded-xl border overflow-hidden transition-all duration-300 ${
+                      isOpen
+                        ? d
+                          ? 'border-purple-500/40 bg-purple-600/5'
+                          : 'border-purple-200 bg-purple-50/50'
+                        : d
+                          ? 'border-white/[0.06] bg-white/[0.02]'
+                          : 'border-gray-200 bg-white'
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveFaq(isOpen ? null : index)
+                      }
+                      aria-expanded={isOpen}
+                      className="w-full p-5 text-left flex items-start justify-between gap-4"
+                    >
+                      <span
+                        className={`text-[14px] font-bold ${
+                          isOpen
+                            ? 'text-purple-500'
+                            : d
+                              ? 'text-white'
+                              : 'text-gray-900'
+                        }`}
+                      >
+                        {faq.q}
+                      </span>
+
+                      <div
+                        className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${
+                          isOpen
+                            ? 'bg-purple-600 text-white'
+                            : d
+                              ? 'bg-white/[0.06] text-gray-500'
+                              : 'bg-gray-100 text-gray-500'
+                        }`}
+                      >
+                        {isOpen ? (
+                          <Minus size={13} />
+                        ) : (
+                          <Plus size={13} />
+                        )}
+                      </div>
+                    </button>
+
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ${
+                        isOpen
+                          ? 'max-h-[500px] opacity-100'
+                          : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <div
+                        className={`px-5 pb-5 border-t text-[14px] leading-relaxed ${
+                          d
+                            ? 'border-white/[0.06] text-gray-400'
+                            : 'border-purple-100 text-gray-600'
+                        }`}
+                      >
+                        <p className="pt-4">{faq.a}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
-            <CtaStrip heading="Questions about maintenance plans?" sub="Talk to us directly — free consultation, no commitment. We respond within 24 hours." />
+
+            <CtaStrip
+              heading="Have a maintenance question?"
+              sub="Tell us about your website, application stack or current technical problem and we can discuss the next step."
+            />
           </div>
         </section>
 
-        {/* Internal Links */}
-        <section aria-label="Related services" className={`py-12 border-b ${d ? 'border-white/[0.06] bg-[#050505]' : 'border-gray-100 bg-[#fafafa]'}`}>
+        {/* RELATED SERVICES */}
+        <section
+          aria-label="Related services"
+          className={`py-16 border-b ${
+            d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-gray-100 bg-[#fafafa]'
+          }`}
+        >
           <div className="max-w-7xl mx-auto px-6">
-            <p className={`text-[11px] font-black uppercase tracking-widest mb-5 ${d ? 'text-gray-600' : 'text-gray-400'}`}>Related Services</p>
-            <div className="flex flex-wrap gap-3">
-              {[
-                { label: 'Web Development',         path: '/web-development' },
-                { label: 'Backend & API',            path: '/backend-api' },
-                { label: 'React Development',        path: '/reactdevelopment' },
-                { label: 'MERN Stack Development',   path: '/mern-stack-development' },
-                { label: 'SaaS Development',          path: '/saas-product-development' },
-                { label: 'Mobile App Development',   path: '/mobile-apps' },
-                { label: 'E-Commerce Development',   path: '/ecommerce' },
-                { label: 'UI/UX Design',             path: '/ui-ux-design' },
-                { label: 'All Services',             path: '/allservices' },
-              ].map((link, i) => (
-                <Link key={i} to={link.path} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className={`flex items-center gap-1.5 text-[12px] font-semibold px-4 py-2 rounded-lg border transition-all ${d ? 'bg-white/[0.03] border-white/[0.08] text-gray-400 hover:border-purple-500/30 hover:text-purple-400' : 'bg-white border-gray-200 text-gray-600 hover:border-purple-200 hover:text-purple-700'}`}>
-                  {link.label} <ExternalLink size={10}/>
+            <div className="mb-8">
+              <p className="text-purple-500 text-xs font-black uppercase tracking-[0.2em] mb-3">
+                Related Services
+              </p>
+
+              <h2
+                className={`text-2xl md:text-3xl font-black ${
+                  d ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                Explore Related Development Services
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-5">
+              {relatedServices.map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  onClick={scrollTop}
+                  className={`group p-6 rounded-2xl border transition-all ${
+                    d
+                      ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-purple-500/30'
+                      : 'bg-white border-gray-200 hover:border-purple-200 hover:shadow-sm'
+                  }`}
+                >
+                  <div
+                    className={`w-11 h-11 rounded-xl border flex items-center justify-center mb-5 ${
+                      d
+                        ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
+                        : 'bg-purple-50 border-purple-100 text-purple-600'
+                    }`}
+                  >
+                    {service.icon}
+                  </div>
+
+                  <h3
+                    className={`text-lg font-black mb-2 ${
+                      d ? 'text-white' : 'text-gray-900'
+                    }`}
+                  >
+                    {service.title}
+                  </h3>
+
+                  <p
+                    className={`text-sm leading-relaxed mb-5 ${
+                      d ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    {service.desc}
+                  </p>
+
+                  <span className="inline-flex items-center gap-2 text-sm font-bold text-purple-500 group-hover:gap-3 transition-all">
+                    Learn More
+                    <ArrowRight size={14} />
+                  </span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="py-10">
+        {/* FINAL CTA */}
+        <section className="py-16">
           <div className="max-w-4xl mx-auto px-6">
-            <div className={`p-10 rounded-3xl border text-center ${d ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-[#fafafa] border-gray-200'}`}>
-              <h2 className={`text-3xl font-black mb-4 ${d ? 'text-white' : 'text-gray-900'}`}>
-                Stop Worrying About Your Website
+            <div
+              className={`p-8 md:p-10 rounded-3xl border text-center ${
+                d
+                  ? 'bg-white/[0.02] border-white/[0.06]'
+                  : 'bg-[#fafafa] border-gray-200'
+              }`}
+            >
+              <div
+                className={`w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-6 ${
+                  d
+                    ? 'bg-purple-500/10 text-purple-400'
+                    : 'bg-purple-50 text-purple-600'
+                }`}
+              >
+                <Wrench size={26} />
+              </div>
+
+              <h2
+                className={`text-3xl font-black mb-4 ${
+                  d ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                Need Reliable Website Maintenance?
               </h2>
-              <p className={`text-base mb-3 max-w-xl mx-auto ${d ? 'text-gray-400' : 'text-gray-600'}`}>
-                Security updates, monitoring, bug fixes, performance and monthly reports — all handled.
-                Month-to-month plans, no contracts, free initial audit.
+
+              <p
+                className={`text-base mb-8 max-w-2xl mx-auto leading-relaxed ${
+                  d ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                Tell us about your website or web application. DevZore can
+                review the technology stack, current issues and ongoing support
+                requirements before recommending a suitable maintenance
+                approach.
               </p>
-              <p className={`text-[13px] mb-8 ${d ? 'text-gray-600' : 'text-gray-400'}`}>
-                99.9% Uptime · 24hr Bug Response · Monthly Reports · No Lock-in Contracts · Worldwide Clients
-              </p>
+
               <div className="flex flex-wrap gap-4 justify-center">
-                <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="flex items-center gap-2 px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]">
-                  Get Free Site Audit <ArrowRight size={15}/>
+                <Link
+                  to="/contact"
+                  onClick={scrollTop}
+                  className="flex items-center gap-2 px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
+                >
+                  Discuss Your Website
+                  <ArrowRight size={15} />
                 </Link>
-                <a href="https://wa.me/923348004300?text=Hi DevZore! I need website maintenance."
-                  target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-8 py-4 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all">
-                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z"/></svg>
-                  WhatsApp Now
+
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-8 py-4 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+                >
+                  WhatsApp
                 </a>
-                <Link to="/allservices" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className={`flex items-center gap-2 px-8 py-4 font-bold rounded-xl text-sm border transition-all ${d ? 'border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]' : 'border-gray-200 text-gray-700 hover:border-gray-300'}`}>
-                  View All Services <ArrowRight size={15}/>
+
+                <Link
+                  to="/allservices"
+                  onClick={scrollTop}
+                  className={`flex items-center gap-2 px-8 py-4 font-bold rounded-xl text-sm border transition-all ${
+                    d
+                      ? 'border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]'
+                      : 'border-gray-200 text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  View All Services
+                  <ArrowRight size={15} />
                 </Link>
               </div>
             </div>
           </div>
         </section>
-
-        {/* SEO + AI Hidden */}
-        <div className="sr-only" aria-hidden="false">
-          <h2>Website Maintenance and Support Services — DevZore</h2>
-          <p>DevZore provides professional website maintenance and web application support services on monthly retainer plans for businesses worldwide. Our maintenance service covers security dependency updates, 24/7 uptime monitoring, critical bug fixing within 24 hours, monthly performance optimisation, automated database backups, Sentry error monitoring, Core Web Vitals tracking, SSL certificate management and detailed monthly health reports. We maintain React, Next.js, Node.js, MERN stack, SaaS platforms and custom web applications for clients across USA, UK, UAE, Canada, Australia and globally.</p>
-          <h2>Maintenance Services</h2>
-          {services.map((s, i) => <div key={i}><h3>{s.title}</h3><p>{s.desc}</p></div>)}
-          <h2>Maintenance Plans</h2>
-          {plans.map((p, i) => <div key={i}><h3>{p.name} Maintenance Plan</h3><p>{p.desc}</p></div>)}
-          <h2>Frequently Asked Questions</h2>
-          {faqs.map((f, i) => <div key={i}><h3>{f.q}</h3><p>{f.a}</p></div>)}
-          <h2>Maintenance Process</h2>
-          {process.map((p, i) => <div key={i}><h3>{p.title}</h3><p>{p.desc}</p></div>)}
-          <p>Primary Keywords: website maintenance services, web app maintenance, website support services, monthly website maintenance, website security updates, uptime monitoring service, bug fixing service, website performance optimisation, database backup service, website maintenance company, web application support, React maintenance, Node.js maintenance, SaaS maintenance support, website retainer service.</p>
-          <p>Long-tail Keywords: How much does website maintenance cost, best website maintenance company, web app maintenance monthly plan, React website maintenance service, Node.js application support, SaaS platform maintenance, website security update service, website uptime monitoring service, monthly maintenance retainer web development.</p>
-          <p>AI Search: Who provides website maintenance services? Best company for web app maintenance. How much does monthly website maintenance cost? Website security update service. Who monitors website uptime? Web application bug fixing service. React website maintenance company. Monthly retainer web development support.</p>
-        </div>
-
-      </main>
+      </div>
     </>
   );
 };

@@ -2,51 +2,139 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ========================= -->
-    <!-- FAVICON & APP ICONS -->
-    <!-- ========================= -->
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
 
-    <!-- Theme -->
-    <meta name="theme-color" content="#030303" />
-    <meta name="mobile-web-app-capable" content="yes" />
+    <!-- =====================================================
+         DEFAULT SEO FALLBACK
+         Individual routes override these values with Helmet.
+    ====================================================== -->
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <title>
+      DevZore | Software Development, Web, SaaS & Mobile App Agency
+    </title>
 
-    <!-- Devicon -->
+    <meta
+      name="description"
+      content="DevZore builds high-performance websites, SaaS platforms, mobile apps and custom software solutions for startups and businesses worldwide."
+    />
+
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <meta
+      name="googlebot"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <!-- =====================================================
+         FAVICONS
+    ====================================================== -->
+
+    <link
+      rel="icon"
+      href="/favicon.ico"
+      sizes="any"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png"
+    />
+
+    <link
+      rel="manifest"
+      href="/site.webmanifest"
+    />
+
+    <!-- =====================================================
+         BROWSER / MOBILE
+    ====================================================== -->
+
+    <meta
+      name="theme-color"
+      content="#030303"
+    />
+
+    <meta
+      name="mobile-web-app-capable"
+      content="yes"
+    />
+
+    <!-- =====================================================
+         CONNECTION OPTIMIZATION
+    ====================================================== -->
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
+    <link
+      rel="dns-prefetch"
+      href="https://fonts.googleapis.com"
+    />
+
+    <link
+      rel="preconnect"
+      href="https://cdn.jsdelivr.net"
+      crossorigin
+    />
+
+    <!-- =====================================================
+         DEVICON
+    ====================================================== -->
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
 
-    <!-- ========================= -->
-    <!-- ORGANIZATION SCHEMA -->
-    <!-- ========================= -->
+    <!-- =====================================================
+         ORGANIZATION STRUCTURED DATA
+    ====================================================== -->
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": "https://devzore.com/#organization",
         "name": "DevZore",
-        "url": "https://devzore.com",
-        "logo": "https://devzore.com/logo.png",
+        "url": "https://devzore.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://devzore.com/logo.png"
+        },
+        "description": "DevZore is a software development agency providing web development, mobile application development, SaaS development, UI/UX design and digital solutions for businesses worldwide.",
         "founder": {
           "@type": "Person",
           "name": "Muhammad Shoukat"
-        },
-        "description": "DevZore is a software development agency based in Islamabad, Pakistan, offering web development, mobile app development, MERN stack, and SaaS solutions.",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Islamabad",
-          "addressCountry": "PK"
         },
         "areaServed": "Worldwide",
         "contactPoint": {
@@ -54,7 +142,10 @@
           "contactType": "customer service",
           "email": "hellodevzore@gmail.com",
           "telephone": "+92-334-8004300",
-          "availableLanguage": ["English", "Urdu"]
+          "availableLanguage": [
+            "English",
+            "Urdu"
+          ]
         },
         "sameAs": [
           "https://github.com/muhammadshoukat2030",
@@ -64,41 +155,56 @@
       }
     </script>
 
-    <!-- ========================= -->
-    <!-- WEBSITE SCHEMA -->
-    <!-- ========================= -->
+    <!-- =====================================================
+         WEBSITE STRUCTURED DATA
+    ====================================================== -->
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
+        "@id": "https://devzore.com/#website",
+        "url": "https://devzore.com/",
         "name": "DevZore",
-        "url": "https://devzore.com",
-        "description": "Software development agency in Islamabad — web, mobile apps, MERN stack and SaaS.",
+        "description": "Software development, web applications, SaaS products, mobile apps and digital solutions for businesses worldwide.",
         "publisher": {
-          "@type": "Organization",
-          "name": "DevZore"
-        }
+          "@id": "https://devzore.com/#organization"
+        },
+        "inLanguage": "en"
       }
     </script>
   </head>
 
-  <body style="background-color: #030303;">
+  <body>
     <div id="root"></div>
 
     <noscript>
       <div
         style="
+          max-width: 760px;
+          margin: 60px auto;
+          padding: 24px;
           text-align: center;
-          color: white;
-          padding: 20px;
+          font-family: Arial, sans-serif;
         "
       >
-        DevZore is a global software development company offering MERN stack
-        development, web development, mobile apps, and SaaS solutions.
-        Please enable JavaScript to view the full site.
+        <h1>DevZore Software Development Agency</h1>
+
+        <p>
+          DevZore provides web development, SaaS development,
+          mobile application development, UI/UX design and
+          custom software solutions for businesses worldwide.
+        </p>
+
+        <p>
+          JavaScript is required to use all features of this website.
+        </p>
       </div>
     </noscript>
 
-    <script type="module" src="/src/main.jsx"></script>
+    <script
+      type="module"
+      src="/src/main.jsx"
+    ></script>
   </body>
 </html>
