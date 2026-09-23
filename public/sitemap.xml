@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- =========================
+       MAIN PAGES
+  ========================== -->
+
   <url>
     <loc>https://devzore.com/</loc>
   </url>
@@ -20,6 +24,11 @@
   <url>
     <loc>https://devzore.com/allservices</loc>
   </url>
+
+
+  <!-- =========================
+       SERVICES
+  ========================== -->
 
   <url>
     <loc>https://devzore.com/web-development</loc>
@@ -68,6 +77,20 @@
   <url>
     <loc>https://devzore.com/digital-marketing</loc>
   </url>
+
+
+  <!-- =========================
+       BLOG POSTS
+  ========================== -->
+
+  <url>
+    <loc>https://devzore.com/blog/how-a-professional-website-can-help-your-business-get-more-customers-1789029617095</loc>
+  </url>
+
+
+  <!-- =========================
+       LEGAL
+  ========================== -->
 
   <url>
     <loc>https://devzore.com/privacy-policy</loc>

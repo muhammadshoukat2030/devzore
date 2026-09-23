@@ -9,9 +9,17 @@ import {
 } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
+// ======================================================
+// GLOBAL COMPONENTS
+// ======================================================
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import TrustBar from "./components/TrustBar";
+
+// ======================================================
+// HOME SECTIONS
+// ======================================================
 
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
@@ -22,10 +30,18 @@ import TechStack from "./sections/TechStack";
 import Testimonials from "./sections/Testimonials";
 import FAQ from "./sections/FAQ";
 
+// ======================================================
+// PUBLIC PAGES
+// ======================================================
+
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import BlogPost from "./pages/BlogPost";
 import BlogDetails from "./pages/BlogDetails";
+
+// ======================================================
+// SERVICE PAGES
+// ======================================================
 
 import AllServices from "./pages/AllServices";
 import WebDevelopment from "./pages/WebDevelopment";
@@ -41,8 +57,16 @@ import StartupMVP from "./pages/StartupMVP";
 import SeoServices from "./pages/SeoServices";
 import DigitalMarketing from "./pages/DigitalMarketing";
 
+// ======================================================
+// LEGAL
+// ======================================================
+
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
+
+// ======================================================
+// ADMIN
+// ======================================================
 
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -52,7 +76,25 @@ import AdminPostEditor from "./pages/admin/AdminPostEditor";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminComments from "./pages/admin/AdminComments";
 
+// ======================================================
+// SITE CONFIG
+// ======================================================
+
 const BASE_URL = "https://devzore.com";
+const DEFAULT_OG_IMAGE = `${BASE_URL}/logo.png`;
+
+const INDEX_ROBOTS =
+  "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+
+// ======================================================
+// STATIC SEO DATA
+//
+// IMPORTANT:
+// Static public pages should get their title,
+// description and canonical from here.
+//
+// Individual /blog/:slug pages are handled by BlogDetails.
+// ======================================================
 
 const seoData = {
   "/": {
@@ -60,6 +102,24 @@ const seoData = {
       "DevZore | Software Development, Web, SaaS & Mobile App Agency",
     description:
       "DevZore builds high-performance websites, SaaS platforms, mobile apps and custom software solutions for startups and businesses worldwide.",
+  },
+
+  "/about": {
+    title: "About DevZore | Software Development Agency",
+    description:
+      "Learn about DevZore, a software development agency building modern websites, SaaS products, mobile apps and digital solutions.",
+  },
+
+  "/contact": {
+    title: "Contact DevZore | Start Your Software Project",
+    description:
+      "Contact DevZore to discuss your website, SaaS platform, mobile app, UI/UX or custom software development project.",
+  },
+
+  "/blog": {
+    title: "DevZore Blog | Software, Web Development & SEO",
+    description:
+      "Read practical insights about software development, React, MERN, SaaS, web development, SEO and digital technology.",
   },
 
   "/allservices": {
@@ -105,8 +165,7 @@ const seoData = {
   },
 
   "/saas-product-development": {
-    title:
-      "SaaS Product Development Company | DevZore",
+    title: "SaaS Product Development Company | DevZore",
     description:
       "Build scalable SaaS products with modern architecture, dashboards, authentication, APIs, subscriptions and cloud-ready infrastructure.",
   },
@@ -125,18 +184,18 @@ const seoData = {
       "UI/UX design services for web and mobile products including research, wireframes, Figma interfaces, prototypes and design systems.",
   },
 
-  "/maintenance": {
-    title:
-      "Website Maintenance & Support Services | DevZore",
-    description:
-      "Website maintenance and technical support including bug fixes, security updates, performance improvements and ongoing management.",
-  },
-
   "/startup-mvp": {
     title:
       "Startup MVP Development | Build & Launch Your MVP | DevZore",
     description:
       "Turn your startup idea into a production-ready MVP with modern UI, scalable architecture, APIs and reliable technology.",
+  },
+
+  "/maintenance": {
+    title:
+      "Website Maintenance & Support Services | DevZore",
+    description:
+      "Website maintenance and technical support including bug fixes, security updates, performance improvements and ongoing management.",
   },
 
   "/seo-services": {
@@ -153,27 +212,6 @@ const seoData = {
       "Grow your business with digital marketing, social media, Google Ads, Meta Ads and performance-focused campaign strategies.",
   },
 
-  "/about": {
-    title:
-      "About DevZore | Software Development Agency",
-    description:
-      "Learn about DevZore, a software development agency building modern websites, SaaS products, mobile apps and digital solutions.",
-  },
-
-  "/contact": {
-    title:
-      "Contact DevZore | Start Your Software Project",
-    description:
-      "Contact DevZore to discuss your website, SaaS platform, mobile app, UI/UX or custom software development project.",
-  },
-
-  "/blog": {
-    title:
-      "DevZore Blog | Software, Web Development & SEO",
-    description:
-      "Read practical insights about software development, React, MERN, SaaS, web development, SEO and digital technology.",
-  },
-
   "/privacy-policy": {
     title: "Privacy Policy | DevZore",
     description:
@@ -187,45 +225,101 @@ const seoData = {
   },
 };
 
+// ======================================================
+// SEO MANAGER
+// ======================================================
+
 function SEOManager() {
   const { pathname } = useLocation();
+
+  // ------------------------------------------------------
+  // ADMIN
+  // ------------------------------------------------------
 
   if (pathname.startsWith("/admin")) {
     return (
       <Helmet>
+        <html lang="en" />
+
         <title>DevZore Admin</title>
-        <meta name="robots" content="noindex, nofollow" />
-        <meta name="googlebot" content="noindex, nofollow" />
+
+        <meta
+          name="robots"
+          content="noindex, nofollow, noarchive"
+        />
+
+        <meta
+          name="googlebot"
+          content="noindex, nofollow, noarchive"
+        />
       </Helmet>
     );
   }
 
-  // BlogDetails should eventually provide its own dynamic SEO.
+  // ------------------------------------------------------
+  // DYNAMIC BLOG DETAILS
+  //
+  // BlogDetails.jsx must provide:
+  // title
+  // description
+  // canonical
+  // robots
+  // Open Graph
+  // Twitter
+  // Article JSON-LD
+  // ------------------------------------------------------
+
   if (pathname.startsWith("/blog/")) {
     return null;
   }
 
   const page = seoData[pathname];
 
+  // ------------------------------------------------------
+  // UNKNOWN ROUTES
+  // ------------------------------------------------------
+
   if (!page) {
     return (
       <Helmet>
+        <html lang="en" />
+
         <title>Page Not Found | DevZore</title>
+
         <meta
           name="description"
           content="The requested page could not be found on DevZore."
         />
-        <meta name="robots" content="noindex, follow" />
+
+        <meta
+          name="robots"
+          content="noindex, follow"
+        />
+
+        <meta
+          name="googlebot"
+          content="noindex, follow"
+        />
       </Helmet>
     );
   }
 
+  // ------------------------------------------------------
+  // CANONICAL
+  // ------------------------------------------------------
+
   const canonical =
-    pathname === "/" ? BASE_URL : `${BASE_URL}${pathname}`;
+    pathname === "/"
+      ? `${BASE_URL}/`
+      : `${BASE_URL}${pathname}`;
 
   return (
     <Helmet>
       <html lang="en" />
+
+      {/* ==============================
+          PRIMARY SEO
+      ============================== */}
 
       <title>{page.title}</title>
 
@@ -236,18 +330,22 @@ function SEOManager() {
 
       <meta
         name="robots"
-        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        content={INDEX_ROBOTS}
       />
 
       <meta
         name="googlebot"
-        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        content={INDEX_ROBOTS}
       />
 
       <link
         rel="canonical"
         href={canonical}
       />
+
+      {/* ==============================
+          OPEN GRAPH
+      ============================== */}
 
       <meta
         property="og:title"
@@ -280,6 +378,20 @@ function SEOManager() {
       />
 
       <meta
+        property="og:image"
+        content={DEFAULT_OG_IMAGE}
+      />
+
+      <meta
+        property="og:image:alt"
+        content="DevZore Software Development Agency"
+      />
+
+      {/* ==============================
+          TWITTER / SOCIAL
+      ============================== */}
+
+      <meta
         name="twitter:card"
         content="summary_large_image"
       />
@@ -293,9 +405,18 @@ function SEOManager() {
         name="twitter:description"
         content={page.description}
       />
+
+      <meta
+        name="twitter:image"
+        content={DEFAULT_OG_IMAGE}
+      />
     </Helmet>
   );
 }
+
+// ======================================================
+// SCROLL TO TOP
+// ======================================================
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -311,6 +432,10 @@ function ScrollToTop() {
   return null;
 }
 
+// ======================================================
+// 404 PAGE
+// ======================================================
+
 function NotFound() {
   return (
     <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4">
@@ -323,7 +448,8 @@ function NotFound() {
       </h1>
 
       <p className="mt-4 max-w-lg text-[var(--text-muted)]">
-        The page you're looking for doesn't exist or may have been moved.
+        The page you're looking for doesn't exist or may
+        have been moved.
       </p>
 
       <Link
@@ -335,6 +461,10 @@ function NotFound() {
     </div>
   );
 }
+
+// ======================================================
+// APP CONTENT
+// ======================================================
 
 function AppContent({ isDark, toggleTheme }) {
   const { pathname } = useLocation();
@@ -357,6 +487,10 @@ function AppContent({ isDark, toggleTheme }) {
         }
       `}
     >
+      {/* ==================================================
+          PUBLIC NAVBAR
+      ================================================== */}
+
       {!isAdminRoute && (
         <Navbar
           isDark={isDark}
@@ -364,8 +498,16 @@ function AppContent({ isDark, toggleTheme }) {
         />
       )}
 
+      {/* ==================================================
+          ROUTES
+      ================================================== */}
+
       <main className="flex-grow">
         <Routes>
+          {/* ==============================
+              HOME
+          ============================== */}
+
           <Route
             path="/"
             element={
@@ -383,70 +525,112 @@ function AppContent({ isDark, toggleTheme }) {
             }
           />
 
+          {/* ==============================
+              SERVICES
+          ============================== */}
+
           <Route
             path="/allservices"
-            element={<AllServices isDark={isDark} />}
+            element={
+              <AllServices isDark={isDark} />
+            }
           />
 
           <Route
             path="/web-development"
-            element={<WebDevelopment isDark={isDark} />}
+            element={
+              <WebDevelopment isDark={isDark} />
+            }
           />
 
           <Route
             path="/mobile-apps"
-            element={<MobileApp isDark={isDark} />}
+            element={
+              <MobileApp isDark={isDark} />
+            }
           />
 
           <Route
             path="/ecommerce"
-            element={<ECommerce isDark={isDark} />}
+            element={
+              <ECommerce isDark={isDark} />
+            }
           />
 
           <Route
             path="/backend-api"
-            element={<BackendApi isDark={isDark} />}
+            element={
+              <BackendApi isDark={isDark} />
+            }
           />
 
           <Route
             path="/mern-stack-development"
-            element={<MernStackDevelopment isDark={isDark} />}
+            element={
+              <MernStackDevelopment
+                isDark={isDark}
+              />
+            }
           />
 
           <Route
             path="/saas-product-development"
-            element={<SaaSProductDevelopment isDark={isDark} />}
+            element={
+              <SaaSProductDevelopment
+                isDark={isDark}
+              />
+            }
           />
 
           <Route
             path="/reactdevelopment"
-            element={<ReactDevelopment isDark={isDark} />}
+            element={
+              <ReactDevelopment
+                isDark={isDark}
+              />
+            }
           />
 
           <Route
             path="/ui-ux-design"
-            element={<UiUxDesign isDark={isDark} />}
-          />
-
-          <Route
-            path="/maintenance"
-            element={<Maintenance isDark={isDark} />}
+            element={
+              <UiUxDesign isDark={isDark} />
+            }
           />
 
           <Route
             path="/startup-mvp"
-            element={<StartupMVP isDark={isDark} />}
+            element={
+              <StartupMVP isDark={isDark} />
+            }
+          />
+
+          <Route
+            path="/maintenance"
+            element={
+              <Maintenance isDark={isDark} />
+            }
           />
 
           <Route
             path="/seo-services"
-            element={<SeoServices isDark={isDark} />}
+            element={
+              <SeoServices isDark={isDark} />
+            }
           />
 
           <Route
             path="/digital-marketing"
-            element={<DigitalMarketing isDark={isDark} />}
+            element={
+              <DigitalMarketing
+                isDark={isDark}
+              />
+            }
           />
+
+          {/* ==============================
+              PUBLIC PAGES
+          ============================== */}
 
           <Route
             path="/about"
@@ -458,6 +642,10 @@ function AppContent({ isDark, toggleTheme }) {
             element={<Contact isDark={isDark} />}
           />
 
+          {/* ==============================
+              BLOG
+          ============================== */}
+
           <Route
             path="/blog"
             element={<BlogPost isDark={isDark} />}
@@ -465,12 +653,20 @@ function AppContent({ isDark, toggleTheme }) {
 
           <Route
             path="/blog/:slug"
-            element={<BlogDetails isDark={isDark} />}
+            element={
+              <BlogDetails isDark={isDark} />
+            }
           />
+
+          {/* ==============================
+              LEGAL
+          ============================== */}
 
           <Route
             path="/privacy-policy"
-            element={<PrivacyPolicy isDark={isDark} />}
+            element={
+              <PrivacyPolicy isDark={isDark} />
+            }
           />
 
           <Route
@@ -478,10 +674,20 @@ function AppContent({ isDark, toggleTheme }) {
             element={<Terms isDark={isDark} />}
           />
 
+          {/* ==============================
+              ADMIN LOGIN
+          ============================== */}
+
           <Route
             path="/admin/login"
-            element={<AdminLogin isDark={isDark} />}
+            element={
+              <AdminLogin isDark={isDark} />
+            }
           />
+
+          {/* ==============================
+              ADMIN AREA
+          ============================== */}
 
           <Route
             path="/admin"
@@ -494,39 +700,70 @@ function AppContent({ isDark, toggleTheme }) {
           >
             <Route
               index
-              element={<Navigate to="dashboard" replace />}
+              element={
+                <Navigate
+                  to="dashboard"
+                  replace
+                />
+              }
             />
 
             <Route
               path="dashboard"
-              element={<AdminDashboard isDark={isDark} />}
+              element={
+                <AdminDashboard
+                  isDark={isDark}
+                />
+              }
             />
 
             <Route
               path="posts"
-              element={<AdminPosts isDark={isDark} />}
+              element={
+                <AdminPosts isDark={isDark} />
+              }
             />
 
             <Route
               path="posts/new"
-              element={<AdminPostEditor isDark={isDark} />}
+              element={
+                <AdminPostEditor
+                  isDark={isDark}
+                />
+              }
             />
 
             <Route
               path="posts/edit/:id"
-              element={<AdminPostEditor isDark={isDark} />}
+              element={
+                <AdminPostEditor
+                  isDark={isDark}
+                />
+              }
             />
 
             <Route
               path="categories"
-              element={<AdminCategories isDark={isDark} />}
+              element={
+                <AdminCategories
+                  isDark={isDark}
+                />
+              }
             />
 
             <Route
               path="comments"
-              element={<AdminComments isDark={isDark} />}
+              element={
+                <AdminComments
+                  isDark={isDark}
+                />
+              }
             />
           </Route>
+
+          {/* ==============================
+              404
+          ============================== */}
 
           <Route
             path="*"
@@ -535,10 +772,20 @@ function AppContent({ isDark, toggleTheme }) {
         </Routes>
       </main>
 
-      {!isAdminRoute && <Footer isDark={isDark} />}
+      {/* ==================================================
+          PUBLIC FOOTER
+      ================================================== */}
+
+      {!isAdminRoute && (
+        <Footer isDark={isDark} />
+      )}
     </div>
   );
 }
+
+// ======================================================
+// ROOT APP
+// ======================================================
 
 function App() {
   const [isDark, setIsDark] = useState(() => {
@@ -546,8 +793,15 @@ function App() {
       return false;
     }
 
-    return localStorage.getItem("devzore-theme") === "dark";
+    return (
+      localStorage.getItem("devzore-theme") ===
+      "dark"
+    );
   });
+
+  // ======================================================
+  // THEME
+  // ======================================================
 
   useEffect(() => {
     const html = document.documentElement;
@@ -563,6 +817,10 @@ function App() {
   const toggleTheme = () => {
     setIsDark((current) => !current);
   };
+
+  // ======================================================
+  // APP
+  // ======================================================
 
   return (
     <BrowserRouter>
