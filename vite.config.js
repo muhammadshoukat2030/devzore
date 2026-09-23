@@ -8,8 +8,6 @@ const routes = [
   "/contact",
   "/blog",
   "/allservices",
-
-  // Services
   "/web-development",
   "/mobile-apps",
   "/ecommerce",
@@ -22,8 +20,6 @@ const routes = [
   "/maintenance",
   "/seo-services",
   "/digital-marketing",
-
-  // Legal
   "/privacy-policy",
   "/terms-and-conditions",
 ];

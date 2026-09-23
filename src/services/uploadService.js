@@ -1,115 +1,146 @@
 import api from "./api";
 
 // ======================================================
+// CONSTANTS
+// ======================================================
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_WIDTH = 1920;
+const MAX_HEIGHT = 1920;
+const DEFAULT_QUALITY = 0.82;
+
+// ======================================================
+// CREATE SAFE FILE NAME
+// ======================================================
+
+const createSafeFileName = (fileName = "image") => {
+  const nameWithoutExtension = fileName.replace(/\.[^/.]+$/, "");
+
+  const safeName = nameWithoutExtension
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9-_]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  return `${safeName || "image"}.jpg`;
+};
+
+// ======================================================
 // COMPRESS IMAGE
 // ======================================================
 
 const compressImage = async (
   file,
-  quality = 0.8
+  quality = DEFAULT_QUALITY
 ) => {
   return new Promise((resolve, reject) => {
+    if (!file) {
+      reject(new Error("Please select an image."));
+      return;
+    }
+
     const reader = new FileReader();
 
     reader.onload = (event) => {
       const img = new Image();
 
       img.onload = () => {
-        const canvas =
-          document.createElement("canvas");
+        try {
+          let width = img.naturalWidth || img.width;
+          let height = img.naturalHeight || img.height;
 
-        let width = img.width;
-        let height = img.height;
-
-        // ==================================================
-        // MAX DIMENSIONS
-        // ==================================================
-
-        const maxWidth = 1920;
-        const maxHeight = 1080;
-
-        if (width > height) {
-          if (width > maxWidth) {
-            height =
-              height * (maxWidth / width);
-
-            width = maxWidth;
+          if (!width || !height) {
+            reject(
+              new Error("Could not determine image dimensions.")
+            );
+            return;
           }
-        } else {
-          if (height > maxHeight) {
-            width =
-              width * (maxHeight / height);
 
-            height = maxHeight;
-          }
-        }
+          // ==============================================
+          // RESIZE WHILE KEEPING ASPECT RATIO
+          // ==============================================
 
-        canvas.width = Math.round(width);
-        canvas.height = Math.round(height);
-
-        const ctx =
-          canvas.getContext("2d");
-
-        if (!ctx) {
-          reject(
-            new Error(
-              "Could not create canvas context."
-            )
+          const scale = Math.min(
+            MAX_WIDTH / width,
+            MAX_HEIGHT / height,
+            1
           );
 
-          return;
+          width = Math.round(width * scale);
+          height = Math.round(height * scale);
+
+          const canvas = document.createElement("canvas");
+
+          canvas.width = width;
+          canvas.height = height;
+
+          const ctx = canvas.getContext("2d");
+
+          if (!ctx) {
+            reject(
+              new Error(
+                "Your browser could not process the selected image."
+              )
+            );
+            return;
+          }
+
+          // White background prevents transparent images
+          // becoming black when converted to JPEG.
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, width, height);
+
+          ctx.drawImage(
+            img,
+            0,
+            0,
+            width,
+            height
+          );
+
+          // ==============================================
+          // CONVERT TO JPEG BLOB
+          // ==============================================
+
+          canvas.toBlob(
+            (blob) => {
+              if (!blob) {
+                reject(
+                  new Error("Image compression failed.")
+                );
+                return;
+              }
+
+              resolve(blob);
+            },
+            "image/jpeg",
+            quality
+          );
+        } catch (error) {
+          reject(
+            new Error(
+              error?.message ||
+                "Failed to process selected image."
+            )
+          );
         }
-
-        ctx.drawImage(
-          img,
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
-
-        // ==================================================
-        // CREATE COMPRESSED IMAGE
-        // ==================================================
-
-        canvas.toBlob(
-          (blob) => {
-            if (!blob) {
-              reject(
-                new Error(
-                  "Image compression failed."
-                )
-              );
-
-              return;
-            }
-
-            resolve(blob);
-          },
-
-          // Always use JPEG for compressed uploads.
-          "image/jpeg",
-
-          quality
-        );
       };
 
       img.onerror = () => {
         reject(
           new Error(
-            "Failed to load image."
+            "The selected image could not be loaded."
           )
         );
       };
 
-      img.src = event.target.result;
+      img.src = event.target?.result;
     };
 
     reader.onerror = () => {
       reject(
-        new Error(
-          "Failed to read image file."
-        )
+        new Error("Failed to read the selected image.")
       );
     };
 
@@ -118,111 +149,116 @@ const compressImage = async (
 };
 
 // ======================================================
+// VALIDATE IMAGE
+// ======================================================
+
+const validateImage = (file) => {
+  if (!file) {
+    throw new Error("Please select an image.");
+  }
+
+  if (
+    !file.type ||
+    !file.type.startsWith("image/")
+  ) {
+    throw new Error(
+      "Only image files are allowed."
+    );
+  }
+
+  if (file.size > MAX_FILE_SIZE) {
+    throw new Error(
+      "Image must be smaller than 5MB."
+    );
+  }
+
+  return true;
+};
+
+// ======================================================
 // UPLOAD IMAGE
 // ======================================================
 
 const uploadImage = async (file) => {
   try {
-    // ==================================================
-    // VALIDATE FILE
-    // ==================================================
+    validateImage(file);
 
-    if (!file) {
-      throw new Error(
-        "Please select an image."
-      );
-    }
+    console.log("📷 Selected image:", {
+      name: file.name,
+      type: file.type,
+      size: file.size,
+    });
 
-    if (!file.type.startsWith("image/")) {
-      throw new Error(
-        "Only image files are allowed."
-      );
-    }
+    // ==============================================
+    // CLIENT-SIDE OPTIMIZATION
+    // ==============================================
 
-    // ==================================================
-    // 5MB ORIGINAL FILE LIMIT
-    // ==================================================
-
-    const maxSize =
-      5 * 1024 * 1024;
-
-    if (file.size > maxSize) {
-      throw new Error(
-        "Image must be smaller than 5MB."
-      );
-    }
-
-    console.log(
-      "📷 Original image:",
-      file.name,
-      file.size,
-      "bytes"
+    const compressedBlob = await compressImage(
+      file,
+      DEFAULT_QUALITY
     );
 
-    // ==================================================
-    // COMPRESS
-    // ==================================================
+    console.log("📦 Compressed image:", {
+      originalSize: file.size,
+      compressedSize: compressedBlob.size,
+      type: compressedBlob.type,
+    });
 
-    const compressedBlob =
-      await compressImage(file, 0.8);
+    // ==============================================
+    // CREATE MULTIPART FORM
+    // ==============================================
 
-    console.log(
-      "📦 Compressed image:",
-      compressedBlob.size,
-      "bytes"
-    );
+    const formData = new FormData();
 
-    // ==================================================
-    // FORM DATA
-    // ==================================================
-
-    const formData =
-      new FormData();
-
-    // IMPORTANT:
-    // Backend should use upload.single("image")
     formData.append(
       "image",
       compressedBlob,
-      `${file.name
-        .replace(/\.[^/.]+$/, "")}.jpg`
+      createSafeFileName(file.name)
     );
 
-    // Debug
-    console.log(
-      "📤 FormData image:",
-      formData.get("image")
-    );
-
-    // ==================================================
-    // SEND REQUEST
-    // ==================================================
+    // ==============================================
+    // UPLOAD
+    // ==============================================
 
     const response = await api.post(
       "/upload/image",
       formData
     );
 
-    console.log(
-      "✅ Upload response:",
-      response.data
-    );
+    const data = response?.data;
 
-    return response.data;
+    if (!data?.success) {
+      throw new Error(
+        data?.message || "Image upload failed."
+      );
+    }
+
+    if (!data?.url) {
+      throw new Error(
+        "The server did not return an image URL."
+      );
+    }
+
+    console.log("✅ Image uploaded:", data);
+
+    return data;
   } catch (error) {
     console.error(
       "❌ Image upload error:",
       error
     );
 
-    if (error.response) {
-      console.error(
-        "❌ Server response:",
-        error.response.data
-      );
-    }
+    const message =
+      error?.response?.data?.message ||
+      error?.message ||
+      "Image upload failed.";
 
-    throw error;
+    const uploadError = new Error(message);
+
+    uploadError.status =
+      error?.response?.status || null;
+
+    throw uploadError;
   }
 };
 
@@ -238,10 +274,19 @@ const deleteImage = async (publicId) => {
       );
     }
 
-    const response =
-      await api.delete(
-        `/upload/image/${publicId}`
+    const encodedPublicId =
+      encodeURIComponent(publicId);
+
+    const response = await api.delete(
+      `/upload/image/${encodedPublicId}`
+    );
+
+    if (!response?.data?.success) {
+      throw new Error(
+        response?.data?.message ||
+          "Image deletion failed."
       );
+    }
 
     return response.data;
   } catch (error) {
@@ -250,7 +295,38 @@ const deleteImage = async (publicId) => {
       error
     );
 
-    throw error;
+    const message =
+      error?.response?.data?.message ||
+      error?.message ||
+      "Image deletion failed.";
+
+    throw new Error(message);
+  }
+};
+
+// ======================================================
+// CREATE IMAGE PREVIEW
+// ======================================================
+
+const createPreviewUrl = (file) => {
+  if (!file) {
+    return "";
+  }
+
+  return URL.createObjectURL(file);
+};
+
+// ======================================================
+// REVOKE IMAGE PREVIEW
+// ======================================================
+
+const revokePreviewUrl = (url) => {
+  if (
+    url &&
+    typeof url === "string" &&
+    url.startsWith("blob:")
+  ) {
+    URL.revokeObjectURL(url);
   }
 };
 
@@ -258,8 +334,13 @@ const deleteImage = async (publicId) => {
 // EXPORT
 // ======================================================
 
-export default {
+const uploadService = {
   compressImage,
+  validateImage,
   uploadImage,
   deleteImage,
+  createPreviewUrl,
+  revokePreviewUrl,
 };
+
+export default uploadService;
