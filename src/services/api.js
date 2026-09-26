@@ -4,6 +4,14 @@ import cookieManager from "../utils/cookieManager";
 // ======================================================
 // API BASE URL
 // ======================================================
+//
+// Local:
+// http://localhost:5000/api
+//
+// Production:
+// VITE_API_URL environment variable se aayega.
+//
+// ======================================================
 
 const API_URL =
   import.meta.env.VITE_API_URL ||
@@ -17,65 +25,151 @@ const api = axios.create({
   baseURL: API_URL,
 
   headers: {
-    "Content-Type": "application/json",
+    Accept: "application/json",
   },
 
   timeout: 15000,
 
-  // Enable cookies / credentials
+  // Cookies ko cross-origin requests ke saath allow karta hai.
   withCredentials: true,
 });
 
 // ======================================================
+// GET AUTH TOKEN
+// ======================================================
+//
+// IMPORTANT:
+//
+// 1. Pehle localStorage check hoga.
+// 2. Agar wahan token nahi mila to cookie check hogi.
+//
+// authService.js bhi adminToken isi naam se save karta hai.
+//
+// ======================================================
+
+const getAuthToken = () => {
+  try {
+    // --------------------------------------------------
+    // 1. LOCAL STORAGE - PRIMARY
+    // --------------------------------------------------
+
+    const localToken =
+      localStorage.getItem("adminToken");
+
+    if (
+      localToken &&
+      typeof localToken === "string" &&
+      localToken.trim()
+    ) {
+      return localToken.trim();
+    }
+
+    // --------------------------------------------------
+    // 2. COOKIE - FALLBACK
+    // --------------------------------------------------
+
+    const cookieToken =
+      cookieManager.getCookie("adminToken");
+
+    if (
+      cookieToken &&
+      typeof cookieToken === "string" &&
+      cookieToken.trim()
+    ) {
+      return cookieToken.trim();
+    }
+
+    return null;
+  } catch (error) {
+    console.error(
+      "❌ Failed to read authentication token:",
+      error
+    );
+
+    return null;
+  }
+};
+
+// ======================================================
 // REQUEST INTERCEPTOR
-// Automatically attach JWT token
+// ======================================================
+//
+// Har API request se pehle:
+//
+// 1. adminToken read karega
+// 2. Authorization header add karega
+//
+// Authorization: Bearer JWT_TOKEN
+//
 // ======================================================
 
 api.interceptors.request.use(
   (config) => {
-    // ==================================================
-    // AUTH TOKEN
-    // ==================================================
+    // --------------------------------------------------
+    // GET TOKEN
+    // --------------------------------------------------
 
-    const token =
-      cookieManager.getCookie("adminToken") ||
-      localStorage.getItem("adminToken");
+    const token = getAuthToken();
+
+    // --------------------------------------------------
+    // ATTACH JWT
+    // --------------------------------------------------
 
     if (token) {
-      config.headers = config.headers || {};
+      config.headers =
+        config.headers || {};
 
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization =
+        `Bearer ${token}`;
 
       console.log(
-        "✅ Token attached to request:",
-        token.substring(0, 20) + "..."
+        `🔐 JWT attached → ${
+          config.method?.toUpperCase() || "REQUEST"
+        } ${config.url}`
+      );
+    } else {
+      console.warn(
+        `⚠️ No JWT available → ${
+          config.method?.toUpperCase() || "REQUEST"
+        } ${config.url}`
       );
     }
 
     // ==================================================
-    // IMPORTANT:
     // FORM DATA / IMAGE UPLOAD
     // ==================================================
-
-    // Browser should automatically create:
+    //
+    // FormData ke saath Content-Type manually set
+    // nahi karna.
+    //
+    // Browser automatically:
     //
     // multipart/form-data; boundary=....
     //
-    // DO NOT manually set Content-Type for FormData.
+    // generate karega.
+    //
+    // ==================================================
 
     if (
       typeof FormData !== "undefined" &&
       config.data instanceof FormData
     ) {
-      // Remove JSON content type
-      // so Axios/browser can set multipart boundary.
-      if (config.headers) {
+      // AxiosHeaders object
+      if (
+        config.headers &&
+        typeof config.headers.delete === "function"
+      ) {
+        config.headers.delete("Content-Type");
+      } else if (config.headers) {
+        // Normal JS object fallback
         delete config.headers["Content-Type"];
         delete config.headers["content-type"];
       }
 
       console.log(
-        "📦 FormData request detected — Content-Type handled automatically."
+        `📦 FormData detected → ${
+          config.method?.toUpperCase() || "REQUEST"
+        } ${config.url}`
       );
     }
 
@@ -83,66 +177,163 @@ api.interceptors.request.use(
   },
 
   (error) => {
+    console.error(
+      "❌ Request interceptor error:",
+      error
+    );
+
     return Promise.reject(error);
   }
 );
 
 // ======================================================
+// RATE LIMIT RETRY STORAGE
+// ======================================================
+
+const retryCount = {};
+
+// ======================================================
 // RESPONSE INTERCEPTOR
 // ======================================================
 
-let retryCount = {};
-
 api.interceptors.response.use(
+  // ----------------------------------------------------
+  // SUCCESS RESPONSE
+  // ----------------------------------------------------
+
   (response) => {
     return response;
   },
 
+  // ----------------------------------------------------
+  // ERROR RESPONSE
+  // ----------------------------------------------------
+
   async (error) => {
-    const status = error.response?.status;
-    const url = error.config?.url;
-    const config = error.config;
+    const status =
+      error.response?.status;
+
+    const config =
+      error.config || {};
+
+    const url =
+      config.url || "unknown";
+
+    const method =
+      config.method?.toUpperCase() ||
+      "REQUEST";
 
     // ==================================================
-    // UNAUTHORIZED
+    // 401 - UNAUTHORIZED
     // ==================================================
 
     if (status === 401) {
       console.error(
-        "❌ 401 Unauthorized on:",
-        url
+        `❌ 401 Unauthorized → ${method} ${url}`
       );
 
-      cookieManager.deleteCookie("adminToken");
+      console.error(
+        "Backend response:",
+        error.response?.data
+      );
 
-      localStorage.removeItem("adminToken");
-      localStorage.removeItem("adminUser");
+      const token =
+        getAuthToken();
+
+      console.log(
+        "JWT present in browser:",
+        Boolean(token)
+      );
+
+      /*
+       * IMPORTANT:
+       *
+       * Token ko yahan automatically delete nahi karte.
+       *
+       * Is se debugging ke waqt ek failed request
+       * baqi admin session ko destroy nahi karegi.
+       *
+       * authService.getMe() invalid/expired token ko
+       * separately handle kar sakta hai.
+       */
     }
 
     // ==================================================
-    // RATE LIMIT
+    // 403 - FORBIDDEN
+    // ==================================================
+
+    if (status === 403) {
+      console.error(
+        `❌ 403 Forbidden → ${method} ${url}`
+      );
+
+      console.error(
+        "Backend response:",
+        error.response?.data
+      );
+    }
+
+    // ==================================================
+    // 400 - BAD REQUEST
+    // ==================================================
+
+    if (status === 400) {
+      console.error(
+        `❌ 400 Bad Request → ${method} ${url}`
+      );
+
+      console.error(
+        "Backend response:",
+        error.response?.data
+      );
+    }
+
+    // ==================================================
+    // 413 - FILE TOO LARGE
+    // ==================================================
+
+    if (status === 413) {
+      console.error(
+        "❌ Upload rejected: file is too large."
+      );
+    }
+
+    // ==================================================
+    // 429 - RATE LIMIT
     // ==================================================
 
     if (status === 429) {
       retryCount[url] =
         (retryCount[url] || 0) + 1;
 
-      if (retryCount[url] < 3) {
+      // Maximum 2 retries
+      if (retryCount[url] <= 2) {
         const delay =
-          Math.pow(2, retryCount[url]) * 1000;
+          Math.pow(
+            2,
+            retryCount[url]
+          ) * 1000;
 
         console.warn(
-          `⏳ Rate limited (429). Retrying in ${delay}ms...`
+          `⏳ Rate limited → retry ${retryCount[url]}/2 in ${delay}ms`
         );
 
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            resolve(api(config));
-          }, delay);
-        });
+        await new Promise(
+          (resolve) => {
+            setTimeout(
+              resolve,
+              delay
+            );
+          }
+        );
+
+        return api(config);
       }
 
-      // Reset after max retries
+      retryCount[url] = 0;
+    } else {
+      // Successful/non-429 response path ke baad
+      // retry counter reset.
       retryCount[url] = 0;
     }
 
@@ -150,18 +341,37 @@ api.interceptors.response.use(
     // NETWORK ERROR
     // ==================================================
 
-    if (!status) {
+    if (!error.response) {
       console.error(
-        "❌ Network error:",
+        "❌ Network Error:",
         error.message
       );
 
       error.message =
-        "Network error. Check if backend is running.";
+        "Network error. Please check whether the backend server is running.";
+    }
+
+    // ==================================================
+    // SERVER ERROR
+    // ==================================================
+
+    if (
+      status &&
+      status >= 500
+    ) {
+      console.error(
+        `❌ Server Error ${status} → ${method} ${url}`,
+        error.response?.data ||
+          error.message
+      );
     }
 
     return Promise.reject(error);
   }
 );
+
+// ======================================================
+// EXPORT
+// ======================================================
 
 export default api;

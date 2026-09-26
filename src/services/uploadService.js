@@ -4,7 +4,7 @@ import api from "./api";
 // CONSTANTS
 // ======================================================
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 const MAX_WIDTH = 1920;
 const MAX_HEIGHT = 1920;
 const DEFAULT_QUALITY = 0.82;
@@ -19,11 +19,31 @@ const createSafeFileName = (fileName = "image") => {
   const safeName = nameWithoutExtension
     .trim()
     .toLowerCase()
-    .replace(/[^a-z0-9-_]+/g, "-")
+    .replace(/[^a-z0-9_-]+/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 
   return `${safeName || "image"}.jpg`;
+};
+
+// ======================================================
+// VALIDATE IMAGE
+// ======================================================
+
+const validateImage = (file) => {
+  if (!file) {
+    throw new Error("Please select an image.");
+  }
+
+  if (!file.type || !file.type.startsWith("image/")) {
+    throw new Error("Only image files are allowed.");
+  }
+
+  if (file.size > MAX_FILE_SIZE) {
+    throw new Error("Image must be smaller than 5MB.");
+  }
+
+  return true;
 };
 
 // ======================================================
@@ -52,14 +72,16 @@ const compressImage = async (
 
           if (!width || !height) {
             reject(
-              new Error("Could not determine image dimensions.")
+              new Error(
+                "Could not determine image dimensions."
+              )
             );
             return;
           }
 
-          // ==============================================
-          // RESIZE WHILE KEEPING ASPECT RATIO
-          // ==============================================
+          // ------------------------------------------
+          // Resize while preserving aspect ratio
+          // ------------------------------------------
 
           const scale = Math.min(
             MAX_WIDTH / width,
@@ -70,7 +92,8 @@ const compressImage = async (
           width = Math.round(width * scale);
           height = Math.round(height * scale);
 
-          const canvas = document.createElement("canvas");
+          const canvas =
+            document.createElement("canvas");
 
           canvas.width = width;
           canvas.height = height;
@@ -86,8 +109,8 @@ const compressImage = async (
             return;
           }
 
-          // White background prevents transparent images
-          // becoming black when converted to JPEG.
+          // White background prevents transparency
+          // becoming black after JPEG conversion.
           ctx.fillStyle = "#ffffff";
           ctx.fillRect(0, 0, width, height);
 
@@ -99,15 +122,17 @@ const compressImage = async (
             height
           );
 
-          // ==============================================
-          // CONVERT TO JPEG BLOB
-          // ==============================================
+          // ------------------------------------------
+          // Convert to JPEG
+          // ------------------------------------------
 
           canvas.toBlob(
             (blob) => {
               if (!blob) {
                 reject(
-                  new Error("Image compression failed.")
+                  new Error(
+                    "Image compression failed."
+                  )
                 );
                 return;
               }
@@ -135,12 +160,23 @@ const compressImage = async (
         );
       };
 
-      img.src = event.target?.result;
+      if (!event.target?.result) {
+        reject(
+          new Error(
+            "Failed to read the selected image."
+          )
+        );
+        return;
+      }
+
+      img.src = event.target.result;
     };
 
     reader.onerror = () => {
       reject(
-        new Error("Failed to read the selected image.")
+        new Error(
+          "Failed to read the selected image."
+        )
       );
     };
 
@@ -149,38 +185,15 @@ const compressImage = async (
 };
 
 // ======================================================
-// VALIDATE IMAGE
-// ======================================================
-
-const validateImage = (file) => {
-  if (!file) {
-    throw new Error("Please select an image.");
-  }
-
-  if (
-    !file.type ||
-    !file.type.startsWith("image/")
-  ) {
-    throw new Error(
-      "Only image files are allowed."
-    );
-  }
-
-  if (file.size > MAX_FILE_SIZE) {
-    throw new Error(
-      "Image must be smaller than 5MB."
-    );
-  }
-
-  return true;
-};
-
-// ======================================================
 // UPLOAD IMAGE
 // ======================================================
 
 const uploadImage = async (file) => {
   try {
+    // ------------------------------------------
+    // Validate
+    // ------------------------------------------
+
     validateImage(file);
 
     console.log("📷 Selected image:", {
@@ -189,14 +202,15 @@ const uploadImage = async (file) => {
       size: file.size,
     });
 
-    // ==============================================
-    // CLIENT-SIDE OPTIMIZATION
-    // ==============================================
+    // ------------------------------------------
+    // Compress image
+    // ------------------------------------------
 
-    const compressedBlob = await compressImage(
-      file,
-      DEFAULT_QUALITY
-    );
+    const compressedBlob =
+      await compressImage(
+        file,
+        DEFAULT_QUALITY
+      );
 
     console.log("📦 Compressed image:", {
       originalSize: file.size,
@@ -204,21 +218,43 @@ const uploadImage = async (file) => {
       type: compressedBlob.type,
     });
 
-    // ==============================================
-    // CREATE MULTIPART FORM
-    // ==============================================
+    // ------------------------------------------
+    // Create upload file
+    // ------------------------------------------
+
+    const safeFileName =
+      createSafeFileName(file.name);
+
+    const compressedFile = new File(
+      [compressedBlob],
+      safeFileName,
+      {
+        type: "image/jpeg",
+        lastModified: Date.now(),
+      }
+    );
+
+    // ------------------------------------------
+    // FormData
+    // ------------------------------------------
 
     const formData = new FormData();
 
     formData.append(
       "image",
-      compressedBlob,
-      createSafeFileName(file.name)
+      compressedFile
     );
 
-    // ==============================================
-    // UPLOAD
-    // ==============================================
+    console.log(
+      "🚀 Uploading image through authenticated API..."
+    );
+
+    // IMPORTANT:
+    // Do NOT manually set Content-Type here.
+    //
+    // api.js will:
+    // 1. attach Authorization: Bearer <JWT>
+    // 2. allow browser to generate multipart boundary
 
     const response = await api.post(
       "/upload/image",
@@ -227,9 +263,14 @@ const uploadImage = async (file) => {
 
     const data = response?.data;
 
+    // ------------------------------------------
+    // Validate server response
+    // ------------------------------------------
+
     if (!data?.success) {
       throw new Error(
-        data?.message || "Image upload failed."
+        data?.message ||
+          "Image upload failed."
       );
     }
 
@@ -239,24 +280,66 @@ const uploadImage = async (file) => {
       );
     }
 
-    console.log("✅ Image uploaded:", data);
+    console.log(
+      "✅ Image uploaded successfully:",
+      data
+    );
 
-    return data;
+    return {
+      success: true,
+
+      url: data.url,
+
+      publicId:
+        data.publicId ||
+        data.filename ||
+        "",
+
+      width:
+        data.width ||
+        null,
+
+      height:
+        data.height ||
+        null,
+
+      format:
+        data.format ||
+        "webp",
+    };
   } catch (error) {
     console.error(
       "❌ Image upload error:",
       error
     );
 
+    if (error?.response) {
+      console.error(
+        "❌ Upload HTTP status:",
+        error.response.status
+      );
+
+      console.error(
+        "❌ Upload backend response:",
+        error.response.data
+      );
+    }
+
     const message =
       error?.response?.data?.message ||
       error?.message ||
       "Image upload failed.";
 
-    const uploadError = new Error(message);
+    const uploadError =
+      new Error(message);
 
     uploadError.status =
-      error?.response?.status || null;
+      error?.response?.status ||
+      null;
+
+    uploadError.data =
+      error?.response?.data ||
+      null;
 
     throw uploadError;
   }
@@ -277,18 +360,29 @@ const deleteImage = async (publicId) => {
     const encodedPublicId =
       encodeURIComponent(publicId);
 
+    console.log(
+      "🗑️ Deleting image:",
+      publicId
+    );
+
     const response = await api.delete(
       `/upload/image/${encodedPublicId}`
     );
 
-    if (!response?.data?.success) {
+    const data = response?.data;
+
+    if (!data?.success) {
       throw new Error(
-        response?.data?.message ||
+        data?.message ||
           "Image deletion failed."
       );
     }
 
-    return response.data;
+    console.log(
+      "✅ Image deleted successfully."
+    );
+
+    return data;
   } catch (error) {
     console.error(
       "❌ Image delete error:",
@@ -300,7 +394,14 @@ const deleteImage = async (publicId) => {
       error?.message ||
       "Image deletion failed.";
 
-    throw new Error(message);
+    const deleteError =
+      new Error(message);
+
+    deleteError.status =
+      error?.response?.status ||
+      null;
+
+    throw deleteError;
   }
 };
 
