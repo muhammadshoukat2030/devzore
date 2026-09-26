@@ -28,12 +28,28 @@ const AdminPostEditor = () => {
 
   const [categories, setCategories] = useState([]);
 
+  // const [formData, setFormData] = useState({
+  //   title: "",
+  //   slug: "",
+  //   excerpt: "",
+  //   content: "",
+  //   coverImage: "",
+  //   coverImageAlt: "",
+  //   category: "",
+  //   status: "draft",
+  //   featured: false,
+  //   tags: "",
+  //   seoTitle: "",
+  //   seoDescription: "",
+  //   seoKeywords: "",
+  // });
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
     excerpt: "",
     content: "",
     coverImage: "",
+    coverImagePublicId: "",
     coverImageAlt: "",
     category: "",
     status: "draft",
@@ -43,7 +59,6 @@ const AdminPostEditor = () => {
     seoDescription: "",
     seoKeywords: "",
   });
-
   // Track whether slug was manually edited
   const [slugManuallyEdited, setSlugManuallyEdited] =
     useState(false);
@@ -97,50 +112,57 @@ const AdminPostEditor = () => {
   };
 
   // =====================================================
-  // IMAGE UPLOAD HANDLER
-  // =====================================================
+// IMAGE UPLOAD HANDLER
+// =====================================================
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files?.[0];
-    
-    if (!file) return;
+const handleImageUpload = async (event) => {
+  const file = event.target.files?.[0];
 
-    try {
-      setUploadingImage(true);
+  if (!file) return;
 
-      // 📤 Upload and compress image
-      const response = await uploadService.uploadImage(file);
+  try {
+    setUploadingImage(true);
 
-      if (response.success && response.url) {
-        // ✅ Set image URL
-        setFormData((prev) => ({
-          ...prev,
-          coverImage: response.url,
-        }));
+    // 📤 Upload and compress image
+    const response = await uploadService.uploadImage(file);
 
-        toast.success("Image uploaded successfully!");
-      } else {
-        throw new Error("Upload failed");
-      }
-    } catch (error) {
-      console.error("Image upload error:", error);
+    if (response.success && response.url) {
+      // ✅ Save image URL + Google Drive File ID
+      setFormData((prev) => ({
+        ...prev,
+        coverImage: response.url,
+        coverImagePublicId: response.publicId || "",
+      }));
 
-      toast.error(
-        error?.response?.data?.message ||
-          error?.message ||
-          "Failed to upload image"
+      console.log("✅ Image uploaded:", response.url);
+      console.log(
+        "✅ Google Drive File ID:",
+        response.publicId
       );
-    } finally {
-      setUploadingImage(false);
-      
-      // Reset input
-      event.target.value = "";
-    }
-  };
 
-  // =====================================================
-  // LOAD CATEGORIES
-  // =====================================================
+      toast.success("Image uploaded successfully!");
+    } else {
+      throw new Error("Upload failed");
+    }
+  } catch (error) {
+    console.error("Image upload error:", error);
+
+    toast.error(
+      error?.response?.data?.message ||
+        error?.message ||
+        "Failed to upload image"
+    );
+  } finally {
+    setUploadingImage(false);
+
+    // Reset input
+    event.target.value = "";
+  }
+};
+
+// =====================================================
+// LOAD CATEGORIES
+// =====================================================
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -151,8 +173,8 @@ const AdminPostEditor = () => {
         const list = Array.isArray(response)
           ? response
           : response?.data ||
-            response?.categories ||
-            [];
+          response?.categories ||
+          [];
 
         setCategories(list);
       } catch (error) {
@@ -163,7 +185,7 @@ const AdminPostEditor = () => {
 
         toast.error(
           error?.response?.data?.message ||
-            "Failed to load categories."
+          "Failed to load categories."
         );
       }
     };
@@ -189,7 +211,8 @@ const AdminPostEditor = () => {
 
         console.log("📖 Loading post:", id);
 
-        const response = await postService.getAdminPostById(id);
+        const response =
+          await postService.getAdminPostById(id);
 
         const post =
           response?.data ||
@@ -204,43 +227,72 @@ const AdminPostEditor = () => {
           return;
         }
 
-        console.log("✅ Post loaded:", post.title);
+        console.log(
+          "✅ Post loaded:",
+          post.title
+        );
+
+        // ===============================================
+        // LOAD POST DATA INTO FORM
+        // ===============================================
 
         setFormData({
           title: post.title || "",
           slug: post.slug || "",
           excerpt: post.excerpt || "",
           content: post.content || "",
-          coverImage: post.coverImage || "",
-          coverImageAlt: post.coverImageAlt || "",
+
+          // Google Drive public image URL
+          coverImage:
+            post.coverImage || "",
+
+          // Google Drive File ID
+          // Required for deleting the image from Drive
+          coverImagePublicId:
+            post.coverImagePublicId || "",
+
+          coverImageAlt:
+            post.coverImageAlt || "",
 
           category:
             post.category?._id ||
             post.category ||
             "",
 
-          status: post.status || "draft",
+          status:
+            post.status || "draft",
 
-          featured: Boolean(post.featured),
+          featured:
+            Boolean(post.featured),
 
           tags: Array.isArray(post.tags)
             ? post.tags.join(", ")
             : post.tags || "",
 
-          seoTitle: post.seoTitle || "",
-          seoDescription: post.seoDescription || "",
-          seoKeywords: post.seoKeywords || "",
+          seoTitle:
+            post.seoTitle || "",
+
+          seoDescription:
+            post.seoDescription || "",
+
+          seoKeywords:
+            post.seoKeywords || "",
         });
 
-        // Existing slug should be considered manually controlled
-        // in edit mode.
-        setSlugManuallyEdited(Boolean(post.slug));
+        // Existing slug should be considered manually
+        // controlled in edit mode.
+        setSlugManuallyEdited(
+          Boolean(post.slug)
+        );
       } catch (error) {
         if (cancelled) {
           return;
         }
 
-        console.error("❌ Load post error:", error);
+        console.error(
+          "❌ Load post error:",
+          error
+        );
 
         const message =
           error?.response?.data?.message ||
@@ -583,6 +635,10 @@ const AdminPostEditor = () => {
         coverImage:
           formData.coverImage.trim(),
 
+        // Google Drive File ID
+        coverImagePublicId:
+          formData.coverImagePublicId.trim(),
+
         coverImageAlt:
           formData.coverImageAlt.trim(),
 
@@ -852,11 +908,10 @@ const AdminPostEditor = () => {
                       .toggleBold()
                       .run()
                   }
-                  className={`px-3 py-2 rounded-lg font-bold text-sm ${
-                    editor.isActive("bold")
+                  className={`px-3 py-2 rounded-lg font-bold text-sm ${editor.isActive("bold")
                       ? "bg-slate-900 text-white"
                       : "hover:bg-slate-200"
-                  }`}
+                    }`}
                 >
                   B
                 </button>
@@ -872,11 +927,10 @@ const AdminPostEditor = () => {
                       .toggleItalic()
                       .run()
                   }
-                  className={`px-3 py-2 rounded-lg italic text-sm ${
-                    editor.isActive("italic")
+                  className={`px-3 py-2 rounded-lg italic text-sm ${editor.isActive("italic")
                       ? "bg-slate-900 text-white"
                       : "hover:bg-slate-200"
-                  }`}
+                    }`}
                 >
                   I
                 </button>
@@ -892,11 +946,10 @@ const AdminPostEditor = () => {
                       .toggleStrike()
                       .run()
                   }
-                  className={`px-3 py-2 rounded-lg text-sm ${
-                    editor.isActive("strike")
+                  className={`px-3 py-2 rounded-lg text-sm ${editor.isActive("strike")
                       ? "bg-slate-900 text-white"
                       : "hover:bg-slate-200"
-                  }`}
+                    }`}
                 >
                   S
                 </button>
@@ -916,14 +969,13 @@ const AdminPostEditor = () => {
                       })
                       .run()
                   }
-                  className={`px-3 py-2 rounded-lg text-sm font-bold ${
-                    editor.isActive(
-                      "heading",
-                      { level: 2 }
-                    )
+                  className={`px-3 py-2 rounded-lg text-sm font-bold ${editor.isActive(
+                    "heading",
+                    { level: 2 }
+                  )
                       ? "bg-slate-900 text-white"
                       : "hover:bg-slate-200"
-                  }`}
+                    }`}
                 >
                   H2
                 </button>
@@ -941,14 +993,13 @@ const AdminPostEditor = () => {
                       })
                       .run()
                   }
-                  className={`px-3 py-2 rounded-lg text-sm font-bold ${
-                    editor.isActive(
-                      "heading",
-                      { level: 3 }
-                    )
+                  className={`px-3 py-2 rounded-lg text-sm font-bold ${editor.isActive(
+                    "heading",
+                    { level: 3 }
+                  )
                       ? "bg-slate-900 text-white"
                       : "hover:bg-slate-200"
-                  }`}
+                    }`}
                 >
                   H3
                 </button>
@@ -966,13 +1017,12 @@ const AdminPostEditor = () => {
                       .toggleBulletList()
                       .run()
                   }
-                  className={`px-3 py-2 rounded-lg text-sm ${
-                    editor.isActive(
-                      "bulletList"
-                    )
+                  className={`px-3 py-2 rounded-lg text-sm ${editor.isActive(
+                    "bulletList"
+                  )
                       ? "bg-slate-900 text-white"
                       : "hover:bg-slate-200"
-                  }`}
+                    }`}
                 >
                   • List
                 </button>
@@ -988,13 +1038,12 @@ const AdminPostEditor = () => {
                       .toggleOrderedList()
                       .run()
                   }
-                  className={`px-3 py-2 rounded-lg text-sm ${
-                    editor.isActive(
-                      "orderedList"
-                    )
+                  className={`px-3 py-2 rounded-lg text-sm ${editor.isActive(
+                    "orderedList"
+                  )
                       ? "bg-slate-900 text-white"
                       : "hover:bg-slate-200"
-                  }`}
+                    }`}
                 >
                   1. List
                 </button>
@@ -1109,20 +1158,20 @@ const AdminPostEditor = () => {
                 {loading
                   ? "Saving..."
                   : isEditMode
-                  ? formData.status ===
-                    "published"
-                    ? "Update & Publish"
+                    ? formData.status ===
+                      "published"
+                      ? "Update & Publish"
+                      : formData.status ===
+                        "scheduled"
+                        ? "Update Schedule"
+                        : "Update Post"
                     : formData.status ===
-                      "scheduled"
-                    ? "Update Schedule"
-                    : "Update Post"
-                  : formData.status ===
-                    "published"
-                  ? "Publish Post"
-                  : formData.status ===
-                    "scheduled"
-                  ? "Schedule Post"
-                  : "Save Draft"}
+                      "published"
+                      ? "Publish Post"
+                      : formData.status ===
+                        "scheduled"
+                        ? "Schedule Post"
+                        : "Save Draft"}
               </button>
 
               {!formData.category && (
@@ -1193,7 +1242,7 @@ const AdminPostEditor = () => {
               <label className="block text-sm font-medium text-slate-700 mb-2">
                 Upload Image
               </label>
-              
+
               <div className="flex gap-3">
                 <input
                   type="file"
@@ -1203,7 +1252,7 @@ const AdminPostEditor = () => {
                   disabled={uploadingImage}
                   className="hidden"
                 />
-                
+
                 <label
                   htmlFor="coverImageUpload"
                   className="flex-1 px-4 py-3 border border-slate-200 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer text-center font-medium text-slate-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
@@ -1213,7 +1262,7 @@ const AdminPostEditor = () => {
                     : "📸 Choose Image"}
                 </label>
               </div>
-              
+
               <p className="text-xs text-slate-400 mt-2">
                 Max 5MB • Auto-compressed
               </p>
@@ -1224,7 +1273,7 @@ const AdminPostEditor = () => {
               <label className="block text-sm font-medium text-slate-700 mb-2">
                 Or paste image URL
               </label>
-              
+
               <input
                 type="text"
                 name="coverImage"

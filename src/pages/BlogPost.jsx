@@ -207,25 +207,22 @@ const BlogPost = ({ isDark = true }) => {
   if (loading) {
     return (
       <div
-        className={`min-h-screen flex items-center justify-center ${
-          isDark
+        className={`min-h-screen flex items-center justify-center ${isDark
             ? "bg-[#050505] text-white"
             : "bg-[#f8f8f8] text-slate-950"
-        }`}
+          }`}
       >
         <div className="text-center px-6">
           <div
-            className={`w-9 h-9 rounded-full border-[3px] mx-auto mb-4 animate-spin ${
-              isDark
+            className={`w-9 h-9 rounded-full border-[3px] mx-auto mb-4 animate-spin ${isDark
                 ? "border-white/10 border-t-purple-500"
                 : "border-slate-200 border-t-purple-600"
-            }`}
+              }`}
           />
 
           <p
-            className={`text-[10px] font-black uppercase tracking-[0.14em] ${
-              isDark ? "text-gray-500" : "text-slate-500"
-            }`}
+            className={`text-[10px] font-black uppercase tracking-[0.14em] ${isDark ? "text-gray-500" : "text-slate-500"
+              }`}
           >
             Loading DevZore Journal
           </p>
@@ -291,22 +288,20 @@ const BlogPost = ({ isDark = true }) => {
       </Helmet>
 
       <div
-        className={`min-h-screen transition-colors duration-300 ${
-          isDark
+        className={`min-h-screen transition-colors duration-300 ${isDark
             ? "bg-[#050505] text-white"
             : "bg-[#f8f8f8] text-slate-950"
-        }`}
+          }`}
       >
         {/* ==================================================
             JOURNAL HEADER
         ================================================== */}
 
         <header
-          className={`pt-24 sm:pt-28 border-b ${
-            isDark
+          className={`pt-24 sm:pt-28 border-b ${isDark
               ? "bg-[#080808] border-white/[0.08]"
               : "bg-white border-slate-200"
-          }`}
+            }`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 pb-6 sm:pb-7">
@@ -320,17 +315,15 @@ const BlogPost = ({ isDark = true }) => {
                 </div>
 
                 <h1
-                  className={`text-4xl sm:text-5xl lg:text-[54px] leading-none font-black tracking-[-0.04em] ${
-                    isDark ? "text-white" : "text-slate-950"
-                  }`}
+                  className={`text-4xl sm:text-5xl lg:text-[54px] leading-none font-black tracking-[-0.04em] ${isDark ? "text-white" : "text-slate-950"
+                    }`}
                 >
                   DevZore Journal
                 </h1>
 
                 <p
-                  className={`mt-4 max-w-2xl text-sm sm:text-base leading-relaxed ${
-                    isDark ? "text-gray-400" : "text-slate-600"
-                  }`}
+                  className={`mt-4 max-w-2xl text-sm sm:text-base leading-relaxed ${isDark ? "text-gray-400" : "text-slate-600"
+                    }`}
                 >
                   Practical articles on software development,
                   web technologies, SaaS, mobile applications,
@@ -339,9 +332,8 @@ const BlogPost = ({ isDark = true }) => {
               </div>
 
               <div
-                className={`flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.12em] ${
-                  isDark ? "text-gray-500" : "text-slate-500"
-                }`}
+                className={`flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.12em] ${isDark ? "text-gray-500" : "text-slate-500"
+                  }`}
               >
                 <Newspaper
                   size={14}
@@ -359,11 +351,10 @@ const BlogPost = ({ isDark = true }) => {
 
           <nav
             aria-label="Blog categories"
-            className={`border-t ${
-              isDark
+            className={`border-t ${isDark
                 ? "border-white/[0.07] bg-[#0b0b0b]"
                 : "border-slate-200 bg-white"
-            }`}
+              }`}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
               <div className="flex items-center min-w-max">
@@ -378,15 +369,14 @@ const BlogPost = ({ isDark = true }) => {
                       onClick={() =>
                         setActiveCategory(category)
                       }
-                      className={`relative px-4 sm:px-5 py-3.5 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.1em] transition-colors ${
-                        active
+                      className={`relative px-4 sm:px-5 py-3.5 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.1em] transition-colors ${active
                           ? isDark
                             ? "text-white"
                             : "text-slate-950"
                           : isDark
                             ? "text-gray-500 hover:text-white"
                             : "text-slate-500 hover:text-slate-950"
-                      }`}
+                        }`}
                     >
                       {category}
 
@@ -408,28 +398,25 @@ const BlogPost = ({ isDark = true }) => {
 
           {error && (
             <section
-              className={`p-5 border mb-8 ${
-                isDark
+              className={`p-5 border mb-8 ${isDark
                   ? "bg-red-500/[0.05] border-red-500/20"
                   : "bg-red-50 border-red-200"
-              }`}
+                }`}
             >
               <h2
-                className={`text-base font-black mb-2 ${
-                  isDark
+                className={`text-base font-black mb-2 ${isDark
                     ? "text-red-400"
                     : "text-red-700"
-                }`}
+                  }`}
               >
                 Unable to load articles
               </h2>
 
               <p
-                className={`text-sm mb-4 ${
-                  isDark
+                className={`text-sm mb-4 ${isDark
                     ? "text-gray-400"
                     : "text-slate-600"
-                }`}
+                  }`}
               >
                 {error}
               </p>
@@ -453,11 +440,10 @@ const BlogPost = ({ isDark = true }) => {
 
           {!error && filteredPosts.length === 0 && (
             <section
-              className={`text-center py-16 border ${
-                isDark
+              className={`text-center py-16 border ${isDark
                   ? "bg-[#080808] border-white/[0.08]"
                   : "bg-white border-slate-200"
-              }`}
+                }`}
             >
               <FileText
                 size={30}
@@ -465,21 +451,19 @@ const BlogPost = ({ isDark = true }) => {
               />
 
               <h2
-                className={`text-xl font-black mb-2 ${
-                  isDark
+                className={`text-xl font-black mb-2 ${isDark
                     ? "text-white"
                     : "text-slate-950"
-                }`}
+                  }`}
               >
                 No articles found
               </h2>
 
               <p
-                className={`text-sm ${
-                  isDark
+                className={`text-sm ${isDark
                     ? "text-gray-500"
                     : "text-slate-500"
-                }`}
+                  }`}
               >
                 {activeCategory === "All"
                   ? "Published articles will appear here."
@@ -495,11 +479,10 @@ const BlogPost = ({ isDark = true }) => {
           {!error && leadPost && (
             <>
               <div
-                className={`flex items-center justify-between border-b-2 pb-3 mb-5 ${
-                  isDark
+                className={`flex items-center justify-between border-b-2 pb-3 mb-5 ${isDark
                     ? "border-white"
                     : "border-slate-950"
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <Newspaper
@@ -508,22 +491,20 @@ const BlogPost = ({ isDark = true }) => {
                   />
 
                   <h2
-                    className={`text-sm sm:text-base font-black uppercase tracking-[0.08em] ${
-                      isDark
+                    className={`text-sm sm:text-base font-black uppercase tracking-[0.08em] ${isDark
                         ? "text-white"
                         : "text-slate-950"
-                    }`}
+                      }`}
                   >
                     Featured
                   </h2>
                 </div>
 
                 <span
-                  className={`text-[9px] font-bold ${
-                    isDark
+                  className={`text-[9px] font-bold ${isDark
                       ? "text-gray-600"
                       : "text-slate-400"
-                  }`}
+                    }`}
                 >
                   {filteredPosts.length}{" "}
                   {filteredPosts.length === 1
@@ -536,11 +517,10 @@ const BlogPost = ({ isDark = true }) => {
                 {/* LEAD STORY */}
 
                 <article
-                  className={`lg:col-span-8 lg:pr-6 lg:border-r ${
-                    isDark
+                  className={`lg:col-span-8 lg:pr-6 lg:border-r ${isDark
                       ? "lg:border-white/[0.08]"
                       : "lg:border-slate-200"
-                  }`}
+                    }`}
                 >
                   <PostLink
                     post={leadPost}
@@ -549,11 +529,10 @@ const BlogPost = ({ isDark = true }) => {
                     onClick={scrollTop}
                   >
                     <div
-                      className={`relative w-full h-[210px] sm:h-[330px] lg:h-[390px] overflow-hidden mb-5 ${
-                        isDark
+                      className={`relative w-full h-[210px] sm:h-[330px] lg:h-[390px] overflow-hidden mb-5 ${isDark
                           ? "bg-[#111]"
                           : "bg-slate-200"
-                      }`}
+                        }`}
                     >
                       {leadPost?.coverImage ? (
                         <img
@@ -567,10 +546,13 @@ const BlogPost = ({ isDark = true }) => {
                           decoding="async"
                           fetchPriority="high"
                           onError={(event) => {
-                            event.currentTarget.style.display =
-                              "none";
+                            console.error(
+                              "❌ Blog image failed to load:",
+                              event.currentTarget.src
+                            );
                           }}
                         />
+
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-purple-800 to-slate-950 flex items-center justify-center">
                           <Newspaper
@@ -587,11 +569,10 @@ const BlogPost = ({ isDark = true }) => {
 
                     <div className="max-w-4xl">
                       <h2
-                        className={`text-2xl sm:text-3xl lg:text-[36px] font-black tracking-[-0.025em] leading-[1.08] mb-3 transition-colors group-hover:text-purple-500 ${
-                          isDark
+                        className={`text-2xl sm:text-3xl lg:text-[36px] font-black tracking-[-0.025em] leading-[1.08] mb-3 transition-colors group-hover:text-purple-500 ${isDark
                             ? "text-white"
                             : "text-slate-950"
-                        }`}
+                          }`}
                       >
                         {leadPost?.title ||
                           "Untitled Article"}
@@ -599,11 +580,10 @@ const BlogPost = ({ isDark = true }) => {
 
                       {leadPost?.excerpt && (
                         <p
-                          className={`text-sm sm:text-base leading-relaxed mb-4 max-w-3xl ${
-                            isDark
+                          className={`text-sm sm:text-base leading-relaxed mb-4 max-w-3xl ${isDark
                               ? "text-gray-400"
                               : "text-slate-600"
-                          }`}
+                            }`}
                         >
                           {leadPost.excerpt}
                         </p>
@@ -624,11 +604,10 @@ const BlogPost = ({ isDark = true }) => {
                 {secondaryPosts.length > 0 && (
                   <div className="lg:col-span-4 mt-8 lg:mt-0">
                     <div
-                      className={`border-b pb-3 mb-1 ${
-                        isDark
+                      className={`border-b pb-3 mb-1 ${isDark
                           ? "border-white/[0.08]"
                           : "border-slate-200"
-                      }`}
+                        }`}
                     >
                       <span className="text-[9px] font-black uppercase tracking-[0.15em] text-purple-500">
                         Latest
@@ -666,18 +645,16 @@ const BlogPost = ({ isDark = true }) => {
           {!error && latestPosts.length > 0 && (
             <section>
               <div
-                className={`flex items-center justify-between border-b-2 pb-3 mb-1 ${
-                  isDark
+                className={`flex items-center justify-between border-b-2 pb-3 mb-1 ${isDark
                     ? "border-white"
                     : "border-slate-950"
-                }`}
+                  }`}
               >
                 <h2
-                  className={`text-sm sm:text-base font-black uppercase tracking-[0.08em] ${
-                    isDark
+                  className={`text-sm sm:text-base font-black uppercase tracking-[0.08em] ${isDark
                       ? "text-white"
                       : "text-slate-950"
-                  }`}
+                    }`}
                 >
                   More From DevZore
                 </h2>
@@ -714,18 +691,16 @@ const BlogPost = ({ isDark = true }) => {
             filteredPosts.length > 0 &&
             latestPosts.length === 0 && (
               <div
-                className={`mt-9 pt-5 border-t ${
-                  isDark
+                className={`mt-9 pt-5 border-t ${isDark
                     ? "border-white/[0.08]"
                     : "border-slate-200"
-                }`}
+                  }`}
               >
                 <p
-                  className={`text-xs ${
-                    isDark
+                  className={`text-xs ${isDark
                       ? "text-gray-600"
                       : "text-slate-500"
-                  }`}
+                    }`}
                 >
                   More articles will appear here as
                   they are published.
@@ -739,11 +714,10 @@ const BlogPost = ({ isDark = true }) => {
 
           {!error && allPosts.length > 0 && (
             <section
-              className={`mt-12 sm:mt-14 border-t-4 border-purple-600 ${
-                isDark
+              className={`mt-12 sm:mt-14 border-t-4 border-purple-600 ${isDark
                   ? "bg-[#0a0a0a]"
                   : "bg-white border-x border-b border-slate-200"
-              }`}
+                }`}
             >
               <div className="grid lg:grid-cols-12">
                 <div className="lg:col-span-8 p-5 sm:p-7 lg:p-8">
@@ -752,22 +726,20 @@ const BlogPost = ({ isDark = true }) => {
                   </span>
 
                   <h2
-                    className={`text-2xl sm:text-3xl font-black tracking-tight mt-2 mb-3 ${
-                      isDark
+                    className={`text-2xl sm:text-3xl font-black tracking-tight mt-2 mb-3 ${isDark
                         ? "text-white"
                         : "text-slate-950"
-                    }`}
+                      }`}
                   >
                     Planning a software or digital
                     product?
                   </h2>
 
                   <p
-                    className={`text-sm leading-relaxed max-w-2xl ${
-                      isDark
+                    className={`text-sm leading-relaxed max-w-2xl ${isDark
                         ? "text-gray-400"
                         : "text-slate-600"
-                    }`}
+                      }`}
                   >
                     Discuss web development, mobile
                     applications, SaaS products,
@@ -778,11 +750,10 @@ const BlogPost = ({ isDark = true }) => {
                 </div>
 
                 <div
-                  className={`lg:col-span-4 p-5 sm:p-7 lg:p-8 flex items-center lg:justify-end border-t lg:border-t-0 lg:border-l ${
-                    isDark
+                  className={`lg:col-span-4 p-5 sm:p-7 lg:p-8 flex items-center lg:justify-end border-t lg:border-t-0 lg:border-l ${isDark
                       ? "border-white/[0.08]"
                       : "border-slate-200"
-                  }`}
+                    }`}
                 >
                   <Link
                     to="/contact"
@@ -856,11 +827,10 @@ const ArticleMeta = ({
 
   return (
     <div
-      className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.08em] ${
-        isDark
+      className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.08em] ${isDark
           ? "text-gray-600"
           : "text-slate-500"
-      }`}
+        }`}
     >
       {publishedDate && (
         <span className="flex items-center gap-1.5">
@@ -897,11 +867,10 @@ const SecondaryStory = ({
 
   return (
     <article
-      className={`py-4 border-b last:border-b-0 ${
-        isDark
+      className={`py-4 border-b last:border-b-0 ${isDark
           ? "border-white/[0.08]"
           : "border-slate-200"
-      }`}
+        }`}
     >
       <PostLink
         post={post}
@@ -916,22 +885,20 @@ const SecondaryStory = ({
             </span>
 
             <h3
-              className={`text-sm sm:text-base lg:text-[14px] leading-snug font-black mt-1.5 mb-2 transition-colors group-hover:text-purple-500 ${
-                isDark
+              className={`text-sm sm:text-base lg:text-[14px] leading-snug font-black mt-1.5 mb-2 transition-colors group-hover:text-purple-500 ${isDark
                   ? "text-white"
                   : "text-slate-950"
-              }`}
+                }`}
             >
               {post?.title || "Untitled Article"}
             </h3>
 
             {publishedDate && (
               <span
-                className={`text-[8px] sm:text-[9px] font-semibold ${
-                  isDark
+                className={`text-[8px] sm:text-[9px] font-semibold ${isDark
                     ? "text-gray-600"
                     : "text-slate-400"
-                }`}
+                  }`}
               >
                 {publishedDate}
               </span>
@@ -939,11 +906,10 @@ const SecondaryStory = ({
           </div>
 
           <div
-            className={`h-[70px] overflow-hidden ${
-              isDark
+            className={`h-[70px] overflow-hidden ${isDark
                 ? "bg-[#111]"
                 : "bg-slate-200"
-            }`}
+              }`}
           >
             {post?.coverImage ? (
               <img
@@ -997,11 +963,10 @@ const NewsRow = ({
 
   return (
     <article
-      className={`border-b ${
-        isDark
+      className={`border-b ${isDark
           ? "border-white/[0.08]"
           : "border-slate-200"
-      }`}
+        }`}
     >
       <PostLink
         post={post}
@@ -1011,11 +976,10 @@ const NewsRow = ({
       >
         <div className="grid grid-cols-[110px_1fr] sm:grid-cols-[190px_1fr] lg:grid-cols-[225px_1fr] gap-4 sm:gap-6">
           <div
-            className={`w-full h-[78px] sm:h-[115px] lg:h-[128px] overflow-hidden ${
-              isDark
+            className={`w-full h-[78px] sm:h-[115px] lg:h-[128px] overflow-hidden ${isDark
                 ? "bg-[#111]"
                 : "bg-slate-200"
-            }`}
+              }`}
           >
             {post?.coverImage ? (
               <img
@@ -1049,22 +1013,20 @@ const NewsRow = ({
             </span>
 
             <h3
-              className={`text-[15px] sm:text-xl lg:text-[22px] font-black tracking-[-0.02em] leading-tight mb-2 transition-colors group-hover:text-purple-500 ${
-                isDark
+              className={`text-[15px] sm:text-xl lg:text-[22px] font-black tracking-[-0.02em] leading-tight mb-2 transition-colors group-hover:text-purple-500 ${isDark
                   ? "text-white"
                   : "text-slate-950"
-              }`}
+                }`}
             >
               {post?.title || "Untitled Article"}
             </h3>
 
             {post?.excerpt && (
               <p
-                className={`hidden sm:block text-xs sm:text-sm leading-relaxed line-clamp-2 max-w-3xl mb-3 ${
-                  isDark
+                className={`hidden sm:block text-xs sm:text-sm leading-relaxed line-clamp-2 max-w-3xl mb-3 ${isDark
                     ? "text-gray-500"
                     : "text-slate-600"
-                }`}
+                  }`}
               >
                 {post.excerpt}
               </p>
@@ -1072,11 +1034,10 @@ const NewsRow = ({
 
             <div className="flex items-center justify-between gap-3">
               <div
-                className={`flex flex-wrap items-center gap-2 sm:gap-3 text-[8px] sm:text-[9px] font-semibold ${
-                  isDark
+                className={`flex flex-wrap items-center gap-2 sm:gap-3 text-[8px] sm:text-[9px] font-semibold ${isDark
                     ? "text-gray-600"
                     : "text-slate-400"
-                }`}
+                  }`}
               >
                 {publishedDate && (
                   <span className="flex items-center gap-1">
