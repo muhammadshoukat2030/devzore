@@ -9,15 +9,21 @@ const TOKEN_KEY = "adminToken";
 const USER_KEY = "adminUser";
 
 // ======================================================
+// BROWSER ENVIRONMENT CHECK
+// ======================================================
+// SSR / SSG ke waqt window, document aur localStorage
+// available nahi hote.
+// ======================================================
+
+const isBrowser =
+  typeof window !== "undefined" &&
+  typeof document !== "undefined" &&
+  typeof localStorage !== "undefined";
+
+// ======================================================
 // SAVE TOKEN
 // ======================================================
 // Token ko cookie + localStorage dono mein save karte hain.
-//
-// localStorage:
-// Axios interceptor reliably token read kar sake.
-//
-// Cookie:
-// Existing authentication setup ke saath compatibility.
 // ======================================================
 
 const saveToken = (token) => {
@@ -27,21 +33,40 @@ const saveToken = (token) => {
 
   const cleanToken = token.trim();
 
-  // Save in cookie
-  cookieManager.setCookie(TOKEN_KEY, cleanToken, 7);
+  if (!isBrowser) {
+    return cleanToken;
+  }
 
-  // IMPORTANT:
-  // Always save in localStorage as well.
-  localStorage.setItem(TOKEN_KEY, cleanToken);
+  // Save in cookie
+  cookieManager.setCookie(
+    TOKEN_KEY,
+    cleanToken,
+    7
+  );
+
+  // Save in localStorage
+  localStorage.setItem(
+    TOKEN_KEY,
+    cleanToken
+  );
 
   // Verify
-  const localToken = localStorage.getItem(TOKEN_KEY);
-  const cookieToken = cookieManager.getCookie(TOKEN_KEY);
+  const localToken =
+    localStorage.getItem(TOKEN_KEY);
+
+  const cookieToken =
+    cookieManager.getCookie(TOKEN_KEY);
 
   console.log("=================================");
   console.log("🔐 AUTH TOKEN STORAGE");
-  console.log("LocalStorage token:", Boolean(localToken));
-  console.log("Cookie token:", Boolean(cookieToken));
+  console.log(
+    "LocalStorage token:",
+    Boolean(localToken)
+  );
+  console.log(
+    "Cookie token:",
+    Boolean(cookieToken)
+  );
   console.log("=================================");
 
   return cleanToken;
@@ -52,7 +77,7 @@ const saveToken = (token) => {
 // ======================================================
 
 const saveUser = (user) => {
-  if (!user) {
+  if (!user || !isBrowser) {
     return;
   }
 
@@ -143,8 +168,14 @@ const login = async (email, password) => {
 
     console.log("=================================");
     console.log("✅ ADMIN LOGIN SUCCESSFUL");
-    console.log("Token saved:", Boolean(savedToken));
-    console.log("User:", user?.email || "available");
+    console.log(
+      "Token saved:",
+      Boolean(savedToken)
+    );
+    console.log(
+      "User:",
+      user?.email || "available"
+    );
     console.log("=================================");
 
     return {
@@ -152,7 +183,6 @@ const login = async (email, password) => {
       token: savedToken,
       user,
     };
-
   } catch (error) {
     console.error(
       "❌ Login Error:",
@@ -167,32 +197,43 @@ const login = async (email, password) => {
 // ======================================================
 // GET TOKEN
 // ======================================================
+// Browser mein:
+// 1. localStorage
+// 2. cookie fallback
 //
-// IMPORTANT:
-// localStorage FIRST.
-//
-// Is se Axios request interceptor aur authService
-// same token source reliably use karenge.
+// SSR / SSG mein:
+// null return karega.
 // ======================================================
 
 const getToken = () => {
+  if (!isBrowser) {
+    return null;
+  }
+
   try {
     const localToken =
       localStorage.getItem(TOKEN_KEY);
 
-    if (localToken) {
+    if (
+      localToken &&
+      typeof localToken === "string" &&
+      localToken.trim()
+    ) {
       return localToken.trim();
     }
 
     const cookieToken =
       cookieManager.getCookie(TOKEN_KEY);
 
-    if (cookieToken) {
+    if (
+      cookieToken &&
+      typeof cookieToken === "string" &&
+      cookieToken.trim()
+    ) {
       return cookieToken.trim();
     }
 
     return null;
-
   } catch (error) {
     console.error(
       "❌ Failed to read authentication token:",
@@ -240,7 +281,6 @@ const getMe = async () => {
     saveUser(user);
 
     return user;
-
   } catch (error) {
     console.error(
       "❌ Get Current User Error:",
@@ -261,6 +301,10 @@ const getMe = async () => {
 // ======================================================
 
 const getCurrentUser = () => {
+  if (!isBrowser) {
+    return null;
+  }
+
   try {
     const storedUser =
       localStorage.getItem(USER_KEY);
@@ -270,14 +314,18 @@ const getCurrentUser = () => {
     }
 
     return JSON.parse(storedUser);
-
   } catch (error) {
     console.error(
       "❌ Failed to read stored admin user:",
       error
     );
 
-    localStorage.removeItem(USER_KEY);
+    // Invalid/corrupted stored user cleanup
+    try {
+      localStorage.removeItem(USER_KEY);
+    } catch {
+      // Ignore storage cleanup failure
+    }
 
     return null;
   }
@@ -296,6 +344,10 @@ const isAuthenticated = () => {
 // ======================================================
 
 const clearAuth = () => {
+  if (!isBrowser) {
+    return;
+  }
+
   try {
     // Cookie
     cookieManager.deleteCookie(TOKEN_KEY);
@@ -307,7 +359,6 @@ const clearAuth = () => {
     console.log(
       "🔓 Authentication data cleared."
     );
-
   } catch (error) {
     console.error(
       "❌ Failed to clear authentication:",
