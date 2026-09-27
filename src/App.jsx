@@ -215,13 +215,13 @@ const seoData = {
   "/privacy-policy": {
     title: "Privacy Policy | DevZore",
     description:
-      "Read the DevZore privacy policy and learn how information is collected, used and protected.",
+      "Read DevZore's Privacy Policy to learn how we collect, use, store and protect your information when you use our website, software and digital services.",
   },
-
+  
   "/terms-and-conditions": {
     title: "Terms & Conditions | DevZore",
     description:
-      "Read the DevZore terms and conditions for software development, digital services and support.",
+      "Read DevZore's Terms and Conditions covering website use, software development services, client responsibilities, payments, support and other policies.",
   },
 };
 
@@ -480,10 +480,9 @@ function AppContent({ isDark, toggleTheme }) {
         flex-col
         transition-colors
         duration-300
-        ${
-          isDark
-            ? "bg-[#030303] text-white selection:bg-purple-500/30"
-            : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
+        ${isDark
+          ? "bg-[#030303] text-white selection:bg-purple-500/30"
+          : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
         }
       `}
     >

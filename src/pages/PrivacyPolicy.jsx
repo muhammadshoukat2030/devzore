@@ -93,10 +93,9 @@ const PrivacyPolicy = ({ isDark }) => {
     rounded-2xl
     border
     mb-3
-    ${
-      d
-        ? 'bg-white/[0.02] border-white/[0.06]'
-        : 'bg-slate-50 border-slate-200'
+    ${d
+      ? 'bg-white/[0.02] border-white/[0.06]'
+      : 'bg-slate-50 border-slate-200'
     }
   `;
 
@@ -119,45 +118,46 @@ const PrivacyPolicy = ({ isDark }) => {
   return (
     <>
       {/* =====================================================
-          STRUCTURED DATA ONLY
-          Global title, description, canonical and social SEO
-          are handled by App.jsx / SEOManager.
-      ====================================================== */}
+    STRUCTURED DATA ONLY
+    Global title, description, canonical and social SEO
+    are handled by App.jsx / SEOManager.
+===================================================== */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'WebPage',
-            '@id': 'https://devzore.com/privacy-policy#webpage',
-            name: 'Privacy Policy — DevZore',
-            url: 'https://devzore.com/privacy-policy',
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": "https://devzore.com/privacy-policy#webpage",
+            name: "Privacy Policy | DevZore",
+            url: "https://devzore.com/privacy-policy",
             description:
-              'DevZore Privacy Policy explaining how information may be collected, used, protected and handled when using our website or contacting us.',
+              "Read DevZore's Privacy Policy to learn how we collect, use, store and protect your information when you use our website, software and digital services.",
             isPartOf: {
-              '@id': 'https://devzore.com/#website',
+              "@id": "https://devzore.com/#website",
             },
             about: {
-              '@id': 'https://devzore.com/#organization',
+              "@id": "https://devzore.com/#organization",
             },
+            inLanguage: "en",
           })}
         </script>
 
         <script type="application/ld+json">
           {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
             itemListElement: [
               {
-                '@type': 'ListItem',
+                "@type": "ListItem",
                 position: 1,
-                name: 'Home',
-                item: 'https://devzore.com/',
+                name: "Home",
+                item: "https://devzore.com/",
               },
               {
-                '@type': 'ListItem',
+                "@type": "ListItem",
                 position: 2,
-                name: 'Privacy Policy',
-                item: 'https://devzore.com/privacy-policy',
+                name: "Privacy Policy",
+                item: "https://devzore.com/privacy-policy",
               },
             ],
           })}
@@ -187,10 +187,9 @@ const PrivacyPolicy = ({ isDark }) => {
             sm:pb-14
             border-b
             overflow-hidden
-            ${
-              d
-                ? 'border-white/[0.06] bg-[#030303]'
-                : 'border-slate-200 bg-white'
+            ${d
+              ? 'border-white/[0.06] bg-[#030303]'
+              : 'border-slate-200 bg-white'
             }
           `}
         >
@@ -228,10 +227,9 @@ const PrivacyPolicy = ({ isDark }) => {
                 uppercase
                 tracking-[0.15em]
                 mb-5
-                ${
-                  d
-                    ? 'bg-purple-500/10 border-purple-500/20 text-purple-300'
-                    : 'bg-purple-50 border-purple-200 text-purple-700'
+                ${d
+                  ? 'bg-purple-500/10 border-purple-500/20 text-purple-300'
+                  : 'bg-purple-50 border-purple-200 text-purple-700'
                 }
               `}
             >
@@ -283,10 +281,9 @@ const PrivacyPolicy = ({ isDark }) => {
                 border
                 text-[11px]
                 font-semibold
-                ${
-                  d
-                    ? 'bg-white/[0.025] border-white/[0.07] text-gray-400'
-                    : 'bg-slate-50 border-slate-200 text-slate-500'
+                ${d
+                  ? 'bg-white/[0.025] border-white/[0.07] text-gray-400'
+                  : 'bg-slate-50 border-slate-200 text-slate-500'
                 }
               `}
             >
@@ -336,10 +333,9 @@ const PrivacyPolicy = ({ isDark }) => {
                         text-[12px]
                         font-semibold
                         transition-all
-                        ${
-                          d
-                            ? 'text-gray-400 hover:text-purple-400 hover:bg-purple-600/10'
-                            : 'text-slate-500 hover:text-purple-600 hover:bg-purple-50'
+                        ${d
+                          ? 'text-gray-400 hover:text-purple-400 hover:bg-purple-600/10'
+                          : 'text-slate-500 hover:text-purple-600 hover:bg-purple-50'
                         }
                       `}
                     >
@@ -358,10 +354,9 @@ const PrivacyPolicy = ({ isDark }) => {
                     p-4
                     rounded-xl
                     border
-                    ${
-                      d
-                        ? 'bg-white/[0.02] border-white/[0.06]'
-                        : 'bg-white border-slate-200'
+                    ${d
+                      ? 'bg-white/[0.02] border-white/[0.06]'
+                      : 'bg-white border-slate-200'
                     }
                   `}
                 >
@@ -395,10 +390,9 @@ const PrivacyPolicy = ({ isDark }) => {
                     p-4
                     rounded-xl
                     border
-                    ${
-                      d
-                        ? 'bg-purple-500/[0.05] border-purple-500/15'
-                        : 'bg-purple-50 border-purple-100'
+                    ${d
+                      ? 'bg-purple-500/[0.05] border-purple-500/15'
+                      : 'bg-purple-50 border-purple-100'
                     }
                   `}
                 >
@@ -438,10 +432,9 @@ const PrivacyPolicy = ({ isDark }) => {
                   rounded-2xl
                   border
                   mb-2
-                  ${
-                    d
-                      ? 'bg-purple-500/[0.04] border-purple-500/15'
-                      : 'bg-purple-50 border-purple-100'
+                  ${d
+                    ? 'bg-purple-500/[0.04] border-purple-500/15'
+                    : 'bg-purple-50 border-purple-100'
                   }
                 `}
               >
@@ -496,10 +489,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-blue-500/10 text-blue-400'
-                          : 'bg-blue-50 text-blue-600'
+                      ${d
+                        ? 'bg-blue-500/10 text-blue-400'
+                        : 'bg-blue-50 text-blue-600'
                       }
                     `}
                   >
@@ -619,10 +611,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-purple-500/10 text-purple-400'
-                          : 'bg-purple-50 text-purple-600'
+                      ${d
+                        ? 'bg-purple-500/10 text-purple-400'
+                        : 'bg-purple-50 text-purple-600'
                       }
                     `}
                   >
@@ -723,10 +714,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-green-500/10 text-green-400'
-                          : 'bg-green-50 text-green-600'
+                      ${d
+                        ? 'bg-green-500/10 text-green-400'
+                        : 'bg-green-50 text-green-600'
                       }
                     `}
                   >
@@ -778,10 +768,9 @@ const PrivacyPolicy = ({ isDark }) => {
                         p-5
                         rounded-2xl
                         border
-                        ${
-                          d
-                            ? 'bg-white/[0.02] border-white/[0.06]'
-                            : 'bg-slate-50 border-slate-200'
+                        ${d
+                          ? 'bg-white/[0.02] border-white/[0.06]'
+                          : 'bg-slate-50 border-slate-200'
                         }
                       `}
                     >
@@ -844,10 +833,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-amber-500/10 text-amber-400'
-                          : 'bg-amber-50 text-amber-600'
+                      ${d
+                        ? 'bg-amber-500/10 text-amber-400'
+                        : 'bg-amber-50 text-amber-600'
                       }
                     `}
                   >
@@ -939,10 +927,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-indigo-500/10 text-indigo-400'
-                          : 'bg-indigo-50 text-indigo-600'
+                      ${d
+                        ? 'bg-indigo-500/10 text-indigo-400'
+                        : 'bg-indigo-50 text-indigo-600'
                       }
                     `}
                   >
@@ -994,10 +981,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       rounded-xl
                       border
                       mb-2
-                      ${
-                        d
-                          ? 'bg-white/[0.02] border-white/[0.06]'
-                          : 'bg-slate-50 border-slate-200'
+                      ${d
+                        ? 'bg-white/[0.02] border-white/[0.06]'
+                        : 'bg-slate-50 border-slate-200'
                       }
                     `}
                   >
@@ -1037,10 +1023,9 @@ const PrivacyPolicy = ({ isDark }) => {
                     p-4
                     rounded-xl
                     border
-                    ${
-                      d
-                        ? 'bg-green-500/[0.04] border-green-500/15'
-                        : 'bg-green-50 border-green-100'
+                    ${d
+                      ? 'bg-green-500/[0.04] border-green-500/15'
+                      : 'bg-green-50 border-green-100'
                     }
                   `}
                 >
@@ -1073,10 +1058,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-cyan-500/10 text-cyan-400'
-                          : 'bg-cyan-50 text-cyan-600'
+                      ${d
+                        ? 'bg-cyan-500/10 text-cyan-400'
+                        : 'bg-cyan-50 text-cyan-600'
                       }
                     `}
                   >
@@ -1161,10 +1145,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-green-500/10 text-green-400'
-                          : 'bg-green-50 text-green-600'
+                      ${d
+                        ? 'bg-green-500/10 text-green-400'
+                        : 'bg-green-50 text-green-600'
                       }
                     `}
                   >
@@ -1221,10 +1204,9 @@ const PrivacyPolicy = ({ isDark }) => {
                         p-4
                         rounded-xl
                         border
-                        ${
-                          d
-                            ? 'bg-white/[0.02] border-white/[0.06]'
-                            : 'bg-slate-50 border-slate-200'
+                        ${d
+                          ? 'bg-white/[0.02] border-white/[0.06]'
+                          : 'bg-slate-50 border-slate-200'
                         }
                       `}
                     >
@@ -1278,10 +1260,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-pink-500/10 text-pink-400'
-                          : 'bg-pink-50 text-pink-600'
+                      ${d
+                        ? 'bg-pink-500/10 text-pink-400'
+                        : 'bg-pink-50 text-pink-600'
                       }
                     `}
                   >
@@ -1321,10 +1302,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-blue-500/10 text-blue-400'
-                          : 'bg-blue-50 text-blue-600'
+                      ${d
+                        ? 'bg-blue-500/10 text-blue-400'
+                        : 'bg-blue-50 text-blue-600'
                       }
                     `}
                   >
@@ -1364,10 +1344,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-purple-500/10 text-purple-400'
-                          : 'bg-purple-50 text-purple-600'
+                      ${d
+                        ? 'bg-purple-500/10 text-purple-400'
+                        : 'bg-purple-50 text-purple-600'
                       }
                     `}
                   >
@@ -1409,10 +1388,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       flex
                       items-center
                       justify-center
-                      ${
-                        d
-                          ? 'bg-pink-500/10 text-pink-400'
-                          : 'bg-pink-50 text-pink-600'
+                      ${d
+                        ? 'bg-pink-500/10 text-pink-400'
+                        : 'bg-pink-50 text-pink-600'
                       }
                     `}
                   >
@@ -1438,10 +1416,9 @@ const PrivacyPolicy = ({ isDark }) => {
                     rounded-2xl
                     border
                     mb-6
-                    ${
-                      d
-                        ? 'bg-white/[0.02] border-white/[0.06]'
-                        : 'bg-white border-slate-200'
+                    ${d
+                      ? 'bg-white/[0.02] border-white/[0.06]'
+                      : 'bg-white border-slate-200'
                     }
                   `}
                 >
@@ -1585,10 +1562,9 @@ const PrivacyPolicy = ({ isDark }) => {
                       text-sm
                       font-bold
                       transition-all
-                      ${
-                        d
-                          ? 'border-white/10 text-gray-300 hover:bg-white/[0.04]'
-                          : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                      ${d
+                        ? 'border-white/10 text-gray-300 hover:bg-white/[0.04]'
+                        : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                       }
                     `}
                   >
