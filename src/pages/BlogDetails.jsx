@@ -479,10 +479,10 @@ const BlogDetails = ({ isDark = true }) => {
 
     const description = truncateText(
       post?.metaDescription ||
-        post?.seoDescription ||
-        post?.excerpt ||
-        cleanContent ||
-        "Read software development insights and technical articles from DevZore.",
+      post?.seoDescription ||
+      post?.excerpt ||
+      cleanContent ||
+      "Read software development insights and technical articles from DevZore.",
       160
     );
 
@@ -506,8 +506,8 @@ const BlogDetails = ({ isDark = true }) => {
 
     const dateModified = toISODate(
       post?.updatedAt ||
-        post?.publishedAt ||
-        post?.createdAt
+      post?.publishedAt ||
+      post?.createdAt
     );
 
     return {
@@ -662,25 +662,22 @@ const BlogDetails = ({ isDark = true }) => {
   if (loading) {
     return (
       <div
-        className={`min-h-screen flex items-center justify-center ${
-          isDark
-            ? "bg-[#050505] text-white"
-            : "bg-[#f8f8f8] text-slate-950"
-        }`}
+        className={`min-h-screen flex items-center justify-center ${isDark
+          ? "bg-[#050505] text-white"
+          : "bg-[#f8f8f8] text-slate-950"
+          }`}
       >
         <div className="text-center px-6">
           <div
-            className={`w-9 h-9 rounded-full border-[3px] mx-auto mb-4 animate-spin ${
-              isDark
-                ? "border-white/10 border-t-purple-500"
-                : "border-slate-200 border-t-purple-600"
-            }`}
+            className={`w-9 h-9 rounded-full border-[3px] mx-auto mb-4 animate-spin ${isDark
+              ? "border-white/10 border-t-purple-500"
+              : "border-slate-200 border-t-purple-600"
+              }`}
           />
 
           <p
-            className={`text-[10px] font-black uppercase tracking-[0.14em] ${
-              isDark ? "text-gray-500" : "text-slate-500"
-            }`}
+            className={`text-[10px] font-black uppercase tracking-[0.14em] ${isDark ? "text-gray-500" : "text-slate-500"
+              }`}
           >
             Loading Article
           </p>
@@ -702,11 +699,10 @@ const BlogDetails = ({ isDark = true }) => {
         </Helmet>
 
         <div
-          className={`min-h-screen flex items-center justify-center px-6 ${
-            isDark
-              ? "bg-[#050505] text-white"
-              : "bg-[#f8f8f8] text-slate-950"
-          }`}
+          className={`min-h-screen flex items-center justify-center px-6 ${isDark
+            ? "bg-[#050505] text-white"
+            : "bg-[#f8f8f8] text-slate-950"
+            }`}
         >
           <div className="max-w-xl text-center">
             <div className="w-14 h-1 bg-purple-600 mx-auto mb-6" />
@@ -720,9 +716,8 @@ const BlogDetails = ({ isDark = true }) => {
             </h1>
 
             <p
-              className={`text-sm leading-relaxed mb-7 ${
-                isDark ? "text-gray-500" : "text-slate-600"
-              }`}
+              className={`text-sm leading-relaxed mb-7 ${isDark ? "text-gray-500" : "text-slate-600"
+                }`}
             >
               {error || "The requested article could not be found."}
             </p>
@@ -749,18 +744,31 @@ const BlogDetails = ({ isDark = true }) => {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": `${seo.canonicalUrl}#article`,
+
     headline: post?.title,
     description: seo.description,
     url: seo.canonicalUrl,
+
+    // ==================================================
+    // MAIN PAGE
+    // ==================================================
 
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": seo.canonicalUrl,
     },
 
+    // ==================================================
+    // ARTICLE IMAGE
+    // ==================================================
+
     ...(seo.image && {
       image: [seo.image],
     }),
+
+    // ==================================================
+    // PUBLISH / MODIFIED DATES
+    // ==================================================
 
     ...(seo.datePublished && {
       datePublished: seo.datePublished,
@@ -770,29 +778,55 @@ const BlogDetails = ({ isDark = true }) => {
       dateModified: seo.dateModified,
     }),
 
+    // ==================================================
+    // AUTHOR
+    // ==================================================
+
     author: authorName
       ? {
-          "@type": "Person",
-          name: authorName,
-        }
+        "@type": "Person",
+        name: authorName,
+      }
       : {
-          "@type": "Organization",
-          name: "DevZore",
-          "@id": `${BASE_URL}/#organization`,
-        },
+        "@type": "Organization",
+        "@id": `${BASE_URL}/#organization`,
+        name: "DevZore",
+        url: BASE_URL,
+      },
+
+    // ==================================================
+    // PUBLISHER
+    // ==================================================
 
     publisher: {
+      "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
+      name: "DevZore",
+      url: BASE_URL,
+
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/logo.png`,
+      },
     },
+
+    // ==================================================
+    // ARTICLE CATEGORY
+    // ==================================================
 
     ...(categoryName && {
       articleSection: categoryName,
     }),
   };
 
+  // ======================================================
+  // BREADCRUMB SCHEMA
+  // ======================================================
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+
     itemListElement: [
       {
         "@type": "ListItem",
@@ -814,28 +848,82 @@ const BlogDetails = ({ isDark = true }) => {
       },
     ],
   };
-
   return (
     <>
-      {/* ======================================================
-          SEO
-      ====================================================== */}
-
       <Helmet>
+        {/* 
+      PRIMARY SEO
+            ================================================== */}
+
         <title>{`${seo.title} | DevZore`}</title>
 
-        <meta name="description" content={seo.description} />
-        <link rel="canonical" href={seo.canonicalUrl} />
-        <meta name="robots" content="index, follow" />
+        <meta
+          name="description"
+          content={seo.description}
+        />
 
-        <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="DevZore" />
-        <meta property="og:title" content={seo.title} />
-        <meta property="og:description" content={seo.description} />
-        <meta property="og:url" content={seo.canonicalUrl} />
+        {/* Dynamic keywords from Admin Post Editor */}
+        {post?.seoKeywords?.trim() && (
+          <meta
+            name="keywords"
+            content={post.seoKeywords.trim()}
+          />
+        )}
+
+        <link
+          rel="canonical"
+          href={seo.canonicalUrl}
+        />
+
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+
+        <meta
+          name="googlebot"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+
+        {/* ==================================================
+      OPEN GRAPH
+            ================================================== */}
+
+        <meta
+          property="og:type"
+          content="article"
+        />
+
+        <meta
+          property="og:site_name"
+          content="DevZore"
+        />
+
+        <meta
+          property="og:title"
+          content={seo.title}
+        />
+
+        <meta
+          property="og:description"
+          content={seo.description}
+        />
+
+        <meta
+          property="og:url"
+          content={seo.canonicalUrl}
+        />
+
+        <meta
+          property="og:locale"
+          content="en_US"
+        />
 
         {seo.image && (
-          <meta property="og:image" content={seo.image} />
+          <meta
+            property="og:image"
+            content={seo.image}
+          />
         )}
 
         {seo.image && post?.coverImageAlt && (
@@ -844,6 +932,10 @@ const BlogDetails = ({ isDark = true }) => {
             content={post.coverImageAlt}
           />
         )}
+
+        {/* ==================================================
+      ARTICLE META
+            ================================================== */}
 
         {seo.datePublished && (
           <meta
@@ -866,20 +958,46 @@ const BlogDetails = ({ isDark = true }) => {
           />
         )}
 
+        {/* ==================================================
+      TWITTER / X
+           ================================================== */}
+
         <meta
           name="twitter:card"
-          content={seo.image ? "summary_large_image" : "summary"}
+          content={
+            seo.image
+              ? "summary_large_image"
+              : "summary"
+          }
         />
 
-        <meta name="twitter:title" content={seo.title} />
+        <meta
+          name="twitter:title"
+          content={seo.title}
+        />
+
         <meta
           name="twitter:description"
           content={seo.description}
         />
 
         {seo.image && (
-          <meta name="twitter:image" content={seo.image} />
+          <meta
+            name="twitter:image"
+            content={seo.image}
+          />
         )}
+
+        {seo.image && post?.coverImageAlt && (
+          <meta
+            name="twitter:image:alt"
+            content={post.coverImageAlt}
+          />
+        )}
+
+        {/* ==================================================
+      STRUCTURED DATA
+  ================================================== */}
 
         <script type="application/ld+json">
           {JSON.stringify(blogPostingSchema)}
@@ -891,33 +1009,30 @@ const BlogDetails = ({ isDark = true }) => {
       </Helmet>
 
       <div
-        className={`min-h-screen ${
-          isDark
-            ? "bg-[#050505] text-white"
-            : "bg-[#f8f8f8] text-slate-950"
-        }`}
+        className={`min-h-screen ${isDark
+          ? "bg-[#050505] text-white"
+          : "bg-[#f8f8f8] text-slate-950"
+          }`}
       >
         {/* ======================================================
             TOP BAR
         ====================================================== */}
 
         <div
-          className={`pt-20 sm:pt-24 border-b ${
-            isDark
-              ? "bg-[#080808] border-white/[0.08]"
-              : "bg-white border-slate-200"
-          }`}
+          className={`pt-20 sm:pt-24 border-b ${isDark
+            ? "bg-[#080808] border-white/[0.08]"
+            : "bg-white border-slate-200"
+            }`}
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="flex items-center justify-between gap-4 py-3">
               <button
                 type="button"
                 onClick={handleBackToBlog}
-                className={`inline-flex items-center gap-2 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.1em] transition-colors ${
-                  isDark
-                    ? "text-gray-400 hover:text-white"
-                    : "text-slate-600 hover:text-slate-950"
-                }`}
+                className={`inline-flex items-center gap-2 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.1em] transition-colors ${isDark
+                  ? "text-gray-400 hover:text-white"
+                  : "text-slate-600 hover:text-slate-950"
+                  }`}
               >
                 <ArrowLeft size={13} />
                 DevZore Journal
@@ -941,16 +1056,14 @@ const BlogDetails = ({ isDark = true }) => {
 
           <nav
             aria-label="Breadcrumb"
-            className={`py-4 border-b ${
-              isDark
-                ? "border-white/[0.07]"
-                : "border-slate-200"
-            }`}
+            className={`py-4 border-b ${isDark
+              ? "border-white/[0.07]"
+              : "border-slate-200"
+              }`}
           >
             <div
-              className={`flex items-center gap-2 text-[9px] font-semibold overflow-hidden ${
-                isDark ? "text-gray-600" : "text-slate-500"
-              }`}
+              className={`flex items-center gap-2 text-[9px] font-semibold overflow-hidden ${isDark ? "text-gray-600" : "text-slate-500"
+                }`}
             >
               <Link
                 to="/"
@@ -993,50 +1106,45 @@ const BlogDetails = ({ isDark = true }) => {
             )}
 
             <h1
-              className={`text-[30px] sm:text-[42px] md:text-[50px] lg:text-[56px] font-black tracking-[-0.04em] leading-[1.04] mb-5 ${
-                isDark ? "text-white" : "text-slate-950"
-              }`}
+              className={`text-[30px] sm:text-[42px] md:text-[50px] lg:text-[56px] font-black tracking-[-0.04em] leading-[1.04] mb-5 ${isDark ? "text-white" : "text-slate-950"
+                }`}
             >
               {post?.title || "Untitled Article"}
             </h1>
 
             {post?.excerpt && (
               <p
-                className={`text-base sm:text-lg leading-[1.6] max-w-3xl mb-6 ${
-                  isDark ? "text-gray-400" : "text-slate-600"
-                }`}
+                className={`text-base sm:text-lg leading-[1.6] max-w-3xl mb-6 ${isDark ? "text-gray-400" : "text-slate-600"
+                  }`}
               >
                 {post.excerpt}
               </p>
             )}
 
             <div
-              className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-t ${
-                isDark
-                  ? "border-white/[0.08]"
-                  : "border-slate-200"
-              }`}
+              className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-t ${isDark
+                ? "border-white/[0.08]"
+                : "border-slate-200"
+                }`}
             >
               <div className="flex items-center gap-3">
                 {authorAvatar ? (
                   <img
                     src={authorAvatar}
                     alt={authorName || "Article author"}
-                    className={`w-9 h-9 rounded-full object-cover border ${
-                      isDark
-                        ? "border-white/10"
-                        : "border-slate-200"
-                    }`}
+                    className={`w-9 h-9 rounded-full object-cover border ${isDark
+                      ? "border-white/10"
+                      : "border-slate-200"
+                      }`}
                     loading="lazy"
                     decoding="async"
                   />
                 ) : (
                   <div
-                    className={`w-9 h-9 rounded-full flex items-center justify-center ${
-                      isDark
-                        ? "bg-white/[0.06] text-gray-400"
-                        : "bg-slate-100 text-slate-600"
-                    }`}
+                    className={`w-9 h-9 rounded-full flex items-center justify-center ${isDark
+                      ? "bg-white/[0.06] text-gray-400"
+                      : "bg-slate-100 text-slate-600"
+                      }`}
                   >
                     <User size={15} />
                   </div>
@@ -1044,21 +1152,19 @@ const BlogDetails = ({ isDark = true }) => {
 
                 <div>
                   <p
-                    className={`text-[8px] font-bold uppercase tracking-[0.13em] ${
-                      isDark
-                        ? "text-gray-600"
-                        : "text-slate-400"
-                    }`}
+                    className={`text-[8px] font-bold uppercase tracking-[0.13em] ${isDark
+                      ? "text-gray-600"
+                      : "text-slate-400"
+                      }`}
                   >
                     By
                   </p>
 
                   <p
-                    className={`text-[12px] font-black ${
-                      isDark
-                        ? "text-white"
-                        : "text-slate-950"
-                    }`}
+                    className={`text-[12px] font-black ${isDark
+                      ? "text-white"
+                      : "text-slate-950"
+                      }`}
                   >
                     {authorName || "DevZore Team"}
                   </p>
@@ -1066,9 +1172,8 @@ const BlogDetails = ({ isDark = true }) => {
               </div>
 
               <div
-                className={`flex flex-wrap items-center gap-x-3 gap-y-2 text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.06em] ${
-                  isDark ? "text-gray-600" : "text-slate-500"
-                }`}
+                className={`flex flex-wrap items-center gap-x-3 gap-y-2 text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.06em] ${isDark ? "text-gray-600" : "text-slate-500"
+                  }`}
               >
                 {publishedDate && (
                   <span className="flex items-center gap-1">
@@ -1102,9 +1207,8 @@ const BlogDetails = ({ isDark = true }) => {
           {post?.coverImage && (
             <figure className="max-w-5xl mb-7 sm:mb-9">
               <div
-                className={`w-full h-[210px] sm:h-[300px] md:h-[360px] lg:h-[400px] overflow-hidden rounded-xl ${
-                  isDark ? "bg-[#111]" : "bg-slate-200"
-                }`}
+                className={`w-full h-[210px] sm:h-[300px] md:h-[360px] lg:h-[400px] overflow-hidden rounded-xl ${isDark ? "bg-[#111]" : "bg-slate-200"
+                  }`}
               >
                 <img
                   src={post.coverImage}
@@ -1121,11 +1225,10 @@ const BlogDetails = ({ isDark = true }) => {
 
               {post?.coverImageAlt && (
                 <figcaption
-                  className={`text-[9px] sm:text-[10px] pt-2 ${
-                    isDark
-                      ? "text-gray-600"
-                      : "text-slate-500"
-                  }`}
+                  className={`text-[9px] sm:text-[10px] pt-2 ${isDark
+                    ? "text-gray-600"
+                    : "text-slate-500"
+                    }`}
                 >
                   {post.coverImageAlt}
                 </figcaption>
@@ -1142,11 +1245,10 @@ const BlogDetails = ({ isDark = true }) => {
               {/* ARTICLE */}
 
               <article
-                className={`blog-content ${
-                  isDark
-                    ? "blog-content-dark"
-                    : "blog-content-light"
-                }`}
+                className={`blog-content ${isDark
+                  ? "blog-content-dark"
+                  : "blog-content-light"
+                  }`}
                 dangerouslySetInnerHTML={{
                   __html:
                     post?.content ||
@@ -1158,11 +1260,10 @@ const BlogDetails = ({ isDark = true }) => {
 
               {authorBio && (
                 <section
-                  className={`mt-10 pt-6 border-t ${
-                    isDark
-                      ? "border-white/[0.08]"
-                      : "border-slate-200"
-                  }`}
+                  className={`mt-10 pt-6 border-t ${isDark
+                    ? "border-white/[0.08]"
+                    : "border-slate-200"
+                    }`}
                 >
                   <div className="flex items-start gap-3">
                     {authorAvatar ? (
@@ -1184,21 +1285,19 @@ const BlogDetails = ({ isDark = true }) => {
                       </span>
 
                       <h2
-                        className={`text-base font-black mt-1 mb-1.5 ${
-                          isDark
-                            ? "text-white"
-                            : "text-slate-950"
-                        }`}
+                        className={`text-base font-black mt-1 mb-1.5 ${isDark
+                          ? "text-white"
+                          : "text-slate-950"
+                          }`}
                       >
                         {authorName || "DevZore Team"}
                       </h2>
 
                       <p
-                        className={`text-xs sm:text-sm leading-relaxed ${
-                          isDark
-                            ? "text-gray-500"
-                            : "text-slate-600"
-                        }`}
+                        className={`text-xs sm:text-sm leading-relaxed ${isDark
+                          ? "text-gray-500"
+                          : "text-slate-600"
+                          }`}
                       >
                         {authorBio}
                       </p>
@@ -1213,11 +1312,10 @@ const BlogDetails = ({ isDark = true }) => {
 
               {(relatedLoading || relatedPosts.length > 0) && (
                 <section
-                  className={`mt-10 sm:mt-12 pt-7 border-t ${
-                    isDark
-                      ? "border-white/[0.07]"
-                      : "border-slate-200"
-                  }`}
+                  className={`mt-10 sm:mt-12 pt-7 border-t ${isDark
+                    ? "border-white/[0.07]"
+                    : "border-slate-200"
+                    }`}
                 >
                   <div className="flex items-end justify-between gap-4 mb-5">
                     <div>
@@ -1230,21 +1328,19 @@ const BlogDetails = ({ isDark = true }) => {
                       </div>
 
                       <h2
-                        className={`text-xl sm:text-2xl font-black tracking-tight ${
-                          isDark
-                            ? "text-white"
-                            : "text-slate-950"
-                        }`}
+                        className={`text-xl sm:text-2xl font-black tracking-tight ${isDark
+                          ? "text-white"
+                          : "text-slate-950"
+                          }`}
                       >
                         Related Articles
                       </h2>
 
                       <p
-                        className={`text-[10px] sm:text-[11px] mt-1 max-w-lg leading-relaxed ${
-                          isDark
-                            ? "text-gray-600"
-                            : "text-slate-500"
-                        }`}
+                        className={`text-[10px] sm:text-[11px] mt-1 max-w-lg leading-relaxed ${isDark
+                          ? "text-gray-600"
+                          : "text-slate-500"
+                          }`}
                       >
                         Explore more useful articles and insights
                         from the DevZore Journal.
@@ -1266,43 +1362,38 @@ const BlogDetails = ({ isDark = true }) => {
                       {[1, 2, 3].map((item) => (
                         <div
                           key={item}
-                          className={`overflow-hidden rounded-xl border animate-pulse ${
-                            isDark
-                              ? "bg-[#080808] border-white/[0.07]"
-                              : "bg-white border-slate-200"
-                          }`}
+                          className={`overflow-hidden rounded-xl border animate-pulse ${isDark
+                            ? "bg-[#080808] border-white/[0.07]"
+                            : "bg-white border-slate-200"
+                            }`}
                         >
                           <div
-                            className={`h-[130px] ${
-                              isDark
-                                ? "bg-white/[0.05]"
-                                : "bg-slate-200"
-                            }`}
+                            className={`h-[130px] ${isDark
+                              ? "bg-white/[0.05]"
+                              : "bg-slate-200"
+                              }`}
                           />
 
                           <div className="p-3.5">
                             <div
-                              className={`h-2 w-16 rounded mb-3 ${
-                                isDark
-                                  ? "bg-white/[0.07]"
-                                  : "bg-slate-200"
-                              }`}
+                              className={`h-2 w-16 rounded mb-3 ${isDark
+                                ? "bg-white/[0.07]"
+                                : "bg-slate-200"
+                                }`}
                             />
 
                             <div
-                              className={`h-4 w-full rounded mb-2 ${
-                                isDark
-                                  ? "bg-white/[0.07]"
-                                  : "bg-slate-200"
-                              }`}
+                              className={`h-4 w-full rounded mb-2 ${isDark
+                                ? "bg-white/[0.07]"
+                                : "bg-slate-200"
+                                }`}
                             />
 
                             <div
-                              className={`h-4 w-3/4 rounded ${
-                                isDark
-                                  ? "bg-white/[0.07]"
-                                  : "bg-slate-200"
-                              }`}
+                              className={`h-4 w-3/4 rounded ${isDark
+                                ? "bg-white/[0.07]"
+                                : "bg-slate-200"
+                                }`}
                             />
                           </div>
                         </div>
@@ -1313,7 +1404,7 @@ const BlogDetails = ({ isDark = true }) => {
                       {relatedPosts.map((relatedPost) => {
                         const relatedCategory =
                           relatedPost?.category &&
-                          typeof relatedPost.category ===
+                            typeof relatedPost.category ===
                             "object"
                             ? relatedPost.category?.name
                             : relatedPost?.category;
@@ -1328,9 +1419,9 @@ const BlogDetails = ({ isDark = true }) => {
                         const relatedDescription =
                           truncateText(
                             relatedPost?.excerpt ||
-                              stripHtml(
-                                relatedPost?.content || ""
-                              ),
+                            stripHtml(
+                              relatedPost?.content || ""
+                            ),
                             90
                           );
 
@@ -1342,18 +1433,16 @@ const BlogDetails = ({ isDark = true }) => {
                             }
                             to={`/blog/${relatedPost.slug}`}
                             onClick={scrollTop}
-                            className={`group overflow-hidden rounded-xl border transition-all duration-300 ${
-                              isDark
-                                ? "bg-[#080808] border-white/[0.07] hover:border-purple-500/30 hover:bg-[#0d0d0d]"
-                                : "bg-white border-slate-200 hover:border-purple-300 hover:shadow-lg"
-                            }`}
+                            className={`group overflow-hidden rounded-xl border transition-all duration-300 ${isDark
+                              ? "bg-[#080808] border-white/[0.07] hover:border-purple-500/30 hover:bg-[#0d0d0d]"
+                              : "bg-white border-slate-200 hover:border-purple-300 hover:shadow-lg"
+                              }`}
                           >
                             <div
-                              className={`relative h-[130px] sm:h-[135px] overflow-hidden ${
-                                isDark
-                                  ? "bg-[#111]"
-                                  : "bg-slate-100"
-                              }`}
+                              className={`relative h-[130px] sm:h-[135px] overflow-hidden ${isDark
+                                ? "bg-[#111]"
+                                : "bg-slate-100"
+                                }`}
                             >
                               {relatedPost?.coverImage ? (
                                 <img
@@ -1391,11 +1480,10 @@ const BlogDetails = ({ isDark = true }) => {
 
                             <div className="p-3.5">
                               <div
-                                className={`flex flex-wrap items-center gap-2 mb-2 text-[7px] font-bold uppercase ${
-                                  isDark
-                                    ? "text-gray-600"
-                                    : "text-slate-400"
-                                }`}
+                                className={`flex flex-wrap items-center gap-2 mb-2 text-[7px] font-bold uppercase ${isDark
+                                  ? "text-gray-600"
+                                  : "text-slate-400"
+                                  }`}
                               >
                                 {relatedDate && (
                                   <span className="inline-flex items-center gap-1">
@@ -1415,11 +1503,10 @@ const BlogDetails = ({ isDark = true }) => {
                               </div>
 
                               <h3
-                                className={`text-[13px] sm:text-[14px] font-black leading-[1.35] mb-2 line-clamp-2 transition-colors ${
-                                  isDark
-                                    ? "text-white group-hover:text-purple-400"
-                                    : "text-slate-950 group-hover:text-purple-600"
-                                }`}
+                                className={`text-[13px] sm:text-[14px] font-black leading-[1.35] mb-2 line-clamp-2 transition-colors ${isDark
+                                  ? "text-white group-hover:text-purple-400"
+                                  : "text-slate-950 group-hover:text-purple-600"
+                                  }`}
                               >
                                 {relatedPost?.title ||
                                   "DevZore Article"}
@@ -1427,11 +1514,10 @@ const BlogDetails = ({ isDark = true }) => {
 
                               {relatedDescription && (
                                 <p
-                                  className={`text-[9px] sm:text-[10px] leading-relaxed line-clamp-2 mb-3 ${
-                                    isDark
-                                      ? "text-gray-600"
-                                      : "text-slate-500"
-                                  }`}
+                                  className={`text-[9px] sm:text-[10px] leading-relaxed line-clamp-2 mb-3 ${isDark
+                                    ? "text-gray-600"
+                                    : "text-slate-500"
+                                    }`}
                                 >
                                   {relatedDescription}
                                 </p>
@@ -1455,11 +1541,10 @@ const BlogDetails = ({ isDark = true }) => {
                   <Link
                     to="/blog"
                     onClick={scrollTop}
-                    className={`sm:hidden mt-4 w-full inline-flex items-center justify-center gap-2 border rounded-lg py-2.5 text-[8px] font-black uppercase tracking-[0.1em] ${
-                      isDark
-                        ? "border-white/10 text-gray-400"
-                        : "border-slate-200 text-slate-600"
-                    }`}
+                    className={`sm:hidden mt-4 w-full inline-flex items-center justify-center gap-2 border rounded-lg py-2.5 text-[8px] font-black uppercase tracking-[0.1em] ${isDark
+                      ? "border-white/10 text-gray-400"
+                      : "border-slate-200 text-slate-600"
+                      }`}
                   >
                     View All Articles
                     <ArrowRight size={10} />
@@ -1472,11 +1557,10 @@ const BlogDetails = ({ isDark = true }) => {
               ====================================================== */}
 
               <section
-                className={`mt-10 pt-7 border-t ${
-                  isDark
-                    ? "border-white/[0.08]"
-                    : "border-slate-200"
-                }`}
+                className={`mt-10 pt-7 border-t ${isDark
+                  ? "border-white/[0.08]"
+                  : "border-slate-200"
+                  }`}
               >
                 <div className="flex items-end justify-between gap-4 mb-5">
                   <div>
@@ -1485,11 +1569,10 @@ const BlogDetails = ({ isDark = true }) => {
                     </span>
 
                     <h2
-                      className={`text-xl sm:text-2xl font-black mt-1 ${
-                        isDark
-                          ? "text-white"
-                          : "text-slate-950"
-                      }`}
+                      className={`text-xl sm:text-2xl font-black mt-1 ${isDark
+                        ? "text-white"
+                        : "text-slate-950"
+                        }`}
                     >
                       Need Help With Your Digital Product?
                     </h2>
@@ -1506,11 +1589,10 @@ const BlogDetails = ({ isDark = true }) => {
                 </div>
 
                 <div
-                  className={`grid sm:grid-cols-2 border-t border-l ${
-                    isDark
-                      ? "border-white/[0.08]"
-                      : "border-slate-200"
-                  }`}
+                  className={`grid sm:grid-cols-2 border-t border-l ${isDark
+                    ? "border-white/[0.08]"
+                    : "border-slate-200"
+                    }`}
                 >
                   {SERVICES.map((service) => {
                     const Icon = service.icon;
@@ -1520,40 +1602,36 @@ const BlogDetails = ({ isDark = true }) => {
                         key={service.title}
                         to={service.path}
                         onClick={scrollTop}
-                        className={`group p-4 border-r border-b transition-colors ${
-                          isDark
-                            ? "border-white/[0.08] bg-[#080808] hover:bg-[#0d0d0d]"
-                            : "border-slate-200 bg-white hover:bg-slate-50"
-                        }`}
+                        className={`group p-4 border-r border-b transition-colors ${isDark
+                          ? "border-white/[0.08] bg-[#080808] hover:bg-[#0d0d0d]"
+                          : "border-slate-200 bg-white hover:bg-slate-50"
+                          }`}
                       >
                         <div className="flex items-center gap-2.5 mb-2">
                           <div
-                            className={`w-8 h-8 flex items-center justify-center ${
-                              isDark
-                                ? "bg-white/[0.05] text-purple-400"
-                                : "bg-purple-50 text-purple-600"
-                            }`}
+                            className={`w-8 h-8 flex items-center justify-center ${isDark
+                              ? "bg-white/[0.05] text-purple-400"
+                              : "bg-purple-50 text-purple-600"
+                              }`}
                           >
                             <Icon size={14} />
                           </div>
 
                           <h3
-                            className={`text-[13px] font-black ${
-                              isDark
-                                ? "text-white"
-                                : "text-slate-950"
-                            }`}
+                            className={`text-[13px] font-black ${isDark
+                              ? "text-white"
+                              : "text-slate-950"
+                              }`}
                           >
                             {service.title}
                           </h3>
                         </div>
 
                         <p
-                          className={`text-[10px] leading-relaxed ${
-                            isDark
-                              ? "text-gray-600"
-                              : "text-slate-500"
-                          }`}
+                          className={`text-[10px] leading-relaxed ${isDark
+                            ? "text-gray-600"
+                            : "text-slate-500"
+                            }`}
                         >
                           {service.description}
                         </p>
@@ -1568,18 +1646,16 @@ const BlogDetails = ({ isDark = true }) => {
               ====================================================== */}
 
               <section
-                className={`mt-10 pt-7 border-t ${
-                  isDark
-                    ? "border-white/[0.08]"
-                    : "border-slate-200"
-                }`}
+                className={`mt-10 pt-7 border-t ${isDark
+                  ? "border-white/[0.08]"
+                  : "border-slate-200"
+                  }`}
               >
                 <div
-                  className={`flex items-center justify-between gap-4 border-b pb-3 mb-5 ${
-                    isDark
-                      ? "border-white/[0.1]"
-                      : "border-slate-200"
-                  }`}
+                  className={`flex items-center justify-between gap-4 border-b pb-3 mb-5 ${isDark
+                    ? "border-white/[0.1]"
+                    : "border-slate-200"
+                    }`}
                 >
                   <div className="flex items-center gap-2">
                     <MessageCircle
@@ -1588,22 +1664,20 @@ const BlogDetails = ({ isDark = true }) => {
                     />
 
                     <h2
-                      className={`text-sm font-black uppercase tracking-[0.06em] ${
-                        isDark
-                          ? "text-white"
-                          : "text-slate-950"
-                      }`}
+                      className={`text-sm font-black uppercase tracking-[0.06em] ${isDark
+                        ? "text-white"
+                        : "text-slate-950"
+                        }`}
                     >
                       Discussion
                     </h2>
                   </div>
 
                   <span
-                    className={`text-[8px] font-bold ${
-                      isDark
-                        ? "text-gray-600"
-                        : "text-slate-400"
-                    }`}
+                    className={`text-[8px] font-bold ${isDark
+                      ? "text-gray-600"
+                      : "text-slate-400"
+                      }`}
                   >
                     {comments.length}{" "}
                     {comments.length === 1
@@ -1614,28 +1688,25 @@ const BlogDetails = ({ isDark = true }) => {
 
                 <form
                   onSubmit={handleCommentSubmit}
-                  className={`p-4 sm:p-5 mb-6 rounded-xl border ${
-                    isDark
-                      ? "bg-[#0a0a0a] border-white/[0.08]"
-                      : "bg-white border-slate-200"
-                  }`}
+                  className={`p-4 sm:p-5 mb-6 rounded-xl border ${isDark
+                    ? "bg-[#0a0a0a] border-white/[0.08]"
+                    : "bg-white border-slate-200"
+                    }`}
                 >
                   <h3
-                    className={`text-base font-black mb-1 ${
-                      isDark
-                        ? "text-white"
-                        : "text-slate-950"
-                    }`}
+                    className={`text-base font-black mb-1 ${isDark
+                      ? "text-white"
+                      : "text-slate-950"
+                      }`}
                   >
                     Join the discussion
                   </h3>
 
                   <p
-                    className={`text-[10px] mb-4 ${
-                      isDark
-                        ? "text-gray-600"
-                        : "text-slate-500"
-                    }`}
+                    className={`text-[10px] mb-4 ${isDark
+                      ? "text-gray-600"
+                      : "text-slate-500"
+                      }`}
                   >
                     Share a relevant question or perspective
                     about this article.
@@ -1652,11 +1723,10 @@ const BlogDetails = ({ isDark = true }) => {
                       maxLength={60}
                       disabled={commentSubmitting}
                       required
-                      className={`w-full px-3.5 py-2.5 rounded-lg outline-none border text-xs ${
-                        isDark
-                          ? "bg-[#050505] border-white/10 text-white placeholder:text-gray-700 focus:border-purple-500"
-                          : "bg-white border-slate-300 text-slate-950 focus:border-purple-600"
-                      }`}
+                      className={`w-full px-3.5 py-2.5 rounded-lg outline-none border text-xs ${isDark
+                        ? "bg-[#050505] border-white/10 text-white placeholder:text-gray-700 focus:border-purple-500"
+                        : "bg-white border-slate-300 text-slate-950 focus:border-purple-600"
+                        }`}
                     />
 
                     <input
@@ -1669,11 +1739,10 @@ const BlogDetails = ({ isDark = true }) => {
                       maxLength={120}
                       disabled={commentSubmitting}
                       required
-                      className={`w-full px-3.5 py-2.5 rounded-lg outline-none border text-xs ${
-                        isDark
-                          ? "bg-[#050505] border-white/10 text-white placeholder:text-gray-700 focus:border-purple-500"
-                          : "bg-white border-slate-300 text-slate-950 focus:border-purple-600"
-                      }`}
+                      className={`w-full px-3.5 py-2.5 rounded-lg outline-none border text-xs ${isDark
+                        ? "bg-[#050505] border-white/10 text-white placeholder:text-gray-700 focus:border-purple-500"
+                        : "bg-white border-slate-300 text-slate-950 focus:border-purple-600"
+                        }`}
                     />
                   </div>
 
@@ -1687,19 +1756,17 @@ const BlogDetails = ({ isDark = true }) => {
                     maxLength={500}
                     disabled={commentSubmitting}
                     required
-                    className={`w-full px-3.5 py-2.5 rounded-lg outline-none border text-xs resize-y ${
-                      isDark
-                        ? "bg-[#050505] border-white/10 text-white placeholder:text-gray-700 focus:border-purple-500"
-                        : "bg-white border-slate-300 text-slate-950 focus:border-purple-600"
-                    }`}
+                    className={`w-full px-3.5 py-2.5 rounded-lg outline-none border text-xs resize-y ${isDark
+                      ? "bg-[#050505] border-white/10 text-white placeholder:text-gray-700 focus:border-purple-500"
+                      : "bg-white border-slate-300 text-slate-950 focus:border-purple-600"
+                      }`}
                   />
 
                   <div
-                    className={`flex justify-between mt-1.5 text-[8px] ${
-                      isDark
-                        ? "text-gray-700"
-                        : "text-slate-400"
-                    }`}
+                    className={`flex justify-between mt-1.5 text-[8px] ${isDark
+                      ? "text-gray-700"
+                      : "text-slate-400"
+                      }`}
                   >
                     <span>10–500 characters</span>
                     <span>{commentForm.content.length}/500</span>
@@ -1720,11 +1787,10 @@ const BlogDetails = ({ isDark = true }) => {
 
                 {commentsLoading && (
                   <p
-                    className={`py-5 text-center text-xs ${
-                      isDark
-                        ? "text-gray-600"
-                        : "text-slate-500"
-                    }`}
+                    className={`py-5 text-center text-xs ${isDark
+                      ? "text-gray-600"
+                      : "text-slate-500"
+                      }`}
                   >
                     Loading comments...
                   </p>
@@ -1740,11 +1806,10 @@ const BlogDetails = ({ isDark = true }) => {
                   !commentsError &&
                   comments.length === 0 && (
                     <div
-                      className={`py-7 text-center rounded-xl border ${
-                        isDark
-                          ? "bg-[#080808] border-white/[0.07]"
-                          : "bg-white border-slate-200"
-                      }`}
+                      className={`py-7 text-center rounded-xl border ${isDark
+                        ? "bg-[#080808] border-white/[0.07]"
+                        : "bg-white border-slate-200"
+                        }`}
                     >
                       <MessageCircle
                         size={20}
@@ -1756,11 +1821,10 @@ const BlogDetails = ({ isDark = true }) => {
                       </p>
 
                       <p
-                        className={`text-[10px] mt-1 ${
-                          isDark
-                            ? "text-gray-600"
-                            : "text-slate-500"
-                        }`}
+                        className={`text-[10px] mt-1 ${isDark
+                          ? "text-gray-600"
+                          : "text-slate-500"
+                          }`}
                       >
                         Be the first to join the discussion.
                       </p>
@@ -1786,11 +1850,10 @@ const BlogDetails = ({ isDark = true }) => {
                         return (
                           <article
                             key={commentKey}
-                            className={`py-4 border-b last:border-b-0 ${
-                              isDark
-                                ? "border-white/[0.07]"
-                                : "border-slate-200"
-                            }`}
+                            className={`py-4 border-b last:border-b-0 ${isDark
+                              ? "border-white/[0.07]"
+                              : "border-slate-200"
+                              }`}
                           >
                             <div className="flex gap-3">
                               <div className="w-8 h-8 shrink-0 rounded-full bg-purple-600 flex items-center justify-center text-white font-black text-[10px]">
@@ -1810,11 +1873,10 @@ const BlogDetails = ({ isDark = true }) => {
                                       dateTime={toISODate(
                                         commentDate
                                       )}
-                                      className={`text-[8px] ${
-                                        isDark
-                                          ? "text-gray-700"
-                                          : "text-slate-400"
-                                      }`}
+                                      className={`text-[8px] ${isDark
+                                        ? "text-gray-700"
+                                        : "text-slate-400"
+                                        }`}
                                     >
                                       {formatDate(
                                         commentDate
@@ -1824,11 +1886,10 @@ const BlogDetails = ({ isDark = true }) => {
                                 </div>
 
                                 <p
-                                  className={`text-xs leading-relaxed whitespace-pre-wrap break-words ${
-                                    isDark
-                                      ? "text-gray-400"
-                                      : "text-slate-600"
-                                  }`}
+                                  className={`text-xs leading-relaxed whitespace-pre-wrap break-words ${isDark
+                                    ? "text-gray-400"
+                                    : "text-slate-600"
+                                    }`}
                                 >
                                   {comment?.content ||
                                     comment?.comment ||
@@ -1852,11 +1913,10 @@ const BlogDetails = ({ isDark = true }) => {
             <aside className="hidden lg:block lg:col-span-4">
               <div className="sticky top-24 space-y-4">
                 <div
-                  className={`border-t-4 border-purple-600 p-5 ${
-                    isDark
-                      ? "bg-[#0a0a0a] border-x border-b border-x-white/[0.07] border-b-white/[0.07]"
-                      : "bg-white border-x border-b border-x-slate-200 border-b-slate-200"
-                  }`}
+                  className={`border-t-4 border-purple-600 p-5 ${isDark
+                    ? "bg-[#0a0a0a] border-x border-b border-x-white/[0.07] border-b-white/[0.07]"
+                    : "bg-white border-x border-b border-x-slate-200 border-b-slate-200"
+                    }`}
                 >
                   <span className="text-purple-500 text-[8px] font-black uppercase tracking-[0.18em]">
                     DevZore Journal
@@ -1867,11 +1927,10 @@ const BlogDetails = ({ isDark = true }) => {
                   </h2>
 
                   <p
-                    className={`text-[11px] leading-relaxed mb-4 ${
-                      isDark
-                        ? "text-gray-500"
-                        : "text-slate-600"
-                    }`}
+                    className={`text-[11px] leading-relaxed mb-4 ${isDark
+                      ? "text-gray-500"
+                      : "text-slate-600"
+                      }`}
                   >
                     Explore practical articles covering software
                     development, SaaS, mobile applications, SEO
@@ -1889,18 +1948,16 @@ const BlogDetails = ({ isDark = true }) => {
                 </div>
 
                 <div
-                  className={`p-5 border ${
-                    isDark
-                      ? "bg-[#080808] border-white/[0.07]"
-                      : "bg-white border-slate-200"
-                  }`}
+                  className={`p-5 border ${isDark
+                    ? "bg-[#080808] border-white/[0.07]"
+                    : "bg-white border-slate-200"
+                    }`}
                 >
                   <span
-                    className={`text-[8px] font-black uppercase tracking-[0.15em] ${
-                      isDark
-                        ? "text-gray-600"
-                        : "text-slate-400"
-                    }`}
+                    className={`text-[8px] font-black uppercase tracking-[0.15em] ${isDark
+                      ? "text-gray-600"
+                      : "text-slate-400"
+                      }`}
                   >
                     DevZore Services
                   </span>
@@ -1914,11 +1971,10 @@ const BlogDetails = ({ isDark = true }) => {
                           key={service.title}
                           to={service.path}
                           onClick={scrollTop}
-                          className={`group flex items-center gap-2.5 py-2.5 border-b last:border-b-0 ${
-                            isDark
-                              ? "border-white/[0.06] text-gray-400 hover:text-white"
-                              : "border-slate-100 text-slate-600 hover:text-slate-950"
-                          }`}
+                          className={`group flex items-center gap-2.5 py-2.5 border-b last:border-b-0 ${isDark
+                            ? "border-white/[0.06] text-gray-400 hover:text-white"
+                            : "border-slate-100 text-slate-600 hover:text-slate-950"
+                            }`}
                         >
                           <Icon
                             size={12}
@@ -1940,11 +1996,10 @@ const BlogDetails = ({ isDark = true }) => {
                 </div>
 
                 <div
-                  className={`p-5 border ${
-                    isDark
-                      ? "bg-[#080808] border-white/[0.07]"
-                      : "bg-white border-slate-200"
-                  }`}
+                  className={`p-5 border ${isDark
+                    ? "bg-[#080808] border-white/[0.07]"
+                    : "bg-white border-slate-200"
+                    }`}
                 >
                   <span className="text-purple-500 text-[8px] font-black uppercase tracking-[0.15em]">
                     Have a Project?
@@ -1955,11 +2010,10 @@ const BlogDetails = ({ isDark = true }) => {
                   </h3>
 
                   <p
-                    className={`text-[10px] leading-relaxed mb-4 ${
-                      isDark
-                        ? "text-gray-500"
-                        : "text-slate-600"
-                    }`}
+                    className={`text-[10px] leading-relaxed mb-4 ${isDark
+                      ? "text-gray-500"
+                      : "text-slate-600"
+                      }`}
                   >
                     Discuss your web, mobile, SaaS, backend,
                     SEO or digital marketing requirements.
@@ -1983,20 +2037,18 @@ const BlogDetails = ({ isDark = true }) => {
           ====================================================== */}
 
           <div
-            className={`mt-10 py-6 border-t ${
-              isDark
-                ? "border-white/[0.08]"
-                : "border-slate-200"
-            }`}
+            className={`mt-10 py-6 border-t ${isDark
+              ? "border-white/[0.08]"
+              : "border-slate-200"
+              }`}
           >
             <button
               type="button"
               onClick={handleBackToBlog}
-              className={`group inline-flex items-center gap-2 text-[9px] font-black uppercase ${
-                isDark
-                  ? "text-gray-400 hover:text-white"
-                  : "text-slate-600 hover:text-slate-950"
-              }`}
+              className={`group inline-flex items-center gap-2 text-[9px] font-black uppercase ${isDark
+                ? "text-gray-400 hover:text-white"
+                : "text-slate-600 hover:text-slate-950"
+                }`}
             >
               <ArrowLeft
                 size={12}
@@ -2010,9 +2062,8 @@ const BlogDetails = ({ isDark = true }) => {
           {/* FINAL CTA */}
 
           <section
-            className={`my-10 sm:my-12 border-t-4 border-purple-600 ${
-              isDark ? "bg-[#0a0a0a]" : "bg-white"
-            }`}
+            className={`my-10 sm:my-12 border-t-4 border-purple-600 ${isDark ? "bg-[#0a0a0a]" : "bg-white"
+              }`}
           >
             <div className="grid lg:grid-cols-12">
               <div className="lg:col-span-8 p-5 sm:p-6">
@@ -2025,11 +2076,10 @@ const BlogDetails = ({ isDark = true }) => {
                 </h2>
 
                 <p
-                  className={`text-xs sm:text-sm leading-relaxed ${
-                    isDark
-                      ? "text-gray-500"
-                      : "text-slate-600"
-                  }`}
+                  className={`text-xs sm:text-sm leading-relaxed ${isDark
+                    ? "text-gray-500"
+                    : "text-slate-600"
+                    }`}
                 >
                   Tell us what you are planning and discuss the
                   technical requirements and suitable approach.
@@ -2037,11 +2087,10 @@ const BlogDetails = ({ isDark = true }) => {
               </div>
 
               <div
-                className={`lg:col-span-4 p-5 sm:p-6 flex items-center lg:justify-end border-t lg:border-t-0 lg:border-l ${
-                  isDark
-                    ? "border-white/[0.08]"
-                    : "border-slate-200"
-                }`}
+                className={`lg:col-span-4 p-5 sm:p-6 flex items-center lg:justify-end border-t lg:border-t-0 lg:border-l ${isDark
+                  ? "border-white/[0.08]"
+                  : "border-slate-200"
+                  }`}
               >
                 <Link
                   to="/contact"
