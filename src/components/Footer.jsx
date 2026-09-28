@@ -384,12 +384,12 @@ const Footer = () => {
                 Terms
               </Link>
 
-              <a
+              {/* <a
                 href="/sitemap.xml"
                 className="text-[10px] sm:text-[11px] text-gray-500 hover:text-purple-400 transition-colors"
               >
                 Sitemap
-              </a>
+              </a> */}
 
               <span className="hidden sm:inline text-[10px] sm:text-[11px] font-semibold text-purple-500">
                 ⚡ Engineered with precision
