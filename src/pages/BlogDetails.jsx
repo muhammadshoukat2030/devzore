@@ -448,12 +448,8 @@ const BlogDetails = ({ isDark = true }) => {
         ? post.category.trim()
         : "";
 
-  const authorName =
-    post?.author && typeof post.author === "object"
-      ? post.author?.name?.trim()
-      : typeof post?.author === "string"
-        ? post.author.trim()
-        : "";
+  // Public blog author name
+  const authorName = "DevZore";
 
   const authorAvatar =
     post?.author && typeof post.author === "object"
@@ -736,314 +732,314 @@ const BlogDetails = ({ isDark = true }) => {
     );
   }
 
- // ======================================================
-// SCHEMA
-// ======================================================
+  // ======================================================
+  // SCHEMA
+  // ======================================================
 
-const blogPostingSchema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "@id": `${seo.canonicalUrl}#article`,
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${seo.canonicalUrl}#article`,
 
-  headline: post?.title || seo.title,
-  description: seo.description,
-  url: seo.canonicalUrl,
+    headline: post?.title || seo.title,
+    description: seo.description,
+    url: seo.canonicalUrl,
 
-  // ==================================================
-  // MAIN PAGE
-  // ==================================================
+    // ==================================================
+    // MAIN PAGE
+    // ==================================================
 
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": seo.canonicalUrl,
-  },
-
-  // ==================================================
-  // ARTICLE IMAGE
-  // ==================================================
-
-  ...(seo.image && {
-    image: {
-      "@type": "ImageObject",
-      url: seo.image,
-      ...(post?.coverImageAlt && {
-        caption: post.coverImageAlt,
-      }),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": seo.canonicalUrl,
     },
-  }),
 
-  // ==================================================
-  // PUBLISH / MODIFIED DATES
-  // ==================================================
+    // ==================================================
+    // ARTICLE IMAGE
+    // ==================================================
 
-  ...(seo.datePublished && {
-    datePublished: seo.datePublished,
-  }),
+    ...(seo.image && {
+      image: {
+        "@type": "ImageObject",
+        url: seo.image,
+        ...(post?.coverImageAlt && {
+          caption: post.coverImageAlt,
+        }),
+      },
+    }),
 
-  ...(seo.dateModified && {
-    dateModified: seo.dateModified,
-  }),
+    // ==================================================
+    // PUBLISH / MODIFIED DATES
+    // ==================================================
 
-  // ==================================================
-  // AUTHOR
-  // ==================================================
+    ...(seo.datePublished && {
+      datePublished: seo.datePublished,
+    }),
 
-  author: authorName
-    ? {
+    ...(seo.dateModified && {
+      dateModified: seo.dateModified,
+    }),
+
+    // ==================================================
+    // AUTHOR
+    // ==================================================
+
+    author: authorName
+      ? {
         "@type": "Person",
         name: authorName,
       }
-    : {
+      : {
         "@type": "Organization",
         "@id": `${BASE_URL}/#organization`,
         name: "DevZore",
         url: `${BASE_URL}/`,
       },
 
-  // ==================================================
-  // PUBLISHER
-  // ==================================================
+    // ==================================================
+    // PUBLISHER
+    // ==================================================
 
-  publisher: {
-    "@type": "Organization",
-    "@id": `${BASE_URL}/#organization`,
-    name: "DevZore",
-    url: `${BASE_URL}/`,
+    publisher: {
+      "@type": "Organization",
+      "@id": `${BASE_URL}/#organization`,
+      name: "DevZore",
+      url: `${BASE_URL}/`,
 
-    logo: {
-      "@type": "ImageObject",
-      url: `${BASE_URL}/logo.png`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/logo.png`,
+      },
     },
-  },
 
-  // ==================================================
-  // ARTICLE CATEGORY
-  // ==================================================
+    // ==================================================
+    // ARTICLE CATEGORY
+    // ==================================================
 
-  ...(categoryName && {
-    articleSection: categoryName,
-  }),
+    ...(categoryName && {
+      articleSection: categoryName,
+    }),
 
-  // ==================================================
-  // KEYWORDS
-  // ==================================================
+    // ==================================================
+    // KEYWORDS
+    // ==================================================
 
-  ...(post?.seoKeywords?.trim() && {
-    keywords: post.seoKeywords.trim(),
-  }),
+    ...(post?.seoKeywords?.trim() && {
+      keywords: post.seoKeywords.trim(),
+    }),
 
-  // ==================================================
-  // LANGUAGE
-  // ==================================================
+    // ==================================================
+    // LANGUAGE
+    // ==================================================
 
-  inLanguage: "en",
-};
+    inLanguage: "en",
+  };
 
-// ======================================================
-// BREADCRUMB SCHEMA
-// ======================================================
+  // ======================================================
+  // BREADCRUMB SCHEMA
+  // ======================================================
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
 
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: `${BASE_URL}/`,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Blog",
-      item: `${BASE_URL}/blog`,
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: post?.title || seo.title || "Article",
-      item: seo.canonicalUrl,
-    },
-  ],
-};
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: `${BASE_URL}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${BASE_URL}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post?.title || seo.title || "Article",
+        item: seo.canonicalUrl,
+      },
+    ],
+  };
 
-return (
-  <>
-    <Helmet>
-      {/* ==================================================
+  return (
+    <>
+      <Helmet>
+        {/* ==================================================
           PRIMARY SEO
       ================================================== */}
 
-      <html lang="en" />
+        <html lang="en" />
 
-      <title>{`${seo.title} | DevZore`}</title>
+        <title>{`${seo.title} | DevZore`}</title>
 
-      <meta
-        name="description"
-        content={seo.description}
-      />
-
-      {/* Dynamic keywords from Admin Post Editor */}
-      {post?.seoKeywords?.trim() && (
         <meta
-          name="keywords"
-          content={post.seoKeywords.trim()}
+          name="description"
+          content={seo.description}
         />
-      )}
 
-      {/* Author */}
-      <meta
-        name="author"
-        content={authorName || "DevZore"}
-      />
+        {/* Dynamic keywords from Admin Post Editor */}
+        {post?.seoKeywords?.trim() && (
+          <meta
+            name="keywords"
+            content={post.seoKeywords.trim()}
+          />
+        )}
 
-      {/* Publisher */}
-      <meta
-        name="publisher"
-        content="DevZore"
-      />
+        {/* Author */}
+        <meta
+          name="author"
+          content={authorName || "DevZore"}
+        />
 
-      {/* Canonical */}
-      <link
-        rel="canonical"
-        href={seo.canonicalUrl}
-      />
+        {/* Publisher */}
+        <meta
+          name="publisher"
+          content="DevZore"
+        />
 
-      {/* Robots */}
-      <meta
-        name="robots"
-        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-      />
+        {/* Canonical */}
+        <link
+          rel="canonical"
+          href={seo.canonicalUrl}
+        />
 
-      <meta
-        name="googlebot"
-        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-      />
+        {/* Robots */}
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
 
-      {/* ==================================================
+        <meta
+          name="googlebot"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+
+        {/* ==================================================
           OPEN GRAPH
       ================================================== */}
 
-      <meta
-        property="og:type"
-        content="article"
-      />
-
-      <meta
-        property="og:site_name"
-        content="DevZore"
-      />
-
-      <meta
-        property="og:title"
-        content={seo.title}
-      />
-
-      <meta
-        property="og:description"
-        content={seo.description}
-      />
-
-      <meta
-        property="og:url"
-        content={seo.canonicalUrl}
-      />
-
-      <meta
-        property="og:locale"
-        content="en_US"
-      />
-
-      {seo.image && (
         <meta
-          property="og:image"
-          content={seo.image}
+          property="og:type"
+          content="article"
         />
-      )}
 
-      {seo.image && post?.coverImageAlt && (
         <meta
-          property="og:image:alt"
-          content={post.coverImageAlt}
+          property="og:site_name"
+          content="DevZore"
         />
-      )}
 
-      {/* ==================================================
+        <meta
+          property="og:title"
+          content={seo.title}
+        />
+
+        <meta
+          property="og:description"
+          content={seo.description}
+        />
+
+        <meta
+          property="og:url"
+          content={seo.canonicalUrl}
+        />
+
+        <meta
+          property="og:locale"
+          content="en_US"
+        />
+
+        {seo.image && (
+          <meta
+            property="og:image"
+            content={seo.image}
+          />
+        )}
+
+        {seo.image && post?.coverImageAlt && (
+          <meta
+            property="og:image:alt"
+            content={post.coverImageAlt}
+          />
+        )}
+
+        {/* ==================================================
           ARTICLE META
       ================================================== */}
 
-      {seo.datePublished && (
-        <meta
-          property="article:published_time"
-          content={seo.datePublished}
-        />
-      )}
+        {seo.datePublished && (
+          <meta
+            property="article:published_time"
+            content={seo.datePublished}
+          />
+        )}
 
-      {seo.dateModified && (
-        <meta
-          property="article:modified_time"
-          content={seo.dateModified}
-        />
-      )}
+        {seo.dateModified && (
+          <meta
+            property="article:modified_time"
+            content={seo.dateModified}
+          />
+        )}
 
-      {categoryName && (
-        <meta
-          property="article:section"
-          content={categoryName}
-        />
-      )}
+        {categoryName && (
+          <meta
+            property="article:section"
+            content={categoryName}
+          />
+        )}
 
-      {/* ==================================================
+        {/* ==================================================
           TWITTER / X
       ================================================== */}
 
-      <meta
-        name="twitter:card"
-        content={
-          seo.image
-            ? "summary_large_image"
-            : "summary"
-        }
-      />
-
-      <meta
-        name="twitter:title"
-        content={seo.title}
-      />
-
-      <meta
-        name="twitter:description"
-        content={seo.description}
-      />
-
-      {seo.image && (
         <meta
-          name="twitter:image"
-          content={seo.image}
+          name="twitter:card"
+          content={
+            seo.image
+              ? "summary_large_image"
+              : "summary"
+          }
         />
-      )}
 
-      {seo.image && post?.coverImageAlt && (
         <meta
-          name="twitter:image:alt"
-          content={post.coverImageAlt}
+          name="twitter:title"
+          content={seo.title}
         />
-      )}
 
-      {/* ==================================================
+        <meta
+          name="twitter:description"
+          content={seo.description}
+        />
+
+        {seo.image && (
+          <meta
+            name="twitter:image"
+            content={seo.image}
+          />
+        )}
+
+        {seo.image && post?.coverImageAlt && (
+          <meta
+            name="twitter:image:alt"
+            content={post.coverImageAlt}
+          />
+        )}
+
+        {/* ==================================================
           STRUCTURED DATA
       ================================================== */}
 
-      <script type="application/ld+json">
-        {JSON.stringify(blogPostingSchema)}
-      </script>
+        <script type="application/ld+json">
+          {JSON.stringify(blogPostingSchema)}
+        </script>
 
-      <script type="application/ld+json">
-        {JSON.stringify(breadcrumbSchema)}
-      </script>
-    </Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
 
 
       <div
