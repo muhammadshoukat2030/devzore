@@ -1053,13 +1053,13 @@ const BlogDetails = ({ isDark = true }) => {
         ====================================================== */}
 
         <div
-          className={`pt-20 sm:pt-24 border-b ${isDark
+          className={`pt-20 sm:pt-20 border-b ${isDark
             ? "bg-[#080808] border-white/[0.08]"
             : "bg-white border-slate-200"
             }`}
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="flex items-center justify-between gap-4 py-3">
+            <div className="flex items-center justify-between gap-4 py-1">
               <button
                 type="button"
                 onClick={handleBackToBlog}
@@ -1090,7 +1090,7 @@ const BlogDetails = ({ isDark = true }) => {
 
           <nav
             aria-label="Breadcrumb"
-            className={`py-4 border-b ${isDark
+            className={`py-2 border-b ${isDark
               ? "border-white/[0.07]"
               : "border-slate-200"
               }`}
@@ -1128,7 +1128,7 @@ const BlogDetails = ({ isDark = true }) => {
               ARTICLE HEADER
           ====================================================== */}
 
-          <header className="max-w-4xl pt-7 sm:pt-9 pb-6">
+          <header className="max-w-4xl pt-7 sm:pt-3 pb-2">
             {categoryName && (
               <div className="flex items-center gap-2 mb-4">
                 <span className="w-6 h-[2px] bg-purple-600" />
@@ -1140,7 +1140,7 @@ const BlogDetails = ({ isDark = true }) => {
             )}
 
             <h1
-              className={`text-[30px] sm:text-[42px] md:text-[50px] lg:text-[56px] font-black tracking-[-0.04em] leading-[1.04] mb-5 ${isDark ? "text-white" : "text-slate-950"
+              className={`text-[30px] sm:text-[42px] md:text-[50px] lg:text-[40px] font-black tracking-[-0.04em] leading-[1.04] mb-5 ${isDark ? "text-white" : "text-slate-950"
                 }`}
             >
               {post?.title || "Untitled Article"}
@@ -1148,7 +1148,7 @@ const BlogDetails = ({ isDark = true }) => {
 
             {post?.excerpt && (
               <p
-                className={`text-base sm:text-lg leading-[1.6] max-w-3xl mb-6 ${isDark ? "text-gray-400" : "text-slate-600"
+                className={`text-base sm:text-lg leading-[1.6] max-w-3xl mb-5 ${isDark ? "text-gray-400" : "text-slate-600"
                   }`}
               >
                 {post.excerpt}
@@ -1156,7 +1156,7 @@ const BlogDetails = ({ isDark = true }) => {
             )}
 
             <div
-              className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-t ${isDark
+              className={`flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-1 border-t ${isDark
                 ? "border-white/[0.08]"
                 : "border-slate-200"
                 }`}

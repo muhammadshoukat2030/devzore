@@ -298,13 +298,13 @@ const BlogPost = ({ isDark = true }) => {
         ================================================== */}
 
         <header
-          className={`pt-24 sm:pt-28 border-b ${isDark
+          className={`pt-24 sm:pt-22 border-b ${isDark
               ? "bg-[#080808] border-white/[0.08]"
               : "bg-white border-slate-200"
             }`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 pb-6 sm:pb-7">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 pb-6 sm:pb-2">
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <span className="w-7 h-[3px] bg-purple-600" />
@@ -315,14 +315,14 @@ const BlogPost = ({ isDark = true }) => {
                 </div>
 
                 <h1
-                  className={`text-4xl sm:text-5xl lg:text-[54px] leading-none font-black tracking-[-0.04em] ${isDark ? "text-white" : "text-slate-950"
+                  className={`text-4xl sm:text-5xl lg:text-[42px] leading-none font-black tracking-[-0.04em] ${isDark ? "text-white" : "text-slate-950"
                     }`}
                 >
                   DevZore Journal
                 </h1>
 
                 <p
-                  className={`mt-4 max-w-2xl text-sm sm:text-base leading-relaxed ${isDark ? "text-gray-400" : "text-slate-600"
+                  className={`mt-1 max-w-2xl text-sm sm:text-base leading-relaxed ${isDark ? "text-gray-400" : "text-slate-600"
                     }`}
                 >
                   Practical articles on software development,
@@ -369,7 +369,7 @@ const BlogPost = ({ isDark = true }) => {
                       onClick={() =>
                         setActiveCategory(category)
                       }
-                      className={`relative px-4 sm:px-5 py-3.5 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.1em] transition-colors ${active
+                      className={`relative px-4 sm:px-5 py-2.5 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.1em] transition-colors ${active
                           ? isDark
                             ? "text-white"
                             : "text-slate-950"
@@ -391,7 +391,7 @@ const BlogPost = ({ isDark = true }) => {
           </nav>
         </header>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-9">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-5">
           {/* ==================================================
               ERROR
           ================================================== */}
@@ -479,7 +479,7 @@ const BlogPost = ({ isDark = true }) => {
           {!error && leadPost && (
             <>
               <div
-                className={`flex items-center justify-between border-b-2 pb-3 mb-5 ${isDark
+                className={`flex items-center justify-between border-b-2 pb-3 mb-1 ${isDark
                     ? "border-white"
                     : "border-slate-950"
                   }`}
@@ -867,7 +867,7 @@ const SecondaryStory = ({
 
   return (
     <article
-      className={`py-4 border-b last:border-b-0 ${isDark
+      className={`py-3 border-b last:border-b-0 ${isDark
           ? "border-white/[0.08]"
           : "border-slate-200"
         }`}
