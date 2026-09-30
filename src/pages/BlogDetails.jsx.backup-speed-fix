@@ -257,8 +257,6 @@ const BlogDetails = ({ isDark = true }) => {
 
         if (isMounted) {
           setPost(blog);
-          setRelatedPosts(Array.isArray(response?.related) ? response.related : []);
-          setRelatedLoading(false);
         }
       } catch (err) {
         console.error("Fetch single blog error:", err);
@@ -347,6 +345,99 @@ const BlogDetails = ({ isDark = true }) => {
       isMounted = false;
     };
   }, [post?._id]);
+
+  // ======================================================
+  // FETCH RELATED POSTS
+  // ======================================================
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchRelatedPosts = async () => {
+      if (!post?._id) return;
+
+      try {
+        setRelatedLoading(true);
+
+        const response = await postService.getPosts();
+        const posts = getPostsFromResponse(response);
+
+        const availablePosts = posts.filter((item) => {
+          if (!item) return false;
+
+          if (item?._id && post?._id) {
+            return String(item._id) !== String(post._id);
+          }
+
+          return item?.slug !== post?.slug;
+        });
+
+        const currentCategory = getPostCategoryValue(post);
+
+        const sameCategoryPosts = availablePosts.filter((item) => {
+          if (!currentCategory) return false;
+
+          return (
+            String(getPostCategoryValue(item)).toLowerCase() ===
+            String(currentCategory).toLowerCase()
+          );
+        });
+
+        const sortByNewest = (a, b) => {
+          const dateA = new Date(
+            a?.publishedAt || a?.createdAt || 0
+          ).getTime();
+
+          const dateB = new Date(
+            b?.publishedAt || b?.createdAt || 0
+          ).getTime();
+
+          return dateB - dateA;
+        };
+
+        sameCategoryPosts.sort(sortByNewest);
+
+        const selected = [...sameCategoryPosts];
+
+        if (selected.length < 3) {
+          const selectedKeys = new Set(
+            selected.map((item) =>
+              String(item?._id || item?.slug || "")
+            )
+          );
+
+          const otherPosts = availablePosts
+            .filter((item) => {
+              const key = String(item?._id || item?.slug || "");
+              return !selectedKeys.has(key);
+            })
+            .sort(sortByNewest);
+
+          selected.push(...otherPosts);
+        }
+
+        if (isMounted) {
+          setRelatedPosts(selected.slice(0, 3));
+        }
+      } catch (err) {
+        console.error("Fetch related posts error:", err);
+
+        if (isMounted) {
+          setRelatedPosts([]);
+        }
+      } finally {
+        if (isMounted) {
+          setRelatedLoading(false);
+        }
+      }
+    };
+
+    fetchRelatedPosts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [post]);
 
   // ======================================================
   // POST DATA
