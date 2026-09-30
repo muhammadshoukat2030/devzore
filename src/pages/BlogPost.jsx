@@ -14,6 +14,8 @@ import {
 
 import postService from "../services/postService";
 
+const getBlogImageUrl = (post) => post?.coverImage || "";
+
 const BASE_URL = "https://devzore.com";
 
 const BlogPost = ({ isDark = true }) => {
@@ -208,15 +210,15 @@ const BlogPost = ({ isDark = true }) => {
     return (
       <div
         className={`min-h-screen flex items-center justify-center ${isDark
-            ? "bg-[#050505] text-white"
-            : "bg-[#f8f8f8] text-slate-950"
+          ? "bg-[#050505] text-white"
+          : "bg-[#f8f8f8] text-slate-950"
           }`}
       >
         <div className="text-center px-6">
           <div
             className={`w-9 h-9 rounded-full border-[3px] mx-auto mb-4 animate-spin ${isDark
-                ? "border-white/10 border-t-purple-500"
-                : "border-slate-200 border-t-purple-600"
+              ? "border-white/10 border-t-purple-500"
+              : "border-slate-200 border-t-purple-600"
               }`}
           />
 
@@ -289,8 +291,8 @@ const BlogPost = ({ isDark = true }) => {
 
       <div
         className={`min-h-screen transition-colors duration-300 ${isDark
-            ? "bg-[#050505] text-white"
-            : "bg-[#f8f8f8] text-slate-950"
+          ? "bg-[#050505] text-white"
+          : "bg-[#f8f8f8] text-slate-950"
           }`}
       >
         {/* ==================================================
@@ -299,8 +301,8 @@ const BlogPost = ({ isDark = true }) => {
 
         <header
           className={`pt-24 sm:pt-22 border-b ${isDark
-              ? "bg-[#080808] border-white/[0.08]"
-              : "bg-white border-slate-200"
+            ? "bg-[#080808] border-white/[0.08]"
+            : "bg-white border-slate-200"
             }`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -352,8 +354,8 @@ const BlogPost = ({ isDark = true }) => {
           <nav
             aria-label="Blog categories"
             className={`border-t ${isDark
-                ? "border-white/[0.07] bg-[#0b0b0b]"
-                : "border-slate-200 bg-white"
+              ? "border-white/[0.07] bg-[#0b0b0b]"
+              : "border-slate-200 bg-white"
               }`}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
@@ -370,12 +372,12 @@ const BlogPost = ({ isDark = true }) => {
                         setActiveCategory(category)
                       }
                       className={`relative px-4 sm:px-5 py-2.5 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.1em] transition-colors ${active
-                          ? isDark
-                            ? "text-white"
-                            : "text-slate-950"
-                          : isDark
-                            ? "text-gray-500 hover:text-white"
-                            : "text-slate-500 hover:text-slate-950"
+                        ? isDark
+                          ? "text-white"
+                          : "text-slate-950"
+                        : isDark
+                          ? "text-gray-500 hover:text-white"
+                          : "text-slate-500 hover:text-slate-950"
                         }`}
                     >
                       {category}
@@ -399,14 +401,14 @@ const BlogPost = ({ isDark = true }) => {
           {error && (
             <section
               className={`p-5 border mb-8 ${isDark
-                  ? "bg-red-500/[0.05] border-red-500/20"
-                  : "bg-red-50 border-red-200"
+                ? "bg-red-500/[0.05] border-red-500/20"
+                : "bg-red-50 border-red-200"
                 }`}
             >
               <h2
                 className={`text-base font-black mb-2 ${isDark
-                    ? "text-red-400"
-                    : "text-red-700"
+                  ? "text-red-400"
+                  : "text-red-700"
                   }`}
               >
                 Unable to load articles
@@ -414,8 +416,8 @@ const BlogPost = ({ isDark = true }) => {
 
               <p
                 className={`text-sm mb-4 ${isDark
-                    ? "text-gray-400"
-                    : "text-slate-600"
+                  ? "text-gray-400"
+                  : "text-slate-600"
                   }`}
               >
                 {error}
@@ -441,8 +443,8 @@ const BlogPost = ({ isDark = true }) => {
           {!error && filteredPosts.length === 0 && (
             <section
               className={`text-center py-16 border ${isDark
-                  ? "bg-[#080808] border-white/[0.08]"
-                  : "bg-white border-slate-200"
+                ? "bg-[#080808] border-white/[0.08]"
+                : "bg-white border-slate-200"
                 }`}
             >
               <FileText
@@ -452,8 +454,8 @@ const BlogPost = ({ isDark = true }) => {
 
               <h2
                 className={`text-xl font-black mb-2 ${isDark
-                    ? "text-white"
-                    : "text-slate-950"
+                  ? "text-white"
+                  : "text-slate-950"
                   }`}
               >
                 No articles found
@@ -461,8 +463,8 @@ const BlogPost = ({ isDark = true }) => {
 
               <p
                 className={`text-sm ${isDark
-                    ? "text-gray-500"
-                    : "text-slate-500"
+                  ? "text-gray-500"
+                  : "text-slate-500"
                   }`}
               >
                 {activeCategory === "All"
@@ -480,8 +482,8 @@ const BlogPost = ({ isDark = true }) => {
             <>
               <div
                 className={`flex items-center justify-between border-b-2 pb-3 mb-1 ${isDark
-                    ? "border-white"
-                    : "border-slate-950"
+                  ? "border-white"
+                  : "border-slate-950"
                   }`}
               >
                 <div className="flex items-center gap-2">
@@ -492,8 +494,8 @@ const BlogPost = ({ isDark = true }) => {
 
                   <h2
                     className={`text-sm sm:text-base font-black uppercase tracking-[0.08em] ${isDark
-                        ? "text-white"
-                        : "text-slate-950"
+                      ? "text-white"
+                      : "text-slate-950"
                       }`}
                   >
                     Featured
@@ -502,8 +504,8 @@ const BlogPost = ({ isDark = true }) => {
 
                 <span
                   className={`text-[9px] font-bold ${isDark
-                      ? "text-gray-600"
-                      : "text-slate-400"
+                    ? "text-gray-600"
+                    : "text-slate-400"
                     }`}
                 >
                   {filteredPosts.length}{" "}
@@ -518,8 +520,8 @@ const BlogPost = ({ isDark = true }) => {
 
                 <article
                   className={`lg:col-span-8 lg:pr-6 lg:border-r ${isDark
-                      ? "lg:border-white/[0.08]"
-                      : "lg:border-slate-200"
+                    ? "lg:border-white/[0.08]"
+                    : "lg:border-slate-200"
                     }`}
                 >
                   <PostLink
@@ -530,13 +532,13 @@ const BlogPost = ({ isDark = true }) => {
                   >
                     <div
                       className={`relative w-full h-[210px] sm:h-[330px] lg:h-[390px] overflow-hidden mb-5 ${isDark
-                          ? "bg-[#111]"
-                          : "bg-slate-200"
+                        ? "bg-[#111]"
+                        : "bg-slate-200"
                         }`}
                     >
-                      {leadPost?.coverImage ? (
+                      {getBlogImageUrl(leadPost) ? (
                         <img
-                          src={leadPost.coverImage}
+                          src={getBlogImageUrl(leadPost)}
                           alt={
                             leadPost?.coverImageAlt ||
                             leadPost?.title ||
@@ -570,8 +572,8 @@ const BlogPost = ({ isDark = true }) => {
                     <div className="max-w-4xl">
                       <h2
                         className={`text-2xl sm:text-3xl lg:text-[36px] font-black tracking-[-0.025em] leading-[1.08] mb-3 transition-colors group-hover:text-purple-500 ${isDark
-                            ? "text-white"
-                            : "text-slate-950"
+                          ? "text-white"
+                          : "text-slate-950"
                           }`}
                       >
                         {leadPost?.title ||
@@ -581,8 +583,8 @@ const BlogPost = ({ isDark = true }) => {
                       {leadPost?.excerpt && (
                         <p
                           className={`text-sm sm:text-base leading-relaxed mb-4 max-w-3xl ${isDark
-                              ? "text-gray-400"
-                              : "text-slate-600"
+                            ? "text-gray-400"
+                            : "text-slate-600"
                             }`}
                         >
                           {leadPost.excerpt}
@@ -605,8 +607,8 @@ const BlogPost = ({ isDark = true }) => {
                   <div className="lg:col-span-4 mt-8 lg:mt-0">
                     <div
                       className={`border-b pb-3 mb-1 ${isDark
-                          ? "border-white/[0.08]"
-                          : "border-slate-200"
+                        ? "border-white/[0.08]"
+                        : "border-slate-200"
                         }`}
                     >
                       <span className="text-[9px] font-black uppercase tracking-[0.15em] text-purple-500">
@@ -646,14 +648,14 @@ const BlogPost = ({ isDark = true }) => {
             <section>
               <div
                 className={`flex items-center justify-between border-b-2 pb-3 mb-1 ${isDark
-                    ? "border-white"
-                    : "border-slate-950"
+                  ? "border-white"
+                  : "border-slate-950"
                   }`}
               >
                 <h2
                   className={`text-sm sm:text-base font-black uppercase tracking-[0.08em] ${isDark
-                      ? "text-white"
-                      : "text-slate-950"
+                    ? "text-white"
+                    : "text-slate-950"
                     }`}
                 >
                   More From DevZore
@@ -692,14 +694,14 @@ const BlogPost = ({ isDark = true }) => {
             latestPosts.length === 0 && (
               <div
                 className={`mt-9 pt-5 border-t ${isDark
-                    ? "border-white/[0.08]"
-                    : "border-slate-200"
+                  ? "border-white/[0.08]"
+                  : "border-slate-200"
                   }`}
               >
                 <p
                   className={`text-xs ${isDark
-                      ? "text-gray-600"
-                      : "text-slate-500"
+                    ? "text-gray-600"
+                    : "text-slate-500"
                     }`}
                 >
                   More articles will appear here as
@@ -715,8 +717,8 @@ const BlogPost = ({ isDark = true }) => {
           {!error && allPosts.length > 0 && (
             <section
               className={`mt-12 sm:mt-14 border-t-4 border-purple-600 ${isDark
-                  ? "bg-[#0a0a0a]"
-                  : "bg-white border-x border-b border-slate-200"
+                ? "bg-[#0a0a0a]"
+                : "bg-white border-x border-b border-slate-200"
                 }`}
             >
               <div className="grid lg:grid-cols-12">
@@ -727,8 +729,8 @@ const BlogPost = ({ isDark = true }) => {
 
                   <h2
                     className={`text-2xl sm:text-3xl font-black tracking-tight mt-2 mb-3 ${isDark
-                        ? "text-white"
-                        : "text-slate-950"
+                      ? "text-white"
+                      : "text-slate-950"
                       }`}
                   >
                     Planning a software or digital
@@ -737,8 +739,8 @@ const BlogPost = ({ isDark = true }) => {
 
                   <p
                     className={`text-sm leading-relaxed max-w-2xl ${isDark
-                        ? "text-gray-400"
-                        : "text-slate-600"
+                      ? "text-gray-400"
+                      : "text-slate-600"
                       }`}
                   >
                     Discuss web development, mobile
@@ -751,8 +753,8 @@ const BlogPost = ({ isDark = true }) => {
 
                 <div
                   className={`lg:col-span-4 p-5 sm:p-7 lg:p-8 flex items-center lg:justify-end border-t lg:border-t-0 lg:border-l ${isDark
-                      ? "border-white/[0.08]"
-                      : "border-slate-200"
+                    ? "border-white/[0.08]"
+                    : "border-slate-200"
                     }`}
                 >
                   <Link
@@ -828,8 +830,8 @@ const ArticleMeta = ({
   return (
     <div
       className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.08em] ${isDark
-          ? "text-gray-600"
-          : "text-slate-500"
+        ? "text-gray-600"
+        : "text-slate-500"
         }`}
     >
       {publishedDate && (
@@ -868,8 +870,8 @@ const SecondaryStory = ({
   return (
     <article
       className={`py-3 border-b last:border-b-0 ${isDark
-          ? "border-white/[0.08]"
-          : "border-slate-200"
+        ? "border-white/[0.08]"
+        : "border-slate-200"
         }`}
     >
       <PostLink
@@ -886,8 +888,8 @@ const SecondaryStory = ({
 
             <h3
               className={`text-sm sm:text-base lg:text-[14px] leading-snug font-black mt-1.5 mb-2 transition-colors group-hover:text-purple-500 ${isDark
-                  ? "text-white"
-                  : "text-slate-950"
+                ? "text-white"
+                : "text-slate-950"
                 }`}
             >
               {post?.title || "Untitled Article"}
@@ -896,8 +898,8 @@ const SecondaryStory = ({
             {publishedDate && (
               <span
                 className={`text-[8px] sm:text-[9px] font-semibold ${isDark
-                    ? "text-gray-600"
-                    : "text-slate-400"
+                  ? "text-gray-600"
+                  : "text-slate-400"
                   }`}
               >
                 {publishedDate}
@@ -907,13 +909,13 @@ const SecondaryStory = ({
 
           <div
             className={`h-[70px] overflow-hidden ${isDark
-                ? "bg-[#111]"
-                : "bg-slate-200"
+              ? "bg-[#111]"
+              : "bg-slate-200"
               }`}
           >
-            {post?.coverImage ? (
+            {getBlogImageUrl(post) ? (
               <img
-                src={post.coverImage}
+                src={getBlogImageUrl(post)}
                 alt={
                   post?.coverImageAlt ||
                   post?.title ||
@@ -964,8 +966,8 @@ const NewsRow = ({
   return (
     <article
       className={`border-b ${isDark
-          ? "border-white/[0.08]"
-          : "border-slate-200"
+        ? "border-white/[0.08]"
+        : "border-slate-200"
         }`}
     >
       <PostLink
@@ -977,13 +979,13 @@ const NewsRow = ({
         <div className="grid grid-cols-[110px_1fr] sm:grid-cols-[190px_1fr] lg:grid-cols-[225px_1fr] gap-4 sm:gap-6">
           <div
             className={`w-full h-[78px] sm:h-[115px] lg:h-[128px] overflow-hidden ${isDark
-                ? "bg-[#111]"
-                : "bg-slate-200"
+              ? "bg-[#111]"
+              : "bg-slate-200"
               }`}
           >
-            {post?.coverImage ? (
+            {getBlogImageUrl(post) ? (
               <img
-                src={post.coverImage}
+                src={getBlogImageUrl(post)}
                 alt={
                   post?.coverImageAlt ||
                   post?.title ||
@@ -993,8 +995,7 @@ const NewsRow = ({
                 decoding="async"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 onError={(event) => {
-                  event.currentTarget.style.display =
-                    "none";
+                  event.currentTarget.style.display = "none";
                 }}
               />
             ) : (
@@ -1014,8 +1015,8 @@ const NewsRow = ({
 
             <h3
               className={`text-[15px] sm:text-xl lg:text-[22px] font-black tracking-[-0.02em] leading-tight mb-2 transition-colors group-hover:text-purple-500 ${isDark
-                  ? "text-white"
-                  : "text-slate-950"
+                ? "text-white"
+                : "text-slate-950"
                 }`}
             >
               {post?.title || "Untitled Article"}
@@ -1024,8 +1025,8 @@ const NewsRow = ({
             {post?.excerpt && (
               <p
                 className={`hidden sm:block text-xs sm:text-sm leading-relaxed line-clamp-2 max-w-3xl mb-3 ${isDark
-                    ? "text-gray-500"
-                    : "text-slate-600"
+                  ? "text-gray-500"
+                  : "text-slate-600"
                   }`}
               >
                 {post.excerpt}
@@ -1035,8 +1036,8 @@ const NewsRow = ({
             <div className="flex items-center justify-between gap-3">
               <div
                 className={`flex flex-wrap items-center gap-2 sm:gap-3 text-[8px] sm:text-[9px] font-semibold ${isDark
-                    ? "text-gray-600"
-                    : "text-slate-400"
+                  ? "text-gray-600"
+                  : "text-slate-400"
                   }`}
               >
                 {publishedDate && (

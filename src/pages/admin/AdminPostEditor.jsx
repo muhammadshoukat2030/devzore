@@ -12,6 +12,8 @@ import postService from "../../services/postService";
 import categoryService from "../../services/categoryService";
 import uploadService from "../../services/uploadService";
 
+const getBlogImageUrl = (post) => post?.coverImage || "";
+
 const AdminPostEditor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -28,21 +30,6 @@ const AdminPostEditor = () => {
 
   const [categories, setCategories] = useState([]);
 
-  // const [formData, setFormData] = useState({
-  //   title: "",
-  //   slug: "",
-  //   excerpt: "",
-  //   content: "",
-  //   coverImage: "",
-  //   coverImageAlt: "",
-  //   category: "",
-  //   status: "draft",
-  //   featured: false,
-  //   tags: "",
-  //   seoTitle: "",
-  //   seoDescription: "",
-  //   seoKeywords: "",
-  // });
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
@@ -53,12 +40,17 @@ const AdminPostEditor = () => {
     coverImageAlt: "",
     category: "",
     status: "draft",
+
+    // Scheduled publish date & time
+    scheduledAt: "",
+
     featured: false,
     tags: "",
     seoTitle: "",
     seoDescription: "",
     seoKeywords: "",
   });
+
   // Track whether slug was manually edited
   const [slugManuallyEdited, setSlugManuallyEdited] =
     useState(false);
@@ -112,57 +104,57 @@ const AdminPostEditor = () => {
   };
 
   // =====================================================
-// IMAGE UPLOAD HANDLER
-// =====================================================
+  // IMAGE UPLOAD HANDLER
+  // =====================================================
 
-const handleImageUpload = async (event) => {
-  const file = event.target.files?.[0];
+  const handleImageUpload = async (event) => {
+    const file = event.target.files?.[0];
 
-  if (!file) return;
+    if (!file) return;
 
-  try {
-    setUploadingImage(true);
+    try {
+      setUploadingImage(true);
 
-    // 📤 Upload and compress image
-    const response = await uploadService.uploadImage(file);
+      // 📤 Upload and compress image
+      const response = await uploadService.uploadImage(file);
 
-    if (response.success && response.url) {
-      // ✅ Save image URL + Google Drive File ID
-      setFormData((prev) => ({
-        ...prev,
-        coverImage: response.url,
-        coverImagePublicId: response.publicId || "",
-      }));
+      if (response.success && response.url) {
+        // ✅ Save image URL + Google Drive File ID
+        setFormData((prev) => ({
+          ...prev,
+          coverImage: response.url,
+          coverImagePublicId: response.publicId || "",
+        }));
 
-      console.log("✅ Image uploaded:", response.url);
-      console.log(
-        "✅ Google Drive File ID:",
-        response.publicId
-      );
+        console.log("✅ Image uploaded:", response.url);
+        console.log(
+          "✅ Google Drive File ID:",
+          response.publicId
+        );
 
-      toast.success("Image uploaded successfully!");
-    } else {
-      throw new Error("Upload failed");
-    }
-  } catch (error) {
-    console.error("Image upload error:", error);
+        toast.success("Image uploaded successfully!");
+      } else {
+        throw new Error("Upload failed");
+      }
+    } catch (error) {
+      console.error("Image upload error:", error);
 
-    toast.error(
-      error?.response?.data?.message ||
+      toast.error(
+        error?.response?.data?.message ||
         error?.message ||
         "Failed to upload image"
-    );
-  } finally {
-    setUploadingImage(false);
+      );
+    } finally {
+      setUploadingImage(false);
 
-    // Reset input
-    event.target.value = "";
-  }
-};
+      // Reset input
+      event.target.value = "";
+    }
+  };
 
-// =====================================================
-// LOAD CATEGORIES
-// =====================================================
+  // =====================================================
+  // LOAD CATEGORIES
+  // =====================================================
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -617,10 +609,21 @@ const handleImageUpload = async (event) => {
         formData.slug.trim()
           ? generateSlug(formData.slug)
           : generateSlug(formData.title);
-
       // -----------------------------------------------
       // Post Data
       // -----------------------------------------------
+
+      // Scheduled post ke liye date/time required
+      if (
+        selectedStatus === "scheduled" &&
+        !formData.scheduledAt
+      ) {
+        toast.error(
+          "Please select a publish date and time."
+        );
+        setLoading(false);
+        return;
+      }
 
       const postData = {
         title: formData.title.trim(),
@@ -647,6 +650,12 @@ const handleImageUpload = async (event) => {
 
         status:
           selectedStatus,
+
+        // Scheduled publish date/time
+        scheduledAt:
+          selectedStatus === "scheduled"
+            ? formData.scheduledAt
+            : null,
 
         featured:
           Boolean(formData.featured),
@@ -909,8 +918,8 @@ const handleImageUpload = async (event) => {
                       .run()
                   }
                   className={`px-3 py-2 rounded-lg font-bold text-sm ${editor.isActive("bold")
-                      ? "bg-slate-900 text-white"
-                      : "hover:bg-slate-200"
+                    ? "bg-slate-900 text-white"
+                    : "hover:bg-slate-200"
                     }`}
                 >
                   B
@@ -928,8 +937,8 @@ const handleImageUpload = async (event) => {
                       .run()
                   }
                   className={`px-3 py-2 rounded-lg italic text-sm ${editor.isActive("italic")
-                      ? "bg-slate-900 text-white"
-                      : "hover:bg-slate-200"
+                    ? "bg-slate-900 text-white"
+                    : "hover:bg-slate-200"
                     }`}
                 >
                   I
@@ -947,8 +956,8 @@ const handleImageUpload = async (event) => {
                       .run()
                   }
                   className={`px-3 py-2 rounded-lg text-sm ${editor.isActive("strike")
-                      ? "bg-slate-900 text-white"
-                      : "hover:bg-slate-200"
+                    ? "bg-slate-900 text-white"
+                    : "hover:bg-slate-200"
                     }`}
                 >
                   S
@@ -973,8 +982,8 @@ const handleImageUpload = async (event) => {
                     "heading",
                     { level: 2 }
                   )
-                      ? "bg-slate-900 text-white"
-                      : "hover:bg-slate-200"
+                    ? "bg-slate-900 text-white"
+                    : "hover:bg-slate-200"
                     }`}
                 >
                   H2
@@ -997,8 +1006,8 @@ const handleImageUpload = async (event) => {
                     "heading",
                     { level: 3 }
                   )
-                      ? "bg-slate-900 text-white"
-                      : "hover:bg-slate-200"
+                    ? "bg-slate-900 text-white"
+                    : "hover:bg-slate-200"
                     }`}
                 >
                   H3
@@ -1020,8 +1029,8 @@ const handleImageUpload = async (event) => {
                   className={`px-3 py-2 rounded-lg text-sm ${editor.isActive(
                     "bulletList"
                   )
-                      ? "bg-slate-900 text-white"
-                      : "hover:bg-slate-200"
+                    ? "bg-slate-900 text-white"
+                    : "hover:bg-slate-200"
                     }`}
                 >
                   • List
@@ -1041,8 +1050,8 @@ const handleImageUpload = async (event) => {
                   className={`px-3 py-2 rounded-lg text-sm ${editor.isActive(
                     "orderedList"
                   )
-                      ? "bg-slate-900 text-white"
-                      : "hover:bg-slate-200"
+                    ? "bg-slate-900 text-white"
+                    : "hover:bg-slate-200"
                     }`}
                 >
                   1. List
@@ -1085,9 +1094,7 @@ const handleImageUpload = async (event) => {
             ================================================= */}
 
         <div className="space-y-6">
-          {/* =================================================
-              PUBLISH
-              ================================================= */}
+          {/* PUBLISH */}
 
           <div className="bg-white border border-slate-200 rounded-2xl p-5">
             <h2 className="font-bold text-lg text-slate-900 mb-5">
@@ -1122,15 +1129,36 @@ const handleImageUpload = async (event) => {
                 </select>
               </div>
 
+              {/* SCHEDULE DATE & TIME */}
+
+              {formData.status === "scheduled" && (
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Publish Date & Time
+                  </label>
+
+                  <input
+                    type="datetime-local"
+                    name="scheduledAt"
+                    value={formData.scheduledAt || ""}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border border-slate-200 rounded-xl bg-white outline-none focus:border-slate-900"
+                  />
+
+                  <p className="text-xs text-slate-500 mt-2">
+                    Select when this post should be published.
+                  </p>
+                </div>
+              )}
+
               {/* FEATURED */}
 
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   name="featured"
-                  checked={
-                    formData.featured
-                  }
+                  checked={formData.featured}
                   onChange={handleChange}
                   className="w-4 h-4"
                 />
@@ -1146,40 +1174,44 @@ const handleImageUpload = async (event) => {
                 type="button"
                 disabled={
                   loading ||
-                  !formData.category
+                  !formData.category ||
+                  (
+                    formData.status === "scheduled" &&
+                    !formData.scheduledAt
+                  )
                 }
                 onClick={() =>
-                  handleSubmit(
-                    formData.status
-                  )
+                  handleSubmit(formData.status)
                 }
                 className="w-full py-3 rounded-xl bg-slate-950 text-white font-semibold hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
               >
                 {loading
                   ? "Saving..."
                   : isEditMode
-                    ? formData.status ===
-                      "published"
+                    ? formData.status === "published"
                       ? "Update & Publish"
-                      : formData.status ===
-                        "scheduled"
+                      : formData.status === "scheduled"
                         ? "Update Schedule"
                         : "Update Post"
-                    : formData.status ===
-                      "published"
+                    : formData.status === "published"
                       ? "Publish Post"
-                      : formData.status ===
-                        "scheduled"
+                      : formData.status === "scheduled"
                         ? "Schedule Post"
                         : "Save Draft"}
               </button>
 
               {!formData.category && (
                 <p className="text-xs text-red-500">
-                  Select a category before
-                  saving the post.
+                  Select a category before saving the post.
                 </p>
               )}
+
+              {formData.status === "scheduled" &&
+                !formData.scheduledAt && (
+                  <p className="text-xs text-red-500">
+                    Select a publish date and time.
+                  </p>
+                )}
             </div>
           </div>
 
@@ -1284,17 +1316,16 @@ const handleImageUpload = async (event) => {
               />
             </div>
 
-            {formData.coverImage && (
+            {getBlogImageUrl(formData) && (
               <img
-                src={formData.coverImage}
+                src={getBlogImageUrl(formData)}
                 alt={
                   formData.coverImageAlt ||
                   "Cover preview"
                 }
                 className="w-full h-40 object-cover rounded-xl mt-4"
                 onError={(event) => {
-                  event.currentTarget.style.display =
-                    "none";
+                  event.currentTarget.style.display = "none";
                 }}
               />
             )}

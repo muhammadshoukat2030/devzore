@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 
 import postService from "../../services/postService";
 
+const getBlogImageUrl = (post) => post?.coverImage || "";
+
 const AdminPosts = () => {
   const navigate = useNavigate();
 
@@ -357,7 +359,7 @@ const AdminPosts = () => {
                           <div className="w-16 h-12 rounded-lg bg-slate-100 overflow-hidden flex-shrink-0">
                             {post?.coverImage ? (
                               <img
-                                src={post.coverImage}
+                               src={getBlogImageUrl(post)}
                                 alt={
                                   post.coverImageAlt ||
                                   post.title ||

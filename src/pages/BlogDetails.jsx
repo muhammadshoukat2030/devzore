@@ -24,6 +24,8 @@ import {
 import postService from "../services/postService";
 import commentService from "../services/commentService";
 
+const getBlogImageUrl = (post) => post?.coverImage || "";
+
 const BASE_URL = "https://devzore.com";
 
 // ======================================================
@@ -494,7 +496,7 @@ const BlogDetails = ({ isDark = true }) => {
       canonicalSlug
     )}`;
 
-    const image = post?.coverImage || null;
+    const image = getBlogImageUrl(post) || null;
 
     const datePublished = toISODate(
       post?.publishedAt || post?.createdAt
@@ -1238,14 +1240,14 @@ const BlogDetails = ({ isDark = true }) => {
               COMPACT COVER IMAGE
           ====================================================== */}
 
-          {post?.coverImage && (
+          {getBlogImageUrl(post) && (
             <figure className="max-w-5xl mb-7 sm:mb-9">
               <div
                 className={`w-full h-[210px] sm:h-[300px] md:h-[360px] lg:h-[400px] overflow-hidden rounded-xl ${isDark ? "bg-[#111]" : "bg-slate-200"
                   }`}
               >
                 <img
-                  src={post.coverImage}
+                  src={getBlogImageUrl(post)}
                   alt={
                     post?.coverImageAlt ||
                     post?.title ||
@@ -1474,15 +1476,13 @@ const BlogDetails = ({ isDark = true }) => {
                           >
                             <div
                               className={`relative h-[130px] sm:h-[135px] overflow-hidden ${isDark
-                                ? "bg-[#111]"
-                                : "bg-slate-100"
+                                  ? "bg-[#111]"
+                                  : "bg-slate-100"
                                 }`}
                             >
-                              {relatedPost?.coverImage ? (
+                              {getBlogImageUrl(relatedPost) ? (
                                 <img
-                                  src={
-                                    relatedPost.coverImage
-                                  }
+                                  src={getBlogImageUrl(relatedPost)}
                                   alt={
                                     relatedPost?.coverImageAlt ||
                                     relatedPost?.title ||
