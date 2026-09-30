@@ -14,6 +14,17 @@ const AdminPosts = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
 
+  // Search + server-side pagination
+  const [searchInput, setSearchInput] = useState("");
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState({
+    total: 0,
+    page: 1,
+    pages: 1,
+    limit: 10,
+  });
+
   // =====================================================
   // Extract posts from API response
   // =====================================================
@@ -60,11 +71,23 @@ const AdminPosts = () => {
         setLoading(true);
       }
 
-      const response = await postService.getAdminPosts(1, 100);
+      const response = await postService.getAdminPosts(
+        page,
+        10,
+        "",
+        search
+      );
 
       const list = extractPosts(response);
 
       setPosts(list);
+
+      setPagination({
+        total: response?.pagination?.total || 0,
+        page: response?.pagination?.page || page,
+        pages: Math.max(response?.pagination?.pages || 1, 1),
+        limit: response?.pagination?.limit || 10,
+      });
     } catch (error) {
       console.error("Load admin posts error:", error);
 
@@ -76,7 +99,7 @@ const AdminPosts = () => {
       setLoading(false);
       setRefreshing(false);
     }
-  }, []);
+  }, [page, search]);
 
   // =====================================================
   // Initial Load
@@ -85,6 +108,16 @@ const AdminPosts = () => {
   useEffect(() => {
     loadPosts();
   }, [loadPosts]);
+
+  // Live search - 300ms debounce
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setPage(1);
+      setSearch(searchInput.trim());
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchInput]);
 
   // =====================================================
   // Delete Post
@@ -188,6 +221,22 @@ const AdminPosts = () => {
   };
 
   // =====================================================
+  // Search
+  // =====================================================
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    setPage(1);
+    setSearch(searchInput.trim());
+  };
+
+  const clearSearch = () => {
+    setSearchInput("");
+    setSearch("");
+    setPage(1);
+  };
+
+  // =====================================================
   // Render
   // =====================================================
 
@@ -246,6 +295,44 @@ const AdminPosts = () => {
       </div>
 
       {/* =================================================
+          SEARCH
+      ================================================= */}
+
+      <form
+        onSubmit={handleSearch}
+        className="mb-6 flex flex-col sm:flex-row gap-3"
+      >
+        <div className="relative flex-1">
+          <input
+            type="search"
+            value={searchInput}
+            onChange={(event) =>
+              setSearchInput(event.target.value)
+            }
+            placeholder="Search posts..."
+            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-slate-400 transition"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="px-5 py-3 rounded-xl bg-slate-950 text-white font-semibold hover:bg-slate-800 transition"
+        >
+          Search
+        </button>
+
+        {search && (
+          <button
+            type="button"
+            onClick={clearSearch}
+            className="px-5 py-3 rounded-xl border border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition"
+          >
+            Clear
+          </button>
+        )}
+      </form>
+
+      {/* =================================================
           STATS
       ================================================= */}
 
@@ -253,10 +340,10 @@ const AdminPosts = () => {
         <div className="mb-6">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-sm">
             <span className="font-semibold text-slate-900">
-              {posts.length}
+              {pagination.total}
             </span>
 
-            {posts.length === 1 ? "Post" : "Posts"}
+            {pagination.total === 1 ? "Post" : "Posts"}
           </div>
         </div>
       )}
@@ -503,19 +590,23 @@ const AdminPosts = () => {
                         </div>
 
                         <p className="font-semibold text-slate-700">
-                          No posts yet
+                          {search ? "No matching posts" : "No posts yet"}
                         </p>
 
                         <p className="text-sm text-slate-400 mt-1">
-                          Create your first blog post.
+                          {search
+                            ? "Try a different search term."
+                            : "Create your first blog post."}
                         </p>
 
-                        <Link
-                          to="/admin/posts/new"
-                          className="mt-5 px-4 py-2.5 rounded-lg bg-slate-950 text-white text-sm font-semibold hover:bg-slate-800 transition"
-                        >
-                          Create Post
-                        </Link>
+                        {!search && (
+                          <Link
+                            to="/admin/posts/new"
+                            className="mt-5 px-4 py-2.5 rounded-lg bg-slate-950 text-white text-sm font-semibold hover:bg-slate-800 transition"
+                          >
+                            Create Post
+                          </Link>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -523,6 +614,70 @@ const AdminPosts = () => {
             </tbody>
           </table>
         </div>
+
+        {!loading && pagination.pages > 1 && (
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-slate-200 bg-slate-50/50">
+            <p className="text-sm text-slate-500">
+              Page{" "}
+              <span className="font-semibold text-slate-900">
+                {pagination.page}
+              </span>{" "}
+              of{" "}
+              <span className="font-semibold text-slate-900">
+                {pagination.pages}
+              </span>
+            </p>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() =>
+                  setPage((previous) =>
+                    Math.max(previous - 1, 1)
+                  )
+                }
+                disabled={page <= 1}
+                className="px-4 py-2 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Previous
+              </button>
+
+              {Array.from(
+                { length: pagination.pages },
+                (_, index) => index + 1
+              ).map((pageNumber) => (
+                <button
+                  key={pageNumber}
+                  type="button"
+                  onClick={() => setPage(pageNumber)}
+                  className={`min-w-10 px-3 py-2 rounded-lg text-sm font-semibold transition ${
+                    pageNumber === pagination.page
+                      ? "bg-slate-950 text-white"
+                      : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
+                  }`}
+                >
+                  {pageNumber}
+                </button>
+              ))}
+
+              <button
+                type="button"
+                onClick={() =>
+                  setPage((previous) =>
+                    Math.min(
+                      previous + 1,
+                      pagination.pages
+                    )
+                  )
+                }
+                disabled={page >= pagination.pages}
+                className="px-4 py-2 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

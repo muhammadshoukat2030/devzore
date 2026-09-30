@@ -139,8 +139,9 @@ const addComment = async (slug, commentData) => {
  */
 const getAdminPosts = async (
   page = 1,
-  limit = 20,
-  status = ""
+  limit = 10,
+  status = "",
+  search = ""
 ) => {
   const params = {
     page,
@@ -151,11 +152,13 @@ const getAdminPosts = async (
     params.status = status;
   }
 
+  if (search && search.trim()) {
+    params.search = search.trim();
+  }
+
   const response = await api.get(
     "/posts/admin/all",
-    {
-      params,
-    }
+    { params }
   );
 
   return response.data;
