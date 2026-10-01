@@ -36,6 +36,7 @@ import FAQ from "./sections/FAQ";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import ThankYou from "./pages/ThankYou";
 import BlogPost from "./pages/BlogPost";
 import BlogDetails from "./pages/BlogDetails";
 
@@ -217,7 +218,7 @@ const seoData = {
     description:
       "Read DevZore's Privacy Policy to learn how we collect, use, store and protect your information when you use our website, software and digital services.",
   },
-  
+
   "/terms-and-conditions": {
     title: "Terms & Conditions | DevZore",
     description:
@@ -242,6 +243,35 @@ function SEOManager() {
         <html lang="en" />
 
         <title>DevZore Admin</title>
+
+        <meta
+          name="robots"
+          content="noindex, nofollow, noarchive"
+        />
+
+        <meta
+          name="googlebot"
+          content="noindex, nofollow, noarchive"
+        />
+      </Helmet>
+    );
+  }
+
+  // ------------------------------------------------------
+  // THANK YOU / CONVERSION PAGE
+  // ------------------------------------------------------
+
+  if (pathname === "/thank-you") {
+    return (
+      <Helmet>
+        <html lang="en" />
+
+        <title>Thank You | DevZore</title>
+
+        <meta
+          name="description"
+          content="Thank you for contacting DevZore. Your project inquiry has been received successfully."
+        />
 
         <meta
           name="robots"
@@ -480,9 +510,10 @@ function AppContent({ isDark, toggleTheme }) {
         flex-col
         transition-colors
         duration-300
-        ${isDark
-          ? "bg-[#030303] text-white selection:bg-purple-500/30"
-          : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
+        ${
+          isDark
+            ? "bg-[#030303] text-white selection:bg-purple-500/30"
+            : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
         }
       `}
     >
@@ -639,6 +670,11 @@ function AppContent({ isDark, toggleTheme }) {
           <Route
             path="/contact"
             element={<Contact isDark={isDark} />}
+          />
+
+          <Route
+            path="/thank-you"
+            element={<ThankYou isDark={isDark} />}
           />
 
           {/* ==============================

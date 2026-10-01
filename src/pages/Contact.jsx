@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
+
 import {
   Mail,
   Phone,
@@ -21,6 +22,9 @@ import {
 
 const Contact = ({ isDark }) => {
   const d = isDark;
+
+  // Redirect to Thank You page after successful EmailJS submission
+  const navigate = useNavigate();
 
   const [form, setForm] = useState({
     name: '',
@@ -142,10 +146,7 @@ const Contact = ({ isDark }) => {
         }
       );
 
-      alert(
-        'Project inquiry sent successfully! We will get back to you soon.'
-      );
-
+      // Clear form after successful submission
       setForm({
         name: '',
         email: '',
@@ -153,6 +154,10 @@ const Contact = ({ isDark }) => {
         timeline: '',
         message: '',
       });
+
+      // Redirect only after EmailJS sends successfully
+      navigate('/thank-you');
+
     } catch (error) {
       console.error('EmailJS Error:', error);
 
@@ -275,9 +280,8 @@ const Contact = ({ isDark }) => {
     outline-none
     transition-all
     duration-200
-    ${
-      d
-        ? `
+    ${d
+      ? `
           bg-white/[0.035]
           border-white/[0.09]
           text-white
@@ -286,7 +290,7 @@ const Contact = ({ isDark }) => {
           focus:border-purple-500/60
           focus:bg-white/[0.05]
         `
-        : `
+      : `
           bg-white
           border-slate-200
           text-slate-900
@@ -364,10 +368,9 @@ const Contact = ({ isDark }) => {
           overflow-x-hidden
           transition-colors
           duration-300
-          ${
-            d
-              ? 'bg-[#030303] text-white'
-              : 'bg-[#f8fafc] text-slate-900'
+          ${d
+            ? 'bg-[#030303] text-white'
+            : 'bg-[#f8fafc] text-slate-900'
           }
         `}
       >
@@ -412,10 +415,9 @@ const Contact = ({ isDark }) => {
                 uppercase
                 tracking-[0.15em]
                 mb-5
-                ${
-                  d
-                    ? 'bg-purple-500/10 border-purple-500/20 text-purple-300'
-                    : 'bg-purple-50 border-purple-200 text-purple-700'
+                ${d
+                  ? 'bg-purple-500/10 border-purple-500/20 text-purple-300'
+                  : 'bg-purple-50 border-purple-200 text-purple-700'
                 }
               `}
             >
@@ -507,10 +509,9 @@ const Contact = ({ isDark }) => {
                   text-sm
                   font-bold
                   transition-all
-                  ${
-                    d
-                      ? 'border-white/10 bg-white/[0.04] text-gray-200 hover:bg-white/[0.08]'
-                      : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  ${d
+                    ? 'border-white/10 bg-white/[0.04] text-gray-200 hover:bg-white/[0.08]'
+                    : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                   }
                 `}
               >
@@ -542,10 +543,9 @@ const Contact = ({ isDark }) => {
                     border
                     transition-all
                     duration-200
-                    ${
-                      d
-                        ? 'bg-white/[0.02] border-white/[0.07] hover:bg-white/[0.04]'
-                        : 'bg-white border-slate-200 hover:shadow-sm'
+                    ${d
+                      ? 'bg-white/[0.02] border-white/[0.07] hover:bg-white/[0.04]'
+                      : 'bg-white border-slate-200 hover:shadow-sm'
                     }
                   `}
                 >
@@ -592,10 +592,9 @@ const Contact = ({ isDark }) => {
                         font-semibold
                         break-words
                         transition-colors
-                        ${
-                          d
-                            ? 'text-white hover:text-purple-400'
-                            : 'text-slate-900 hover:text-purple-600'
+                        ${d
+                          ? 'text-white hover:text-purple-400'
+                          : 'text-slate-900 hover:text-purple-600'
                         }
                       `}
                     >
@@ -625,10 +624,9 @@ const Contact = ({ isDark }) => {
             py-12
             sm:py-14
             border-b
-            ${
-              d
-                ? 'border-white/[0.06] bg-[#050505]'
-                : 'border-slate-200 bg-white'
+            ${d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-slate-200 bg-white'
             }
           `}
         >
@@ -670,10 +668,9 @@ const Contact = ({ isDark }) => {
                     p-5
                     rounded-2xl
                     border
-                    ${
-                      d
-                        ? 'bg-white/[0.02] border-white/[0.06]'
-                        : 'bg-slate-50 border-slate-200'
+                    ${d
+                      ? 'bg-white/[0.02] border-white/[0.06]'
+                      : 'bg-slate-50 border-slate-200'
                     }
                   `}
                 >
@@ -686,10 +683,9 @@ const Contact = ({ isDark }) => {
                       items-center
                       justify-center
                       mb-4
-                      ${
-                        d
-                          ? 'bg-purple-500/10 text-purple-400'
-                          : 'bg-purple-50 text-purple-600'
+                      ${d
+                        ? 'bg-purple-500/10 text-purple-400'
+                        : 'bg-purple-50 text-purple-600'
                       }
                     `}
                   >
@@ -773,10 +769,9 @@ const Contact = ({ isDark }) => {
                         p-4
                         rounded-2xl
                         border
-                        ${
-                          d
-                            ? 'bg-white/[0.02] border-white/[0.06]'
-                            : 'bg-white border-slate-200'
+                        ${d
+                          ? 'bg-white/[0.02] border-white/[0.06]'
+                          : 'bg-white border-slate-200'
                         }
                       `}
                     >
@@ -894,10 +889,9 @@ const Contact = ({ isDark }) => {
                     p-5
                     rounded-2xl
                     border
-                    ${
-                      d
-                        ? 'bg-white/[0.02] border-white/[0.06]'
-                        : 'bg-white border-slate-200'
+                    ${d
+                      ? 'bg-white/[0.02] border-white/[0.06]'
+                      : 'bg-white border-slate-200'
                     }
                   `}
                 >
@@ -957,10 +951,9 @@ const Contact = ({ isDark }) => {
                     lg:p-8
                     rounded-3xl
                     border
-                    ${
-                      d
-                        ? 'bg-white/[0.025] border-white/[0.08]'
-                        : 'bg-white border-slate-200 shadow-sm'
+                    ${d
+                      ? 'bg-white/[0.025] border-white/[0.08]'
+                      : 'bg-white border-slate-200 shadow-sm'
                     }
                   `}
                 >
@@ -1177,10 +1170,9 @@ const Contact = ({ isDark }) => {
                       text-white
                       transition-all
                       duration-200
-                      ${
-                        loading
-                          ? 'bg-purple-400 cursor-not-allowed'
-                          : 'bg-purple-600 hover:bg-purple-700 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-purple-600/20'
+                      ${loading
+                        ? 'bg-purple-400 cursor-not-allowed'
+                        : 'bg-purple-600 hover:bg-purple-700 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-purple-600/20'
                       }
                     `}
                   >
@@ -1252,10 +1244,9 @@ const Contact = ({ isDark }) => {
             py-14
             sm:py-16
             border-y
-            ${
-              d
-                ? 'bg-[#050505] border-white/[0.06]'
-                : 'bg-white border-slate-200'
+            ${d
+              ? 'bg-[#050505] border-white/[0.06]'
+              : 'bg-white border-slate-200'
             }
           `}
         >
@@ -1322,9 +1313,8 @@ const Contact = ({ isDark }) => {
                     font-semibold
                     transition-all
                     duration-200
-                    ${
-                      d
-                        ? `
+                    ${d
+                      ? `
                           bg-white/[0.025]
                           border-white/[0.08]
                           text-gray-300
@@ -1332,7 +1322,7 @@ const Contact = ({ isDark }) => {
                           hover:bg-purple-500/10
                           hover:border-purple-500/30
                         `
-                        : `
+                      : `
                           bg-slate-50
                           border-slate-200
                           text-slate-700
@@ -1378,10 +1368,9 @@ const Contact = ({ isDark }) => {
                 sm:p-10
                 lg:p-12
                 text-center
-                ${
-                  d
-                    ? 'bg-purple-600/[0.06] border-purple-500/15'
-                    : 'bg-purple-50 border-purple-100'
+                ${d
+                  ? 'bg-purple-600/[0.06] border-purple-500/15'
+                  : 'bg-purple-50 border-purple-100'
                 }
               `}
             >
@@ -1496,10 +1485,9 @@ const Contact = ({ isDark }) => {
                       text-sm
                       font-bold
                       transition-all
-                      ${
-                        d
-                          ? 'border-white/10 text-gray-300 hover:bg-white/[0.05]'
-                          : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                      ${d
+                        ? 'border-white/10 text-gray-300 hover:bg-white/[0.05]'
+                        : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
                       }
                     `}
                   >
