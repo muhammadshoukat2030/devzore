@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 import {
   Mail,
   Phone,
@@ -113,46 +114,54 @@ const Contact = ({ isDark }) => {
   };
 
   /*
-   * Frontend-only contact form.
-   * Opens the visitor's email application.
+   * EmailJS contact form submission.
+   * Sends the inquiry directly to DevZore.
    */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (loading) return;
 
     setLoading(true);
 
-    const subject = encodeURIComponent(
-      `New Project Inquiry — ${
-        form.service || 'Software Development Project'
-      }`
-    );
+    const templateParams = {
+      name: form.name.trim(),
+      email: form.email.trim(),
+      service: form.service || 'Not specified',
+      timeline: form.timeline || 'Not specified',
+      message: form.message.trim(),
+    };
 
-    const body = encodeURIComponent(
-`Hello DevZore,
+    try {
+      await emailjs.send(
+        'service_s30fvfz',
+        'template_axl74r9',
+        templateParams,
+        {
+          publicKey: 'RE7HME1c0_KdvnI3c',
+        }
+      );
 
-I would like to discuss a project.
+      alert(
+        'Project inquiry sent successfully! We will get back to you soon.'
+      );
 
-Name: ${form.name}
-Email: ${form.email}
-Service: ${form.service || 'Not specified'}
-Timeline: ${form.timeline || 'Not specified'}
+      setForm({
+        name: '',
+        email: '',
+        service: '',
+        timeline: '',
+        message: '',
+      });
+    } catch (error) {
+      console.error('EmailJS Error:', error);
 
-Project Details:
-${form.message}
-
-Thank you.`
-    );
-
-    const mailtoUrl =
-      `mailto:hellodevzore@gmail.com?subject=${subject}&body=${body}`;
-
-    window.location.href = mailtoUrl;
-
-    setTimeout(() => {
+      alert(
+        'Sorry, your inquiry could not be sent. Please try again or contact us through WhatsApp.'
+      );
+    } finally {
       setLoading(false);
-    }, 800);
+    }
   };
 
   const contactMethods = [
@@ -980,8 +989,7 @@ Thank you.`
                       `}
                     >
                       Provide the information you currently have.
-                      Your email application will open with the inquiry
-                      prepared for you to send.
+                      Your project inquiry will be sent directly to DevZore.
                     </p>
                   </div>
 
@@ -1189,12 +1197,12 @@ Thank you.`
                             animate-spin
                           "
                         />
-                        Opening Email...
+                        Sending Inquiry...
                       </>
                     ) : (
                       <>
                         <Send size={16} />
-                        Prepare Project Inquiry
+                        Send Project Inquiry
                       </>
                     )}
                   </button>
@@ -1219,9 +1227,9 @@ Thank you.`
                     />
 
                     <span>
-                      This form prepares an email in your email application.
-                      Your information is not submitted through a DevZore
-                      backend from this page. See our{' '}
+                      Your project inquiry will be sent directly to DevZore.
+                      We use the information you provide to respond to your
+                      inquiry. See our{' '}
                       <Link
                         to="/privacy-policy"
                         className="text-purple-500 hover:underline"
