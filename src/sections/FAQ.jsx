@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Plus,
@@ -8,13 +8,26 @@ import {
   Code2,
   Search,
   Megaphone,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 
 const FAQ = ({ isDark = true }) => {
   const d = isDark;
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [showAll, setShowAll] = useState(false);
+
+  // ======================================================
+  // SETTINGS
+  // ======================================================
+
+  const INITIAL_FAQ_COUNT = 6;
+
+  // ======================================================
+  // CATEGORIES
+  // ======================================================
 
   const categories = [
     "All",
@@ -25,6 +38,10 @@ const FAQ = ({ isDark = true }) => {
     "SEO & Marketing",
     "Support",
   ];
+
+  // ======================================================
+  // FAQ DATA
+  // ======================================================
 
   const faqs = [
     {
@@ -173,10 +190,34 @@ const FAQ = ({ isDark = true }) => {
     },
   ];
 
-  const filteredFaqs =
-    activeCategory === "All"
-      ? faqs
-      : faqs.filter((faq) => faq.category === activeCategory);
+  // ======================================================
+  // FILTERED FAQS
+  // ======================================================
+
+  const filteredFaqs = useMemo(() => {
+    if (activeCategory === "All") {
+      return faqs;
+    }
+
+    return faqs.filter((faq) => faq.category === activeCategory);
+  }, [activeCategory]);
+
+  // ======================================================
+  // VISIBLE FAQS
+  // ======================================================
+
+  const visibleFaqs = showAll
+    ? filteredFaqs
+    : filteredFaqs.slice(0, INITIAL_FAQ_COUNT);
+
+  const hiddenFaqCount = Math.max(
+    filteredFaqs.length - INITIAL_FAQ_COUNT,
+    0
+  );
+
+  // ======================================================
+  // FUNCTIONS
+  // ======================================================
 
   const toggleFaq = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -184,6 +225,12 @@ const FAQ = ({ isDark = true }) => {
 
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
+    setActiveIndex(null);
+    setShowAll(false);
+  };
+
+  const handleShowMore = () => {
+    setShowAll((prev) => !prev);
     setActiveIndex(null);
   };
 
@@ -194,11 +241,15 @@ const FAQ = ({ isDark = true }) => {
     });
   };
 
+  // ======================================================
+  // RENDER
+  // ======================================================
+
   return (
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className={`py-12 sm:py-14 transition-colors duration-300 ${
+      className={`py-10 sm:py-12 transition-colors duration-300 ${
         d ? "bg-[#030303]" : "bg-white"
       }`}
     >
@@ -208,48 +259,52 @@ const FAQ = ({ isDark = true }) => {
             HEADER
         ================================================== */}
 
-        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
+        <div className="max-w-3xl mx-auto text-center mb-7">
           <div
-            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-widest border mb-4 ${
+            className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border mb-3 ${
               d
                 ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
                 : "bg-purple-50 border-purple-200 text-purple-700"
             }`}
           >
-            <MessageSquare size={12} />
+            <MessageSquare size={11} />
             FAQ
           </div>
 
           <h2
             id="faq-heading"
-            className={`text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight leading-tight mb-3 ${
+            className={`text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight mb-3 ${
               d ? "text-white" : "text-slate-950"
             }`}
           >
             Frequently Asked{" "}
-            <span className="text-purple-600">Questions</span>
+            <span className="text-purple-600">
+              Questions
+            </span>
           </h2>
 
           <p
-            className={`text-sm sm:text-base leading-relaxed ${
+            className={`text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto ${
               d ? "text-gray-400" : "text-slate-600"
             }`}
           >
-            Learn more about DevZore&apos;s software development, web and mobile
-            development, SEO, digital marketing, pricing, project process and
-            ongoing technical support.
+            Answers about DevZore&apos;s development services, project process,
+            pricing, technologies, SEO, digital marketing and ongoing support.
           </p>
         </div>
 
         {/* ==================================================
-            QUICK SERVICE LINKS
+            QUICK LINKS
         ================================================== */}
 
-        <div className="grid sm:grid-cols-3 gap-2.5 mb-7">
+        <div className="grid sm:grid-cols-3 gap-2 mb-6">
+
+          {/* DEVELOPMENT */}
+
           <Link
             to="/allservices"
             onClick={scrollTop}
-            className={`group flex items-center gap-3 p-3 rounded-xl border transition-all ${
+            className={`group flex items-center gap-2.5 p-3 rounded-xl border transition-all ${
               d
                 ? "bg-white/[0.02] border-white/[0.06] hover:border-purple-500/25 hover:bg-white/[0.04]"
                 : "bg-slate-50 border-slate-200 hover:border-purple-200 hover:bg-white"
@@ -262,37 +317,39 @@ const FAQ = ({ isDark = true }) => {
                   : "bg-purple-50 text-purple-600"
               }`}
             >
-              <Code2 size={15} />
+              <Code2 size={14} />
             </div>
 
             <div className="min-w-0">
               <p
-                className={`text-[11px] sm:text-xs font-bold ${
+                className={`text-[11px] font-bold ${
                   d ? "text-white" : "text-slate-900"
                 }`}
               >
-                Development Services
+                Development
               </p>
 
               <p
-                className={`text-[9px] sm:text-[10px] ${
+                className={`text-[9px] mt-0.5 ${
                   d ? "text-gray-500" : "text-slate-500"
                 }`}
               >
-                Web, mobile, SaaS & backend
+                Web, mobile & software
               </p>
             </div>
 
             <ArrowRight
-              size={12}
+              size={11}
               className="ml-auto text-purple-500 transition-transform group-hover:translate-x-0.5"
             />
           </Link>
 
+          {/* SEO */}
+
           <Link
             to="/seo-services"
             onClick={scrollTop}
-            className={`group flex items-center gap-3 p-3 rounded-xl border transition-all ${
+            className={`group flex items-center gap-2.5 p-3 rounded-xl border transition-all ${
               d
                 ? "bg-white/[0.02] border-white/[0.06] hover:border-green-500/25 hover:bg-white/[0.04]"
                 : "bg-slate-50 border-slate-200 hover:border-green-200 hover:bg-white"
@@ -305,12 +362,12 @@ const FAQ = ({ isDark = true }) => {
                   : "bg-green-50 text-green-600"
               }`}
             >
-              <Search size={15} />
+              <Search size={14} />
             </div>
 
             <div className="min-w-0">
               <p
-                className={`text-[11px] sm:text-xs font-bold ${
+                className={`text-[11px] font-bold ${
                   d ? "text-white" : "text-slate-900"
                 }`}
               >
@@ -318,7 +375,7 @@ const FAQ = ({ isDark = true }) => {
               </p>
 
               <p
-                className={`text-[9px] sm:text-[10px] ${
+                className={`text-[9px] mt-0.5 ${
                   d ? "text-gray-500" : "text-slate-500"
                 }`}
               >
@@ -327,15 +384,17 @@ const FAQ = ({ isDark = true }) => {
             </div>
 
             <ArrowRight
-              size={12}
+              size={11}
               className="ml-auto text-green-500 transition-transform group-hover:translate-x-0.5"
             />
           </Link>
 
+          {/* MARKETING */}
+
           <Link
             to="/digital-marketing"
             onClick={scrollTop}
-            className={`group flex items-center gap-3 p-3 rounded-xl border transition-all ${
+            className={`group flex items-center gap-2.5 p-3 rounded-xl border transition-all ${
               d
                 ? "bg-white/[0.02] border-white/[0.06] hover:border-pink-500/25 hover:bg-white/[0.04]"
                 : "bg-slate-50 border-slate-200 hover:border-pink-200 hover:bg-white"
@@ -348,12 +407,12 @@ const FAQ = ({ isDark = true }) => {
                   : "bg-pink-50 text-pink-600"
               }`}
             >
-              <Megaphone size={15} />
+              <Megaphone size={14} />
             </div>
 
             <div className="min-w-0">
               <p
-                className={`text-[11px] sm:text-xs font-bold ${
+                className={`text-[11px] font-bold ${
                   d ? "text-white" : "text-slate-900"
                 }`}
               >
@@ -361,7 +420,7 @@ const FAQ = ({ isDark = true }) => {
               </p>
 
               <p
-                className={`text-[9px] sm:text-[10px] ${
+                className={`text-[9px] mt-0.5 ${
                   d ? "text-gray-500" : "text-slate-500"
                 }`}
               >
@@ -370,7 +429,7 @@ const FAQ = ({ isDark = true }) => {
             </div>
 
             <ArrowRight
-              size={12}
+              size={11}
               className="ml-auto text-pink-500 transition-transform group-hover:translate-x-0.5"
             />
           </Link>
@@ -381,69 +440,99 @@ const FAQ = ({ isDark = true }) => {
         ================================================== */}
 
         <div
-          className="flex flex-wrap justify-center gap-2 mb-7"
+          className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-5"
           aria-label="FAQ categories"
         >
-          {categories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              onClick={() => handleCategoryChange(category)}
-              className={`px-3.5 py-2 rounded-lg text-[10px] sm:text-[11px] font-bold transition-all duration-200 border ${
-                activeCategory === category
-                  ? "bg-purple-600 text-white border-purple-600 shadow-[0_0_14px_rgba(124,58,237,0.20)]"
-                  : d
-                  ? "bg-white/[0.03] border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.06]"
-                  : "bg-white border-slate-200 text-slate-500 hover:text-slate-900 hover:border-slate-300"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+          {categories.map((category) => {
+            const count =
+              category === "All"
+                ? faqs.length
+                : faqs.filter(
+                    (faq) => faq.category === category
+                  ).length;
+
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() =>
+                  handleCategoryChange(category)
+                }
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[9px] sm:text-[10px] font-bold transition-all duration-200 border ${
+                  activeCategory === category
+                    ? "bg-purple-600 text-white border-purple-600 shadow-[0_0_12px_rgba(124,58,237,0.18)]"
+                    : d
+                    ? "bg-white/[0.03] border-white/[0.07] text-gray-500 hover:text-white hover:bg-white/[0.05]"
+                    : "bg-white border-slate-200 text-slate-500 hover:text-slate-900"
+                }`}
+              >
+                {category}
+
+                <span
+                  className={`text-[8px] ${
+                    activeCategory === category
+                      ? "text-purple-100"
+                      : d
+                      ? "text-gray-600"
+                      : "text-slate-400"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* ==================================================
             FAQ ACCORDION
         ================================================== */}
 
-        <div className="space-y-2.5 mb-8">
-          {filteredFaqs.map((faq, index) => {
+        <div className="space-y-2">
+          {visibleFaqs.map((faq, index) => {
             const isOpen = activeIndex === index;
 
             return (
               <div
-                key={`${faq.category}-${faq.question}`}
+                key={`${activeCategory}-${faq.question}`}
                 className={`rounded-xl border overflow-hidden transition-all duration-300 ${
                   isOpen
                     ? d
-                      ? "border-purple-500/35 bg-purple-600/[0.04]"
-                      : "border-purple-200 bg-purple-50/50"
+                      ? "border-purple-500/30 bg-purple-600/[0.035]"
+                      : "border-purple-200 bg-purple-50/40"
                     : d
-                    ? "border-white/[0.06] bg-white/[0.02] hover:border-white/[0.10]"
+                    ? "border-white/[0.06] bg-white/[0.018] hover:border-white/[0.10]"
                     : "border-slate-200 bg-white hover:border-slate-300"
                 }`}
               >
+                {/* QUESTION */}
+
                 <button
                   type="button"
                   onClick={() => toggleFaq(index)}
                   aria-expanded={isOpen}
-                  className="w-full p-4 sm:p-5 text-left flex items-start justify-between gap-4"
+                  className="w-full px-4 py-3.5 sm:px-4 sm:py-4 text-left flex items-center justify-between gap-4"
                 >
-                  <div className="flex items-start gap-2.5 sm:gap-3 min-w-0">
+                  <div className="flex items-center gap-3 min-w-0">
+
+                    {/* CATEGORY */}
+
                     <span
-                      className={`hidden sm:inline-flex shrink-0 mt-0.5 text-[8px] sm:text-[9px] font-bold px-2 py-1 rounded-full ${
+                      className={`hidden sm:inline-flex shrink-0 text-[8px] font-bold px-2 py-1 rounded-full ${
                         isOpen
                           ? "bg-purple-500/15 text-purple-400"
                           : d
-                          ? "bg-white/[0.05] text-gray-500"
+                          ? "bg-white/[0.05] text-gray-600"
                           : "bg-slate-100 text-slate-500"
                       }`}
                     >
                       {faq.category}
                     </span>
 
+                    {/* QUESTION TEXT */}
+
                     <span
-                      className={`text-[12px] sm:text-[13px] lg:text-[14px] font-bold leading-relaxed ${
+                      className={`text-[11px] sm:text-[12px] lg:text-[13px] font-bold leading-relaxed ${
                         isOpen
                           ? "text-purple-500"
                           : d
@@ -455,8 +544,10 @@ const FAQ = ({ isDark = true }) => {
                     </span>
                   </div>
 
+                  {/* ICON */}
+
                   <div
-                    className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-200 ${
+                    className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
                       isOpen
                         ? "bg-purple-600 text-white"
                         : d
@@ -464,12 +555,18 @@ const FAQ = ({ isDark = true }) => {
                         : "bg-slate-100 text-slate-500"
                     }`}
                   >
-                    {isOpen ? <Minus size={13} /> : <Plus size={13} />}
+                    {isOpen ? (
+                      <Minus size={12} />
+                    ) : (
+                      <Plus size={12} />
+                    )}
                   </div>
                 </button>
 
+                {/* ANSWER */}
+
                 <div
-                  className={`grid transition-all duration-300 ${
+                  className={`grid transition-all duration-300 ease-in-out ${
                     isOpen
                       ? "grid-rows-[1fr] opacity-100"
                       : "grid-rows-[0fr] opacity-0"
@@ -477,15 +574,17 @@ const FAQ = ({ isDark = true }) => {
                 >
                   <div className="overflow-hidden">
                     <div
-                      className={`mx-4 sm:mx-5 pb-5 pt-4 border-t ${
+                      className={`mx-4 pb-4 pt-3 border-t ${
                         d
                           ? "border-white/[0.06]"
                           : "border-purple-100"
                       }`}
                     >
                       <p
-                        className={`text-[12px] sm:text-[13px] leading-6 ${
-                          d ? "text-gray-400" : "text-slate-600"
+                        className={`text-[11px] sm:text-[12px] leading-relaxed sm:leading-6 ${
+                          d
+                            ? "text-gray-400"
+                            : "text-slate-600"
                         }`}
                       >
                         {faq.answer}
@@ -499,75 +598,155 @@ const FAQ = ({ isDark = true }) => {
         </div>
 
         {/* ==================================================
-            CONTACT CTA
+            SHOW ALL / SHOW LESS
+        ================================================== */}
+
+        {filteredFaqs.length > INITIAL_FAQ_COUNT && (
+          <div className="flex flex-col items-center mt-5">
+
+            <button
+              type="button"
+              onClick={handleShowMore}
+              aria-expanded={showAll}
+              className={`group inline-flex items-center justify-center gap-2 min-w-[180px] px-5 py-2.5 rounded-xl border text-[11px] sm:text-xs font-bold transition-all duration-200 ${
+                showAll
+                  ? d
+                    ? "bg-white/[0.04] border-white/[0.10] text-gray-300 hover:text-white hover:bg-white/[0.06]"
+                    : "bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
+                  : d
+                  ? "bg-purple-600/[0.08] border-purple-500/20 text-purple-400 hover:bg-purple-600 hover:text-white hover:border-purple-600"
+                  : "bg-purple-50 border-purple-200 text-purple-600 hover:bg-purple-600 hover:text-white hover:border-purple-600"
+              }`}
+            >
+              {showAll ? (
+                <>
+                  Show Less
+                  <ChevronUp
+                    size={14}
+                    className="transition-transform group-hover:-translate-y-0.5"
+                  />
+                </>
+              ) : (
+                <>
+                  Show All FAQs
+
+                  <span
+                    className={`text-[9px] px-1.5 py-0.5 rounded-full ${
+                      d
+                        ? "bg-purple-500/15"
+                        : "bg-purple-100"
+                    }`}
+                  >
+                    +{hiddenFaqCount}
+                  </span>
+
+                  <ChevronDown
+                    size={14}
+                    className="transition-transform group-hover:translate-y-0.5"
+                  />
+                </>
+              )}
+            </button>
+
+            {!showAll && activeCategory === "All" && (
+              <p
+                className={`text-[9px] sm:text-[10px] mt-2 ${
+                  d
+                    ? "text-gray-600"
+                    : "text-slate-400"
+                }`}
+              >
+                Showing {INITIAL_FAQ_COUNT} of {faqs.length} questions
+              </p>
+            )}
+          </div>
+        )}
+
+        {/* ==================================================
+            COMPACT CONTACT CTA
         ================================================== */}
 
         <div
-          className={`relative overflow-hidden p-6 sm:p-8 rounded-2xl border text-center ${
+          className={`relative overflow-hidden mt-7 px-5 py-5 sm:px-6 sm:py-5 rounded-2xl border ${
             d
-              ? "bg-purple-600/[0.05] border-purple-500/15"
+              ? "bg-purple-600/[0.045] border-purple-500/15"
               : "bg-purple-50 border-purple-100"
           }`}
         >
+          {/* GLOW */}
+
           <div
             aria-hidden="true"
-            className="absolute -top-28 left-1/2 -translate-x-1/2 w-80 h-80 bg-purple-600/10 blur-[100px] rounded-full pointer-events-none"
+            className="absolute -top-24 right-0 w-64 h-64 bg-purple-600/10 blur-[90px] rounded-full pointer-events-none"
           />
 
-          <div className="relative z-10">
-            <div
-              className={`w-11 h-11 rounded-xl flex items-center justify-center mx-auto mb-3 ${
-                d
-                  ? "bg-purple-500/10 text-purple-400"
-                  : "bg-white text-purple-600"
-              }`}
-            >
-              <MessageSquare size={19} />
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+            {/* TEXT */}
+
+            <div className="flex items-start gap-3 max-w-2xl">
+              <div
+                className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                  d
+                    ? "bg-purple-500/10 text-purple-400"
+                    : "bg-white text-purple-600"
+                }`}
+              >
+                <MessageSquare size={16} />
+              </div>
+
+              <div>
+                <h3
+                  className={`text-sm sm:text-base font-black mb-1 ${
+                    d
+                      ? "text-white"
+                      : "text-slate-900"
+                  }`}
+                >
+                  Still Have a Question?
+                </h3>
+
+                <p
+                  className={`text-[10px] sm:text-[11px] leading-relaxed ${
+                    d
+                      ? "text-gray-500"
+                      : "text-slate-500"
+                  }`}
+                >
+                  Tell us about your project and we can discuss your
+                  development, SEO or digital marketing requirements.
+                </p>
+              </div>
             </div>
 
-            <h3
-              className={`text-lg sm:text-xl font-black mb-2 ${
-                d ? "text-white" : "text-slate-900"
-              }`}
-            >
-              Have a Question About Your Project?
-            </h3>
+            {/* BUTTONS */}
 
-            <p
-              className={`text-xs sm:text-[13px] leading-relaxed mb-5 max-w-xl mx-auto ${
-                d ? "text-gray-400" : "text-slate-600"
-              }`}
-            >
-              Tell our team what you are planning. We can discuss your
-              development, SEO, digital marketing or ongoing technical support
-              requirements.
-            </p>
+            <div className="flex flex-col sm:flex-row gap-2 shrink-0">
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 justify-center">
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-xs sm:text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-[11px] transition-all hover:shadow-[0_0_18px_rgba(124,58,237,0.25)]"
               >
                 Contact DevZore
-                <ArrowRight size={14} />
+                <ArrowRight size={12} />
               </Link>
 
               <a
                 href="https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20have%20a%20question%20about%20your%20services."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-xs sm:text-sm hover:bg-[#25D366]/20 transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-lg text-[11px] hover:bg-[#25D366]/15 transition-all"
               >
                 <svg
-                  className="w-4 h-4 fill-current"
+                  className="w-3.5 h-3.5 fill-current"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
                   <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z" />
                 </svg>
-                
-                WhatsApp Us
+
+                WhatsApp
               </a>
             </div>
           </div>

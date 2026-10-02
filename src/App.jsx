@@ -23,6 +23,7 @@ import TrustBar from "./components/TrustBar";
 
 import Hero from "./sections/Hero";
 import Services from "./sections/Services";
+import Solutions from "./sections/Solutions";
 import Projects from "./sections/Projects";
 import WhyUs from "./sections/WhyUs";
 import Process from "./sections/Process";
@@ -43,7 +44,7 @@ import BlogDetails from "./pages/BlogDetails";
 // ======================================================
 // SERVICE PAGES
 // ======================================================
-
+// import GenerativeAIDevelopment from "./pages/GenerativeAIDevelopment";
 import AllServices from "./pages/AllServices";
 import WebDevelopment from "./pages/WebDevelopment";
 import MobileApp from "./pages/MobileApp";
@@ -510,10 +511,9 @@ function AppContent({ isDark, toggleTheme }) {
         flex-col
         transition-colors
         duration-300
-        ${
-          isDark
-            ? "bg-[#030303] text-white selection:bg-purple-500/30"
-            : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
+        ${isDark
+          ? "bg-[#030303] text-white selection:bg-purple-500/30"
+          : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
         }
       `}
     >
@@ -545,6 +545,7 @@ function AppContent({ isDark, toggleTheme }) {
                 <Hero isDark={isDark} />
                 <TrustBar isDark={isDark} />
                 <Services isDark={isDark} />
+                <Solutions isDark={isDark} />
                 <Projects isDark={isDark} />
                 <WhyUs isDark={isDark} />
                 <Process isDark={isDark} />
@@ -558,6 +559,12 @@ function AppContent({ isDark, toggleTheme }) {
           {/* ==============================
               SERVICES
           ============================== */}
+          {/* <Route
+            path="/generative-ai-development"
+            element={
+              <GenerativeAIDevelopment isDark={isDark} />
+            }
+          /> */}
 
           <Route
             path="/allservices"

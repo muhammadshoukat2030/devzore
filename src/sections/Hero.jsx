@@ -13,6 +13,8 @@ import {
   Globe2,
   ShieldCheck,
   Layers3,
+  BrainCircuit,
+  Sparkles,
 } from "lucide-react";
 
 // ======================================================
@@ -21,6 +23,7 @@ import {
 
 const WORDS = [
   "Web Applications",
+  "Generative AI Solutions",
   "Mobile Apps",
   "SaaS Platforms",
   "Startup MVPs",
@@ -28,6 +31,10 @@ const WORDS = [
   "E-Commerce Stores",
   "React Applications",
 ];
+
+// ======================================================
+// HERO
+// ======================================================
 
 const Hero = ({ isDark = true }) => {
   const d = isDark;
@@ -39,7 +46,7 @@ const Hero = ({ isDark = true }) => {
   const timeoutRef = useRef(null);
 
   // ======================================================
-  // TYPING EFFECT
+  // TYPE / DELETE ANIMATION
   // ======================================================
 
   useEffect(() => {
@@ -50,18 +57,18 @@ const Hero = ({ isDark = true }) => {
         setDisplayed(
           currentWord.slice(0, displayed.length + 1)
         );
-      }, 55);
+      }, 50);
     } else if (
       !deleting &&
       displayed.length === currentWord.length
     ) {
       timeoutRef.current = setTimeout(() => {
         setDeleting(true);
-      }, 1700);
+      }, 1800);
     } else if (deleting && displayed.length > 0) {
       timeoutRef.current = setTimeout(() => {
         setDisplayed(displayed.slice(0, -1));
-      }, 30);
+      }, 25);
     } else {
       setDeleting(false);
 
@@ -95,6 +102,12 @@ const Hero = ({ isDark = true }) => {
   // ======================================================
 
   const services = [
+    {
+      icon: <BrainCircuit size={13} />,
+      label: "Generative AI",
+      path: "/generative-ai-development",
+      dot: "bg-violet-500",
+    },
     {
       icon: <Code2 size={13} />,
       label: "Web Development",
@@ -139,38 +152,39 @@ const Hero = ({ isDark = true }) => {
 
   const trustItems = [
     "Custom Software Development",
-    "Responsive Solutions",
-    "Modern Technology Stack",
+    "AI-Enabled Solutions",
+    "Responsive Applications",
     "Worldwide Remote Collaboration",
   ];
 
   // ======================================================
-  // RIGHT PANEL CAPABILITIES
+  // CAPABILITIES
   // ======================================================
 
   const capabilities = [
     {
+      icon: <BrainCircuit size={18} />,
+      title: "Generative AI",
+      description:
+        "AI assistants, RAG systems and intelligent workflows",
+    },
+    {
       icon: <Code2 size={18} />,
       title: "Web Applications",
       description:
-        "Modern frontend and full-stack development",
+        "Modern frontend and full-stack applications",
     },
     {
       icon: <Smartphone size={18} />,
       title: "Mobile Applications",
-      description: "Cross-platform mobile experiences",
-    },
-    {
-      icon: <Server size={18} />,
-      title: "Backend & APIs",
       description:
-        "APIs, databases and backend architecture",
+        "Cross-platform mobile experiences",
     },
     {
       icon: <Layers3 size={18} />,
       title: "SaaS Products",
       description:
-        "Scalable software products and MVPs",
+        "Scalable SaaS products and startup MVPs",
     },
   ];
 
@@ -180,9 +194,15 @@ const Hero = ({ isDark = true }) => {
 
   const panelServices = [
     {
+      dot: "bg-violet-500",
+      name: "Generative AI Development",
+      tech: "AI Assistants · RAG · LLM Integration",
+      path: "/generative-ai-development",
+    },
+    {
       dot: "bg-purple-500",
       name: "Web Development",
-      tech: "React · JavaScript · Node.js",
+      tech: "React · Next.js · Node.js",
       path: "/web-development",
     },
     {
@@ -199,17 +219,15 @@ const Hero = ({ isDark = true }) => {
     },
     {
       dot: "bg-pink-500",
-      name: "SEO Services",
-      tech: "Technical · On-Page · Search Strategy",
-      path: "/seo-services",
-    },
-    {
-      dot: "bg-amber-500",
-      name: "UI/UX Design",
-      tech: "Figma · Prototyping · Design Systems",
-      path: "/ui-ux-design",
+      name: "Backend & API Development",
+      tech: "Node.js · Express · REST APIs",
+      path: "/backend-api",
     },
   ];
+
+  // ======================================================
+  // RENDER
+  // ======================================================
 
   return (
     <section
@@ -242,10 +260,10 @@ const Hero = ({ isDark = true }) => {
           className={`absolute -top-24 left-1/2 -translate-x-1/2
             w-[300px] sm:w-[600px] lg:w-[760px]
             h-[280px] sm:h-[430px]
-            rounded-full blur-[110px] sm:blur-[120px]
-            opacity-20 ${
-              d ? "bg-purple-700" : "bg-purple-200"
-            }`}
+            rounded-full
+            blur-[110px] sm:blur-[120px]
+            opacity-20
+            ${d ? "bg-purple-700" : "bg-purple-200"}`}
         />
 
         {/* BLUE GLOW */}
@@ -254,22 +272,15 @@ const Hero = ({ isDark = true }) => {
           className={`absolute bottom-0 right-0
             w-[220px] sm:w-[360px]
             h-[220px] sm:h-[360px]
-            rounded-full blur-[100px]
-            opacity-10 ${
-              d ? "bg-blue-700" : "bg-blue-200"
-            }`}
+            rounded-full
+            blur-[100px]
+            opacity-10
+            ${d ? "bg-blue-700" : "bg-blue-200"}`}
         />
       </div>
 
       {/* ==================================================
-          MAIN CONTAINER
-
-          MOBILE FIX:
-          Old: pt-5
-          New: pt-10
-
-          This gives the heading more breathing room
-          below the mobile navbar.
+          CONTAINER
       ================================================== */}
 
       <div
@@ -278,19 +289,19 @@ const Hero = ({ isDark = true }) => {
           max-w-7xl mx-auto
           w-full
           px-4 sm:px-6 lg:px-8
-
-          pt-10 pb-7
-          sm:pt-14 sm:pb-12
-          lg:py-20
-          xl:py-24
+          pt-10 pb-8
+          sm:pt-14 sm:pb-10
+          lg:pt-20 lg:pb-14
         "
       >
         <div className="grid lg:grid-cols-[1.04fr_0.96fr] gap-8 lg:gap-12 xl:gap-16 items-center">
+
           {/* ==================================================
-              LEFT CONTENT
+              LEFT SIDE
           ================================================== */}
 
           <div className="text-center lg:text-left min-w-0">
+
             {/* BADGE */}
 
             <div
@@ -301,23 +312,20 @@ const Hero = ({ isDark = true }) => {
                 mb-3 sm:mb-5
                 text-[8px] sm:text-[11px]
                 font-bold uppercase
-                tracking-[0.14em] sm:tracking-[0.16em] ${
+                tracking-[0.14em] sm:tracking-[0.16em]
+                ${
                   d
                     ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
                     : "bg-purple-50 border-purple-200 text-purple-700"
                 }`}
             >
-              <span
-                className={`w-1.5 h-1.5 rounded-full ${
-                  d ? "bg-purple-400" : "bg-purple-600"
-                }`}
-              />
+              <Sparkles size={12} />
 
-              Software Development Agency
+              Software Development & AI Agency
             </div>
 
             {/* ==================================================
-                MAIN HEADING
+                H1
             ================================================== */}
 
             <h1
@@ -326,8 +334,6 @@ const Hero = ({ isDark = true }) => {
                 d ? "text-white" : "text-slate-950"
               }`}
             >
-              {/* WE BUILD */}
-
               <span
                 className="
                   block
@@ -342,10 +348,7 @@ const Hero = ({ isDark = true }) => {
                 We Build
               </span>
 
-              {/* ==================================================
-                  ANIMATED WORD
-                  Fixed height prevents layout jumping.
-              ================================================== */}
+              {/* ANIMATED WORD */}
 
               <span
                 className="
@@ -366,11 +369,11 @@ const Hero = ({ isDark = true }) => {
                     inline-flex items-center
                     whitespace-nowrap
 
-                    text-[29px]
-                    min-[390px]:text-[32px]
-                    sm:text-[50px]
-                    lg:text-[52px]
-                    xl:text-[60px]
+                    text-[27px]
+                    min-[390px]:text-[30px]
+                    sm:text-[46px]
+                    lg:text-[48px]
+                    xl:text-[56px]
 
                     leading-none
                     text-purple-600
@@ -392,11 +395,9 @@ const Hero = ({ isDark = true }) => {
                 </span>
               </span>
 
-              {/* GROWING BUSINESSES */}
-
               <span
                 className={`block
-                  max-w-[350px] sm:max-w-none
+                  max-w-[360px] sm:max-w-none
                   mx-auto lg:mx-0
 
                   text-[30px]
@@ -406,7 +407,9 @@ const Hero = ({ isDark = true }) => {
                   xl:text-[60px]
 
                   leading-[0.98]
-                  sm:leading-[1.02] ${
+                  sm:leading-[1.02]
+
+                  ${
                     d
                       ? "text-gray-300"
                       : "text-slate-700"
@@ -422,17 +425,22 @@ const Hero = ({ isDark = true }) => {
 
             <p
               className={`mt-4 sm:mt-6
-                text-[12px] min-[390px]:text-[13px]
-                sm:text-base lg:text-[17px]
-                leading-[1.75] sm:leading-7
-                max-w-[650px]
-                mx-auto lg:mx-0 ${
+                text-[12px]
+                min-[390px]:text-[13px]
+                sm:text-base
+                lg:text-[17px]
+                leading-[1.75]
+                sm:leading-7
+                max-w-[680px]
+                mx-auto lg:mx-0
+
+                ${
                   d
                     ? "text-gray-400"
                     : "text-slate-600"
                 }`}
             >
-              DevZore provides{" "}
+              DevZore builds{" "}
               <strong
                 className={`font-semibold ${
                   d
@@ -440,36 +448,40 @@ const Hero = ({ isDark = true }) => {
                     : "text-slate-800"
                 }`}
               >
-                custom web development and software
-                development services
+                custom software, web applications,
+                mobile apps, SaaS products and
+                AI-enabled solutions
               </strong>{" "}
-              for startups and businesses worldwide,
-              including web applications, mobile apps,
-              SaaS products, e-commerce platforms and
-              backend systems.
+              for startups and growing businesses.
+              We turn business requirements into
+              practical, scalable digital products.
             </p>
 
             <p
               className={`mt-2 sm:mt-3
-                text-[10px] min-[390px]:text-[11px]
+                text-[10px]
+                min-[390px]:text-[11px]
                 sm:text-sm
-                leading-[1.7] sm:leading-6
-                max-w-[650px]
-                mx-auto lg:mx-0 ${
+                leading-[1.7]
+                sm:leading-6
+                max-w-[680px]
+                mx-auto lg:mx-0
+
+                ${
                   d
                     ? "text-gray-500"
                     : "text-slate-500"
                 }`}
             >
-              Our development services include React
-              development, MERN stack development, UI/UX
-              design, backend API development, SEO services,
-              deployment and ongoing technical support for
-              remote projects.
+              From React and MERN stack development to
+              backend APIs, Generative AI integrations,
+              UI/UX, e-commerce and ongoing technical
+              support, our team supports projects from
+              planning and development through deployment.
             </p>
 
             {/* ==================================================
-                SERVICE LINKS
+                SERVICE CHIPS
             ================================================== */}
 
             <div
@@ -479,7 +491,7 @@ const Hero = ({ isDark = true }) => {
                 gap-1.5 sm:gap-2
                 justify-center lg:justify-start
                 mt-4 sm:mt-6
-                max-w-[390px] sm:max-w-none
+                max-w-[420px] sm:max-w-none
                 mx-auto lg:mx-0
               "
             >
@@ -492,16 +504,21 @@ const Hero = ({ isDark = true }) => {
                     inline-flex items-center
                     justify-center sm:justify-start
                     gap-1.5
+
                     px-2 py-1.5
                     sm:px-3 sm:py-2
+
                     rounded-lg
                     text-[8px]
                     min-[390px]:text-[9px]
                     sm:text-[11px]
                     font-semibold
                     border
+
                     transition-all duration-200
-                    hover:-translate-y-0.5 ${
+                    hover:-translate-y-0.5
+
+                    ${
                       d
                         ? "bg-white/[0.035] border-white/[0.08] text-gray-400 hover:text-white hover:border-purple-500/30"
                         : "bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-white hover:border-purple-300"
@@ -523,7 +540,7 @@ const Hero = ({ isDark = true }) => {
             </div>
 
             {/* ==================================================
-                CTA BUTTONS
+                CTA
             ================================================== */}
 
             <div
@@ -532,12 +549,10 @@ const Hero = ({ isDark = true }) => {
                 gap-2 sm:gap-2.5
                 justify-center lg:justify-start
                 mt-4 sm:mt-6
-                max-w-[390px] sm:max-w-none
+                max-w-[420px] sm:max-w-none
                 mx-auto lg:mx-0
               "
             >
-              {/* DISCUSS PROJECT */}
-
               <Link
                 to="/contact"
                 onClick={scrollTop}
@@ -557,11 +572,9 @@ const Hero = ({ isDark = true }) => {
                   hover:-translate-y-0.5
                 "
               >
-                Discuss Your Project
+                Start Your Project
                 <ArrowRight size={14} />
               </Link>
-
-              {/* WHATSAPP */}
 
               <a
                 href="https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20a%20software%20development%20project."
@@ -573,12 +586,15 @@ const Hero = ({ isDark = true }) => {
                   w-full sm:w-auto
                   px-5 sm:px-6
                   py-2.5 sm:py-3
+
                   border border-[#25D366]/30
                   bg-[#25D366]/10
                   text-[#25D366]
+
                   font-bold
                   rounded-lg sm:rounded-xl
                   text-[11px] sm:text-sm
+
                   transition-all duration-200
                   hover:bg-[#25D366]/15
                   hover:-translate-y-0.5
@@ -595,8 +611,6 @@ const Hero = ({ isDark = true }) => {
                 WhatsApp Us
               </a>
 
-              {/* SERVICES */}
-
               <Link
                 to="/allservices"
                 onClick={scrollTop}
@@ -609,7 +623,9 @@ const Hero = ({ isDark = true }) => {
                   rounded-lg sm:rounded-xl
                   text-[11px] sm:text-sm
                   transition-all duration-200
-                  hover:-translate-y-0.5 ${
+                  hover:-translate-y-0.5
+
+                  ${
                     d
                       ? "border-white/10 text-gray-300 hover:bg-white/[0.04] hover:border-white/20"
                       : "border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300"
@@ -620,8 +636,7 @@ const Hero = ({ isDark = true }) => {
             </div>
 
             {/* ==================================================
-                TRUST ITEMS
-                Hidden on very small screens.
+                TRUST SIGNALS
             ================================================== */}
 
             <div
@@ -637,7 +652,8 @@ const Hero = ({ isDark = true }) => {
                 <span
                   key={item}
                   className={`inline-flex items-center gap-1.5
-                    text-[11px] font-medium ${
+                    text-[11px] font-medium
+                    ${
                       d
                         ? "text-gray-500"
                         : "text-slate-500"
@@ -656,25 +672,31 @@ const Hero = ({ isDark = true }) => {
 
           {/* ==================================================
               RIGHT PANEL
-              DESKTOP ONLY
           ================================================== */}
 
           <div className="hidden lg:block min-w-0">
             <div
-              className={`relative rounded-[28px] border p-5 xl:p-6 shadow-2xl ${
-                d
-                  ? "bg-white/[0.025] border-white/[0.08] shadow-black/20"
-                  : "bg-slate-50 border-slate-200 shadow-slate-200/50"
-              }`}
+              className={`relative rounded-[28px] border
+                p-5 xl:p-6
+                shadow-2xl
+
+                ${
+                  d
+                    ? "bg-white/[0.025] border-white/[0.08] shadow-black/20"
+                    : "bg-slate-50 border-slate-200 shadow-slate-200/50"
+                }`}
             >
               {/* BROWSER BAR */}
 
               <div
-                className={`flex items-center gap-2 mb-5 pb-4 border-b ${
-                  d
-                    ? "border-white/[0.07]"
-                    : "border-slate-200"
-                }`}
+                className={`flex items-center gap-2
+                  mb-5 pb-4 border-b
+
+                  ${
+                    d
+                      ? "border-white/[0.07]"
+                      : "border-slate-200"
+                  }`}
               >
                 <div
                   className="flex gap-1.5"
@@ -686,36 +708,48 @@ const Hero = ({ isDark = true }) => {
                 </div>
 
                 <span
-                  className={`text-[10px] xl:text-[11px] font-mono ml-2 ${
-                    d
-                      ? "text-gray-500"
-                      : "text-slate-400"
-                  }`}
+                  className={`text-[10px] xl:text-[11px]
+                    font-mono ml-2
+
+                    ${
+                      d
+                        ? "text-gray-500"
+                        : "text-slate-400"
+                    }`}
                 >
-                  devzore.com — software solutions
+                  devzore.com — digital product engineering
                 </span>
               </div>
 
               {/* ==================================================
-                  CAPABILITY GRID
+                  CAPABILITIES
               ================================================== */}
 
               <div className="grid grid-cols-2 gap-3 mb-5">
                 {capabilities.map((item) => (
                   <div
                     key={item.title}
-                    className={`p-4 rounded-xl border ${
-                      d
-                        ? "bg-white/[0.025] border-white/[0.07]"
-                        : "bg-white border-slate-200"
-                    }`}
+                    className={`p-4 rounded-xl border
+                      transition-all duration-200
+                      hover:-translate-y-0.5
+
+                      ${
+                        d
+                          ? "bg-white/[0.025] border-white/[0.07] hover:border-purple-500/20"
+                          : "bg-white border-slate-200 hover:border-purple-200"
+                      }`}
                   >
                     <div
-                      className={`w-9 h-9 rounded-lg flex items-center justify-center mb-3 ${
-                        d
-                          ? "bg-purple-600/10 text-purple-400"
-                          : "bg-purple-50 text-purple-600"
-                      }`}
+                      className={`w-9 h-9
+                        rounded-lg
+                        flex items-center justify-center
+                        mb-3
+
+                        ${
+                          d
+                            ? "bg-purple-600/10 text-purple-400"
+                            : "bg-purple-50 text-purple-600"
+                        }`}
                     >
                       {item.icon}
                     </div>
@@ -744,18 +778,23 @@ const Hero = ({ isDark = true }) => {
               </div>
 
               {/* ==================================================
-                  DEVELOPMENT SERVICES
+                  SERVICES LIST
               ================================================== */}
 
               <div
-                className={`mb-2.5 text-[9px] uppercase
-                  tracking-[0.18em] font-bold ${
+                className={`mb-2.5
+                  text-[9px]
+                  uppercase
+                  tracking-[0.18em]
+                  font-bold
+
+                  ${
                     d
                       ? "text-gray-600"
                       : "text-slate-400"
                   }`}
               >
-                Development Services
+                Core Development Services
               </div>
 
               <div className="space-y-1">
@@ -764,12 +803,15 @@ const Hero = ({ isDark = true }) => {
                     key={item.path}
                     to={item.path}
                     onClick={scrollTop}
-                    className={`group flex items-center gap-3
+                    className={`group
+                      flex items-center gap-3
                       px-3 py-2.5
                       rounded-xl
                       transition-all duration-200
                       hover:-translate-y-0.5
-                      border border-transparent ${
+                      border border-transparent
+
+                      ${
                         d
                           ? "hover:bg-purple-600/10 hover:border-purple-500/20"
                           : "hover:bg-purple-50 hover:border-purple-100"
@@ -781,9 +823,12 @@ const Hero = ({ isDark = true }) => {
 
                     <div className="flex-grow min-w-0">
                       <p
-                        className={`text-[12px] font-semibold truncate
+                        className={`text-[12px]
+                          font-semibold truncate
                           transition-colors
-                          group-hover:text-purple-500 ${
+                          group-hover:text-purple-500
+
+                          ${
                             d
                               ? "text-gray-200"
                               : "text-slate-800"
@@ -809,7 +854,9 @@ const Hero = ({ isDark = true }) => {
                         transition-all duration-200
                         opacity-0
                         group-hover:opacity-100
-                        group-hover:translate-x-0.5 ${
+                        group-hover:translate-x-0.5
+
+                        ${
                           d
                             ? "text-purple-400"
                             : "text-purple-600"
@@ -820,13 +867,15 @@ const Hero = ({ isDark = true }) => {
               </div>
 
               {/* ==================================================
-                  PANEL BOTTOM
+                  WORLDWIDE
               ================================================== */}
 
               <div
                 className={`mt-4 pt-4 border-t
                   flex items-center
-                  justify-between gap-4 ${
+                  justify-between gap-4
+
+                  ${
                     d
                       ? "border-white/[0.07]"
                       : "border-slate-200"
@@ -854,7 +903,8 @@ const Hero = ({ isDark = true }) => {
                   onClick={scrollTop}
                   className="
                     inline-flex items-center gap-1
-                    text-[10px] font-bold
+                    text-[10px]
+                    font-bold
                     text-purple-500
                     hover:text-purple-400
                     transition-colors
@@ -867,15 +917,18 @@ const Hero = ({ isDark = true }) => {
               </div>
 
               {/* ==================================================
-                  DEVELOPMENT NOTE
+                  QUALITY NOTE
               ================================================== */}
 
               <div
-                className={`mt-3 p-3 rounded-xl flex items-start gap-3 ${
-                  d
-                    ? "bg-white/[0.02]"
-                    : "bg-white"
-                }`}
+                className={`mt-3 p-3 rounded-xl
+                  flex items-start gap-3
+
+                  ${
+                    d
+                      ? "bg-white/[0.02]"
+                      : "bg-white"
+                  }`}
               >
                 <ShieldCheck
                   size={16}
@@ -883,16 +936,20 @@ const Hero = ({ isDark = true }) => {
                 />
 
                 <p
-                  className={`text-[9px] xl:text-[10px] leading-relaxed ${
-                    d
-                      ? "text-gray-500"
-                      : "text-slate-500"
-                  }`}
+                  className={`text-[9px]
+                    xl:text-[10px]
+                    leading-relaxed
+
+                    ${
+                      d
+                        ? "text-gray-500"
+                        : "text-slate-500"
+                    }`}
                 >
-                  Development focused on maintainable
-                  architecture, responsive interfaces,
-                  security-conscious implementation and
-                  practical business requirements.
+                  Built with maintainable architecture,
+                  responsive interfaces, security-conscious
+                  development and practical business
+                  requirements in mind.
                 </p>
               </div>
             </div>
