@@ -90,6 +90,72 @@ const Projects = ({ isDark = true }) => {
     },
 
     // ====================================================
+    // SARAB EXPRESS
+    // ====================================================
+
+    {
+      id: "sarab-express",
+
+      title: "Sarab Express",
+
+      subtitle: "Food Ordering Platform",
+
+      description:
+        "Responsive food ordering experience with menus, product discovery, cart and ordering workflows.",
+
+      image: sarabFood,
+
+      liveUrl:
+        "https://sarab-food-delivery.vercel.app/",
+
+      location: "Pakistan",
+
+      category: "E-Commerce",
+
+      filter: "E-Commerce",
+
+      technologies: [
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+      ],
+    },
+
+     // ====================================================
+    // BEST DESERT SAFARI QATAR
+    // ====================================================
+
+    {
+      id: "best-desert-safari-qatar",
+
+      title: "Desert Safari Qatar",
+
+      subtitle: "Tourism & Safari Website",
+
+      description:
+        "Tourism website for discovering desert safari experiences, tour packages and booking inquiries.",
+
+      image: qatarTourist,
+
+      liveUrl:
+        "https://www.bestdesertsafariqatar.com/",
+
+      location: "Qatar",
+
+      category: "Travel",
+
+      filter: "Travel",
+
+      technologies: [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "SEO",
+      ],
+    },
+
+    // ====================================================
     // INSTALLMENT MANAGEMENT SYSTEM
     // ====================================================
 
@@ -163,7 +229,7 @@ const Projects = ({ isDark = true }) => {
 
       title: "Gulf Dunes Tourism",
 
-      subtitle: "Dubai Tourism Platform",
+      subtitle: "Qatar Tourism Platform",
 
       description:
         "Responsive tourism platform for desert safari packages, tour discovery and customer inquiries.",
@@ -173,7 +239,7 @@ const Projects = ({ isDark = true }) => {
       liveUrl:
         "https://www.gulfdunestourism.com/",
 
-      location: "Dubai, UAE",
+      location: "Qatar, QAR",
 
       category: "Travel",
 
@@ -187,39 +253,7 @@ const Projects = ({ isDark = true }) => {
       ],
     },
 
-    // ====================================================
-    // SARAB EXPRESS
-    // ====================================================
-
-    {
-      id: "sarab-express",
-
-      title: "Sarab Express",
-
-      subtitle: "Food Ordering Platform",
-
-      description:
-        "Responsive food ordering experience with menus, product discovery, cart and ordering workflows.",
-
-      image: sarabFood,
-
-      liveUrl:
-        "https://sarab-food-delivery.vercel.app/",
-
-      location: "Pakistan",
-
-      category: "E-Commerce",
-
-      filter: "E-Commerce",
-
-      technologies: [
-        "React",
-        "Node.js",
-        "Express",
-        "MongoDB",
-      ],
-    },
-
+    
     // ====================================================
     // PRIME DENTAL CARE
     // ====================================================
@@ -253,39 +287,7 @@ const Projects = ({ isDark = true }) => {
       ],
     },
 
-    // ====================================================
-    // BEST DESERT SAFARI QATAR
-    // ====================================================
-
-    {
-      id: "best-desert-safari-qatar",
-
-      title: "Desert Safari Qatar",
-
-      subtitle: "Tourism & Safari Website",
-
-      description:
-        "Tourism website for discovering desert safari experiences, tour packages and booking inquiries.",
-
-      image: qatarTourist,
-
-      liveUrl:
-        "https://www.bestdesertsafariqatar.com/",
-
-      location: "Qatar",
-
-      category: "Travel",
-
-      filter: "Travel",
-
-      technologies: [
-        "React",
-        "Node.js",
-        "MongoDB",
-        "SEO",
-      ],
-    },
-
+   
     // ====================================================
     // QUICKBITE
     // ====================================================
@@ -337,7 +339,7 @@ const Projects = ({ isDark = true }) => {
 
       liveUrl: "",
 
-      location: "Dubai, UAE",
+      location: "Qatar, QAR",
 
       category: "Booking",
 

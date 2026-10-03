@@ -22,48 +22,110 @@ import {
   TestTube2,
   Accessibility,
   Rocket,
+  ShoppingCart,
+  Smartphone,
+  Workflow,
+  Users,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 
 const ReactDevelopment = ({ isDark }) => {
   const d = isDark;
+
   const [activeFaq, setActiveFaq] = useState(null);
+  const [showAllFaqs, setShowAllFaqs] = useState(false);
+
+  const whatsappUrl =
+    'https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20a%20React%20development%20project.';
 
   const whatWeBuild = [
     {
       icon: <Monitor size={20} />,
       color: 'purple',
-      title: 'Single-Page Applications',
-      desc: 'Modern React single-page applications with client-side routing, reusable components, responsive interfaces and efficient data handling.',
-    },
-    {
-      icon: <BarChart3 size={20} />,
-      color: 'blue',
-      title: 'Admin Dashboards & Portals',
-      desc: 'React dashboards, admin panels and business portals with data tables, charts, forms, filters, authentication and role-based interfaces.',
-    },
-    {
-      icon: <Layers size={20} />,
-      color: 'green',
-      title: 'Component Libraries & Design Systems',
-      desc: 'Reusable React component systems with consistent design patterns, TypeScript interfaces, accessible UI elements and maintainable styling.',
-    },
-    {
-      icon: <RefreshCw size={20} />,
-      color: 'orange',
-      title: 'React & Next.js Applications',
-      desc: 'React and Next.js applications using suitable rendering strategies for interactive interfaces, content-driven pages and modern web products.',
-    },
-    {
-      icon: <TrendingUp size={20} />,
-      color: 'indigo',
-      title: 'SaaS Frontend Development',
-      desc: 'React interfaces for SaaS products including onboarding, account management, subscription screens, dashboards and application workflows.',
+      title: 'React Web Development',
+      desc: 'Custom React web development for responsive, interactive and maintainable business websites and web applications using reusable components and modern frontend architecture.',
     },
     {
       icon: <Code2 size={20} />,
       color: 'cyan',
-      title: 'React Migration & Refactoring',
-      desc: 'Modernisation of existing frontend codebases using React hooks, TypeScript, improved component architecture and current development practices.',
+      title: 'React Application Development',
+      desc: 'React application development for business software, customer portals, internal tools and interactive products connected to APIs and backend systems.',
+    },
+    {
+      icon: <TrendingUp size={20} />,
+      color: 'indigo',
+      title: 'React SaaS Development',
+      desc: 'React SaaS development for onboarding, account management, subscription interfaces, team workflows, dashboards and data-driven software products.',
+    },
+    {
+      icon: <BarChart3 size={20} />,
+      color: 'blue',
+      title: 'React Dashboard Development',
+      desc: 'Custom React dashboards and admin panels with charts, data tables, filters, forms, authentication, permissions and API-driven business data.',
+    },
+    {
+      icon: <ShoppingCart size={20} />,
+      color: 'green',
+      title: 'React eCommerce Development',
+      desc: 'React eCommerce development for storefront interfaces, product catalogs, search, filtering, carts, customer accounts and checkout integrations.',
+    },
+    {
+      icon: <Layers size={20} />,
+      color: 'orange',
+      title: 'React UI Development',
+      desc: 'Reusable React UI development with component libraries, responsive layouts, design systems, accessible interface patterns and consistent styling.',
+    },
+    {
+      icon: <RefreshCw size={20} />,
+      color: 'purple',
+      title: 'React Migration & Modernization',
+      desc: 'Modernize legacy frontend applications through React migration, component refactoring, hooks, TypeScript adoption and updated frontend architecture.',
+    },
+    {
+      icon: <Server size={20} />,
+      color: 'blue',
+      title: 'React API Integration',
+      desc: 'Connect React applications with REST APIs, GraphQL services, authentication systems, payment services and third-party platforms.',
+    },
+    {
+      icon: <Smartphone size={20} />,
+      color: 'cyan',
+      title: 'Responsive React Development',
+      desc: 'Responsive React interfaces optimized for desktop, tablet and mobile screens with layouts adapted to different devices.',
+    },
+  ];
+
+  const services = [
+    {
+      icon: <Code2 size={18} />,
+      title: 'Custom React Development',
+      desc: 'Custom React development services for products requiring purpose-built frontend functionality, business workflows, APIs and reusable interface architecture.',
+    },
+    {
+      icon: <Monitor size={18} />,
+      title: 'React Website Development',
+      desc: 'React website development for businesses that need responsive interfaces, dynamic content, reusable sections and backend integrations.',
+    },
+    {
+      icon: <Workflow size={18} />,
+      title: 'Single-Page Applications',
+      desc: 'React SPA development with client-side routing, dynamic data, reusable components, authentication and application-style user experiences.',
+    },
+    {
+      icon: <Users size={18} />,
+      title: 'React Portal Development',
+      desc: 'Customer, employee, partner and internal business portals with role-based interfaces and secure data access.',
+    },
+    {
+      icon: <Layers size={18} />,
+      title: 'React Component Development',
+      desc: 'Reusable React components and design systems designed to improve interface consistency and simplify ongoing frontend development.',
+    },
+    {
+      icon: <Rocket size={18} />,
+      title: 'React MVP Development',
+      desc: 'Focused React frontend development for startup MVPs with essential workflows, API integration and room for future product growth.',
     },
   ];
 
@@ -71,40 +133,40 @@ const ReactDevelopment = ({ isDark }) => {
     {
       icon: <Boxes size={15} />,
       title: 'Component-Based Architecture',
-      desc: 'React encourages interfaces to be divided into reusable components, helping teams maintain consistency and reduce duplicated frontend code.',
+      desc: 'Reusable React components help maintain interface consistency and reduce duplicated frontend code.',
     },
     {
       icon: <Zap size={15} />,
       title: 'Interactive User Interfaces',
-      desc: 'React is well suited to applications with dynamic data, interactive workflows, dashboards, forms and frequently changing interface states.',
+      desc: 'React works well for dynamic applications, dashboards, forms, workflows and frequently changing interface states.',
     },
     {
       icon: <Code2 size={15} />,
-      title: 'TypeScript-Friendly Development',
-      desc: 'React works well with TypeScript for typed component props, application models and safer communication between frontend and backend systems.',
+      title: 'TypeScript-Friendly',
+      desc: 'React works effectively with TypeScript for typed components, application models and clearer frontend-to-backend contracts.',
     },
     {
       icon: <Database size={15} />,
       title: 'Modern Data Management',
-      desc: 'Server data, caching, mutations and application state can be organised using tools such as TanStack Query and lightweight state management libraries.',
+      desc: 'Server data, caching, mutations and client state can be organized using tools such as TanStack Query, Zustand and Redux Toolkit.',
     },
     {
       icon: <Gauge size={15} />,
-      title: 'Performance Optimisation',
-      desc: 'Code splitting, lazy loading, efficient rendering and asset optimisation can help keep React applications responsive as functionality grows.',
+      title: 'Performance Optimization',
+      desc: 'Code splitting, lazy loading, efficient rendering and asset optimization can help keep React applications responsive.',
     },
     {
       icon: <Globe size={15} />,
-      title: 'Broad Web Ecosystem',
-      desc: 'React integrates with a wide range of APIs, backend technologies, design systems, testing tools and deployment platforms.',
+      title: 'Broad Development Ecosystem',
+      desc: 'React integrates with a wide range of APIs, backend technologies, UI systems, testing tools and deployment platforms.',
     },
   ];
 
   const qualityAreas = [
     {
       icon: <Gauge size={17} />,
-      title: 'Performance',
-      desc: 'Bundle analysis, lazy loading, code splitting and asset optimisation based on the requirements of the application.',
+      title: 'React Performance',
+      desc: 'Bundle analysis, lazy loading, code splitting, rendering optimization and asset optimization based on application requirements.',
     },
     {
       icon: <Accessibility size={17} />,
@@ -113,136 +175,151 @@ const ReactDevelopment = ({ isDark }) => {
     },
     {
       icon: <TestTube2 size={17} />,
-      title: 'Testing',
-      desc: 'Testing strategies can include unit, component and end-to-end tests for important application behaviour and business flows.',
+      title: 'React Testing',
+      desc: 'Unit, component and end-to-end testing strategies for important application behavior and business workflows.',
     },
     {
       icon: <Shield size={17} />,
       title: 'Frontend Security',
-      desc: 'Careful handling of authentication state, user input, API communication and environment configuration.',
+      desc: 'Careful handling of authentication state, user input, API communication, environment configuration and frontend data.',
     },
     {
       icon: <Boxes size={17} />,
-      title: 'Maintainability',
-      desc: 'Reusable components, clear project structure and consistent coding patterns designed to make future development easier.',
+      title: 'Maintainable Code',
+      desc: 'Reusable components, clear project structure and consistent coding patterns for ongoing React development.',
     },
     {
       icon: <RefreshCw size={17} />,
-      title: 'Scalable Development',
-      desc: 'Frontend architecture organised so new screens, workflows and integrations can be introduced without unnecessary duplication.',
-    },
-  ];
-
-  const techStack = [
-    {
-      category: 'React Development',
-      items: ['React', 'TypeScript', 'React Hooks', 'Context API'],
-    },
-    {
-      category: 'Data & State',
-      items: ['TanStack Query', 'Zustand', 'Redux Toolkit', 'React Hook Form'],
-    },
-    {
-      category: 'Routing & Frameworks',
-      items: ['React Router', 'Next.js', 'Vite'],
-    },
-    {
-      category: 'UI & Styling',
-      items: ['Tailwind CSS', 'shadcn/ui', 'Radix UI', 'CSS Modules'],
-    },
-    {
-      category: 'Testing',
-      items: ['Vitest', 'React Testing Library', 'Playwright', 'Storybook'],
-    },
-    {
-      category: 'Development Tools',
-      items: ['Git', 'GitHub', 'ESLint', 'Prettier', 'CI/CD'],
+      title: 'Scalable Architecture',
+      desc: 'Frontend architecture organized so new screens, features and integrations can be introduced without unnecessary duplication.',
     },
   ];
 
   const process = [
     {
       n: '01',
-      title: 'Requirements & Frontend Architecture',
-      desc: 'We review the product requirements, user flows, API requirements and interface structure before organising the React application.',
+      title: 'React Project Discovery',
+      desc: 'We review product requirements, target users, frontend functionality, existing systems, APIs and business workflows.',
     },
     {
       n: '02',
-      title: 'UI Foundation & Components',
-      desc: 'Reusable components, layout patterns, responsive behaviour, typography and interface styles are established for consistency.',
+      title: 'Frontend Architecture & UI Planning',
+      desc: 'Application structure, routing, reusable components, state management and integration requirements are planned.',
     },
     {
       n: '03',
-      title: 'React Feature Development',
-      desc: 'Application screens and user workflows are developed with reusable React components and appropriate state management.',
+      title: 'React UI Development',
+      desc: 'Application screens and workflows are developed using reusable React components and responsive layouts.',
     },
     {
       n: '04',
-      title: 'API & Data Integration',
-      desc: 'Frontend features are connected to REST or GraphQL APIs with loading states, validation, error handling and data synchronisation.',
+      title: 'API & Backend Integration',
+      desc: 'React features are connected to REST or GraphQL APIs with authentication, validation, loading states and error handling.',
     },
     {
       n: '05',
-      title: 'Testing & Optimisation',
-      desc: 'Important user flows are reviewed for functionality, responsiveness, accessibility and frontend performance.',
+      title: 'Testing & Optimization',
+      desc: 'Important workflows are reviewed for functionality, responsive behavior, accessibility and frontend performance.',
     },
     {
       n: '06',
-      title: 'Deployment & Handover',
-      desc: 'The application is prepared for production deployment with project documentation and source-code handover based on the agreed scope.',
+      title: 'Application Deployment',
+      desc: 'The application is prepared for production deployment, environment configuration and source-code handover.',
     },
   ];
 
   const faqs = [
     {
       q: 'What React development services does DevZore provide?',
-      a: 'DevZore provides React development for single-page applications, SaaS interfaces, dashboards, admin portals, business web applications, component systems and existing React application improvements.',
+      a: 'DevZore provides React development services for custom web applications, React websites, SaaS frontends, dashboards, admin panels, customer portals, eCommerce interfaces, component systems, API integrations and existing React application improvements.',
     },
     {
-      q: 'What is the difference between React and Next.js?',
-      a: 'React is a JavaScript library for building component-based user interfaces. Next.js is a framework built around React that adds features such as routing and server-side rendering options. The appropriate choice depends on the product requirements, content strategy and application architecture.',
+      q: 'Why hire a React development company?',
+      a: 'A React development company can handle frontend architecture, reusable components, API integration, responsive UI, application state, testing and deployment as part of one structured development workflow.',
     },
     {
-      q: 'Do you use TypeScript with React?',
-      a: 'TypeScript is commonly used in our React development because it can improve code clarity and help identify certain integration and component errors during development. The exact setup depends on the existing codebase and project requirements.',
+      q: 'Can I hire a React developer from DevZore?',
+      a: 'Yes. DevZore provides React development for complete projects, individual product features and ongoing frontend requirements. Share your project scope and expected deliverables to discuss the appropriate development approach.',
+    },
+    {
+      q: 'What is React.js development?',
+      a: 'React.js development is the process of building component-based web interfaces using React. It can be used for websites, single-page applications, dashboards, SaaS products, portals and interactive web applications.',
+    },
+    {
+      q: 'Do you provide custom React development?',
+      a: 'Yes. DevZore provides custom React development based on the workflows, interface requirements, backend systems and integrations of each product rather than relying on a fixed template.',
+    },
+    {
+      q: 'Can you build a React web application?',
+      a: 'Yes. We build React web applications with reusable components, routing, forms, authentication, dashboards, API integrations, responsive layouts and application-specific functionality.',
+    },
+    {
+      q: 'Do you provide React website development?',
+      a: 'Yes. React can be used to develop responsive business websites and interactive web experiences. Depending on SEO and content requirements, React may also be combined with frameworks such as Next.js.',
     },
     {
       q: 'Can you build a React admin dashboard?',
-      a: 'Yes. React can be used for admin dashboards and internal portals with tables, charts, filters, forms, authentication, permissions and API-driven data.',
+      a: 'Yes. React dashboard development can include data tables, charts, filters, forms, authentication, permissions, reporting interfaces and API-driven business data.',
     },
     {
-      q: 'Can React be used for SaaS frontend development?',
-      a: 'Yes. React is suitable for SaaS interfaces including onboarding flows, account settings, dashboards, subscription screens, team management and other interactive product workflows.',
+      q: 'Can React be used for SaaS development?',
+      a: 'Yes. React is suitable for SaaS frontend development including onboarding, account settings, subscription interfaces, team management, dashboards and other interactive software workflows.',
     },
     {
-      q: 'Can you connect a React frontend to an existing backend API?',
-      a: 'Yes. React applications can be integrated with existing REST or GraphQL APIs. Integration work can include authentication, forms, data fetching, caching, loading states, validation and error handling.',
+      q: 'Do you provide React eCommerce development?',
+      a: 'Yes. React eCommerce development can include product catalogs, category pages, filtering, search, carts, customer accounts and integration with backend and payment systems.',
     },
     {
-      q: 'Can you improve or modernise an existing React application?',
-      a: 'Yes. Existing React projects can be reviewed and improved through component refactoring, TypeScript adoption, state-management changes, routing updates, performance work and dependency modernisation where appropriate.',
+      q: 'What is the difference between React and Next.js?',
+      a: 'React is a JavaScript library for building component-based interfaces. Next.js is a React framework that provides additional features such as routing and multiple rendering approaches.',
     },
     {
-      q: 'Do you test React applications?',
-      a: 'Testing can be included based on the project requirements. Depending on the application, this may include unit tests, component tests and end-to-end tests for important user journeys and business logic.',
+      q: 'Do you use TypeScript with React?',
+      a: 'Yes. TypeScript can be used with React to provide typed components, application models and clearer contracts between frontend code and backend APIs.',
     },
     {
-      q: 'How do you improve React application performance?',
-      a: 'Performance work may include reducing unnecessary rendering, lazy loading, code splitting, asset optimisation, bundle analysis, caching strategies and reviewing third-party dependencies. The appropriate optimisation depends on the application and measured bottlenecks.',
-    },
-    {
-      q: 'How long does React development take?',
-      a: 'The development timeline depends on the number of screens, feature complexity, API requirements, integrations, design readiness and testing requirements. After reviewing the scope, a project-specific development plan and estimate can be prepared.',
-    },
-    {
-      q: 'Do you provide the React source code?',
-      a: 'Source-code ownership and handover can be defined clearly in the project agreement. For custom development projects, the agreed deliverables can include the application source code and relevant project documentation.',
+      q: 'Can you connect React to an existing backend API?',
+      a: 'Yes. React applications can integrate with REST or GraphQL APIs including authentication, forms, data fetching, caching, loading states, validation and error handling.',
     },
     {
       q: 'Can React work with Node.js, Express and MongoDB?',
-      a: 'Yes. React is commonly used as the frontend of MERN applications, with Node.js and Express handling backend APIs and MongoDB handling application data.',
+      a: 'Yes. React is commonly used as the frontend of MERN applications, with Node.js and Express handling backend APIs and MongoDB storing application data.',
+    },
+    {
+      q: 'Can you improve an existing React application?',
+      a: 'Yes. Existing React applications can be reviewed for component refactoring, TypeScript adoption, state-management improvements, routing changes, API integration and performance improvements.',
+    },
+    {
+      q: 'Do you provide React migration services?',
+      a: 'Yes. Depending on the existing system, frontend applications can be migrated or progressively modernized using React, reusable components, hooks and TypeScript.',
+    },
+    {
+      q: 'How do you optimize React application performance?',
+      a: 'React performance optimization may include reducing unnecessary renders, lazy loading, code splitting, bundle analysis, asset optimization, caching and reviewing third-party dependencies.',
+    },
+    {
+      q: 'Do you test React applications?',
+      a: 'Testing can include unit tests, component tests and end-to-end tests for important application workflows depending on project requirements.',
+    },
+    {
+      q: 'How much does React development cost?',
+      a: 'React development cost depends on the number of screens, UI complexity, backend and API requirements, authentication, integrations, testing and other product functionality. A project-specific estimate can be prepared after reviewing the scope.',
+    },
+    {
+      q: 'How long does React application development take?',
+      a: 'The timeline depends on product scope, number of screens, feature complexity, API readiness, integrations, design requirements and testing.',
+    },
+    {
+      q: 'Do you provide React source code?',
+      a: 'Source-code ownership and handover terms can be defined in the project agreement. Custom development deliverables can include the agreed React source code and relevant documentation.',
+    },
+    {
+      q: 'Do you provide React development services worldwide?',
+      a: 'DevZore provides remote React development services for startups, founders and businesses that can work with our development process regardless of location.',
     },
   ];
+
+  const visibleFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   const relatedServices = [
     {
@@ -262,7 +339,7 @@ const ReactDevelopment = ({ isDark }) => {
     {
       title: 'SaaS Product Development',
       description:
-        'Custom SaaS applications with dashboards, authentication, subscriptions and scalable product architecture.',
+        'Custom SaaS applications with React dashboards, authentication, subscriptions, APIs and scalable product architecture.',
       path: '/saas-product-development',
       icon: <Rocket size={25} />,
     },
@@ -289,19 +366,69 @@ const ReactDevelopment = ({ isDark }) => {
       : 'bg-cyan-50 border-cyan-100 text-cyan-600',
   };
 
-  const whatsappUrl =
-    'https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20a%20React%20development%20project.';
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': 'https://devzore.com/reactdevelopment#service',
+    name: 'React Development Services',
+    url: 'https://devzore.com/reactdevelopment',
+    description:
+      'Custom React development services for web applications, websites, SaaS frontends, dashboards, admin portals, eCommerce interfaces, UI development, API integration and application modernization.',
+    serviceType: 'React Development',
+    provider: {
+      '@id': 'https://devzore.com/#organization',
+    },
+    areaServed: 'Worldwide',
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a,
+      },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://devzore.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://devzore.com/allservices',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'React Development',
+        item: 'https://devzore.com/reactdevelopment',
+      },
+    ],
+  };
 
   const CtaStrip = ({ heading, sub }) => (
     <div
-      className={`py-10 px-8 rounded-3xl border text-center ${
+      className={`py-7 px-6 rounded-2xl border text-center ${
         d
           ? 'bg-purple-600/5 border-purple-500/15'
           : 'bg-purple-50 border-purple-100'
       }`}
     >
       <h3
-        className={`text-xl font-black mb-2 ${
+        className={`text-xl font-black mb-1.5 ${
           d ? 'text-white' : 'text-gray-900'
         }`}
       >
@@ -309,7 +436,7 @@ const ReactDevelopment = ({ isDark }) => {
       </h3>
 
       <p
-        className={`text-sm mb-6 ${
+        className={`text-sm mb-4 ${
           d ? 'text-gray-400' : 'text-gray-600'
         }`}
       >
@@ -319,7 +446,7 @@ const ReactDevelopment = ({ isDark }) => {
       <div className="flex flex-wrap gap-3 justify-center">
         <Link
           to="/contact"
-          className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+          className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all"
         >
           Discuss Your React Project
           <ArrowRight size={14} />
@@ -331,14 +458,6 @@ const ReactDevelopment = ({ isDark }) => {
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
         >
-          <svg
-            className="w-4 h-4 fill-current"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z" />
-          </svg>
-
           WhatsApp
         </a>
 
@@ -346,8 +465,8 @@ const ReactDevelopment = ({ isDark }) => {
           to="/allservices"
           className={`flex items-center gap-2 px-6 py-3 font-bold rounded-xl text-sm border transition-all ${
             d
-              ? 'border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]'
-              : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
+              ? 'border-white/10 text-gray-300 hover:bg-white/[0.04]'
+              : 'border-gray-200 text-gray-700 hover:bg-gray-50'
           }`}
         >
           All Services
@@ -361,66 +480,19 @@ const ReactDevelopment = ({ isDark }) => {
     <>
       <Helmet>
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            '@id': 'https://devzore.com/reactdevelopment#service',
-            name: 'React Development Services',
-            description:
-              'React development services for web applications, SaaS frontends, dashboards, admin portals, component systems and existing React application improvements.',
-            url: 'https://devzore.com/reactdevelopment',
-            provider: {
-              '@id': 'https://devzore.com/#organization',
-            },
-            serviceType: 'React Development',
-            areaServed: 'Worldwide',
-          })}
+          {JSON.stringify(serviceSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: faqs.map((faq) => ({
-              '@type': 'Question',
-              name: faq.q,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.a,
-              },
-            })),
-          })}
+          {JSON.stringify(faqSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Home',
-                item: 'https://devzore.com/',
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: 'All Services',
-                item: 'https://devzore.com/allservices',
-              },
-              {
-                '@type': 'ListItem',
-                position: 3,
-                name: 'React Development',
-                item: 'https://devzore.com/reactdevelopment',
-              },
-            ],
-          })}
+          {JSON.stringify(breadcrumbSchema)}
         </script>
       </Helmet>
 
-      <div
+      <main
         className={`min-h-screen transition-colors duration-300 ${
           d ? 'bg-[#030303]' : 'bg-white'
         }`}
@@ -428,14 +500,14 @@ const ReactDevelopment = ({ isDark }) => {
         {/* HERO */}
         <section
           aria-labelledby="react-heading"
-          className={`pt-28 pb-12 border-b ${
+          className={`pt-24 pb-9 border-b ${
             d ? 'border-white/[0.06]' : 'border-gray-100'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-9 items-center">
               <div>
-                <div className="flex flex-wrap gap-3 mb-6">
+                <div className="flex flex-wrap gap-2 mb-4">
                   <div
                     className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border ${
                       d
@@ -444,7 +516,7 @@ const ReactDevelopment = ({ isDark }) => {
                     }`}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                    React Development
+                    React Development Services
                   </div>
 
                   <div
@@ -461,23 +533,35 @@ const ReactDevelopment = ({ isDark }) => {
 
                 <h1
                   id="react-heading"
-                  className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-5 ${
+                  className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4 ${
                     d ? 'text-white' : 'text-gray-900'
                   }`}
                 >
-                  React Development Services for{' '}
+                  React Development Company for{' '}
                   <span className="text-purple-600">
                     Modern Web Applications
                   </span>
                 </h1>
 
                 <p
-                  className={`text-lg font-semibold mb-5 ${
+                  className={`text-lg font-semibold mb-3 ${
                     d ? 'text-gray-300' : 'text-gray-700'
                   }`}
                 >
-                  React · TypeScript · Next.js · React Router · TanStack Query ·
-                  Tailwind CSS
+                  React.js · TypeScript · SaaS Frontends · Dashboards ·
+                  eCommerce · API Integration
+                </p>
+
+                <p
+                  className={`text-base leading-relaxed mb-3 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  DevZore is a React development company providing custom React
+                  development services for startups and businesses. We build
+                  React web applications, business websites, SaaS interfaces,
+                  dashboards, admin portals, eCommerce interfaces and custom
+                  frontend systems.
                 </p>
 
                 <p
@@ -485,27 +569,16 @@ const ReactDevelopment = ({ isDark }) => {
                     d ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
-                  DevZore provides React development services for startups and
-                  businesses building interactive web applications, SaaS
-                  interfaces, admin dashboards, customer portals and modern
-                  frontend systems.
+                  Our React developers use React.js, TypeScript and modern
+                  frontend tools to create responsive, reusable and
+                  maintainable applications connected to APIs, authentication
+                  systems, databases and third-party services.
                 </p>
 
-                <p
-                  className={`text-base leading-relaxed mb-8 ${
-                    d ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  We work with React, TypeScript and modern frontend tools to
-                  create responsive, reusable and maintainable interfaces that
-                  integrate with APIs, authentication systems, databases and
-                  third-party services.
-                </p>
-
-                <div className="flex flex-wrap gap-3 mb-5">
+                <div className="flex flex-wrap gap-3 mb-4">
                   <Link
                     to="/contact"
-                    className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                    className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all"
                   >
                     Discuss Your React Project
                     <ArrowRight size={14} />
@@ -522,10 +595,10 @@ const ReactDevelopment = ({ isDark }) => {
 
                   <Link
                     to="/allservices"
-                    className={`flex items-center gap-2 px-5 py-3 font-bold rounded-xl text-sm border transition-all ${
+                    className={`flex items-center gap-2 px-5 py-3 font-bold rounded-xl text-sm border ${
                       d
-                        ? 'border-white/10 text-gray-300 hover:bg-white/[0.04]'
-                        : 'border-gray-200 text-gray-700 hover:bg-gray-50'
+                        ? 'border-white/10 text-gray-300'
+                        : 'border-gray-200 text-gray-700'
                     }`}
                   >
                     View All Services
@@ -534,10 +607,12 @@ const ReactDevelopment = ({ isDark }) => {
 
                 <div className="flex flex-wrap gap-2">
                   {[
-                    'Component-Based',
+                    'React.js',
                     'TypeScript',
+                    'React Frontend',
                     'API Integration',
                     'Responsive UI',
+                    'SaaS Development',
                   ].map((item) => (
                     <span
                       key={item}
@@ -555,58 +630,58 @@ const ReactDevelopment = ({ isDark }) => {
 
               {/* RIGHT PANEL */}
               <div
-                className={`p-8 rounded-3xl border ${
+                className={`p-7 rounded-3xl border ${
                   d
                     ? 'bg-white/[0.02] border-white/[0.06]'
                     : 'bg-[#fafafa] border-gray-200'
                 }`}
               >
                 <p
-                  className={`text-[11px] font-black uppercase tracking-widest mb-6 ${
+                  className={`text-[11px] font-black uppercase tracking-widest mb-4 ${
                     d ? 'text-gray-500' : 'text-gray-400'
                   }`}
                 >
                   React Development Capabilities
                 </p>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {[
                     {
-                      title: 'React & TypeScript',
+                      title: 'React.js & TypeScript',
                       desc: 'Reusable components and typed frontend architecture',
                     },
                     {
-                      title: 'API Integration',
-                      desc: 'REST and GraphQL integration with loading and error states',
+                      title: 'React Web Applications',
+                      desc: 'Custom business applications and interactive products',
+                    },
+                    {
+                      title: 'React SaaS Frontends',
+                      desc: 'Dashboards, onboarding and account workflows',
+                    },
+                    {
+                      title: 'React Dashboard Development',
+                      desc: 'Data-driven admin panels and reporting interfaces',
+                    },
+                    {
+                      title: 'REST & GraphQL Integration',
+                      desc: 'API communication with loading and error handling',
                     },
                     {
                       title: 'State Management',
-                      desc: 'Server and client state organised for application requirements',
+                      desc: 'Server and client state organized for product requirements',
                     },
                     {
-                      title: 'Responsive Interfaces',
-                      desc: 'Layouts designed for desktop, tablet and mobile screens',
+                      title: 'Responsive React UI',
+                      desc: 'Desktop, tablet and mobile-friendly interfaces',
                     },
                     {
-                      title: 'Authentication UI',
-                      desc: 'Login, registration, account and permission-based interfaces',
-                    },
-                    {
-                      title: 'Testing',
-                      desc: 'Testing strategies for important components and user flows',
-                    },
-                    {
-                      title: 'Performance Optimisation',
-                      desc: 'Lazy loading, code splitting and frontend performance review',
-                    },
-                    {
-                      title: 'Deployment Support',
-                      desc: 'Production preparation and deployment workflow assistance',
+                      title: 'Performance Optimization',
+                      desc: 'Lazy loading, code splitting and rendering review',
                     },
                   ].map((item) => (
                     <div
                       key={item.title}
-                      className={`flex items-start gap-3 pb-3 border-b last:border-0 ${
+                      className={`flex items-start gap-3 pb-2.5 border-b last:border-0 ${
                         d ? 'border-white/[0.05]' : 'border-gray-100'
                       }`}
                     >
@@ -624,11 +699,7 @@ const ReactDevelopment = ({ isDark }) => {
                           {item.title}
                         </p>
 
-                        <p
-                          className={`text-[11px] ${
-                            d ? 'text-gray-500' : 'text-gray-500'
-                          }`}
-                        >
+                        <p className="text-[11px] text-gray-500">
                           {item.desc}
                         </p>
                       </div>
@@ -640,22 +711,22 @@ const ReactDevelopment = ({ isDark }) => {
           </div>
         </section>
 
-        {/* MID CTA */}
+        {/* QUICK CTA */}
         <div
-          className={`py-7 border-b ${
+          className={`py-5 border-b ${
             d
               ? 'border-white/[0.06] bg-purple-600/5'
               : 'border-gray-100 bg-purple-50'
           }`}
         >
-          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+          <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
               <p
                 className={`font-black text-base ${
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
-                Planning a React web application?
+                Looking for a React developer?
               </p>
 
               <p
@@ -663,46 +734,38 @@ const ReactDevelopment = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                Tell us about the frontend, API and product requirements.
+                Share your frontend, API and product requirements with DevZore.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
-              <Link
-                to="/contact"
-                className="flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all"
-              >
-                Discuss Project
-                <ArrowRight size={13} />
-              </Link>
-
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] font-bold rounded-xl text-sm"
-              >
-                WhatsApp
-                <ArrowRight size={13} />
-              </a>
-            </div>
+            <Link
+              to="/contact"
+              className="flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm"
+            >
+              Discuss Project
+              <ArrowRight size={13} />
+            </Link>
           </div>
         </div>
 
         {/* WHAT WE BUILD */}
         <section
           aria-labelledby="whatwebuild-heading"
-          className={`py-16 border-b ${
+          className={`py-11 border-b ${
             d
               ? 'border-white/[0.06] bg-[#050505]'
               : 'border-gray-100 bg-[#fafafa]'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-12">
+            <div className="max-w-3xl mb-7">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
+                React Development Solutions
+              </p>
+
               <h2
                 id="whatwebuild-heading"
-                className={`text-3xl font-black mb-4 ${
+                className={`text-3xl font-black mb-3 ${
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
@@ -714,25 +777,25 @@ const ReactDevelopment = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                React can support everything from focused business interfaces
-                to complex SaaS products. We structure each frontend around the
-                actual workflows, data and integration requirements of the
-                application.
+                Our React development services cover custom web applications,
+                SaaS frontends, dashboards, eCommerce interfaces, business
+                portals, responsive UI development and application
+                modernization.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {whatWeBuild.map((item) => (
-                <div
+                <article
                   key={item.title}
-                  className={`p-6 rounded-2xl border transition-all hover:border-purple-500/25 ${
+                  className={`p-5 rounded-2xl border transition-all hover:border-purple-500/25 ${
                     d
-                      ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]'
-                      : 'bg-white border-gray-200 hover:shadow-sm'
+                      ? 'bg-white/[0.02] border-white/[0.06]'
+                      : 'bg-white border-gray-200'
                   }`}
                 >
                   <div
-                    className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${
+                    className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-3 ${
                       colorMap[item.color]
                     }`}
                   >
@@ -740,7 +803,81 @@ const ReactDevelopment = ({ isDark }) => {
                   </div>
 
                   <h3
-                    className={`text-[14px] font-bold mb-2 ${
+                    className={`text-[14px] font-bold mb-1.5 ${
+                      d ? 'text-white' : 'text-gray-900'
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
+
+                  <p
+                    className={`text-[13px] leading-relaxed ${
+                      d ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    {item.desc}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CUSTOM SERVICES */}
+        <section
+          aria-labelledby="services-heading"
+          className={`py-11 border-b ${
+            d ? 'border-white/[0.06]' : 'border-gray-100'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-3xl mb-7">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
+                Custom React Development
+              </p>
+
+              <h2
+                id="services-heading"
+                className={`text-3xl font-black mb-3 ${
+                  d ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                React Development Services for Custom Digital Products
+              </h2>
+
+              <p
+                className={`text-base leading-relaxed ${
+                  d ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                From new React applications to existing frontend
+                modernization, DevZore works across UI development,
+                architecture, API integration and product workflows.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {services.map((item) => (
+                <div
+                  key={item.title}
+                  className={`p-5 rounded-2xl border ${
+                    d
+                      ? 'bg-white/[0.02] border-white/[0.06]'
+                      : 'bg-[#fafafa] border-gray-200'
+                  }`}
+                >
+                  <div
+                    className={`w-9 h-9 rounded-xl flex items-center justify-center mb-3 ${
+                      d
+                        ? 'bg-purple-500/10 text-purple-400'
+                        : 'bg-purple-50 text-purple-600'
+                    }`}
+                  >
+                    {item.icon}
+                  </div>
+
+                  <h3
+                    className={`text-[14px] font-bold mb-1.5 ${
                       d ? 'text-white' : 'text-gray-900'
                     }`}
                   >
@@ -763,15 +900,21 @@ const ReactDevelopment = ({ isDark }) => {
         {/* WHY REACT */}
         <section
           aria-labelledby="why-heading"
-          className={`py-16 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
+          className={`py-11 border-b ${
+            d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-gray-100 bg-[#fafafa]'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-12">
+            <div className="max-w-3xl mb-7">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
+                React.js Development
+              </p>
+
               <h2
                 id="why-heading"
-                className={`text-3xl font-black mb-4 ${
+                className={`text-3xl font-black mb-3 ${
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
@@ -784,23 +927,23 @@ const ReactDevelopment = ({ isDark }) => {
                 }`}
               >
                 React provides a flexible component model for building
-                interactive interfaces and works with a broad ecosystem of
-                frontend, backend and deployment technologies.
+                interactive frontend applications and integrates with a broad
+                ecosystem of APIs, backend technologies and UI systems.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-7">
               {whyReact.map((item) => (
                 <div
                   key={item.title}
-                  className={`p-6 rounded-2xl border transition-all hover:border-purple-500/20 ${
+                  className={`p-5 rounded-2xl border ${
                     d
-                      ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]'
-                      : 'bg-white border-gray-200 hover:shadow-sm'
+                      ? 'bg-white/[0.02] border-white/[0.06]'
+                      : 'bg-white border-gray-200'
                   }`}
                 >
                   <div
-                    className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-4 ${
+                    className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-3 ${
                       d
                         ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
                         : 'bg-purple-50 border-purple-100 text-purple-600'
@@ -810,7 +953,7 @@ const ReactDevelopment = ({ isDark }) => {
                   </div>
 
                   <h3
-                    className={`text-[14px] font-bold mb-2 ${
+                    className={`text-[14px] font-bold mb-1.5 ${
                       d ? 'text-white' : 'text-gray-900'
                     }`}
                   >
@@ -829,26 +972,129 @@ const ReactDevelopment = ({ isDark }) => {
             </div>
 
             <CtaStrip
-              heading="Need React development for your product?"
-              sub="Share your application requirements and we can discuss a suitable frontend approach."
+              heading="Need custom React development?"
+              sub="Share your application requirements and we can discuss the frontend architecture and integrations."
             />
+          </div>
+        </section>
+
+        {/* REACT EXPERTISE */}
+        <section
+          aria-labelledby="expertise-heading"
+          className={`py-11 border-b ${
+            d ? 'border-white/[0.06]' : 'border-gray-100'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-7 items-start">
+              <div>
+                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
+                  React Frontend Development
+                </p>
+
+                <h2
+                  id="expertise-heading"
+                  className={`text-3xl font-black mb-3 ${
+                    d ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                  React Frontend Development for Websites, SaaS & Web Apps
+                </h2>
+
+                <p
+                  className={`text-sm leading-7 mb-3 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  DevZore provides React frontend development for interactive
+                  websites, web applications, SaaS products, dashboards,
+                  portals and eCommerce interfaces.
+                </p>
+
+                <p
+                  className={`text-sm leading-7 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  React.js can be combined with TypeScript, Tailwind CSS,
+                  React Router, Node.js, Express, MongoDB and third-party APIs
+                  according to the architecture of your application.
+                </p>
+              </div>
+
+              <div
+                className={`p-6 rounded-2xl border ${
+                  d
+                    ? 'bg-white/[0.02] border-white/[0.06]'
+                    : 'bg-[#fafafa] border-gray-200'
+                }`}
+              >
+                <p
+                  className={`text-[12px] font-black uppercase tracking-widest mb-4 ${
+                    d ? 'text-gray-400' : 'text-gray-500'
+                  }`}
+                >
+                  React Development Expertise
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    'React Development',
+                    'React Development Services',
+                    'React Web Development',
+                    'React Website Development',
+                    'React Application Development',
+                    'React App Development',
+                    'React Frontend Development',
+                    'React.js Development',
+                    'React JS Development',
+                    'Custom React Development',
+                    'React UI Development',
+                    'React Dashboard Development',
+                    'React SaaS Development',
+                    'React eCommerce Development',
+                    'React API Integration',
+                    'React SPA Development',
+                    'React TypeScript Development',
+                    'React Component Development',
+                    'React Migration',
+                    'React Performance Optimization',
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className={`px-3 py-2 rounded-lg border text-[11px] font-semibold ${
+                        d
+                          ? 'bg-white/[0.03] border-white/[0.08] text-gray-300'
+                          : 'bg-white border-gray-200 text-gray-700'
+                      }`}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* QUALITY */}
         <section
           aria-labelledby="quality-heading"
-          className={`py-16 border-b ${
+          className={`py-11 border-b ${
             d
               ? 'border-white/[0.06] bg-[#050505]'
               : 'border-gray-100 bg-[#fafafa]'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
+            <div className="text-center mb-7">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
+                Frontend Engineering
+              </p>
+
               <h2
                 id="quality-heading"
-                className={`text-3xl font-black mb-3 ${
+                className={`text-3xl font-black mb-2 ${
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
@@ -860,8 +1106,9 @@ const ReactDevelopment = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                We consider more than visual implementation when developing a
-                React application.
+                Architecture, accessibility, testing, performance and
+                maintainability all affect the long-term quality of a React
+                application.
               </p>
             </div>
 
@@ -869,14 +1116,14 @@ const ReactDevelopment = ({ isDark }) => {
               {qualityAreas.map((item) => (
                 <div
                   key={item.title}
-                  className={`p-6 rounded-2xl border ${
+                  className={`p-5 rounded-2xl border ${
                     d
                       ? 'bg-white/[0.02] border-white/[0.06]'
                       : 'bg-white border-gray-200'
                   }`}
                 >
                   <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center mb-4 ${
+                    className={`w-9 h-9 rounded-xl flex items-center justify-center mb-3 ${
                       d
                         ? 'bg-purple-500/10 text-purple-400'
                         : 'bg-purple-50 text-purple-600'
@@ -886,7 +1133,7 @@ const ReactDevelopment = ({ isDark }) => {
                   </div>
 
                   <h3
-                    className={`text-[14px] font-bold mb-2 ${
+                    className={`text-[14px] font-bold mb-1.5 ${
                       d ? 'text-white' : 'text-gray-900'
                     }`}
                   >
@@ -906,82 +1153,22 @@ const ReactDevelopment = ({ isDark }) => {
           </div>
         </section>
 
-        {/* TECH STACK */}
+        {/* PROCESS */}
         <section
-          aria-labelledby="tech-heading"
-          className={`py-16 border-b ${
+          aria-labelledby="process-heading"
+          className={`py-11 border-b ${
             d ? 'border-white/[0.06]' : 'border-gray-100'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2
-                id="tech-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                React Technology Stack
-              </h2>
-
-              <p
-                className={`text-base ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                Technologies can be selected according to the application
-                architecture and project requirements.
+            <div className="text-center mb-7">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
+                Development Process
               </p>
-            </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {techStack.map((cat) => (
-                <div
-                  key={cat.category}
-                  className={`p-5 rounded-2xl border ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-[#fafafa] border-gray-200'
-                  }`}
-                >
-                  <p className="text-[11px] font-black uppercase tracking-widest mb-3 text-purple-500">
-                    {cat.category}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {cat.items.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`text-[11px] font-medium px-2.5 py-1 rounded-md border ${
-                          d
-                            ? 'bg-white/[0.04] border-white/[0.08] text-gray-300'
-                            : 'bg-white border-gray-200 text-gray-700'
-                        }`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PROCESS */}
-        <section
-          aria-labelledby="process-heading"
-          className={`py-16 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
               <h2
                 id="process-heading"
-                className={`text-3xl font-black mb-3 ${
+                className={`text-3xl font-black mb-2 ${
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
@@ -993,23 +1180,24 @@ const ReactDevelopment = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                A structured workflow from requirements and component planning
-                through development, testing and deployment.
+                A structured workflow from requirements and frontend
+                architecture through development, API integration, testing and
+                deployment.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-7">
               {process.map((step) => (
                 <div
                   key={step.n}
-                  className={`p-6 rounded-2xl border ${
+                  className={`p-5 rounded-2xl border ${
                     d
                       ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-white border-gray-200'
+                      : 'bg-[#fafafa] border-gray-200'
                   }`}
                 >
                   <div
-                    className={`text-[13px] font-black mb-3 ${
+                    className={`text-[13px] font-black mb-2 ${
                       d ? 'text-purple-400' : 'text-purple-600'
                     }`}
                   >
@@ -1017,7 +1205,7 @@ const ReactDevelopment = ({ isDark }) => {
                   </div>
 
                   <h3
-                    className={`text-[14px] font-bold mb-2 ${
+                    className={`text-[14px] font-bold mb-1.5 ${
                       d ? 'text-white' : 'text-gray-900'
                     }`}
                   >
@@ -1037,7 +1225,7 @@ const ReactDevelopment = ({ isDark }) => {
 
             <CtaStrip
               heading="Have an existing React application?"
-              sub="We can also discuss frontend improvements, API integration, refactoring and application modernisation."
+              sub="We can discuss frontend improvements, API integration, migration, refactoring and modernization."
             />
           </div>
         </section>
@@ -1045,15 +1233,21 @@ const ReactDevelopment = ({ isDark }) => {
         {/* FAQ */}
         <section
           aria-labelledby="faq-heading"
-          className={`py-16 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
+          className={`py-11 border-b ${
+            d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-gray-100 bg-[#fafafa]'
           }`}
         >
           <div className="max-w-4xl mx-auto px-6">
-            <div className="text-center mb-12">
+            <div className="text-center mb-7">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
+                Questions & Answers
+              </p>
+
               <h2
                 id="faq-heading"
-                className={`text-3xl font-black mb-3 ${
+                className={`text-3xl font-black mb-2 ${
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
@@ -1065,106 +1259,139 @@ const ReactDevelopment = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                Common questions about React development, integrations,
-                performance and project delivery.
+                Common questions about React development, developers,
+                applications, integrations and project delivery.
               </p>
             </div>
 
-            <div className="space-y-3 mb-12">
-              {faqs.map((faq, index) => (
-                <div
-                  key={faq.q}
-                  className={`rounded-xl border overflow-hidden transition-all duration-300 ${
-                    activeFaq === index
-                      ? d
-                        ? 'border-purple-500/40 bg-purple-600/5'
-                        : 'border-purple-200 bg-purple-50/50'
-                      : d
-                      ? 'border-white/[0.06] bg-white/[0.02]'
-                      : 'border-gray-200 bg-white'
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setActiveFaq(activeFaq === index ? null : index)
-                    }
-                    aria-expanded={activeFaq === index}
-                    className="w-full p-5 text-left flex items-start justify-between gap-4"
-                  >
-                    <span
-                      className={`text-[14px] font-bold ${
-                        activeFaq === index
-                          ? 'text-purple-500'
-                          : d
-                          ? 'text-white'
-                          : 'text-gray-900'
-                      }`}
-                    >
-                      {faq.q}
-                    </span>
+            <div className="space-y-2.5">
+              {visibleFaqs.map((faq, index) => {
+                const isOpen = activeFaq === index;
 
-                    <div
-                      className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${
-                        activeFaq === index
-                          ? 'bg-purple-600 text-white'
-                          : d
-                          ? 'bg-white/[0.06] text-gray-500'
-                          : 'bg-gray-100 text-gray-500'
-                      }`}
-                    >
-                      {activeFaq === index ? (
-                        <Minus size={13} />
-                      ) : (
-                        <Plus size={13} />
-                      )}
-                    </div>
-                  </button>
-
+                return (
                   <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      activeFaq === index
-                        ? 'max-h-[500px] opacity-100'
-                        : 'max-h-0 opacity-0'
+                    key={faq.q}
+                    className={`rounded-xl border overflow-hidden transition-all duration-300 ${
+                      isOpen
+                        ? d
+                          ? 'border-purple-500/40 bg-purple-600/5'
+                          : 'border-purple-200 bg-purple-50/50'
+                        : d
+                        ? 'border-white/[0.06] bg-white/[0.02]'
+                        : 'border-gray-200 bg-white'
                     }`}
                   >
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveFaq(isOpen ? null : index)
+                      }
+                      aria-expanded={isOpen}
+                      aria-controls={`react-faq-${index}`}
+                      className="w-full px-5 py-4 text-left flex items-start justify-between gap-4"
+                    >
+                      <span
+                        className={`text-[14px] font-bold ${
+                          isOpen
+                            ? 'text-purple-500'
+                            : d
+                            ? 'text-white'
+                            : 'text-gray-900'
+                        }`}
+                      >
+                        {faq.q}
+                      </span>
+
+                      <div
+                        className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${
+                          isOpen
+                            ? 'bg-purple-600 text-white'
+                            : d
+                            ? 'bg-white/[0.06] text-gray-500'
+                            : 'bg-gray-100 text-gray-500'
+                        }`}
+                      >
+                        {isOpen ? (
+                          <Minus size={13} />
+                        ) : (
+                          <Plus size={13} />
+                        )}
+                      </div>
+                    </button>
+
                     <div
-                      className={`px-5 pb-5 pt-0 border-t text-[14px] leading-relaxed ${
-                        d
-                          ? 'border-white/[0.06] text-gray-400'
-                          : 'border-purple-100 text-gray-600'
+                      id={`react-faq-${index}`}
+                      className={`overflow-hidden transition-all duration-300 ${
+                        isOpen
+                          ? 'max-h-[600px] opacity-100'
+                          : 'max-h-0 opacity-0'
                       }`}
                     >
-                      <p className="pt-4">{faq.a}</p>
+                      <div
+                        className={`px-5 pb-4 border-t text-[14px] leading-relaxed ${
+                          d
+                            ? 'border-white/[0.06] text-gray-400'
+                            : 'border-purple-100 text-gray-600'
+                        }`}
+                      >
+                        <p className="pt-3">{faq.a}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
-            <CtaStrip
-              heading="Have a question about your React project?"
-              sub="Share the requirements and we can discuss the frontend architecture, integrations and next steps."
-            />
+            {/* SHOW MORE / SHOW LESS */}
+            {faqs.length > 5 && (
+              <div className="flex justify-center mt-5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAllFaqs((prev) => !prev);
+                    setActiveFaq(null);
+                  }}
+                  aria-expanded={showAllFaqs}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm font-bold transition-all ${
+                    d
+                      ? 'border-purple-500/25 bg-purple-500/[0.07] text-purple-400 hover:bg-purple-500/[0.12]'
+                      : 'border-purple-200 bg-purple-50 text-purple-700 hover:bg-purple-100'
+                  }`}
+                >
+                  {showAllFaqs ? (
+                    <>
+                      Show Less
+                      <ChevronUp size={15} />
+                    </>
+                  ) : (
+                    <>
+                      Show More FAQs
+                      <ChevronDown size={15} />
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+
+            <div className="mt-7">
+              <CtaStrip
+                heading="Have a question about your React project?"
+                sub="Share your requirements and we can discuss the frontend architecture, integrations and next steps."
+              />
+            </div>
           </div>
         </section>
 
         {/* RELATED SERVICES */}
         <section
           aria-labelledby="related-services-heading"
-          className={`py-16 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
+          className={`py-11 border-b ${
+            d ? 'border-white/[0.06]' : 'border-gray-100'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-8">
-              <p
-                className={`text-[11px] font-black uppercase tracking-widest mb-2 ${
-                  d ? 'text-gray-600' : 'text-gray-400'
-                }`}
-              >
+            <div className="mb-6">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
                 Explore More
               </p>
 
@@ -1174,23 +1401,23 @@ const ReactDevelopment = ({ isDark }) => {
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
-                Related Services
+                Related Development Services
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-4">
               {relatedServices.map((service) => (
                 <Link
                   key={service.path}
                   to={service.path}
-                  className={`group p-7 md:p-9 rounded-3xl border transition-all duration-300 ${
+                  className={`group p-6 rounded-2xl border transition-all duration-300 ${
                     d
-                      ? 'bg-white/[0.02] border-white/[0.07] hover:bg-white/[0.04] hover:border-purple-500/30'
-                      : 'bg-white border-gray-200 hover:border-purple-200 hover:shadow-lg'
+                      ? 'bg-white/[0.02] border-white/[0.07] hover:border-purple-500/30'
+                      : 'bg-[#fafafa] border-gray-200 hover:border-purple-200'
                   }`}
                 >
                   <div
-                    className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-transform duration-300 group-hover:-translate-y-1 ${
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
                       d
                         ? 'bg-purple-500/10 text-purple-400'
                         : 'bg-purple-50 text-purple-600'
@@ -1200,7 +1427,7 @@ const ReactDevelopment = ({ isDark }) => {
                   </div>
 
                   <h3
-                    className={`text-xl font-black mb-4 ${
+                    className={`text-lg font-black mb-2 ${
                       d ? 'text-white' : 'text-gray-900'
                     }`}
                   >
@@ -1208,16 +1435,16 @@ const ReactDevelopment = ({ isDark }) => {
                   </h3>
 
                   <p
-                    className={`text-[15px] leading-7 mb-7 ${
+                    className={`text-[13px] leading-6 mb-4 ${
                       d ? 'text-gray-400' : 'text-gray-600'
                     }`}
                   >
                     {service.description}
                   </p>
 
-                  <span className="inline-flex items-center gap-3 text-sm font-bold text-purple-500 group-hover:gap-4 transition-all">
+                  <span className="inline-flex items-center gap-2 text-sm font-bold text-purple-500">
                     Learn More
-                    <ArrowRight size={16} />
+                    <ArrowRight size={15} />
                   </span>
                 </Link>
               ))}
@@ -1226,27 +1453,31 @@ const ReactDevelopment = ({ isDark }) => {
         </section>
 
         {/* FINAL CTA */}
-        <section className="py-16">
+        <section className="py-11">
           <div className="max-w-4xl mx-auto px-6">
             <div
-              className={`p-10 md:p-12 rounded-3xl border text-center ${
+              className={`p-8 md:p-9 rounded-3xl border text-center ${
                 d
                   ? 'bg-white/[0.02] border-white/[0.06]'
                   : 'bg-[#fafafa] border-gray-200'
               }`}
             >
               <div
-                className={`w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-6 ${
+                className={`w-12 h-12 mx-auto rounded-xl flex items-center justify-center mb-4 ${
                   d
                     ? 'bg-purple-500/10 text-purple-400'
                     : 'bg-purple-50 text-purple-600'
                 }`}
               >
-                <Code2 size={25} />
+                <Code2 size={23} />
               </div>
 
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
+                React Development Agency
+              </p>
+
               <h2
-                className={`text-3xl font-black mb-4 ${
+                className={`text-3xl font-black mb-3 ${
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
@@ -1254,28 +1485,19 @@ const ReactDevelopment = ({ isDark }) => {
               </h2>
 
               <p
-                className={`text-base mb-3 max-w-2xl mx-auto leading-relaxed ${
+                className={`text-base max-w-2xl mx-auto leading-relaxed mb-6 ${
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                Discuss your React frontend, SaaS interface, dashboard,
-                application modernisation or API integration requirements with
-                DevZore.
+                Discuss your React website, custom web application, SaaS
+                frontend, dashboard, eCommerce interface or API integration
+                requirements with DevZore.
               </p>
 
-              <p
-                className={`text-[13px] mb-8 ${
-                  d ? 'text-gray-600' : 'text-gray-400'
-                }`}
-              >
-                React · TypeScript · Next.js · React Router · TanStack Query ·
-                Tailwind CSS
-              </p>
-
-              <div className="flex flex-wrap gap-4 justify-center">
+              <div className="flex flex-wrap gap-3 justify-center">
                 <Link
                   to="/contact"
-                  className="flex items-center gap-2 px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
+                  className="flex items-center gap-2 px-7 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all"
                 >
                   Discuss Your React Project
                   <ArrowRight size={15} />
@@ -1285,17 +1507,17 @@ const ReactDevelopment = ({ isDark }) => {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-8 py-4 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+                  className="flex items-center gap-2 px-7 py-3.5 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
                 >
                   WhatsApp
                 </a>
 
                 <Link
                   to="/allservices"
-                  className={`flex items-center gap-2 px-8 py-4 font-bold rounded-xl text-sm border transition-all ${
+                  className={`flex items-center gap-2 px-7 py-3.5 font-bold rounded-xl text-sm border ${
                     d
-                      ? 'border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]'
-                      : 'border-gray-200 text-gray-700 hover:border-gray-300'
+                      ? 'border-white/10 text-gray-300'
+                      : 'border-gray-200 text-gray-700'
                   }`}
                 >
                   View All Services
@@ -1305,7 +1527,7 @@ const ReactDevelopment = ({ isDark }) => {
             </div>
           </div>
         </section>
-      </div>
+      </main>
     </>
   );
 };

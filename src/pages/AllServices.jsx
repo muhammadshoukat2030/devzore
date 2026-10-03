@@ -25,17 +25,22 @@ import {
   HeartHandshake,
 } from "lucide-react";
 
-const AllServices = ({ isDark }) => {
+const AllServices = ({ isDark = true }) => {
   const d = isDark;
 
   const [activeFilter, setActiveFilter] = useState("All");
   const [activeFaq, setActiveFaq] = useState(null);
+  const [showAllServices, setShowAllServices] = useState(false);
 
   const filters = ["All", "Web", "Mobile", "Backend", "Design", "Growth"];
 
+  // =========================================================
+  // SERVICES
+  // =========================================================
+
   const services = [
     {
-      icon: <Globe size={22} />,
+      icon: <Globe size={20} />,
       title: "Custom Web Development",
       subtitle: "React · Next.js · Node.js",
       path: "/web-development",
@@ -53,7 +58,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <Smartphone size={22} />,
+      icon: <Smartphone size={20} />,
       title: "Mobile App Development",
       subtitle: "React Native · iOS · Android",
       path: "/mobile-apps",
@@ -71,7 +76,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <ShoppingCart size={22} />,
+      icon: <ShoppingCart size={20} />,
       title: "E-Commerce Development",
       subtitle: "Stores · Payments · Admin Systems",
       path: "/ecommerce",
@@ -89,7 +94,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <Server size={22} />,
+      icon: <Server size={20} />,
       title: "Backend & API Development",
       subtitle: "Node.js · Express · REST APIs",
       path: "/backend-api",
@@ -107,7 +112,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <Layers size={22} />,
+      icon: <Layers size={20} />,
       title: "MERN Stack Development",
       subtitle: "MongoDB · Express · React · Node.js",
       path: "/mern-stack-development",
@@ -125,7 +130,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <TrendingUp size={22} />,
+      icon: <TrendingUp size={20} />,
       title: "SaaS Product Development",
       subtitle: "Subscriptions · Dashboards · SaaS",
       path: "/saas-product-development",
@@ -143,7 +148,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <Palette size={22} />,
+      icon: <Palette size={20} />,
       title: "UI/UX Design",
       subtitle: "Figma · Prototypes · Design Systems",
       path: "/ui-ux-design",
@@ -161,7 +166,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <Rocket size={22} />,
+      icon: <Rocket size={20} />,
       title: "Startup MVP Development",
       subtitle: "Planning · MVP · Launch",
       path: "/startup-mvp",
@@ -179,7 +184,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <Wrench size={22} />,
+      icon: <Wrench size={20} />,
       title: "Website Maintenance & Support",
       subtitle: "Updates · Security · Performance",
       path: "/maintenance",
@@ -197,7 +202,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <Code2 size={22} />,
+      icon: <Code2 size={20} />,
       title: "React Development",
       subtitle: "React · Components · Modern Frontend",
       path: "/reactdevelopment",
@@ -215,9 +220,9 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <Shield size={22} />,
+      icon: <Shield size={20} />,
       title: "Cloud & Deployment",
-      subtitle: "Vercel · AWS · CI/CD",
+      subtitle: "Vercel · Cloud · CI/CD",
       path: "/backend-api",
       filter: "Backend",
       tag: "Infrastructure",
@@ -233,7 +238,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <TrendingUp size={22} />,
+      icon: <TrendingUp size={20} />,
       title: "SEO Services",
       subtitle: "Technical · On-Page · Search",
       path: "/seo-services",
@@ -251,7 +256,7 @@ const AllServices = ({ isDark }) => {
       ],
     },
     {
-      icon: <Zap size={22} />,
+      icon: <Zap size={20} />,
       title: "Digital Marketing",
       subtitle: "Content · Social · Campaigns",
       path: "/digital-marketing",
@@ -269,6 +274,10 @@ const AllServices = ({ isDark }) => {
       ],
     },
   ];
+
+  // =========================================================
+  // PROCESS
+  // =========================================================
 
   const process = [
     {
@@ -299,15 +308,62 @@ const AllServices = ({ isDark }) => {
       n: "05",
       title: "Testing & QA",
       desc:
-        "The product is tested across relevant devices and workflows, with bugs and usability issues addressed before launch.",
+        "The product is tested across relevant devices and workflows, with important issues addressed before launch.",
     },
     {
       n: "06",
       title: "Launch & Support",
       desc:
-        "We prepare the production deployment and can continue supporting improvements, maintenance and future development.",
+        "We prepare the production deployment and can continue supporting maintenance, improvements and future development.",
     },
   ];
+
+  // =========================================================
+  // WHY DEVZORE
+  // =========================================================
+
+  const reasons = [
+    {
+      icon: <UsersRound size={17} />,
+      title: "Direct Communication",
+      desc:
+        "Clear communication throughout planning, development and delivery.",
+    },
+    {
+      icon: <Code2 size={17} />,
+      title: "Maintainable Code",
+      desc:
+        "Code organised for easier maintenance, updates and future development.",
+    },
+    {
+      icon: <Gauge size={17} />,
+      title: "Performance Focus",
+      desc:
+        "Performance is considered throughout frontend and backend development.",
+    },
+    {
+      icon: <LockKeyhole size={17} />,
+      title: "Security-Conscious",
+      desc:
+        "Authentication, validation and secure development practices are considered where applicable.",
+    },
+    {
+      icon: <Layers size={17} />,
+      title: "Scalable Architecture",
+      desc:
+        "Technical decisions are made with future product development in mind.",
+    },
+    {
+      icon: <HeartHandshake size={17} />,
+      title: "Ongoing Support",
+      desc:
+        "Maintenance and continued development can be provided after launch.",
+    },
+  ];
+
+  // =========================================================
+  // FAQ
+  // =========================================================
 
   const faqs = [
     {
@@ -352,44 +408,9 @@ const AllServices = ({ isDark }) => {
     },
   ];
 
-  const reasons = [
-    {
-      icon: <UsersRound size={17} />,
-      title: "Direct Communication",
-      desc:
-        "Clear communication throughout planning, development and delivery.",
-    },
-    {
-      icon: <Code2 size={17} />,
-      title: "Maintainable Code",
-      desc:
-        "Code organised for easier maintenance, updates and future development.",
-    },
-    {
-      icon: <Gauge size={17} />,
-      title: "Performance Focus",
-      desc:
-        "Performance is considered throughout frontend and backend development.",
-    },
-    {
-      icon: <LockKeyhole size={17} />,
-      title: "Security-Conscious",
-      desc:
-        "Authentication, validation and secure development practices are considered where applicable.",
-    },
-    {
-      icon: <Layers size={17} />,
-      title: "Scalable Architecture",
-      desc:
-        "Technical decisions are made with future product development in mind.",
-    },
-    {
-      icon: <HeartHandshake size={17} />,
-      title: "Ongoing Support",
-      desc:
-        "Maintenance and continued development can be provided after launch.",
-    },
-  ];
+  // =========================================================
+  // COLORS
+  // =========================================================
 
   const tagColors = {
     purple: d
@@ -433,10 +454,19 @@ const AllServices = ({ isDark }) => {
       : "bg-red-50 text-red-700 border-red-200",
   };
 
+  // =========================================================
+  // FILTERING
+  // =========================================================
+
   const filteredServices =
     activeFilter === "All"
       ? services
       : services.filter((service) => service.filter === activeFilter);
+
+  const displayedServices =
+    activeFilter === "All" && !showAllServices
+      ? filteredServices.slice(0, 6)
+      : filteredServices;
 
   const scrollTop = () => {
     window.scrollTo({
@@ -445,6 +475,10 @@ const AllServices = ({ isDark }) => {
       behavior: "smooth",
     });
   };
+
+  // =========================================================
+  // STRUCTURED DATA
+  // =========================================================
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -503,12 +537,10 @@ const AllServices = ({ isDark }) => {
 
   return (
     <>
-      {/*
-        Global title, description, canonical, robots, Open Graph
-        and Twitter metadata are handled by SEOManager in App.jsx.
+      {/* =====================================================
+          STRUCTURED DATA
+      ===================================================== */}
 
-        This page only adds page-specific structured data.
-      */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema)}
@@ -523,23 +555,28 @@ const AllServices = ({ isDark }) => {
         </script>
       </Helmet>
 
-      <div
+      <main
         className={`min-h-screen transition-colors duration-300 ${
           d ? "bg-[#030303]" : "bg-white"
         }`}
       >
-        {/* HERO */}
+        {/* =====================================================
+            HERO
+        ===================================================== */}
+
         <section
           aria-labelledby="allservices-heading"
-          className={`pt-28 pb-14 border-b ${
+          className={`pt-20 sm:pt-24 pb-8 sm:pb-10 border-b ${
             d ? "border-white/[0.06]" : "border-gray-100"
           }`}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-[1.08fr_0.92fr] gap-7 lg:gap-10 items-center">
+              {/* LEFT */}
+
               <div>
                 <div
-                  className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest mb-6 border ${
+                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 border ${
                     d
                       ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
                       : "bg-purple-50 border-purple-200 text-purple-700"
@@ -551,43 +588,40 @@ const AllServices = ({ isDark }) => {
 
                 <h1
                   id="allservices-heading"
-                  className={`text-4xl lg:text-5xl xl:text-6xl font-black tracking-tight leading-[1.08] mb-6 ${
+                  className={`text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight leading-[1.1] mb-4 ${
                     d ? "text-white" : "text-gray-900"
                   }`}
                 >
                   Digital Products Built Around{" "}
-                  <span className="text-purple-600">
-                    Your Business
-                  </span>
+                  <span className="text-purple-600">Your Business</span>
                 </h1>
 
                 <p
-                  className={`text-lg leading-relaxed max-w-2xl mb-5 ${
+                  className={`text-[13px] sm:text-sm leading-relaxed max-w-2xl mb-3 ${
                     d ? "text-gray-400" : "text-gray-600"
                   }`}
                 >
-                  DevZore provides web development, mobile app
-                  development, SaaS engineering, e-commerce,
-                  backend development, UI/UX design and other
-                  digital services for startups and businesses.
+                  DevZore provides web development, mobile app development,
+                  SaaS engineering, e-commerce, backend development, UI/UX
+                  design and digital growth services for startups and
+                  businesses.
                 </p>
 
                 <p
-                  className={`text-[15px] leading-relaxed max-w-2xl mb-8 ${
+                  className={`text-[12px] sm:text-[13px] leading-relaxed max-w-2xl mb-5 ${
                     d ? "text-gray-500" : "text-gray-500"
                   }`}
                 >
-                  From initial planning to design, development,
-                  deployment and ongoing support, our services can
-                  be combined around the requirements of your
-                  project.
+                  From initial planning to design, development, deployment and
+                  ongoing support, services can be combined according to the
+                  actual requirements of your project.
                 </p>
 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-2.5">
                   <Link
                     to="/contact"
                     onClick={scrollTop}
-                    className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-xs sm:text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
                   >
                     Discuss Your Project
                     <ArrowRight size={14} />
@@ -595,7 +629,7 @@ const AllServices = ({ isDark }) => {
 
                   <a
                     href="#services"
-                    className={`flex items-center gap-2 px-6 py-3 font-bold rounded-xl text-sm border transition-all ${
+                    className={`inline-flex items-center gap-2 px-5 py-2.5 font-bold rounded-xl text-xs sm:text-sm border transition-all ${
                       d
                         ? "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]"
                         : "border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50"
@@ -607,8 +641,9 @@ const AllServices = ({ isDark }) => {
                 </div>
               </div>
 
-              {/* Hero value cards */}
-              <div className="grid sm:grid-cols-2 gap-3">
+              {/* RIGHT */}
+
+              <div className="grid grid-cols-2 gap-2.5">
                 {[
                   {
                     icon: <Layers size={18} />,
@@ -623,7 +658,7 @@ const AllServices = ({ isDark }) => {
                   {
                     icon: <Shield size={18} />,
                     title: "Reliable Architecture",
-                    desc: "Maintainability and security considered throughout development.",
+                    desc: "Maintainability and security considered during development.",
                   },
                   {
                     icon: <HeartHandshake size={18} />,
@@ -633,14 +668,14 @@ const AllServices = ({ isDark }) => {
                 ].map((item) => (
                   <div
                     key={item.title}
-                    className={`p-5 rounded-2xl border ${
+                    className={`p-3.5 sm:p-4 rounded-xl border ${
                       d
                         ? "bg-white/[0.02] border-white/[0.06]"
                         : "bg-gray-50 border-gray-200"
                     }`}
                   >
                     <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center mb-4 ${
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center mb-2.5 ${
                         d
                           ? "bg-purple-500/10 text-purple-400"
                           : "bg-purple-50 text-purple-600"
@@ -650,7 +685,7 @@ const AllServices = ({ isDark }) => {
                     </div>
 
                     <h2
-                      className={`text-[14px] font-bold mb-1 ${
+                      className={`text-[11px] sm:text-[12px] font-bold mb-1 ${
                         d ? "text-white" : "text-gray-900"
                       }`}
                     >
@@ -658,7 +693,7 @@ const AllServices = ({ isDark }) => {
                     </h2>
 
                     <p
-                      className={`text-[12px] leading-relaxed ${
+                      className={`text-[9px] sm:text-[10px] leading-relaxed ${
                         d ? "text-gray-500" : "text-gray-500"
                       }`}
                     >
@@ -671,61 +706,76 @@ const AllServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* FILTER */}
+        {/* =====================================================
+            FILTER
+        ===================================================== */}
+
         <div
-          className={`py-5 border-b sticky top-[70px] z-40 ${
+          className={`py-3 border-b sticky top-[70px] z-40 ${
             d
               ? "bg-[#030303]/95 border-white/[0.06] backdrop-blur-xl"
               : "bg-white/95 border-gray-100 backdrop-blur-xl"
           }`}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-wrap gap-2">
-              {filters.map((filter) => (
-                <button
-                  key={filter}
-                  type="button"
-                  onClick={() => setActiveFilter(filter)}
-                  aria-pressed={activeFilter === filter}
-                  className={`px-4 py-2 rounded-lg text-[12px] font-semibold transition-all duration-200 border ${
-                    activeFilter === filter
-                      ? "bg-purple-600 text-white border-purple-600 shadow-[0_0_16px_rgba(124,58,237,0.25)]"
-                      : d
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap gap-1.5">
+              {filters.map((filter) => {
+                const count =
+                  filter === "All"
+                    ? services.length
+                    : services.filter((service) => service.filter === filter)
+                        .length;
+
+                return (
+                  <button
+                    key={filter}
+                    type="button"
+                    onClick={() => {
+                      setActiveFilter(filter);
+                      setShowAllServices(false);
+                    }}
+                    aria-pressed={activeFilter === filter}
+                    className={`px-3 py-1.5 rounded-lg text-[10px] sm:text-[11px] font-semibold transition-all border ${
+                      activeFilter === filter
+                        ? "bg-purple-600 text-white border-purple-600 shadow-[0_0_14px_rgba(124,58,237,0.22)]"
+                        : d
                         ? "bg-white/[0.03] border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.06]"
                         : "bg-white border-gray-200 text-gray-500 hover:text-gray-900 hover:border-gray-300"
-                  }`}
-                >
-                  {filter}
+                    }`}
+                  >
+                    {filter}
 
-                  {filter === "All" && (
                     <span
-                      className={`ml-1.5 text-[10px] px-1.5 py-0.5 rounded-full ${
-                        activeFilter === "All"
-                          ? "bg-white/20"
+                      className={`ml-1.5 text-[9px] px-1.5 py-0.5 rounded-full ${
+                        activeFilter === filter
+                          ? "bg-white/20 text-white"
                           : d
-                            ? "bg-white/[0.08] text-gray-500"
-                            : "bg-gray-100 text-gray-400"
+                          ? "bg-white/[0.06] text-gray-500"
+                          : "bg-gray-100 text-gray-400"
                       }`}
                     >
-                      {services.length}
+                      {count}
                     </span>
-                  )}
-                </button>
-              ))}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
 
-        {/* SERVICES */}
+        {/* =====================================================
+            SERVICES
+        ===================================================== */}
+
         <section
           id="services"
           aria-labelledby="services-heading"
-          className="py-16"
+          className="py-8 sm:py-10 scroll-mt-28"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-2xl mb-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mb-6">
               <p
-                className={`text-[11px] font-black uppercase tracking-[0.25em] mb-3 ${
+                className={`text-[9px] sm:text-[10px] font-black uppercase tracking-[0.22em] mb-2 ${
                   d ? "text-purple-400" : "text-purple-600"
                 }`}
               >
@@ -734,7 +784,7 @@ const AllServices = ({ isDark }) => {
 
               <h2
                 id="services-heading"
-                className={`text-3xl font-black tracking-tight ${
+                className={`text-2xl sm:text-3xl font-black tracking-tight ${
                   d ? "text-white" : "text-gray-900"
                 }`}
               >
@@ -742,40 +792,31 @@ const AllServices = ({ isDark }) => {
               </h2>
 
               <p
-                className={`mt-3 text-[15px] leading-relaxed ${
+                className={`mt-2 text-[12px] sm:text-[13px] leading-relaxed ${
                   d ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                Select a service to learn more about the
-                technologies, capabilities and development approach
-                available for your project.
+                Select a service to explore its capabilities, technologies and
+                development approach.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {filteredServices.map((service) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {displayedServices.map((service) => (
                 <Link
                   to={service.path}
                   key={service.title}
                   onClick={scrollTop}
                   aria-label={`Learn more about ${service.title}`}
-                  className={`group flex flex-col p-6 rounded-2xl border transition-all duration-300 ${
+                  className={`group flex flex-col p-4 rounded-xl border transition-all duration-300 ${
                     d
-                      ? "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-purple-500/25 hover:shadow-[0_0_24px_rgba(124,58,237,0.06)]"
-                      : "bg-white border-gray-200 hover:border-purple-200 hover:shadow-md"
+                      ? "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-purple-500/25"
+                      : "bg-white border-gray-200 hover:border-purple-200 hover:shadow-sm"
                   }`}
                 >
-                  <span
-                    className={`self-start text-[10px] font-bold px-2.5 py-1 rounded-full border mb-4 ${
-                      tagColors[service.tagColor]
-                    }`}
-                  >
-                    {service.tag}
-                  </span>
-
-                  <div className="flex items-start gap-4 mb-4">
+                  <div className="flex items-center justify-between gap-3 mb-3">
                     <div
-                      className={`w-10 h-10 rounded-xl border flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
+                      className={`w-9 h-9 rounded-lg border flex items-center justify-center shrink-0 transition-all ${
                         d
                           ? "bg-white/[0.04] border-white/[0.08] text-purple-400 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-600"
                           : "bg-purple-50 border-purple-100 text-purple-600 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-600"
@@ -784,60 +825,67 @@ const AllServices = ({ isDark }) => {
                       {service.icon}
                     </div>
 
-                    <div>
-                      <h3
-                        className={`text-[15px] font-bold leading-tight mb-1 ${
-                          d ? "text-white" : "text-gray-900"
-                        }`}
-                      >
-                        {service.title}
-                      </h3>
-
-                      <p
-                        className={`text-[11px] font-medium ${
-                          d ? "text-gray-500" : "text-gray-400"
-                        }`}
-                      >
-                        {service.subtitle}
-                      </p>
-                    </div>
+                    <span
+                      className={`text-[9px] font-bold px-2 py-1 rounded-full border ${
+                        tagColors[service.tagColor]
+                      }`}
+                    >
+                      {service.tag}
+                    </span>
                   </div>
 
+                  <h3
+                    className={`text-[13px] sm:text-[14px] font-bold leading-tight mb-1 ${
+                      d ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    {service.title}
+                  </h3>
+
                   <p
-                    className={`text-[13px] leading-relaxed mb-5 flex-grow ${
+                    className={`text-[9px] sm:text-[10px] font-medium mb-2.5 ${
+                      d ? "text-gray-500" : "text-gray-400"
+                    }`}
+                  >
+                    {service.subtitle}
+                  </p>
+
+                  <p
+                    className={`text-[11px] sm:text-[12px] leading-relaxed mb-3 ${
                       d ? "text-gray-400" : "text-gray-600"
                     }`}
                   >
                     {service.desc}
                   </p>
 
-                  <ul className="space-y-2 mb-5">
-                    {service.points.map((point) => (
+                  <ul className="space-y-1.5 mb-3">
+                    {service.points.slice(0, 4).map((point) => (
                       <li
                         key={point}
-                        className={`flex items-start gap-2 text-[12px] leading-relaxed ${
+                        className={`flex items-start gap-2 text-[10px] sm:text-[11px] leading-relaxed ${
                           d ? "text-gray-400" : "text-gray-600"
                         }`}
                       >
                         <CheckCircle
-                          size={12}
-                          className="text-purple-500 flex-shrink-0 mt-0.5"
+                          size={11}
+                          className="text-purple-500 shrink-0 mt-0.5"
                         />
+
                         {point}
                       </li>
                     ))}
                   </ul>
 
                   <div
-                    className={`flex items-center gap-1.5 text-[12px] font-semibold pt-4 border-t mt-auto ${
+                    className={`flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold pt-3 border-t mt-auto ${
                       d
                         ? "border-white/[0.06] text-purple-400"
                         : "border-gray-100 text-purple-600"
                     }`}
                   >
-                    Explore service
+                    Explore Service
                     <ArrowRight
-                      size={13}
+                      size={11}
                       className="group-hover:translate-x-1 transition-transform"
                     />
                   </div>
@@ -845,37 +893,65 @@ const AllServices = ({ isDark }) => {
               ))}
             </div>
 
-            {/* Visible internal links */}
+            {/* SHOW ALL */}
+
+            {activeFilter === "All" && services.length > 6 && (
+              <div className="text-center mt-5">
+                <button
+                  type="button"
+                  onClick={() => setShowAllServices((prev) => !prev)}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-[11px] sm:text-xs font-bold border transition-all ${
+                    showAllServices
+                      ? d
+                        ? "border-white/10 text-gray-300 hover:bg-white/[0.04]"
+                        : "border-gray-200 text-gray-700 hover:bg-gray-50"
+                      : "bg-purple-600 border-purple-600 text-white hover:bg-purple-700"
+                  }`}
+                >
+                  {showAllServices
+                    ? "Show Fewer Services"
+                    : `View All ${services.length} Services`}
+
+                  <ArrowRight
+                    size={12}
+                    className={showAllServices ? "-rotate-90" : "rotate-90"}
+                  />
+                </button>
+              </div>
+            )}
+
+            {/* INTERNAL LINKS */}
+
             <div
-              className={`mt-12 p-6 sm:p-8 rounded-2xl border ${
+              className={`mt-7 p-4 sm:p-5 rounded-xl border ${
                 d
                   ? "bg-white/[0.02] border-white/[0.06]"
                   : "bg-[#fafafa] border-gray-200"
               }`}
             >
               <h2
-                className={`text-[13px] font-black uppercase tracking-widest mb-5 ${
-                  d ? "text-gray-400" : "text-gray-500"
+                className={`text-[9px] sm:text-[10px] font-black uppercase tracking-widest mb-3 ${
+                  d ? "text-gray-500" : "text-gray-500"
                 }`}
               >
-                Explore All DevZore Services
+                Explore DevZore Services
               </h2>
 
               <nav aria-label="DevZore service pages">
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {services.map((service) => (
                     <Link
                       key={`${service.title}-${service.path}`}
                       to={service.path}
                       onClick={scrollTop}
-                      className={`flex items-center gap-1.5 text-[12px] font-semibold px-3 py-2 rounded-lg border transition-all ${
+                      className={`inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-semibold px-2.5 py-1.5 rounded-lg border transition-all ${
                         d
                           ? "bg-white/[0.03] border-white/[0.08] text-gray-400 hover:border-purple-500/30 hover:text-purple-400 hover:bg-purple-600/10"
                           : "bg-white border-gray-200 text-gray-600 hover:border-purple-200 hover:text-purple-700 hover:bg-purple-50"
                       }`}
                     >
                       {service.title}
-                      <ArrowRight size={10} />
+                      <ArrowRight size={9} />
                     </Link>
                   ))}
                 </div>
@@ -884,19 +960,22 @@ const AllServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* PROCESS */}
+        {/* =====================================================
+            PROCESS
+        ===================================================== */}
+
         <section
           aria-labelledby="process-heading"
-          className={`py-16 border-t border-b ${
+          className={`py-8 sm:py-10 border-t border-b ${
             d
               ? "border-white/[0.06] bg-[#050505]"
               : "border-gray-100 bg-[#fafafa]"
           }`}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-12 text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-6 text-center">
               <div
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4 border ${
+                className={`inline-flex items-center px-3 py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-3 border ${
                   d
                     ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
                     : "bg-purple-50 border-purple-200 text-purple-700"
@@ -907,7 +986,7 @@ const AllServices = ({ isDark }) => {
 
               <h2
                 id="process-heading"
-                className={`text-3xl font-black mb-3 ${
+                className={`text-2xl sm:text-3xl font-black mb-2 ${
                   d ? "text-white" : "text-gray-900"
                 }`}
               >
@@ -915,29 +994,28 @@ const AllServices = ({ isDark }) => {
               </h2>
 
               <p
-                className={`text-base max-w-2xl mx-auto ${
+                className={`text-[12px] sm:text-[13px] max-w-2xl mx-auto leading-relaxed ${
                   d ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                A structured workflow keeps requirements,
-                development and delivery easier to understand
-                throughout the project.
+                A structured workflow keeps requirements, development and
+                delivery easier to understand throughout the project.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {process.map((step) => (
                 <div
                   key={step.n}
-                  className={`p-6 rounded-2xl border transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     d
                       ? "bg-white/[0.02] border-white/[0.06] hover:border-purple-500/20"
                       : "bg-white border-gray-200 hover:border-purple-200 hover:shadow-sm"
                   }`}
                 >
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex items-center gap-3 mb-2">
                     <span
-                      className={`text-[13px] font-black ${
+                      className={`text-[11px] font-black ${
                         d ? "text-purple-400" : "text-purple-600"
                       }`}
                     >
@@ -952,7 +1030,7 @@ const AllServices = ({ isDark }) => {
                   </div>
 
                   <h3
-                    className={`text-[14px] font-bold mb-2 ${
+                    className={`text-[12px] sm:text-[13px] font-bold mb-1.5 ${
                       d ? "text-white" : "text-gray-900"
                     }`}
                   >
@@ -960,7 +1038,7 @@ const AllServices = ({ isDark }) => {
                   </h3>
 
                   <p
-                    className={`text-[13px] leading-relaxed ${
+                    className={`text-[10px] sm:text-[11px] leading-relaxed ${
                       d ? "text-gray-400" : "text-gray-600"
                     }`}
                   >
@@ -970,31 +1048,34 @@ const AllServices = ({ isDark }) => {
               ))}
             </div>
 
-            <div className="text-center mt-10">
+            <div className="text-center mt-5">
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-xs transition-all"
               >
                 Discuss Your Project
-                <ArrowRight size={15} />
+                <ArrowRight size={13} />
               </Link>
             </div>
           </div>
         </section>
 
-        {/* WHY DEVZORE */}
+        {/* =====================================================
+            WHY DEVZORE
+        ===================================================== */}
+
         <section
           aria-labelledby="why-devzore-heading"
-          className={`py-16 border-b ${
+          className={`py-8 sm:py-10 border-b ${
             d ? "border-white/[0.06]" : "border-gray-100"
           }`}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-12 items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-7 lg:gap-10 items-center">
               <div>
                 <div
-                  className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest mb-5 border ${
+                  className={`inline-flex items-center px-3 py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-3 border ${
                     d
                       ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
                       : "bg-purple-50 border-purple-200 text-purple-700"
@@ -1005,7 +1086,7 @@ const AllServices = ({ isDark }) => {
 
                 <h2
                   id="why-devzore-heading"
-                  className={`text-3xl font-black mb-5 ${
+                  className={`text-2xl sm:text-3xl font-black mb-3 ${
                     d ? "text-white" : "text-gray-900"
                   }`}
                 >
@@ -1013,42 +1094,41 @@ const AllServices = ({ isDark }) => {
                 </h2>
 
                 <p
-                  className={`text-base leading-relaxed mb-7 ${
+                  className={`text-[12px] sm:text-[13px] leading-relaxed mb-4 ${
                     d ? "text-gray-400" : "text-gray-600"
                   }`}
                 >
-                  Our approach combines product requirements,
-                  interface design, development and technical
-                  planning so each part of the project works
-                  together.
+                  Our approach combines product requirements, interface design,
+                  development and technical planning so each part of the
+                  project works together.
                 </p>
 
                 <Link
                   to="/about"
                   onClick={scrollTop}
-                  className={`inline-flex items-center gap-2 text-[13px] font-semibold ${
+                  className={`inline-flex items-center gap-2 text-[11px] sm:text-xs font-semibold ${
                     d
                       ? "text-purple-400 hover:text-purple-300"
                       : "text-purple-600 hover:text-purple-700"
                   }`}
                 >
-                  Learn more about DevZore
-                  <ArrowRight size={13} />
+                  Learn More About DevZore
+                  <ArrowRight size={12} />
                 </Link>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-2.5">
                 {reasons.map((reason) => (
                   <div
                     key={reason.title}
-                    className={`p-5 rounded-2xl border ${
+                    className={`flex items-start gap-3 p-3.5 rounded-xl border ${
                       d
                         ? "bg-white/[0.02] border-white/[0.06]"
                         : "bg-[#fafafa] border-gray-200"
                     }`}
                   >
                     <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center mb-4 ${
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
                         d
                           ? "bg-purple-500/10 text-purple-400"
                           : "bg-purple-50 text-purple-600"
@@ -1057,21 +1137,23 @@ const AllServices = ({ isDark }) => {
                       {reason.icon}
                     </div>
 
-                    <h3
-                      className={`text-[14px] font-bold mb-1.5 ${
-                        d ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      {reason.title}
-                    </h3>
+                    <div>
+                      <h3
+                        className={`text-[11px] sm:text-[12px] font-bold mb-0.5 ${
+                          d ? "text-white" : "text-gray-900"
+                        }`}
+                      >
+                        {reason.title}
+                      </h3>
 
-                    <p
-                      className={`text-[12px] leading-relaxed ${
-                        d ? "text-gray-500" : "text-gray-500"
-                      }`}
-                    >
-                      {reason.desc}
-                    </p>
+                      <p
+                        className={`text-[9px] sm:text-[10px] leading-relaxed ${
+                          d ? "text-gray-500" : "text-gray-500"
+                        }`}
+                      >
+                        {reason.desc}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1079,19 +1161,22 @@ const AllServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* FAQ */}
+        {/* =====================================================
+            FAQ
+        ===================================================== */}
+
         <section
           aria-labelledby="faq-heading"
-          className={`py-16 border-b ${
+          className={`py-8 sm:py-10 border-b ${
             d
               ? "border-white/[0.06] bg-[#050505]"
               : "border-gray-100 bg-[#fafafa]"
           }`}
         >
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="mb-12 text-center">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-6 text-center">
               <div
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest mb-4 border ${
+                className={`inline-flex items-center px-3 py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-3 border ${
                   d
                     ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
                     : "bg-purple-50 border-purple-200 text-purple-700"
@@ -1102,7 +1187,7 @@ const AllServices = ({ isDark }) => {
 
               <h2
                 id="faq-heading"
-                className={`text-3xl font-black mb-3 ${
+                className={`text-2xl sm:text-3xl font-black mb-2 ${
                   d ? "text-white" : "text-gray-900"
                 }`}
               >
@@ -1110,16 +1195,16 @@ const AllServices = ({ isDark }) => {
               </h2>
 
               <p
-                className={`text-base ${
+                className={`text-[12px] sm:text-[13px] ${
                   d ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                Common questions about DevZore services and the
-                development process.
+                Common questions about DevZore services and our development
+                process.
               </p>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-2">
               {faqs.map((faq, index) => {
                 const isActive = activeFaq === index;
 
@@ -1132,8 +1217,8 @@ const AllServices = ({ isDark }) => {
                           ? "border-purple-500/40 bg-purple-600/5"
                           : "border-purple-200 bg-purple-50/50"
                         : d
-                          ? "border-white/[0.06] bg-white/[0.02] hover:border-white/[0.1]"
-                          : "border-gray-200 bg-white hover:border-gray-300"
+                        ? "border-white/[0.06] bg-white/[0.02] hover:border-white/[0.1]"
+                        : "border-gray-200 bg-white hover:border-gray-300"
                     }`}
                   >
                     <button
@@ -1143,33 +1228,33 @@ const AllServices = ({ isDark }) => {
                       }
                       aria-expanded={isActive}
                       aria-controls={`faq-answer-${index}`}
-                      className="w-full p-5 text-left flex items-start justify-between gap-4"
+                      className="w-full p-3.5 sm:p-4 text-left flex items-center justify-between gap-4"
                     >
                       <span
-                        className={`text-[14px] font-bold leading-snug ${
+                        className={`text-[11px] sm:text-[13px] font-bold leading-snug ${
                           isActive
                             ? "text-purple-500"
                             : d
-                              ? "text-white"
-                              : "text-gray-900"
+                            ? "text-white"
+                            : "text-gray-900"
                         }`}
                       >
                         {faq.q}
                       </span>
 
                       <div
-                        className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
+                        className={`shrink-0 w-6 h-6 rounded-lg flex items-center justify-center transition-all ${
                           isActive
                             ? "bg-purple-600 text-white"
                             : d
-                              ? "bg-white/[0.06] text-gray-500"
-                              : "bg-gray-100 text-gray-500"
+                            ? "bg-white/[0.06] text-gray-500"
+                            : "bg-gray-100 text-gray-500"
                         }`}
                       >
                         {isActive ? (
-                          <Minus size={13} />
+                          <Minus size={12} />
                         ) : (
-                          <Plus size={13} />
+                          <Plus size={12} />
                         )}
                       </div>
                     </button>
@@ -1183,13 +1268,13 @@ const AllServices = ({ isDark }) => {
                       }`}
                     >
                       <div
-                        className={`px-5 pb-5 pt-0 border-t text-[14px] leading-relaxed ${
+                        className={`px-4 pb-4 border-t text-[11px] sm:text-[12px] leading-relaxed ${
                           d
                             ? "border-white/[0.06] text-gray-400"
                             : "border-purple-100 text-gray-600"
                         }`}
                       >
-                        <p className="pt-4">{faq.a}</p>
+                        <p className="pt-3">{faq.a}</p>
                       </div>
                     </div>
                   </div>
@@ -1199,65 +1284,82 @@ const AllServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* FINAL CTA */}
+        {/* =====================================================
+            FINAL CTA
+        ===================================================== */}
+
         <section
           aria-labelledby="services-contact-heading"
-          className="py-16"
+          className="py-9 sm:py-10"
         >
-          <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div
-              className={`w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-6 ${
-                d ? "bg-purple-600/15" : "bg-purple-50"
+              className={`relative overflow-hidden text-center p-6 sm:p-7 rounded-2xl border ${
+                d
+                  ? "bg-purple-600/[0.05] border-purple-500/15"
+                  : "bg-purple-50 border-purple-100"
               }`}
             >
-              <MessageSquare
-                size={24}
-                className="text-purple-500"
+              <div
+                aria-hidden="true"
+                className="absolute -top-28 left-1/2 -translate-x-1/2 w-72 h-72 bg-purple-600/10 blur-[90px] rounded-full pointer-events-none"
               />
-            </div>
 
-            <h2
-              id="services-contact-heading"
-              className={`text-3xl font-black mb-4 ${
-                d ? "text-white" : "text-gray-900"
-              }`}
-            >
-              Have a Project in Mind?
-            </h2>
+              <div className="relative z-10">
+                <div
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center mx-auto mb-3 ${
+                    d
+                      ? "bg-purple-600/15 text-purple-400"
+                      : "bg-white text-purple-600"
+                  }`}
+                >
+                  <MessageSquare size={19} />
+                </div>
 
-            <p
-              className={`text-base mb-8 max-w-xl mx-auto leading-relaxed ${
-                d ? "text-gray-400" : "text-gray-600"
-              }`}
-            >
-              Tell us what you want to build and we can discuss
-              the requirements, suitable technology and next steps
-              for your project.
-            </p>
+                <h2
+                  id="services-contact-heading"
+                  className={`text-xl sm:text-2xl font-black mb-2 ${
+                    d ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  Have a Project in Mind?
+                </h2>
 
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link
-                to="/contact"
-                onClick={scrollTop}
-                className="flex items-center gap-2 px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
-              >
-                Contact DevZore
-                <ArrowRight size={15} />
-              </Link>
+                <p
+                  className={`text-xs sm:text-[13px] mb-5 max-w-xl mx-auto leading-relaxed ${
+                    d ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
+                  Tell us what you want to build and we can discuss the
+                  requirements, suitable technology and next steps for your
+                  project.
+                </p>
 
-              <a
-                href="https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20a%20project."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-8 py-4 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
-              >
-                WhatsApp Us
-                <ArrowRight size={15} />
-              </a>
+                <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 justify-center">
+                  <Link
+                    to="/contact"
+                    onClick={scrollTop}
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-xs sm:text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                  >
+                    Contact DevZore
+                    <ArrowRight size={14} />
+                  </Link>
+
+                  <a
+                    href="https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20a%20project."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-xs sm:text-sm hover:bg-[#25D366]/20 transition-all"
+                  >
+                    WhatsApp Us
+                    <ArrowRight size={14} />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-      </div>
+      </main>
     </>
   );
 };

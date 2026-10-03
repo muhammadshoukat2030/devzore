@@ -21,6 +21,14 @@ import {
   Server,
   TrendingUp,
   Smartphone,
+  Building2,
+  Rocket,
+  BriefcaseBusiness,
+  Gauge,
+  ShoppingCart,
+  Wrench,
+  Palette,
+  CircleCheckBig,
 } from "lucide-react";
 
 const WebDevelopment = ({ isDark }) => {
@@ -28,45 +36,155 @@ const WebDevelopment = ({ isDark }) => {
   const [activeFaq, setActiveFaq] = useState(null);
 
   /* =====================================================
+     CAPABILITIES
+  ===================================================== */
+
+  const capabilities = [
+    {
+      title: "Business Websites",
+      desc: "Professional, responsive websites for companies and growing businesses.",
+    },
+    {
+      title: "Custom Web Applications",
+      desc: "Dashboards, portals, management systems and internal business tools.",
+    },
+    {
+      title: "E-Commerce Platforms",
+      desc: "Online stores with products, orders, payments and business workflows.",
+    },
+    {
+      title: "SaaS Applications",
+      desc: "User accounts, subscriptions, dashboards and product workflows.",
+    },
+    {
+      title: "Backend & API Integration",
+      desc: "Databases, REST APIs and third-party service integrations.",
+    },
+    {
+      title: "Performance & SEO Foundations",
+      desc: "Responsive delivery, technical structure and performance optimisation.",
+    },
+  ];
+
+  /* =====================================================
      WHAT WE BUILD
   ===================================================== */
 
   const whatWeBuild = [
     {
-      icon: <Database size={22} />,
+      icon: <BriefcaseBusiness size={22} />,
       color: "blue",
-      title: "Business Web Applications & Internal Tools",
-      desc: "Custom CRM systems, HR platforms, inventory tools, project management systems and internal dashboards designed around your business workflows.",
+      title: "Business Website Development",
+      desc: "Professional business websites designed to clearly present your company, services and value while giving potential customers an easy path to contact you.",
     },
     {
       icon: <Monitor size={22} />,
       color: "purple",
-      title: "Corporate & Business Websites",
-      desc: "Professional business websites and landing pages built with modern technologies, responsive layouts, clean architecture and search-friendly foundations.",
+      title: "Corporate & Company Websites",
+      desc: "Modern company websites with responsive layouts, service pages, conversion-focused calls to action and a maintainable content structure.",
     },
     {
-      icon: <Zap size={22} />,
-      color: "yellow",
-      title: "E-Commerce & Marketplace Platforms",
-      desc: "Custom e-commerce storefronts, B2B ordering systems and marketplace solutions with payment, product, inventory and order-management integrations.",
+      icon: <Database size={22} />,
+      color: "blue",
+      title: "Custom Web Applications",
+      desc: "Custom CRM systems, portals, inventory tools, management systems and internal dashboards built around real business workflows.",
     },
     {
-      icon: <Search size={22} />,
+      icon: <ShoppingCart size={22} />,
       color: "green",
-      title: "Analytics Dashboards & Data Platforms",
-      desc: "Reporting interfaces, business dashboards and data visualisation platforms with filtering, charts, role-based access and export capabilities.",
+      title: "E-Commerce Development",
+      desc: "Custom online stores and commerce platforms with product management, payments, inventory, customer accounts and order workflows.",
     },
     {
       icon: <Layers size={22} />,
       color: "orange",
-      title: "SaaS Products & Subscription Platforms",
+      title: "SaaS & Subscription Platforms",
       desc: "SaaS applications with authentication, subscriptions, dashboards, user management, permissions and scalable backend architecture.",
     },
     {
       icon: <RefreshCw size={22} />,
       color: "gray",
-      title: "Legacy System Modernisation",
-      desc: "Modernisation of older websites and applications using current frontend and backend technologies while preserving important business data and workflows.",
+      title: "Website Redesign & Modernisation",
+      desc: "Redesign and modernisation for outdated websites that need improved usability, mobile responsiveness, performance or a stronger professional presence.",
+    },
+  ];
+
+  /* =====================================================
+     BUSINESS WEBSITE TYPES
+  ===================================================== */
+
+  const websiteTypes = [
+    {
+      icon: <Building2 size={19} />,
+      title: "Small Business Websites",
+      desc: "Professional websites for small businesses that need a credible online presence, clear service information and stronger customer enquiries.",
+    },
+    {
+      icon: <Rocket size={19} />,
+      title: "Startup Websites",
+      desc: "Modern startup websites designed to communicate your product, value proposition and next action clearly to early customers and partners.",
+    },
+    {
+      icon: <BriefcaseBusiness size={19} />,
+      title: "Professional Service Websites",
+      desc: "Websites for consultants, agencies and service businesses that need to explain expertise, services and contact options professionally.",
+    },
+    {
+      icon: <Globe size={19} />,
+      title: "Company Websites",
+      desc: "Structured company websites for organisations that need service pages, company information, resources and conversion-focused contact journeys.",
+    },
+  ];
+
+  /* =====================================================
+     PROBLEMS / REDESIGN
+  ===================================================== */
+
+  const problems = [
+    "Your website looks outdated or no longer represents your business",
+    "The website is difficult to use on mobile devices",
+    "Pages load slowly or important assets are poorly optimised",
+    "Visitors struggle to understand your services or next steps",
+    "Your current website is difficult to update or maintain",
+    "You need new functionality, integrations or business workflows",
+    "The website has weak technical SEO foundations",
+    "Your business has grown beyond the capabilities of the current website",
+  ];
+
+  /* =====================================================
+     FEATURES INCLUDED
+  ===================================================== */
+
+  const included = [
+    {
+      icon: <Smartphone size={18} />,
+      title: "Responsive Development",
+      desc: "Layouts designed to work across mobile, tablet and desktop screen sizes.",
+    },
+    {
+      icon: <Gauge size={18} />,
+      title: "Performance Focus",
+      desc: "Attention to asset optimisation, rendering, page speed and Core Web Vitals.",
+    },
+    {
+      icon: <Search size={18} />,
+      title: "SEO-Friendly Foundations",
+      desc: "Semantic structure, metadata support, crawlable pages and technical SEO considerations.",
+    },
+    {
+      icon: <Lock size={18} />,
+      title: "Security Considerations",
+      desc: "Validation, authentication and secure configuration applied where relevant.",
+    },
+    {
+      icon: <Server size={18} />,
+      title: "API & Database Integration",
+      desc: "Backend services, databases and third-party APIs integrated according to requirements.",
+    },
+    {
+      icon: <Settings size={18} />,
+      title: "Maintainable Architecture",
+      desc: "Reusable components and organised application structure for future development.",
     },
   ];
 
@@ -97,15 +215,33 @@ const WebDevelopment = ({ isDark }) => {
     },
     {
       category: "Database",
-      items: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Prisma ORM"],
+      items: [
+        "MongoDB",
+        "PostgreSQL",
+        "MySQL",
+        "Redis",
+        "Prisma ORM",
+      ],
     },
     {
-      category: "Cloud & DevOps",
-      items: ["AWS", "Vercel", "DigitalOcean", "Docker", "GitHub Actions"],
+      category: "Cloud & Deployment",
+      items: [
+        "AWS",
+        "Vercel",
+        "DigitalOcean",
+        "Docker",
+        "GitHub Actions",
+      ],
     },
     {
-      category: "Payments",
-      items: ["Stripe", "PayPal", "JazzCash", "Easypaisa", "Razorpay"],
+      category: "Payments & Integrations",
+      items: [
+        "Stripe",
+        "PayPal",
+        "JazzCash",
+        "Easypaisa",
+        "Third-Party APIs",
+      ],
     },
     {
       category: "SEO & Performance",
@@ -126,33 +262,33 @@ const WebDevelopment = ({ isDark }) => {
   const process = [
     {
       n: "01",
-      title: "Discovery & Project Scoping",
-      desc: "We discuss your business goals, users, required features, workflows, integrations and technical requirements before development begins.",
+      title: "Discovery & Requirements",
+      desc: "We discuss your business, target users, website goals, required pages, functionality, integrations and project priorities.",
     },
     {
       n: "02",
-      title: "Architecture & Technology Planning",
-      desc: "We select an appropriate frontend, backend, database and deployment approach based on the requirements and expected growth of the project.",
+      title: "Planning & Architecture",
+      desc: "The website structure, technical requirements, development approach and appropriate technology stack are planned around the project.",
     },
     {
       n: "03",
-      title: "UI/UX Design & Prototyping",
-      desc: "Important screens, layouts and user flows can be designed and reviewed before development so the product direction is clear.",
+      title: "UI/UX & Interface Planning",
+      desc: "Important layouts, user journeys and interface decisions are prepared so visitors can navigate the website clearly.",
     },
     {
       n: "04",
-      title: "Development",
-      desc: "The approved product is developed using reusable components, maintainable code and structured frontend and backend architecture.",
+      title: "Web Development",
+      desc: "Frontend, backend and required integrations are developed using reusable components and maintainable application architecture.",
     },
     {
       n: "05",
       title: "Testing & Optimisation",
-      desc: "We test important functionality, responsive layouts, browser compatibility, security considerations and performance before launch.",
+      desc: "Important functionality, responsive layouts, browser compatibility, performance and technical requirements are reviewed before launch.",
     },
     {
       n: "06",
-      title: "Deployment & Support",
-      desc: "The application is prepared for production deployment, and ongoing maintenance or technical support can be provided based on project requirements.",
+      title: "Launch & Ongoing Support",
+      desc: "The website is prepared for production deployment, with maintenance and future development available when required.",
     },
   ];
 
@@ -162,34 +298,89 @@ const WebDevelopment = ({ isDark }) => {
 
   const whyUs = [
     {
-      icon: <Code2 size={16} />,
+      icon: <Code2 size={17} />,
       title: "Modern Development Stack",
-      desc: "We use modern frontend and backend technologies selected around the requirements of each project.",
+      desc: "Modern frontend and backend technologies are selected according to the requirements of the project.",
     },
     {
-      icon: <Shield size={16} />,
-      title: "Source Code Ownership",
-      desc: "Project source code and agreed deliverables are handed over according to the project agreement, helping you maintain control of your software.",
+      icon: <Shield size={17} />,
+      title: "Source Code Handover",
+      desc: "Source code, repositories and agreed deliverables can be handed over according to the project agreement.",
     },
     {
-      icon: <Zap size={16} />,
+      icon: <Zap size={17} />,
       title: "Performance Focus",
-      desc: "We consider page speed, responsive design, asset optimisation and Core Web Vitals throughout development.",
+      desc: "Responsive design, loading performance and frontend optimisation are considered throughout development.",
     },
     {
-      icon: <Lock size={16} />,
+      icon: <Lock size={17} />,
       title: "Security-Conscious Development",
-      desc: "Authentication, validation, permissions, secure configuration and other security practices are considered according to project requirements.",
+      desc: "Authentication, validation, permissions and secure configuration are considered where applicable.",
     },
     {
-      icon: <Settings size={16} />,
-      title: "Maintainable Architecture",
-      desc: "Projects are structured around reusable components, clear application logic and technologies that can be maintained as the product evolves.",
+      icon: <Settings size={17} />,
+      title: "Maintainable Development",
+      desc: "Projects are structured to make future maintenance, improvements and feature development easier.",
     },
     {
-      icon: <Clock size={16} />,
+      icon: <Clock size={17} />,
       title: "Clear Communication",
-      desc: "We keep project requirements, progress, feedback and deliverables organised so clients can understand how development is moving forward.",
+      desc: "Requirements, progress, feedback and project deliverables are kept organised throughout development.",
+    },
+  ];
+
+  /* =====================================================
+     INDUSTRIES
+  ===================================================== */
+
+  const industries = [
+    {
+      name: "Startups & SaaS",
+      desc: "Product websites and web applications",
+    },
+    {
+      name: "Professional Services",
+      desc: "Company and service websites",
+    },
+    {
+      name: "E-Commerce & Retail",
+      desc: "Stores and commerce platforms",
+    },
+    {
+      name: "Real Estate",
+      desc: "Property websites and portals",
+    },
+    {
+      name: "Healthcare",
+      desc: "Business websites and digital workflows",
+    },
+    {
+      name: "Restaurants & Hospitality",
+      desc: "Service, booking and business websites",
+    },
+    {
+      name: "Education",
+      desc: "Learning and management platforms",
+    },
+    {
+      name: "Construction",
+      desc: "Company websites and project systems",
+    },
+    {
+      name: "Travel & Tourism",
+      desc: "Tour, service and booking platforms",
+    },
+    {
+      name: "Fitness & Wellness",
+      desc: "Business and membership websites",
+    },
+    {
+      name: "Logistics",
+      desc: "Operations and tracking systems",
+    },
+    {
+      name: "Consulting & Agencies",
+      desc: "Lead-focused professional websites",
     },
   ];
 
@@ -199,36 +390,44 @@ const WebDevelopment = ({ isDark }) => {
 
   const faqs = [
     {
-      q: "How much does custom web development cost?",
-      a: "The cost depends on your project requirements, number of features, design complexity, integrations and backend requirements. After reviewing your project, DevZore can provide a proposal with the expected scope, deliverables and estimated timeline.",
+      q: "I need a website for my business. Where should I start?",
+      a: "Start by defining what the website needs to achieve, who your customers are, which services or products need to be presented and what actions visitors should take. DevZore can review these requirements and recommend an appropriate website structure and development approach.",
     },
     {
-      q: "How long does a web development project take?",
-      a: "Development time depends on the size and complexity of the project. A business website generally requires less time than a custom dashboard, marketplace or SaaS platform. We estimate the timeline after understanding the required features and workflows.",
+      q: "How much does a professional business website cost?",
+      a: "Website cost depends on the number of pages, design requirements, custom functionality, integrations, content requirements and backend features. After reviewing the scope, DevZore can provide an estimate based on the actual project requirements.",
     },
     {
-      q: "What is the difference between a website and a web application?",
-      a: "A website primarily presents information and content, while a web application usually includes interactive functionality such as accounts, dashboards, forms, databases, workflows, bookings or other user-driven features. DevZore can develop both.",
+      q: "How long does website development take?",
+      a: "The timeline depends on scope and complexity. A focused business website generally requires less development time than a custom web application, marketplace or SaaS platform. The expected timeline can be estimated after the requirements are reviewed.",
+    },
+    {
+      q: "Can you redesign my existing business website?",
+      a: "Yes. An existing website can be reviewed for design, mobile responsiveness, usability, performance, technical structure and required functionality before a redesign or modernisation plan is prepared.",
+    },
+    {
+      q: "Do you build websites for small businesses and startups?",
+      a: "Yes. DevZore develops websites for startups, small businesses and growing companies. The structure and technology can be adapted according to the business model, content, functionality and expected future requirements.",
     },
     {
       q: "Do you build SEO-friendly websites?",
-      a: "Yes. SEO considerations can include semantic HTML, responsive design, page performance, structured data, canonical URLs, XML sitemaps, metadata and search-friendly rendering depending on the technology and project requirements.",
+      a: "SEO considerations can include semantic HTML, responsive design, page performance, metadata, canonical URLs, structured data, XML sitemaps and crawlable page architecture depending on the project.",
     },
     {
-      q: "Can you build scalable web applications?",
-      a: "Yes. Application architecture can be planned around expected traffic, database requirements, caching, APIs, deployment infrastructure and future product growth.",
+      q: "What is the difference between a website and a web application?",
+      a: "A website commonly focuses on presenting information, services or content. A web application usually includes more interactive functionality such as user accounts, dashboards, databases, bookings, management workflows or other application features.",
     },
     {
-      q: "Do you work with international clients?",
-      a: "Yes. DevZore can work remotely with businesses and clients internationally, using online communication, project-management and collaboration tools throughout the project.",
+      q: "Do you use React and Next.js for web development?",
+      a: "React or Next.js can be used depending on the requirements. Technology is selected according to the interface, functionality, rendering requirements, SEO considerations and overall architecture of the project.",
     },
     {
-      q: "Do you use React or Next.js for web development?",
-      a: "We can use React or Next.js depending on the project. React is well suited to interactive applications and dashboards, while Next.js provides additional rendering and routing options that can be useful for content-heavy and search-focused websites.",
+      q: "Can DevZore work with clients remotely?",
+      a: "Yes. DevZore can work remotely with businesses and founders using online meetings, messaging, project-management tools and shared development workflows.",
     },
     {
-      q: "Will I receive the source code?",
-      a: "Source-code ownership and handover are defined as part of the project agreement. DevZore can provide the repository, agreed project assets and technical handover required for continued maintenance and development.",
+      q: "Will I receive my website source code?",
+      a: "Source-code ownership, repositories, project assets and handover requirements can be clearly defined in the project agreement before development begins.",
     },
   ];
 
@@ -243,10 +442,10 @@ const WebDevelopment = ({ isDark }) => {
       title: "MERN Stack Development",
       subtitle: "MongoDB · Express · React · Node",
       description:
-        "Full-stack JavaScript development for business applications, dashboards and modern digital products.",
+        "Full-stack JavaScript development for custom web applications, dashboards and digital products.",
       points: [
         "Frontend & backend development",
-        "Database integration",
+        "MongoDB integration",
         "Authentication & APIs",
       ],
       path: "/mern-stack-development",
@@ -258,7 +457,7 @@ const WebDevelopment = ({ isDark }) => {
       title: "Backend & API Development",
       subtitle: "Node.js · Express · REST APIs",
       description:
-        "Backend systems and APIs for web applications, mobile apps and third-party integrations.",
+        "Backend systems and APIs for websites, applications, mobile products and third-party integrations.",
       points: [
         "REST API development",
         "Authentication & permissions",
@@ -268,12 +467,27 @@ const WebDevelopment = ({ isDark }) => {
       color: "orange",
     },
     {
+      badge: "Commerce",
+      icon: <ShoppingCart size={21} />,
+      title: "E-Commerce Development",
+      subtitle: "Stores · Payments · Orders",
+      description:
+        "E-commerce development for businesses that need online stores, payment integrations and order workflows.",
+      points: [
+        "Online store development",
+        "Payment integrations",
+        "Product & order management",
+      ],
+      path: "/ecommerce",
+      color: "green",
+    },
+    {
       badge: "Product",
       icon: <TrendingUp size={21} />,
       title: "SaaS Product Development",
-      subtitle: "Dashboards · Billing · SaaS",
+      subtitle: "Users · Billing · Dashboards",
       description:
-        "End-to-end development for SaaS platforms with users, dashboards, subscriptions and business workflows.",
+        "Development for SaaS platforms with users, dashboards, subscriptions and business workflows.",
       points: [
         "SaaS architecture",
         "Subscription workflows",
@@ -314,6 +528,56 @@ const WebDevelopment = ({ isDark }) => {
       : "bg-gray-100 border-gray-200 text-gray-600",
   };
 
+  const relatedColorMap = {
+    purple: {
+      badge: d
+        ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
+        : "bg-purple-50 border-purple-200 text-purple-600",
+      icon: d
+        ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
+        : "bg-purple-50 border-purple-100 text-purple-600",
+    },
+
+    orange: {
+      badge: d
+        ? "bg-orange-500/10 border-orange-500/20 text-orange-400"
+        : "bg-orange-50 border-orange-200 text-orange-600",
+      icon: d
+        ? "bg-orange-500/10 border-orange-500/20 text-orange-400"
+        : "bg-orange-50 border-orange-100 text-orange-600",
+    },
+
+    green: {
+      badge: d
+        ? "bg-green-500/10 border-green-500/20 text-green-400"
+        : "bg-green-50 border-green-200 text-green-600",
+      icon: d
+        ? "bg-green-500/10 border-green-500/20 text-green-400"
+        : "bg-green-50 border-green-100 text-green-600",
+    },
+
+    blue: {
+      badge: d
+        ? "bg-blue-500/10 border-blue-500/20 text-blue-400"
+        : "bg-blue-50 border-blue-200 text-blue-600",
+      icon: d
+        ? "bg-blue-500/10 border-blue-500/20 text-blue-400"
+        : "bg-blue-50 border-blue-100 text-blue-600",
+    },
+  };
+
+  /* =====================================================
+     HELPERS
+  ===================================================== */
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
   /* =====================================================
      STRUCTURED DATA
   ===================================================== */
@@ -324,7 +588,7 @@ const WebDevelopment = ({ isDark }) => {
     "@id": "https://devzore.com/web-development#service",
     name: "Web Development Services",
     description:
-      "Custom web development services for business websites, web applications, SaaS platforms, e-commerce systems and digital products.",
+      "Professional web development services for business websites, custom web applications, e-commerce platforms, SaaS products and website redesign projects.",
     url: "https://devzore.com/web-development",
     serviceType: "Web Development",
     provider: {
@@ -333,7 +597,10 @@ const WebDevelopment = ({ isDark }) => {
       name: "DevZore",
       url: "https://devzore.com/",
     },
-    areaServed: "Worldwide",
+    areaServed: {
+      "@type": "Place",
+      name: "Worldwide",
+    },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Web Development Services",
@@ -390,7 +657,7 @@ const WebDevelopment = ({ isDark }) => {
     <>
       {/* =====================================================
           STRUCTURED DATA
-          Title/meta/canonical are managed centrally in App.jsx
+          Main SEO metadata is handled by SEOManager in App.jsx
       ===================================================== */}
 
       <Helmet>
@@ -399,11 +666,11 @@ const WebDevelopment = ({ isDark }) => {
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
+          {JSON.stringify(breadcrumbSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
+          {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
 
@@ -423,7 +690,7 @@ const WebDevelopment = ({ isDark }) => {
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-14 items-center">
+            <div className="grid lg:grid-cols-[1.08fr_0.92fr] gap-12 items-center">
               <div>
                 <div className="flex flex-wrap gap-3 mb-6">
                   <div
@@ -434,7 +701,7 @@ const WebDevelopment = ({ isDark }) => {
                     }`}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                    Web Development
+                    Web Development Services
                   </div>
 
                   <div
@@ -445,70 +712,86 @@ const WebDevelopment = ({ isDark }) => {
                     }`}
                   >
                     <Globe size={11} />
-                    Worldwide Clients
+                    Remote Projects
                   </div>
                 </div>
 
                 <h1
                   id="webdev-heading"
-                  className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-5 ${
+                  className={`text-4xl lg:text-5xl xl:text-[56px] font-black tracking-tight leading-[1.08] mb-6 ${
                     d ? "text-white" : "text-gray-900"
                   }`}
                 >
-                  Custom Web Development{" "}
+                  Professional Web Development{" "}
                   <span className="text-purple-600">
-                    Built for Modern Businesses
+                    for Modern Businesses
                   </span>
                 </h1>
 
                 <p
-                  className={`text-lg font-semibold mb-5 ${
+                  className={`text-lg leading-relaxed mb-5 max-w-2xl ${
                     d ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
-                  React · Next.js · Node.js · APIs · Business Applications
+                  Need a professional website for your business?
+                  DevZore provides custom web development services for
+                  startups, small businesses and growing companies that need
+                  responsive, maintainable and professionally built websites.
                 </p>
 
                 <p
-                  className={`text-base leading-relaxed mb-5 ${
+                  className={`text-[15px] leading-relaxed mb-8 max-w-2xl ${
                     d ? "text-gray-400" : "text-gray-600"
                   }`}
                 >
-                  DevZore builds professional websites and custom web
-                  applications for startups and businesses. From corporate
-                  websites and dashboards to e-commerce systems and SaaS
-                  products, we develop digital solutions around real business
-                  requirements.
-                </p>
-
-                <p
-                  className={`text-base leading-relaxed mb-8 ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  Our development approach focuses on responsive interfaces,
-                  maintainable architecture, performance, security and
-                  search-friendly foundations so your product is prepared for
-                  long-term use and growth.
+                  From business websites and custom web applications to
+                  e-commerce platforms, SaaS products and website redesigns,
+                  we develop digital solutions around your users, workflows
+                  and business requirements.
                 </p>
 
                 <div className="flex flex-wrap gap-3">
                   <Link
                     to="/contact"
+                    onClick={scrollTop}
                     className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
                   >
-                    Get a Web Development Quote
+                    Get a Website Quote
                     <ArrowRight size={14} />
                   </Link>
 
                   <a
-                    href="https://wa.me/923348004300?text=Hi%20DevZore!%20I%20would%20like%20to%20discuss%20a%20web%20development%20project."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+                    href="#website-services"
+                    className={`flex items-center gap-2 px-6 py-3 font-bold rounded-xl text-sm border transition-all ${
+                      d
+                        ? "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]"
+                        : "border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50"
+                    }`}
                   >
-                    WhatsApp Us
+                    Explore Web Services
+                    <ArrowRight size={14} />
                   </a>
+                </div>
+
+                <div className="flex flex-wrap gap-x-6 gap-y-2 mt-7">
+                  {[
+                    "Responsive Development",
+                    "Custom Solutions",
+                    "SEO-Aware Structure",
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className={`flex items-center gap-2 text-[12px] font-medium ${
+                        d ? "text-gray-500" : "text-gray-500"
+                      }`}
+                    >
+                      <CircleCheckBig
+                        size={13}
+                        className="text-purple-500"
+                      />
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
 
@@ -530,35 +813,10 @@ const WebDevelopment = ({ isDark }) => {
                 </p>
 
                 <div className="space-y-4">
-                  {[
-                    {
-                      title: "Business Websites",
-                      desc: "Responsive and professionally structured company websites",
-                    },
-                    {
-                      title: "Custom Web Applications",
-                      desc: "Dashboards, portals, management systems and internal tools",
-                    },
-                    {
-                      title: "E-Commerce Platforms",
-                      desc: "Products, orders, payments and business workflows",
-                    },
-                    {
-                      title: "SaaS Applications",
-                      desc: "Authentication, subscriptions, dashboards and user management",
-                    },
-                    {
-                      title: "Backend & API Integration",
-                      desc: "REST APIs, databases and third-party service integrations",
-                    },
-                    {
-                      title: "Performance Optimisation",
-                      desc: "Responsive delivery, asset optimisation and Core Web Vitals",
-                    },
-                  ].map((item) => (
+                  {capabilities.map((item) => (
                     <div
                       key={item.title}
-                      className={`flex items-start gap-3 pb-4 border-b last:border-0 ${
+                      className={`flex items-start gap-3 pb-4 border-b last:border-0 last:pb-0 ${
                         d ? "border-white/[0.05]" : "border-gray-100"
                       }`}
                     >
@@ -577,7 +835,7 @@ const WebDevelopment = ({ isDark }) => {
                         </p>
 
                         <p
-                          className={`text-[11px] leading-relaxed ${
+                          className={`text-[11px] leading-relaxed mt-0.5 ${
                             d ? "text-gray-500" : "text-gray-500"
                           }`}
                         >
@@ -589,7 +847,7 @@ const WebDevelopment = ({ isDark }) => {
                 </div>
 
                 <div
-                  className={`mt-5 p-3 rounded-xl ${
+                  className={`mt-6 p-3 rounded-xl ${
                     d ? "bg-purple-600/5" : "bg-purple-50"
                   }`}
                 >
@@ -598,7 +856,8 @@ const WebDevelopment = ({ isDark }) => {
                       d ? "text-purple-400" : "text-purple-700"
                     }`}
                   >
-                    Available for remote web development projects worldwide
+                    Custom website and web application development
+                  based on your project requirements
                   </p>
                 </div>
               </div>
@@ -611,6 +870,7 @@ const WebDevelopment = ({ isDark }) => {
         ===================================================== */}
 
         <section
+          id="website-services"
           aria-labelledby="whatwebuild-heading"
           className={`py-16 border-b ${
             d
@@ -627,7 +887,7 @@ const WebDevelopment = ({ isDark }) => {
                     : "bg-purple-50 border-purple-200 text-purple-700"
                 }`}
               >
-                What We Build
+                Web Development Solutions
               </div>
 
               <h2
@@ -636,7 +896,7 @@ const WebDevelopment = ({ isDark }) => {
                   d ? "text-white" : "text-gray-900"
                 }`}
               >
-                Web Development Solutions for Different Business Needs
+                Websites and Web Applications Built Around Your Business
               </h2>
 
               <p
@@ -644,9 +904,10 @@ const WebDevelopment = ({ isDark }) => {
                   d ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                We build websites and web applications around the workflows,
-                users and technical requirements of each project instead of
-                relying on a one-size-fits-all solution.
+                Whether you need a new business website, a custom web
+                application or a redesign of an existing website, the
+                development approach should match what your business and
+                users actually need.
               </p>
             </div>
 
@@ -669,7 +930,7 @@ const WebDevelopment = ({ isDark }) => {
                   </div>
 
                   <h3
-                    className={`text-[14px] font-bold mb-2 ${
+                    className={`text-[15px] font-bold mb-2 ${
                       d ? "text-white" : "text-gray-900"
                     }`}
                   >
@@ -690,24 +951,327 @@ const WebDevelopment = ({ isDark }) => {
         </section>
 
         {/* =====================================================
+            BUSINESS / SMALL BUSINESS INTENT
+        ===================================================== */}
+
+        <section
+          aria-labelledby="business-websites-heading"
+          className={`py-16 border-b ${
+            d ? "border-white/[0.06]" : "border-gray-100"
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-[0.82fr_1.18fr] gap-12 items-center">
+              <div>
+                <p
+                  className={`text-[11px] font-black uppercase tracking-[0.2em] mb-4 ${
+                    d ? "text-purple-400" : "text-purple-600"
+                  }`}
+                >
+                  Business Website Development
+                </p>
+
+                <h2
+                  id="business-websites-heading"
+                  className={`text-3xl font-black mb-5 ${
+                    d ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  Need a Website for Your Business?
+                </h2>
+
+                <p
+                  className={`text-base leading-relaxed mb-4 ${
+                    d ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
+                  A professional business website should do more than simply
+                  put your company online. It should clearly explain what you
+                  offer, build confidence in your business and make it easy
+                  for potential customers to take the next step.
+                </p>
+
+                <p
+                  className={`text-[14px] leading-relaxed mb-7 ${
+                    d ? "text-gray-500" : "text-gray-500"
+                  }`}
+                >
+                  DevZore develops custom business websites for companies,
+                  startups and service providers that need a modern,
+                  mobile-friendly website designed around their actual
+                  services and customers.
+                </p>
+
+                <Link
+                  to="/contact"
+                  onClick={scrollTop}
+                  className="inline-flex items-center gap-2 text-[13px] font-bold text-purple-500 hover:text-purple-400"
+                >
+                  Discuss Your Business Website
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                {websiteTypes.map((item) => (
+                  <article
+                    key={item.title}
+                    className={`p-5 rounded-2xl border ${
+                      d
+                        ? "bg-white/[0.02] border-white/[0.06]"
+                        : "bg-[#fafafa] border-gray-200"
+                    }`}
+                  >
+                    <div
+                      className={`w-9 h-9 rounded-xl flex items-center justify-center mb-4 ${
+                        d
+                          ? "bg-purple-500/10 text-purple-400"
+                          : "bg-purple-50 text-purple-600"
+                      }`}
+                    >
+                      {item.icon}
+                    </div>
+
+                    <h3
+                      className={`text-[14px] font-bold mb-2 ${
+                        d ? "text-white" : "text-gray-900"
+                      }`}
+                    >
+                      {item.title}
+                    </h3>
+
+                    <p
+                      className={`text-[12px] leading-relaxed ${
+                        d ? "text-gray-500" : "text-gray-500"
+                      }`}
+                    >
+                      {item.desc}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            INCLUDED
+        ===================================================== */}
+
+        <section
+          aria-labelledby="included-heading"
+          className={`py-16 border-b ${
+            d
+              ? "border-white/[0.06] bg-[#050505]"
+              : "border-gray-100 bg-[#fafafa]"
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center max-w-2xl mx-auto mb-11">
+              <p
+                className={`text-[11px] font-black uppercase tracking-[0.2em] mb-3 ${
+                  d ? "text-purple-400" : "text-purple-600"
+                }`}
+              >
+                Development Foundations
+              </p>
+
+              <h2
+                id="included-heading"
+                className={`text-3xl font-black mb-4 ${
+                  d ? "text-white" : "text-gray-900"
+                }`}
+              >
+                What We Consider During Website Development
+              </h2>
+
+              <p
+                className={`text-base leading-relaxed ${
+                  d ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                The exact implementation depends on your project, but these
+                areas form an important part of modern professional web
+                development.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {included.map((item) => (
+                <article
+                  key={item.title}
+                  className={`p-5 rounded-2xl border ${
+                    d
+                      ? "bg-white/[0.02] border-white/[0.06]"
+                      : "bg-white border-gray-200"
+                  }`}
+                >
+                  <div
+                    className={`w-9 h-9 rounded-xl flex items-center justify-center mb-4 ${
+                      d
+                        ? "bg-purple-500/10 text-purple-400"
+                        : "bg-purple-50 text-purple-600"
+                    }`}
+                  >
+                    {item.icon}
+                  </div>
+
+                  <h3
+                    className={`text-[14px] font-bold mb-1.5 ${
+                      d ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
+
+                  <p
+                    className={`text-[12px] leading-relaxed ${
+                      d ? "text-gray-500" : "text-gray-500"
+                    }`}
+                  >
+                    {item.desc}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            REDESIGN / PROBLEMS
+        ===================================================== */}
+
+        <section
+          aria-labelledby="redesign-heading"
+          className={`py-16 border-b ${
+            d ? "border-white/[0.06]" : "border-gray-100"
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div
+                  className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${
+                    d
+                      ? "bg-orange-500/10 text-orange-400"
+                      : "bg-orange-50 text-orange-600"
+                  }`}
+                >
+                  <Wrench size={20} />
+                </div>
+
+                <h2
+                  id="redesign-heading"
+                  className={`text-3xl font-black mb-5 ${
+                    d ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  Is Your Current Website Holding Your Business Back?
+                </h2>
+
+                <p
+                  className={`text-base leading-relaxed mb-4 ${
+                    d ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
+                  Not every business needs to start from zero. If your
+                  existing website is slow, outdated, difficult to use or no
+                  longer supports your business requirements, a website
+                  redesign or technical modernisation may be more appropriate.
+                </p>
+
+                <p
+                  className={`text-[14px] leading-relaxed mb-7 ${
+                    d ? "text-gray-500" : "text-gray-500"
+                  }`}
+                >
+                  We can review the existing website and determine which
+                  areas need design, development, performance or technical
+                  improvements before planning the next version.
+                </p>
+
+                <Link
+                  to="/contact"
+                  onClick={scrollTop}
+                  className="inline-flex items-center gap-2 text-[13px] font-bold text-purple-500"
+                >
+                  Discuss a Website Redesign
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+
+              <div
+                className={`p-6 rounded-2xl border ${
+                  d
+                    ? "bg-white/[0.02] border-white/[0.06]"
+                    : "bg-[#fafafa] border-gray-200"
+                }`}
+              >
+                <p
+                  className={`text-[12px] font-black uppercase tracking-widest mb-5 ${
+                    d ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  Common Reasons for a Redesign
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {problems.map((problem) => (
+                    <div
+                      key={problem}
+                      className={`flex items-start gap-2.5 p-3 rounded-xl ${
+                        d ? "bg-white/[0.025]" : "bg-white"
+                      }`}
+                    >
+                      <CheckCircle
+                        size={13}
+                        className="text-purple-500 flex-shrink-0 mt-0.5"
+                      />
+
+                      <span
+                        className={`text-[12px] leading-relaxed ${
+                          d ? "text-gray-400" : "text-gray-600"
+                        }`}
+                      >
+                        {problem}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
             TECH STACK
         ===================================================== */}
 
         <section
           aria-labelledby="techstack-heading"
           className={`py-16 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
+            d
+              ? "border-white/[0.06] bg-[#050505]"
+              : "border-gray-100 bg-[#fafafa]"
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
+              <p
+                className={`text-[11px] font-black uppercase tracking-[0.2em] mb-3 ${
+                  d ? "text-purple-400" : "text-purple-600"
+                }`}
+              >
+                Technologies
+              </p>
+
               <h2
                 id="techstack-heading"
                 className={`text-3xl font-black mb-3 ${
                   d ? "text-white" : "text-gray-900"
                 }`}
               >
-                Web Development Technology Stack
+                Modern Web Development Technology Stack
               </h2>
 
               <p
@@ -715,19 +1279,20 @@ const WebDevelopment = ({ isDark }) => {
                   d ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                Modern technologies selected according to your application's
-                functionality, performance and maintainability requirements.
+                Technologies are selected according to the functionality,
+                performance, maintainability and deployment requirements of
+                each project.
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {techStack.map((cat) => (
-                <div
+                <article
                   key={cat.category}
                   className={`p-5 rounded-2xl border ${
                     d
                       ? "bg-white/[0.02] border-white/[0.06]"
-                      : "bg-[#fafafa] border-gray-200"
+                      : "bg-white border-gray-200"
                   }`}
                 >
                   <p className="text-[11px] font-black uppercase tracking-widest mb-3 text-purple-500">
@@ -741,100 +1306,26 @@ const WebDevelopment = ({ isDark }) => {
                         className={`text-[11px] font-medium px-2.5 py-1 rounded-lg border ${
                           d
                             ? "bg-white/[0.04] border-white/[0.08] text-gray-300"
-                            : "bg-white border-gray-200 text-gray-700"
+                            : "bg-[#fafafa] border-gray-200 text-gray-700"
                         }`}
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            WHY DEVZORE
-        ===================================================== */}
-
-        <section
-          aria-labelledby="why-heading"
-          className={`py-16 border-b ${
-            d
-              ? "border-white/[0.06] bg-[#050505]"
-              : "border-gray-100 bg-[#fafafa]"
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-12">
-              <div
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest mb-5 border ${
-                  d
-                    ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
-                    : "bg-purple-50 border-purple-200 text-purple-700"
-                }`}
-              >
-                Why DevZore
-              </div>
-
-              <h2
-                id="why-heading"
-                className={`text-3xl font-black mb-4 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
-              >
-                A Practical Approach to Web Development
-              </h2>
-
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                We focus on building software that is clear to use,
-                maintainable for developers and aligned with the requirements
-                of the business.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {whyUs.map((item) => (
-                <article
-                  key={item.title}
-                  className={`p-6 rounded-2xl border transition-all ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06] hover:border-purple-500/20"
-                      : "bg-white border-gray-200 hover:border-purple-200 hover:shadow-sm"
-                  }`}
-                >
-                  <div
-                    className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-4 ${
-                      d
-                        ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
-                        : "bg-purple-50 border-purple-100 text-purple-600"
-                    }`}
-                  >
-                    {item.icon}
-                  </div>
-
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {item.title}
-                  </h3>
-
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    {item.desc}
-                  </p>
                 </article>
               ))}
+            </div>
+
+            <div className="text-center mt-7">
+              <Link
+                to="/mern-stack-development"
+                onClick={scrollTop}
+                className="inline-flex items-center gap-2 text-[13px] font-bold text-purple-500"
+              >
+                Explore MERN Stack Development
+                <ArrowRight size={14} />
+              </Link>
             </div>
           </div>
         </section>
@@ -867,7 +1358,7 @@ const WebDevelopment = ({ isDark }) => {
                   d ? "text-white" : "text-gray-900"
                 }`}
               >
-                How Our Web Development Process Works
+                Our Web Development Process
               </h2>
 
               <p
@@ -875,8 +1366,9 @@ const WebDevelopment = ({ isDark }) => {
                   d ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                A structured process from initial requirements through
-                development, testing and production deployment.
+                A structured workflow keeps requirements, development,
+                testing and launch easier to understand throughout the
+                project.
               </p>
             </div>
 
@@ -890,12 +1382,20 @@ const WebDevelopment = ({ isDark }) => {
                       : "bg-[#fafafa] border-gray-200"
                   }`}
                 >
-                  <div
-                    className={`text-[13px] font-black mb-3 ${
-                      d ? "text-purple-400" : "text-purple-600"
-                    }`}
-                  >
-                    {step.n}
+                  <div className="flex items-center gap-3 mb-3">
+                    <span
+                      className={`text-[13px] font-black ${
+                        d ? "text-purple-400" : "text-purple-600"
+                      }`}
+                    >
+                      {step.n}
+                    </span>
+
+                    <div
+                      className={`h-px flex-1 ${
+                        d ? "bg-white/[0.06]" : "bg-gray-100"
+                      }`}
+                    />
                   </div>
 
                   <h3
@@ -933,13 +1433,21 @@ const WebDevelopment = ({ isDark }) => {
         >
           <div className="max-w-7xl mx-auto px-6">
             <div className="max-w-3xl mb-10">
+              <p
+                className={`text-[11px] font-black uppercase tracking-[0.2em] mb-3 ${
+                  d ? "text-purple-400" : "text-purple-600"
+                }`}
+              >
+                Industries
+              </p>
+
               <h2
                 id="industries-heading"
                 className={`text-3xl font-black mb-4 ${
                   d ? "text-white" : "text-gray-900"
                 }`}
               >
-                Web Solutions for Different Industries
+                Web Development for Different Business Models
               </h2>
 
               <p
@@ -947,74 +1455,14 @@ const WebDevelopment = ({ isDark }) => {
                   d ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                Our technology stack can be adapted to different business
-                models, workflows and digital product requirements.
+                Website functionality and structure can be adapted to the
+                needs of different industries without relying on a
+                one-size-fits-all template.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {[
-                {
-                  name: "Real Estate & PropTech",
-                  icon: "🏠",
-                  desc: "Property portals & management",
-                },
-                {
-                  name: "Healthcare",
-                  icon: "🏥",
-                  desc: "Portals & digital workflows",
-                },
-                {
-                  name: "E-Commerce & Retail",
-                  icon: "🛒",
-                  desc: "Stores & marketplaces",
-                },
-                {
-                  name: "Finance",
-                  icon: "💳",
-                  desc: "Dashboards & payment workflows",
-                },
-                {
-                  name: "Education",
-                  icon: "🎓",
-                  desc: "Learning & management platforms",
-                },
-                {
-                  name: "Logistics",
-                  icon: "🚚",
-                  desc: "Tracking & operations systems",
-                },
-                {
-                  name: "Food & Restaurant",
-                  icon: "🍽️",
-                  desc: "Ordering & management systems",
-                },
-                {
-                  name: "Travel & Hospitality",
-                  icon: "✈️",
-                  desc: "Booking & customer platforms",
-                },
-                {
-                  name: "Construction",
-                  icon: "🏗️",
-                  desc: "Projects & reporting systems",
-                },
-                {
-                  name: "HR & Business",
-                  icon: "👥",
-                  desc: "HR and internal tools",
-                },
-                {
-                  name: "Organisations",
-                  icon: "🌱",
-                  desc: "Information & management systems",
-                },
-                {
-                  name: "SaaS Products",
-                  icon: "⚙️",
-                  desc: "Subscription-based applications",
-                },
-              ].map((industry) => (
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              {industries.map((industry) => (
                 <article
                   key={industry.name}
                   className={`p-4 rounded-xl border ${
@@ -1023,12 +1471,8 @@ const WebDevelopment = ({ isDark }) => {
                       : "bg-white border-gray-200"
                   }`}
                 >
-                  <span className="text-xl block mb-1.5" aria-hidden="true">
-                    {industry.icon}
-                  </span>
-
                   <h3
-                    className={`text-[12px] font-bold leading-tight ${
+                    className={`text-[12px] font-bold ${
                       d ? "text-gray-200" : "text-gray-800"
                     }`}
                   >
@@ -1036,11 +1480,93 @@ const WebDevelopment = ({ isDark }) => {
                   </h3>
 
                   <p
-                    className={`text-[10px] mt-1 ${
+                    className={`text-[10px] mt-1.5 leading-relaxed ${
                       d ? "text-gray-500" : "text-gray-500"
                     }`}
                   >
                     {industry.desc}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            WHY DEVZORE
+        ===================================================== */}
+
+        <section
+          aria-labelledby="why-heading"
+          className={`py-16 border-b ${
+            d ? "border-white/[0.06]" : "border-gray-100"
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-3xl mb-11">
+              <div
+                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest mb-5 border ${
+                  d
+                    ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
+                    : "bg-purple-50 border-purple-200 text-purple-700"
+                }`}
+              >
+                Why DevZore
+              </div>
+
+              <h2
+                id="why-heading"
+                className={`text-3xl font-black mb-4 ${
+                  d ? "text-white" : "text-gray-900"
+                }`}
+              >
+                A Practical Approach to Professional Web Development
+              </h2>
+
+              <p
+                className={`text-base leading-relaxed ${
+                  d ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                We focus on the requirements of the product and business,
+                not simply the number of pages or technologies used.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {whyUs.map((item) => (
+                <article
+                  key={item.title}
+                  className={`p-6 rounded-2xl border transition-all ${
+                    d
+                      ? "bg-white/[0.02] border-white/[0.06] hover:border-purple-500/20"
+                      : "bg-[#fafafa] border-gray-200 hover:border-purple-200"
+                  }`}
+                >
+                  <div
+                    className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-4 ${
+                      d
+                        ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
+                        : "bg-purple-50 border-purple-100 text-purple-600"
+                    }`}
+                  >
+                    {item.icon}
+                  </div>
+
+                  <h3
+                    className={`text-[14px] font-bold mb-2 ${
+                      d ? "text-white" : "text-gray-900"
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
+
+                  <p
+                    className={`text-[13px] leading-relaxed ${
+                      d ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
+                    {item.desc}
                   </p>
                 </article>
               ))}
@@ -1055,11 +1581,21 @@ const WebDevelopment = ({ isDark }) => {
         <section
           aria-labelledby="faq-heading"
           className={`py-16 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
+            d
+              ? "border-white/[0.06] bg-[#050505]"
+              : "border-gray-100 bg-[#fafafa]"
           }`}
         >
           <div className="max-w-4xl mx-auto px-6">
             <div className="text-center mb-12">
+              <p
+                className={`text-[11px] font-black uppercase tracking-[0.2em] mb-3 ${
+                  d ? "text-purple-400" : "text-purple-600"
+                }`}
+              >
+                Frequently Asked Questions
+              </p>
+
               <h2
                 id="faq-heading"
                 className={`text-3xl font-black mb-3 ${
@@ -1074,7 +1610,8 @@ const WebDevelopment = ({ isDark }) => {
                   d ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                Common questions about custom web development projects.
+                Common questions from businesses planning a new website,
+                web application or website redesign.
               </p>
             </div>
 
@@ -1105,7 +1642,7 @@ const WebDevelopment = ({ isDark }) => {
                       className="w-full p-5 text-left flex items-start justify-between gap-4"
                     >
                       <span
-                        className={`text-[14px] font-bold ${
+                        className={`text-[14px] font-bold leading-snug ${
                           isOpen
                             ? "text-purple-500"
                             : d
@@ -1165,9 +1702,7 @@ const WebDevelopment = ({ isDark }) => {
         <section
           aria-labelledby="related-services-heading"
           className={`py-16 border-b ${
-            d
-              ? "border-white/[0.06] bg-[#050505]"
-              : "border-gray-100 bg-[#fafafa]"
+            d ? "border-white/[0.06]" : "border-gray-100"
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
@@ -1194,85 +1729,55 @@ const WebDevelopment = ({ isDark }) => {
                   d ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                Explore additional DevZore services that can support the
-                frontend, backend and product requirements of your project.
+                Combine web development with the frontend, backend,
+                commerce or product-development capabilities required by
+                your project.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
               {relatedServices.map((service) => {
-                const styles = {
-                  purple: {
-                    badge: d
-                      ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
-                      : "bg-purple-50 border-purple-200 text-purple-600",
-                    icon: d
-                      ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
-                      : "bg-purple-50 border-purple-100 text-purple-600",
-                  },
-                  orange: {
-                    badge: d
-                      ? "bg-orange-500/10 border-orange-500/20 text-orange-400"
-                      : "bg-orange-50 border-orange-200 text-orange-600",
-                    icon: d
-                      ? "bg-orange-500/10 border-orange-500/20 text-orange-400"
-                      : "bg-orange-50 border-orange-100 text-orange-600",
-                  },
-                  blue: {
-                    badge: d
-                      ? "bg-blue-500/10 border-blue-500/20 text-blue-400"
-                      : "bg-blue-50 border-blue-200 text-blue-600",
-                    icon: d
-                      ? "bg-blue-500/10 border-blue-500/20 text-blue-400"
-                      : "bg-blue-50 border-blue-100 text-blue-600",
-                  },
-                };
-
-                const style = styles[service.color];
+                const style = relatedColorMap[service.color];
 
                 return (
                   <article
                     key={service.path}
-                    className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
+                    className={`group flex flex-col p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
                       d
                         ? "bg-white/[0.02] border-white/[0.08] hover:border-purple-500/30"
-                        : "bg-white border-gray-200 hover:border-purple-200 hover:shadow-[0_12px_35px_rgba(0,0,0,0.06)]"
+                        : "bg-[#fafafa] border-gray-200 hover:border-purple-200 hover:shadow-sm"
                     }`}
                   >
                     <span
-                      className={`inline-flex px-3 py-1 rounded-full border text-[10px] font-black mb-5 ${style.badge}`}
+                      className={`self-start inline-flex px-3 py-1 rounded-full border text-[10px] font-black mb-5 ${style.badge}`}
                     >
                       {service.badge}
                     </span>
 
-                    <div className="flex items-center gap-4 mb-5">
-                      <div
-                        className={`w-11 h-11 rounded-xl border flex items-center justify-center flex-shrink-0 ${style.icon}`}
-                      >
-                        {service.icon}
-                      </div>
-
-                      <div>
-                        <h3
-                          className={`text-[16px] font-black leading-tight ${
-                            d ? "text-white" : "text-gray-900"
-                          }`}
-                        >
-                          {service.title}
-                        </h3>
-
-                        <p
-                          className={`text-[11px] font-semibold mt-1 ${
-                            d ? "text-gray-500" : "text-gray-400"
-                          }`}
-                        >
-                          {service.subtitle}
-                        </p>
-                      </div>
+                    <div
+                      className={`w-11 h-11 rounded-xl border flex items-center justify-center mb-4 ${style.icon}`}
+                    >
+                      {service.icon}
                     </div>
 
+                    <h3
+                      className={`text-[15px] font-black leading-tight ${
+                        d ? "text-white" : "text-gray-900"
+                      }`}
+                    >
+                      {service.title}
+                    </h3>
+
                     <p
-                      className={`text-[13px] leading-6 mb-5 ${
+                      className={`text-[11px] font-semibold mt-1 mb-4 ${
+                        d ? "text-gray-500" : "text-gray-400"
+                      }`}
+                    >
+                      {service.subtitle}
+                    </p>
+
+                    <p
+                      className={`text-[12px] leading-relaxed mb-5 ${
                         d ? "text-gray-400" : "text-gray-600"
                       }`}
                     >
@@ -1286,12 +1791,12 @@ const WebDevelopment = ({ isDark }) => {
                           className="flex items-center gap-2.5"
                         >
                           <CheckCircle
-                            size={14}
+                            size={13}
                             className="text-purple-500 flex-shrink-0"
                           />
 
                           <span
-                            className={`text-[12px] ${
+                            className={`text-[11px] ${
                               d ? "text-gray-300" : "text-gray-600"
                             }`}
                           >
@@ -1303,11 +1808,12 @@ const WebDevelopment = ({ isDark }) => {
 
                     <Link
                       to={service.path}
-                      className="inline-flex items-center gap-2 text-[13px] font-bold text-purple-500 hover:text-purple-400 transition-colors"
+                      onClick={scrollTop}
+                      className="inline-flex items-center gap-2 text-[12px] font-bold text-purple-500 hover:text-purple-400 transition-colors mt-auto"
                     >
-                      Learn more
+                      Explore service
                       <ArrowRight
-                        size={14}
+                        size={13}
                         className="transition-transform group-hover:translate-x-1"
                       />
                     </Link>
@@ -1316,9 +1822,10 @@ const WebDevelopment = ({ isDark }) => {
               })}
             </div>
 
-            <div className="mt-7 text-center">
+            <div className="mt-8 text-center">
               <Link
                 to="/allservices"
+                onClick={scrollTop}
                 className={`inline-flex items-center gap-2 text-[13px] font-bold ${
                   d
                     ? "text-gray-400 hover:text-purple-400"
@@ -1348,13 +1855,23 @@ const WebDevelopment = ({ isDark }) => {
                   : "bg-[#fafafa] border-gray-200"
               }`}
             >
+              <div
+                className={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-5 ${
+                  d
+                    ? "bg-purple-600/10 text-purple-400"
+                    : "bg-purple-50 text-purple-600"
+                }`}
+              >
+                <Palette size={21} />
+              </div>
+
               <h2
                 id="web-development-cta"
                 className={`text-3xl font-black mb-4 ${
                   d ? "text-white" : "text-gray-900"
                 }`}
               >
-                Ready to Build Your Web Project?
+                Looking for a Website Developer for Your Business?
               </h2>
 
               <p
@@ -1362,31 +1879,34 @@ const WebDevelopment = ({ isDark }) => {
                   d ? "text-gray-400" : "text-gray-600"
                 }`}
               >
-                Tell us about your website, web application or digital product.
-                We can discuss your requirements, suitable technologies and the
-                next steps for development.
+                Tell DevZore what you need to build. We can discuss your
+                website goals, required functionality, suitable technology
+                and the next steps for your web development project.
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link
                   to="/contact"
+                  onClick={scrollTop}
                   className="flex items-center gap-2 px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
                 >
-                  Discuss Your Project
+                  Discuss Your Website
                   <ArrowRight size={15} />
                 </Link>
 
                 <a
-                  href="https://wa.me/923348004300?text=Hi%20DevZore!%20I%20would%20like%20to%20discuss%20a%20web%20development%20project."
+                  href="https://wa.me/923348004300?text=Hi%20DevZore!%20I%20need%20a%20website%20for%20my%20business."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-8 py-4 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
                 >
-                  WhatsApp
+                  WhatsApp DevZore
+                  <ArrowRight size={15} />
                 </a>
 
                 <Link
                   to="/allservices"
+                  onClick={scrollTop}
                   className={`flex items-center gap-2 px-8 py-4 font-bold rounded-xl text-sm border transition-all ${
                     d
                       ? "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]"
@@ -1394,7 +1914,6 @@ const WebDevelopment = ({ isDark }) => {
                   }`}
                 >
                   View All Services
-                  <ArrowRight size={15} />
                 </Link>
               </div>
             </div>

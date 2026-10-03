@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   Globe,
@@ -20,107 +20,244 @@ import {
   Moon,
   Megaphone,
   SearchCheck,
+  Sparkles,
+  Building2,
+  Store,
+  Boxes,
+  Code2,
+  BookOpen,
+  Newspaper,
+  CircleHelp,
+  Users,
+  Workflow,
+  Cpu,
+  FolderKanban,
+  Layers3,
+  Languages,
 } from "lucide-react";
 
 const Navbar = ({ isDark, toggleTheme }) => {
   const d = isDark;
   const location = useLocation();
+  const navRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [serviceOpen, setServiceOpen] = useState(false);
-  const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
+
+  const [desktopMenu, setDesktopMenu] = useState(null);
+  const [mobileMenu, setMobileMenu] = useState(null);
+
+  const [languageOpen, setLanguageOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("EN");
+
+  // ======================================================
+  // LANGUAGES
+  // ======================================================
+
+  const languages = [
+    { name: "English", code: "EN" },
+    { name: "Français", code: "FR" },
+    { name: "Español", code: "ES" },
+  ];
+
+  // ======================================================
+  // SERVICES
+  // ======================================================
 
   const services = [
     {
       name: "All Services",
-      icon: <LayoutGrid size={16} />,
+      icon: <LayoutGrid size={14} />,
       path: "/allservices",
-      desc: "Browse everything we offer",
+      desc: "Browse all DevZore services",
     },
     {
       name: "Web Development",
-      icon: <Globe size={16} />,
+      icon: <Globe size={14} />,
       path: "/web-development",
       desc: "React, Next.js & modern web apps",
     },
     {
       name: "Mobile App Development",
-      icon: <Smartphone size={16} />,
+      icon: <Smartphone size={14} />,
       path: "/mobile-apps",
       desc: "Modern mobile applications",
     },
     {
-      name: "E-Commerce",
-      icon: <ShoppingCart size={16} />,
+      name: "Generative AI Development",
+      icon: <Sparkles size={14} />,
+      path: "/generative-ai-development",
+      desc: "LLM apps, RAG, AI agents & chatbots",
+    },
+    {
+      name: "E-Commerce Development",
+      icon: <ShoppingCart size={14} />,
       path: "/ecommerce",
       desc: "Custom online stores",
     },
     {
-      name: "MERN Stack",
-      icon: <Rocket size={16} />,
+      name: "MERN Stack Development",
+      icon: <Rocket size={14} />,
       path: "/mern-stack-development",
       desc: "MongoDB, Express, React & Node.js",
     },
     {
-      name: "SaaS Development",
-      icon: <Cloud size={16} />,
-      path: "/saas-product-development",
-      desc: "Scalable SaaS products",
-    },
-    {
       name: "React Development",
-      icon: <Zap size={16} />,
+      icon: <Zap size={14} />,
       path: "/reactdevelopment",
       desc: "Modern React applications",
     },
     {
-      name: "UI/UX Design",
-      icon: <Palette size={16} />,
-      path: "/ui-ux-design",
-      desc: "User-focused product design",
-    },
-    {
-      name: "Startup MVP",
-      icon: <Lightbulb size={16} />,
-      path: "/startup-mvp",
-      desc: "Turn your idea into an MVP",
-    },
-    {
-      name: "Maintenance & Support",
-      icon: <Wrench size={16} />,
-      path: "/maintenance",
-      desc: "Website maintenance & support",
-    },
-    {
-      name: "Backend & API",
-      icon: <Settings size={16} />,
+      name: "Backend & API Development",
+      icon: <Settings size={14} />,
       path: "/backend-api",
       desc: "Node.js, Express & REST APIs",
     },
     {
+      name: "SaaS Product Development",
+      icon: <Cloud size={14} />,
+      path: "/saas-product-development",
+      desc: "Scalable SaaS products",
+    },
+    {
+      name: "UI/UX Design",
+      icon: <Palette size={14} />,
+      path: "/ui-ux-design",
+      desc: "User-focused product design",
+    },
+    {
+      name: "Startup MVP Development",
+      icon: <Lightbulb size={14} />,
+      path: "/startup-mvp",
+      desc: "Turn your idea into an MVP",
+    },
+    {
       name: "SEO Services",
-      icon: <SearchCheck size={16} />,
+      icon: <SearchCheck size={14} />,
       path: "/seo-services",
       desc: "Technical & on-page SEO",
     },
     {
       name: "Digital Marketing",
-      icon: <Megaphone size={16} />,
+      icon: <Megaphone size={14} />,
       path: "/digital-marketing",
-      desc: "Marketing & online growth",
+      desc: "Digital marketing & online growth",
+    },
+    {
+      name: "Maintenance & Support",
+      icon: <Wrench size={14} />,
+      path: "/maintenance",
+      desc: "Website maintenance & support",
     },
   ];
 
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Portfolio", path: "/#projects" },
-    { name: "Blog", path: "/blog" },
+  // ======================================================
+  // SOLUTIONS
+  // ======================================================
+
+  const solutions = [
+    {
+      name: "Startup Solutions",
+      icon: <Rocket size={14} />,
+      path: "/startup-solutions",
+      desc: "MVPs and digital products for startups",
+    },
+    {
+      name: "Business Solutions",
+      icon: <Building2 size={14} />,
+      path: "/business-solutions",
+      desc: "Custom software for businesses",
+    },
+    {
+      name: "E-Commerce Solutions",
+      icon: <Store size={14} />,
+      path: "/ecommerce-solutions",
+      desc: "Online selling & commerce solutions",
+    },
+    {
+      name: "SaaS Solutions",
+      icon: <Cloud size={14} />,
+      path: "/saas-solutions",
+      desc: "Scalable subscription software",
+    },
+    {
+      name: "Management Systems",
+      icon: <Boxes size={14} />,
+      path: "/management-systems",
+      desc: "Business management platforms",
+    },
+    {
+      name: "Custom Software Solutions",
+      icon: <Code2 size={14} />,
+      path: "/custom-software-solutions",
+      desc: "Software tailored to your workflow",
+    },
   ];
 
   // ======================================================
-  // SCROLL STATE
+  // RESOURCES
+  // ======================================================
+
+  const resources = [
+    {
+      name: "Blog",
+      icon: <Newspaper size={14} />,
+      path: "/blog",
+      desc: "Development, business & technology",
+    },
+    {
+      name: "Development Guides",
+      icon: <BookOpen size={14} />,
+      path: "/guides",
+      desc: "Practical software development guides",
+    },
+    {
+      name: "FAQs",
+      icon: <CircleHelp size={14} />,
+      path: "/faqs",
+      desc: "Frequently asked questions",
+    },
+    {
+      name: "Insights & Resources",
+      icon: <Lightbulb size={14} />,
+      path: "/resources",
+      desc: "Insights for digital products",
+    },
+  ];
+
+  // ======================================================
+  // COMPANY
+  // ======================================================
+
+  const company = [
+    {
+      name: "About DevZore",
+      icon: <Users size={14} />,
+      path: "/about",
+      desc: "Learn more about DevZore",
+    },
+    {
+      name: "Our Process",
+      icon: <Workflow size={14} />,
+      path: "/our-process",
+      desc: "How we plan, build & deliver",
+    },
+    {
+      name: "Technologies",
+      icon: <Cpu size={14} />,
+      path: "/technologies",
+      desc: "Our development technology stack",
+    },
+    {
+      name: "Contact",
+      icon: <Mail size={14} />,
+      path: "/contact",
+      desc: "Discuss your project with us",
+    },
+  ];
+
+  // ======================================================
+  // SCROLL
   // ======================================================
 
   useEffect(() => {
@@ -163,25 +300,22 @@ const Navbar = ({ isDark, toggleTheme }) => {
   }, [location.pathname, location.hash]);
 
   // ======================================================
-  // CLOSE MENUS ON ROUTE CHANGE
+  // ROUTE CHANGE
   // ======================================================
 
   useEffect(() => {
     setIsOpen(false);
-    setServiceOpen(false);
-    setMobileServiceOpen(false);
+    setDesktopMenu(null);
+    setMobileMenu(null);
+    setLanguageOpen(false);
   }, [location.pathname, location.hash]);
 
   // ======================================================
-  // LOCK BODY SCROLL
+  // BODY LOCK
   // ======================================================
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
@@ -189,15 +323,16 @@ const Navbar = ({ isDark, toggleTheme }) => {
   }, [isOpen]);
 
   // ======================================================
-  // ESCAPE KEY
+  // ESCAPE
   // ======================================================
 
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         setIsOpen(false);
-        setServiceOpen(false);
-        setMobileServiceOpen(false);
+        setDesktopMenu(null);
+        setMobileMenu(null);
+        setLanguageOpen(false);
       }
     };
 
@@ -214,8 +349,9 @@ const Navbar = ({ isDark, toggleTheme }) => {
 
   const handleLinkClick = (path) => {
     setIsOpen(false);
-    setServiceOpen(false);
-    setMobileServiceOpen(false);
+    setDesktopMenu(null);
+    setMobileMenu(null);
+    setLanguageOpen(false);
 
     if (!path.includes("#")) {
       window.scrollTo({
@@ -226,29 +362,12 @@ const Navbar = ({ isDark, toggleTheme }) => {
     }
   };
 
-  const isLinkActive = (path) => {
-    if (path.includes("#")) {
-      const [, hash] = path.split("#");
-
-      return (
-        location.pathname === "/" &&
-        location.hash === `#${hash}`
-      );
-    }
-
-    return (
-      location.pathname === path &&
-      location.hash === ""
-    );
-  };
-
-  const isServiceActive = services.some(
-    (service) => service.path === location.pathname
-  );
+  const isGroupActive = (items) =>
+    items.some((item) => item.path === location.pathname);
 
   const navScrolledBg = d
-    ? "bg-[#050505]/98 backdrop-blur-3xl border-b border-white/[0.06] shadow-[0_1px_40px_rgba(0,0,0,0.8)]"
-    : "bg-white/95 backdrop-blur-3xl border-b border-gray-200 shadow-[0_1px_20px_rgba(0,0,0,0.08)]";
+    ? "bg-[#050505]/98 backdrop-blur-3xl border-b border-white/[0.06] shadow-[0_1px_35px_rgba(0,0,0,0.75)]"
+    : "bg-white/95 backdrop-blur-3xl border-b border-gray-200 shadow-[0_1px_18px_rgba(0,0,0,0.07)]";
 
   const linkCls = (active) => {
     if (active) {
@@ -270,16 +389,14 @@ const Navbar = ({ isDark, toggleTheme }) => {
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={
-        d ? "Switch to light mode" : "Switch to dark mode"
-      }
-      className={`flex items-center gap-2 rounded-full font-semibold transition-all duration-300 ${
+      aria-label={d ? "Switch to light mode" : "Switch to dark mode"}
+      className={`flex items-center rounded-full font-semibold transition-all duration-300 ${
         mobile
-          ? "w-full px-4 py-3 justify-between border"
-          : "px-3 py-2 text-[11px] border"
+          ? "w-full px-4 py-2.5 justify-between border"
+          : "gap-1.5 px-2.5 py-1.5 border text-[10px]"
       } ${
         d
-          ? "bg-white/[0.06] border-white/[0.1] text-gray-300 hover:bg-white/[0.1]"
+          ? "bg-white/[0.05] border-white/[0.09] text-gray-300 hover:bg-white/[0.09]"
           : "bg-gray-100 border-gray-200 text-gray-600 hover:bg-gray-200"
       }`}
     >
@@ -288,39 +405,39 @@ const Navbar = ({ isDark, toggleTheme }) => {
           <div className="flex items-center gap-3">
             <div
               className={`w-7 h-7 rounded-lg flex items-center justify-center ${
-                d ? "bg-yellow-500/20" : "bg-gray-800/10"
+                d ? "bg-yellow-500/15" : "bg-gray-800/10"
               }`}
             >
               {d ? (
-                <Sun size={14} className="text-yellow-400" />
+                <Sun size={13} className="text-yellow-400" />
               ) : (
-                <Moon size={14} className="text-gray-700" />
+                <Moon size={13} className="text-gray-700" />
               )}
             </div>
 
             <div className="text-left">
               <p
-                className={`text-[13px] font-semibold ${
+                className={`text-[12px] font-semibold ${
                   d ? "text-white" : "text-gray-800"
                 }`}
               >
-                {d ? "Switch to Light" : "Switch to Dark"}
+                {d ? "Light Mode" : "Dark Mode"}
               </p>
 
-              <p className="text-[9px] text-gray-500 mt-0.5">
-                {d ? "Bright & minimal" : "Easy on the eyes"}
+              <p className="text-[9px] text-gray-500">
+                Change website appearance
               </p>
             </div>
           </div>
 
           <div
-            className={`w-10 h-5 rounded-full relative transition-colors duration-300 ${
+            className={`w-9 h-[18px] rounded-full relative ${
               d ? "bg-gray-700" : "bg-purple-600"
             }`}
           >
             <div
-              className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-all duration-300 ${
-                d ? "left-0.5" : "left-5"
+              className={`absolute top-[2px] w-[14px] h-[14px] rounded-full bg-white transition-all ${
+                d ? "left-[2px]" : "left-[20px]"
               }`}
             />
           </div>
@@ -328,18 +445,476 @@ const Navbar = ({ isDark, toggleTheme }) => {
       ) : (
         <>
           {d ? (
-            <Sun size={13} className="text-yellow-400" />
+            <Sun size={12} className="text-yellow-400" />
           ) : (
-            <Moon size={13} className="text-gray-600" />
+            <Moon size={12} className="text-gray-600" />
           )}
 
-          <span className="text-[11px] tracking-wide">
-            {d ? "Light" : "Dark"}
-          </span>
+          <span>{d ? "Light" : "Dark"}</span>
         </>
       )}
     </button>
   );
+
+  // ======================================================
+  // LANGUAGE SELECTOR
+  // ======================================================
+
+  const LanguageSelector = ({ mobile = false }) => {
+    if (mobile) {
+      return (
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setLanguageOpen((current) => !current)}
+            aria-expanded={languageOpen}
+            className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all ${
+              d
+                ? "bg-white/[0.02] border-white/[0.06] text-gray-300"
+                : "bg-gray-50 border-gray-200 text-gray-700"
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <Languages size={15} className="text-purple-500" />
+
+              <div className="text-left">
+                <p className="text-[12px] font-semibold">
+                  Language
+                </p>
+
+                <p className="text-[9px] text-gray-500">
+                  {
+                    languages.find(
+                      (lang) => lang.code === selectedLanguage
+                    )?.name
+                  }
+                </p>
+              </div>
+            </div>
+
+            <ChevronDown
+              size={14}
+              className={`transition-transform ${
+                languageOpen ? "rotate-180 text-purple-500" : ""
+              }`}
+            />
+          </button>
+
+          <div
+            className={`overflow-hidden transition-all duration-300 ${
+              languageOpen
+                ? "max-h-[180px] opacity-100 mt-1.5"
+                : "max-h-0 opacity-0"
+            }`}
+          >
+            <div
+              className={`rounded-xl border p-1 ${
+                d
+                  ? "bg-white/[0.02] border-white/[0.06]"
+                  : "bg-gray-50 border-gray-200"
+              }`}
+            >
+              {languages.map((language) => (
+                <button
+                  type="button"
+                  key={language.code}
+                  onClick={() => {
+                    setSelectedLanguage(language.code);
+                    setLanguageOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-[11px] transition-all ${
+                    selectedLanguage === language.code
+                      ? d
+                        ? "bg-purple-600/15 text-purple-400"
+                        : "bg-purple-50 text-purple-700"
+                      : d
+                      ? "text-gray-400 hover:bg-white/[0.04]"
+                      : "text-gray-600 hover:bg-white"
+                  }`}
+                >
+                  <span>{language.name}</span>
+
+                  <span className="text-[9px] opacity-60">
+                    {language.code}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => {
+            setLanguageOpen((current) => !current);
+            setDesktopMenu(null);
+          }}
+          aria-label="Select language"
+          aria-expanded={languageOpen}
+          className={`h-[30px] px-2.5 flex items-center gap-1.5 rounded-full border text-[10px] font-semibold transition-all ${
+            languageOpen
+              ? "border-purple-500/40"
+              : d
+              ? "border-white/[0.09]"
+              : "border-gray-200"
+          } ${
+            d
+              ? "bg-white/[0.05] text-gray-300 hover:bg-white/[0.09]"
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          }`}
+        >
+          <Globe size={11} />
+
+          <span>{selectedLanguage}</span>
+
+          <ChevronDown
+            size={10}
+            className={`transition-transform duration-200 ${
+              languageOpen ? "rotate-180 text-purple-500" : ""
+            }`}
+          />
+        </button>
+
+        <div
+          className={`absolute right-0 top-full pt-2 w-[160px] transition-all duration-200 ${
+            languageOpen
+              ? "opacity-100 visible translate-y-0"
+              : "opacity-0 invisible -translate-y-1 pointer-events-none"
+          }`}
+        >
+          <div
+            className={`p-1.5 rounded-xl border shadow-xl ${
+              d
+                ? "bg-[#0a0a0a] border-white/[0.1]"
+                : "bg-white border-gray-200"
+            }`}
+          >
+            {languages.map((language) => {
+              const active = selectedLanguage === language.code;
+
+              return (
+                <button
+                  type="button"
+                  key={language.code}
+                  onClick={() => {
+                    setSelectedLanguage(language.code);
+                    setLanguageOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-all ${
+                    active
+                      ? d
+                        ? "bg-white/[0.06]"
+                        : "bg-gray-100"
+                      : d
+                      ? "hover:bg-white/[0.04]"
+                      : "hover:bg-gray-50"
+                  }`}
+                >
+                  <span
+                    className={`text-[11px] font-medium ${
+                      d ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    {language.name}
+                  </span>
+
+                  <span
+                    className={`text-[9px] ${
+                      active
+                        ? "text-purple-500 font-bold"
+                        : "text-gray-400"
+                    }`}
+                  >
+                    {language.code}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // ======================================================
+  // DESKTOP DROPDOWN
+  // ======================================================
+
+  const DesktopDropdown = ({
+    id,
+    label,
+    items,
+    width = "w-[380px]",
+  }) => {
+    const open = desktopMenu === id;
+    const active = isGroupActive(items);
+    const isServices = id === "services";
+
+    return (
+      <li
+        className="relative"
+        onMouseEnter={() => {
+          setDesktopMenu(id);
+          setLanguageOpen(false);
+        }}
+        onMouseLeave={() => setDesktopMenu(null)}
+      >
+        <button
+          type="button"
+          onClick={() => {
+            setDesktopMenu((current) =>
+              current === id ? null : id
+            );
+            setLanguageOpen(false);
+          }}
+          aria-expanded={open}
+          aria-haspopup="true"
+          className={`flex items-center gap-1 px-2 lg:px-2.5 py-1.5 rounded-lg text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.07em] lg:tracking-[0.09em] transition-all ${linkCls(
+            open || active
+          )}`}
+        >
+          {label}
+
+          <ChevronDown
+            size={11}
+            className={`transition-transform duration-200 ${
+              open ? "rotate-180 text-purple-500" : ""
+            }`}
+          />
+        </button>
+
+        <div
+          className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 ${width} transition-all duration-200 ${
+            open
+              ? "opacity-100 visible translate-y-0"
+              : "opacity-0 invisible -translate-y-1 pointer-events-none"
+          }`}
+        >
+          <div
+            className={`border rounded-xl shadow-2xl overflow-hidden ${
+              d
+                ? "bg-[#0a0a0a] border-white/[0.1]"
+                : "bg-white border-gray-200"
+            }`}
+          >
+            {/* HEADER */}
+
+            <div
+              className={`px-3.5 py-2.5 border-b flex items-center justify-between ${
+                d ? "border-white/[0.07]" : "border-gray-100"
+              }`}
+            >
+              <div>
+                <p className="text-[7px] font-black uppercase tracking-[0.25em] text-purple-500">
+                  {label}
+                </p>
+
+                <p
+                  className={`text-[11px] font-bold mt-0.5 ${
+                    d ? "text-white" : "text-gray-900"
+                  }`}
+                >
+                  {label === "Services"
+                    ? "What can we build for you?"
+                    : label === "Solutions"
+                    ? "Solutions for your business"
+                    : label === "Resources"
+                    ? "Learn, explore & discover"
+                    : "Learn more about DevZore"}
+                </p>
+              </div>
+
+              {isServices && (
+                <Link
+                  to="/allservices"
+                  onClick={() => handleLinkClick("/allservices")}
+                  className="text-[8px] font-bold text-purple-500 flex items-center gap-1"
+                >
+                  View All
+                  <ArrowRight size={9} />
+                </Link>
+              )}
+            </div>
+
+            {/* ITEMS */}
+
+            <div
+              className={`p-1.5 grid ${
+                items.length > 4 ? "grid-cols-2" : "grid-cols-1"
+              } gap-0.5 ${
+                isServices
+                  ? "max-h-[355px] overflow-y-auto"
+                  : "max-h-[330px] overflow-y-auto"
+              }`}
+            >
+              {items.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => handleLinkClick(item.path)}
+                  className={`group flex items-center gap-2 px-2 py-[7px] rounded-lg border transition-all ${
+                    location.pathname === item.path
+                      ? d
+                        ? "bg-purple-500/10 border-purple-500/20"
+                        : "bg-purple-50 border-purple-100"
+                      : d
+                      ? "border-transparent hover:bg-white/[0.05]"
+                      : "border-transparent hover:bg-gray-50"
+                  }`}
+                >
+                  <div
+                    className={`shrink-0 w-[26px] h-[26px] rounded-md border flex items-center justify-center text-purple-500 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-600 transition-all ${
+                      d
+                        ? "bg-white/[0.04] border-white/[0.06]"
+                        : "bg-gray-50 border-gray-200"
+                    }`}
+                  >
+                    {item.icon}
+                  </div>
+
+                  <div className="min-w-0">
+                    <p
+                      className={`text-[10px] font-semibold leading-tight truncate group-hover:text-purple-500 ${
+                        d ? "text-gray-200" : "text-gray-700"
+                      }`}
+                    >
+                      {item.name}
+                    </p>
+
+                    <p
+                      className={`text-[8px] mt-[2px] leading-tight truncate ${
+                        d ? "text-gray-500" : "text-gray-400"
+                      }`}
+                    >
+                      {item.desc}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* FOOTER */}
+
+            {isServices && (
+              <div
+                className={`px-3.5 py-2 border-t flex items-center justify-between ${
+                  d
+                    ? "border-white/[0.06] bg-purple-600/[0.03]"
+                    : "border-gray-100 bg-gray-50/80"
+                }`}
+              >
+                <Link
+                  to="/allservices"
+                  onClick={() => handleLinkClick("/allservices")}
+                  className="text-[8px] font-bold text-purple-500 flex items-center gap-1"
+                >
+                  View All Services
+                  <ArrowRight size={8} />
+                </Link>
+
+                <Link
+                  to="/contact"
+                  onClick={() => handleLinkClick("/contact")}
+                  className="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-[8px] font-bold"
+                >
+                  Discuss Project
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      </li>
+    );
+  };
+
+  // ======================================================
+  // MOBILE GROUP
+  // ======================================================
+
+  const MobileGroup = ({ id, title, icon, items }) => {
+    const open = mobileMenu === id;
+
+    return (
+      <div>
+        <button
+          type="button"
+          onClick={() =>
+            setMobileMenu((current) =>
+              current === id ? null : id
+            )
+          }
+          aria-expanded={open}
+          className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all ${
+            d
+              ? "border-white/[0.06] bg-white/[0.02]"
+              : "border-gray-200 bg-gray-50"
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-7 h-7 rounded-lg bg-purple-600/15 text-purple-500 flex items-center justify-center">
+              {icon}
+            </div>
+
+            <span
+              className={`text-[12px] font-semibold ${
+                d ? "text-white" : "text-gray-800"
+              }`}
+            >
+              {title}
+            </span>
+          </div>
+
+          <ChevronDown
+            size={14}
+            className={`transition-transform duration-300 ${
+              open
+                ? "rotate-180 text-purple-500"
+                : "text-gray-500"
+            }`}
+          />
+        </button>
+
+        <div
+          className={`overflow-hidden transition-all duration-300 ${
+            open
+              ? "max-h-[1600px] opacity-100"
+              : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="pt-1 pb-1 pl-2 flex flex-col gap-0.5">
+            {items.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => handleLinkClick(item.path)}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all ${
+                  location.pathname === item.path
+                    ? d
+                      ? "bg-purple-600/10 text-purple-400"
+                      : "bg-purple-50 text-purple-700"
+                    : d
+                    ? "text-gray-400 hover:text-white hover:bg-white/[0.04]"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                }`}
+              >
+                <span className="text-purple-500">
+                  {item.icon}
+                </span>
+
+                <span className="text-[11px] font-medium">
+                  {item.name}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -363,8 +938,9 @@ const Navbar = ({ isDark, toggleTheme }) => {
       ================================================== */}
 
       <nav
+        ref={navRef}
         aria-label="Main navigation"
-        className={`fixed top-0 left-0 right-0 w-full transition-all duration-300 z-[9999] h-[70px] ${
+        className={`fixed top-0 left-0 right-0 w-full z-[9999] h-[66px] transition-all duration-300 ${
           scrolled || isOpen
             ? navScrolledBg
             : d
@@ -372,27 +948,27 @@ const Navbar = ({ isDark, toggleTheme }) => {
             : "bg-white/90 backdrop-blur-xl border-b border-gray-100"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-5 h-full flex items-center justify-between">
 
           {/* LOGO */}
 
           <Link
             to="/"
-            aria-label="DevZore home"
             onClick={() => handleLinkClick("/")}
-            className="flex items-center leading-none group"
+            aria-label="DevZore home"
+            className="flex items-center leading-none group shrink-0"
           >
             <img
               src="/logo.png"
               alt="DevZore"
-              width="64"
-              height="64"
-              className="w-[64px] h-[64px] object-contain flex-shrink-0 transition-transform duration-300 group-hover:scale-105"
+              width="58"
+              height="58"
+              className="w-[58px] h-[58px] object-contain transition-transform group-hover:scale-105"
             />
 
             <div className="flex flex-col leading-none -ml-3">
               <span
-                className={`text-[21px] font-extrabold tracking-tight ${
+                className={`text-[19px] font-extrabold tracking-tight ${
                   d ? "text-white" : "text-gray-900"
                 }`}
               >
@@ -400,7 +976,7 @@ const Navbar = ({ isDark, toggleTheme }) => {
               </span>
 
               <span
-                className={`text-[8px] uppercase tracking-[0.2em] mt-1 ${
+                className={`text-[7px] uppercase tracking-[0.18em] mt-1 ${
                   d ? "text-gray-400" : "text-gray-500"
                 }`}
               >
@@ -410,274 +986,134 @@ const Navbar = ({ isDark, toggleTheme }) => {
           </Link>
 
           {/* ==================================================
-              DESKTOP NAVIGATION
+              DESKTOP
           ================================================== */}
 
-          <div className="hidden md:flex items-center gap-4 lg:gap-6">
-            <ul className="flex items-center gap-1">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.path}
-                    onClick={() => handleLinkClick(link.path)}
-                    className={`relative px-3 lg:px-4 py-2 rounded-lg text-[11px] lg:text-[12px] font-semibold uppercase tracking-[0.12em] lg:tracking-[0.15em] transition-all duration-200 ${linkCls(
-                      isLinkActive(link.path)
-                    )}`}
-                  >
-                    {isLinkActive(link.path) && (
-                      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-purple-500" />
-                    )}
+          <div className="hidden md:flex items-center gap-1.5 lg:gap-2">
+            <ul className="flex items-center gap-0">
 
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              {/* HOME */}
 
-              {/* SERVICES DROPDOWN */}
-
-              <li
-                className="relative"
-                onMouseEnter={() => setServiceOpen(true)}
-                onMouseLeave={() => setServiceOpen(false)}
-              >
-                <button
-                  type="button"
-                  aria-haspopup="true"
-                  aria-expanded={serviceOpen}
-                  aria-controls="desktop-services-menu"
-                  onClick={() =>
-                    setServiceOpen((current) => !current)
-                  }
-                  className={`flex items-center gap-1.5 px-3 lg:px-4 py-2 rounded-lg text-[11px] lg:text-[12px] font-semibold uppercase tracking-[0.12em] lg:tracking-[0.15em] transition-all duration-200 ${linkCls(
-                    serviceOpen || isServiceActive
+              <li>
+                <Link
+                  to="/"
+                  onClick={() => handleLinkClick("/")}
+                  className={`px-2 lg:px-2.5 py-1.5 rounded-lg text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.07em] lg:tracking-[0.09em] transition-all ${linkCls(
+                    location.pathname === "/" &&
+                      location.hash === ""
                   )}`}
                 >
-                  Services
-
-                  <ChevronDown
-                    size={13}
-                    className={`transition-transform duration-300 ${
-                      serviceOpen
-                        ? "rotate-180 text-purple-500"
-                        : ""
-                    }`}
-                  />
-                </button>
-
-                <div
-                  id="desktop-services-menu"
-                  className={`absolute top-full right-0 pt-3 w-[500px] transition-all duration-200 ${
-                    serviceOpen
-                      ? "opacity-100 visible translate-y-0"
-                      : "opacity-0 invisible -translate-y-2 pointer-events-none"
-                  }`}
-                >
-                  <div
-                    className={`absolute top-[6px] right-16 w-3 h-3 border-l border-t rotate-45 ${
-                      d
-                        ? "bg-[#0a0a0a] border-white/10"
-                        : "bg-white border-gray-200"
-                    }`}
-                  />
-
-                  <div
-                    className={`relative border rounded-2xl shadow-2xl overflow-hidden ${
-                      d
-                        ? "bg-[#0a0a0a] border-white/[0.1]"
-                        : "bg-white border-gray-200"
-                    }`}
-                  >
-                    <div
-                      className={`px-5 py-4 border-b flex items-center justify-between ${
-                        d
-                          ? "border-white/[0.1]"
-                          : "border-gray-100"
-                      }`}
-                    >
-                      <div>
-                        <p
-                          className={`text-[10px] font-black uppercase tracking-[0.3em] ${
-                            d
-                              ? "text-gray-500"
-                              : "text-gray-400"
-                          }`}
-                        >
-                          Our Expertise
-                        </p>
-
-                        <p
-                          className={`text-sm font-bold mt-1 ${
-                            d ? "text-white" : "text-gray-900"
-                          }`}
-                        >
-                          What can we build for you?
-                        </p>
-                      </div>
-
-                      <Link
-                        to="/allservices"
-                        onClick={() =>
-                          handleLinkClick("/allservices")
-                        }
-                        className="text-[10px] text-purple-500 hover:text-purple-600 font-bold uppercase tracking-widest flex items-center gap-1"
-                      >
-                        View all
-                        <ArrowRight size={10} />
-                      </Link>
-                    </div>
-
-                    <div className="p-2 grid grid-cols-2 gap-1 max-h-[58vh] overflow-y-auto">
-                      {services
-                        .filter(
-                          (service) =>
-                            service.path !== "/allservices"
-                        )
-                        .map((service) => (
-                          <Link
-                            key={service.path}
-                            to={service.path}
-                            onClick={() =>
-                              handleLinkClick(service.path)
-                            }
-                            className={`group flex items-start gap-3 px-3 py-3 rounded-xl transition-all duration-200 border ${
-                              location.pathname === service.path
-                                ? d
-                                  ? "bg-purple-500/10 border-purple-500/20"
-                                  : "bg-purple-50 border-purple-100"
-                                : d
-                                ? "border-transparent hover:bg-white/[0.05] hover:border-white/[0.06]"
-                                : "border-transparent hover:bg-gray-50 hover:border-gray-200"
-                            }`}
-                          >
-                            <div
-                              className={`flex-shrink-0 w-8 h-8 rounded-lg border flex items-center justify-center text-purple-500 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-600 transition-all mt-0.5 ${
-                                d
-                                  ? "bg-white/[0.04] border-white/[0.06]"
-                                  : "bg-gray-100 border-gray-200"
-                              }`}
-                            >
-                              {service.icon}
-                            </div>
-
-                            <div className="min-w-0">
-                              <p
-                                className={`text-[12px] lg:text-[13px] font-semibold group-hover:text-purple-500 leading-tight ${
-                                  d
-                                    ? "text-gray-200"
-                                    : "text-gray-700"
-                                }`}
-                              >
-                                {service.name}
-                              </p>
-
-                              <p
-                                className={`text-[10px] lg:text-[11px] mt-1 leading-tight ${
-                                  d
-                                    ? "text-gray-500"
-                                    : "text-gray-400"
-                                }`}
-                              >
-                                {service.desc}
-                              </p>
-                            </div>
-                          </Link>
-                        ))}
-                    </div>
-
-                    <div
-                      className={`px-5 py-4 border-t flex items-center justify-between ${
-                        d
-                          ? "border-white/[0.06] bg-gradient-to-r from-purple-600/5 to-indigo-600/5"
-                          : "border-gray-100 bg-gray-50"
-                      }`}
-                    >
-                      <div>
-                        <p
-                          className={`text-[11px] ${
-                            d
-                              ? "text-gray-500"
-                              : "text-gray-400"
-                          }`}
-                        >
-                          Not sure what you need?
-                        </p>
-
-                        <p
-                          className={`text-[12px] font-bold ${
-                            d ? "text-white" : "text-gray-900"
-                          }`}
-                        >
-                          Let's figure it out together
-                        </p>
-                      </div>
-
-                      <Link
-                        to="/contact"
-                        onClick={() =>
-                          handleLinkClick("/contact")
-                        }
-                        className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-[11px] font-bold rounded-lg transition-colors"
-                      >
-                        Discuss Project
-                        <ArrowRight size={11} />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                  Home
+                </Link>
               </li>
+
+              {/* SERVICES */}
+
+              <DesktopDropdown
+                id="services"
+                label="Services"
+                items={services.filter(
+                  (item) => item.path !== "/allservices"
+                )}
+                width="w-[455px]"
+              />
+
+              {/* SOLUTIONS */}
+
+              <DesktopDropdown
+                id="solutions"
+                label="Solutions"
+                items={solutions}
+                width="w-[400px]"
+              />
+
+              {/* PORTFOLIO */}
+
+              <li>
+                <Link
+                  to="/#projects"
+                  onClick={() => handleLinkClick("/#projects")}
+                  className={`px-2 lg:px-2.5 py-1.5 rounded-lg text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.07em] lg:tracking-[0.09em] transition-all ${linkCls(
+                    location.pathname === "/" &&
+                      location.hash === "#projects"
+                  )}`}
+                >
+                  Portfolio
+                </Link>
+              </li>
+
+              {/* RESOURCES */}
+
+              <DesktopDropdown
+                id="resources"
+                label="Resources"
+                items={resources}
+                width="w-[315px]"
+              />
+
+              {/* COMPANY */}
+
+              <DesktopDropdown
+                id="company"
+                label="Company"
+                items={company}
+                width="w-[315px]"
+              />
             </ul>
 
+            {/* LANGUAGE */}
+
+            <LanguageSelector />
+
+            {/* DARK / LIGHT */}
+
             <ThemeToggle />
+
+            {/* CTA */}
 
             <Link
               to="/contact"
               onClick={() => handleLinkClick("/contact")}
-              className={`group flex items-center gap-2 px-5 lg:px-6 py-2.5 text-[10px] lg:text-[11px] font-black uppercase tracking-[0.12em] lg:tracking-[0.15em] rounded-full transition-all duration-300 ${
+              className={`group flex items-center gap-1.5 px-3.5 lg:px-4 py-2 text-[8px] lg:text-[9px] font-black uppercase tracking-[0.08em] rounded-full whitespace-nowrap transition-all ${
                 d
-                  ? "bg-white hover:bg-purple-500 text-black hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
-                  : "bg-[#111827] hover:bg-purple-600 text-white hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                  ? "bg-white hover:bg-purple-500 text-black hover:text-white"
+                  : "bg-[#111827] hover:bg-purple-600 text-white"
               }`}
             >
               Start a Project
 
               <ArrowRight
-                size={13}
+                size={11}
                 className="group-hover:translate-x-0.5 transition-transform"
               />
             </Link>
           </div>
 
-          {/* ==================================================
-              MOBILE HAMBURGER
-          ================================================== */}
+          {/* MOBILE BUTTON */}
 
-          <div className="md:hidden">
-            <button
-              type="button"
-              aria-label="Open navigation menu"
-              aria-expanded={isOpen}
-              onClick={() => setIsOpen(true)}
-              className={`w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-xl transition-all ${
-                isOpen
-                  ? "opacity-0 pointer-events-none"
-                  : "opacity-100"
+          <button
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen(true)}
+            className={`md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5 rounded-xl ${
+              isOpen ? "opacity-0 pointer-events-none" : ""
+            }`}
+          >
+            <span
+              className={`w-6 h-0.5 rounded-full ${
+                d ? "bg-white" : "bg-gray-800"
               }`}
-            >
-              <span
-                className={`w-6 h-0.5 rounded-full ${
-                  d ? "bg-white" : "bg-gray-800"
-                }`}
-              />
+            />
 
-              <span className="w-5 h-0.5 bg-purple-500 rounded-full" />
+            <span className="w-5 h-0.5 bg-purple-500 rounded-full" />
 
-              <span
-                className={`w-4 h-0.5 rounded-full ${
-                  d ? "bg-white/50" : "bg-gray-400"
-                }`}
-              />
-            </button>
-          </div>
+            <span
+              className={`w-4 h-0.5 rounded-full ${
+                d ? "bg-white/50" : "bg-gray-400"
+              }`}
+            />
+          </button>
         </div>
       </nav>
 
@@ -688,242 +1124,167 @@ const Navbar = ({ isDark, toggleTheme }) => {
       <aside
         aria-label="Mobile navigation"
         aria-hidden={!isOpen}
-        className={`fixed top-0 right-0 bottom-0 w-[88%] max-w-[370px] h-[100dvh] z-[10001] md:hidden flex flex-col transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 bottom-0 w-[88%] max-w-[360px] h-[100dvh] z-[10001] md:hidden flex flex-col transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* BACKGROUND */}
-
         <div
-          className={`absolute inset-0 backdrop-blur-3xl border-l ${
+          className={`absolute inset-0 border-l ${
             d
-              ? "bg-[#060606]/[0.99] border-white/[0.08]"
-              : "bg-white/[0.99] border-gray-200"
+              ? "bg-[#060606] border-white/[0.08]"
+              : "bg-white border-gray-200"
           }`}
         />
 
-        {/* ==================================================
-            MOBILE HEADER
-        ================================================== */}
+        {/* MOBILE HEADER */}
 
         <div
-          className={`relative z-10 h-[78px] px-4 border-b flex items-center justify-between shrink-0 ${
-            d
-              ? "border-white/[0.06]"
-              : "border-gray-100"
+          className={`relative z-10 h-[68px] px-4 border-b flex items-center justify-between shrink-0 ${
+            d ? "border-white/[0.06]" : "border-gray-100"
           }`}
         >
           <Link
             to="/"
             onClick={() => handleLinkClick("/")}
-            className="flex items-center min-w-0"
+            className="flex items-center"
           >
             <img
               src="/logo.png"
               alt="DevZore"
-              width="52"
-              height="52"
-              className="w-[52px] h-[52px] object-contain shrink-0"
+              width="48"
+              height="48"
+              className="w-[48px] h-[48px] object-contain"
             />
 
-            <div className="-ml-2 min-w-0">
+            <div className="-ml-2">
               <p
-                className={`text-[16px] font-black tracking-tight leading-none ${
+                className={`text-[15px] font-black ${
                   d ? "text-white" : "text-gray-900"
                 }`}
               >
                 Dev<span className="text-purple-500">Zore</span>
               </p>
 
-              <p
-                className={`text-[7px] uppercase tracking-[0.18em] mt-1 ${
-                  d ? "text-gray-600" : "text-gray-400"
-                }`}
-              >
+              <p className="text-[7px] uppercase tracking-[0.16em] text-gray-500">
                 Software Agency
               </p>
             </div>
           </Link>
 
-          {/* IMPORTANT: CLOSE BUTTON IS INSIDE SIDEBAR */}
-
           <button
             type="button"
             onClick={() => setIsOpen(false)}
             aria-label="Close navigation menu"
-            title="Close menu"
-            className={`relative z-20 w-10 h-10 shrink-0 rounded-xl border flex items-center justify-center transition-all duration-200 ${
+            className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all ${
               d
-                ? "bg-white/[0.06] border-white/[0.12] text-white hover:bg-purple-600 hover:border-purple-600"
-                : "bg-gray-100 border-gray-200 text-gray-800 hover:bg-purple-600 hover:border-purple-600 hover:text-white"
+                ? "bg-white/[0.06] border-white/[0.12] text-white hover:bg-purple-600"
+                : "bg-gray-100 border-gray-200 text-gray-800 hover:bg-purple-600 hover:text-white"
             }`}
           >
-            <X size={20} strokeWidth={2.3} />
+            <X size={18} />
           </button>
         </div>
 
-        {/* ==================================================
-            MOBILE SCROLLABLE CONTENT
-        ================================================== */}
+        {/* MOBILE CONTENT */}
 
-        <div className="relative z-10 flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 py-4">
-          {/* NAVIGATION */}
+        <div className="relative z-10 flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 py-3">
 
-          <div className="mb-4">
-            <p
-              className={`text-[8px] font-black uppercase tracking-[0.35em] mb-2.5 px-2 ${
-                d ? "text-gray-600" : "text-gray-400"
+          {/* HOME */}
+
+          <Link
+            to="/"
+            onClick={() => handleLinkClick("/")}
+            className={`flex items-center justify-between px-4 py-2.5 rounded-xl mb-1.5 ${
+              location.pathname === "/" &&
+              location.hash === ""
+                ? d
+                  ? "bg-purple-600/15 text-white"
+                  : "bg-purple-50 text-purple-700"
+                : d
+                ? "text-gray-400 hover:bg-white/[0.04]"
+                : "text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            <span className="text-[12px] font-semibold">
+              Home
+            </span>
+
+            <ArrowRight size={12} />
+          </Link>
+
+          <div className="space-y-1.5">
+            <MobileGroup
+              id="services"
+              title="Services"
+              icon={<LayoutGrid size={14} />}
+              items={services}
+            />
+
+            <MobileGroup
+              id="solutions"
+              title="Solutions"
+              icon={<Layers3 size={14} />}
+              items={solutions}
+            />
+
+            {/* PORTFOLIO */}
+
+            <Link
+              to="/#projects"
+              onClick={() => handleLinkClick("/#projects")}
+              className={`flex items-center justify-between px-4 py-2.5 rounded-xl border ${
+                d
+                  ? "border-white/[0.06] bg-white/[0.02] text-gray-300"
+                  : "border-gray-200 bg-gray-50 text-gray-700"
               }`}
             >
-              Navigation
-            </p>
+              <div className="flex items-center gap-3">
+                <div className="w-7 h-7 rounded-lg bg-purple-600/15 text-purple-500 flex items-center justify-center">
+                  <FolderKanban size={14} />
+                </div>
 
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  onClick={() => handleLinkClick(link.path)}
-                  className={`flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all duration-200 ${
-                    isLinkActive(link.path)
-                      ? d
-                        ? "bg-purple-600/15 border-purple-500/30 text-white"
-                        : "bg-purple-50 border-purple-200 text-purple-700"
-                      : d
-                      ? "text-gray-400 hover:text-white hover:bg-white/[0.04] border-transparent"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100 border-transparent"
-                  }`}
-                >
-                  <span className="text-[13px] font-semibold">
-                    {link.name}
-                  </span>
+                <span className="text-[12px] font-semibold">
+                  Portfolio
+                </span>
+              </div>
 
-                  {isLinkActive(link.path) ? (
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                  ) : (
-                    <ArrowRight
-                      size={13}
-                      className={
-                        d ? "text-gray-600" : "text-gray-400"
-                      }
-                    />
-                  )}
-                </Link>
-              ))}
-            </div>
+              <ArrowRight size={12} />
+            </Link>
+
+            <MobileGroup
+              id="resources"
+              title="Resources"
+              icon={<BookOpen size={14} />}
+              items={resources}
+            />
+
+            <MobileGroup
+              id="company"
+              title="Company"
+              icon={<Building2 size={14} />}
+              items={company}
+            />
+          </div>
+
+          {/* LANGUAGE */}
+
+          <div className="mt-2">
+            <LanguageSelector mobile />
           </div>
 
           {/* THEME */}
 
-          <div className="mb-4">
+          <div className="mt-2">
             <ThemeToggle mobile />
-          </div>
-
-          {/* ==================================================
-              MOBILE SERVICES
-          ================================================== */}
-
-          <div>
-            <button
-              type="button"
-              onClick={() =>
-                setMobileServiceOpen(
-                  (current) => !current
-                )
-              }
-              aria-expanded={mobileServiceOpen}
-              aria-controls="mobile-services-menu"
-              className={`w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all ${
-                d
-                  ? "border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04]"
-                  : "border-gray-200 bg-gray-50 hover:bg-gray-100"
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-lg bg-purple-600/20 flex items-center justify-center">
-                  <LayoutGrid
-                    size={14}
-                    className="text-purple-500"
-                  />
-                </div>
-
-                <div className="text-left">
-                  <p
-                    className={`text-[13px] font-semibold ${
-                      d ? "text-white" : "text-gray-800"
-                    }`}
-                  >
-                    Our Services
-                  </p>
-
-                  <p
-                    className={`text-[9px] mt-0.5 ${
-                      d ? "text-gray-500" : "text-gray-400"
-                    }`}
-                  >
-                    {services.length - 1} services available
-                  </p>
-                </div>
-              </div>
-
-              <ChevronDown
-                size={15}
-                className={`transition-transform duration-300 ${
-                  mobileServiceOpen
-                    ? "rotate-180 text-purple-500"
-                    : d
-                    ? "text-gray-500"
-                    : "text-gray-400"
-                }`}
-              />
-            </button>
-
-            <div
-              id="mobile-services-menu"
-              className={`overflow-hidden transition-all duration-300 ${
-                mobileServiceOpen
-                  ? "max-h-[1000px] opacity-100"
-                  : "max-h-0 opacity-0"
-              }`}
-            >
-              <div className="flex flex-col gap-0.5 pt-2">
-                {services.map((service) => (
-                  <Link
-                    key={service.path}
-                    to={service.path}
-                    onClick={() =>
-                      handleLinkClick(service.path)
-                    }
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group ${
-                      location.pathname === service.path
-                        ? d
-                          ? "bg-purple-600/10 text-purple-400"
-                          : "bg-purple-50 text-purple-700"
-                        : d
-                        ? "text-gray-400 hover:text-white hover:bg-white/[0.04]"
-                        : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
-                    }`}
-                  >
-                    <span className="text-purple-500/80 group-hover:text-purple-500 transition-colors">
-                      {service.icon}
-                    </span>
-
-                    <span className="text-[12px] font-medium">
-                      {service.name}
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
 
         {/* ==================================================
-            MOBILE CTA - ALWAYS AT BOTTOM
+            MOBILE BOTTOM CTA
         ================================================== */}
 
         <div
-          className={`relative z-10 shrink-0 px-4 pt-3 pb-[max(14px,env(safe-area-inset-bottom))] border-t space-y-2 ${
+          className={`relative z-10 shrink-0 px-4 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] border-t space-y-2 ${
             d
               ? "border-white/[0.06] bg-[#060606]"
               : "border-gray-100 bg-white"
@@ -932,9 +1293,9 @@ const Navbar = ({ isDark, toggleTheme }) => {
           <Link
             to="/contact"
             onClick={() => handleLinkClick("/contact")}
-            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 rounded-xl font-bold text-[11px] uppercase tracking-widest hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] transition-all"
+            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-2.5 rounded-xl font-bold text-[10px] uppercase tracking-widest"
           >
-            <Mail size={13} />
+            <Mail size={12} />
             Start a Project
           </Link>
 
@@ -944,19 +1305,11 @@ const Navbar = ({ isDark, toggleTheme }) => {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full bg-[#25D366]/10 border border-[#25D366]/20 text-[#25D366] py-2.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-[#25D366]/20 transition-all"
           >
-            <svg
-              aria-hidden="true"
-              className="w-4 h-4 fill-current"
-              viewBox="0 0 24 24"
-            >
-              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z" />
-            </svg>
-
             WhatsApp Us
           </a>
 
           <p
-            className={`text-[8px] text-center uppercase tracking-[0.15em] ${
+            className={`text-[7px] text-center uppercase tracking-[0.14em] ${
               d ? "text-gray-700" : "text-gray-400"
             }`}
           >

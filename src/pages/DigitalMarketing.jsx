@@ -31,6 +31,10 @@ const DigitalMarketing = ({ isDark }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  /* =====================================================
+     DIGITAL MARKETING SERVICES
+  ===================================================== */
+
   const services = [
     {
       icon: <Share2 size={22} />,
@@ -160,6 +164,10 @@ const DigitalMarketing = ({ isDark }) => {
     },
   ];
 
+  /* =====================================================
+     PLATFORMS
+  ===================================================== */
+
   const platforms = [
     {
       name: 'Instagram',
@@ -203,6 +211,10 @@ const DigitalMarketing = ({ isDark }) => {
     },
   ];
 
+  /* =====================================================
+     MARKETING FOCUS
+  ===================================================== */
+
   const marketingFocus = [
     {
       icon: <Target size={19} />,
@@ -220,11 +232,58 @@ const DigitalMarketing = ({ isDark }) => {
       desc: 'Measure campaign activity with analytics, conversion tracking and reporting.',
     },
     {
-      icon: <RefreshCwIcon />,
+      icon: <Activity size={19} />,
       title: 'Campaign Optimisation',
       desc: 'Review campaign data and refine targeting, creatives and other campaign elements.',
     },
   ];
+
+  /* =====================================================
+     EXPERTISE
+  ===================================================== */
+
+  const expertise = [
+    {
+      icon: <Target size={21} />,
+      color: 'purple',
+      title: 'Digital Marketing Strategy',
+      desc: 'Practical marketing strategies built around your audience, business objectives, customer journey and available marketing channels.',
+    },
+    {
+      icon: <Share2 size={21} />,
+      color: 'blue',
+      title: 'Social Media Marketing',
+      desc: 'Social media planning, branded content and campaign support for platforms where your customers spend their time.',
+    },
+    {
+      icon: <Search size={21} />,
+      color: 'green',
+      title: 'Search Engine Marketing',
+      desc: 'Google Ads, PPC and search-focused campaigns designed to connect your business with people actively searching for relevant solutions.',
+    },
+    {
+      icon: <DollarSign size={21} />,
+      color: 'amber',
+      title: 'Lead Generation',
+      desc: 'Online and business lead generation campaigns combining advertising, landing pages, lead forms and conversion tracking.',
+    },
+    {
+      icon: <PenTool size={21} />,
+      color: 'pink',
+      title: 'Content & Brand Marketing',
+      desc: 'Content marketing and brand communication designed to explain your services, support campaigns and strengthen your online presence.',
+    },
+    {
+      icon: <BarChart3 size={21} />,
+      color: 'orange',
+      title: 'Performance Marketing',
+      desc: 'Analytics, conversion tracking and campaign reporting help measure activity and support data-informed optimisation.',
+    },
+  ];
+
+  /* =====================================================
+     PROCESS
+  ===================================================== */
 
   const process = [
     {
@@ -259,6 +318,10 @@ const DigitalMarketing = ({ isDark }) => {
     },
   ];
 
+  /* =====================================================
+     FAQ
+  ===================================================== */
+
   const faqs = [
     {
       q: 'What digital marketing services does DevZore provide?',
@@ -286,7 +349,7 @@ const DigitalMarketing = ({ isDark }) => {
     },
     {
       q: 'How long does digital marketing take to produce results?',
-      a: 'There is no fixed timeline that applies to every campaign. Paid advertising can begin generating traffic after launch, while organic social media, content marketing and audience development generally require consistent work over time. Results depend on factors such as competition, offer quality, budget, targeting and market demand.',
+      a: 'There is no fixed timeline that applies to every campaign. Paid advertising can begin generating traffic after launch, while organic social media, content marketing and audience development generally require consistent work over time. Results depend on competition, offer quality, budget, targeting and market demand.',
     },
     {
       q: 'Can you create social media posts and video content?',
@@ -309,6 +372,10 @@ const DigitalMarketing = ({ isDark }) => {
       a: 'No responsible digital marketing provider can guarantee a specific number of leads, sales or return from every campaign. Performance depends on many factors including the offer, market, competition, budget, website experience and customer demand. Our focus is on structured execution, measurement and ongoing improvement.',
     },
   ];
+
+  /* =====================================================
+     RELATED SERVICES
+  ===================================================== */
 
   const relatedServices = [
     {
@@ -360,6 +427,10 @@ const DigitalMarketing = ({ isDark }) => {
       ? 'bg-orange-500/10 border-orange-500/20 text-orange-400'
       : 'bg-orange-50 border-orange-100 text-orange-600',
   };
+
+  /* =====================================================
+     CTA COMPONENT
+  ===================================================== */
 
   const CtaStrip = ({ heading, sub }) => (
     <div
@@ -422,6 +493,10 @@ const DigitalMarketing = ({ isDark }) => {
 
   return (
     <>
+      {/* =================================================
+          STRUCTURED DATA
+      ================================================= */}
+
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -430,7 +505,7 @@ const DigitalMarketing = ({ isDark }) => {
             '@id': 'https://devzore.com/digital-marketing#service',
             name: 'Digital Marketing Services',
             description:
-              'Digital marketing services including social media management, Meta Ads, Google Ads, PPC management, lead generation, email marketing, content marketing and campaign analytics.',
+              'Digital marketing services including social media marketing, Meta Ads, Google Ads, PPC management, lead generation, content marketing, email marketing, digital advertising and performance marketing.',
             url: 'https://devzore.com/digital-marketing',
             serviceType: 'Digital Marketing Services',
             provider: {
@@ -500,7 +575,10 @@ const DigitalMarketing = ({ isDark }) => {
           d ? 'bg-[#030303]' : 'bg-white'
         }`}
       >
-        {/* Hero */}
+        {/* =================================================
+            HERO
+        ================================================= */}
+
         <section
           aria-labelledby="digital-marketing-heading"
           className={`pt-28 pb-16 border-b ${
@@ -509,6 +587,7 @@ const DigitalMarketing = ({ isDark }) => {
         >
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
               <div>
                 <div className="flex flex-wrap gap-3 mb-6">
                   <div
@@ -519,7 +598,7 @@ const DigitalMarketing = ({ isDark }) => {
                     }`}
                   >
                     <BarChart3 size={12} />
-                    Digital Marketing
+                    Digital Marketing Services
                   </div>
 
                   <div
@@ -552,7 +631,7 @@ const DigitalMarketing = ({ isDark }) => {
                   }`}
                 >
                   Social Media · Meta Ads · Google Ads · PPC · Lead Generation ·
-                  Email Marketing · Content
+                  Content Marketing
                 </p>
 
                 <p
@@ -561,9 +640,9 @@ const DigitalMarketing = ({ isDark }) => {
                   }`}
                 >
                   DevZore provides digital marketing services for businesses
-                  that want a structured approach to social media, paid
-                  advertising, lead generation, content and campaign
-                  measurement.
+                  that want a structured approach to online marketing, social
+                  media, digital advertising, lead generation, content and
+                  campaign measurement.
                 </p>
 
                 <p
@@ -571,10 +650,10 @@ const DigitalMarketing = ({ isDark }) => {
                     d ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
-                  We can help plan and manage Facebook and Instagram Ads,
-                  Google Ads, social media content, email campaigns and digital
-                  lead generation while using analytics and conversion tracking
-                  to understand campaign performance.
+                  Our digital marketing solutions can combine Facebook and
+                  Instagram Ads, Google Ads, PPC management, social media
+                  marketing, content marketing, email campaigns and online lead
+                  generation based on your audience and business objectives.
                 </p>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
@@ -662,7 +741,8 @@ const DigitalMarketing = ({ isDark }) => {
                 </div>
               </div>
 
-              {/* Right panel */}
+              {/* HERO RIGHT PANEL */}
+
               <div
                 className={`p-7 lg:p-8 rounded-3xl border ${
                   d
@@ -697,8 +777,8 @@ const DigitalMarketing = ({ isDark }) => {
                       desc: 'Campaigns designed around enquiries and customer acquisition.',
                     },
                     {
-                      title: 'Email Marketing',
-                      desc: 'Newsletters, promotional campaigns and automated sequences.',
+                      title: 'Content Marketing',
+                      desc: 'Useful content supporting brand and marketing activity.',
                     },
                     {
                       title: 'Analytics & Tracking',
@@ -758,7 +838,10 @@ const DigitalMarketing = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Services */}
+        {/* =================================================
+            SERVICES
+        ================================================= */}
+
         <section
           aria-labelledby="marketing-services-heading"
           className={`py-16 border-b ${
@@ -787,15 +870,15 @@ const DigitalMarketing = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                Choose individual marketing services or combine multiple
+                Choose individual online marketing services or combine multiple
                 channels into a broader digital marketing strategy based on
-                your requirements.
+                your business requirements.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {services.map((item) => (
-                <div
+                <article
                   key={item.title}
                   className={`p-6 rounded-2xl border transition-all hover:border-purple-500/25 ${
                     d
@@ -827,9 +910,9 @@ const DigitalMarketing = ({ isDark }) => {
                     {item.desc}
                   </p>
 
-                  <div className="space-y-2">
+                  <ul className="space-y-2">
                     {item.includes.map((feature) => (
-                      <div
+                      <li
                         key={feature}
                         className={`flex items-start gap-2 text-[11px] ${
                           d ? 'text-gray-500' : 'text-gray-500'
@@ -840,16 +923,19 @@ const DigitalMarketing = ({ isDark }) => {
                           className="text-purple-500 flex-shrink-0 mt-0.5"
                         />
                         <span>{feature}</span>
-                      </div>
+                      </li>
                     ))}
-                  </div>
-                </div>
+                  </ul>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Platforms */}
+        {/* =================================================
+            PLATFORMS
+        ================================================= */}
+
         <section
           aria-labelledby="platforms-heading"
           className={`py-16 border-b ${
@@ -914,13 +1000,138 @@ const DigitalMarketing = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Marketing approach */}
+        {/* =================================================
+            DIGITAL MARKETING EXPERTISE
+        ================================================= */}
+
         <section
-          aria-labelledby="approach-heading"
-          className={`py-16 border-b ${
+          aria-labelledby="digital-expertise-heading"
+          className={`py-20 border-b ${
             d
               ? 'border-white/[0.06] bg-[#050505]'
               : 'border-gray-100 bg-[#fafafa]'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
+
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <p className="text-purple-500 text-xs font-black uppercase tracking-[0.2em] mb-3">
+                Digital Marketing Expertise
+              </p>
+
+              <h2
+                id="digital-expertise-heading"
+                className={`text-3xl md:text-4xl font-black mb-4 ${
+                  d ? 'text-white' : 'text-gray-900'
+                }`}
+              >
+                A Complete Approach to{' '}
+                <span className="text-purple-600">
+                  Online Business Growth
+                </span>
+              </h2>
+
+              <p
+                className={`text-base leading-relaxed max-w-2xl mx-auto ${
+                  d ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
+                DevZore combines marketing strategy, content, digital
+                advertising, search marketing and performance measurement to
+                help businesses build a stronger and more measurable digital
+                presence.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {expertise.map((item) => (
+                <article
+                  key={item.title}
+                  className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
+                    d
+                      ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-purple-500/30'
+                      : 'bg-white border-gray-200 hover:border-purple-200 hover:shadow-lg'
+                  }`}
+                >
+                  <div
+                    className={`w-11 h-11 rounded-xl border flex items-center justify-center mb-5 ${
+                      colorMap[item.color]
+                    }`}
+                  >
+                    {item.icon}
+                  </div>
+
+                  <h3
+                    className={`text-[15px] font-black mb-2 ${
+                      d ? 'text-white' : 'text-gray-900'
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
+
+                  <p
+                    className={`text-[13px] leading-relaxed ${
+                      d ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    {item.desc}
+                  </p>
+                </article>
+              ))}
+            </div>
+
+            <div
+              className={`mt-8 p-6 md:p-7 rounded-2xl border ${
+                d
+                  ? 'bg-purple-500/[0.04] border-purple-500/10'
+                  : 'bg-purple-50/60 border-purple-100'
+              }`}
+            >
+              <div className="grid md:grid-cols-[auto_1fr] gap-4 items-start">
+                <div
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                    d
+                      ? 'bg-purple-500/10 text-purple-400'
+                      : 'bg-white text-purple-600'
+                  }`}
+                >
+                  <Globe size={19} />
+                </div>
+
+                <div>
+                  <h3
+                    className={`text-sm font-black mb-2 ${
+                      d ? 'text-white' : 'text-gray-900'
+                    }`}
+                  >
+                    Digital Marketing Solutions for Different Business Models
+                  </h3>
+
+                  <p
+                    className={`text-[13px] leading-7 ${
+                      d ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    From startup digital marketing and small business digital
+                    marketing to online business marketing, DevZore can combine
+                    digital advertising, social media marketing, content
+                    marketing, search engine marketing and lead generation
+                    according to your business requirements.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =================================================
+            MARKETING APPROACH
+        ================================================= */}
+
+        <section
+          aria-labelledby="approach-heading"
+          className={`py-16 border-b ${
+            d ? 'border-white/[0.06]' : 'border-gray-100'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
@@ -956,7 +1167,7 @@ const DigitalMarketing = ({ isDark }) => {
                   className={`p-6 rounded-2xl border ${
                     d
                       ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-white border-gray-200'
+                      : 'bg-[#fafafa] border-gray-200'
                   }`}
                 >
                   <div
@@ -995,11 +1206,16 @@ const DigitalMarketing = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Process */}
+        {/* =================================================
+            PROCESS
+        ================================================= */}
+
         <section
           aria-labelledby="process-heading"
           className={`py-16 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
+            d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-gray-100 bg-[#fafafa]'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
@@ -1034,7 +1250,7 @@ const DigitalMarketing = ({ isDark }) => {
                   className={`p-6 rounded-2xl border ${
                     d
                       ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-[#fafafa] border-gray-200'
+                      : 'bg-white border-gray-200'
                   }`}
                 >
                   <div
@@ -1071,74 +1287,61 @@ const DigitalMarketing = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Search intent */}
+        {/* =================================================
+            BUSINESS USE CASES
+        ================================================= */}
+
         <section
+          aria-labelledby="business-marketing-heading"
           className={`py-16 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
+            d ? 'border-white/[0.06]' : 'border-gray-100'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-2 gap-10 items-center">
+
               <div>
                 <p className="text-purple-500 text-xs font-black uppercase tracking-[0.2em] mb-3">
                   Digital Growth
                 </p>
 
                 <h2
+                  id="business-marketing-heading"
                   className={`text-3xl font-black mb-4 ${
                     d ? 'text-white' : 'text-gray-900'
                   }`}
                 >
-                  Social Media, Meta Ads, Google Ads & Lead Generation
+                  Online Marketing for Startups, Small Businesses & Growing
+                  Brands
                 </h2>
 
                 <p
-                  className={`text-base leading-relaxed mb-6 ${
+                  className={`text-base leading-relaxed mb-5 ${
                     d ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
-                  Digital marketing can combine paid advertising, organic
-                  content, social media management, search campaigns, email
-                  marketing and analytics. The right combination depends on
-                  your customers, offer and business objectives.
+                  A digital marketing strategy can combine social media
+                  marketing, search engine marketing, digital advertising,
+                  content marketing, email marketing and lead generation.
                 </p>
 
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    'Digital Marketing Services',
-                    'Social Media Marketing',
-                    'Social Media Management',
-                    'Meta Ads Management',
-                    'Facebook Ads',
-                    'Instagram Ads',
-                    'Google Ads',
-                    'PPC Management',
-                    'Lead Generation',
-                    'Email Marketing',
-                    'Content Marketing',
-                    'Marketing Analytics',
-                  ].map((item) => (
-                    <span
-                      key={item}
-                      className={`text-[11px] font-semibold px-3 py-1.5 rounded-lg border ${
-                        d
-                          ? 'bg-white/[0.03] border-white/[0.08] text-gray-300'
-                          : 'bg-white border-gray-200 text-gray-700'
-                      }`}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
+                <p
+                  className={`text-base leading-relaxed ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  The appropriate mix depends on your customers, offer,
+                  competition, budget and business objectives. DevZore can help
+                  structure the marketing activity around those requirements
+                  instead of applying the same campaign model to every business.
+                </p>
               </div>
 
               <div
                 className={`p-7 rounded-2xl border ${
                   d
                     ? 'bg-white/[0.02] border-white/[0.06]'
-                    : 'bg-white border-gray-200'
+                    : 'bg-[#fafafa] border-gray-200'
                 }`}
               >
                 <h3
@@ -1149,15 +1352,17 @@ const DigitalMarketing = ({ isDark }) => {
                   Digital Marketing Can Support
                 </h3>
 
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {[
+                    'Startup digital marketing campaigns',
+                    'Small business digital marketing',
+                    'Online business marketing',
                     'Business and service enquiries',
                     'Online store marketing',
                     'Brand awareness campaigns',
                     'Social media presence',
                     'Paid traffic acquisition',
-                    'Lead generation campaigns',
-                    'Customer communication',
+                    'Online lead generation',
                     'Marketing performance measurement',
                   ].map((item) => (
                     <div
@@ -1170,7 +1375,7 @@ const DigitalMarketing = ({ isDark }) => {
                         size={14}
                         className="text-purple-500 flex-shrink-0"
                       />
-                      {item}
+                      <span>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -1179,11 +1384,16 @@ const DigitalMarketing = ({ isDark }) => {
           </div>
         </section>
 
-        {/* FAQ */}
+        {/* =================================================
+            FAQ
+        ================================================= */}
+
         <section
           aria-labelledby="faq-heading"
           className={`py-16 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
+            d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-gray-100 bg-[#fafafa]'
           }`}
         >
           <div className="max-w-4xl mx-auto px-6">
@@ -1248,7 +1458,7 @@ const DigitalMarketing = ({ isDark }) => {
                         {faq.q}
                       </span>
 
-                      <div
+                      <span
                         className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${
                           isOpen
                             ? 'bg-purple-600 text-white'
@@ -1262,7 +1472,7 @@ const DigitalMarketing = ({ isDark }) => {
                         ) : (
                           <Plus size={13} />
                         )}
-                      </div>
+                      </span>
                     </button>
 
                     <div
@@ -1294,13 +1504,14 @@ const DigitalMarketing = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Related services */}
+        {/* =================================================
+            RELATED SERVICES
+        ================================================= */}
+
         <section
-          aria-label="Related services"
+          aria-labelledby="related-services-heading"
           className={`py-16 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
+            d ? 'border-white/[0.06]' : 'border-gray-100'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
@@ -1310,6 +1521,7 @@ const DigitalMarketing = ({ isDark }) => {
               </p>
 
               <h2
+                id="related-services-heading"
                 className={`text-2xl md:text-3xl font-black ${
                   d ? 'text-white' : 'text-gray-900'
                 }`}
@@ -1324,10 +1536,10 @@ const DigitalMarketing = ({ isDark }) => {
                   key={service.path}
                   to={service.path}
                   onClick={scrollTop}
-                  className={`group p-6 rounded-2xl border transition-all ${
+                  className={`group p-6 rounded-2xl border transition-all hover:-translate-y-1 ${
                     d
                       ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-purple-500/30'
-                      : 'bg-white border-gray-200 hover:border-purple-200 hover:shadow-sm'
+                      : 'bg-white border-gray-200 hover:border-purple-200 hover:shadow-lg'
                   }`}
                 >
                   <div
@@ -1366,8 +1578,11 @@ const DigitalMarketing = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="py-16">
+        {/* =================================================
+            FINAL CTA
+        ================================================= */}
+
+        <section className="py-20">
           <div className="max-w-4xl mx-auto px-6">
             <div
               className={`p-8 md:p-10 rounded-3xl border text-center ${
@@ -1395,14 +1610,23 @@ const DigitalMarketing = ({ isDark }) => {
               </h2>
 
               <p
-                className={`text-base mb-8 max-w-2xl mx-auto leading-relaxed ${
+                className={`text-base mb-4 max-w-2xl mx-auto leading-relaxed ${
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
                 Tell us about your business, target audience and current
                 marketing challenges. DevZore can help you discuss a practical
-                approach across social media, paid advertising, lead generation,
-                content and analytics.
+                approach across social media, paid advertising, lead
+                generation, content and analytics.
+              </p>
+
+              <p
+                className={`text-[12px] mb-8 ${
+                  d ? 'text-gray-600' : 'text-gray-400'
+                }`}
+              >
+                Social Media Marketing · Google Ads · Meta Ads · PPC · Lead
+                Generation · Content Marketing · Performance Marketing
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center">
@@ -1444,9 +1668,5 @@ const DigitalMarketing = ({ isDark }) => {
     </>
   );
 };
-
-const RefreshCwIcon = () => (
-  <Activity size={19} />
-);
 
 export default DigitalMarketing;

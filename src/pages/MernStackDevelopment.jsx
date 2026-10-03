@@ -16,6 +16,9 @@ import {
   Code2,
   Shield,
   Layers,
+  Users,
+  Zap,
+  Lock,
 } from 'lucide-react';
 
 const MernStackDevelopment = ({ isDark }) => {
@@ -26,65 +29,65 @@ const MernStackDevelopment = ({ isDark }) => {
     {
       icon: <Monitor size={20} />,
       color: 'purple',
-      title: 'MERN Stack Web Applications',
-      desc: 'Custom full-stack web applications built with MongoDB, Express.js, React.js and Node.js. We connect frontend interfaces, backend APIs and databases into one maintainable application architecture.',
+      title: 'MERN Stack Web Development',
+      desc: 'Custom MERN stack web development using MongoDB, Express.js, React.js and Node.js. We connect responsive frontend interfaces, backend APIs and databases into one maintainable full-stack application.',
     },
     {
       icon: <TrendingUp size={20} />,
       color: 'blue',
-      title: 'SaaS Platforms with MERN',
-      desc: 'MERN-based SaaS applications with authentication, user management, dashboards, subscriptions, role-based access and scalable backend architecture.',
+      title: 'MERN SaaS Application Development',
+      desc: 'Build MERN-based SaaS platforms with authentication, user management, dashboards, subscriptions, role-based access, APIs and scalable application architecture.',
     },
     {
       icon: <Database size={20} />,
       color: 'green',
       title: 'Business Dashboards & Portals',
-      desc: 'Admin dashboards, CRM systems, management portals and internal business applications with filtering, reporting, analytics and secure user access.',
+      desc: 'Develop custom dashboards, CRM systems, management portals and internal business applications with reporting, filtering, analytics and secure user access.',
     },
     {
       icon: <Server size={20} />,
       color: 'orange',
-      title: 'MERN APIs & Backend Systems',
-      desc: 'Node.js and Express.js backend development with MongoDB, REST APIs, authentication, integrations, validation and structured application architecture.',
+      title: 'MERN Backend & API Development',
+      desc: 'Node.js and Express.js backend development with MongoDB, REST APIs, authentication, validation, business logic and third-party integrations.',
     },
     {
       icon: <Rocket size={20} />,
       color: 'amber',
-      title: 'Startup MVP Development',
-      desc: 'MERN stack MVP development for startups that need to validate an idea, launch core functionality and create a technical foundation that can evolve with the product.',
+      title: 'MERN Stack MVP Development',
+      desc: 'MERN stack development for startups that need to validate an idea, launch core functionality and establish a technical foundation that can evolve with the product.',
     },
     {
       icon: <Settings size={20} />,
       color: 'indigo',
       title: 'MERN Migration & Modernisation',
-      desc: 'Modernisation of older web applications into React, Node.js and MongoDB-based solutions with improved interfaces, APIs and maintainable code structure.',
+      desc: 'Modernise existing applications using React, Node.js, Express.js and MongoDB with improved interfaces, APIs, application structure and maintainable code.',
     },
   ];
 
   const whyMern = [
     {
-      title: 'JavaScript Across the Stack',
-      desc: 'MERN uses JavaScript across frontend and backend development, helping teams maintain a consistent technology stack throughout the application.',
+      title: 'JavaScript Across the Full Stack',
+      desc: 'MERN uses JavaScript across frontend and backend development, providing a consistent technology stack for building modern full-stack web applications.',
     },
     {
       title: 'Flexible MongoDB Data Models',
-      desc: 'MongoDB supports flexible document-based data structures that work well for many modern web applications and evolving product requirements.',
+      desc: 'MongoDB supports flexible document-based data structures that work well for many modern applications and evolving product requirements.',
     },
     {
-      title: 'Component-Based React UI',
-      desc: 'React makes it possible to create reusable interface components for dashboards, SaaS applications, portals and interactive business software.',
+      title: 'Component-Based React Interfaces',
+      desc: 'React enables reusable UI components for dashboards, SaaS platforms, portals and interactive business applications.',
     },
     {
       title: 'Node.js Backend Development',
-      desc: 'Node.js provides an efficient server-side JavaScript environment for APIs, authentication systems, integrations and real-time application features.',
+      desc: 'Node.js provides a server-side JavaScript runtime for building APIs, authentication systems, integrations and real-time application functionality.',
     },
     {
-      title: 'Reusable Application Architecture',
-      desc: 'A well-structured MERN application can separate frontend, backend and database responsibilities while keeping the overall development stack consistent.',
+      title: 'Maintainable Application Architecture',
+      desc: 'A properly structured MERN application separates frontend, backend and database responsibilities while keeping the overall development stack consistent.',
     },
     {
-      title: 'Strong Development Ecosystem',
-      desc: 'React, Node.js, Express and MongoDB have established ecosystems with libraries and tools for authentication, testing, payments, deployment and application monitoring.',
+      title: 'Established Development Ecosystem',
+      desc: 'MongoDB, Express.js, React.js and Node.js provide established ecosystems for authentication, testing, payments, deployment, monitoring and application development.',
     },
   ];
 
@@ -112,7 +115,7 @@ const MernStackDevelopment = ({ isDark }) => {
     {
       category: 'React.js',
       items: [
-        'React',
+        'React.js',
         'React Router',
         'TypeScript',
         'Tailwind CSS',
@@ -155,17 +158,17 @@ const MernStackDevelopment = ({ isDark }) => {
     {
       n: '01',
       title: 'Requirements & Architecture',
-      desc: 'We review your product requirements, users, workflows and integrations before defining the MERN application architecture.',
+      desc: 'We review your product requirements, target users, workflows, integrations and business objectives before defining the MERN application architecture.',
     },
     {
       n: '02',
       title: 'Database & Backend Foundation',
-      desc: 'MongoDB data models, Express routes, authentication, validation and core backend APIs are structured around the requirements of the application.',
+      desc: 'MongoDB data models, Express.js routes, authentication, validation and core backend APIs are structured around the requirements of your application.',
     },
     {
       n: '03',
       title: 'React Frontend Development',
-      desc: 'Reusable React components and responsive interfaces are developed and connected to the backend through structured API communication.',
+      desc: 'Reusable React components and responsive interfaces are developed and connected to the Node.js backend through structured API communication.',
     },
     {
       n: '04',
@@ -175,51 +178,59 @@ const MernStackDevelopment = ({ isDark }) => {
     {
       n: '05',
       title: 'Testing & Optimisation',
-      desc: 'The application is reviewed for functionality, responsive behaviour, API reliability, security considerations and performance before release.',
+      desc: 'The application is reviewed for functionality, responsive behaviour, API reliability, validation, security considerations and performance before release.',
     },
     {
       n: '06',
       title: 'Deployment & Handover',
-      desc: 'We prepare the application for production deployment and provide the relevant project code, configuration and technical handover based on the project agreement.',
+      desc: 'We prepare the MERN application for production deployment and provide relevant project code, configuration and technical handover according to the project agreement.',
     },
   ];
 
   const faqs = [
     {
       q: 'What is MERN stack development?',
-      a: 'MERN stack development uses MongoDB for data storage, Express.js for backend application logic, React.js for the user interface and Node.js as the server-side JavaScript runtime. Together, these technologies can be used to build full-stack web applications using JavaScript across much of the application.',
+      a: 'MERN stack development uses MongoDB for data storage, Express.js for backend application logic, React.js for the frontend user interface and Node.js as the server-side JavaScript runtime. Together, these technologies are used to build full-stack JavaScript web applications.',
     },
     {
-      q: 'What types of applications can be built with MERN stack?',
+      q: 'What MERN stack development services does DevZore provide?',
+      a: 'DevZore provides MERN stack development services for custom web applications, SaaS products, startup MVPs, business dashboards, customer portals, backend APIs, MongoDB databases and existing MERN applications.',
+    },
+    {
+      q: 'What types of applications can be built with MERN?',
       a: 'MERN can be used for SaaS platforms, business applications, admin dashboards, customer portals, e-commerce systems, startup MVPs, management software and other custom web applications.',
     },
     {
       q: 'How much does MERN stack development cost?',
-      a: 'MERN stack development cost depends on the project scope, number of features, UI requirements, integrations, backend complexity and deployment requirements. DevZore reviews the requirements before preparing a project-specific proposal.',
+      a: 'MERN stack development cost depends on the application scope, number of features, UI requirements, user roles, integrations, backend complexity and deployment requirements. DevZore reviews the requirements before preparing a project-specific proposal.',
     },
     {
       q: 'How long does a MERN stack project take?',
-      a: 'Development time depends on the size and complexity of the application. A focused MVP may require considerably less development work than a multi-role SaaS platform or a complex business management system. A project timeline can be estimated after the required features and deliverables are defined.',
+      a: 'Development time depends on the size and complexity of the application. A focused MVP may require considerably less development work than a multi-role SaaS platform or complex business management system. A project timeline can be estimated after the required features and deliverables are defined.',
     },
     {
       q: 'Is MERN stack suitable for SaaS development?',
-      a: 'Yes. MERN can be used to build SaaS applications with features such as user authentication, dashboards, subscriptions, role-based permissions, APIs, notifications and account management.',
+      a: 'Yes. MERN can be used to build SaaS applications with authentication, dashboards, subscriptions, role-based permissions, APIs, notifications, account management and other product-specific functionality.',
     },
     {
       q: 'Can you build REST APIs for a MERN application?',
-      a: 'Yes. Node.js and Express.js can be used to create REST APIs for React applications, mobile applications and third-party integrations. API work can include authentication, validation, database operations, permissions and external service integrations.',
+      a: 'Yes. Node.js and Express.js can be used to create REST APIs for React applications, mobile applications and third-party integrations. API development can include authentication, validation, database operations, permissions and external service integrations.',
     },
     {
-      q: 'Can MERN stack applications integrate payment gateways?',
-      a: 'Yes. MERN applications can integrate supported payment providers through their APIs and webhooks. The exact payment gateway depends on the project requirements, business location and provider availability.',
+      q: 'Can MERN applications integrate payment gateways?',
+      a: 'Yes. MERN applications can integrate supported payment providers through their APIs and webhooks. The appropriate payment gateway depends on the project requirements, business location and provider availability.',
     },
     {
-      q: 'Can you work with an existing MERN stack project?',
-      a: 'Yes. DevZore can review an existing React, Node.js, Express or MongoDB application for feature development, bug fixes, API work, UI improvements, maintenance or architecture improvements.',
+      q: 'Can DevZore work with an existing MERN stack project?',
+      a: 'Yes. We can review an existing React, Node.js, Express.js or MongoDB application for new features, bug fixes, API development, UI improvements, maintenance, integrations or architecture improvements.',
     },
     {
-      q: 'Do you provide MERN stack development for international clients?',
-      a: 'DevZore provides remote MERN stack development services for businesses and startups that need web application, SaaS, API or full-stack JavaScript development.',
+      q: 'Can I hire a MERN stack developer for my startup or business?',
+      a: 'Yes. DevZore provides project-based MERN stack development for startups and businesses that need help building or improving web applications, SaaS platforms, dashboards, APIs and other full-stack JavaScript products.',
+    },
+    {
+      q: 'Do you provide MERN stack development worldwide?',
+      a: 'Yes. DevZore works remotely and provides MERN stack development services for businesses and startups that need custom full-stack web application development.',
     },
   ];
 
@@ -227,7 +238,7 @@ const MernStackDevelopment = ({ isDark }) => {
     {
       icon: <Server size={22} />,
       title: 'Backend & API Development',
-      desc: 'Node.js, Express, REST APIs, authentication, databases and integrations for modern applications.',
+      desc: 'Node.js, Express.js, REST APIs, authentication, databases and integrations for modern applications.',
       path: '/backend-api',
     },
     {
@@ -244,110 +255,123 @@ const MernStackDevelopment = ({ isDark }) => {
     },
   ];
 
+  const solutions = [
+    'Custom MERN Web Applications',
+    'MERN SaaS Development',
+    'React + Node.js Development',
+    'MongoDB Application Development',
+    'Express.js REST APIs',
+    'MERN MVP Development',
+    'MERN Dashboard Development',
+    'Existing MERN Project Support',
+  ];
+
   const colorMap = {
     purple: d
       ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
       : 'bg-purple-50 border-purple-100 text-purple-600',
-
     blue: d
       ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'
       : 'bg-blue-50 border-blue-100 text-blue-600',
-
     green: d
       ? 'bg-green-500/10 border-green-500/20 text-green-400'
       : 'bg-green-50 border-green-100 text-green-600',
-
     orange: d
       ? 'bg-orange-500/10 border-orange-500/20 text-orange-400'
       : 'bg-orange-50 border-orange-100 text-orange-600',
-
     amber: d
       ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
       : 'bg-amber-50 border-amber-100 text-amber-600',
-
     indigo: d
       ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'
       : 'bg-indigo-50 border-indigo-100 text-indigo-600',
   };
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': 'https://devzore.com/mern-stack-development#service',
+    name: 'MERN Stack Development Services',
+    url: 'https://devzore.com/mern-stack-development',
+    description:
+      'Custom MERN stack development services using MongoDB, Express.js, React.js and Node.js for web applications, SaaS products, dashboards, APIs and startup MVPs.',
+    serviceType: 'MERN Stack Development',
+    provider: {
+      '@id': 'https://devzore.com/#organization',
+    },
+    areaServed: 'Worldwide',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'MERN Stack Development Services',
+      itemListElement: whatWeBuild.map((item) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: item.title,
+          description: item.desc,
+        },
+      })),
+    },
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a,
+      },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://devzore.com/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://devzore.com/allservices',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'MERN Stack Development',
+        item: 'https://devzore.com/mern-stack-development',
+      },
+    ],
+  };
+
+  const whatsappMessage = encodeURIComponent(
+    'Hi DevZore! I would like to discuss a MERN stack development project.'
+  );
+
   return (
     <>
       <Helmet>
-        {/* Page-specific structured data.
-            Title, description, canonical, OG and Twitter metadata
-            are handled globally in App.jsx / SEOManager. */}
+        {/* Page title, description, canonical, OG and Twitter tags
+            are handled globally by SEOManager. */}
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            '@id':
-              'https://devzore.com/mern-stack-development#service',
-            name: 'MERN Stack Development Services',
-            description:
-              'DevZore provides MERN stack development services using MongoDB, Express.js, React.js and Node.js for custom web applications, SaaS products, dashboards and startup MVPs.',
-            url: 'https://devzore.com/mern-stack-development',
-            serviceType: 'MERN Stack Development',
-            provider: {
-              '@id': 'https://devzore.com/#organization',
-            },
-            areaServed: 'Worldwide',
-            hasOfferCatalog: {
-              '@type': 'OfferCatalog',
-              name: 'MERN Stack Development Services',
-              itemListElement: whatWeBuild.map((item) => ({
-                '@type': 'Offer',
-                itemOffered: {
-                  '@type': 'Service',
-                  name: item.title,
-                  description: item.desc,
-                },
-              })),
-            },
-          })}
+          {JSON.stringify(serviceSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: faqs.map((faq) => ({
-              '@type': 'Question',
-              name: faq.q,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.a,
-              },
-            })),
-          })}
+          {JSON.stringify(faqSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Home',
-                item: 'https://devzore.com/',
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: 'Services',
-                item: 'https://devzore.com/allservices',
-              },
-              {
-                '@type': 'ListItem',
-                position: 3,
-                name: 'MERN Stack Development',
-                item:
-                  'https://devzore.com/mern-stack-development',
-              },
-            ],
-          })}
+          {JSON.stringify(breadcrumbSchema)}
         </script>
       </Helmet>
 
@@ -356,7 +380,7 @@ const MernStackDevelopment = ({ isDark }) => {
           d ? 'bg-[#030303]' : 'bg-white'
         }`}
       >
-        {/* Hero */}
+        {/* HERO */}
         <section
           aria-labelledby="mern-heading"
           className={`pt-27 pb-10 border-b ${
@@ -386,7 +410,7 @@ const MernStackDevelopment = ({ isDark }) => {
                     }`}
                   >
                     <Globe size={10} />
-                    Remote Development
+                    Remote Development Worldwide
                   </div>
                 </div>
 
@@ -396,7 +420,7 @@ const MernStackDevelopment = ({ isDark }) => {
                     d ? 'text-white' : 'text-gray-900'
                   }`}
                 >
-                  MERN Stack Development{' '}
+                  MERN Stack Development Services{' '}
                   <span className="text-purple-600">
                     for Modern Web Applications
                   </span>
@@ -408,7 +432,7 @@ const MernStackDevelopment = ({ isDark }) => {
                   }`}
                 >
                   MongoDB · Express.js · React.js · Node.js · Full-Stack
-                  JavaScript
+                  JavaScript Development
                 </p>
 
                 <p
@@ -416,15 +440,16 @@ const MernStackDevelopment = ({ isDark }) => {
                     d ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
-                  DevZore provides{' '}
+                  DevZore is a software development agency providing{' '}
                   <strong
                     className={d ? 'text-gray-200' : 'text-gray-800'}
                   >
-                    MERN stack development services
+                    custom MERN stack development services
                   </strong>{' '}
-                  for businesses and startups that need custom web
-                  applications, SaaS platforms, dashboards, portals and
-                  digital products.
+                  for startups and businesses. We build web applications,
+                  SaaS platforms, dashboards, portals, MVPs and custom
+                  business software using MongoDB, Express.js, React.js and
+                  Node.js.
                 </p>
 
                 <p
@@ -432,18 +457,19 @@ const MernStackDevelopment = ({ isDark }) => {
                     d ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
-                  We use MongoDB, Express.js, React.js and Node.js to build
-                  connected frontend and backend systems with APIs,
-                  authentication, database architecture and third-party
-                  integrations based on your business requirements.
+                  Our full-stack MERN development approach connects responsive
+                  React interfaces with Node.js and Express.js backend APIs,
+                  MongoDB databases, authentication and third-party
+                  integrations to create maintainable applications around your
+                  actual business requirements.
                 </p>
 
                 <div className="grid sm:grid-cols-2 gap-3 mb-8">
                   {[
-                    'Full-Stack JavaScript',
-                    'Custom REST APIs',
-                    'Responsive React UI',
-                    'MongoDB Data Modeling',
+                    'Full-Stack MERN Development',
+                    'Custom REST API Development',
+                    'Responsive React Applications',
+                    'MongoDB Database Development',
                   ].map((item) => (
                     <div
                       key={item}
@@ -457,6 +483,7 @@ const MernStackDevelopment = ({ isDark }) => {
                         size={14}
                         className="text-purple-500 flex-shrink-0"
                       />
+
                       <span className="text-[12px] font-semibold">
                         {item}
                       </span>
@@ -467,12 +494,6 @@ const MernStackDevelopment = ({ isDark }) => {
                 <div className="flex flex-wrap gap-4">
                   <Link
                     to="/contact"
-                    onClick={() =>
-                      window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth',
-                      })
-                    }
                     className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
                   >
                     Discuss Your MERN Project
@@ -480,7 +501,7 @@ const MernStackDevelopment = ({ isDark }) => {
                   </Link>
 
                   <a
-                    href="https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20need%20help%20with%20a%20MERN%20stack%20development%20project."
+                    href={`https://wa.me/923348004300?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
@@ -490,7 +511,7 @@ const MernStackDevelopment = ({ isDark }) => {
                 </div>
               </div>
 
-              {/* MERN Explanation */}
+              {/* MERN STACK EXPLANATION */}
               <div
                 className={`p-7 lg:p-8 rounded-3xl border ${
                   d
@@ -514,15 +535,15 @@ const MernStackDevelopment = ({ isDark }) => {
                       role: 'Database',
                       color: 'text-green-500',
                       bg: d ? 'bg-green-500/10' : 'bg-green-50',
-                      desc: 'Document-based database for storing and managing application data.',
+                      desc: 'Document-oriented database used to store and manage application data.',
                     },
                     {
                       letter: 'E',
                       name: 'Express.js',
-                      role: 'Backend',
+                      role: 'Backend Framework',
                       color: d ? 'text-gray-300' : 'text-gray-700',
                       bg: d ? 'bg-white/[0.06]' : 'bg-gray-100',
-                      desc: 'Node.js framework for APIs, middleware and server-side application logic.',
+                      desc: 'Node.js framework used for APIs, middleware, routes and server-side application logic.',
                     },
                     {
                       letter: 'R',
@@ -530,7 +551,7 @@ const MernStackDevelopment = ({ isDark }) => {
                       role: 'Frontend',
                       color: 'text-blue-400',
                       bg: d ? 'bg-blue-500/10' : 'bg-blue-50',
-                      desc: 'Component-based frontend library for interactive and reusable user interfaces.',
+                      desc: 'Component-based JavaScript library for interactive and reusable user interfaces.',
                     },
                     {
                       letter: 'N',
@@ -538,7 +559,7 @@ const MernStackDevelopment = ({ isDark }) => {
                       role: 'Runtime',
                       color: 'text-green-400',
                       bg: d ? 'bg-green-500/10' : 'bg-green-50',
-                      desc: 'Server-side JavaScript runtime used for application APIs and backend services.',
+                      desc: 'Server-side JavaScript runtime used for APIs, business logic and backend services.',
                     },
                   ].map((item) => (
                     <div
@@ -552,9 +573,7 @@ const MernStackDevelopment = ({ isDark }) => {
                       <div
                         className={`w-10 h-10 rounded-xl ${item.bg} flex items-center justify-center flex-shrink-0`}
                       >
-                        <span
-                          className={`text-lg font-black ${item.color}`}
-                        >
+                        <span className={`text-lg font-black ${item.color}`}>
                           {item.letter}
                         </span>
                       </div>
@@ -602,8 +621,8 @@ const MernStackDevelopment = ({ isDark }) => {
                       d ? 'text-purple-400' : 'text-purple-700'
                     }`}
                   >
-                    MERN development for SaaS, business applications,
-                    dashboards, portals, APIs and startup products.
+                    MongoDB + Express.js + React.js + Node.js for complete
+                    full-stack web application development
                   </p>
                 </div>
               </div>
@@ -611,7 +630,7 @@ const MernStackDevelopment = ({ isDark }) => {
           </div>
         </section>
 
-        {/* What We Build */}
+        {/* SERVICES */}
         <section
           aria-labelledby="whatwebuild-heading"
           className={`py-14 border-b ${
@@ -632,7 +651,7 @@ const MernStackDevelopment = ({ isDark }) => {
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
-                What We Build with MERN Stack
+                Custom MERN Stack Development Services
               </h2>
 
               <p
@@ -640,15 +659,16 @@ const MernStackDevelopment = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                Our full-stack JavaScript development services cover
-                customer-facing web applications, SaaS products, backend
-                systems, dashboards, portals and MVP development.
+                Our MERN stack web development services cover complete
+                full-stack applications, SaaS products, backend systems,
+                dashboards, portals, startup MVPs and custom business
+                software.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {whatWeBuild.map((item) => (
-                <div
+                <article
                   key={item.title}
                   className={`p-6 rounded-2xl border transition-all hover:border-purple-500/25 ${
                     d
@@ -679,17 +699,120 @@ const MernStackDevelopment = ({ isDark }) => {
                   >
                     {item.desc}
                   </p>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Why MERN */}
+        {/* STARTUPS & BUSINESSES */}
+        <section
+          aria-labelledby="mern-company-heading"
+          className={`py-14 border-b ${
+            d ? 'border-white/[0.06]' : 'border-gray-100'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+              <div>
+                <p className="text-purple-500 text-[11px] font-black uppercase tracking-widest mb-3">
+                  Full-Stack Development
+                </p>
+
+                <h2
+                  id="mern-company-heading"
+                  className={`text-3xl font-black mb-5 ${
+                    d ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                  MERN Stack Development for Startups & Businesses
+                </h2>
+
+                <p
+                  className={`text-sm leading-7 mb-4 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  Businesses often need more than a standard website. A custom
+                  MERN application can combine user interfaces, business
+                  workflows, APIs, databases, authentication and integrations
+                  within one connected software product.
+                </p>
+
+                <p
+                  className={`text-sm leading-7 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  Whether you are a startup building an MVP or an established
+                  business developing an internal system, customer portal,
+                  dashboard or SaaS product, DevZore can provide project-based
+                  MERN application development around your requirements.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                {[
+                  {
+                    icon: <Rocket size={18} />,
+                    title: 'Startup Products',
+                    desc: 'MVPs and product foundations for new software ideas.',
+                  },
+                  {
+                    icon: <Users size={18} />,
+                    title: 'Business Applications',
+                    desc: 'Custom applications built around operational workflows.',
+                  },
+                  {
+                    icon: <Layers size={18} />,
+                    title: 'SaaS Platforms',
+                    desc: 'User accounts, dashboards, subscriptions and APIs.',
+                  },
+                  {
+                    icon: <Lock size={18} />,
+                    title: 'Secure Portals',
+                    desc: 'Authenticated customer, staff and administration systems.',
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.title}
+                    className={`p-5 rounded-2xl border ${
+                      d
+                        ? 'bg-white/[0.02] border-white/[0.06]'
+                        : 'bg-[#fafafa] border-gray-200'
+                    }`}
+                  >
+                    <div className="text-purple-500 mb-3">{item.icon}</div>
+
+                    <h3
+                      className={`text-[14px] font-bold mb-2 ${
+                        d ? 'text-white' : 'text-gray-900'
+                      }`}
+                    >
+                      {item.title}
+                    </h3>
+
+                    <p
+                      className={`text-[12px] leading-relaxed ${
+                        d ? 'text-gray-400' : 'text-gray-600'
+                      }`}
+                    >
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* WHY MERN */}
         <section
           aria-labelledby="whymern-heading"
           className={`py-14 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
+            d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-gray-100 bg-[#fafafa]'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
@@ -713,8 +836,9 @@ const MernStackDevelopment = ({ isDark }) => {
                 }`}
               >
                 MERN combines established JavaScript technologies for
-                frontend interfaces, backend development, APIs and database
-                operations within a modern web application stack.
+                frontend interfaces, server-side development, APIs and
+                database operations within a modern full-stack development
+                environment.
               </p>
             </div>
 
@@ -754,13 +878,11 @@ const MernStackDevelopment = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Tech Stack */}
+        {/* TECH STACK */}
         <section
           aria-labelledby="tech-heading"
           className={`py-14 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
+            d ? 'border-white/[0.06]' : 'border-gray-100'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
@@ -775,7 +897,7 @@ const MernStackDevelopment = ({ isDark }) => {
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
-                MERN Stack Technologies & Tools
+                MERN Stack Technologies & Development Tools
               </h2>
 
               <p
@@ -783,8 +905,8 @@ const MernStackDevelopment = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                Technologies commonly used across our MERN stack web
-                development workflow.
+                Technologies used for MongoDB, Express.js, React.js and
+                Node.js application development, integrations and deployment.
               </p>
             </div>
 
@@ -795,7 +917,7 @@ const MernStackDevelopment = ({ isDark }) => {
                   className={`p-5 rounded-2xl border ${
                     d
                       ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-white border-gray-200'
+                      : 'bg-[#fafafa] border-gray-200'
                   }`}
                 >
                   <p className="text-[11px] font-black uppercase tracking-widest mb-3 text-purple-500">
@@ -822,11 +944,13 @@ const MernStackDevelopment = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Process */}
+        {/* DEVELOPMENT PROCESS */}
         <section
           aria-labelledby="process-heading"
           className={`py-14 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
+            d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-gray-100 bg-[#fafafa]'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
@@ -849,9 +973,9 @@ const MernStackDevelopment = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                A structured workflow covering requirements, backend
-                architecture, React development, integrations, testing and
-                deployment.
+                A structured workflow covering application requirements,
+                MongoDB architecture, backend development, React interfaces,
+                integrations, testing and deployment.
               </p>
             </div>
 
@@ -862,7 +986,7 @@ const MernStackDevelopment = ({ isDark }) => {
                   className={`p-6 rounded-2xl border ${
                     d
                       ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-[#fafafa] border-gray-200'
+                      : 'bg-white border-gray-200'
                   }`}
                 >
                   <div
@@ -894,13 +1018,11 @@ const MernStackDevelopment = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Search Intent Section */}
+        {/* MERN SOLUTIONS */}
         <section
           aria-labelledby="mern-solutions-heading"
           className={`py-14 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
+            d ? 'border-white/[0.06]' : 'border-gray-100'
           }`}
         >
           <div className="max-w-7xl mx-auto px-6">
@@ -908,7 +1030,7 @@ const MernStackDevelopment = ({ isDark }) => {
               className={`rounded-3xl border p-7 lg:p-10 ${
                 d
                   ? 'bg-white/[0.02] border-white/[0.06]'
-                  : 'bg-white border-gray-200'
+                  : 'bg-[#fafafa] border-gray-200'
               }`}
             >
               <div className="grid lg:grid-cols-2 gap-10 items-center">
@@ -923,45 +1045,47 @@ const MernStackDevelopment = ({ isDark }) => {
                       d ? 'text-white' : 'text-gray-900'
                     }`}
                   >
-                    MERN Stack Development for Startups and Businesses
+                    Custom MERN Application Development
                   </h2>
+
+                  <p
+                    className={`text-[14px] leading-relaxed mb-4 ${
+                      d ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    Need a MERN stack developer for a new application or an
+                    existing software product? DevZore provides project-based
+                    MERN software development covering React interfaces,
+                    Node.js and Express.js APIs, MongoDB databases and
+                    application integrations.
+                  </p>
 
                   <p
                     className={`text-[14px] leading-relaxed ${
                       d ? 'text-gray-400' : 'text-gray-600'
                     }`}
                   >
-                    Whether you need a MERN stack developer for a new web
-                    application, a Node.js API, a React dashboard, MongoDB
-                    database development or an existing full-stack JavaScript
-                    project, the technical approach should match your actual
-                    product requirements.
+                    The architecture and technology choices are planned around
+                    the requirements of your product rather than applying the
+                    same structure to every project.
                   </p>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-3">
-                  {[
-                    'Custom MERN Web Apps',
-                    'MERN SaaS Development',
-                    'React + Node.js Development',
-                    'MongoDB Development',
-                    'Express.js REST APIs',
-                    'MERN MVP Development',
-                    'MERN Dashboard Development',
-                    'Existing MERN Project Support',
-                  ].map((item) => (
+                  {solutions.map((item) => (
                     <div
                       key={item}
                       className={`flex items-center gap-2 p-3 rounded-xl border ${
                         d
                           ? 'bg-white/[0.02] border-white/[0.06] text-gray-300'
-                          : 'bg-gray-50 border-gray-200 text-gray-700'
+                          : 'bg-white border-gray-200 text-gray-700'
                       }`}
                     >
                       <CheckCircle
                         size={13}
                         className="text-purple-500 flex-shrink-0"
                       />
+
                       <span className="text-[12px] font-semibold">
                         {item}
                       </span>
@@ -970,6 +1094,52 @@ const MernStackDevelopment = ({ isDark }) => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* REMOTE / WORLDWIDE */}
+        <section
+          aria-labelledby="worldwide-mern-heading"
+          className={`py-14 border-b ${
+            d
+              ? 'border-white/[0.06] bg-[#050505]'
+              : 'border-gray-100 bg-[#fafafa]'
+          }`}
+        >
+          <div className="max-w-5xl mx-auto px-6 text-center">
+            <div
+              className={`w-12 h-12 mx-auto rounded-2xl flex items-center justify-center mb-5 ${
+                d
+                  ? 'bg-purple-500/10 text-purple-400'
+                  : 'bg-purple-50 text-purple-600'
+              }`}
+            >
+              <Globe size={22} />
+            </div>
+
+            <p className="text-purple-500 text-[11px] font-black uppercase tracking-widest mb-3">
+              Remote Development
+            </p>
+
+            <h2
+              id="worldwide-mern-heading"
+              className={`text-3xl font-black mb-4 ${
+                d ? 'text-white' : 'text-gray-900'
+              }`}
+            >
+              MERN Stack Development Services Worldwide
+            </h2>
+
+            <p
+              className={`text-base leading-relaxed max-w-3xl mx-auto ${
+                d ? 'text-gray-400' : 'text-gray-600'
+              }`}
+            >
+              DevZore provides remote MERN stack application development for
+              startups and businesses. Projects can be managed remotely with
+              defined requirements, development milestones, code
+              collaboration, testing and technical handover.
+            </p>
           </div>
         </section>
 
@@ -1006,80 +1176,86 @@ const MernStackDevelopment = ({ isDark }) => {
             </div>
 
             <div className="space-y-3">
-              {faqs.map((faq, i) => (
-                <div
-                  key={faq.q}
-                  className={`rounded-xl border overflow-hidden transition-all duration-300 ${
-                    activeFaq === i
-                      ? d
-                        ? 'border-purple-500/40 bg-purple-600/5'
-                        : 'border-purple-200 bg-purple-50/50'
-                      : d
-                      ? 'border-white/[0.06] bg-white/[0.02]'
-                      : 'border-gray-200 bg-white'
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setActiveFaq(activeFaq === i ? null : i)
-                    }
-                    aria-expanded={activeFaq === i}
-                    className="w-full p-5 text-left flex items-start justify-between gap-4"
-                  >
-                    <span
-                      className={`text-[14px] font-bold ${
-                        activeFaq === i
-                          ? 'text-purple-500'
-                          : d
-                          ? 'text-white'
-                          : 'text-gray-900'
-                      }`}
-                    >
-                      {faq.q}
-                    </span>
+              {faqs.map((faq, index) => {
+                const isOpen = activeFaq === index;
 
-                    <div
-                      className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${
-                        activeFaq === i
-                          ? 'bg-purple-600 text-white'
-                          : d
-                          ? 'bg-white/[0.06] text-gray-500'
-                          : 'bg-gray-100 text-gray-500'
-                      }`}
-                    >
-                      {activeFaq === i ? (
-                        <Minus size={13} />
-                      ) : (
-                        <Plus size={13} />
-                      )}
-                    </div>
-                  </button>
-
+                return (
                   <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      activeFaq === i
-                        ? 'max-h-[400px] opacity-100'
-                        : 'max-h-0 opacity-0'
+                    key={faq.q}
+                    className={`rounded-xl border overflow-hidden transition-all duration-300 ${
+                      isOpen
+                        ? d
+                          ? 'border-purple-500/40 bg-purple-600/5'
+                          : 'border-purple-200 bg-purple-50/50'
+                        : d
+                        ? 'border-white/[0.06] bg-white/[0.02]'
+                        : 'border-gray-200 bg-white'
                     }`}
                   >
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveFaq(isOpen ? null : index)
+                      }
+                      aria-expanded={isOpen}
+                      aria-controls={`mern-faq-${index}`}
+                      className="w-full p-5 text-left flex items-start justify-between gap-4"
+                    >
+                      <span
+                        className={`text-[14px] font-bold ${
+                          isOpen
+                            ? 'text-purple-500'
+                            : d
+                            ? 'text-white'
+                            : 'text-gray-900'
+                        }`}
+                      >
+                        {faq.q}
+                      </span>
+
+                      <div
+                        className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${
+                          isOpen
+                            ? 'bg-purple-600 text-white'
+                            : d
+                            ? 'bg-white/[0.06] text-gray-500'
+                            : 'bg-gray-100 text-gray-500'
+                        }`}
+                      >
+                        {isOpen ? (
+                          <Minus size={13} />
+                        ) : (
+                          <Plus size={13} />
+                        )}
+                      </div>
+                    </button>
+
                     <div
-                      className={`px-5 pb-5 pt-0 border-t text-[14px] leading-relaxed ${
-                        d
-                          ? 'border-white/[0.06] text-gray-400'
-                          : 'border-purple-100 text-gray-600'
+                      id={`mern-faq-${index}`}
+                      className={`overflow-hidden transition-all duration-300 ${
+                        isOpen
+                          ? 'max-h-[500px] opacity-100'
+                          : 'max-h-0 opacity-0'
                       }`}
                     >
-                      <p className="pt-4">{faq.a}</p>
+                      <div
+                        className={`px-5 pb-5 pt-0 border-t text-[14px] leading-relaxed ${
+                          d
+                            ? 'border-white/[0.06] text-gray-400'
+                            : 'border-purple-100 text-gray-600'
+                        }`}
+                      >
+                        <p className="pt-4">{faq.a}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* Related Services */}
+        {/* RELATED SERVICES */}
         <section
           aria-labelledby="related-services-heading"
           className={`py-14 border-b ${
@@ -1100,7 +1276,7 @@ const MernStackDevelopment = ({ isDark }) => {
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
-                Related Services
+                Related Development Services
               </h2>
             </div>
 
@@ -1109,12 +1285,6 @@ const MernStackDevelopment = ({ isDark }) => {
                 <Link
                   key={service.path}
                   to={service.path}
-                  onClick={() =>
-                    window.scrollTo({
-                      top: 0,
-                      behavior: 'smooth',
-                    })
-                  }
                   className={`group p-6 rounded-2xl border transition-all duration-300 ${
                     d
                       ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-purple-500/30'
@@ -1158,12 +1328,6 @@ const MernStackDevelopment = ({ isDark }) => {
             <div className="text-center mt-8">
               <Link
                 to="/allservices"
-                onClick={() =>
-                  window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth',
-                  })
-                }
                 className={`inline-flex items-center gap-2 text-[13px] font-bold transition-colors ${
                   d
                     ? 'text-gray-400 hover:text-purple-400'
@@ -1178,7 +1342,7 @@ const MernStackDevelopment = ({ isDark }) => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 lg:py-20">
+        <section className="py-14 lg:py-16">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <div
               className={`w-12 h-12 mx-auto mb-5 rounded-2xl flex items-center justify-center ${
@@ -1187,15 +1351,15 @@ const MernStackDevelopment = ({ isDark }) => {
                   : 'bg-purple-50 text-purple-600'
               }`}
             >
-              <Shield size={21} />
+              <Zap size={21} />
             </div>
 
             <h2
-              className={`text-3xl font-black mb-4 ${
+              className={`text-3xl md:text-4xl font-black mb-4 ${
                 d ? 'text-white' : 'text-gray-900'
               }`}
             >
-              Need a MERN Stack Development Partner?
+              Need a MERN Stack Developer for Your Project?
             </h2>
 
             <p
@@ -1204,27 +1368,21 @@ const MernStackDevelopment = ({ isDark }) => {
               }`}
             >
               Tell us what you want to build. We can discuss your React
-              frontend, Node.js and Express backend, MongoDB database,
-              required APIs, integrations and deployment requirements.
+              frontend, Node.js and Express.js backend, MongoDB database,
+              APIs, authentication, integrations and deployment requirements.
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
                 to="/contact"
-                onClick={() =>
-                  window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth',
-                  })
-                }
                 className="flex items-center gap-2 px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
               >
-                Discuss Your Project
+                Discuss Your MERN Project
                 <ArrowRight size={15} />
               </Link>
 
               <a
-                href="https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20a%20MERN%20stack%20project."
+                href={`https://wa.me/923348004300?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`flex items-center gap-2 px-8 py-4 font-bold rounded-xl text-sm border transition-all ${

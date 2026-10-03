@@ -44,8 +44,9 @@ import BlogDetails from "./pages/BlogDetails";
 // ======================================================
 // SERVICE PAGES
 // ======================================================
-// import GenerativeAIDevelopment from "./pages/GenerativeAIDevelopment";
+
 import AllServices from "./pages/AllServices";
+import GenerativeAIDevelopment from "./pages/GenerativeAIDevelopment";
 import WebDevelopment from "./pages/WebDevelopment";
 import MobileApp from "./pages/MobileApp";
 import ECommerce from "./pages/ECommerce";
@@ -58,6 +59,47 @@ import Maintenance from "./pages/Maintenance";
 import StartupMVP from "./pages/StartupMVP";
 import SeoServices from "./pages/SeoServices";
 import DigitalMarketing from "./pages/DigitalMarketing";
+
+// ======================================================
+// SOLUTION PAGES - FUTURE
+// ======================================================
+// IMPORTANT:
+// Uncomment each import ONLY after that page file exists.
+//
+// Example:
+// 1. Create src/pages/StartupSolutions.jsx
+// 2. Uncomment its import below
+// 3. Uncomment its SEO block
+// 4. Uncomment its Route
+// ======================================================
+
+import StartupSolutions from "./pages/StartupSolutions";
+import BusinessSolutions from "./pages/BusinessSolutions";
+import EcommerceSolutions from "./pages/EcommerceSolutions";
+import SaaSSolutions from "./pages/SaaSSolutions";
+import ManagementSystems from "./pages/ManagementSystems";
+import CustomSoftwareSolutions from "./pages/CustomSoftwareSolutions";
+
+// ======================================================
+// RESOURCE PAGES - FUTURE
+// ======================================================
+
+import DevelopmentGuides from "./pages/DevelopmentGuides";
+import FAQs from "./pages/FAQs";
+import Resources from "./pages/Resources";
+
+// ======================================================
+// COMPANY PAGES - FUTURE
+// ======================================================
+
+import OurProcess from "./pages/OurProcess";
+import Technologies from "./pages/Technologies";
+
+// ======================================================
+// CAREERS - FUTURE
+// ======================================================
+
+// import Careers from "./pages/Careers";
 
 // ======================================================
 // LEGAL
@@ -90,140 +132,454 @@ const INDEX_ROBOTS =
 
 // ======================================================
 // STATIC SEO DATA
-//
-// IMPORTANT:
-// Static public pages should get their title,
-// description and canonical from here.
-//
-// Individual /blog/:slug pages are handled by BlogDetails.
 // ======================================================
 
 const seoData = {
+  // ====================================================
+  // HOME
+  // ====================================================
+
   "/": {
     title:
-      "DevZore | Software Development, Web, SaaS & Mobile App Agency",
+      "Software & Web Development Company for Businesses | DevZore",
+
     description:
-      "DevZore builds high-performance websites, SaaS platforms, mobile apps and custom software solutions for startups and businesses worldwide.",
+      "DevZore builds professional business websites, web applications, SaaS products, mobile apps and custom software for startups and businesses worldwide.",
+
+    keywords:
+      "software development company, web development company, website development company, professional website development, business website development, custom software development, custom web development, web application development, website developer, web developer, website design company, web development agency, software development agency, digital solutions company",
   },
+
+  // ====================================================
+  // ABOUT
+  // ====================================================
 
   "/about": {
-    title: "About DevZore | Software Development Agency",
+    title:
+      "About DevZore | Software Development & Digital Solutions Company",
+
     description:
-      "Learn about DevZore, a software development agency building modern websites, SaaS products, mobile apps and digital solutions.",
+      "Learn about DevZore, a software development company building professional websites, web applications, SaaS products, mobile apps and custom digital solutions.",
+
+    keywords:
+      "DevZore, DevZore software company, DevZore software development, DevZore web development, software development company, software engineering company, digital solutions company, technology company, software development team, web development team, digital product development company",
   },
+
+  // ====================================================
+  // CONTACT
+  // ====================================================
 
   "/contact": {
-    title: "Contact DevZore | Start Your Software Project",
+    title:
+      "Contact DevZore | Hire Web & Software Developers",
+
     description:
-      "Contact DevZore to discuss your website, SaaS platform, mobile app, UI/UX or custom software development project.",
+      "Contact DevZore to discuss your website, web application, SaaS, mobile app, e-commerce or custom software project and request a development quote.",
+
+    keywords:
+      "contact software development company, contact web development company, hire software development company, hire web developer, hire website developer, hire web development company, get website development quote, website development consultation, software development consultation, custom software consultation, web development quote, website development quote",
   },
 
+  // ====================================================
+  // BLOG
+  // ====================================================
+
   "/blog": {
-    title: "DevZore Blog | Software, Web Development & SEO",
+    title:
+      "Web & Software Development Blog, Guides & Insights | DevZore",
+
     description:
-      "Read practical insights about software development, React, MERN, SaaS, web development, SEO and digital technology.",
+      "Explore practical guides and insights about websites, web development, React, MERN, SaaS, software development, SEO, performance and digital technology.",
+
+    keywords:
+      "website development guide, web development guide, business website guide, website design guide, website development cost, web development blog, software development blog, React development guide, MERN stack guide, SaaS development guide, website SEO guide, website speed guide, website security guide, software engineering insights",
   },
+
+  // ====================================================
+  // ALL SERVICES
+  // ====================================================
 
   "/allservices": {
     title:
       "Software Development Services | Web, Mobile & SaaS | DevZore",
+
     description:
-      "Explore DevZore software development services including web applications, MERN development, mobile apps, SaaS, UI/UX, SEO and digital solutions.",
+      "Explore DevZore services including web development, mobile apps, generative AI, e-commerce, MERN, React, backend APIs, SaaS, UI/UX, MVP development, SEO and support.",
+
+    keywords:
+      "software development services, web development services, website development services, mobile app development services, generative AI development, custom software development, SaaS development services, ecommerce development, backend development services, API development services, MERN stack development, React development services, UI UX design services, MVP development services, website maintenance services",
   },
+
+  // ====================================================
+  // WEB DEVELOPMENT
+  // ====================================================
 
   "/web-development": {
     title:
-      "Web Development Services | Custom Websites & Web Apps | DevZore",
+      "Web Development Services | Business Websites & Web Apps | DevZore",
+
     description:
-      "DevZore builds fast, secure and scalable websites and web applications using modern technologies for startups and businesses worldwide.",
+      "Professional web development for businesses and startups. DevZore builds responsive business websites, custom web applications, e-commerce platforms and SaaS products.",
+
+    keywords:
+      "web development, web development services, web development company, web development agency, web developer, website development, website development services, website development company, website developer, custom web development, custom website development, professional web development, professional website development, business web development, business website development, business website design, corporate web development, responsive web development, modern web development, full stack web development, frontend development, backend development, dynamic website development, secure web development, scalable web development, mobile responsive web development, small business website development, startup website development, custom web application development, web application development, business web application",
   },
+
+  // ====================================================
+  // MOBILE APP DEVELOPMENT
+  // ====================================================
 
   "/mobile-apps": {
     title:
       "Mobile App Development Services | iOS & Android | DevZore",
+
     description:
-      "Build modern iOS, Android and cross-platform mobile applications with DevZore for startups, businesses and digital products.",
+      "Custom mobile app development for startups and businesses, including iOS, Android and cross-platform applications built for modern digital products.",
+
+    keywords:
+      "mobile app development, mobile app development company, mobile application development, mobile application development company, app development company, app development agency, mobile app developer, mobile application developer, custom mobile app development, custom app development, Android app development, iOS app development, Android application development, iPhone app development, cross platform app development, mobile software development, business mobile app development, startup app development, enterprise mobile app development, mobile app design, mobile UI UX, app UI UX design, mobile app development services, mobile application development services, hire mobile app developer, mobile app developer for startup, mobile app development for business, custom mobile app for business, mobile app development company worldwide",
   },
+
+  // ====================================================
+  // GENERATIVE AI DEVELOPMENT
+  // ====================================================
+
+  "/generative-ai-development": {
+    title:
+      "Generative AI Development Services | AI Solutions | DevZore",
+
+    description:
+      "Custom generative AI development services for startups and businesses, including AI applications, AI assistants, chatbots, LLM integration and intelligent automation.",
+
+    keywords:
+      "generative AI development, generative AI development services, generative AI development company, generative AI solutions, AI development services, AI development company, artificial intelligence development, artificial intelligence development company, custom AI development, custom AI solutions, AI application development, generative AI applications, AI software development, AI chatbot development, AI assistant development, custom AI chatbot, AI agent development, AI automation, intelligent automation, LLM development, LLM integration, large language model development, large language model integration, AI API integration, OpenAI API integration, ChatGPT integration, AI powered applications, AI powered software, AI SaaS development, generative AI SaaS development, business AI solutions, AI solutions for businesses, startup AI development, enterprise AI development, AI product development, AI web application development, generative AI consulting, hire AI developer, hire generative AI developer, generative AI development company worldwide",
+  },
+
+  // ====================================================
+  // E-COMMERCE
+  // ====================================================
 
   "/ecommerce": {
     title:
       "E-Commerce Development Services | Online Stores | DevZore",
+
     description:
-      "Build scalable e-commerce websites with secure checkout, product management, inventory and modern shopping experiences.",
+      "Build custom e-commerce websites and online stores with product management, secure checkout, payments, inventory and scalable shopping experiences.",
+
+    keywords:
+      "ecommerce development, ecommerce website development, ecommerce development company, ecommerce website developer, ecommerce website design, online store development, custom ecommerce development, ecommerce solutions, ecommerce platform development",
   },
+
+  // ====================================================
+  // BACKEND & API
+  // ====================================================
 
   "/backend-api": {
     title:
-      "Backend & API Development | Node.js & Express | DevZore",
+      "Backend & API Development Services | Node.js APIs | DevZore",
+
     description:
-      "Secure and scalable backend development using Node.js, Express, REST APIs and modern server-side technologies.",
+      "Custom backend and API development services using Node.js, Express.js, REST APIs, GraphQL, MongoDB and PostgreSQL for web, mobile and SaaS applications.",
+
+    keywords:
+      "backend development, backend development company, backend development services, custom backend development, web backend development, application backend development, API development, API development company, API development services, custom API development, REST API development, RESTful API development, backend API development, API integration, third party API integration, database development, database integration, server side development, Node.js development, Express.js development, secure backend development, scalable backend development",
   },
+
+  // ====================================================
+  // MERN STACK
+  // ====================================================
 
   "/mern-stack-development": {
     title:
-      "MERN Stack Development Services | React & Node.js | DevZore",
+      "MERN Stack Development Services | MongoDB, React & Node | DevZore",
+
     description:
-      "DevZore builds scalable MERN applications using MongoDB, Express, React and Node.js for businesses and SaaS products.",
+      "Custom MERN stack development using MongoDB, Express, React and Node.js for scalable web applications, SaaS products, dashboards and business software.",
+
+    keywords:
+      "MERN stack development, MERN stack development company, MERN stack developer, MERN development company, MERN stack agency, MERN stack web development, MERN stack application development, MERN stack services, MERN stack development services, custom MERN application, MERN web application development, MERN software development, MongoDB React Node Express development, React Node MongoDB development, full stack MERN development, MERN stack developer for startup, MERN stack developer for business, hire MERN developer",
   },
 
+  // ====================================================
+  // SAAS PRODUCT DEVELOPMENT
+  // ====================================================
+
   "/saas-product-development": {
-    title: "SaaS Product Development Company | DevZore",
+    title:
+      "SaaS Product Development Services | Custom SaaS Platforms | DevZore",
+
     description:
-      "Build scalable SaaS products with modern architecture, dashboards, authentication, APIs, subscriptions and cloud-ready infrastructure.",
+      "Custom SaaS product development with authentication, dashboards, subscriptions, APIs, user management and scalable web application architecture.",
+
+    keywords:
+      "SaaS development, SaaS development company, SaaS product development, SaaS application development, SaaS software development, SaaS development services, SaaS developer, SaaS product development company, custom SaaS development, SaaS platform development, SaaS application developer, B2B SaaS development, B2C SaaS development, SaaS MVP development, SaaS UI UX design, SaaS web application development, cloud software development, subscription software development",
   },
+
+  // ====================================================
+  // REACT DEVELOPMENT
+  // ====================================================
 
   "/reactdevelopment": {
     title:
-      "React Development Services | React.js Development | DevZore",
+      "React Development Services | React.js Web Applications | DevZore",
+
     description:
-      "Professional React development for fast, scalable web applications, dashboards and modern digital products.",
+      "Professional React development for websites, dashboards, SaaS platforms and custom web applications using reusable components and modern frontend architecture.",
+
+    keywords:
+      "React development, React development company, React developer, React development services, React web development, React website development, React application development, React app development, React frontend development, React.js development, React JS development, React web developer, React application developer, custom React development, React UI development, React dashboard development, React SaaS development, React ecommerce development, hire React developer, React development agency",
   },
+
+  // ====================================================
+  // UI / UX DESIGN
+  // ====================================================
 
   "/ui-ux-design": {
     title:
-      "UI/UX Design Services | Figma & Product Design | DevZore",
+      "UI/UX Design Services | Website, App & SaaS Design | DevZore",
+
     description:
-      "UI/UX design services for web and mobile products including research, wireframes, Figma interfaces, prototypes and design systems.",
+      "User-focused UI/UX design for websites, mobile apps, dashboards and SaaS products including wireframes, Figma interfaces, prototypes and design systems.",
+
+    keywords:
+      "UI UX design, UI UX design company, UI UX design agency, UI UX design services, UI design, UX design, website UI UX design, web design, website design, website designer, web designer, professional website design, custom website design, business website design, modern website design, responsive website design, mobile UI UX design, app UI UX design, SaaS UI UX design, dashboard UI UX design, user experience design, user interface design, product design, digital product design, UX research, website redesign, website redesign services",
   },
+
+  // ====================================================
+  // STARTUP MVP
+  // ====================================================
 
   "/startup-mvp": {
     title:
-      "Startup MVP Development | Build & Launch Your MVP | DevZore",
+      "Startup MVP Development Services | Build & Launch Your MVP | DevZore",
+
     description:
-      "Turn your startup idea into a production-ready MVP with modern UI, scalable architecture, APIs and reliable technology.",
+      "MVP development for startups from product planning and prototyping to web or app development, testing, deployment and future product iteration.",
+
+    keywords:
+      "MVP development, MVP development company, MVP development services, startup MVP development, startup MVP developer, MVP software development, MVP app development, MVP web development, MVP product development, minimum viable product development, startup software development, startup web development, startup app development, startup product development, startup technology partner, startup development agency, prototype development, product prototype development, rapid MVP development, SaaS MVP development",
   },
+
+  // ====================================================
+  // MAINTENANCE
+  // ====================================================
 
   "/maintenance": {
     title:
       "Website Maintenance & Support Services | DevZore",
+
     description:
-      "Website maintenance and technical support including bug fixes, security updates, performance improvements and ongoing management.",
+      "Website and web application maintenance including bug fixes, updates, troubleshooting, performance optimization, monitoring and ongoing technical support.",
+
+    keywords:
+      "website maintenance, website maintenance services, website maintenance company, website support, website support services, website management, website management services, web maintenance, web support, technical website support, website security maintenance, website updates, website bug fixing, website troubleshooting, website performance optimization, website speed optimization, website security, website backup, website monitoring, software maintenance, software support, application maintenance, web application support",
   },
+
+  // ====================================================
+  // SEO SERVICES
+  // ====================================================
 
   "/seo-services": {
     title:
-      "SEO Services | Technical SEO & Organic Growth | DevZore",
+      "SEO Services | Technical SEO & Website Optimization | DevZore",
+
     description:
-      "Improve search visibility with technical SEO, on-page optimization, content strategy and performance-focused SEO services.",
+      "Improve search visibility with technical SEO, on-page optimization, crawlability, structured data, website performance and search monitoring.",
+
+    keywords:
+      "SEO services, SEO company, SEO agency, SEO consultant, SEO services company, search engine optimization services, website SEO services, technical SEO, technical SEO services, on page SEO, international SEO, ecommerce SEO, SEO for small business, SEO for startups, website optimization, Google SEO services, SEO strategy, SEO audit, SEO consulting, organic search optimization, search visibility optimization",
   },
+
+  // ====================================================
+  // DIGITAL MARKETING
+  // ====================================================
 
   "/digital-marketing": {
     title:
-      "Digital Marketing Services | Growth Marketing | DevZore",
+      "Digital Marketing Services | Online Business Growth | DevZore",
+
     description:
-      "Grow your business with digital marketing, social media, Google Ads, Meta Ads and performance-focused campaign strategies.",
+      "Digital marketing services for businesses including strategy, social media, content marketing, campaigns, lead generation and performance reporting.",
+
+    keywords:
+      "digital marketing, digital marketing services, digital marketing company, digital marketing agency, online marketing, internet marketing, digital marketing solutions, social media marketing, content marketing, SEO marketing, search engine marketing, lead generation, online lead generation, business lead generation, digital advertising, brand marketing, performance marketing, marketing strategy, online business marketing, startup digital marketing, small business digital marketing",
   },
+
+  // ====================================================
+  // FUTURE SOLUTION PAGES
+  // ====================================================
+  // Uncomment each block when its page is created.
+  // ====================================================
+
+
+  "/startup-solutions": {
+    title:
+      "Startup Software Development Solutions | DevZore",
+
+    description:
+      "Software development solutions for startups including MVPs, SaaS products, websites, mobile apps and scalable digital product development.",
+
+    keywords:
+      "startup software development, startup solutions, startup development company, startup MVP development, SaaS development for startups, startup web development, startup app development",
+  },
+
+  "/business-solutions": {
+    title:
+      "Business Software Development Solutions | DevZore",
+
+    description:
+      "Custom business software solutions including web applications, management systems, automation, dashboards and scalable digital platforms.",
+
+    keywords:
+      "business software solutions, custom business software, business software development, business web applications, business automation, digital business solutions",
+  },
+
+  "/ecommerce-solutions": {
+    title:
+      "E-Commerce Solutions for Online Businesses | DevZore",
+
+    description:
+      "Custom e-commerce solutions for businesses including online stores, product management, payments, inventory, dashboards and scalable commerce platforms.",
+
+    keywords:
+      "ecommerce solutions, ecommerce software solutions, online store solutions, ecommerce development, custom ecommerce platform, online business solutions",
+  },
+
+  "/saas-solutions": {
+    title:
+      "Custom SaaS Solutions for Businesses & Startups | DevZore",
+
+    description:
+      "Custom SaaS solutions including subscription platforms, dashboards, authentication, APIs, user management and scalable cloud-based software.",
+
+    keywords:
+      "SaaS solutions, custom SaaS solutions, SaaS software development, SaaS platform development, business SaaS solutions, startup SaaS solutions",
+  },
+
+  "/management-systems": {
+    title:
+      "Custom Management System Development | DevZore",
+
+    description:
+      "Custom management systems for businesses including inventory, sales, customers, employees, reporting, dashboards and workflow management.",
+
+    keywords:
+      "management system development, business management system, custom management software, inventory management system, sales management system, business software",
+  },
+
+  "/custom-software-solutions": {
+    title:
+      "Custom Software Solutions & Development | DevZore",
+
+    description:
+      "Custom software solutions designed around your business processes, workflows, customers and operational requirements.",
+
+    keywords:
+      "custom software solutions, custom software development, business software solutions, bespoke software development, custom application development",
+  },
+
+  // ====================================================
+  // FUTURE RESOURCE PAGES
+  // ====================================================
+
+
+  "/guides": {
+    title:
+      "Software & Web Development Guides | DevZore",
+
+    description:
+      "Explore practical DevZore guides covering web development, software development, SaaS, React, MERN, SEO, performance and digital products.",
+
+    keywords:
+      "software development guides, web development guides, React guides, MERN guides, SaaS guides, website development tutorials",
+  },
+
+  "/faqs": {
+    title:
+      "Software Development FAQs | DevZore",
+
+    description:
+      "Find answers to common questions about DevZore software development, websites, mobile apps, SaaS products, project timelines and development services.",
+
+    keywords:
+      "software development FAQ, web development FAQ, website development questions, SaaS development questions, DevZore FAQ",
+  },
+
+  "/resources": {
+    title:
+      "Software Development Resources & Insights | DevZore",
+
+    description:
+      "Explore software development resources, technical insights and practical information for businesses, startups and digital product teams.",
+
+    keywords:
+      "software development resources, web development resources, technology insights, SaaS resources, business technology resources",
+  },
+  // ====================================================
+  // FUTURE COMPANY PAGES
+  // ====================================================
+
+  "/our-process": {
+    title:
+      "Our Software Development Process | DevZore",
+
+    description:
+      "Learn how DevZore plans, designs, develops, tests, deploys and supports websites, applications, SaaS products and custom software.",
+
+    keywords:
+      "software development process, web development process, DevZore process, software project process, application development process",
+  },
+
+  "/technologies": {
+    title:
+      "Technologies & Development Tech Stack | DevZore",
+
+    description:
+      "Explore the technologies DevZore uses to build modern websites, web applications, mobile apps, SaaS products, APIs and custom software.",
+
+    keywords:
+      "software development technologies, web development technologies, technology stack, React, Node.js, MongoDB, Express, JavaScript, SaaS technology stack",
+  },
+
+  /*
+  "/careers": {
+    title:
+      "Careers at DevZore | Software Development Opportunities",
+
+    description:
+      "Explore career and collaboration opportunities at DevZore across software development, web development, design and digital technology.",
+
+    keywords:
+      "DevZore careers, software developer jobs, web developer careers, software development opportunities",
+  },
+  */
+
+  // ====================================================
+  // PRIVACY POLICY
+  // ====================================================
 
   "/privacy-policy": {
     title: "Privacy Policy | DevZore",
+
     description:
-      "Read DevZore's Privacy Policy to learn how we collect, use, store and protect your information when you use our website, software and digital services.",
+      "Read DevZore's Privacy Policy to understand how information may be collected, used, stored and protected when using our website and services.",
+
+    keywords:
+      "DevZore privacy policy, DevZore data privacy, website privacy policy",
   },
+
+  // ====================================================
+  // TERMS & CONDITIONS
+  // ====================================================
 
   "/terms-and-conditions": {
     title: "Terms & Conditions | DevZore",
+
     description:
-      "Read DevZore's Terms and Conditions covering website use, software development services, client responsibilities, payments, support and other policies.",
+      "Read DevZore's Terms and Conditions covering website use, software development services, client responsibilities, payments, support and related policies.",
+
+    keywords:
+      "DevZore terms and conditions, DevZore terms of service, software development terms",
   },
 };
 
@@ -234,9 +590,9 @@ const seoData = {
 function SEOManager() {
   const { pathname } = useLocation();
 
-  // ------------------------------------------------------
+  // ====================================================
   // ADMIN
-  // ------------------------------------------------------
+  // ====================================================
 
   if (pathname.startsWith("/admin")) {
     return (
@@ -258,9 +614,9 @@ function SEOManager() {
     );
   }
 
-  // ------------------------------------------------------
+  // ====================================================
   // THANK YOU / CONVERSION PAGE
-  // ------------------------------------------------------
+  // ====================================================
 
   if (pathname === "/thank-you") {
     return (
@@ -287,28 +643,32 @@ function SEOManager() {
     );
   }
 
-  // ------------------------------------------------------
+  // ====================================================
   // DYNAMIC BLOG DETAILS
   //
-  // BlogDetails.jsx must provide:
+  // BlogDetails.jsx should handle its own:
   // title
   // description
   // canonical
   // robots
   // Open Graph
   // Twitter
-  // Article JSON-LD
-  // ------------------------------------------------------
+  // Article structured data
+  // ====================================================
 
   if (pathname.startsWith("/blog/")) {
     return null;
   }
 
+  // ====================================================
+  // CURRENT STATIC PAGE
+  // ====================================================
+
   const page = seoData[pathname];
 
-  // ------------------------------------------------------
-  // UNKNOWN ROUTES
-  // ------------------------------------------------------
+  // ====================================================
+  // UNKNOWN ROUTE / 404
+  // ====================================================
 
   if (!page) {
     return (
@@ -335,22 +695,31 @@ function SEOManager() {
     );
   }
 
-  // ------------------------------------------------------
-  // CANONICAL
-  // ------------------------------------------------------
+  // ====================================================
+  // CANONICAL URL
+  // ====================================================
 
   const canonical =
     pathname === "/"
       ? `${BASE_URL}/`
       : `${BASE_URL}${pathname}`;
 
+  // ====================================================
+  // SOCIAL IMAGE
+  // ====================================================
+
+  const socialImage =
+    page.ogImage || DEFAULT_OG_IMAGE;
+
+  // ====================================================
+  // SEO OUTPUT
+  // ====================================================
+
   return (
     <Helmet>
       <html lang="en" />
 
-      {/* ==============================
-          PRIMARY SEO
-      ============================== */}
+      {/* PRIMARY SEO */}
 
       <title>{page.title}</title>
 
@@ -358,6 +727,13 @@ function SEOManager() {
         name="description"
         content={page.description}
       />
+
+      {page.keywords && (
+        <meta
+          name="keywords"
+          content={page.keywords}
+        />
+      )}
 
       <meta
         name="robots"
@@ -374,18 +750,19 @@ function SEOManager() {
         href={canonical}
       />
 
-      {/* ==============================
-          OPEN GRAPH
-      ============================== */}
+      {/* OPEN GRAPH */}
 
       <meta
         property="og:title"
-        content={page.title}
+        content={page.ogTitle || page.title}
       />
 
       <meta
         property="og:description"
-        content={page.description}
+        content={
+          page.ogDescription ||
+          page.description
+        }
       />
 
       <meta
@@ -410,17 +787,18 @@ function SEOManager() {
 
       <meta
         property="og:image"
-        content={DEFAULT_OG_IMAGE}
+        content={socialImage}
       />
 
       <meta
         property="og:image:alt"
-        content="DevZore Software Development Agency"
+        content={
+          page.ogImageAlt ||
+          `${page.title} - DevZore`
+        }
       />
 
-      {/* ==============================
-          TWITTER / SOCIAL
-      ============================== */}
+      {/* TWITTER */}
 
       <meta
         name="twitter:card"
@@ -429,17 +807,28 @@ function SEOManager() {
 
       <meta
         name="twitter:title"
-        content={page.title}
+        content={page.ogTitle || page.title}
       />
 
       <meta
         name="twitter:description"
-        content={page.description}
+        content={
+          page.ogDescription ||
+          page.description
+        }
       />
 
       <meta
         name="twitter:image"
-        content={DEFAULT_OG_IMAGE}
+        content={socialImage}
+      />
+
+      <meta
+        name="twitter:image:alt"
+        content={
+          page.ogImageAlt ||
+          `${page.title} - DevZore`
+        }
       />
     </Helmet>
   );
@@ -500,7 +889,8 @@ function NotFound() {
 function AppContent({ isDark, toggleTheme }) {
   const { pathname } = useLocation();
 
-  const isAdminRoute = pathname.startsWith("/admin");
+  const isAdminRoute =
+    pathname.startsWith("/admin");
 
   return (
     <div
@@ -517,9 +907,9 @@ function AppContent({ isDark, toggleTheme }) {
         }
       `}
     >
-      {/* ==================================================
+      {/* ================================================
           PUBLIC NAVBAR
-      ================================================== */}
+      ================================================ */}
 
       {!isAdminRoute && (
         <Navbar
@@ -528,15 +918,15 @@ function AppContent({ isDark, toggleTheme }) {
         />
       )}
 
-      {/* ==================================================
+      {/* ================================================
           ROUTES
-      ================================================== */}
+      ================================================ */}
 
       <main className="flex-grow">
         <Routes>
-          {/* ==============================
+          {/* ============================================
               HOME
-          ============================== */}
+          ============================================ */}
 
           <Route
             path="/"
@@ -556,15 +946,9 @@ function AppContent({ isDark, toggleTheme }) {
             }
           />
 
-          {/* ==============================
+          {/* ============================================
               SERVICES
-          ============================== */}
-          {/* <Route
-            path="/generative-ai-development"
-            element={
-              <GenerativeAIDevelopment isDark={isDark} />
-            }
-          /> */}
+          ============================================ */}
 
           <Route
             path="/allservices"
@@ -588,16 +972,18 @@ function AppContent({ isDark, toggleTheme }) {
           />
 
           <Route
-            path="/ecommerce"
+            path="/generative-ai-development"
             element={
-              <ECommerce isDark={isDark} />
+              <GenerativeAIDevelopment
+                isDark={isDark}
+              />
             }
           />
 
           <Route
-            path="/backend-api"
+            path="/ecommerce"
             element={
-              <BackendApi isDark={isDark} />
+              <ECommerce isDark={isDark} />
             }
           />
 
@@ -611,18 +997,25 @@ function AppContent({ isDark, toggleTheme }) {
           />
 
           <Route
-            path="/saas-product-development"
+            path="/reactdevelopment"
             element={
-              <SaaSProductDevelopment
+              <ReactDevelopment
                 isDark={isDark}
               />
             }
           />
 
           <Route
-            path="/reactdevelopment"
+            path="/backend-api"
             element={
-              <ReactDevelopment
+              <BackendApi isDark={isDark} />
+            }
+          />
+
+          <Route
+            path="/saas-product-development"
+            element={
+              <SaaSProductDevelopment
                 isDark={isDark}
               />
             }
@@ -643,13 +1036,6 @@ function AppContent({ isDark, toggleTheme }) {
           />
 
           <Route
-            path="/maintenance"
-            element={
-              <Maintenance isDark={isDark} />
-            }
-          />
-
-          <Route
             path="/seo-services"
             element={
               <SeoServices isDark={isDark} />
@@ -665,32 +1051,177 @@ function AppContent({ isDark, toggleTheme }) {
             }
           />
 
-          {/* ==============================
+          <Route
+            path="/maintenance"
+            element={
+              <Maintenance isDark={isDark} />
+            }
+          />
+
+          {/* ============================================
+              SOLUTIONS - FUTURE
+              
+              When page files are created:
+              1. Uncomment import at top
+              2. Uncomment SEO block
+              3. Uncomment route below
+          ============================================ */}
+
+
+          <Route
+            path="/startup-solutions"
+            element={
+              <StartupSolutions
+                isDark={isDark}
+              />
+            }
+          />
+
+          <Route
+            path="/business-solutions"
+            element={
+              <BusinessSolutions
+                isDark={isDark}
+              />
+            }
+          />
+
+          <Route
+            path="/ecommerce-solutions"
+            element={
+              <EcommerceSolutions
+                isDark={isDark}
+              />
+            }
+          />
+
+          <Route
+            path="/saas-solutions"
+            element={
+              <SaaSSolutions
+                isDark={isDark}
+              />
+            }
+          />
+
+          <Route
+            path="/management-systems"
+            element={
+              <ManagementSystems
+                isDark={isDark}
+              />
+            }
+          />
+
+          <Route
+            path="/custom-software-solutions"
+            element={
+              <CustomSoftwareSolutions
+                isDark={isDark}
+              />
+            }
+          />
+
+          {/* ============================================
+              PORTFOLIO
+
+              Current Navbar uses /#projects.
+              No separate Portfolio page is required yet.
+
+              FUTURE:
+              /portfolio
+              /portfolio/:slug
+          ============================================ */}
+
+          {/* ============================================
+              RESOURCES - FUTURE
+          ============================================ */}
+
+          <Route
+            path="/guides"
+            element={
+              <DevelopmentGuides
+                isDark={isDark}
+              />
+            }
+          />
+
+          <Route
+            path="/faqs"
+            element={
+              <FAQs isDark={isDark} />
+            }
+          />
+
+          <Route
+            path="/resources"
+            element={
+              <Resources isDark={isDark} />
+            }
+          />
+
+          {/* ============================================
+              COMPANY - FUTURE
+          ============================================ */}
+
+          <Route
+            path="/our-process"
+            element={
+              <OurProcess isDark={isDark} />
+            }
+          />
+
+          <Route
+            path="/technologies"
+            element={
+              <Technologies isDark={isDark} />
+            }
+          />
+
+
+          {/*
+          <Route
+            path="/careers"
+            element={
+              <Careers isDark={isDark} />
+            }
+          />
+          */}
+
+          {/* ============================================
               PUBLIC PAGES
-          ============================== */}
+          ============================================ */}
 
           <Route
             path="/about"
-            element={<About isDark={isDark} />}
+            element={
+              <About isDark={isDark} />
+            }
           />
 
           <Route
             path="/contact"
-            element={<Contact isDark={isDark} />}
+            element={
+              <Contact isDark={isDark} />
+            }
           />
 
           <Route
             path="/thank-you"
-            element={<ThankYou isDark={isDark} />}
+            element={
+              <ThankYou isDark={isDark} />
+            }
           />
 
-          {/* ==============================
+          {/* ============================================
               BLOG
-          ============================== */}
+          ============================================ */}
 
           <Route
             path="/blog"
-            element={<BlogPost isDark={isDark} />}
+            element={
+              <BlogPost isDark={isDark} />
+            }
           />
 
           <Route
@@ -700,9 +1231,9 @@ function AppContent({ isDark, toggleTheme }) {
             }
           />
 
-          {/* ==============================
+          {/* ============================================
               LEGAL
-          ============================== */}
+          ============================================ */}
 
           <Route
             path="/privacy-policy"
@@ -713,12 +1244,14 @@ function AppContent({ isDark, toggleTheme }) {
 
           <Route
             path="/terms-and-conditions"
-            element={<Terms isDark={isDark} />}
+            element={
+              <Terms isDark={isDark} />
+            }
           />
 
-          {/* ==============================
+          {/* ============================================
               ADMIN LOGIN
-          ============================== */}
+          ============================================ */}
 
           <Route
             path="/admin/login"
@@ -727,9 +1260,9 @@ function AppContent({ isDark, toggleTheme }) {
             }
           />
 
-          {/* ==============================
+          {/* ============================================
               ADMIN AREA
-          ============================== */}
+          ============================================ */}
 
           <Route
             path="/admin"
@@ -762,7 +1295,9 @@ function AppContent({ isDark, toggleTheme }) {
             <Route
               path="posts"
               element={
-                <AdminPosts isDark={isDark} />
+                <AdminPosts
+                  isDark={isDark}
+                />
               }
             />
 
@@ -803,9 +1338,9 @@ function AppContent({ isDark, toggleTheme }) {
             />
           </Route>
 
-          {/* ==============================
-              404
-          ============================== */}
+          {/* ============================================
+              404 - ALWAYS LAST
+          ============================================ */}
 
           <Route
             path="*"
@@ -814,9 +1349,9 @@ function AppContent({ isDark, toggleTheme }) {
         </Routes>
       </main>
 
-      {/* ==================================================
+      {/* ================================================
           PUBLIC FOOTER
-      ================================================== */}
+      ================================================ */}
 
       {!isAdminRoute && (
         <Footer isDark={isDark} />
@@ -841,9 +1376,9 @@ function App() {
     );
   });
 
-  // ======================================================
+  // ====================================================
   // THEME
-  // ======================================================
+  // ====================================================
 
   useEffect(() => {
     const html = document.documentElement;
@@ -860,9 +1395,9 @@ function App() {
     setIsDark((current) => !current);
   };
 
-  // ======================================================
+  // ====================================================
   // APP
-  // ======================================================
+  // ====================================================
 
   return (
     <BrowserRouter>

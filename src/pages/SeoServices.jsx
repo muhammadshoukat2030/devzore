@@ -24,7 +24,9 @@ import {
 
 const SeoServices = ({ isDark }) => {
   const d = isDark;
+
   const [activeFaq, setActiveFaq] = useState(null);
+  const [showAllFaqs, setShowAllFaqs] = useState(false);
 
   const whatsappUrl =
     'https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20SEO%20services%20for%20my%20website.';
@@ -37,7 +39,7 @@ const SeoServices = ({ isDark }) => {
     {
       icon: <Search size={22} />,
       color: 'purple',
-      title: 'Technical SEO Audits',
+      title: 'Technical SEO Services',
       desc: 'Technical SEO analysis focused on helping search engines crawl, understand and index your website more effectively while improving the technical experience for users.',
       includes: [
         'Crawlability and indexation review',
@@ -79,7 +81,7 @@ const SeoServices = ({ isDark }) => {
     {
       icon: <FileText size={22} />,
       color: 'amber',
-      title: 'SEO Content Optimisation',
+      title: 'SEO Content Strategy',
       desc: 'Search-focused content planning and optimisation for service pages, landing pages, blog articles, product content and existing pages that need clearer topical relevance.',
       includes: [
         'Service page optimisation',
@@ -135,7 +137,7 @@ const SeoServices = ({ isDark }) => {
     {
       icon: <Layers size={22} />,
       color: 'orange',
-      title: 'E-Commerce SEO',
+      title: 'Ecommerce SEO',
       desc: 'SEO for online stores covering product pages, category architecture, crawl behaviour, structured data and search intent across commercial pages.',
       includes: [
         'Product page optimisation',
@@ -158,6 +160,20 @@ const SeoServices = ({ isDark }) => {
         'Organic landing page analysis',
         'Technical issue monitoring',
         'Performance reporting',
+      ],
+    },
+    {
+      icon: <Layers size={22} />,
+      color: 'purple',
+      title: 'Enterprise SEO Services',
+      desc: 'Enterprise SEO for larger websites that need structured technical SEO, scalable content optimisation, internal linking and search visibility improvements across many important pages.',
+      includes: [
+        'Large-scale technical SEO audits',
+        'Site architecture analysis',
+        'Enterprise keyword mapping',
+        'Internal linking strategy',
+        'Template-level SEO recommendations',
+        'Search performance monitoring',
       ],
     },
   ];
@@ -184,7 +200,7 @@ const SeoServices = ({ isDark }) => {
       desc: 'Google Business Profile, local search intent, business information and location pages.',
     },
     {
-      title: 'E-Commerce SEO',
+      title: 'Ecommerce SEO',
       icon: '🛒',
       desc: 'Product pages, categories, commercial keywords, structured data and store architecture.',
     },
@@ -202,6 +218,11 @@ const SeoServices = ({ isDark }) => {
       title: 'International SEO',
       icon: '🌍',
       desc: 'International targeting, hreflang planning and multilingual website considerations.',
+    },
+    {
+      title: 'Enterprise SEO',
+      icon: '🏢',
+      desc: 'Scalable technical, content and search optimisation for larger websites with many important pages.',
     },
   ];
 
@@ -276,7 +297,7 @@ const SeoServices = ({ isDark }) => {
     },
     {
       icon: <Code2 size={22} />,
-      title: 'Developer-Led Fixes',
+      title: 'Developer-Led SEO Fixes',
       desc: 'Technical SEO recommendations can be connected directly with website development and implementation work.',
     },
   ];
@@ -299,7 +320,7 @@ const SeoServices = ({ isDark }) => {
     },
     {
       n: '04',
-      title: 'On-Page Optimisation',
+      title: 'On-Page SEO Optimisation',
       desc: 'Important pages are improved through clearer titles, descriptions, headings, content structure, internal links and semantic relevance.',
     },
     {
@@ -336,8 +357,8 @@ const SeoServices = ({ isDark }) => {
       a: 'Yes. Local SEO work can include Google Business Profile optimisation, local keyword research, business information consistency, location-focused website content, structured data and local search performance analysis.',
     },
     {
-      q: 'Can you help with e-commerce SEO?',
-      a: 'Yes. E-commerce SEO can cover product and category pages, site architecture, internal linking, product structured data, duplicate URLs, faceted navigation and commercial search intent.',
+      q: 'Can you help with ecommerce SEO?',
+      a: 'Yes. Ecommerce SEO can cover product and category pages, site architecture, internal linking, product structured data, duplicate URLs, faceted navigation and commercial search intent.',
     },
     {
       q: 'Can you work on React, Next.js and custom websites?',
@@ -363,7 +384,25 @@ const SeoServices = ({ isDark }) => {
       q: 'Do you help with Google Search Console indexing issues?',
       a: 'Yes. We can review indexing reports, canonicalisation, sitemap discovery, crawl accessibility, duplicate URLs and other technical signals that may affect how Google discovers and processes website pages.',
     },
+    {
+      q: 'Do you provide SEO services for small businesses?',
+      a: 'Yes. SEO for small businesses can include local keyword research, technical SEO, service page optimisation, Google Business Profile review, internal linking and search performance monitoring. The exact strategy depends on the business, location and target searches.',
+    },
+    {
+      q: 'Do you provide SEO services for startups?',
+      a: 'Yes. SEO for startups can focus on building a strong technical foundation, identifying relevant search opportunities, creating useful landing pages and developing a content strategy that supports long-term organic visibility.',
+    },
+    {
+      q: 'Do you provide international SEO services?',
+      a: 'Yes. International SEO may include market-specific keyword research, international website structure, hreflang planning, localisation considerations and technical recommendations for websites targeting users across multiple countries or languages.',
+    },
+    {
+      q: 'What does an SEO consultant do?',
+      a: 'An SEO consultant analyses a website, identifies technical and content opportunities, develops an SEO strategy and recommends improvements related to crawling, indexing, keywords, content, internal links, performance and search visibility. Implementation can be included depending on the project scope.',
+    },
   ];
+
+  const visibleFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
 
   const relatedServices = [
     {
@@ -384,6 +423,29 @@ const SeoServices = ({ isDark }) => {
       path: '/ecommerce',
       desc: 'E-commerce development for product catalogues, customer journeys, integrations and search-friendly store architecture.',
     },
+  ];
+
+  const seoKeywords = [
+    'SEO Services',
+    'SEO Company',
+    'SEO Agency',
+    'SEO Consultant',
+    'Technical SEO Services',
+    'On-Page SEO',
+    'Off-Page SEO',
+    'Local SEO',
+    'International SEO',
+    'Ecommerce SEO',
+    'Enterprise SEO',
+    'SEO for Small Business',
+    'SEO for Startups',
+    'Website Optimization',
+    'SEO Strategy',
+    'SEO Audit',
+    'SEO Consulting',
+    'SEO Content Strategy',
+    'Organic Search Optimization',
+    'Search Visibility Optimization',
   ];
 
   const colorMap = {
@@ -432,11 +494,7 @@ const SeoServices = ({ isDark }) => {
         {heading}
       </h3>
 
-      <p
-        className={`text-sm mb-5 ${
-          d ? 'text-gray-400' : 'text-gray-600'
-        }`}
-      >
+      <p className={`text-sm mb-5 ${d ? 'text-gray-400' : 'text-gray-600'}`}>
         {sub}
       </p>
 
@@ -456,13 +514,6 @@ const SeoServices = ({ isDark }) => {
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
         >
-          <svg
-            className="w-4 h-4 fill-current"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z" />
-          </svg>
           WhatsApp
         </a>
 
@@ -490,14 +541,40 @@ const SeoServices = ({ isDark }) => {
             '@type': 'Service',
             '@id': 'https://devzore.com/seo-services#service',
             name: 'SEO Services',
+            alternateName: 'Search Engine Optimization Services',
             description:
-              'SEO services for technical SEO, on-page optimisation, keyword research, local SEO, e-commerce SEO, content optimisation and search performance analysis.',
+              'Professional SEO services including technical SEO, on-page SEO, off-page SEO, local SEO, international SEO, ecommerce SEO, enterprise SEO, keyword research, SEO audits, SEO consulting and organic search optimization.',
             url: 'https://devzore.com/seo-services',
-            serviceType: 'Search Engine Optimisation',
+            serviceType: 'Search Engine Optimization Services',
             provider: {
               '@id': 'https://devzore.com/#organization',
             },
-            areaServed: 'Worldwide',
+            areaServed: {
+              '@type': 'Place',
+              name: 'Worldwide',
+            },
+            hasOfferCatalog: {
+              '@type': 'OfferCatalog',
+              name: 'SEO Services',
+              itemListElement: [
+                'Technical SEO Services',
+                'On-Page SEO',
+                'Off-Page SEO',
+                'Local SEO',
+                'International SEO',
+                'Ecommerce SEO',
+                'Enterprise SEO',
+                'SEO Audit',
+                'SEO Consulting',
+                'SEO Content Strategy',
+              ].map((name) => ({
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name,
+                },
+              })),
+            },
           })}
         </script>
 
@@ -549,7 +626,7 @@ const SeoServices = ({ isDark }) => {
           d ? 'bg-[#030303]' : 'bg-white'
         }`}
       >
-        {/* Hero */}
+        {/* HERO */}
         <section
           aria-labelledby="seo-heading"
           className={`pt-28 pb-14 border-b ${
@@ -589,9 +666,9 @@ const SeoServices = ({ isDark }) => {
                     d ? 'text-white' : 'text-gray-900'
                   }`}
                 >
-                  SEO Services for{' '}
+                  Professional SEO Services for{' '}
                   <span className="text-purple-600">
-                    Better Search Visibility & Organic Growth
+                    Organic Search Visibility & Growth
                   </span>
                 </h1>
 
@@ -601,7 +678,7 @@ const SeoServices = ({ isDark }) => {
                   }`}
                 >
                   Technical SEO · On-Page SEO · Keyword Research · Local SEO ·
-                  E-Commerce SEO
+                  Ecommerce SEO
                 </h2>
 
                 <p
@@ -609,12 +686,15 @@ const SeoServices = ({ isDark }) => {
                     d ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
-                  DevZore provides search engine optimisation services for
-                  websites that need stronger technical foundations, clearer
-                  search relevance and better organic visibility. Our work can
-                  cover technical SEO audits, on-page optimisation, keyword
-                  research, content strategy, local SEO, e-commerce SEO and
-                  search performance analysis.
+                  DevZore is an{' '}
+                  <strong className={d ? 'text-white' : 'text-gray-900'}>
+                    SEO services company and software development agency
+                  </strong>{' '}
+                  providing search engine optimization services for businesses,
+                  startups and growing websites. Our website SEO services cover
+                  technical SEO, on-page SEO, off-page SEO, local SEO,
+                  international SEO, ecommerce SEO, enterprise SEO, keyword
+                  research and SEO content strategy.
                 </p>
 
                 <p
@@ -622,31 +702,20 @@ const SeoServices = ({ isDark }) => {
                     d ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
-                  We combine SEO analysis with web-development knowledge, which
-                  is especially useful for React, Next.js and custom websites
-                  where rendering, metadata, internal linking, structured data,
-                  performance and crawlability may require technical
+                  Our SEO consulting combines search strategy with
+                  web-development knowledge. This is especially useful for
+                  React, Next.js and custom websites where website optimization,
+                  rendering, metadata, internal linking, structured data, Core
+                  Web Vitals and crawlability may require direct technical
                   implementation.
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
                   {[
-                    {
-                      icon: <Search size={18} />,
-                      label: 'Technical SEO',
-                    },
-                    {
-                      icon: <Target size={18} />,
-                      label: 'Keyword Strategy',
-                    },
-                    {
-                      icon: <Gauge size={18} />,
-                      label: 'Core Web Vitals',
-                    },
-                    {
-                      icon: <BarChart3 size={18} />,
-                      label: 'Search Analytics',
-                    },
+                    { icon: <Search size={18} />, label: 'Technical SEO' },
+                    { icon: <Target size={18} />, label: 'SEO Strategy' },
+                    { icon: <Gauge size={18} />, label: 'Core Web Vitals' },
+                    { icon: <BarChart3 size={18} />, label: 'SEO Analytics' },
                   ].map((item) => (
                     <div
                       key={item.label}
@@ -657,6 +726,7 @@ const SeoServices = ({ isDark }) => {
                       }`}
                     >
                       <div className="text-purple-500 mb-2">{item.icon}</div>
+
                       <div
                         className={`text-[11px] font-bold ${
                           d ? 'text-gray-300' : 'text-gray-700'
@@ -701,7 +771,7 @@ const SeoServices = ({ isDark }) => {
                 </div>
               </div>
 
-              {/* Right Panel */}
+              {/* RIGHT PANEL */}
               <div
                 className={`p-7 sm:p-8 rounded-3xl border ${
                   d
@@ -748,7 +818,7 @@ const SeoServices = ({ isDark }) => {
                       note: 'Local visibility and Google Business Profile',
                     },
                     {
-                      item: 'E-Commerce SEO',
+                      item: 'Ecommerce SEO',
                       note: 'Products, categories and store architecture',
                     },
                     {
@@ -792,7 +862,7 @@ const SeoServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Search Intent Strip */}
+        {/* SEARCH INTENT STRIP */}
         <section
           className={`py-7 border-b ${
             d
@@ -818,7 +888,7 @@ const SeoServices = ({ isDark }) => {
                   }`}
                 >
                   We can review technical SEO, indexing, on-page signals,
-                  content structure and search visibility.
+                  content structure and organic search visibility.
                 </p>
               </div>
 
@@ -834,7 +904,102 @@ const SeoServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* SEO Types */}
+        {/* SEO COMPANY / SEARCH INTENT CONTENT */}
+        <section
+          aria-labelledby="seo-company-heading"
+          className={`py-16 border-b ${
+            d ? 'border-white/[0.06]' : 'border-gray-100'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              <div>
+                <p className="text-purple-500 text-xs font-black uppercase tracking-widest mb-3">
+                  SEO Company & Consulting
+                </p>
+
+                <h2
+                  id="seo-company-heading"
+                  className={`text-3xl font-black mb-5 ${
+                    d ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                  SEO Strategy for Businesses, Startups & Growing Websites
+                </h2>
+
+                <p
+                  className={`text-sm leading-7 mb-4 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  As an SEO agency with web-development capabilities, DevZore
+                  approaches organic search optimization from both a marketing
+                  and technical perspective. We can review how search engines
+                  discover your website, how individual pages target relevant
+                  searches and how technical implementation affects organic
+                  visibility.
+                </p>
+
+                <p
+                  className={`text-sm leading-7 mb-4 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  Our SEO strategy can include a technical SEO audit, keyword
+                  research, on-page SEO, off-page SEO planning, internal
+                  linking, SEO content strategy, structured data and search
+                  performance analysis. Recommendations are based on the
+                  website, target audience, competition and business goals.
+                </p>
+
+                <p
+                  className={`text-sm leading-7 ${
+                    d ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  Whether you need SEO for a small business, SEO for startups,
+                  ecommerce SEO, international SEO or enterprise SEO, the scope
+                  can be adapted to the size and technical requirements of the
+                  website. We also provide SEO consulting for teams that need
+                  analysis and recommendations before implementation.
+                </p>
+              </div>
+
+              <div
+                className={`p-6 rounded-2xl border ${
+                  d
+                    ? 'bg-white/[0.02] border-white/[0.06]'
+                    : 'bg-[#fafafa] border-gray-200'
+                }`}
+              >
+                <p
+                  className={`text-[11px] font-black uppercase tracking-widest mb-4 ${
+                    d ? 'text-gray-400' : 'text-gray-500'
+                  }`}
+                >
+                  SEO Expertise
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {seoKeywords.map((keyword) => (
+                    <span
+                      key={keyword}
+                      className={`px-3 py-2 rounded-lg border text-[11px] font-semibold ${
+                        d
+                          ? 'bg-white/[0.03] border-white/[0.08] text-gray-300'
+                          : 'bg-white border-gray-200 text-gray-700'
+                      }`}
+                    >
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SEO TYPES */}
         <section
           aria-labelledby="seo-types-heading"
           className={`py-20 border-b ${
@@ -851,7 +1016,7 @@ const SeoServices = ({ isDark }) => {
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
-                Search Engine Optimisation Across Key SEO Areas
+                Search Engine Optimization Across Key SEO Areas
               </h2>
 
               <p
@@ -898,7 +1063,7 @@ const SeoServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Services */}
+        {/* SERVICES */}
         <section
           aria-labelledby="services-heading"
           className={`py-20 border-b ${
@@ -917,7 +1082,7 @@ const SeoServices = ({ isDark }) => {
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
-                SEO Services for Technical, Content & Search Growth
+                Complete Search Engine Optimization Services
               </h2>
 
               <p
@@ -925,9 +1090,11 @@ const SeoServices = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                From technical SEO and keyword research to local search and
-                e-commerce optimisation, the scope can be tailored to the
-                website and its priorities.
+                Our SEO services cover technical SEO services, on-page SEO,
+                off-page SEO, keyword strategy, content optimisation, local
+                SEO, ecommerce SEO, enterprise SEO and search performance
+                analysis. The scope is tailored to your website, market and
+                business goals.
               </p>
             </div>
 
@@ -987,7 +1154,7 @@ const SeoServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* SEO Practices */}
+        {/* PRACTICES */}
         <section
           aria-labelledby="practices-heading"
           className={`py-20 border-b ${
@@ -1013,7 +1180,7 @@ const SeoServices = ({ isDark }) => {
                 }`}
               >
                 Search performance is influenced by many factors. Our approach
-                focuses on the areas we can analyse, improve and measure.
+                focuses on areas we can analyse, improve and measure.
               </p>
             </div>
 
@@ -1063,7 +1230,7 @@ const SeoServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Tools */}
+        {/* TOOLS */}
         <section
           aria-labelledby="tools-heading"
           className={`py-20 border-b ${
@@ -1087,7 +1254,7 @@ const SeoServices = ({ isDark }) => {
                 }`}
               >
                 We use relevant search, analytics, crawling and performance
-                tools depending on the needs of each project.
+                tools depending on the needs of each SEO project.
               </p>
             </div>
 
@@ -1124,7 +1291,7 @@ const SeoServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Process */}
+        {/* PROCESS */}
         <section
           aria-labelledby="process-heading"
           className={`py-20 border-b ${
@@ -1149,8 +1316,9 @@ const SeoServices = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                A structured process for understanding the website, improving
-                priority areas and measuring search performance over time.
+                A structured SEO process for understanding the website,
+                improving priority areas and measuring organic search
+                performance over time.
               </p>
             </div>
 
@@ -1221,13 +1389,13 @@ const SeoServices = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                Common questions about technical SEO, rankings, search
-                visibility and ongoing optimisation.
+                Common questions about SEO services, technical SEO, rankings,
+                search visibility and organic search optimisation.
               </p>
             </div>
 
-            <div className="space-y-3 mb-10">
-              {faqs.map((faq, i) => (
+            <div className="space-y-3">
+              {visibleFaqs.map((faq, i) => (
                 <div
                   key={faq.q}
                   className={`rounded-xl border overflow-hidden transition-all duration-300 ${
@@ -1298,6 +1466,33 @@ const SeoServices = ({ isDark }) => {
               ))}
             </div>
 
+            {faqs.length > 5 && (
+              <div className="text-center mt-6 mb-10">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAllFaqs((prev) => !prev);
+                    setActiveFaq(null);
+                  }}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border text-[13px] font-bold transition-all ${
+                    d
+                      ? 'border-white/10 bg-white/[0.03] text-gray-300 hover:border-purple-500/30 hover:text-purple-400'
+                      : 'border-gray-200 bg-white text-gray-700 hover:border-purple-200 hover:text-purple-600'
+                  }`}
+                >
+                  {showAllFaqs
+                    ? 'Show Less FAQs'
+                    : `Show More FAQs (${faqs.length - 5})`}
+
+                  {showAllFaqs ? (
+                    <Minus size={14} />
+                  ) : (
+                    <Plus size={14} />
+                  )}
+                </button>
+              </div>
+            )}
+
             <CtaStrip
               heading="Have a question about your website's SEO?"
               sub="Share the website and the search problem you are trying to solve, and we can discuss the relevant technical or content work."
@@ -1305,7 +1500,7 @@ const SeoServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Related Services */}
+        {/* RELATED SERVICES */}
         <section
           aria-labelledby="related-services-heading"
           className={`py-16 border-b ${
@@ -1378,7 +1573,7 @@ const SeoServices = ({ isDark }) => {
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* FINAL CTA */}
         <section className="py-20">
           <div className="max-w-4xl mx-auto px-6">
             <div
@@ -1403,7 +1598,7 @@ const SeoServices = ({ isDark }) => {
                   d ? 'text-white' : 'text-gray-900'
                 }`}
               >
-                Improve Your Website&apos;s Search Visibility
+                Improve Your Website&apos;s Organic Search Visibility
               </h2>
 
               <p
@@ -1411,9 +1606,9 @@ const SeoServices = ({ isDark }) => {
                   d ? 'text-gray-400' : 'text-gray-600'
                 }`}
               >
-                Talk to DevZore about technical SEO, on-page optimisation,
-                keyword research, local SEO, e-commerce SEO, indexing issues
-                and search performance.
+                Talk to DevZore about technical SEO services, on-page SEO,
+                keyword research, local SEO, ecommerce SEO, SEO audits,
+                indexing issues and organic search optimization.
               </p>
 
               <p
@@ -1421,8 +1616,8 @@ const SeoServices = ({ isDark }) => {
                   d ? 'text-gray-600' : 'text-gray-400'
                 }`}
               >
-                Technical SEO · On-Page SEO · Keyword Research · Local SEO ·
-                E-Commerce SEO · Search Console
+                Technical SEO · On-Page SEO · SEO Strategy · Local SEO ·
+                Ecommerce SEO · Search Console
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center">
