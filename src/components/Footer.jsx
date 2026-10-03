@@ -13,6 +13,10 @@ import {
 const Footer = () => {
   const year = new Date().getFullYear();
 
+  // ======================================================
+  // SCROLL TO TOP
+  // ======================================================
+
   const scrollTop = () => {
     window.scrollTo({
       top: 0,
@@ -28,16 +32,81 @@ const Footer = () => {
   const services = [
     { label: "Web Development", path: "/web-development" },
     { label: "Mobile App Development", path: "/mobile-apps" },
-    { label: "MERN Stack Development", path: "/mern-stack-development" },
-    { label: "SaaS Development", path: "/saas-product-development" },
-    { label: "E-Commerce Development", path: "/ecommerce" },
-    { label: "React Development", path: "/reactdevelopment" },
-    { label: "Backend & API", path: "/backend-api" },
-    { label: "UI/UX Design", path: "/ui-ux-design" },
-    { label: "Startup MVP", path: "/startup-mvp" },
-    { label: "Maintenance & Support", path: "/maintenance" },
-    { label: "SEO Services", path: "/seo-services" },
-    { label: "Digital Marketing", path: "/digital-marketing" },
+    {
+      label: "Generative AI Development",
+      path: "/generative-ai-development",
+    },
+    {
+      label: "MERN Stack Development",
+      path: "/mern-stack-development",
+    },
+    {
+      label: "SaaS Product Development",
+      path: "/saas-product-development",
+    },
+    {
+      label: "E-Commerce Development",
+      path: "/ecommerce",
+    },
+    {
+      label: "React Development",
+      path: "/reactdevelopment",
+    },
+    {
+      label: "Backend & API Development",
+      path: "/backend-api",
+    },
+    {
+      label: "UI/UX Design",
+      path: "/ui-ux-design",
+    },
+    {
+      label: "Startup MVP Development",
+      path: "/startup-mvp",
+    },
+    {
+      label: "SEO Services",
+      path: "/seo-services",
+    },
+    {
+      label: "Digital Marketing",
+      path: "/digital-marketing",
+    },
+    {
+      label: "Maintenance & Support",
+      path: "/maintenance",
+    },
+  ];
+
+  // ======================================================
+  // SOLUTIONS
+  // ======================================================
+
+  const solutions = [
+    {
+      label: "Startup Solutions",
+      path: "/startup-solutions",
+    },
+    {
+      label: "Business Solutions",
+      path: "/business-solutions",
+    },
+    {
+      label: "E-Commerce Solutions",
+      path: "/ecommerce-solutions",
+    },
+    {
+      label: "SaaS Solutions",
+      path: "/saas-solutions",
+    },
+    {
+      label: "Management Systems",
+      path: "/management-systems",
+    },
+    {
+      label: "Custom Software Solutions",
+      path: "/custom-software-solutions",
+    },
   ];
 
   // ======================================================
@@ -45,13 +114,68 @@ const Footer = () => {
   // ======================================================
 
   const company = [
-    { label: "About DevZore", path: "/about" },
-    { label: "All Services", path: "/allservices" },
-    { label: "Our Projects", path: "/#projects" },
-    { label: "Blog", path: "/blog" },
-    { label: "Contact Us", path: "/contact" },
-    { label: "Privacy Policy", path: "/privacy-policy" },
-    { label: "Terms & Conditions", path: "/terms-and-conditions" },
+    {
+      label: "About DevZore",
+      path: "/about",
+    },
+    {
+      label: "Our Process",
+      path: "/our-process",
+    },
+    {
+      label: "Technologies",
+      path: "/technologies",
+    },
+    {
+      label: "Contact Us",
+      path: "/contact",
+    },
+    {
+      label: "Our Projects",
+      path: "/#projects",
+    },
+    {
+      label: "All Services",
+      path: "/allservices",
+    },
+  ];
+
+  // ======================================================
+  // RESOURCES
+  // ======================================================
+
+  const resources = [
+    {
+      label: "Resources",
+      path: "/resources",
+    },
+    {
+      label: "Blog",
+      path: "/blog",
+    },
+    {
+      label: "Development Guides",
+      path: "/development-guides",
+    },
+    {
+      label: "FAQs",
+      path: "/faq",
+    },
+  ];
+
+  // ======================================================
+  // LEGAL
+  // ======================================================
+
+  const legal = [
+    {
+      label: "Privacy Policy",
+      path: "/privacy-policy",
+    },
+    {
+      label: "Terms & Conditions",
+      path: "/terms-and-conditions",
+    },
   ];
 
   // ======================================================
@@ -116,23 +240,34 @@ const Footer = () => {
   ];
 
   // ======================================================
-  // FIXED DARK FOOTER STYLES
+  // STYLES
   // ======================================================
 
   const headingClass = `
-    text-[10px] sm:text-[11px]
-    font-black uppercase tracking-[0.18em]
-    text-gray-300 mb-4
+    text-[10px]
+    sm:text-[11px]
+    font-black
+    uppercase
+    tracking-[0.18em]
+    text-gray-300
+    mb-4
   `;
 
   const linkClass = `
-    inline-flex items-start
-    text-[11px] sm:text-[12px]
-    leading-[1.45]
+    inline-flex
+    items-start
+    text-[11px]
+    sm:text-[12px]
+    leading-[1.5]
     text-gray-400
     hover:text-purple-400
-    transition-colors duration-200
+    transition-colors
+    duration-200
   `;
+
+  // ======================================================
+  // RENDER
+  // ======================================================
 
   return (
     <footer
@@ -147,8 +282,8 @@ const Footer = () => {
         aria-labelledby="footer-cta-heading"
         className="border-b border-white/[0.07]"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-10">
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-5 sm:p-7 lg:p-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-9">
+          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-5 sm:p-7 lg:px-8 lg:py-7">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 lg:gap-10">
               <div className="max-w-2xl">
                 <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.18em] text-purple-400 mb-2">
@@ -164,11 +299,11 @@ const Footer = () => {
 
                 <p className="mt-2 max-w-xl text-xs sm:text-sm leading-6 text-gray-400">
                   Tell us about your website, mobile app, SaaS,
-                  e-commerce or custom software requirements.
+                  e-commerce, AI or custom software requirements.
                 </p>
               </div>
 
-              <div className="flex flex-row flex-wrap gap-2.5 shrink-0">
+              <div className="flex flex-wrap gap-2.5 shrink-0">
                 <Link
                   to="/contact"
                   onClick={scrollTop}
@@ -196,8 +331,8 @@ const Footer = () => {
           MAIN FOOTER
       ================================================== */}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-11 lg:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-11">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-9 lg:gap-10">
           {/* ==================================================
               BRAND
           ================================================== */}
@@ -211,7 +346,7 @@ const Footer = () => {
             >
               <img
                 src="/logo.png"
-                alt="DevZore"
+                alt="DevZore Software Agency"
                 width="58"
                 height="58"
                 loading="lazy"
@@ -220,7 +355,10 @@ const Footer = () => {
 
               <div className="-ml-2">
                 <div className="text-lg sm:text-xl font-black text-white">
-                  Dev<span className="text-purple-500">Zore</span>
+                  Dev
+                  <span className="text-purple-500">
+                    Zore
+                  </span>
                 </div>
 
                 <div className="text-[8px] uppercase tracking-[0.18em] mt-0.5 text-gray-500">
@@ -229,17 +367,15 @@ const Footer = () => {
               </div>
             </Link>
 
-            {/* Desktop / Tablet Description */}
-
-            <p className="hidden sm:block mt-4 max-w-sm text-xs sm:text-sm leading-6 text-gray-400">
-              DevZore helps startups and businesses build modern
-              websites, web applications, mobile apps, SaaS products
-              and digital solutions.
+            <p className="mt-4 max-w-sm text-xs sm:text-sm leading-6 text-gray-400">
+              DevZore builds modern websites, web applications,
+              mobile apps, SaaS platforms, AI-powered products and
+              custom software solutions for startups and businesses.
             </p>
 
-            {/* Desktop / Tablet Business Card */}
+            {/* BUSINESS CARD */}
 
-            <div className="hidden sm:flex mt-5 items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-3 max-w-sm">
+            <div className="mt-5 flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-3 max-w-sm">
               <div className="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center text-[10px] text-white font-black shrink-0">
                 DZ
               </div>
@@ -255,14 +391,18 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Contact */}
+            {/* CONTACT */}
 
-            <div className="mt-4 sm:mt-5 flex flex-col gap-2.5">
+            <div className="mt-5 flex flex-col gap-2.5">
               <a
                 href="mailto:hellodevzore@gmail.com"
                 className="inline-flex items-center gap-2.5 text-xs text-gray-400 hover:text-purple-400 transition-colors"
               >
-                <Mail size={14} />
+                <Mail
+                  size={14}
+                  className="shrink-0"
+                />
+
                 hellodevzore@gmail.com
               </a>
 
@@ -272,12 +412,16 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 text-xs text-gray-400 hover:text-purple-400 transition-colors"
               >
-                <Phone size={14} />
+                <Phone
+                  size={14}
+                  className="shrink-0"
+                />
+
                 +92 334 8004300
               </a>
             </div>
 
-            {/* Socials */}
+            {/* SOCIALS */}
 
             <div className="mt-5">
               <p className="text-[9px] font-black uppercase tracking-[0.16em] text-gray-500 mb-2.5">
@@ -303,58 +447,220 @@ const Footer = () => {
           </div>
 
           {/* ==================================================
-              SERVICES
+              NAVIGATION
           ================================================== */}
 
-          <div className="lg:col-span-5">
-            <h3 className={headingClass}>Services</h3>
+          <div className="lg:col-span-8">
+            <div
+              className="
+                grid
+                grid-cols-2
+                md:grid-cols-4
+                gap-x-5
+                md:gap-x-6
+                lg:gap-x-8
+                gap-y-8
+              "
+            >
+              {/* ==================================================
+                  SERVICES
+              ================================================== */}
 
-            {/* Mobile + Desktop: 2 columns */}
+              <div className="col-span-2">
+                <h3 className={headingClass}>
+                  Services
+                </h3>
 
-            <ul className="grid grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-3">
-              {services.map((service) => (
-                <li key={service.path} className="min-w-0">
+                <ul className="grid grid-cols-2 gap-x-5 lg:gap-x-8 gap-y-3">
+                  {services.map((service) => (
+                    <li
+                      key={service.path}
+                      className="min-w-0"
+                    >
+                      <Link
+                        to={service.path}
+                        onClick={scrollTop}
+                        className={linkClass}
+                      >
+                        <span className="break-words">
+                          {service.label}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* ==================================================
+                  SOLUTIONS
+              ================================================== */}
+
+              <div>
+                <h3 className={headingClass}>
+                  Solutions
+                </h3>
+
+                <ul className="space-y-3">
+                  {solutions.map((item) => (
+                    <li key={item.path}>
+                      <Link
+                        to={item.path}
+                        onClick={scrollTop}
+                        className={linkClass}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* ==================================================
+                  COMPANY
+              ================================================== */}
+
+              <div>
+                <h3 className={headingClass}>
+                  Company
+                </h3>
+
+                <ul className="space-y-3">
+                  {company.map((item) => (
+                    <li key={item.path}>
+                      {item.path.startsWith("/#") ? (
+                        <a
+                          href={item.path}
+                          className={linkClass}
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <Link
+                          to={item.path}
+                          onClick={scrollTop}
+                          className={linkClass}
+                        >
+                          {item.label}
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* ==================================================
+                  RESOURCES
+              ================================================== */}
+
+              <div>
+                <h3 className={headingClass}>
+                  Resources
+                </h3>
+
+                <ul className="space-y-3">
+                  {resources.map((item) => (
+                    <li key={item.path}>
+                      <Link
+                        to={item.path}
+                        onClick={scrollTop}
+                        className={linkClass}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* ==================================================
+                  LEGAL
+              ================================================== */}
+
+              <div>
+                <h3 className={headingClass}>
+                  Legal
+                </h3>
+
+                <ul className="space-y-3">
+                  {legal.map((item) => (
+                    <li key={item.path}>
+                      <Link
+                        to={item.path}
+                        onClick={scrollTop}
+                        className={linkClass}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* ==================================================
+                  QUICK LINKS
+              ================================================== */}
+
+              <div className="col-span-2">
+                <h3 className={headingClass}>
+                  Explore
+                </h3>
+
+                <div className="flex flex-wrap gap-x-5 gap-y-3">
                   <Link
-                    to={service.path}
+                    to="/web-development"
                     onClick={scrollTop}
                     className={linkClass}
                   >
-                    <span className="break-words">
-                      {service.label}
-                    </span>
+                    Web Development
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
 
-          {/* ==================================================
-              COMPANY
-          ================================================== */}
-
-          <div className="lg:col-span-3">
-            <h3 className={headingClass}>Company</h3>
-
-            <ul className="grid grid-cols-2 lg:grid-cols-1 gap-x-4 gap-y-3">
-              {company.map((item) => (
-                <li key={item.path} className="min-w-0">
                   <Link
-                    to={item.path}
+                    to="/mobile-apps"
                     onClick={scrollTop}
                     className={linkClass}
                   >
-                    <span className="break-words">
-                      {item.label}
-                    </span>
+                    Mobile Apps
                   </Link>
-                </li>
-              ))}
-            </ul>
+
+                  <Link
+                    to="/generative-ai-development"
+                    onClick={scrollTop}
+                    className={linkClass}
+                  >
+                    Generative AI
+                  </Link>
+
+                  <Link
+                    to="/saas-product-development"
+                    onClick={scrollTop}
+                    className={linkClass}
+                  >
+                    SaaS Development
+                  </Link>
+
+                  <Link
+                    to="/startup-mvp"
+                    onClick={scrollTop}
+                    className={linkClass}
+                  >
+                    Startup MVP
+                  </Link>
+
+                  <Link
+                    to="/resources"
+                    onClick={scrollTop}
+                    className={linkClass}
+                  >
+                    Resources
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* ==================================================
-            BOTTOM
+            BOTTOM BAR
         ================================================== */}
 
         <div className="mt-8 sm:mt-10 pt-5 border-t border-white/[0.07]">
@@ -384,12 +690,12 @@ const Footer = () => {
                 Terms
               </Link>
 
-              {/* <a
+              <a
                 href="/sitemap.xml"
                 className="text-[10px] sm:text-[11px] text-gray-500 hover:text-purple-400 transition-colors"
               >
                 Sitemap
-              </a> */}
+              </a>
 
               <span className="hidden sm:inline text-[10px] sm:text-[11px] font-semibold text-purple-500">
                 ⚡ Engineered with precision
@@ -408,7 +714,33 @@ const Footer = () => {
         onClick={scrollTop}
         aria-label="Back to top"
         title="Back to top"
-        className="group fixed z-50 right-3 sm:right-5 bottom-4 sm:bottom-5 w-10 h-10 rounded-full flex items-center justify-center border border-white/10 bg-[#111827]/95 text-gray-300 shadow-lg backdrop-blur-md hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all duration-300 hover:-translate-y-1"
+        className="
+          group
+          fixed
+          z-50
+          right-3
+          sm:right-5
+          bottom-4
+          sm:bottom-5
+          w-10
+          h-10
+          rounded-full
+          flex
+          items-center
+          justify-center
+          border
+          border-white/10
+          bg-[#111827]/95
+          text-gray-300
+          shadow-lg
+          backdrop-blur-md
+          hover:bg-purple-600
+          hover:text-white
+          hover:border-purple-600
+          transition-all
+          duration-300
+          hover:-translate-y-1
+        "
       >
         <ArrowUp
           size={17}
