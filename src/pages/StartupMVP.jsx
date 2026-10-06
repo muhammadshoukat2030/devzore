@@ -1,762 +1,1158 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import {
-  Rocket,
   ArrowRight,
-  CheckCircle,
-  Globe,
-  Zap,
-  Shield,
+  ArrowUpRight,
+  Check,
+  CheckCircle2,
+  ChevronDown,
+  ChevronUp,
+  CircleCheck,
+  Clock3,
   Code2,
-  Users,
-  Layers,
-  Target,
-  Plus,
-  Minus,
-  RefreshCw,
   Database,
+  Gauge,
+  Globe2,
+  Layers3,
+  Lightbulb,
+  Mail,
+  MenuSquare,
+  Minus,
   Monitor,
-  CreditCard,
-  Smartphone,
-  Server,
   Palette,
-} from 'lucide-react';
+  Plus,
+  RefreshCw,
+  Rocket,
+  Send,
+  Server,
+  Settings2,
+  ShieldCheck,
+  Smartphone,
+  Target,
+  TrendingUp,
+  Users,
+  Zap,
+} from "lucide-react";
 
-const StartupMVP = ({ isDark }) => {
-  const d = isDark;
-
+const StartupMVP = () => {
   const [activeFaq, setActiveFaq] = useState(null);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
 
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    service: "Startup MVP Development",
+    timeline: "",
+    message: "",
+  });
+
+  /* =========================================================
+     BACKGROUND GRIDS
+  ========================================================= */
+
+  const lightGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
+    backgroundSize: "48px 48px",
   };
 
-  /* =====================================================
-     MVP TYPES
-  ===================================================== */
+  const darkGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+    backgroundSize: "52px 52px",
+  };
 
-  const mvpTypes = [
+  /* =========================================================
+     MVP SERVICES
+  ========================================================= */
+
+  const services = [
+    {
+      icon: <Lightbulb size={20} />,
+      number: "01",
+      title: "MVP Product Planning",
+      desc:
+        "Turn your startup idea into a focused product scope by defining the core problem, target users, essential workflows and first-release priorities.",
+      points: [
+        "Product requirement discovery",
+        "Core feature prioritisation",
+        "MVP scope planning",
+      ],
+    },
     {
       icon: <Monitor size={20} />,
-      color: 'purple',
-      title: 'SaaS MVP Development',
-      desc: 'Build a focused SaaS MVP with authentication, dashboards, user roles, subscription workflows, APIs and the core features required to validate your software product.',
+      number: "02",
+      title: "Web Application MVP",
+      desc:
+        "Build a focused web-based MVP for validating a SaaS product, business platform, marketplace, portal or digital service.",
+      points: [
+        "Responsive application UI",
+        "Core user workflows",
+        "Frontend and backend development",
+      ],
     },
     {
       icon: <Smartphone size={20} />,
-      color: 'blue',
-      title: 'Mobile App MVP Development',
-      desc: 'Develop mobile app MVPs around the most important user journeys with authentication, backend APIs, notifications and responsive mobile experiences.',
+      number: "03",
+      title: "Mobile App MVP",
+      desc:
+        "Develop a mobile-first MVP around the most important product journeys with backend connectivity and practical user experiences.",
+      points: [
+        "Mobile-focused interface",
+        "API integration",
+        "Core application features",
+      ],
     },
     {
-      icon: <Globe size={20} />,
-      color: 'green',
-      title: 'Marketplace MVP Development',
-      desc: 'Create marketplace MVPs with buyer and seller accounts, listings, search, dashboards, communication and suitable payment integrations.',
+      icon: <Layers3 size={20} />,
+      number: "04",
+      title: "SaaS MVP Development",
+      desc:
+        "Develop SaaS MVPs with authentication, dashboards, account management, subscription workflows and product-specific functionality.",
+      points: [
+        "User authentication",
+        "Dashboard development",
+        "Subscription workflows",
+      ],
     },
     {
       icon: <Database size={20} />,
-      color: 'orange',
-      title: 'B2B Software MVP',
-      desc: 'Develop B2B software MVPs for business workflows, internal tools, reporting systems, productivity software, customer portals and workflow automation.',
+      number: "05",
+      title: "Backend & API Development",
+      desc:
+        "Build the backend systems, databases and APIs required to support your MVP's users, workflows, integrations and application data.",
+      points: [
+        "Database architecture",
+        "REST API development",
+        "Authentication and permissions",
+      ],
     },
     {
-      icon: <CreditCard size={20} />,
-      color: 'cyan',
-      title: 'Fintech MVP Development',
-      desc: 'Build fintech product prototypes and MVPs with account workflows, dashboards and suitable third-party financial or payment integrations where provider requirements allow.',
-    },
-    {
-      icon: <Layers size={20} />,
-      color: 'indigo',
-      title: 'API-First MVP Development',
-      desc: 'Develop API-focused MVP products with authentication, validation, documentation, usage controls and integrations for web applications, mobile apps or external developers.',
+      icon: <RefreshCw size={20} />,
+      number: "06",
+      title: "Existing MVP Improvement",
+      desc:
+        "Review and improve an existing MVP that needs stronger usability, cleaner architecture, better performance or additional functionality.",
+      points: [
+        "Product and code review",
+        "Performance improvements",
+        "Feature expansion",
+      ],
     },
   ];
 
-  /* =====================================================
-     MVP PRINCIPLES
-  ===================================================== */
+  /* =========================================================
+     DEVELOPMENT STANDARDS
+  ========================================================= */
 
-  const mvpPrinciples = [
+  const standards = [
     {
-      icon: <Target size={16} />,
-      title: 'Validate the Core Idea',
-      desc: 'We focus the first version around the main problem, target users and essential product workflow instead of filling the MVP with unnecessary features.',
+      icon: <Target size={19} />,
+      title: "Focused MVP Scope",
+      desc:
+        "Development stays focused on the functionality required to validate the product instead of unnecessary first-version features.",
     },
     {
-      icon: <Zap size={16} />,
-      title: 'Focused Product Scope',
-      desc: 'Feature prioritisation helps keep development focused on functionality that supports early product validation and meaningful user feedback.',
+      icon: <Gauge size={19} />,
+      title: "Performance Considered",
+      desc:
+        "Application loading, rendering, assets and important user interactions are considered throughout development.",
     },
     {
-      icon: <Users size={16} />,
-      title: 'User-Centred Experience',
-      desc: 'Core screens and user journeys are designed around clarity and usability so early users can understand and interact with the product effectively.',
+      icon: <Users size={19} />,
+      title: "User-Centred Experience",
+      desc:
+        "Core user journeys are designed around clarity so early users can understand and use the product effectively.",
     },
     {
-      icon: <Code2 size={16} />,
-      title: 'Maintainable Codebase',
-      desc: 'We use organized project structures, reusable components and practical development patterns so the MVP can continue evolving after its first release.',
+      icon: <ShieldCheck size={19} />,
+      title: "Security Conscious",
+      desc:
+        "Authentication, authorization, input validation and secure configuration are applied where the product requires them.",
     },
     {
-      icon: <RefreshCw size={16} />,
-      title: 'Ready for Iteration',
-      desc: 'The product is structured so feedback can guide future improvements, integrations and additional functionality without unnecessary rebuilding.',
+      icon: <Server size={19} />,
+      title: "Backend Ready",
+      desc:
+        "MVPs can connect with databases, APIs, payment providers and other third-party platforms.",
     },
     {
-      icon: <Shield size={16} />,
-      title: 'Security-Conscious Development',
-      desc: 'Authentication, authorization, validation, secure configuration and sensible data handling are considered as part of the MVP architecture.',
+      icon: <Settings2 size={19} />,
+      title: "Built for Iteration",
+      desc:
+        "Organised application structure makes future improvements and additional features easier to introduce.",
     },
   ];
 
-  /* =====================================================
-     DEVELOPMENT PROCESS
-  ===================================================== */
+  /* =========================================================
+     WHO WE HELP
+  ========================================================= */
+
+  const startupTypes = [
+    {
+      icon: <Lightbulb size={18} />,
+      title: "Early-Stage Founders",
+      desc:
+        "Turn an initial software idea into a usable product that can be tested with real users.",
+    },
+    {
+      icon: <Rocket size={18} />,
+      title: "Startups",
+      desc:
+        "Build and launch the essential version of a new SaaS, web or mobile product.",
+    },
+    {
+      icon: <Globe2 size={18} />,
+      title: "Digital Businesses",
+      desc:
+        "Validate a new digital service, marketplace, portal or online business model.",
+    },
+    {
+      icon: <MenuSquare size={18} />,
+      title: "Growing Companies",
+      desc:
+        "Test new workflows, customer tools or software products before larger development investment.",
+    },
+  ];
+
+  /* =========================================================
+     MVP VALIDATION
+  ========================================================= */
+
+  const validationPoints = [
+    "The product idea still needs real-user validation",
+    "You need to launch core functionality before building more",
+    "The complete product scope is becoming too large",
+    "You want feedback before investing in advanced features",
+    "You need a working product for customers or stakeholders",
+    "Your startup needs a usable first version instead of only a prototype",
+    "You want to test important business workflows",
+    "You need a technical foundation that can continue evolving",
+  ];
+
+  /* =========================================================
+     PROCESS
+  ========================================================= */
 
   const process = [
     {
-      n: '01',
-      title: 'MVP Discovery & Product Planning',
-      desc: 'We discuss the product idea, target users, business goals, core problem, required platforms and the assumptions the MVP should help validate.',
+      number: "01",
+      title: "Discovery",
+      desc:
+        "We understand the product idea, target users, business goals, required platforms and the main problem the MVP needs to solve.",
     },
     {
-      n: '02',
-      title: 'Feature Prioritisation',
-      desc: 'The feature set is organized around the essential product workflow so development remains focused on what the first usable version actually needs.',
+      number: "02",
+      title: "Scope & Planning",
+      desc:
+        "We organise requirements into essential MVP functionality and lower-priority features to keep the first release focused.",
     },
     {
-      n: '03',
-      title: 'UI/UX & Product Flow',
-      desc: 'Key screens, user journeys, dashboards and responsive interfaces are planned around the core MVP experience before implementation.',
+      number: "03",
+      title: "UI & UX Direction",
+      desc:
+        "Core screens, user journeys and interfaces are planned around clarity, usability and important product actions.",
     },
     {
-      n: '04',
-      title: 'Frontend & Backend Development',
-      desc: 'The application frontend, backend APIs, database, authentication and required integrations are developed in organized stages.',
+      number: "04",
+      title: "Development",
+      desc:
+        "Frontend, backend, database and required integrations are developed around the approved MVP requirements.",
     },
     {
-      n: '05',
-      title: 'Testing & Product Review',
-      desc: 'Core functionality, responsive behavior, permissions, API handling, forms, error states and important user journeys are reviewed before release.',
+      number: "05",
+      title: "Testing",
+      desc:
+        "Core workflows, responsive behaviour, validation, permissions, integrations and important edge cases are reviewed.",
     },
     {
-      n: '06',
-      title: 'Deployment & Next Iteration',
-      desc: 'The MVP is prepared for production deployment and handover so real user feedback can guide the next stage of product development.',
+      number: "06",
+      title: "Launch & Iterate",
+      desc:
+        "The MVP is prepared for production so user feedback can guide improvements and future product development.",
     },
   ];
 
-  /* =====================================================
-     TECHNOLOGY STACK
-  ===================================================== */
+  /* =========================================================
+     MVP USE CASES
+  ========================================================= */
 
-  const techStack = [
+  const useCases = [
+    "SaaS Products",
+    "Marketplace Platforms",
+    "Mobile App Startups",
+    "Business Portals",
+    "E-Commerce MVPs",
+    "Booking Platforms",
+    "Education Products",
+    "Healthcare Platforms",
+    "FinTech Concepts",
+    "Fitness & Wellness",
+    "Internal Business Tools",
+    "Service Platforms",
+  ];
+
+  /* =========================================================
+     WHY DEVZORE
+  ========================================================= */
+
+  const whyDevZore = [
     {
-      category: 'Frontend',
-      items: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+      icon: <MenuSquare size={18} />,
+      title: "Built Around the MVP Goal",
+      desc:
+        "Product structure and functionality are planned around what the first release needs to validate instead of using a generic template.",
     },
     {
-      category: 'Mobile',
-      items: ['React Native', 'Expo', 'iOS', 'Android'],
+      icon: <Zap size={18} />,
+      title: "Focused Development",
+      desc:
+        "Development effort stays centred on important product workflows and features that support early validation.",
     },
     {
-      category: 'Backend',
-      items: ['Node.js', 'Express.js', 'REST APIs', 'GraphQL'],
+      icon: <ShieldCheck size={18} />,
+      title: "Professional Development",
+      desc:
+        "Projects are developed with maintainability, validation, responsive behaviour and future requirements in mind.",
     },
     {
-      category: 'Database',
-      items: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma'],
+      icon: <Code2 size={18} />,
+      title: "Source Code Handover",
+      desc:
+        "Repositories, source code and agreed project assets can be handed over according to the project agreement.",
     },
     {
-      category: 'Payments',
-      items: ['Stripe', 'Subscriptions', 'Webhooks', 'Checkout'],
+      icon: <Clock3 size={18} />,
+      title: "Clear Project Communication",
+      desc:
+        "Requirements, feedback, progress and deliverables stay organised throughout the MVP development process.",
     },
     {
-      category: 'Analytics',
-      items: ['Google Analytics', 'PostHog', 'Logging', 'Monitoring'],
-    },
-    {
-      category: 'Cloud & DevOps',
-      items: ['AWS', 'Vercel', 'Docker', 'GitHub Actions'],
-    },
-    {
-      category: 'Authentication',
-      items: ['JWT', 'OAuth', 'Role-Based Access', '2FA'],
+      icon: <TrendingUp size={18} />,
+      title: "Ready to Grow",
+      desc:
+        "The MVP can be structured so features, integrations and workflows can be expanded as the product evolves.",
     },
   ];
 
-  /* =====================================================
+  /* =========================================================
      FAQ
-  ===================================================== */
+  ========================================================= */
 
   const faqs = [
     {
-      q: 'What is MVP development?',
-      a: 'MVP development is the process of building a focused first version of a software product with the essential functionality required to test the idea with real users. The goal is to learn from actual product usage before investing in a much larger feature set.',
+      q: "What is an MVP?",
+      a:
+        "An MVP, or Minimum Viable Product, is a focused first version of a software product containing the essential functionality needed to solve the main user problem and collect meaningful feedback.",
     },
     {
-      q: 'What is a Minimum Viable Product?',
-      a: 'A Minimum Viable Product is a usable version of a product that focuses on its core value proposition. It should provide enough functionality for target users to experience the main product workflow and provide meaningful feedback.',
+      q: "Why should a startup build an MVP first?",
+      a:
+        "An MVP allows a startup to test important product assumptions with real users before investing in a much larger feature set. It helps identify what users actually need and what should be improved next.",
     },
     {
-      q: 'How much does startup MVP development cost?',
-      a: 'MVP development cost depends on the product type, feature scope, platforms, number of user roles, UI requirements, backend complexity and third-party integrations. DevZore reviews the requirements first and then prepares a project-specific proposal.',
+      q: "How much does MVP development cost?",
+      a:
+        "MVP development cost depends on the number of features, platforms, user roles, interface requirements, backend complexity and integrations. DevZore reviews the requirements before preparing a project-specific proposal.",
     },
     {
-      q: 'How long does it take to build an MVP?',
-      a: 'There is no single development timeline for every MVP. A focused web application may require significantly less work than a marketplace, mobile application or multi-role SaaS platform. The development estimate should be based on the actual feature scope and technical requirements.',
+      q: "How long does it take to build an MVP?",
+      a:
+        "The timeline depends on the actual scope. A focused web application may require less development than a marketplace, mobile application or multi-role SaaS product. A realistic estimate can be prepared after the requirements are reviewed.",
     },
     {
-      q: 'What features should a startup MVP include?',
-      a: 'An MVP should normally focus on the main user problem, essential user journey and functionality required to test the product concept. Features that are not necessary for early validation can usually be planned for later product iterations.',
+      q: "What features should an MVP include?",
+      a:
+        "An MVP should normally include the functionality required to solve the primary user problem and test the most important product assumptions. Features that are not necessary for early validation can usually be planned for later versions.",
     },
     {
-      q: 'Can you build a SaaS MVP for a startup?',
-      a: 'Yes. DevZore can develop SaaS MVPs with features such as user authentication, dashboards, account management, APIs, databases, subscription workflows and administration tools according to the product requirements.',
+      q: "Can DevZore build a SaaS MVP?",
+      a:
+        "Yes. DevZore can develop SaaS MVPs with authentication, dashboards, user management, databases, APIs, administration features and subscription workflows based on the product requirements.",
     },
     {
-      q: 'Can you build a mobile app MVP?',
-      a: 'Yes. We can develop mobile MVPs with React Native and supporting backend APIs when a mobile application is the right format for the product. The exact architecture depends on the required devices, functionality and integrations.',
+      q: "Can you build a mobile app MVP?",
+      a:
+        "Yes. Mobile MVPs can be developed with a supporting backend and APIs when a mobile application is the appropriate format for the product.",
     },
     {
-      q: 'Can you build a marketplace MVP?',
-      a: 'Yes. Marketplace MVP development can include buyer and seller accounts, listings, search, dashboards, communication features, administration and suitable payment workflows depending on the business model.',
+      q: "Can you develop a marketplace MVP?",
+      a:
+        "Yes. Marketplace MVPs can include buyer and seller accounts, listings, search, dashboards, administration and suitable communication or payment workflows.",
     },
     {
-      q: 'Can you add payment or subscription billing to an MVP?',
-      a: 'Yes. Payment providers such as Stripe can be integrated when they are suitable for the project and available for the required business setup. Checkout, subscriptions, billing events and webhooks can be implemented according to the product requirements.',
+      q: "Can you integrate payments or subscriptions?",
+      a:
+        "Yes. Suitable payment providers can be integrated when payment or subscription functionality is part of the approved MVP scope.",
     },
     {
-      q: 'Will my MVP be able to grow after launch?',
-      a: 'We structure MVP projects with future development in mind. The exact scaling strategy depends on the product and usage requirements, but organized APIs, data models, reusable components and deployment practices can make future iteration easier.',
+      q: "Can the MVP grow into a full product later?",
+      a:
+        "Yes. The project can be structured with future development in mind so new functionality, integrations and workflows can be added after the first version is validated.",
     },
     {
-      q: 'Do you help with MVP feature prioritisation?',
-      a: 'Yes. We can help organize product requirements into core functionality and later-stage features so the initial development scope remains focused on the primary product experience.',
+      q: "Can DevZore improve an existing MVP?",
+      a:
+        "Yes. Existing MVPs can be reviewed for frontend structure, backend architecture, usability, performance, maintainability and required additional features.",
     },
     {
-      q: 'Can you improve or rebuild an existing MVP?',
-      a: 'Yes. Existing MVPs can be reviewed for frontend structure, backend APIs, database design, usability, performance and maintainability before planning improvements or additional functionality.',
+      q: "Do you help prioritise MVP features?",
+      a:
+        "Yes. Product requirements can be organised into essential MVP functionality and future features so the first development scope remains focused.",
     },
     {
-      q: 'Which technologies do you use for MVP development?',
-      a: 'Technology depends on the product requirements. Common options include React, Next.js, React Native, Node.js, Express, MongoDB, PostgreSQL, TypeScript and modern cloud deployment platforms.',
+      q: "Can DevZore work with startup clients remotely?",
+      a:
+        "Yes. MVP projects can be handled remotely through online communication, shared repositories and organised development workflows.",
     },
     {
-      q: 'Do you provide MVP development services internationally?',
-      a: 'DevZore provides remote MVP and software development services for startups, founders and businesses that can work with our development process regardless of location.',
-    },
-    {
-      q: 'Will I receive the MVP source code?',
-      a: 'Source code ownership, repositories, credentials, design files and handover requirements should be clearly defined in the project agreement. DevZore can structure projects so agreed project assets are transferred during handover.',
+      q: "Will I receive the source code?",
+      a:
+        "Source-code ownership, repositories, credentials and project assets can be defined clearly in the project agreement before development begins.",
     },
   ];
 
-  const visibleFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
-
-  /* =====================================================
+  /* =========================================================
      RELATED SERVICES
-  ===================================================== */
+  ========================================================= */
 
   const relatedServices = [
     {
-      icon: <Layers size={22} />,
-      title: 'SaaS Product Development',
-      desc: 'Custom SaaS applications with dashboards, subscriptions, user management, APIs and scalable product architecture.',
-      path: '/saas-product-development',
+      label: "PRODUCT",
+      title: "SaaS Product Development",
+      desc:
+        "SaaS applications with users, dashboards, subscriptions, APIs and product-specific workflows.",
+      path: "/saas-product-development",
     },
     {
-      icon: <Server size={22} />,
-      title: 'Backend & API Development',
-      desc: 'Backend systems, REST APIs, GraphQL services, databases, authentication and third-party integrations.',
-      path: '/backend-api',
+      label: "BACKEND",
+      title: "Backend & API Development",
+      desc:
+        "APIs, databases, authentication and backend services for modern software products.",
+      path: "/backend-api",
     },
     {
-      icon: <Palette size={22} />,
-      title: 'UI/UX Design',
-      desc: 'User-focused interfaces, product flows, wireframes and responsive UI design for web and mobile products.',
-      path: '/ui-ux-design',
+      label: "MOBILE",
+      title: "Mobile App Development",
+      desc:
+        "Cross-platform mobile applications designed around users, workflows and business requirements.",
+      path: "/mobile-apps",
+    },
+    {
+      label: "FULL STACK",
+      title: "MERN Stack Development",
+      desc:
+        "Full-stack development for dashboards, platforms, portals and custom digital products.",
+      path: "/mern-stack-development",
     },
   ];
 
-  /* =====================================================
-     COLOR MAP
-  ===================================================== */
+  /* =========================================================
+     HELPERS
+  ========================================================= */
 
-  const colorMap = {
-    purple: d
-      ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
-      : 'bg-purple-50 border-purple-100 text-purple-600',
-    blue: d
-      ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'
-      : 'bg-blue-50 border-blue-100 text-blue-600',
-    green: d
-      ? 'bg-green-500/10 border-green-500/20 text-green-400'
-      : 'bg-green-50 border-green-100 text-green-600',
-    orange: d
-      ? 'bg-orange-500/10 border-orange-500/20 text-orange-400'
-      : 'bg-orange-50 border-orange-100 text-orange-600',
-    cyan: d
-      ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'
-      : 'bg-cyan-50 border-cyan-100 text-cyan-600',
-    indigo: d
-      ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'
-      : 'bg-indigo-50 border-indigo-100 text-indigo-600',
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
-  const whatsappUrl =
-    'https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20an%20MVP%20for%20my%20startup.';
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-  /* =====================================================
-     SCHEMA
-  ===================================================== */
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const subject = encodeURIComponent(
+      `Startup MVP Development Enquiry - ${formData.name}`
+    );
+
+    const body = encodeURIComponent(
+`Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || "Not provided"}
+Service: ${formData.service}
+Timeline: ${formData.timeline || "Not specified"}
+
+Project Details:
+${formData.message}`
+    );
+
+    window.location.href = `mailto:hellodevzore@gmail.com?subject=${subject}&body=${body}`;
+  };
+
+  /* =========================================================
+     STRUCTURED DATA
+  ========================================================= */
 
   const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': 'https://devzore.com/startup-mvp#service',
-    name: 'Startup MVP Development Services',
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://devzore.com/startup-mvp#service",
+    name: "Startup MVP Development Services",
+    url: "https://devzore.com/startup-mvp",
+    serviceType: "Startup MVP Development",
     description:
-      'Startup MVP development services for SaaS products, web applications, mobile apps, marketplaces, B2B software, prototypes and custom startup software products.',
-    url: 'https://devzore.com/startup-mvp',
+      "Startup MVP development services for SaaS products, web applications, mobile apps, marketplaces and custom digital products.",
     provider: {
-      '@id': 'https://devzore.com/#organization',
+      "@type": "Organization",
+      "@id": "https://devzore.com/#organization",
+      name: "DevZore",
+      url: "https://devzore.com/",
     },
-    serviceType: 'Startup MVP Development Services',
-    areaServed: 'Worldwide',
+    areaServed: {
+      "@type": "Place",
+      name: "Worldwide",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Startup MVP Development Services",
+      itemListElement: services.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          description: service.desc,
+        },
+      })),
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://devzore.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: "https://devzore.com/allservices",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Startup MVP Development",
+        item: "https://devzore.com/startup-mvp",
+      },
+    ],
   };
 
   const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
     mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
+      "@type": "Question",
       name: faq.q,
       acceptedAnswer: {
-        '@type': 'Answer',
+        "@type": "Answer",
         text: faq.a,
       },
     })),
   };
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://devzore.com/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Services',
-        item: 'https://devzore.com/allservices',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: 'Startup MVP Development',
-        item: 'https://devzore.com/startup-mvp',
-      },
-    ],
-  };
+  const visibleFaqs = showAllFaqs ? faqs : faqs.slice(0, 3);
+
+  /* =========================================================
+     SECTION LABEL
+  ========================================================= */
+
+  const SectionLabel = ({ children, light = false }) => (
+    <div
+      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase ${
+        light ? "text-[#28c5d4]" : "text-[#07899a]"
+      }`}
+    >
+      <span className="w-5 h-[2px] bg-[#0796A8]" />
+      {children}
+    </div>
+  );
 
   return (
     <>
       <Helmet>
-        {/* Main title, description, canonical, Open Graph and Twitter
-            metadata are handled globally by SEOManager. */}
-
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
+          {JSON.stringify(breadcrumbSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
+          {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
 
-      <main
-        className={`min-h-screen transition-colors duration-300 ${
-          d ? 'bg-[#030303]' : 'bg-white'
-        }`}
+      <div
+        className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
+        style={{
+          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+        }}
       >
         {/* =====================================================
             HERO
         ===================================================== */}
 
         <section
-          aria-labelledby="mvp-heading"
-          className={`pt-28 pb-10 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
-          }`}
+          aria-labelledby="startup-mvp-heading"
+          className="relative overflow-hidden bg-[#04111a] text-white"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div>
-                <div className="flex flex-wrap gap-3 mb-5">
-                  <div
-                    className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border ${
-                      d
-                        ? 'bg-purple-600/10 border-purple-500/20 text-purple-400'
-                        : 'bg-purple-50 border-purple-200 text-purple-700'
-                    }`}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                    Startup MVP Development
-                  </div>
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute -top-32 right-[5%] w-[500px] h-[500px] rounded-full bg-[#078fa5]/12 blur-[130px]" />
 
-                  <div
-                    className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold border ${
-                      d
-                        ? 'bg-green-500/10 border-green-500/20 text-green-400'
-                        : 'bg-green-50 border-green-200 text-green-700'
-                    }`}
-                  >
-                    <Globe size={11} />
-                    Remote Development Services
+            <div
+              className="absolute inset-0 opacity-50"
+              style={darkGrid}
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/70" />
+          </div>
+
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-14 sm:pt-16 lg:pt-20 pb-9 sm:pb-10 lg:pb-12">
+            <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-7 lg:gap-10 items-center">
+              <div className="relative z-10">
+                <div className="flex flex-wrap items-center gap-3 mb-4">
+                  <div className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-semibold tracking-[0.16em] uppercase text-[#c4ced5]">
+                    <CircleCheck
+                      size={13}
+                      className="text-[#26becb]"
+                    />
+                    Startup MVP Development
                   </div>
                 </div>
 
                 <h1
-                  id="mvp-heading"
-                  className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-5 ${
-                    d ? 'text-white' : 'text-gray-900'
-                  }`}
+                  id="startup-mvp-heading"
+                  className="max-w-[760px] text-[38px] sm:text-[46px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
-                  Startup MVP Development Services{' '}
-                  <span className="text-purple-600">
-                    for Web, Mobile & SaaS Products
+                  Turn your idea into a{" "}
+                  <span className="text-[#22bdca]">
+                    product people can actually use.
                   </span>
                 </h1>
 
-                <p
-                  className={`text-lg font-semibold mb-4 ${
-                    d ? 'text-gray-300' : 'text-gray-700'
-                  }`}
-                >
-                  SaaS MVPs · Web App MVPs · Mobile App MVPs · Marketplace MVPs
-                  · B2B Software
+                <p className="max-w-[680px] mt-4 text-[15px] sm:text-[16px] lg:text-[17px] leading-7 font-normal text-slate-300">
+                  DevZore develops focused startup MVPs for SaaS products, web
+                  applications, mobile apps, marketplaces and custom software
+                  ideas.
                 </p>
 
-                <p
-                  className={`text-base leading-relaxed mb-4 ${
-                    d ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  DevZore is an{' '}
-                  <strong className={d ? 'text-white' : 'text-gray-900'}>
-                    MVP development company
-                  </strong>{' '}
-                  providing startup MVP development services for founders and
-                  businesses turning software ideas into usable digital
-                  products. Our MVP software development covers web
-                  applications, SaaS MVPs, mobile apps, marketplaces, B2B
-                  software and custom startup products.
+                <p className="max-w-[620px] mt-2 text-[13px] leading-6 font-normal text-slate-400">
+                  From product planning and user flows to frontend, backend,
+                  databases, integrations and deployment, we build around the
+                  core functionality your product needs to validate first.
                 </p>
 
-                <p
-                  className={`text-base leading-relaxed mb-7 ${
-                    d ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  From minimum viable product development and prototype
-                  development to complete startup software development, we
-                  focus on the core product experience first. Frontend
-                  development, backend APIs, databases, authentication and
-                  integrations are selected around your actual product
-                  requirements and future roadmap.
-                </p>
-
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    to="/contact"
-                    onClick={scrollTop}
-                    className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2.5 mt-5">
+                  <a
+                    href="#project-enquiry"
+                    className="inline-flex justify-center items-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[12px] font-semibold text-[#071923] transition-all"
                   >
-                    Discuss Your MVP Idea
+                    Start Your MVP
                     <ArrowRight size={14} />
-                  </Link>
+                  </a>
 
                   <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+                    href="#mvp-development-services"
+                    className="inline-flex justify-center items-center gap-2 px-5 py-3 text-[12px] font-semibold text-white hover:text-[#28c5d4] transition-colors"
                   >
-                    WhatsApp Us
+                    Explore MVP Development
+                    <ArrowRight size={14} />
                   </a>
+                </div>
+
+                <div className="flex flex-wrap gap-x-5 gap-y-2 mt-4">
+                  {[
+                    "Focused Scope",
+                    "Responsive",
+                    "Backend Ready",
+                    "Built for Iteration",
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center gap-1.5 text-[10px] font-medium text-slate-400"
+                    >
+                      <CheckCircle2
+                        size={12}
+                        className="text-[#20becd]"
+                      />
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              {/* RIGHT PANEL */}
+              {/* MVP VISUAL */}
 
-              <div
-                className={`p-7 rounded-3xl border ${
-                  d
-                    ? 'bg-white/[0.02] border-white/[0.06]'
-                    : 'bg-[#fafafa] border-gray-200'
-                }`}
-              >
-                <p
-                  className={`text-[11px] font-black uppercase tracking-widest mb-5 ${
-                    d ? 'text-gray-500' : 'text-gray-400'
-                  }`}
-                >
-                  MVP Development Capabilities
+              <div className="relative min-h-[340px] lg:min-h-[390px] hidden md:block">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="absolute w-[350px] h-[350px] rounded-full bg-[#0796A8]/15 blur-[90px]" />
+
+                  <div className="relative w-full max-w-[530px]">
+                    <div className="relative rounded-[20px] border border-white/10 bg-[#091d27]/95 shadow-[0_35px_90px_rgba(0,0,0,0.45)] overflow-hidden">
+                      <div className="h-9 px-4 border-b border-white/10 bg-[#0b222d] flex items-center justify-between">
+                        <div className="flex gap-1.5">
+                          {[1, 2, 3].map((item) => (
+                            <span
+                              key={item}
+                              className="w-2 h-2 rounded-full bg-white/20"
+                            />
+                          ))}
+                        </div>
+
+                        <div className="w-[46%] h-4 rounded bg-white/[0.05]" />
+                        <div className="w-5" />
+                      </div>
+
+                      <div className="grid grid-cols-[62px_1fr] min-h-[270px]">
+                        <div className="border-r border-white/[0.08] p-3">
+                          <div className="w-8 h-8 rounded-lg bg-[#1bbac8]/20 border border-[#1bbac8]/30 mb-4" />
+
+                          <div className="space-y-3">
+                            {[1, 2, 3, 4, 5].map((item) => (
+                              <div
+                                key={item}
+                                className="w-7 h-2 rounded bg-white/[0.07]"
+                              />
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="p-4">
+                          <div className="flex justify-between items-center mb-5">
+                            <div>
+                              <div className="w-20 h-2 rounded bg-[#1bbac8]/60 mb-2" />
+                              <div className="w-36 h-3.5 rounded bg-white/80" />
+                            </div>
+
+                            <div className="w-16 h-7 rounded-lg bg-[#18bdcb]" />
+                          </div>
+
+                          <div className="grid grid-cols-3 gap-3 mb-3">
+                            {[1, 2, 3].map((item) => (
+                              <div
+                                key={item}
+                                className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3"
+                              >
+                                <div className="w-7 h-7 rounded-lg bg-[#159daf]/15 mb-3" />
+                                <div className="w-14 h-2 rounded bg-white/30 mb-2" />
+                                <div className="w-10 h-2 rounded bg-white/10" />
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="grid grid-cols-[1.2fr_0.8fr] gap-3">
+                            <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
+                              <div className="flex items-end gap-2 h-16">
+                                {[35, 55, 42, 80, 62, 90, 70].map(
+                                  (height, index) => (
+                                    <div
+                                      key={index}
+                                      className="flex-1 rounded-t bg-[#16aebd]/40"
+                                      style={{ height: `${height}%` }}
+                                    />
+                                  )
+                                )}
+                              </div>
+                            </div>
+
+                            <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
+                              <div className="w-14 h-2 rounded bg-white/20 mb-3" />
+
+                              <div className="space-y-2">
+                                {[1, 2, 3, 4].map((item) => (
+                                  <div
+                                    key={item}
+                                    className="h-2 rounded bg-white/[0.07]"
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="absolute -left-5 top-14 w-24 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <Target size={17} className="text-[#29c7d5]" />
+                      <p className="text-[9px] font-medium mt-2">
+                        MVP Scope
+                      </p>
+                    </div>
+
+                    <div className="absolute -right-4 top-12 w-24 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <Palette size={17} className="text-[#29c7d5]" />
+                      <p className="text-[9px] font-medium mt-2">
+                        UI & UX
+                      </p>
+                    </div>
+
+                    <div className="absolute -right-3 bottom-9 w-24 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <Rocket size={17} className="text-[#29c7d5]" />
+                      <p className="text-[9px] font-medium mt-2">
+                        Launch Ready
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CAPABILITY STRIP */}
+
+          <div className="relative border-t border-white/[0.08] bg-[#06151d]/90">
+            <div className="max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10">
+              <div className="grid grid-cols-2 lg:grid-cols-4">
+                {[
+                  ["01", "SaaS MVPs"],
+                  ["02", "Web App MVPs"],
+                  ["03", "Mobile MVPs"],
+                  ["04", "Custom Products"],
+                ].map(([number, title], index) => (
+                  <div
+                    key={title}
+                    className={`py-3.5 ${
+                      index !== 3
+                        ? "lg:border-r border-white/[0.07]"
+                        : ""
+                    } ${index > 0 ? "lg:pl-7" : ""}`}
+                  >
+                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-0.5">
+                      {number}
+                    </span>
+
+                    <span className="text-[11px] font-medium text-slate-300">
+                      {title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            INTRO
+        ===================================================== */}
+
+        <section
+          className="relative py-10 md:py-12 bg-[#f8fafb]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.72fr_1.28fr] gap-6 lg:gap-12">
+              <div>
+                <SectionLabel>Startup MVP Development</SectionLabel>
+
+                <h2 className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold mt-2.5">
+                  More than a prototype.{" "}
+                  <span className="text-[#0796A8]">
+                    A product built to learn.
+                  </span>
+                </h2>
+              </div>
+
+              <div>
+                <p className="text-[15px] leading-7 font-normal text-slate-700">
+                  A strong MVP gives real users enough functionality to
+                  experience the main value of your product. It helps you move
+                  beyond assumptions and learn from actual usage.
                 </p>
 
-                <div className="space-y-3">
-                  {[
-                    {
-                      item: 'MVP product planning',
-                      note: 'Core workflows and feature prioritisation',
-                    },
-                    {
-                      item: 'Responsive UI development',
-                      note: 'Web and mobile-friendly product interfaces',
-                    },
-                    {
-                      item: 'Frontend application development',
-                      note: 'React, Next.js or React Native where appropriate',
-                    },
-                    {
-                      item: 'Backend API development',
-                      note: 'Node.js, Express, REST or GraphQL',
-                    },
-                    {
-                      item: 'Database architecture',
-                      note: 'MongoDB or PostgreSQL based on requirements',
-                    },
-                    {
-                      item: 'Authentication & permissions',
-                      note: 'Accounts, roles and secure access workflows',
-                    },
-                    {
-                      item: 'Payment integrations',
-                      note: 'Checkout or subscriptions where required',
-                    },
-                    {
-                      item: 'Third-party integrations',
-                      note: 'Email, storage, analytics and external APIs',
-                    },
-                    {
-                      item: 'Deployment preparation',
-                      note: 'Production configuration and project handover',
-                    },
-                  ].map((item) => (
+                <p className="text-[13px] leading-6 mt-2 font-normal text-slate-500">
+                  DevZore develops MVPs around the core product experience.
+                  That can mean a SaaS platform, mobile application,
+                  marketplace, business portal or another custom software
+                  product that needs a focused first release.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            SERVICES
+        ===================================================== */}
+
+        <section
+          id="mvp-development-services"
+          aria-labelledby="mvp-services-heading"
+          className="py-10 md:py-12 bg-white"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[820px] mb-6">
+              <SectionLabel>What We Build</SectionLabel>
+
+              <h2
+                id="mvp-services-heading"
+                className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold mt-2.5"
+              >
+                MVP solutions designed around what your product needs to
+                validate.
+              </h2>
+
+              <p className="text-slate-600 text-[13px] sm:text-[14px] leading-6 mt-2.5 max-w-2xl font-normal">
+                Different startup ideas need different levels of functionality.
+                We develop the product around its core users and business
+                requirements rather than forcing every MVP into the same
+                package.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {services.map((service) => (
+                <article
+                  key={service.title}
+                  className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#0796A8]/40 hover:shadow-[0_16px_40px_rgba(7,25,35,0.07)]"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#071923] to-[#18bdcb]" />
+
+                  <div className="flex justify-between items-start">
+                    <div className="w-10 h-10 rounded-xl bg-[#f0f4f5] text-[#075f70] flex items-center justify-center">
+                      {service.icon}
+                    </div>
+
+                    <span className="text-[9px] font-semibold text-slate-300">
+                      {service.number}
+                    </span>
+                  </div>
+
+                  <h3 className="text-[#071923] text-[16px] leading-6 font-semibold mt-3.5">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-600 text-[12px] leading-5.5 mt-1.5 font-normal">
+                    {service.desc}
+                  </p>
+
+                  <div className="mt-3.5 pt-3 border-t border-slate-100 space-y-1.5">
+                    {service.points.map((point) => (
+                      <div
+                        key={point}
+                        className="flex items-center gap-2"
+                      >
+                        <CheckCircle2
+                          size={12}
+                          className="text-[#0796A8]"
+                        />
+
+                        <span className="text-[10px] font-medium text-slate-600">
+                          {point}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            STANDARDS
+        ===================================================== */}
+
+        <section
+          aria-labelledby="standards-heading"
+          className="relative py-10 md:py-12 bg-[#071923] text-white overflow-hidden"
+        >
+          <div
+            className="absolute inset-0 opacity-70"
+            style={darkGrid}
+          />
+
+          <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-[#0796A8]/10 blur-[140px]" />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[820px] mb-6">
+              <SectionLabel light>Development Standards</SectionLabel>
+
+              <h2
+                id="standards-heading"
+                className="text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold mt-2.5"
+              >
+                Built for validation today,{" "}
+                <span className="text-[#25bfce]">
+                  without blocking tomorrow.
+                </span>
+              </h2>
+
+              <p className="text-slate-400 text-[13px] sm:text-[14px] leading-6 mt-2.5 max-w-2xl font-normal">
+                An MVP needs more than a quick interface. Development decisions
+                also affect usability, performance, security, maintainability
+                and how easily the product can evolve after early feedback.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {standards.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-xl border border-white/[0.09] bg-white/[0.035] p-5 hover:bg-white/[0.055] hover:border-[#1bbac8]/25 transition-all"
+                >
+                  <div className="w-9 h-9 rounded-lg border border-[#1bbac8]/20 bg-[#0e2b36] text-[#27c2d0] flex items-center justify-center">
+                    {item.icon}
+                  </div>
+
+                  <h3 className="text-[14px] font-semibold mt-3">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-[11px] leading-5 text-slate-400 mt-1.5 font-normal">
+                    {item.desc}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            WHO WE HELP
+        ===================================================== */}
+
+        <section
+          aria-labelledby="startup-types-heading"
+          className="py-10 md:py-12 bg-[#f7f9fa]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.82fr_1.18fr] gap-6 lg:gap-10 items-start">
+              <div>
+                <SectionLabel>Who We Help</SectionLabel>
+
+                <h2
+                  id="startup-types-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] font-semibold tracking-[-0.035em] leading-[1.08] mt-2.5"
+                >
+                  From early concepts to{" "}
+                  <span className="text-[#0796A8]">
+                    products ready for real users.
+                  </span>
+                </h2>
+
+                <p className="text-slate-600 text-[13px] sm:text-[14px] leading-6 mt-3 font-normal">
+                  MVP development can support founders, startups and
+                  businesses testing a new digital product, software workflow
+                  or market opportunity.
+                </p>
+
+                <p className="text-slate-500 text-[12px] leading-5 mt-2 font-normal">
+                  The scope can be adapted around the product stage, target
+                  users, business model and the assumptions that need to be
+                  validated first.
+                </p>
+
+                <a
+                  href="#project-enquiry"
+                  className="inline-flex items-center gap-2 mt-4 text-[11px] font-semibold text-[#07899a] hover:text-[#071923] transition-colors"
+                >
+                  Discuss Your MVP
+                  <ArrowRight size={13} />
+                </a>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                {startupTypes.map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-[#0796A8]/35 transition-colors"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-[#eef4f5] text-[#07899a] flex items-center justify-center">
+                      {item.icon}
+                    </div>
+
+                    <h3 className="text-[#071923] font-semibold text-[14px] leading-6 mt-3">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-slate-500 text-[11px] leading-5 mt-1.5 font-normal">
+                      {item.desc}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            MVP VALIDATION
+        ===================================================== */}
+
+        <section
+          aria-labelledby="validation-heading"
+          className="py-10 md:py-12 bg-white"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center">
+              <div>
+                <SectionLabel>MVP Validation</SectionLabel>
+
+                <div className="w-9 h-9 mt-3 rounded-xl bg-[#edf5f6] text-[#07899a] flex items-center justify-center">
+                  <Target size={18} />
+                </div>
+
+                <h2
+                  id="validation-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] font-semibold tracking-[-0.035em] leading-[1.08] mt-3"
+                >
+                  Do you really need the full product before you can test the
+                  idea?
+                </h2>
+
+                <p className="text-slate-600 text-[13px] sm:text-[14px] leading-6 mt-2.5 font-normal">
+                  Building everything at once can make a new product larger,
+                  slower and harder to validate. A focused MVP helps move the
+                  idea into real usage before unnecessary features are added.
+                </p>
+
+                <p className="text-slate-500 text-[12px] leading-5 mt-2 font-normal">
+                  We can review the product requirements and help identify the
+                  functionality needed for the first meaningful release.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-[#f8fafb] p-4 sm:p-5">
+                <p className="text-[#071923] text-[9px] font-semibold tracking-[0.17em] uppercase">
+                  When an MVP approach makes sense
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-2 mt-3">
+                  {validationPoints.map((item) => (
                     <div
-                      key={item.item}
-                      className={`flex items-start gap-3 pb-3 border-b last:border-0 ${
-                        d ? 'border-white/[0.05]' : 'border-gray-100'
-                      }`}
+                      key={item}
+                      className="flex items-start gap-2.5 rounded-xl bg-white border border-slate-100 p-3"
                     >
-                      <CheckCircle
+                      <CheckCircle2
                         size={13}
-                        className="text-purple-500 flex-shrink-0 mt-0.5"
+                        className="text-[#0796A8] flex-shrink-0 mt-0.5"
                       />
 
-                      <div>
-                        <p
-                          className={`text-[12px] font-bold ${
-                            d ? 'text-white' : 'text-gray-900'
-                          }`}
-                        >
-                          {item.item}
-                        </p>
-
-                        <p
-                          className={`text-[10px] mt-0.5 ${
-                            d ? 'text-gray-500' : 'text-gray-400'
-                          }`}
-                        >
-                          {item.note}
-                        </p>
-                      </div>
+                      <span className="text-slate-600 text-[10px] leading-5 font-normal">
+                        {item}
+                      </span>
                     </div>
                   ))}
                 </div>
-
-                <div
-                  className={`mt-4 p-3 rounded-xl ${
-                    d ? 'bg-purple-600/5' : 'bg-purple-50'
-                  }`}
-                >
-                  <p
-                    className={`text-[11px] font-semibold text-center ${
-                      d ? 'text-purple-400' : 'text-purple-700'
-                    }`}
-                  >
-                    MVP development for startups, founders and businesses
-                  </p>
-                </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            MVP TYPES
-        ===================================================== */}
-
-        <section
-          aria-labelledby="mvp-types-heading"
-          className={`py-12 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-3">
-                MVP Development Services
-              </p>
-
-              <h2
-                id="mvp-types-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                MVP Development Services for Startups & Digital Products
-              </h2>
-
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                Our MVP product development services cover web, mobile, SaaS,
-                marketplace and B2B software ideas. We shape each startup MVP
-                around its users, business model, platform and the
-                functionality that needs to be validated first.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {mvpTypes.map((item) => (
-                <article
-                  key={item.title}
-                  className={`p-6 rounded-2xl border transition-all hover:border-purple-500/25 ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]'
-                      : 'bg-white border-gray-200 hover:shadow-sm'
-                  }`}
-                >
-                  <div
-                    className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${
-                      colorMap[item.color]
-                    }`}
-                  >
-                    {item.icon}
-                  </div>
-
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
-                    {item.title}
-                  </h3>
-
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
-                    {item.desc}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            PRINCIPLES
-        ===================================================== */}
-
-        <section
-          aria-labelledby="principles-heading"
-          className={`py-12 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-3">
-                MVP Strategy
-              </p>
-
-              <h2
-                id="principles-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                Our Startup MVP Development Approach
-              </h2>
-
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                MVP development should balance product validation with a
-                technical foundation that can continue evolving after early
-                user feedback.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {mvpPrinciples.map((item) => (
-                <article
-                  key={item.title}
-                  className={`p-5 rounded-2xl border transition-all hover:border-purple-500/20 ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]'
-                      : 'bg-white border-gray-200 hover:shadow-sm'
-                  }`}
-                >
-                  <div
-                    className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-3 ${
-                      d
-                        ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
-                        : 'bg-purple-50 border-purple-100 text-purple-600'
-                    }`}
-                  >
-                    {item.icon}
-                  </div>
-
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
-                    {item.title}
-                  </h3>
-
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
-                    {item.desc}
-                  </p>
-                </article>
-              ))}
             </div>
           </div>
         </section>
@@ -767,68 +1163,49 @@ const StartupMVP = ({ isDark }) => {
 
         <section
           aria-labelledby="process-heading"
-          className={`py-12 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
-          }`}
+          className="relative py-10 md:py-12 bg-[#071923] text-white"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-3">
-                Our Process
-              </p>
+          <div
+            className="absolute inset-0"
+            style={darkGrid}
+          />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[820px] mb-6">
+              <SectionLabel light>Our Process</SectionLabel>
 
               <h2
                 id="process-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
+                className="text-[28px] sm:text-[33px] md:text-[39px] font-semibold tracking-[-0.035em] leading-[1.08] mt-2.5"
               >
-                Our MVP Development Process
+                From startup idea{" "}
+                <span className="text-[#25bfce]">
+                  to a launchable MVP.
+                </span>
               </h2>
 
-              <p
-                className={`text-base max-w-2xl mx-auto ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                A practical development process from startup idea and feature
-                planning through implementation, testing and deployment.
+              <p className="text-slate-400 text-[13px] sm:text-[14px] leading-6 mt-2.5 font-normal">
+                A clear process keeps product decisions, requirements,
+                feedback, development and launch easier to manage throughout
+                the project.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.08] border border-white/[0.08] rounded-2xl overflow-hidden">
               {process.map((step) => (
                 <article
-                  key={step.n}
-                  className={`p-5 rounded-2xl border ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-white border-gray-200'
-                  }`}
+                  key={step.number}
+                  className="relative bg-[#071923] p-5 min-h-[160px] hover:bg-[#0a202a] transition-colors"
                 >
-                  <div
-                    className={`text-[13px] font-black mb-3 ${
-                      d ? 'text-purple-400' : 'text-purple-600'
-                    }`}
-                  >
-                    {step.n}
-                  </div>
+                  <span className="text-[10px] font-semibold text-[#22bfce]">
+                    {step.number}
+                  </span>
 
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
+                  <h3 className="text-[15px] font-semibold mt-4">
                     {step.title}
                   </h3>
 
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
+                  <p className="text-slate-400 text-[11px] leading-5 mt-1.5 font-normal">
                     {step.desc}
                   </p>
                 </article>
@@ -838,185 +1215,174 @@ const StartupMVP = ({ isDark }) => {
         </section>
 
         {/* =====================================================
-            TECHNOLOGY STACK
+            USE CASES
         ===================================================== */}
 
         <section
-          aria-labelledby="tech-heading"
-          className={`py-10 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
-          }`}
+          aria-labelledby="use-cases-heading"
+          className="py-10 md:py-12 bg-[#f7f9fa]"
+          style={lightGrid}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-3">
-                Technologies
-              </p>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.75fr_1.25fr] gap-6 lg:gap-10">
+              <div>
+                <SectionLabel>MVP Use Cases</SectionLabel>
+
+                <h2
+                  id="use-cases-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[38px] font-semibold tracking-[-0.035em] leading-[1.08] mt-2.5"
+                >
+                  Different ideas. Different products.
+                </h2>
+
+                <p className="text-slate-600 text-[13px] leading-6 mt-2.5 font-normal">
+                  MVP structure and functionality can be adapted to the
+                  product, users, business model and workflows that need to be
+                  validated.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                {useCases.map((item, index) => (
+                  <div
+                    key={item}
+                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5 hover:border-[#0796A8]/40 transition-colors"
+                  >
+                    <div>
+                      <span className="text-[8px] font-semibold text-[#0796A8]">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <h3 className="text-[#071923] text-[11px] font-semibold mt-1">
+                        {item}
+                      </h3>
+                    </div>
+
+                    <ArrowUpRight
+                      size={13}
+                      className="text-slate-300 group-hover:text-[#0796A8]"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            WHY DEVZORE
+        ===================================================== */}
+
+        <section
+          aria-labelledby="why-devzore-heading"
+          className="py-10 md:py-12 bg-white"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[850px] mb-6">
+              <SectionLabel>Why DevZore</SectionLabel>
 
               <h2
-                id="tech-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
+                id="why-devzore-heading"
+                className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] font-semibold tracking-[-0.035em] leading-[1.08] mt-2.5"
               >
-                MVP Development Technology Stack
+                Built around your product,{" "}
+                <span className="text-[#0796A8]">
+                  not a generic template.
+                </span>
               </h2>
 
-              <p
-                className={`text-base max-w-2xl mx-auto ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                Technology is selected according to your product requirements,
-                platform, integrations and future development needs.
+              <p className="text-slate-600 text-[13px] sm:text-[14px] leading-6 mt-2.5 font-normal">
+                We focus on what the first product version needs to achieve for
+                the business, founders and people who will actually use it.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              {techStack.map((category) => (
-                <div
-                  key={category.category}
-                  className={`p-4 rounded-xl border ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-[#fafafa] border-gray-200'
-                  }`}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {whyDevZore.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-2xl border border-slate-200 bg-[#fbfcfc] p-5 hover:border-[#0796A8]/35 transition-colors"
                 >
-                  <p className="text-[11px] font-black uppercase tracking-widest mb-3 text-purple-500">
-                    {category.category}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {category.items.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`text-[10px] font-medium px-2 py-1 rounded-md border ${
-                          d
-                            ? 'bg-white/[0.04] border-white/[0.08] text-gray-300'
-                            : 'bg-white border-gray-200 text-gray-700'
-                        }`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  <div className="w-9 h-9 rounded-xl bg-[#eef4f5] text-[#07899a] flex items-center justify-center">
+                    {item.icon}
                   </div>
-                </div>
+
+                  <h3 className="text-[#071923] text-[14px] leading-6 font-semibold mt-3">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-slate-500 text-[11px] leading-5 mt-1.5 font-normal">
+                    {item.desc}
+                  </p>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
         {/* =====================================================
-            SEO / SEARCH INTENT CONTENT
+            RELATED SERVICES
         ===================================================== */}
 
         <section
-          aria-labelledby="mvp-solutions-heading"
-          className={`py-12 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
-          }`}
+          aria-labelledby="related-services-heading"
+          className="py-10 md:py-12 bg-[#f7f9fa] border-y border-slate-200"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
               <div>
-                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-3">
-                  Startup Product Development
-                </p>
+                <SectionLabel>Related Services</SectionLabel>
 
                 <h2
-                  id="mvp-solutions-heading"
-                  className={`text-3xl font-black mb-4 ${
-                    d ? 'text-white' : 'text-gray-900'
-                  }`}
+                  id="related-services-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[38px] font-semibold tracking-[-0.035em] leading-[1.08] mt-2.5"
                 >
-                  Startup Software Development from Idea to MVP
+                  More ways DevZore can help.
                 </h2>
-
-                <p
-                  className={`text-sm leading-7 mb-4 ${
-                    d ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  A successful MVP is not simply a smaller application. It is a
-                  focused digital product built to validate an important
-                  business idea with real users. Our startup product
-                  development process prioritises the essential functionality
-                  needed to test the core product experience.
-                </p>
-
-                <p
-                  className={`text-sm leading-7 mb-4 ${
-                    d ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  DevZore provides MVP web development, MVP app development and
-                  SaaS MVP development using modern frontend, backend, database
-                  and API technologies. We can support founders from product
-                  prototype development through the first production-ready
-                  software release.
-                </p>
-
-                <p
-                  className={`text-sm leading-7 ${
-                    d ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  As a remote startup development agency and technology
-                  partner, we can continue supporting the product after its
-                  initial MVP through feature development, integrations, UI
-                  improvements and backend expansion as requirements evolve.
-                </p>
               </div>
 
-              <div
-                className={`p-6 rounded-2xl border ${
-                  d
-                    ? 'bg-white/[0.02] border-white/[0.06]'
-                    : 'bg-white border-gray-200'
-                }`}
+              <Link
+                to="/allservices"
+                onClick={scrollTop}
+                className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#07899a]"
               >
-                <p
-                  className={`text-[11px] font-black uppercase tracking-widest mb-4 ${
-                    d ? 'text-gray-400' : 'text-gray-500'
-                  }`}
-                >
-                  MVP Development Expertise
-                </p>
+                View All Services
+                <ArrowRight size={13} />
+              </Link>
+            </div>
 
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    'MVP Development',
-                    'MVP Development Services',
-                    'Startup MVP Development',
-                    'MVP Software Development',
-                    'MVP App Development',
-                    'MVP Web Development',
-                    'MVP Product Development',
-                    'Minimum Viable Product Development',
-                    'Startup Software Development',
-                    'Startup Web Development',
-                    'Startup App Development',
-                    'Startup Product Development',
-                    'Prototype Development',
-                    'Product Prototype Development',
-                    'SaaS MVP Development',
-                    'Rapid MVP Development',
-                  ].map((keyword) => (
-                    <span
-                      key={keyword}
-                      className={`px-3 py-2 rounded-lg border text-[11px] font-semibold ${
-                        d
-                          ? 'bg-white/[0.03] border-white/[0.08] text-gray-300'
-                          : 'bg-[#fafafa] border-gray-200 text-gray-700'
-                      }`}
-                    >
-                      {keyword}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+              {relatedServices.map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  onClick={scrollTop}
+                  className="group rounded-2xl border border-slate-200 bg-white p-5 hover:border-[#0796A8]/40 hover:-translate-y-1 transition-all"
+                >
+                  <span className="text-[8px] tracking-[0.16em] font-semibold text-[#0796A8]">
+                    {service.label}
+                  </span>
+
+                  <h3 className="text-[#071923] text-[14px] leading-5 font-semibold mt-2.5">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-500 text-[10px] leading-5 mt-1.5 font-normal">
+                    {service.desc}
+                  </p>
+
+                  <div className="flex items-center justify-between mt-3.5 pt-3 border-t border-slate-100">
+                    <span className="text-[9px] font-medium text-slate-500 group-hover:text-[#07899a]">
+                      Explore service
                     </span>
-                  ))}
-                </div>
-              </div>
+
+                    <ArrowUpRight
+                      size={13}
+                      className="text-[#07899a]"
+                    />
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
@@ -1027,51 +1393,38 @@ const StartupMVP = ({ isDark }) => {
 
         <section
           aria-labelledby="faq-heading"
-          className={`py-12 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
-          }`}
+          className="py-10 md:py-12 bg-white"
         >
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-3">
-                Questions & Answers
-              </p>
+          <div className="max-w-[980px] mx-auto px-5 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-5">
+              <div>
+                <SectionLabel>FAQ</SectionLabel>
 
-              <h2
-                id="faq-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                Startup MVP Development FAQ
-              </h2>
+                <h2
+                  id="faq-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[38px] font-semibold tracking-[-0.035em] leading-[1.08] mt-2.5"
+                >
+                  Startup MVP questions founders actually ask.
+                </h2>
+              </div>
 
-              <p
-                className={`text-base ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
+              <a
+                href="#project-enquiry"
+                className="self-start md:self-auto inline-flex items-center gap-2 rounded-lg bg-[#071923] px-4 py-2.5 text-[10px] font-semibold text-white"
               >
-                Common questions about MVP development, cost, technology,
-                features, product planning and startup software development.
-              </p>
+                Ask Your Question
+                <ArrowRight size={12} />
+              </a>
             </div>
 
-            <div className="space-y-3">
+            <div className="border-t border-slate-200">
               {visibleFaqs.map((faq, index) => {
                 const isOpen = activeFaq === index;
 
                 return (
                   <div
                     key={faq.q}
-                    className={`rounded-xl border overflow-hidden transition-all duration-300 ${
-                      isOpen
-                        ? d
-                          ? 'border-purple-500/40 bg-purple-600/5'
-                          : 'border-purple-200 bg-purple-50/50'
-                        : d
-                          ? 'border-white/[0.06] bg-white/[0.02]'
-                          : 'border-gray-200 bg-white'
-                    }`}
+                    className="border-b border-slate-200"
                   >
                     <button
                       type="button"
@@ -1080,53 +1433,45 @@ const StartupMVP = ({ isDark }) => {
                       }
                       aria-expanded={isOpen}
                       aria-controls={`mvp-faq-${index}`}
-                      className="w-full p-5 text-left flex items-start justify-between gap-4"
+                      className="w-full flex items-center justify-between gap-5 py-3.5 text-left"
                     >
                       <span
-                        className={`text-[14px] font-bold ${
+                        className={`text-[13px] sm:text-[14px] font-semibold transition-colors ${
                           isOpen
-                            ? 'text-purple-500'
-                            : d
-                              ? 'text-white'
-                              : 'text-gray-900'
+                            ? "text-[#07899a]"
+                            : "text-[#071923]"
                         }`}
                       >
                         {faq.q}
                       </span>
 
                       <span
-                        className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${
+                        className={`w-7 h-7 flex-shrink-0 rounded-full border flex items-center justify-center transition-all ${
                           isOpen
-                            ? 'bg-purple-600 text-white'
-                            : d
-                              ? 'bg-white/[0.06] text-gray-500'
-                              : 'bg-gray-100 text-gray-500'
+                            ? "border-[#0796A8] bg-[#0796A8] text-white"
+                            : "border-slate-200 text-[#071923]"
                         }`}
                       >
                         {isOpen ? (
-                          <Minus size={13} />
+                          <Minus size={12} />
                         ) : (
-                          <Plus size={13} />
+                          <Plus size={12} />
                         )}
                       </span>
                     </button>
 
                     <div
                       id={`mvp-faq-${index}`}
-                      className={`overflow-hidden transition-all duration-300 ${
+                      className={`grid transition-all duration-300 ${
                         isOpen
-                          ? 'max-h-[500px] opacity-100'
-                          : 'max-h-0 opacity-0'
+                          ? "grid-rows-[1fr] opacity-100"
+                          : "grid-rows-[0fr] opacity-0"
                       }`}
                     >
-                      <div
-                        className={`px-5 pb-5 pt-0 border-t text-[14px] leading-relaxed ${
-                          d
-                            ? 'border-white/[0.06] text-gray-400'
-                            : 'border-purple-100 text-gray-600'
-                        }`}
-                      >
-                        <p className="pt-4">{faq.a}</p>
+                      <div className="overflow-hidden">
+                        <p className="max-w-3xl pb-3.5 text-[12px] leading-6 text-slate-600 font-normal">
+                          {faq.a}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -1134,28 +1479,24 @@ const StartupMVP = ({ isDark }) => {
               })}
             </div>
 
-            {faqs.length > 5 && (
-              <div className="text-center mt-6">
+            {faqs.length > 3 && (
+              <div className="flex justify-center mt-4">
                 <button
                   type="button"
                   onClick={() => {
-                    setShowAllFaqs((prev) => !prev);
+                    setShowAllFaqs((current) => !current);
                     setActiveFaq(null);
                   }}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border text-[13px] font-bold transition-all ${
-                    d
-                      ? 'border-white/10 bg-white/[0.03] text-gray-300 hover:border-purple-500/30 hover:text-purple-400'
-                      : 'border-gray-200 bg-white text-gray-700 hover:border-purple-200 hover:text-purple-600'
-                  }`}
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#071923]/15 bg-[#f8fafb] px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:border-[#0796A8]/50 transition-colors"
                 >
                   {showAllFaqs
-                    ? 'Show Less FAQs'
-                    : `Show More FAQs (${faqs.length - 5})`}
+                    ? "Show Less Questions"
+                    : `Show More Questions (${faqs.length - 3})`}
 
                   {showAllFaqs ? (
-                    <Minus size={14} />
+                    <ChevronUp size={13} />
                   ) : (
-                    <Plus size={14} />
+                    <ChevronDown size={13} />
                   )}
                 </button>
               </div>
@@ -1164,178 +1505,269 @@ const StartupMVP = ({ isDark }) => {
         </section>
 
         {/* =====================================================
-            RELATED SERVICES
+            PROJECT ENQUIRY
         ===================================================== */}
 
         <section
-          aria-labelledby="related-services-heading"
-          className={`py-12 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
-          }`}
+          id="project-enquiry"
+          aria-labelledby="project-enquiry-heading"
+          className="relative py-10 md:py-12 bg-[#071923] text-white overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Explore More
-              </p>
+          <div
+            className="absolute inset-0 opacity-70"
+            style={darkGrid}
+          />
 
-              <h2
-                id="related-services-heading"
-                className={`text-2xl md:text-3xl font-black ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                Related Software Development Services
-              </h2>
-            </div>
+          <div className="absolute -top-20 left-[5%] w-[450px] h-[450px] rounded-full bg-[#0796A8]/10 blur-[130px]" />
 
-            <div className="grid md:grid-cols-3 gap-4">
-              {relatedServices.map((service) => (
-                <Link
-                  key={service.path}
-                  to={service.path}
-                  onClick={scrollTop}
-                  className={`group p-6 rounded-2xl border transition-all duration-300 flex flex-col ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.07] hover:bg-white/[0.04] hover:border-purple-500/30'
-                      : 'bg-white border-gray-200 hover:border-purple-200 hover:shadow-sm'
-                  }`}
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.82fr_1.18fr] gap-7 lg:gap-12">
+              <div>
+                <SectionLabel light>Start Your MVP</SectionLabel>
+
+                <h2
+                  id="project-enquiry-heading"
+                  className="text-[29px] sm:text-[34px] md:text-[42px] leading-[1.06] tracking-[-0.04em] font-semibold mt-2.5"
                 >
-                  <div
-                    className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${
-                      d
-                        ? 'bg-purple-500/10 text-purple-400'
-                        : 'bg-purple-50 text-purple-600'
-                    }`}
-                  >
-                    {service.icon}
-                  </div>
+                  Tell us what you{" "}
+                  <span className="text-[#25bfce]">
+                    want to validate and build.
+                  </span>
+                </h2>
 
-                  <h3
-                    className={`text-[16px] font-black mb-2 ${
-                      d ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
-                    {service.title}
-                  </h3>
+                <p className="text-slate-300 text-[13px] sm:text-[14px] leading-6 mt-3 max-w-lg font-normal">
+                  Share a few details about your startup idea, SaaS product,
+                  web application or mobile app. We can review the requirements
+                  and discuss the most appropriate next step for the MVP.
+                </p>
 
-                  <p
-                    className={`text-[13px] leading-relaxed mb-6 ${
-                      d ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
-                    {service.desc}
+                <div className="mt-5 space-y-2.5">
+                  {[
+                    "SaaS and startup MVPs",
+                    "Web and mobile applications",
+                    "Backend, APIs and databases",
+                    "Authentication, payments and integrations",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-2.5"
+                    >
+                      <div className="w-5 h-5 rounded-full bg-[#19b9c8]/10 border border-[#19b9c8]/25 flex items-center justify-center">
+                        <Check
+                          size={10}
+                          className="text-[#2ac6d4]"
+                        />
+                      </div>
+
+                      <span className="text-[11px] font-medium text-slate-300">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-5 pt-4 border-t border-white/[0.08]">
+                  <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-slate-500">
+                    Prefer a direct conversation?
                   </p>
 
-                  <span className="mt-auto inline-flex items-center gap-2 text-[13px] font-bold text-purple-500 group-hover:gap-3 transition-all">
-                    Learn More
-                    <ArrowRight size={14} />
-                  </span>
-                </Link>
-              ))}
-            </div>
+                  <a
+                    href="mailto:hellodevzore@gmail.com"
+                    className="inline-flex items-center gap-2 mt-2 text-[12px] font-medium text-[#26c4d2]"
+                  >
+                    <Mail size={14} />
+                    hellodevzore@gmail.com
+                  </a>
+                </div>
+              </div>
 
-            <div className="text-center mt-7">
-              <Link
-                to="/allservices"
-                onClick={scrollTop}
-                className={`inline-flex items-center gap-2 text-[13px] font-bold transition-colors ${
-                  d
-                    ? 'text-gray-400 hover:text-purple-400'
-                    : 'text-gray-600 hover:text-purple-600'
-                }`}
+              {/* FORM */}
+
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-2xl border border-white/[0.1] bg-[#0a202a]/90 p-5 sm:p-6 shadow-[0_30px_80px_rgba(0,0,0,0.25)]"
               >
-                View All DevZore Services
-                <ArrowRight size={14} />
-              </Link>
+                <div className="grid md:grid-cols-2 gap-3.5">
+                  <div>
+                    <label
+                      htmlFor="mvp-name"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Your Name *
+                    </label>
+
+                    <input
+                      id="mvp-name"
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] font-normal text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="mvp-email"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Email Address *
+                    </label>
+
+                    <input
+                      id="mvp-email"
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="you@company.com"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] font-normal text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="mvp-company"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Company / Startup
+                    </label>
+
+                    <input
+                      id="mvp-company"
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      placeholder="Company or startup name"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] font-normal text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="mvp-service"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Project Type
+                    </label>
+
+                    <select
+                      id="mvp-service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] font-normal text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    >
+                      <option>Startup MVP Development</option>
+                      <option>SaaS MVP Development</option>
+                      <option>Web Application MVP</option>
+                      <option>Mobile App MVP</option>
+                      <option>Marketplace MVP</option>
+                      <option>Backend & API Development</option>
+                      <option>Existing MVP Improvement</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label
+                      htmlFor="mvp-timeline"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Preferred Timeline
+                    </label>
+
+                    <select
+                      id="mvp-timeline"
+                      name="timeline"
+                      value={formData.timeline}
+                      onChange={handleChange}
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] font-normal text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    >
+                      <option value="">Select a timeline</option>
+                      <option>As soon as possible</option>
+                      <option>Within 1 month</option>
+                      <option>1–3 months</option>
+                      <option>3+ months</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label
+                      htmlFor="mvp-message"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Project Details *
+                    </label>
+
+                    <textarea
+                      id="mvp-message"
+                      name="message"
+                      required
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us about your idea, target users, the problem you want to solve and the core features you believe the MVP needs..."
+                      className="w-full resize-none rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] font-normal leading-5 text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-3.5">
+                  <p className="text-[9px] leading-4 text-slate-500 max-w-sm font-normal">
+                    Share enough detail for us to understand the product. We
+                    can discuss the scope, technical requirements and next
+                    steps in more detail afterwards.
+                  </p>
+
+                  <button
+                    type="submit"
+                    className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#1bbdca] hover:bg-[#28c9d5] px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+                  >
+                    Send MVP Enquiry
+                    <Send size={13} />
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </section>
 
         {/* =====================================================
-            FINAL CTA
+            BOTTOM CTA
         ===================================================== */}
 
-        <section className="pt-12 pb-16">
-          <div className="max-w-4xl mx-auto px-6">
-            <div
-              className={`p-8 md:p-10 rounded-3xl border text-center ${
-                d
-                  ? 'bg-white/[0.02] border-white/[0.06]'
-                  : 'bg-[#fafafa] border-gray-200'
-              }`}
-            >
-              <div
-                className={`w-12 h-12 rounded-xl mx-auto mb-5 flex items-center justify-center ${
-                  d
-                    ? 'bg-purple-500/10 text-purple-400'
-                    : 'bg-purple-50 text-purple-600'
-                }`}
-              >
-                <Rocket size={22} />
+        <section className="bg-[#06151d] border-t border-white/[0.06]">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6 py-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div>
+                <p className="text-white text-[14px] font-semibold">
+                  Have a startup idea? We’re here to help you build it.
+                </p>
+
+                <p className="text-slate-500 text-[10px] leading-5 mt-0.5 font-normal">
+                  MVP development, SaaS products and custom software by
+                  DevZore.
+                </p>
               </div>
 
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-3">
-                Start Your MVP
-              </p>
-
-              <h2
-                className={`text-3xl font-black mb-4 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
+              <Link
+                to="/contact"
+                onClick={scrollTop}
+                className="inline-flex self-start items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
               >
-                Ready to Discuss Your Startup MVP?
-              </h2>
-
-              <p
-                className={`text-base leading-relaxed mb-7 max-w-2xl mx-auto ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                Tell us about your software idea, target users and core
-                features. We can discuss a focused MVP scope, suitable
-                technology and a practical development approach for your
-                product.
-              </p>
-
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Link
-                  to="/contact"
-                  onClick={scrollTop}
-                  className="flex items-center gap-2 px-7 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
-                >
-                  Discuss Your MVP
-                  <ArrowRight size={15} />
-                </Link>
-
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-7 py-3.5 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
-                >
-                  WhatsApp Us
-                </a>
-
-                <Link
-                  to="/allservices"
-                  onClick={scrollTop}
-                  className={`flex items-center gap-2 px-7 py-3.5 font-bold rounded-xl text-sm border transition-all ${
-                    d
-                      ? 'border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]'
-                      : 'border-gray-200 text-gray-700 hover:border-gray-300'
-                  }`}
-                >
-                  View All Services
-                  <ArrowRight size={15} />
-                </Link>
-              </div>
+                Contact DevZore
+                <ArrowUpRight size={12} />
+              </Link>
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 };

@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Bot,
-  CheckCircle2,
-  ChevronDown,
-  ChevronUp,
   Code2,
   Layers3,
   Megaphone,
@@ -14,159 +11,79 @@ import {
   Server,
   ShoppingCart,
   Smartphone,
-  Sparkles,
   TrendingUp,
   Wrench,
 } from "lucide-react";
 
-const Services = ({ isDark = true }) => {
-  const d = isDark;
-
+const Services = () => {
   // ======================================================
-  // STATE
-  // ======================================================
-
-  const [showAll, setShowAll] = useState(false);
-
-  // ======================================================
-  // PRIMARY SERVICES
+  // SERVICES
   // ======================================================
 
   const services = [
     {
+      icon: Bot,
+      title: "Generative AI",
+      description:
+        "AI assistants, LLM integrations and intelligent workflows for modern digital products.",
+      path: "/generative-ai-development",
+      accent: "from-violet-500 to-purple-500",
+    },
+    {
       icon: Code2,
       title: "Web Development",
-      subtitle: "React · Next.js · Node.js",
-      path: "/web-development",
-      category: "Development",
       description:
-        "Custom websites and web applications built for performance, usability, responsive experiences and long-term maintainability.",
-      points: [
-        "Business websites & web apps",
-        "Responsive frontend development",
-        "Backend & third-party integrations",
-      ],
+        "Responsive websites and web applications built with modern frontend and backend technologies.",
+      path: "/web-development",
+      accent: "from-cyan-500 to-blue-500",
     },
-
     {
       icon: Smartphone,
-      title: "Mobile App Development",
-      subtitle: "iOS · Android · Cross-Platform",
-      path: "/mobile-apps",
-      category: "Mobile",
+      title: "Mobile Apps",
       description:
-        "Cross-platform mobile applications designed around real business workflows, smooth user experiences and reliable backend systems.",
-      points: [
-        "iOS & Android applications",
-        "API & backend integration",
-        "Deployment & release support",
-      ],
+        "Cross-platform mobile applications with practical interfaces, APIs and business functionality.",
+      path: "/mobile-apps",
+      accent: "from-blue-500 to-indigo-500",
     },
-
     {
       icon: TrendingUp,
-      title: "SaaS Product Development",
-      subtitle: "SaaS · Dashboards · Billing",
+      title: "SaaS Development",
+      description:
+        "Scalable SaaS products with dashboards, authentication, APIs and administration systems.",
       path: "/saas-product-development",
-      category: "SaaS",
-      description:
-        "Scalable SaaS products with authentication, dashboards, subscription workflows, APIs and administration systems.",
-      points: [
-        "SaaS product architecture",
-        "Subscriptions & billing",
-        "Admin & analytics dashboards",
-      ],
+      accent: "from-emerald-500 to-cyan-500",
     },
-
-    {
-      icon: Bot,
-      title: "Generative AI Services",
-      subtitle: "AI · LLMs · Automation",
-      path: "/generative-ai-services",
-      category: "AI",
-      featured: true,
-      description:
-        "Generative AI solutions that bring intelligent assistants, AI-powered workflows and language-model capabilities into digital products.",
-      points: [
-        "AI chatbot integration",
-        "LLM-powered applications",
-        "Business workflow automation",
-      ],
-    },
-
     {
       icon: ShoppingCart,
-      title: "E-Commerce Development",
-      subtitle: "Stores · Payments · Admin",
-      path: "/ecommerce",
-      category: "Commerce",
+      title: "E-Commerce",
       description:
-        "E-commerce platforms with product management, order workflows, payment integrations and responsive shopping experiences.",
-      points: [
-        "Product & inventory workflows",
-        "Payment gateway integration",
-        "Responsive storefronts",
-      ],
+        "Online stores with product management, order workflows and payment integrations.",
+      path: "/ecommerce",
+      accent: "from-orange-500 to-amber-400",
     },
-
     {
       icon: Server,
-      title: "Backend & API Development",
-      subtitle: "Node.js · Express · Databases",
-      path: "/backend-api",
-      category: "Backend",
+      title: "Backend & APIs",
       description:
-        "Secure and maintainable backend systems for websites, mobile apps, SaaS platforms and custom software products.",
-      points: [
-        "REST & GraphQL APIs",
-        "Authentication & authorization",
-        "Database & cloud integration",
-      ],
+        "Maintainable backend systems and APIs for web, mobile and custom software applications.",
+      path: "/backend-api",
+      accent: "from-cyan-500 to-teal-400",
     },
-
     {
       icon: Layers3,
-      title: "MERN Stack Development",
-      subtitle: "MongoDB · Express · React · Node",
-      path: "/mern-stack-development",
-      category: "Full Stack",
+      title: "MERN Stack",
       description:
-        "End-to-end JavaScript application development using the MERN stack for modern business applications and digital products.",
-      points: [
-        "Full-stack application development",
-        "Database architecture",
-        "Reusable & scalable codebase",
-      ],
+        "Full-stack applications using MongoDB, Express, React and Node.js.",
+      path: "/mern-stack-development",
+      accent: "from-green-500 to-emerald-400",
     },
-
     {
       icon: Palette,
       title: "UI/UX Design",
-      subtitle: "Figma · UX · Design Systems",
+      description:
+        "Clean, responsive interfaces designed around product requirements and user experience.",
       path: "/ui-ux-design",
-      category: "Design",
-      description:
-        "User-focused interface design for websites, applications and software products, from early wireframes to developer-ready interfaces.",
-      points: [
-        "Wireframes & prototypes",
-        "Responsive UI design",
-        "Design systems & handoff",
-      ],
-    },
-
-    {
-      icon: Search,
-      title: "SEO Services",
-      subtitle: "Technical · On-Page · Strategy",
-      path: "/seo-services",
-      category: "Growth",
-      description:
-        "SEO services focused on technical foundations, content relevance, search visibility and sustainable organic discovery.",
-      points: [
-        "Technical & on-page SEO",
-        "Keyword & content strategy",
-        "Search performance monitoring",
-      ],
+      accent: "from-purple-500 to-pink-500",
     },
   ];
 
@@ -175,6 +92,11 @@ const Services = ({ isDark = true }) => {
   // ======================================================
 
   const additionalServices = [
+    {
+      icon: Search,
+      title: "SEO Services",
+      path: "/seo-services",
+    },
     {
       icon: Code2,
       title: "React Development",
@@ -193,12 +115,6 @@ const Services = ({ isDark = true }) => {
   ];
 
   // ======================================================
-  // VISIBLE SERVICES
-  // ======================================================
-
-  const visibleServices = showAll ? services : services.slice(0, 6);
-
-  // ======================================================
   // SCROLL TOP
   // ======================================================
 
@@ -211,14 +127,6 @@ const Services = ({ isDark = true }) => {
   };
 
   // ======================================================
-  // TOGGLE SERVICES
-  // ======================================================
-
-  const toggleServices = () => {
-    setShowAll((prev) => !prev);
-  };
-
-  // ======================================================
   // RENDER
   // ======================================================
 
@@ -226,104 +134,191 @@ const Services = ({ isDark = true }) => {
     <section
       id="services"
       aria-labelledby="services-heading"
-      className={`relative overflow-hidden py-7 sm:py-8 lg:py-9 transition-colors duration-300 ${
-        d ? "bg-[#030303]" : "bg-[#fafafa]"
-      }`}
+      className="relative overflow-hidden bg-[#f4f5f5]"
     >
       {/* ==================================================
-          BACKGROUND
+          BACKGROUND DETAIL
       ================================================== */}
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 overflow-hidden"
+        className="pointer-events-none absolute inset-0"
       >
         <div
-          className={`absolute -top-32 right-[-120px] w-[300px] h-[300px] rounded-full blur-[120px] ${
-            d ? "bg-purple-700/[0.07]" : "bg-purple-200/25"
-          }`}
+          className="
+            absolute inset-0
+            bg-[linear-gradient(rgba(7,31,45,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(7,31,45,0.025)_1px,transparent_1px)]
+            bg-[size:48px_48px]
+          "
         />
 
         <div
-          className={`absolute -bottom-40 -left-28 w-[320px] h-[320px] rounded-full blur-[130px] ${
-            d ? "bg-blue-700/[0.035]" : "bg-blue-100/25"
-          }`}
+          className="
+            absolute
+            -top-32 -right-32
+            w-[400px] h-[400px]
+            rounded-full
+            bg-cyan-200/20
+            blur-[130px]
+          "
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ==================================================
+          MAIN CONTAINER
+      ================================================== */}
 
+      <div
+        className="
+          relative z-10
+          max-w-[1440px]
+          mx-auto
+          px-4 sm:px-6 lg:px-10
+          py-12 sm:py-14 lg:py-16
+        "
+      >
         {/* ==================================================
             HEADER
         ================================================== */}
 
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-5 sm:mb-6">
-          <div className="max-w-3xl">
+        <div
+          className="
+            flex flex-col
+            lg:flex-row
+            lg:items-end
+            lg:justify-between
+            gap-5
+            mb-7 sm:mb-9
+          "
+        >
+          <div className="max-w-[850px]">
+            {/* SMALL LABEL */}
 
-            {/* BADGE */}
-
-            <div
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border mb-2.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.16em] ${
-                d
-                  ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
-                  : "bg-purple-50 border-purple-200 text-purple-700"
-              }`}
+            <p
+              className="
+                text-[9px]
+                sm:text-[10px]
+                font-bold
+                uppercase
+                tracking-[0.22em]
+                text-[#16384a]
+                mb-3
+              "
             >
-              <Sparkles size={10} aria-hidden="true" />
-              Our Services
-            </div>
+              Services That Work
+            </p>
 
             {/* HEADING */}
 
             <h2
               id="services-heading"
-              className={`text-[26px] sm:text-[32px] lg:text-[38px] xl:text-[40px] font-black tracking-[-0.035em] leading-[1.08] ${
-                d ? "text-white" : "text-slate-950"
-              }`}
+              className="
+                text-[#101820]
+                text-[28px]
+                min-[390px]:text-[31px]
+                sm:text-[38px]
+                lg:text-[44px]
+                xl:text-[48px]
+                leading-[1.06]
+                tracking-[-0.04em]
+                font-semibold
+              "
             >
-              Technology services to
-              <span className="text-purple-600">
-                {" "}
-                build, launch and grow
+              Engineering solutions
+              <span className="block text-[#53616a]">
+                built for real business needs.
               </span>
             </h2>
 
             {/* DESCRIPTION */}
 
             <p
-              className={`mt-2.5 max-w-2xl text-[11px] sm:text-[13px] leading-[1.65] ${
-                d ? "text-gray-400" : "text-slate-600"
-              }`}
+              className="
+                mt-4
+                max-w-[650px]
+                text-[11px]
+                sm:text-[13px]
+                lg:text-[14px]
+                leading-[1.7]
+                text-[#65727a]
+              "
             >
-              DevZore provides software development and digital services for
-              startups and businesses — from websites, mobile applications and
-              SaaS products to AI integrations, backend systems, e-commerce,
-              UI/UX and search optimization.
+              DevZore designs and develops modern software,
+              web applications, mobile products, SaaS platforms
+              and AI-enabled solutions.
             </p>
           </div>
 
-          {/* ALL SERVICES PAGE */}
+          {/* DESKTOP VIEW ALL */}
 
           <Link
             to="/allservices"
             onClick={scrollTop}
-            className={`hidden lg:inline-flex shrink-0 items-center gap-2 px-4 py-2 rounded-lg border text-[10px] font-bold transition-all duration-200 hover:-translate-y-0.5 ${
-              d
-                ? "border-white/10 text-gray-300 hover:text-white hover:bg-white/[0.04] hover:border-purple-500/30"
-                : "border-slate-200 bg-white text-slate-700 hover:border-purple-300 hover:text-purple-700 shadow-sm"
-            }`}
+            className="
+              hidden lg:inline-flex
+              items-center justify-center
+              gap-2
+              shrink-0
+
+              px-5 py-3
+              rounded-xl
+
+              bg-white
+              border border-[#dfe4e7]
+
+              text-[#0b2534]
+              text-[12px]
+              font-semibold
+
+              shadow-[0_5px_18px_rgba(7,31,45,0.08)]
+
+              transition-all duration-200
+
+              hover:-translate-y-0.5
+              hover:shadow-[0_8px_25px_rgba(7,31,45,0.12)]
+              hover:border-cyan-400
+            "
           >
-            Explore Services Page
-            <ArrowRight size={12} />
+            <ArrowRight size={13} />
+
+            View all services
           </Link>
         </div>
 
         {/* ==================================================
-            SERVICES GRID
+            SERVICES
+          
+            MOBILE:
+            horizontal swipe like reference website
+
+            TABLET / DESKTOP:
+            normal grid
         ================================================== */}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {visibleServices.map((service) => {
+        <div
+          className="
+            flex
+            overflow-x-auto
+            snap-x snap-mandatory
+            gap-3
+
+            -mx-4 px-4
+            pb-3
+
+            sm:mx-0 sm:px-0
+            sm:grid
+            sm:grid-cols-2
+            sm:overflow-visible
+            sm:pb-0
+
+            lg:grid-cols-4
+            lg:gap-4
+
+            [scrollbar-width:none]
+            [&::-webkit-scrollbar]:hidden
+          "
+        >
+          {services.map((service) => {
             const Icon = service.icon;
 
             return (
@@ -332,265 +327,389 @@ const Services = ({ isDark = true }) => {
                 to={service.path}
                 onClick={scrollTop}
                 aria-label={`Explore ${service.title}`}
-                className={`group relative flex flex-col overflow-hidden rounded-xl border p-3.5 sm:p-4 transition-all duration-300 hover:-translate-y-0.5 ${
-                  d
-                    ? service.featured
-                      ? "bg-purple-600/[0.06] border-purple-500/20 hover:border-purple-500/40 hover:shadow-[0_8px_24px_rgba(124,58,237,0.07)]"
-                      : "bg-white/[0.02] border-white/[0.07] hover:bg-white/[0.035] hover:border-purple-500/25"
-                    : service.featured
-                    ? "bg-purple-50/60 border-purple-200 hover:border-purple-300 hover:shadow-md"
-                    : "bg-white border-slate-200 hover:border-purple-200 hover:shadow-md"
-                }`}
+                className="
+                  group
+                  relative
+                  overflow-hidden
+
+                  flex
+                  flex-col
+
+                  min-w-[82%]
+                  min-[390px]:min-w-[78%]
+                  snap-start
+
+                  sm:min-w-0
+
+                  min-h-[220px]
+                  sm:min-h-[235px]
+                  lg:min-h-[245px]
+
+                  bg-white
+
+                  rounded-[18px]
+
+                  border
+                  border-[#e1e6e8]
+
+                  px-5 py-5
+                  sm:p-6
+
+                  shadow-[0_8px_25px_rgba(7,31,45,0.06)]
+
+                  transition-all
+                  duration-300
+
+                  hover:-translate-y-1
+                  hover:shadow-[0_15px_35px_rgba(7,31,45,0.11)]
+                  hover:border-[#cdd8dc]
+                "
               >
-                {/* FEATURED GLOW */}
+                {/* ==========================================
+                    TOP ACCENT LINE
+                ========================================== */}
 
-                {service.featured && (
-                  <div
+                <div
+                  className="
+                    absolute
+                    top-0 left-0 right-0
+                    h-[2px]
+                    bg-gradient-to-r
+                    from-[#061923]
+                    via-[#08788c]
+                    to-[#12d9c5]
+                  "
+                />
+
+                {/* ==========================================
+                    ICON
+                ========================================== */}
+
+                <div
+                  className="
+                    w-11 h-11
+                    sm:w-12 sm:h-12
+
+                    flex
+                    items-center
+                    justify-center
+
+                    rounded-xl
+
+                    bg-[#eef3f5]
+                    border border-[#e6ecee]
+
+                    text-[#0c536f]
+
+                    transition-all
+                    duration-300
+
+                    group-hover:bg-[#082c3c]
+                    group-hover:text-white
+                    group-hover:border-[#082c3c]
+                  "
+                >
+                  <Icon
+                    size={18}
+                    strokeWidth={1.8}
                     aria-hidden="true"
-                    className="absolute -top-16 -right-16 w-32 h-32 rounded-full bg-purple-600/10 blur-[50px]"
                   />
-                )}
-
-                {/* ==================================================
-                    CARD TOP
-                ================================================== */}
-
-                <div className="relative z-10 flex items-start justify-between gap-2 mb-2.5">
-
-                  {/* ICON */}
-
-                  <div
-                    className={`flex w-8 h-8 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${
-                      d
-                        ? "bg-white/[0.035] border-white/[0.08] text-purple-400 group-hover:bg-purple-600 group-hover:border-purple-600 group-hover:text-white"
-                        : "bg-purple-50 border-purple-100 text-purple-600 group-hover:bg-purple-600 group-hover:border-purple-600 group-hover:text-white"
-                    }`}
-                  >
-                    <Icon size={15} aria-hidden="true" />
-                  </div>
-
-                  {/* CATEGORY */}
-
-                  <span
-                    className={`rounded-full border px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.06em] ${
-                      service.featured
-                        ? d
-                          ? "bg-purple-500/10 border-purple-500/20 text-purple-300"
-                          : "bg-purple-100 border-purple-200 text-purple-700"
-                        : d
-                        ? "bg-white/[0.03] border-white/[0.07] text-gray-500"
-                        : "bg-slate-50 border-slate-200 text-slate-500"
-                    }`}
-                  >
-                    {service.category}
-                  </span>
                 </div>
 
-                {/* ==================================================
-                    TITLE
-                ================================================== */}
+                {/* ==========================================
+                    CONTENT
+                ========================================== */}
 
-                <div className="relative z-10">
+                <div className="mt-6">
                   <h3
-                    className={`text-[13px] sm:text-[14px] font-bold leading-tight transition-colors ${
-                      d
-                        ? "text-white group-hover:text-purple-300"
-                        : "text-slate-900 group-hover:text-purple-700"
-                    }`}
+                    className="
+                      text-[#0c1f2a]
+
+                      text-[15px]
+                      sm:text-[16px]
+                      lg:text-[17px]
+
+                      leading-tight
+                      font-semibold
+
+                      tracking-[-0.02em]
+                    "
                   >
                     {service.title}
                   </h3>
 
                   <p
-                    className={`mt-0.5 text-[9px] font-medium ${
-                      d ? "text-gray-500" : "text-slate-400"
-                    }`}
+                    className="
+                      mt-3
+
+                      text-[10px]
+                      sm:text-[11px]
+                      lg:text-[12px]
+
+                      leading-[1.65]
+
+                      text-[#66747c]
+                    "
                   >
-                    {service.subtitle}
+                    {service.description}
                   </p>
                 </div>
 
-                {/* ==================================================
-                    DESCRIPTION
-                ================================================== */}
+                {/* ==========================================
+                    CARD BOTTOM
+                ========================================== */}
 
-                <p
-                  className={`relative z-10 mt-2 text-[10px] sm:text-[11px] leading-[1.55] ${
-                    d ? "text-gray-400" : "text-slate-600"
-                  }`}
-                >
-                  {service.description}
-                </p>
-
-                {/* ==================================================
-                    POINTS
-                ================================================== */}
-
-                <ul className="relative z-10 mt-2.5 space-y-1">
-                  {service.points.map((point) => (
-                    <li
-                      key={point}
-                      className={`flex items-start gap-1.5 text-[9px] sm:text-[10px] leading-[1.4] ${
-                        d ? "text-gray-400" : "text-slate-600"
-                      }`}
-                    >
-                      <CheckCircle2
-                        size={10}
-                        aria-hidden="true"
-                        className="mt-[1px] shrink-0 text-purple-500"
-                      />
-
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* ==================================================
-                    EXPLORE
-                ================================================== */}
-
-                <div
-                  className={`relative z-10 mt-2.5 pt-2.5 border-t ${
-                    d ? "border-white/[0.07]" : "border-slate-100"
-                  }`}
-                >
+                <div className="mt-auto pt-5">
                   <span
-                    className={`inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold transition-colors ${
-                      d
-                        ? "text-purple-400 group-hover:text-purple-300"
-                        : "text-purple-600 group-hover:text-purple-700"
-                    }`}
+                    className="
+                      inline-flex
+                      items-center
+                      gap-1.5
+
+                      text-[9px]
+                      sm:text-[10px]
+
+                      font-semibold
+
+                      text-[#0b536e]
+
+                      opacity-70
+
+                      transition-all
+                      duration-200
+
+                      group-hover:opacity-100
+                    "
                   >
-                    Explore Service
+                    Explore
 
                     <ArrowRight
                       size={10}
-                      aria-hidden="true"
-                      className="transition-transform duration-200 group-hover:translate-x-1"
+                      className="
+                        transition-transform
+                        duration-200
+                        group-hover:translate-x-1
+                      "
                     />
                   </span>
                 </div>
+
+                {/* ==========================================
+                    SUBTLE HOVER GLOW
+                ========================================== */}
+
+                <div
+                  aria-hidden="true"
+                  className="
+                    absolute
+                    -right-16
+                    -bottom-16
+
+                    w-32 h-32
+
+                    rounded-full
+
+                    bg-cyan-300/0
+
+                    blur-[45px]
+
+                    transition-all
+                    duration-500
+
+                    group-hover:bg-cyan-300/20
+                  "
+                />
               </Link>
             );
           })}
         </div>
 
         {/* ==================================================
-            SHOW ALL / SHOW LESS
-        ================================================== */}
-
-        <div className="flex justify-center mt-4">
-          <button
-            type="button"
-            onClick={toggleServices}
-            aria-expanded={showAll}
-            className={`group inline-flex items-center justify-center gap-2 px-5 py-2 rounded-lg border text-[10px] sm:text-[11px] font-bold transition-all duration-200 hover:-translate-y-0.5 ${
-              d
-                ? "bg-white/[0.025] border-white/[0.09] text-gray-300 hover:text-white hover:bg-purple-600/[0.08] hover:border-purple-500/30"
-                : "bg-white border-slate-200 text-slate-700 hover:text-purple-700 hover:border-purple-200 shadow-sm"
-            }`}
-          >
-            {showAll ? (
-              <>
-                Show Less
-                <ChevronUp
-                  size={13}
-                  className="transition-transform group-hover:-translate-y-0.5"
-                />
-              </>
-            ) : (
-              <>
-                Show All Services
-                <ChevronDown
-                  size={13}
-                  className="transition-transform group-hover:translate-y-0.5"
-                />
-              </>
-            )}
-          </button>
-        </div>
-
-        {/* ==================================================
-            MORE EXPERTISE
+            MOBILE SWIPE INDICATOR
         ================================================== */}
 
         <div
-          className={`mt-4 rounded-xl border px-3.5 sm:px-4 py-3 ${
-            d
-              ? "bg-white/[0.015] border-white/[0.06]"
-              : "bg-white border-slate-200"
-          }`}
+          className="
+            flex sm:hidden
+            items-center
+            justify-between
+            mt-1
+          "
         >
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2.5">
+          <p
+            className="
+              text-[8px]
+              uppercase
+              tracking-[0.16em]
+              font-semibold
+              text-[#839099]
+            "
+          >
+            Swipe to explore
+          </p>
 
-            {/* TEXT */}
-
-            <div>
-              <p
-                className={`text-[8px] uppercase tracking-[0.15em] font-bold ${
-                  d ? "text-gray-600" : "text-slate-400"
-                }`}
-              >
-                More Expertise
-              </p>
-
-              <p
-                className={`mt-0.5 text-[10px] sm:text-[11px] font-semibold ${
-                  d ? "text-gray-300" : "text-slate-700"
-                }`}
-              >
-                Specialized development, growth and ongoing support.
-              </p>
-            </div>
-
-            {/* ADDITIONAL SERVICES */}
-
-            <div className="flex flex-wrap gap-1.5">
-              {additionalServices.map((service) => {
-                const Icon = service.icon;
-
-                return (
-                  <Link
-                    key={service.title}
-                    to={service.path}
-                    onClick={scrollTop}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-[9px] font-semibold transition-all duration-200 ${
-                      d
-                        ? "bg-white/[0.025] border-white/[0.07] text-gray-400 hover:text-white hover:border-purple-500/25 hover:bg-purple-600/[0.06]"
-                        : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-purple-50 hover:text-purple-700 hover:border-purple-200"
-                    }`}
-                  >
-                    <Icon
-                      size={10}
-                      aria-hidden="true"
-                      className="text-purple-500"
-                    />
-
-                    {service.title}
-
-                    <ArrowRight size={8} aria-hidden="true" />
-                  </Link>
-                );
-              })}
-            </div>
+          <div className="flex items-center gap-1">
+            <span className="w-5 h-[2px] rounded-full bg-[#123e53]" />
+            <span className="w-2 h-[2px] rounded-full bg-[#cbd3d7]" />
+            <span className="w-2 h-[2px] rounded-full bg-[#cbd3d7]" />
           </div>
         </div>
 
         {/* ==================================================
-            MOBILE / TABLET ALL SERVICES PAGE
+            ADDITIONAL CAPABILITIES
         ================================================== */}
 
-        <div className="lg:hidden mt-3 text-center">
+        <div
+          className="
+            mt-7 sm:mt-9
+
+            pt-5
+
+            border-t
+            border-[#dce2e5]
+
+            flex
+            flex-col
+            lg:flex-row
+
+            lg:items-center
+            lg:justify-between
+
+            gap-4
+          "
+        >
+          <div>
+            <p
+              className="
+                text-[8px]
+                uppercase
+                tracking-[0.18em]
+                font-bold
+                text-[#89949a]
+              "
+            >
+              Additional Capabilities
+            </p>
+
+            <p
+              className="
+                mt-1
+                text-[10px]
+                sm:text-[11px]
+                text-[#58666e]
+              "
+            >
+              Supporting services for growth and long-term
+              product development.
+            </p>
+          </div>
+
+          {/* ADDITIONAL LINKS */}
+
+          <div
+            className="
+              grid grid-cols-2
+              sm:flex sm:flex-wrap
+              gap-2
+            "
+          >
+            {additionalServices.map((service) => {
+              const Icon = service.icon;
+
+              return (
+                <Link
+                  key={service.title}
+                  to={service.path}
+                  onClick={scrollTop}
+                  className="
+                    group
+
+                    inline-flex
+                    items-center
+                    justify-center
+
+                    gap-2
+
+                    px-3 py-2
+
+                    rounded-lg
+
+                    bg-white
+
+                    border
+                    border-[#dfe5e7]
+
+                    text-[9px]
+                    sm:text-[10px]
+
+                    font-medium
+
+                    text-[#40515a]
+
+                    transition-all
+                    duration-200
+
+                    hover:text-[#083b50]
+                    hover:border-[#9fcbd5]
+                    hover:-translate-y-0.5
+                  "
+                >
+                  <Icon
+                    size={11}
+                    className="text-[#0b647e]"
+                  />
+
+                  {service.title}
+
+                  <ArrowRight
+                    size={9}
+                    className="
+                      opacity-50
+                      transition-transform
+                      group-hover:translate-x-0.5
+                    "
+                  />
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ==================================================
+            MOBILE VIEW ALL
+        ================================================== */}
+
+        <div className="lg:hidden mt-6">
           <Link
             to="/allservices"
             onClick={scrollTop}
-            className={`inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2 rounded-lg border text-[10px] font-bold transition-all ${
-              d
-                ? "border-white/10 text-gray-300 bg-white/[0.02] hover:bg-white/[0.05] hover:border-purple-500/25"
-                : "border-slate-200 bg-white text-slate-700 shadow-sm hover:border-purple-200"
-            }`}
+            className="
+              flex
+              items-center
+              justify-center
+              gap-2
+
+              w-full
+
+              px-5 py-3
+
+              rounded-xl
+
+              bg-[#082c3c]
+
+              text-white
+
+              text-[10px]
+              font-semibold
+
+              transition-all
+              duration-200
+
+              active:scale-[0.99]
+            "
           >
-            Explore Complete Services Page
+            View All Services
+
             <ArrowRight size={11} />
           </Link>
         </div>

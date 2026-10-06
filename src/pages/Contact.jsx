@@ -1,128 +1,209 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { Link, useNavigate } from 'react-router-dom';
-import emailjs from '@emailjs/browser';
-
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { Link, useNavigate } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 import {
-  Mail,
-  Phone,
-  Send,
   ArrowRight,
-  CheckCircle,
-  Globe,
-  Shield,
-  Zap,
-  MessageCircle,
+  Check,
+  CheckCircle2,
   ChevronDown,
   Code2,
-  Smartphone,
-  Server,
+  Globe2,
+  Mail,
   Rocket,
-} from 'lucide-react';
+  Send,
+  Server,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Target,
+  Users,
+  Zap,
+} from "lucide-react";
 
-const Contact = ({ isDark }) => {
-  const d = isDark;
-
-  // Redirect to Thank You page after successful EmailJS submission
+const Contact = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    name: '',
-    email: '',
-    service: '',
-    timeline: '',
-    message: '',
+    name: "",
+    email: "",
+    service: "",
+    timeline: "",
+    message: "",
   });
 
   const [loading, setLoading] = useState(false);
 
+  // BACKGROUNDS
+
+  const lightGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
+    backgroundSize: "48px 48px",
+  };
+
+  const darkGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+    backgroundSize: "52px 52px",
+  };
+
+  // SERVICES
+
   const services = [
-    'Web Development',
-    'Mobile App Development',
-    'MERN Stack Development',
-    'SaaS Development',
-    'E-Commerce Development',
-    'UI/UX Design',
-    'Startup MVP Development',
-    'Backend & API Development',
-    'React Development',
-    'SEO Services',
-    'Digital Marketing',
-    'Maintenance & Support',
-    'Other',
+    "Web Development",
+    "Mobile App Development",
+    "MERN Stack Development",
+    "SaaS Development",
+    "E-Commerce Development",
+    "UI/UX Design",
+    "Startup MVP Development",
+    "Backend & API Development",
+    "React Development",
+    "SEO Services",
+    "Digital Marketing",
+    "Maintenance & Support",
+    "Other",
   ];
+
+  // TIMELINES
 
   const timelines = [
-    'As soon as possible',
-    'Within 1 month',
-    '1–3 months',
-    '3–6 months',
-    'Flexible / Not decided',
+    "As soon as possible",
+    "Within 1 month",
+    "1–3 months",
+    "3–6 months",
+    "Flexible / Not decided",
   ];
 
-  /*
-   * Internal service links.
-   * These are rendered as real React Router links
-   * so users and search engines can reach service pages.
-   */
-  const serviceLinks = [
+  // PROJECT TYPES
+
+  const projectTypes = [
     {
-      name: 'Web Development',
-      path: '/web-development',
+      icon: <Code2 size={19} />,
+      title: "Web Applications",
+      description:
+        "Business websites, custom web applications, dashboards and digital platforms.",
     },
     {
-      name: 'MERN Stack Development',
-      path: '/mern-stack-development',
+      icon: <Smartphone size={19} />,
+      title: "Mobile Applications",
+      description:
+        "Cross-platform mobile applications connected with backend systems and APIs.",
     },
     {
-      name: 'React Development',
-      path: '/reactdevelopment',
+      icon: <Server size={19} />,
+      title: "Backend & APIs",
+      description:
+        "Application backends, APIs, authentication, databases and integrations.",
     },
     {
-      name: 'Node.js Development',
-      path: '/backend-api',
-    },
-    {
-      name: 'Backend API Development',
-      path: '/backend-api',
-    },
-    {
-      name: 'Mobile App Development',
-      path: '/mobile-apps',
-    },
-    {
-      name: 'SaaS Development',
-      path: '/saas-product-development',
-    },
-    {
-      name: 'E-Commerce Development',
-      path: '/ecommerce',
-    },
-    {
-      name: 'UI/UX Design',
-      path: '/ui-ux-design',
-    },
-    {
-      name: 'SEO Services',
-      path: '/seo-services',
+      icon: <Rocket size={19} />,
+      title: "SaaS & MVP Products",
+      description:
+        "New software products, startup MVPs and scalable SaaS application foundations.",
     },
   ];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  // TRUST POINTS
 
-    setForm((prev) => ({
-      ...prev,
+  const trustPoints = [
+    {
+      icon: <Target size={17} />,
+      title: "Project-Focused Discussion",
+      description:
+        "Start with the business problem, required features or product idea and we can discuss the next technical steps.",
+    },
+    {
+      icon: <Users size={17} />,
+      title: "Clear Communication",
+      description:
+        "Requirements, scope and important development decisions can be discussed clearly throughout the project.",
+    },
+    {
+      icon: <ShieldCheck size={17} />,
+      title: "Responsible Development",
+      description:
+        "Security, maintainability and application reliability are considered according to the needs of the product.",
+    },
+    {
+      icon: <Zap size={17} />,
+      title: "Practical Solutions",
+      description:
+        "We focus on useful functionality and appropriate architecture instead of unnecessary complexity.",
+    },
+  ];
+
+  // RELATED SERVICES
+
+  const relatedServices = [
+    {
+      icon: <Code2 size={18} />,
+      title: "Web Development",
+      description:
+        "Custom websites and web applications built around business requirements.",
+      path: "/web-development",
+    },
+    {
+      icon: <Smartphone size={18} />,
+      title: "Mobile Apps",
+      description:
+        "Cross-platform mobile applications connected with backend services.",
+      path: "/mobile-apps",
+    },
+    {
+      icon: <Server size={18} />,
+      title: "Backend & API",
+      description:
+        "Backend systems, APIs, databases, authentication and integrations.",
+      path: "/backend-api",
+    },
+    {
+      icon: <Rocket size={18} />,
+      title: "SaaS Development",
+      description:
+        "SaaS products with users, dashboards, workflows and scalable functionality.",
+      path: "/saas-product-development",
+    },
+  ];
+
+  // HELPERS
+
+  const SectionLabel = ({ children, light = false }) => (
+    <div
+      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+        light ? "text-[#28c5d4]" : "text-[#07899a]"
+      }`}
+    >
+      <span className="w-5 h-[2px] bg-[#0796A8]" />
+      {children}
+    </div>
+  );
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // FORM
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setForm((current) => ({
+      ...current,
       [name]: value,
     }));
   };
 
-  /*
-   * EmailJS contact form submission.
-   * Sends the inquiry directly to DevZore.
-   */
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // EMAILJS
+  // Working EmailJS configuration preserved.
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     if (loading) return;
 
@@ -131,1372 +212,858 @@ const Contact = ({ isDark }) => {
     const templateParams = {
       name: form.name.trim(),
       email: form.email.trim(),
-      service: form.service || 'Not specified',
-      timeline: form.timeline || 'Not specified',
+      service: form.service || "Not specified",
+      timeline: form.timeline || "Not specified",
       message: form.message.trim(),
     };
 
     try {
       await emailjs.send(
-        'service_s30fvfz',
-        'template_axl74r9',
+        "service_s30fvfz",
+        "template_axl74r9",
         templateParams,
         {
-          publicKey: 'RE7HME1c0_KdvnI3c',
+          publicKey: "RE7HME1c0_KdvnI3c",
         }
       );
 
-      // Clear form after successful submission
       setForm({
-        name: '',
-        email: '',
-        service: '',
-        timeline: '',
-        message: '',
+        name: "",
+        email: "",
+        service: "",
+        timeline: "",
+        message: "",
       });
 
-      // Redirect only after EmailJS sends successfully
-      navigate('/thank-you');
-
+      navigate("/thank-you");
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error("EmailJS Error:", error);
 
       alert(
-        'Sorry, your inquiry could not be sent. Please try again or contact us through WhatsApp.'
+        "Sorry, your inquiry could not be sent. Please try again or email us at hellodevzore@gmail.com."
       );
     } finally {
       setLoading(false);
     }
   };
 
-  const contactMethods = [
-    {
-      icon: <Mail size={18} />,
-      label: 'Email',
-      value: 'hellodevzore@gmail.com',
-      href: 'mailto:hellodevzore@gmail.com',
-      external: false,
-      color: 'purple',
-    },
-    {
-      icon: <Phone size={18} />,
-      label: 'WhatsApp',
-      value: '+92 334 8004300',
-      href: 'https://wa.me/923348004300',
-      external: true,
-      color: 'green',
-    },
-    {
-      icon: <Globe size={18} />,
-      label: 'Service Availability',
-      value: 'Remote & Worldwide',
-      href: null,
-      external: false,
-      color: 'blue',
-    },
-    {
-      icon: <MessageCircle size={18} />,
-      label: 'Project Inquiries',
-      value: 'Open for new projects',
-      href: null,
-      external: false,
-      color: 'amber',
-    },
-  ];
+  // FORM STYLES
 
-  const trustPoints = [
-    {
-      icon: <CheckCircle size={15} />,
-      title: 'Project-focused discussion',
-      text: 'Tell us what you need and we can discuss the appropriate technical approach.',
-    },
-    {
-      icon: <Shield size={15} />,
-      title: 'Clear communication',
-      text: 'Requirements, scope and technical decisions can be discussed clearly throughout the project.',
-    },
-    {
-      icon: <Zap size={15} />,
-      title: 'Practical development',
-      text: 'We focus on useful features and maintainable solutions instead of unnecessary complexity.',
-    },
-    {
-      icon: <Globe size={15} />,
-      title: 'Remote collaboration',
-      text: 'DevZore can collaborate remotely with businesses and startups in different markets.',
-    },
-  ];
+  const inputClass =
+    "w-full min-h-[46px] rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-[12px] sm:text-[13px] font-medium text-[#071923] placeholder:text-slate-400 outline-none transition-all duration-200 hover:border-slate-300 focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10";
 
-  const projectTypes = [
-    {
-      icon: <Code2 size={18} />,
-      title: 'Web Applications',
-      text: 'Business websites, custom web applications and dashboards.',
-    },
-    {
-      icon: <Smartphone size={18} />,
-      title: 'Mobile Applications',
-      text: 'Cross-platform mobile applications connected to backend systems.',
-    },
-    {
-      icon: <Server size={18} />,
-      title: 'Backend & APIs',
-      text: 'APIs, authentication, databases and backend application development.',
-    },
-    {
-      icon: <Rocket size={18} />,
-      title: 'SaaS & MVP Products',
-      text: 'New software products, MVPs and scalable SaaS application foundations.',
-    },
-  ];
+  const labelClass =
+    "block mb-1.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.13em] text-slate-500";
 
-  const colorMap = {
-    purple: d
-      ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
-      : 'bg-purple-50 border-purple-200 text-purple-600',
+  // STRUCTURED DATA
 
-    green: d
-      ? 'bg-green-500/10 border-green-500/20 text-green-400'
-      : 'bg-green-50 border-green-200 text-green-600',
-
-    blue: d
-      ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'
-      : 'bg-blue-50 border-blue-200 text-blue-600',
-
-    amber: d
-      ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
-      : 'bg-amber-50 border-amber-200 text-amber-600',
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": "https://devzore.com/contact#contactpage",
+    name: "Contact DevZore",
+    url: "https://devzore.com/contact",
+    description:
+      "Contact DevZore to discuss web development, mobile applications, SaaS products, backend APIs and custom software development.",
+    isPartOf: {
+      "@id": "https://devzore.com/#website",
+    },
+    about: {
+      "@id": "https://devzore.com/#organization",
+    },
+    mainEntity: {
+      "@id": "https://devzore.com/#organization",
+    },
   };
 
-  const inputClass = `
-    w-full
-    min-h-[48px]
-    px-4
-    py-3
-    rounded-xl
-    border
-    text-[14px]
-    font-medium
-    outline-none
-    transition-all
-    duration-200
-    ${d
-      ? `
-          bg-white/[0.035]
-          border-white/[0.09]
-          text-white
-          placeholder:text-gray-600
-          hover:border-white/[0.14]
-          focus:border-purple-500/60
-          focus:bg-white/[0.05]
-        `
-      : `
-          bg-white
-          border-slate-200
-          text-slate-900
-          placeholder:text-slate-400
-          hover:border-slate-300
-          focus:border-purple-400
-          focus:ring-4
-          focus:ring-purple-500/10
-        `
-    }
-  `;
-
-  const labelClass = `
-    block
-    text-[11px]
-    font-bold
-    uppercase
-    tracking-[0.12em]
-    mb-2
-    ${d ? 'text-gray-500' : 'text-slate-500'}
-  `;
-
-  const whatsappUrl =
-    'https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20would%20like%20to%20discuss%20a%20software%20development%20project.';
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://devzore.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Contact",
+        item: "https://devzore.com/contact",
+      },
+    ],
+  };
 
   return (
     <>
       <Helmet>
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'ContactPage',
-            '@id': 'https://devzore.com/contact#contactpage',
-            name: 'Contact DevZore',
-            url: 'https://devzore.com/contact',
-            description:
-              'Contact DevZore to discuss web development, mobile application development, SaaS products, backend APIs and custom software development.',
-            isPartOf: {
-              '@id': 'https://devzore.com/#website',
-            },
-            about: {
-              '@id': 'https://devzore.com/#organization',
-            },
-            mainEntity: {
-              '@id': 'https://devzore.com/#organization',
-            },
-          })}
+          {JSON.stringify(contactSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              {
-                '@type': 'ListItem',
-                position: 1,
-                name: 'Home',
-                item: 'https://devzore.com/',
-              },
-              {
-                '@type': 'ListItem',
-                position: 2,
-                name: 'Contact',
-                item: 'https://devzore.com/contact',
-              },
-            ],
-          })}
+          {JSON.stringify(breadcrumbSchema)}
         </script>
       </Helmet>
 
       <div
-        className={`
-          min-h-screen
-          overflow-x-hidden
-          transition-colors
-          duration-300
-          ${d
-            ? 'bg-[#030303] text-white'
-            : 'bg-[#f8fafc] text-slate-900'
-          }
-        `}
+        className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
+        style={{
+          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+        }}
       >
-        {/* ================= HERO ================= */}
+        {/* HERO */}
+
         <section
           aria-labelledby="contact-heading"
-          className="relative pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-16 overflow-hidden"
+          className="relative overflow-hidden bg-[#04111a] text-white"
         >
-          <div
-            aria-hidden="true"
-            className={`
-              absolute
-              pointer-events-none
-              left-1/2
-              -translate-x-1/2
-              -top-32
-              w-[280px]
-              sm:w-[450px]
-              lg:w-[650px]
-              h-[280px]
-              sm:h-[400px]
-              rounded-full
-              blur-[100px]
-              opacity-20
-              ${d ? 'bg-purple-700' : 'bg-purple-200'}
-            `}
-          />
-
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
+          <div className="absolute inset-0 pointer-events-none">
             <div
-              className={`
-                inline-flex
-                items-center
-                gap-2
-                px-3.5
-                py-1.5
-                rounded-full
-                border
-                text-[10px]
-                sm:text-[11px]
-                font-bold
-                uppercase
-                tracking-[0.15em]
-                mb-5
-                ${d
-                  ? 'bg-purple-500/10 border-purple-500/20 text-purple-300'
-                  : 'bg-purple-50 border-purple-200 text-purple-700'
-                }
-              `}
-            >
-              <MessageCircle size={13} />
-              Contact DevZore
-            </div>
+              className="absolute inset-0 opacity-55"
+              style={darkGrid}
+            />
 
-            <h1
-              id="contact-heading"
-              className={`
-                text-3xl
-                sm:text-4xl
-                lg:text-5xl
-                xl:text-6xl
-                font-black
-                tracking-tight
-                leading-[1.08]
-                ${d ? 'text-white' : 'text-slate-950'}
-              `}
-            >
-              Have a Software Project
-              <br />
+            <div className="absolute -top-28 left-[8%] w-[560px] h-[560px] rounded-full bg-[#0796A8]/12 blur-[150px]" />
 
-              <span className="text-purple-600">
-                You Want to Discuss?
-              </span>
-            </h1>
+            <div className="absolute top-8 right-[5%] w-[430px] h-[430px] rounded-full bg-[#20bdcb]/7 blur-[135px]" />
 
-            <p
-              className={`
-                mt-5
-                max-w-3xl
-                mx-auto
-                text-sm
-                sm:text-base
-                lg:text-lg
-                leading-7
-                ${d ? 'text-gray-400' : 'text-slate-600'}
-              `}
-            >
-              Tell us about your website, web application, mobile app,
-              SaaS product, backend API or custom software requirement.
-              We can review the idea and discuss the next technical steps.
-            </p>
-
-            <div className="mt-7 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <a
-                href="#project-form"
-                className="
-                  w-full
-                  sm:w-auto
-                  inline-flex
-                  items-center
-                  justify-center
-                  gap-2
-                  px-6
-                  py-3.5
-                  rounded-xl
-                  bg-purple-600
-                  hover:bg-purple-700
-                  text-white
-                  text-sm
-                  font-bold
-                  shadow-lg
-                  shadow-purple-600/20
-                  transition-all
-                  hover:-translate-y-0.5
-                "
-              >
-                Discuss Your Project
-                <ArrowRight size={16} />
-              </a>
-
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`
-                  w-full
-                  sm:w-auto
-                  inline-flex
-                  items-center
-                  justify-center
-                  gap-2
-                  px-6
-                  py-3.5
-                  rounded-xl
-                  border
-                  text-sm
-                  font-bold
-                  transition-all
-                  ${d
-                    ? 'border-white/10 bg-white/[0.04] text-gray-200 hover:bg-white/[0.08]'
-                    : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
-                  }
-                `}
-              >
-                <MessageCircle size={16} />
-                WhatsApp Us
-              </a>
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#04111a]/85" />
           </div>
-        </section>
 
-        {/* ================= CONTACT METHODS ================= */}
-        <section
-          aria-label="Ways to contact DevZore"
-          className={`
-            border-y
-            ${d ? 'border-white/[0.06]' : 'border-slate-200'}
-          `}
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-9">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-              {contactMethods.map((method) => (
-                <div
-                  key={method.label}
-                  className={`
-                    group
-                    p-4
-                    sm:p-5
-                    rounded-2xl
-                    border
-                    transition-all
-                    duration-200
-                    ${d
-                      ? 'bg-white/[0.02] border-white/[0.07] hover:bg-white/[0.04]'
-                      : 'bg-white border-slate-200 hover:shadow-sm'
-                    }
-                  `}
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14">
+            <div className="max-w-[900px] mx-auto text-center">
+              <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+                <Mail size={14} className="text-[#25c0ce]" />
+                Contact DevZore
+              </div>
+
+              <h1
+                id="contact-heading"
+                className="mt-5 text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[68px] leading-[1.04] font-semibold tracking-[-0.045em]"
+              >
+                Have a digital product{" "}
+                <span className="text-[#22bdca]">
+                  you want to build?
+                </span>
+              </h1>
+
+              <p className="max-w-[760px] mx-auto mt-5 text-[16px] sm:text-[17px] leading-7 text-slate-300">
+                Tell us about your website, application, SaaS product,
+                mobile app or custom software requirement and we can discuss
+                the appropriate next steps.
+              </p>
+
+              <p className="max-w-[680px] mx-auto mt-3 text-[13px] sm:text-[14px] leading-6 text-slate-400">
+                You do not need a complete technical specification. Start
+                with the problem, idea or functionality you need.
+              </p>
+
+              <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a
+                  href="#project-form"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[12px] font-semibold text-[#071923] transition-colors"
                 >
+                  Start Your Inquiry
+
+                  <ArrowRight
+                    size={14}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </a>
+
+                <a
+                  href="mailto:hellodevzore@gmail.com"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 text-[12px] font-semibold text-white hover:text-[#28c5d4] transition-colors"
+                >
+                  Email DevZore
+
+                  <ArrowRight
+                    size={14}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </a>
+              </div>
+
+              <div className="mt-7 pt-5 border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-x-6 gap-y-2.5">
+                {[
+                  "Project Discussion",
+                  "Remote Collaboration",
+                  "Clear Requirements",
+                  "Development Support",
+                ].map((item) => (
                   <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      border
-                      flex
-                      items-center
-                      justify-center
-                      mb-3
-                      ${colorMap[method.color]}
-                    `}
+                    key={item}
+                    className="inline-flex items-center gap-2 text-[10px] font-medium text-slate-400"
                   >
-                    {method.icon}
+                    <CheckCircle2
+                      size={12}
+                      className="text-[#25c0ce]"
+                    />
+
+                    {item}
                   </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
-                  <p
-                    className={`
-                      text-[10px]
-                      font-bold
-                      uppercase
-                      tracking-widest
-                      mb-1
-                      ${d ? 'text-gray-500' : 'text-slate-400'}
-                    `}
+          {/* HERO STRIP */}
+
+          <div className="relative border-t border-white/[0.08] bg-[#06151d]/90">
+            <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4">
+                {[
+                  ["01", "Share Your Idea"],
+                  ["02", "Discuss Requirements"],
+                  ["03", "Plan the Project"],
+                  ["04", "Start Development"],
+                ].map(([number, title], index) => (
+                  <div
+                    key={title}
+                    className={`py-4 ${
+                      index !== 3
+                        ? "lg:border-r border-white/[0.07]"
+                        : ""
+                    } ${index > 0 ? "lg:pl-7" : ""}`}
                   >
-                    {method.label}
-                  </p>
+                    <span className="block mb-1 text-[9px] font-semibold text-[#1bb8c7]">
+                      {number}
+                    </span>
 
-                  {method.href ? (
-                    <a
-                      href={method.href}
-                      target={method.external ? '_blank' : undefined}
-                      rel={
-                        method.external
-                          ? 'noopener noreferrer'
-                          : undefined
-                      }
-                      className={`
-                        text-[13px]
-                        font-semibold
-                        break-words
-                        transition-colors
-                        ${d
-                          ? 'text-white hover:text-purple-400'
-                          : 'text-slate-900 hover:text-purple-600'
-                        }
-                      `}
-                    >
-                      {method.value}
-                    </a>
-                  ) : (
-                    <p
-                      className={`
-                        text-[13px]
-                        font-semibold
-                        ${d ? 'text-white' : 'text-slate-900'}
-                      `}
-                    >
-                      {method.value}
-                    </p>
-                  )}
-                </div>
-              ))}
+                    <span className="text-[11px] font-medium text-slate-300">
+                      {title}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ================= PROJECT TYPES ================= */}
+        {/* INTRO */}
+
+        <section
+          className="py-10 md:py-12 bg-[#f8fafb]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.7fr_1.3fr] gap-7 lg:gap-12">
+              <div>
+                <SectionLabel>Start a Conversation</SectionLabel>
+
+                <h2 className="mt-3 text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold">
+                  Start with what you{" "}
+                  <span className="text-[#0796A8]">
+                    already know.
+                  </span>
+                </h2>
+              </div>
+
+              <div>
+                <p className="text-[15px] leading-7 text-slate-700">
+                  You can contact DevZore whether you already have detailed
+                  requirements or are still working through the early stages of
+                  an idea.
+                </p>
+
+                <p className="mt-3 text-[13px] leading-6 text-slate-500">
+                  Share the business problem, expected users, important
+                  features, current system or technical challenge and we can
+                  use that information as the starting point.
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-2.5 mt-5">
+                  {[
+                    "New software projects",
+                    "Existing product improvements",
+                    "Custom business systems",
+                    "Ongoing development needs",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-2.5 rounded-lg border border-slate-200 bg-white px-3.5 py-2.5"
+                    >
+                      <CheckCircle2
+                        size={13}
+                        className="text-[#07899a]"
+                      />
+
+                      <span className="text-[10px] font-medium text-slate-700">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PROJECT TYPES */}
+
         <section
           aria-labelledby="project-types-heading"
-          className={`
-            py-12
-            sm:py-14
-            border-b
-            ${d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-slate-200 bg-white'
-            }
-          `}
+          className="py-10 md:py-12 bg-white"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-8">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel>Project Types</SectionLabel>
+
               <h2
                 id="project-types-heading"
-                className={`
-                  text-2xl
-                  sm:text-3xl
-                  font-black
-                  ${d ? 'text-white' : 'text-slate-950'}
-                `}
+                className="mt-3 text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold"
               >
-                What Can You Discuss With{' '}
-                <span className="text-purple-600">
-                  DevZore?
-                </span>
+                What can you discuss with{" "}
+                <span className="text-[#0796A8]">DevZore?</span>
               </h2>
 
-              <p
-                className={`
-                  mt-3
-                  text-sm
-                  leading-6
-                  ${d ? 'text-gray-400' : 'text-slate-600'}
-                `}
-              >
-                Contact us about a new product, an existing application,
-                technical improvements or ongoing software development.
+              <p className="mt-3 text-[13px] leading-6 text-slate-600 max-w-2xl">
+                Contact us about a new product, existing application,
+                business system or future development requirement.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {projectTypes.map((item) => (
-                <div
+                <article
                   key={item.title}
-                  className={`
-                    p-5
-                    rounded-2xl
-                    border
-                    ${d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-slate-50 border-slate-200'
-                    }
-                  `}
+                  className="rounded-2xl border border-slate-200 bg-[#fbfcfc] p-5"
                 >
-                  <div
-                    className={`
-                      w-10
-                      h-10
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      mb-4
-                      ${d
-                        ? 'bg-purple-500/10 text-purple-400'
-                        : 'bg-purple-50 text-purple-600'
-                      }
-                    `}
-                  >
+                  <div className="w-10 h-10 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
                     {item.icon}
                   </div>
 
-                  <h3
-                    className={`
-                      text-[13px]
-                      font-bold
-                      mb-2
-                      ${d ? 'text-white' : 'text-slate-900'}
-                    `}
-                  >
+                  <h3 className="mt-4 text-[14px] font-semibold text-[#071923]">
                     {item.title}
                   </h3>
 
-                  <p
-                    className={`
-                      text-[12px]
-                      leading-5
-                      ${d ? 'text-gray-500' : 'text-slate-500'}
-                    `}
-                  >
-                    {item.text}
+                  <p className="mt-2 text-[10px] sm:text-[11px] leading-5 text-slate-500">
+                    {item.description}
                   </p>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ================= MAIN CONTACT AREA ================= */}
+        {/* PROJECT ENQUIRY */}
+
         <section
-          aria-label="Project inquiry"
-          className="py-14 sm:py-16 lg:py-20"
+          id="project-form"
+          aria-labelledby="contact-form-heading"
+          className="relative py-10 md:py-12 bg-[#071923] text-white overflow-hidden scroll-mt-24"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+          <div className="absolute inset-0" style={darkGrid} />
+
+          <div className="absolute -top-16 right-[4%] w-[500px] h-[430px] rounded-full bg-[#0796A8]/10 blur-[140px]" />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.78fr_1.22fr] gap-8 lg:gap-12">
               {/* LEFT */}
-              <div className="lg:col-span-5">
-                <div className="mb-7">
-                  <p className="text-purple-500 text-[11px] font-bold uppercase tracking-[0.18em] mb-3">
-                    Start a conversation
-                  </p>
 
-                  <h2
-                    className={`
-                      text-2xl
-                      sm:text-3xl
-                      font-black
-                      tracking-tight
-                      ${d ? 'text-white' : 'text-slate-950'}
-                    `}
-                  >
-                    Tell Us What You Want to Build or Improve
-                  </h2>
+              <div>
+                <SectionLabel light>Project Enquiry</SectionLabel>
 
-                  <p
-                    className={`
-                      mt-4
-                      text-sm
-                      sm:text-[15px]
-                      leading-6
-                      ${d ? 'text-gray-400' : 'text-slate-600'}
-                    `}
-                  >
-                    You do not need a complete technical specification.
-                    Share the business problem, your idea, existing product
-                    or the features you need and we can start from there.
-                  </p>
-                </div>
+                <h2
+                  id="contact-form-heading"
+                  className="mt-3 text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold"
+                >
+                  Tell us what you want to{" "}
+                  <span className="text-[#25bfce]">
+                    build or improve.
+                  </span>
+                </h2>
 
-                <div className="space-y-3">
-                  {trustPoints.map((point) => (
+                <p className="mt-4 text-[13px] sm:text-[14px] leading-6 text-slate-400">
+                  Provide the information you currently have. Your enquiry
+                  will be sent directly to DevZore through the form.
+                </p>
+
+                <div className="mt-6 space-y-3">
+                  {trustPoints.map((item) => (
                     <div
-                      key={point.title}
-                      className={`
-                        flex
-                        gap-4
-                        p-4
-                        rounded-2xl
-                        border
-                        ${d
-                          ? 'bg-white/[0.02] border-white/[0.06]'
-                          : 'bg-white border-slate-200'
-                        }
-                      `}
+                      key={item.title}
+                      className="flex gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-4"
                     >
-                      <div
-                        className="
-                          w-9
-                          h-9
-                          shrink-0
-                          rounded-xl
-                          bg-purple-500/10
-                          border
-                          border-purple-500/15
-                          text-purple-500
-                          flex
-                          items-center
-                          justify-center
-                        "
-                      >
-                        {point.icon}
+                      <div className="w-9 h-9 shrink-0 rounded-xl bg-[#0c2a35] text-[#28c5d4] flex items-center justify-center">
+                        {item.icon}
                       </div>
 
                       <div>
-                        <h3
-                          className={`
-                            text-[13px]
-                            font-bold
-                            ${d ? 'text-white' : 'text-slate-900'}
-                          `}
-                        >
-                          {point.title}
+                        <h3 className="text-[12px] font-semibold text-white">
+                          {item.title}
                         </h3>
 
-                        <p
-                          className={`
-                            text-[12px]
-                            leading-5
-                            mt-1
-                            ${d ? 'text-gray-500' : 'text-slate-500'}
-                          `}
-                        >
-                          {point.text}
+                        <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                          {item.description}
                         </p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    group
-                    mt-5
-                    flex
-                    items-center
-                    gap-4
-                    p-5
-                    rounded-2xl
-                    border
-                    bg-[#25D366]/10
-                    border-[#25D366]/20
-                    hover:bg-[#25D366]/15
-                    transition-all
-                  "
-                >
-                  <div
-                    className="
-                      w-11
-                      h-11
-                      shrink-0
-                      rounded-xl
-                      bg-[#25D366]
-                      flex
-                      items-center
-                      justify-center
-                    "
+                <div className="mt-5 rounded-xl border border-white/[0.07] bg-white/[0.025] p-4">
+                  <div className="flex items-center gap-2">
+                    <Mail size={14} className="text-[#25c0ce]" />
+
+                    <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-slate-500">
+                      Email
+                    </span>
+                  </div>
+
+                  <a
+                    href="mailto:hellodevzore@gmail.com"
+                    className="inline-block mt-2 text-[13px] font-semibold text-white hover:text-[#25c0ce] transition-colors"
                   >
-                    <MessageCircle
-                      size={21}
-                      className="text-white"
+                    hellodevzore@gmail.com
+                  </a>
+                </div>
+
+                <div className="mt-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-4">
+                  <div className="flex items-center gap-2">
+                    <Globe2 size={14} className="text-[#25c0ce]" />
+
+                    <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-slate-500">
+                      Collaboration
+                    </span>
+                  </div>
+
+                  <p className="mt-2 text-[12px] font-semibold text-white">
+                    Remote project delivery
+                  </p>
+
+                  <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                    Project communication, reviews and development can be
+                    handled remotely through agreed collaboration channels.
+                  </p>
+                </div>
+              </div>
+
+              {/* FORM */}
+
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-2xl border border-white/[0.09] bg-[#091d27]/95 p-5 sm:p-6 lg:p-7 shadow-[0_30px_80px_rgba(0,0,0,0.25)]"
+              >
+                <div className="pb-5 border-b border-white/[0.08]">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.17em] text-[#25c0ce]">
+                    Project Details
+                  </p>
+
+                  <h3 className="mt-1.5 text-[19px] sm:text-[21px] font-semibold text-white">
+                    Share Your Requirements
+                  </h3>
+
+                  <p className="mt-2 text-[10px] sm:text-[11px] leading-5 text-slate-500">
+                    Fill in the information below and your project enquiry
+                    will be sent directly to DevZore.
+                  </p>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4 mt-5">
+                  <div>
+                    <label
+                      htmlFor="contact-name"
+                      className="block mb-1.5 text-[9px] font-semibold uppercase tracking-[0.13em] text-slate-400"
+                    >
+                      Your Name *
+                    </label>
+
+                    <input
+                      id="contact-name"
+                      type="text"
+                      name="name"
+                      required
+                      autoComplete="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      className="w-full min-h-[46px] rounded-lg border border-white/[0.09] bg-white/[0.04] px-3.5 py-2.5 text-[12px] text-white placeholder:text-slate-600 outline-none transition-all hover:border-white/[0.14] focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
                     />
                   </div>
 
                   <div>
-                    <p className="text-sm font-bold text-[#25D366]">
-                      Prefer WhatsApp?
-                    </p>
-
-                    <p
-                      className={`
-                        text-[11px]
-                        mt-0.5
-                        ${d ? 'text-gray-500' : 'text-slate-500'}
-                      `}
-                    >
-                      Send your project requirements directly.
-                    </p>
-                  </div>
-
-                  <ArrowRight
-                    size={16}
-                    className="
-                      ml-auto
-                      text-[#25D366]
-                      transition-transform
-                      group-hover:translate-x-1
-                    "
-                  />
-                </a>
-
-                <div
-                  className={`
-                    mt-5
-                    p-5
-                    rounded-2xl
-                    border
-                    ${d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-white border-slate-200'
-                    }
-                  `}
-                >
-                  <div className="flex items-center gap-2 mb-3">
-                    <Globe
-                      size={15}
-                      className="text-purple-500"
-                    />
-
-                    <p
-                      className={`
-                        text-[10px]
-                        font-bold
-                        uppercase
-                        tracking-widest
-                        ${d ? 'text-gray-500' : 'text-slate-400'}
-                      `}
-                    >
-                      Remote software development
-                    </p>
-                  </div>
-
-                  <p
-                    className={`
-                      text-sm
-                      font-semibold
-                      ${d ? 'text-gray-200' : 'text-slate-800'}
-                    `}
-                  >
-                    Available for projects worldwide
-                  </p>
-
-                  <p
-                    className={`
-                      text-[11px]
-                      leading-5
-                      mt-2
-                      ${d ? 'text-gray-500' : 'text-slate-500'}
-                    `}
-                  >
-                    Project communication, development reviews and
-                    collaboration can be handled remotely.
-                  </p>
-                </div>
-              </div>
-
-              {/* ================= FORM ================= */}
-              <div
-                id="project-form"
-                className="lg:col-span-7 scroll-mt-28"
-              >
-                <form
-                  onSubmit={handleSubmit}
-                  className={`
-                    p-5
-                    sm:p-7
-                    lg:p-8
-                    rounded-3xl
-                    border
-                    ${d
-                      ? 'bg-white/[0.025] border-white/[0.08]'
-                      : 'bg-white border-slate-200 shadow-sm'
-                    }
-                  `}
-                >
-                  <div className="mb-7">
-                    <p className="text-purple-500 text-[10px] font-bold uppercase tracking-[0.16em] mb-2">
-                      Project inquiry
-                    </p>
-
-                    <h2
-                      className={`
-                        text-xl
-                        sm:text-2xl
-                        font-black
-                        ${d ? 'text-white' : 'text-slate-950'}
-                      `}
-                    >
-                      Share Your Project Requirements
-                    </h2>
-
-                    <p
-                      className={`
-                        text-[12px]
-                        leading-5
-                        mt-2
-                        ${d ? 'text-gray-500' : 'text-slate-500'}
-                      `}
-                    >
-                      Provide the information you currently have.
-                      Your project inquiry will be sent directly to DevZore.
-                    </p>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-4 mb-5">
-                    <div>
-                      <label
-                        htmlFor="contact-name"
-                        className={labelClass}
-                      >
-                        Your Name *
-                      </label>
-
-                      <input
-                        id="contact-name"
-                        type="text"
-                        name="name"
-                        required
-                        autoComplete="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="Your name"
-                        className={inputClass}
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="contact-email"
-                        className={labelClass}
-                      >
-                        Email Address *
-                      </label>
-
-                      <input
-                        id="contact-email"
-                        type="email"
-                        name="email"
-                        required
-                        autoComplete="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="you@company.com"
-                        className={inputClass}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-4 mb-5">
-                    <div>
-                      <label
-                        htmlFor="contact-service"
-                        className={labelClass}
-                      >
-                        What do you need?
-                      </label>
-
-                      <div className="relative">
-                        <select
-                          id="contact-service"
-                          name="service"
-                          value={form.service}
-                          onChange={handleChange}
-                          className={`
-                            ${inputClass}
-                            appearance-none
-                            pr-11
-                            cursor-pointer
-                          `}
-                        >
-                          <option value="">
-                            Select a service
-                          </option>
-
-                          {services.map((service) => (
-                            <option
-                              key={service}
-                              value={service}
-                            >
-                              {service}
-                            </option>
-                          ))}
-                        </select>
-
-                        <ChevronDown
-                          size={16}
-                          className={`
-                            pointer-events-none
-                            absolute
-                            right-4
-                            top-1/2
-                            -translate-y-1/2
-                            ${d ? 'text-gray-500' : 'text-slate-400'}
-                          `}
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="contact-timeline"
-                        className={labelClass}
-                      >
-                        Project Timeline
-                      </label>
-
-                      <div className="relative">
-                        <select
-                          id="contact-timeline"
-                          name="timeline"
-                          value={form.timeline}
-                          onChange={handleChange}
-                          className={`
-                            ${inputClass}
-                            appearance-none
-                            pr-11
-                            cursor-pointer
-                          `}
-                        >
-                          <option value="">
-                            Select timeline
-                          </option>
-
-                          {timelines.map((timeline) => (
-                            <option
-                              key={timeline}
-                              value={timeline}
-                            >
-                              {timeline}
-                            </option>
-                          ))}
-                        </select>
-
-                        <ChevronDown
-                          size={16}
-                          className={`
-                            pointer-events-none
-                            absolute
-                            right-4
-                            top-1/2
-                            -translate-y-1/2
-                            ${d ? 'text-gray-500' : 'text-slate-400'}
-                          `}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mb-5">
                     <label
-                      htmlFor="contact-message"
-                      className={labelClass}
+                      htmlFor="contact-email"
+                      className="block mb-1.5 text-[9px] font-semibold uppercase tracking-[0.13em] text-slate-400"
                     >
-                      Project Details *
+                      Email Address *
                     </label>
 
-                    <textarea
-                      id="contact-message"
-                      name="message"
+                    <input
+                      id="contact-email"
+                      type="email"
+                      name="email"
                       required
-                      rows={7}
-                      value={form.message}
+                      autoComplete="email"
+                      value={form.email}
                       onChange={handleChange}
-                      placeholder="Tell us about your idea, existing website or application, business goals, required features, target users or the technical problem you want to solve."
-                      className={`
-                        ${inputClass}
-                        resize-none
-                        min-h-[160px]
-                      `}
+                      placeholder="you@company.com"
+                      className="w-full min-h-[46px] rounded-lg border border-white/[0.09] bg-white/[0.04] px-3.5 py-2.5 text-[12px] text-white placeholder:text-slate-600 outline-none transition-all hover:border-white/[0.14] focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
                     />
                   </div>
+                </div>
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className={`
-                      w-full
-                      min-h-[52px]
-                      flex
-                      items-center
-                      justify-center
-                      gap-2
-                      rounded-xl
-                      text-sm
-                      font-black
-                      text-white
-                      transition-all
-                      duration-200
-                      ${loading
-                        ? 'bg-purple-400 cursor-not-allowed'
-                        : 'bg-purple-600 hover:bg-purple-700 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-purple-600/20'
-                      }
-                    `}
-                  >
-                    {loading ? (
-                      <>
-                        <span
-                          className="
-                            w-4
-                            h-4
-                            border-2
-                            border-white/30
-                            border-t-white
-                            rounded-full
-                            animate-spin
-                          "
-                        />
-                        Sending Inquiry...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={16} />
-                        Send Project Inquiry
-                      </>
-                    )}
-                  </button>
+                <div className="grid sm:grid-cols-2 gap-4 mt-4">
+                  <div>
+                    <label
+                      htmlFor="contact-service"
+                      className="block mb-1.5 text-[9px] font-semibold uppercase tracking-[0.13em] text-slate-400"
+                    >
+                      What Do You Need?
+                    </label>
 
-                  <div
-                    className={`
-                      mt-4
-                      flex
-                      items-start
-                      justify-center
-                      gap-2
-                      text-[10px]
-                      sm:text-[11px]
-                      text-center
-                      leading-5
-                      ${d ? 'text-gray-600' : 'text-slate-400'}
-                    `}
-                  >
-                    <Shield
-                      size={13}
-                      className="shrink-0 mt-0.5"
-                    />
-
-                    <span>
-                      Your project inquiry will be sent directly to DevZore.
-                      We use the information you provide to respond to your
-                      inquiry. See our{' '}
-                      <Link
-                        to="/privacy-policy"
-                        className="text-purple-500 hover:underline"
+                    <div className="relative">
+                      <select
+                        id="contact-service"
+                        name="service"
+                        value={form.service}
+                        onChange={handleChange}
+                        className="w-full min-h-[46px] appearance-none cursor-pointer rounded-lg border border-white/[0.09] bg-[#0b222d] px-3.5 py-2.5 pr-10 text-[12px] text-white outline-none transition-all hover:border-white/[0.14] focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
                       >
-                        Privacy Policy
-                      </Link>
-                      .
-                    </span>
+                        <option value="">Select a service</option>
+
+                        {services.map((service) => (
+                          <option
+                            key={service}
+                            value={service}
+                          >
+                            {service}
+                          </option>
+                        ))}
+                      </select>
+
+                      <ChevronDown
+                        size={14}
+                        className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+                      />
+                    </div>
                   </div>
-                </form>
-              </div>
+
+                  <div>
+                    <label
+                      htmlFor="contact-timeline"
+                      className="block mb-1.5 text-[9px] font-semibold uppercase tracking-[0.13em] text-slate-400"
+                    >
+                      Project Timeline
+                    </label>
+
+                    <div className="relative">
+                      <select
+                        id="contact-timeline"
+                        name="timeline"
+                        value={form.timeline}
+                        onChange={handleChange}
+                        className="w-full min-h-[46px] appearance-none cursor-pointer rounded-lg border border-white/[0.09] bg-[#0b222d] px-3.5 py-2.5 pr-10 text-[12px] text-white outline-none transition-all hover:border-white/[0.14] focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
+                      >
+                        <option value="">Select timeline</option>
+
+                        {timelines.map((timeline) => (
+                          <option
+                            key={timeline}
+                            value={timeline}
+                          >
+                            {timeline}
+                          </option>
+                        ))}
+                      </select>
+
+                      <ChevronDown
+                        size={14}
+                        className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <label
+                    htmlFor="contact-message"
+                    className="block mb-1.5 text-[9px] font-semibold uppercase tracking-[0.13em] text-slate-400"
+                  >
+                    Project Details *
+                  </label>
+
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    required
+                    rows={6}
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="Tell us about your idea, existing website or application, business goals, required features, target users or the technical problem you want to solve."
+                    className="w-full min-h-[150px] resize-none rounded-lg border border-white/[0.09] bg-white/[0.04] px-3.5 py-3 text-[12px] leading-6 text-white placeholder:text-slate-600 outline-none transition-all hover:border-white/[0.14] focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className={`group mt-5 w-full min-h-[48px] inline-flex items-center justify-center gap-2 rounded-lg px-5 text-[11px] font-semibold transition-all ${
+                    loading
+                      ? "bg-[#0d7180] text-white/70 cursor-not-allowed"
+                      : "bg-[#0796A8] hover:bg-[#078899] text-white hover:shadow-[0_12px_35px_rgba(7,150,168,0.2)]"
+                  }`}
+                >
+                  {loading ? (
+                    <>
+                      <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                      Sending Inquiry...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={14} />
+                      Send Project Inquiry
+
+                      <ArrowRight
+                        size={13}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    </>
+                  )}
+                </button>
+
+                <div className="mt-4 pt-4 border-t border-white/[0.07] flex items-start justify-center gap-2 text-center">
+                  <ShieldCheck
+                    size={12}
+                    className="shrink-0 mt-0.5 text-slate-600"
+                  />
+
+                  <p className="max-w-lg text-[9px] leading-5 text-slate-600">
+                    Your project enquiry is sent directly to DevZore. We use
+                    the information you provide to respond to your enquiry. See
+                    our{" "}
+                    <Link
+                      to="/privacy-policy"
+                      onClick={scrollTop}
+                      className="text-[#24bcca] hover:text-[#35cedb] transition-colors"
+                    >
+                      Privacy Policy
+                    </Link>
+                    .
+                  </p>
+                </div>
+              </form>
             </div>
           </div>
         </section>
 
-        {/* ================= INTERNAL SERVICE LINKS ================= */}
+        {/* HOW IT WORKS */}
+
+        <section
+          aria-labelledby="contact-process-heading"
+          className="py-10 md:py-12 bg-[#f7f9fa]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel>What Happens Next</SectionLabel>
+
+              <h2
+                id="contact-process-heading"
+                className="mt-3 text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold"
+              >
+                A simple path from enquiry to{" "}
+                <span className="text-[#0796A8]">
+                  project discussion.
+                </span>
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {[
+                {
+                  number: "01",
+                  title: "Send Your Enquiry",
+                  description:
+                    "Share the information you currently have about the project.",
+                },
+                {
+                  number: "02",
+                  title: "Requirements Review",
+                  description:
+                    "We review the project goals, features and important requirements.",
+                },
+                {
+                  number: "03",
+                  title: "Discuss the Approach",
+                  description:
+                    "The scope, development direction and next steps can then be discussed.",
+                },
+                {
+                  number: "04",
+                  title: "Plan Development",
+                  description:
+                    "Once aligned, the project can move into planning and implementation.",
+                },
+              ].map((item) => (
+                <article
+                  key={item.number}
+                  className="rounded-xl border border-slate-200 bg-white p-4"
+                >
+                  <span className="text-[9px] font-semibold text-[#07899a]">
+                    {item.number}
+                  </span>
+
+                  <h3 className="mt-2 text-[13px] font-semibold text-[#071923]">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* RELATED SERVICES */}
+
         <section
           aria-labelledby="contact-services-heading"
-          className={`
-            py-14
-            sm:py-16
-            border-y
-            ${d
-              ? 'bg-[#050505] border-white/[0.06]'
-              : 'bg-white border-slate-200'
-            }
-          `}
+          className="py-10 md:py-12 bg-white border-y border-slate-200"
         >
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2
-              id="contact-services-heading"
-              className={`
-                text-2xl
-                sm:text-3xl
-                font-black
-                ${d ? 'text-white' : 'text-slate-950'}
-              `}
-            >
-              Contact a Software Development Agency for{' '}
-              <span className="text-purple-600">
-                Your Next Digital Product
-              </span>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel>Explore Services</SectionLabel>
+
+              <h2
+                id="contact-services-heading"
+                className="mt-3 text-[28px] sm:text-[33px] md:text-[38px] leading-[1.08] tracking-[-0.035em] font-semibold"
+              >
+                Explore services related to{" "}
+                <span className="text-[#0796A8]">
+                  your project.
+                </span>
+              </h2>
+
+              <p className="mt-3 text-[13px] leading-6 text-slate-600 max-w-2xl">
+                Review the development areas most relevant to what you are
+                planning to build.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+              {relatedServices.map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  onClick={scrollTop}
+                  className="group rounded-xl border border-slate-200 bg-[#fbfcfc] p-4 hover:border-[#0796A8]/40 hover:-translate-y-1 transition-all"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                    {service.icon}
+                  </div>
+
+                  <h3 className="mt-3 text-[13px] font-semibold text-[#071923]">
+                    {service.title}
+                  </h3>
+
+                  <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                    {service.description}
+                  </p>
+
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]">
+                    Explore Service
+
+                    <ArrowRight
+                      size={10}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-5 text-center">
+              <Link
+                to="/allservices"
+                onClick={scrollTop}
+                className="inline-flex items-center gap-2 text-[10px] font-semibold text-[#07899a]"
+              >
+                View All DevZore Services
+                <ArrowRight size={11} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+
+        <section className="relative py-10 md:py-12 bg-[#071923] text-white overflow-hidden">
+          <div className="absolute inset-0" style={darkGrid} />
+
+          <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-[620px] h-[400px] bg-[#0796A8]/10 blur-[145px]" />
+
+          <div className="relative max-w-[900px] mx-auto px-5 sm:px-6 text-center">
+            <div className="w-10 h-10 mx-auto rounded-xl bg-[#0b2a35] text-[#28c5d4] flex items-center justify-center">
+              <Sparkles size={19} />
+            </div>
+
+            <h2 className="mt-4 text-[29px] sm:text-[35px] md:text-[40px] font-semibold tracking-[-0.04em] leading-[1.06]">
+              Ready to discuss{" "}
+              <span className="text-[#25bfce]">your project?</span>
             </h2>
 
-            <p
-              className={`
-                mt-4
-                max-w-3xl
-                mx-auto
-                text-[14px]
-                leading-7
-                ${d ? 'text-gray-400' : 'text-slate-600'}
-              `}
-            >
-              DevZore can help with custom web development, MERN stack
-              applications, React development, Node.js backend development,
-              REST APIs, SaaS development, mobile applications,
-              e-commerce development, UI/UX implementation, SEO and
-              ongoing website maintenance.
+            <p className="max-w-2xl mx-auto mt-3 text-[13px] sm:text-[14px] leading-6 text-slate-400">
+              Share your requirements through the project enquiry form and
+              start the conversation with DevZore.
             </p>
 
-            {/* CLICKABLE SERVICE LINKS */}
-            <nav
-              aria-label="DevZore software development services"
-              className="mt-7 flex flex-wrap justify-center gap-2.5"
-            >
-              {serviceLinks.map((service) => (
-                <Link
-                  key={`${service.name}-${service.path}`}
-                  to={service.path}
-                  onClick={() =>
-                    window.scrollTo({
-                      top: 0,
-                      behavior: 'smooth',
-                    })
-                  }
-                  className={`
-                    group
-                    inline-flex
-                    items-center
-                    justify-center
-                    gap-1.5
-                    px-4
-                    py-2.5
-                    rounded-xl
-                    border
-                    text-[12px]
-                    sm:text-[13px]
-                    font-semibold
-                    transition-all
-                    duration-200
-                    ${d
-                      ? `
-                          bg-white/[0.025]
-                          border-white/[0.08]
-                          text-gray-300
-                          hover:text-white
-                          hover:bg-purple-500/10
-                          hover:border-purple-500/30
-                        `
-                      : `
-                          bg-slate-50
-                          border-slate-200
-                          text-slate-700
-                          hover:text-purple-700
-                          hover:bg-purple-50
-                          hover:border-purple-200
-                          hover:shadow-sm
-                        `
-                    }
-                  `}
-                >
-                  <span>{service.name}</span>
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="#project-form"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+              >
+                Start Your Inquiry
 
-                  <ArrowRight
-                    size={12}
-                    className="
-                      opacity-50
-                      transition-all
-                      duration-200
-                      group-hover:opacity-100
-                      group-hover:translate-x-0.5
-                    "
-                  />
+                <ArrowRight
+                  size={13}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </a>
+
+              <a
+                href="mailto:hellodevzore@gmail.com"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[11px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
+              >
+                <Mail size={13} />
+                Email DevZore
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* BOTTOM LINKS */}
+
+        <section className="bg-[#06151d] border-t border-white/[0.06]">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6 py-5">
+            <nav
+              aria-label="DevZore contact related pages"
+              className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
+            >
+              {[
+                ["Web Development", "/web-development"],
+                ["Mobile Apps", "/mobile-apps"],
+                ["Backend & API", "/backend-api"],
+                ["SaaS Development", "/saas-product-development"],
+                ["Startup MVP", "/startup-mvp"],
+                ["All Services", "/allservices"],
+                ["About DevZore", "/about"],
+              ].map(([label, path]) => (
+                <Link
+                  key={path}
+                  to={path}
+                  onClick={scrollTop}
+                  className="text-[9px] font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
+                >
+                  {label}
                 </Link>
               ))}
             </nav>
-          </div>
-        </section>
-
-        {/* ================= FINAL CTA ================= */}
-        <section
-          aria-label="Final contact call to action"
-          className="py-16 sm:py-20"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div
-              className={`
-                relative
-                overflow-hidden
-                rounded-3xl
-                border
-                p-7
-                sm:p-10
-                lg:p-12
-                text-center
-                ${d
-                  ? 'bg-purple-600/[0.06] border-purple-500/15'
-                  : 'bg-purple-50 border-purple-100'
-                }
-              `}
-            >
-              <div
-                aria-hidden="true"
-                className="
-                  absolute
-                  left-1/2
-                  -translate-x-1/2
-                  -top-24
-                  w-72
-                  h-72
-                  bg-purple-500/15
-                  rounded-full
-                  blur-3xl
-                  pointer-events-none
-                "
-              />
-
-              <div className="relative">
-                <p className="text-purple-500 text-[10px] font-bold uppercase tracking-[0.18em] mb-3">
-                  Start your project
-                </p>
-
-                <h2
-                  className={`
-                    text-2xl
-                    sm:text-3xl
-                    lg:text-4xl
-                    font-black
-                    tracking-tight
-                    ${d ? 'text-white' : 'text-slate-950'}
-                  `}
-                >
-                  Tell Us What You Want to Build.
-                </h2>
-
-                <p
-                  className={`
-                    max-w-2xl
-                    mx-auto
-                    mt-3
-                    text-sm
-                    leading-6
-                    ${d ? 'text-gray-400' : 'text-slate-600'}
-                  `}
-                >
-                  Share your requirements and we can discuss the project,
-                  technology and practical next steps.
-                </p>
-
-                <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
-                  <a
-                    href="#project-form"
-                    className="
-                      inline-flex
-                      items-center
-                      justify-center
-                      gap-2
-                      px-6
-                      py-3
-                      rounded-xl
-                      bg-purple-600
-                      hover:bg-purple-700
-                      text-white
-                      text-sm
-                      font-bold
-                      transition-all
-                    "
-                  >
-                    Start Your Inquiry
-                    <ArrowRight size={15} />
-                  </a>
-
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                      inline-flex
-                      items-center
-                      justify-center
-                      gap-2
-                      px-6
-                      py-3
-                      rounded-xl
-                      bg-[#25D366]/10
-                      border
-                      border-[#25D366]/25
-                      text-[#25D366]
-                      text-sm
-                      font-bold
-                      hover:bg-[#25D366]/15
-                      transition-all
-                    "
-                  >
-                    <MessageCircle size={15} />
-                    WhatsApp
-                  </a>
-
-                  <a
-                    href="mailto:hellodevzore@gmail.com"
-                    className={`
-                      inline-flex
-                      items-center
-                      justify-center
-                      gap-2
-                      px-6
-                      py-3
-                      rounded-xl
-                      border
-                      text-sm
-                      font-bold
-                      transition-all
-                      ${d
-                        ? 'border-white/10 text-gray-300 hover:bg-white/[0.05]'
-                        : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
-                      }
-                    `}
-                  >
-                    <Mail size={15} />
-                    Email DevZore
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
       </div>

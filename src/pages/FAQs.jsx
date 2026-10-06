@@ -1,34 +1,31 @@
 import React, { useMemo, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
+  CheckCircle2,
   ChevronDown,
   CircleHelp,
-  Search,
-  Code2,
-  Smartphone,
-  ShoppingCart,
   Cloud,
-  Sparkles,
-  SearchCheck,
-  Settings,
+  Code2,
   CreditCard,
   Clock3,
-  ShieldCheck,
   MessageCircle,
-  CheckCircle2,
+  Search,
+  SearchCheck,
+  Settings,
+  ShieldCheck,
+  ShoppingCart,
+  Smartphone,
+  Sparkles,
 } from "lucide-react";
 
-const FAQs = ({ isDark }) => {
-  const d = isDark;
-
+const FAQs = () => {
   const [openFAQ, setOpenFAQ] = useState(0);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 
-  // ======================================================
   // FAQ DATA
-  // ======================================================
 
   const faqData = [
     {
@@ -153,9 +150,7 @@ const FAQs = ({ isDark }) => {
     },
   ];
 
-  // ======================================================
   // CATEGORIES
-  // ======================================================
 
   const categories = [
     "All",
@@ -173,15 +168,12 @@ const FAQs = ({ isDark }) => {
     "Security",
   ];
 
-  // ======================================================
-  // FILTER
-  // ======================================================
+  // FILTERED FAQS
 
   const filteredFAQs = useMemo(() => {
     return faqData.filter((faq) => {
       const matchesCategory =
-        activeCategory === "All" ||
-        faq.category === activeCategory;
+        activeCategory === "All" || faq.category === activeCategory;
 
       const search = searchTerm.trim().toLowerCase();
 
@@ -195,9 +187,7 @@ const FAQs = ({ isDark }) => {
     });
   }, [activeCategory, searchTerm]);
 
-  // ======================================================
   // CATEGORY ICON
-  // ======================================================
 
   const getCategoryIcon = (category) => {
     switch (category) {
@@ -236,360 +226,437 @@ const FAQs = ({ isDark }) => {
     }
   };
 
-  // ======================================================
-  // PAGE
-  // ======================================================
+  // HELPERS
 
-  return (
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const lightGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
+    backgroundSize: "48px 48px",
+  };
+
+  const darkGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+    backgroundSize: "52px 52px",
+  };
+
+  const SectionLabel = ({ children, light = false }) => (
     <div
-      className={`min-h-screen pt-[66px] ${
-        d
-          ? "bg-[#030303] text-white"
-          : "bg-[#fafafa] text-[#111827]"
+      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+        light ? "text-[#28c5d4]" : "text-[#07899a]"
       }`}
     >
-      {/* ==================================================
-          HERO
-      ================================================== */}
+      <span className="w-5 h-[2px] bg-[#0796A8]" />
+      {children}
+    </div>
+  );
 
-      <section className="relative overflow-hidden border-b border-transparent">
-        {/* BACKGROUND */}
+  // STRUCTURED DATA
 
-        <div
-          className={`absolute inset-0 pointer-events-none ${
-            d
-              ? "bg-[radial-gradient(circle_at_50%_20%,rgba(147,51,234,0.12),transparent_42%)]"
-              : "bg-[radial-gradient(circle_at_50%_20%,rgba(168,85,247,0.12),transparent_43%)]"
-          }`}
-        />
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqData.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
 
-        <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pt-12 sm:pt-14 pb-8">
-          <div className="max-w-5xl mx-auto text-center">
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://devzore.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "FAQs",
+        item: "https://devzore.com/faqs",
+      },
+    ],
+  };
 
-            {/* BADGE */}
+  return (
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
 
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
+
+      <div
+        className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
+        style={{
+          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+        }}
+      >
+        {/* HERO */}
+
+        <section
+          aria-labelledby="faq-page-heading"
+          className="relative overflow-hidden bg-[#04111a] text-white"
+        >
+          <div className="absolute inset-0 pointer-events-none">
             <div
-              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 ${
-                d
-                  ? "border-purple-500/20 bg-purple-500/[0.07]"
-                  : "border-purple-200 bg-purple-50/80"
-              }`}
-            >
-              <CircleHelp
-                size={15}
-                className="text-purple-500"
-              />
+              className="absolute inset-0 opacity-55"
+              style={darkGrid}
+            />
 
-              <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.18em] text-purple-600">
+            <div className="absolute -top-32 left-[10%] w-[560px] h-[560px] rounded-full bg-[#0796A8]/12 blur-[150px]" />
+
+            <div className="absolute top-8 right-[4%] w-[420px] h-[420px] rounded-full bg-[#20bdcb]/7 blur-[130px]" />
+
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#04111a]/85" />
+          </div>
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-20 sm:pt-24 lg:pt-28 pb-10 sm:pb-12">
+            <div className="max-w-[900px] mx-auto text-center">
+              <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+                <CircleHelp size={14} className="text-[#25c0ce]" />
                 Frequently Asked Questions
-              </span>
-            </div>
+              </div>
 
-            {/* TITLE */}
-
-            <h1 className="mt-6 text-[38px] sm:text-5xl lg:text-[64px] leading-[1.02] font-black tracking-[-0.045em]">
-              Questions About
-              <span className="block mt-2 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
-                Working With DevZore
-              </span>
-            </h1>
-
-            {/* DESCRIPTION */}
-
-            <p
-              className={`mt-5 max-w-3xl mx-auto text-[14px] sm:text-[16px] leading-7 ${
-                d ? "text-gray-400" : "text-gray-600"
-              }`}
-            >
-              Find answers about our development services, project
-              process, pricing, SaaS, mobile apps, AI solutions,
-              e-commerce, maintenance and working with DevZore.
-            </p>
-
-            {/* BUTTONS */}
-
-            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
-                to="/contact"
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-700 px-6 py-3.5 text-[11px] font-black text-white transition-all hover:-translate-y-0.5"
+              <h1
+                id="faq-page-heading"
+                className="mt-5 text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[68px] leading-[1.04] font-semibold tracking-[-0.045em]"
               >
-                Ask About Your Project
+                Answers to common questions about{" "}
+                <span className="text-[#22bdca]">
+                  working with DevZore.
+                </span>
+              </h1>
 
-                <ArrowRight
-                  size={14}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </Link>
+              <p className="max-w-[760px] mx-auto mt-5 text-[16px] sm:text-[17px] leading-7 text-slate-300">
+                Find answers about our development services, project process,
+                pricing, SaaS, mobile apps, AI, e-commerce, maintenance and
+                ongoing support.
+              </p>
 
-              <Link
-                to="/allservices"
-                className={`group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border px-6 py-3.5 text-[11px] font-black transition-all ${
-                  d
-                    ? "border-white/[0.1] bg-white/[0.03] text-white hover:bg-white/[0.07]"
-                    : "border-gray-300 bg-white text-gray-900 hover:bg-gray-50"
-                }`}
-              >
-                Explore Services
-
-                <ArrowRight
-                  size={14}
-                  className="group-hover:translate-x-1 transition-transform"
-                />
-              </Link>
-            </div>
-
-            {/* HERO FEATURES */}
-
-            <div
-              className={`mt-8 pt-5 border-t flex flex-wrap items-center justify-center gap-x-7 gap-y-3 ${
-                d
-                  ? "border-white/[0.06]"
-                  : "border-gray-200"
-              }`}
-            >
-              {[
-                "Project Planning",
-                "Development",
-                "Pricing",
-                "Support",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className={`flex items-center gap-2 text-[10px] sm:text-[11px] font-medium ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
+              <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
+                <Link
+                  to="/contact"
+                  onClick={scrollTop}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[12px] font-semibold text-[#071923] transition-colors"
                 >
-                  <CheckCircle2
-                    size={13}
-                    className="text-purple-500"
-                  />
+                  Ask About Your Project
+                  <ArrowRight size={14} />
+                </Link>
 
-                  {item}
+                <a
+                  href="#faq-list"
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 text-[12px] font-semibold text-white hover:text-[#28c5d4] transition-colors"
+                >
+                  Browse Questions
+                  <ArrowRight size={14} />
+                </a>
+              </div>
+
+              <div className="mt-7 pt-5 border-t border-white/[0.08] flex flex-wrap justify-center gap-x-6 gap-y-2.5">
+                {[
+                  "Project Planning",
+                  "Development",
+                  "Pricing",
+                  "Support",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="inline-flex items-center gap-2 text-[10px] font-medium text-slate-400"
+                  >
+                    <CheckCircle2
+                      size={12}
+                      className="text-[#25c0ce]"
+                    />
+
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* HERO STRIP */}
+
+          <div className="relative border-t border-white/[0.08] bg-[#06151d]/90">
+            <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4">
+                {[
+                  ["01", "Services"],
+                  ["02", "Process"],
+                  ["03", "Pricing"],
+                  ["04", "Support"],
+                ].map(([number, title], index) => (
+                  <div
+                    key={title}
+                    className={`py-4 ${
+                      index !== 3
+                        ? "lg:border-r border-white/[0.07]"
+                        : ""
+                    } ${index > 0 ? "lg:pl-7" : ""}`}
+                  >
+                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-1">
+                      {number}
+                    </span>
+
+                    <span className="text-[11px] font-medium text-slate-300">
+                      {title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* INTRO */}
+
+        <section
+          className="py-10 md:py-12 bg-[#f8fafb]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.7fr_1.3fr] gap-7 lg:gap-12 items-center">
+              <div>
+                <SectionLabel>Quick Answers</SectionLabel>
+
+                <h2 className="mt-3 text-[28px] sm:text-[34px] md:text-[40px] leading-[1.08] tracking-[-0.035em] font-semibold">
+                  Find the information you need{" "}
+                  <span className="text-[#0796A8]">before getting started.</span>
+                </h2>
+              </div>
+
+              <div>
+                <p className="text-[14px] leading-7 text-slate-600">
+                  Software projects often involve questions about scope,
+                  technology, pricing, timelines, ownership, maintenance and
+                  how the development process works.
+                </p>
+
+                <p className="mt-3 text-[13px] leading-6 text-slate-500">
+                  Use the search and category filters below to quickly find
+                  answers related to your project.
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-2.5 mt-5">
+                  {[
+                    "Understand our services",
+                    "Learn how projects are handled",
+                    "Review pricing and timeline questions",
+                    "Explore post-launch support",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-2.5 rounded-lg border border-slate-200 bg-white px-3.5 py-2.5"
+                    >
+                      <CheckCircle2
+                        size={13}
+                        className="text-[#07899a]"
+                      />
+
+                      <span className="text-[10px] font-medium text-slate-700">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ==================================================
-          SEARCH + CATEGORIES
-      ================================================== */}
+        {/* SEARCH */}
 
-      <section className="pt-8 pb-4">
-        <div className="max-w-6xl mx-auto px-5 sm:px-6">
+        <section
+          id="faq-list"
+          className="py-10 bg-white scroll-mt-24"
+        >
+          <div className="max-w-[1080px] mx-auto px-5 sm:px-6">
+            <div className="text-center max-w-[720px] mx-auto mb-7">
+              <SectionLabel>Search FAQs</SectionLabel>
 
-          {/* SEARCH */}
+              <h2 className="mt-3 text-[28px] sm:text-[34px] md:text-[40px] font-semibold tracking-[-0.035em] leading-[1.08]">
+                What would you like to{" "}
+                <span className="text-[#0796A8]">know?</span>
+              </h2>
 
-          <div className="max-w-2xl mx-auto">
-            <div className="relative">
-              <Search
-                size={17}
-                className={`absolute left-4 top-1/2 -translate-y-1/2 ${
-                  d ? "text-gray-500" : "text-gray-400"
-                }`}
-              />
-
-              <input
-                type="search"
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(e.target.value);
-                  setOpenFAQ(null);
-                }}
-                placeholder="Search frequently asked questions..."
-                aria-label="Search frequently asked questions"
-                className={`w-full rounded-2xl border py-3.5 pl-11 pr-4 text-[12px] outline-none transition-all focus:border-purple-500/60 focus:ring-4 focus:ring-purple-500/10 ${
-                  d
-                    ? "bg-white/[0.04] border-white/[0.08] text-white placeholder:text-gray-600"
-                    : "bg-white border-gray-200 text-gray-900 placeholder:text-gray-400 shadow-sm"
-                }`}
-              />
+              <p className="text-[13px] leading-6 text-slate-500 mt-3">
+                Search all questions or select a category to narrow the
+                results.
+              </p>
             </div>
-          </div>
 
-          {/* CATEGORY FILTERS */}
+            <div className="max-w-[720px] mx-auto">
+              <div className="relative">
+                <Search
+                  size={17}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                />
 
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-            {categories.map((category) => {
-              const active =
-                activeCategory === category;
-
-              return (
-                <button
-                  type="button"
-                  key={category}
-                  onClick={() => {
-                    setActiveCategory(category);
+                <input
+                  type="search"
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
                     setOpenFAQ(null);
                   }}
-                  className={`rounded-full border px-3 py-1.5 text-[9px] sm:text-[10px] font-bold transition-all ${
-                    active
-                      ? "bg-purple-600 border-purple-600 text-white"
-                      : d
-                      ? "border-white/[0.08] bg-white/[0.03] text-gray-400 hover:text-white hover:border-purple-500/30"
-                      : "border-gray-200 bg-white text-gray-600 hover:text-purple-600 hover:border-purple-200"
-                  }`}
-                >
-                  {category}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+                  placeholder="Search frequently asked questions..."
+                  aria-label="Search frequently asked questions"
+                  className="w-full rounded-xl border border-slate-200 bg-[#f9fbfb] py-3.5 pl-11 pr-4 text-[12px] text-[#071923] placeholder:text-slate-400 outline-none transition-all focus:border-[#0796A8]/60 focus:ring-4 focus:ring-[#0796A8]/10"
+                />
+              </div>
+            </div>
 
-      {/* ==================================================
-          FAQ LIST
-      ================================================== */}
+            {/* CATEGORIES */}
 
-      <section className="pt-5 pb-10">
-        <div className="max-w-4xl mx-auto px-5 sm:px-6">
-          <div className="space-y-2.5">
-
-            {filteredFAQs.length > 0 ? (
-              filteredFAQs.map((faq, index) => {
-                const open = openFAQ === index;
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+              {categories.map((category) => {
+                const active = activeCategory === category;
 
                 return (
-                  <div
-                    key={`${faq.category}-${faq.question}`}
-                    className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
-                      open
-                        ? d
-                          ? "border-purple-500/30 bg-purple-500/[0.05]"
-                          : "border-purple-200 bg-purple-50/40 shadow-sm"
-                        : d
-                        ? "border-white/[0.07] bg-white/[0.025] hover:bg-white/[0.04]"
-                        : "border-gray-200 bg-white hover:border-gray-300"
+                  <button
+                    type="button"
+                    key={category}
+                    onClick={() => {
+                      setActiveCategory(category);
+                      setOpenFAQ(null);
+                    }}
+                    aria-pressed={active}
+                    className={`rounded-full border px-3 py-1.5 text-[9px] sm:text-[10px] font-semibold transition-all ${
+                      active
+                        ? "bg-[#071923] border-[#071923] text-white"
+                        : "border-slate-200 bg-white text-slate-600 hover:border-[#0796A8]/40 hover:text-[#07899a]"
                     }`}
                   >
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setOpenFAQ(
-                          open ? null : index
-                        )
-                      }
-                      aria-expanded={open}
-                      className="w-full flex items-center gap-3 sm:gap-4 px-4 sm:px-5 py-4 text-left"
-                    >
-                      {/* ICON */}
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
 
-                      <div
-                        className={`shrink-0 w-8 h-8 rounded-lg border flex items-center justify-center ${
-                          open
-                            ? "bg-purple-600 border-purple-600 text-white"
-                            : d
-                            ? "bg-white/[0.04] border-white/[0.07] text-purple-400"
-                            : "bg-purple-50 border-purple-100 text-purple-600"
-                        }`}
-                      >
-                        {getCategoryIcon(
-                          faq.category
-                        )}
-                      </div>
+            <div className="text-center mt-4">
+              <span className="text-[10px] text-slate-400">
+                {filteredFAQs.length}{" "}
+                {filteredFAQs.length === 1 ? "question" : "questions"} found
+              </span>
+            </div>
+          </div>
+        </section>
 
-                      {/* QUESTION */}
+        {/* FAQ LIST */}
 
-                      <div className="flex-1 min-w-0">
-                        <span className="block text-[8px] font-black uppercase tracking-[0.16em] text-purple-500 mb-1">
-                          {faq.category}
-                        </span>
+        <section className="pb-11 md:pb-12 bg-white">
+          <div className="max-w-[900px] mx-auto px-5 sm:px-6">
+            {filteredFAQs.length > 0 ? (
+              <div className="space-y-2.5">
+                {filteredFAQs.map((faq, index) => {
+                  const open = openFAQ === index;
 
-                        <h2
-                          className={`text-[12px] sm:text-[13px] font-bold leading-5 ${
-                            d
-                              ? "text-gray-100"
-                              : "text-gray-900"
-                          }`}
-                        >
-                          {faq.question}
-                        </h2>
-                      </div>
-
-                      {/* ARROW */}
-
-                      <div
-                        className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all ${
-                          open
-                            ? "bg-purple-600 text-white"
-                            : d
-                            ? "bg-white/[0.05] text-gray-400"
-                            : "bg-gray-100 text-gray-500"
-                        }`}
-                      >
-                        <ChevronDown
-                          size={14}
-                          className={`transition-transform duration-300 ${
-                            open
-                              ? "rotate-180"
-                              : ""
-                          }`}
-                        />
-                      </div>
-                    </button>
-
-                    {/* ANSWER */}
-
-                    <div
-                      className={`grid transition-all duration-300 ${
+                  return (
+                    <article
+                      key={`${faq.category}-${faq.question}`}
+                      className={`overflow-hidden rounded-xl border transition-all duration-300 ${
                         open
-                          ? "grid-rows-[1fr] opacity-100"
-                          : "grid-rows-[0fr] opacity-0"
+                          ? "border-[#0796A8]/35 bg-[#f2f8f9]"
+                          : "border-slate-200 bg-white hover:border-slate-300"
                       }`}
                     >
-                      <div className="overflow-hidden">
-                        <div className="px-4 sm:px-5 pb-4 sm:pl-[64px]">
-                          <p
-                            className={`text-[11px] sm:text-[12px] leading-6 ${
-                              d
-                                ? "text-gray-400"
-                                : "text-gray-600"
+                      <button
+                        type="button"
+                        onClick={() => setOpenFAQ(open ? null : index)}
+                        aria-expanded={open}
+                        aria-controls={`faq-answer-${index}`}
+                        className="w-full flex items-center gap-3 sm:gap-4 px-4 sm:px-5 py-4 text-left"
+                      >
+                        <div
+                          className={`shrink-0 w-8 h-8 rounded-lg border flex items-center justify-center transition-colors ${
+                            open
+                              ? "bg-[#071923] border-[#071923] text-[#28c5d4]"
+                              : "bg-[#edf4f5] border-[#dce9eb] text-[#07899a]"
+                          }`}
+                        >
+                          {getCategoryIcon(faq.category)}
+                        </div>
+
+                        <div className="flex-1 min-w-0">
+                          <span className="block text-[8px] font-bold uppercase tracking-[0.16em] text-[#07899a] mb-1">
+                            {faq.category}
+                          </span>
+
+                          <h3 className="text-[12px] sm:text-[13px] font-semibold leading-5 text-[#071923]">
+                            {faq.question}
+                          </h3>
+                        </div>
+
+                        <div
+                          className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all ${
+                            open
+                              ? "bg-[#071923] text-[#28c5d4]"
+                              : "bg-slate-100 text-slate-500"
+                          }`}
+                        >
+                          <ChevronDown
+                            size={14}
+                            className={`transition-transform duration-300 ${
+                              open ? "rotate-180" : ""
                             }`}
-                          >
-                            {faq.answer}
-                          </p>
+                          />
+                        </div>
+                      </button>
+
+                      <div
+                        id={`faq-answer-${index}`}
+                        className={`grid transition-all duration-300 ${
+                          open
+                            ? "grid-rows-[1fr] opacity-100"
+                            : "grid-rows-[0fr] opacity-0"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="px-4 sm:px-5 pb-4 sm:pl-[68px]">
+                            <div className="border-t border-[#0796A8]/15 pt-3">
+                              <p className="text-[11px] sm:text-[12px] leading-6 text-slate-600">
+                                {faq.answer}
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                );
-              })
+                    </article>
+                  );
+                })}
+              </div>
             ) : (
-              /* NO RESULTS */
+              <div className="rounded-2xl border border-slate-200 bg-[#f9fbfb] py-12 px-5 text-center">
+                <div className="w-11 h-11 mx-auto rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                  <CircleHelp size={22} />
+                </div>
 
-              <div
-                className={`rounded-2xl border py-12 px-5 text-center ${
-                  d
-                    ? "border-white/[0.07] bg-white/[0.02]"
-                    : "border-gray-200 bg-white"
-                }`}
-              >
-                <CircleHelp
-                  size={30}
-                  className="mx-auto text-purple-500"
-                />
-
-                <h2
-                  className={`mt-4 text-lg font-black ${
-                    d
-                      ? "text-white"
-                      : "text-gray-900"
-                  }`}
-                >
+                <h2 className="mt-4 text-[17px] font-semibold text-[#071923]">
                   No questions found
                 </h2>
 
-                <p
-                  className={`mt-2 text-[11px] ${
-                    d
-                      ? "text-gray-500"
-                      : "text-gray-500"
-                  }`}
-                >
-                  Try another keyword or choose a
-                  different category.
+                <p className="mt-2 text-[11px] text-slate-500">
+                  Try another keyword or select a different category.
                 </p>
 
                 <button
@@ -599,219 +666,202 @@ const FAQs = ({ isDark }) => {
                     setActiveCategory("All");
                     setOpenFAQ(0);
                   }}
-                  className="mt-4 text-[10px] font-bold text-purple-500 hover:text-purple-600"
+                  className="mt-4 inline-flex items-center justify-center rounded-lg bg-[#071923] px-4 py-2.5 text-[10px] font-semibold text-white hover:bg-[#0b2631] transition-colors"
                 >
-                  Clear filters
+                  Clear Filters
                 </button>
               </div>
             )}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ==================================================
-          STILL HAVE QUESTIONS
-      ================================================== */}
+        {/* FAQ AREAS */}
 
-      <section className="pb-10">
-        <div className="max-w-6xl mx-auto px-5 sm:px-6">
-          <div
-            className={`rounded-3xl border px-5 sm:px-8 py-7 sm:py-8 flex flex-col md:flex-row items-center justify-between gap-5 ${
-              d
-                ? "border-white/[0.07] bg-white/[0.025]"
-                : "border-gray-200 bg-white shadow-sm"
-            }`}
-          >
-            <div className="flex items-start gap-4">
-              <div className="shrink-0 w-10 h-10 rounded-xl bg-purple-600/10 text-purple-500 flex items-center justify-center">
-                <MessageCircle size={18} />
-              </div>
+        <section
+          className="relative py-10 md:py-12 bg-[#071923] text-white overflow-hidden"
+          style={darkGrid}
+        >
+          <div className="absolute top-0 right-0 w-[500px] h-[400px] rounded-full bg-[#0796A8]/10 blur-[140px]" />
 
-              <div>
-                <h2
-                  className={`text-lg sm:text-xl font-black ${
-                    d
-                      ? "text-white"
-                      : "text-gray-900"
-                  }`}
-                >
-                  Still have a question?
-                </h2>
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[760px] mb-7">
+              <SectionLabel light>Common Topics</SectionLabel>
 
-                <p
-                  className={`mt-1 max-w-xl text-[11px] sm:text-[12px] leading-6 ${
-                    d
-                      ? "text-gray-500"
-                      : "text-gray-500"
-                  }`}
-                >
-                  Tell us about your project or question
-                  and we can discuss your requirements and
-                  the next steps.
-                </p>
-              </div>
-            </div>
-
-            <Link
-              to="/contact"
-              className="group shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-700 px-5 py-3 text-[10px] font-black text-white transition-all"
-            >
-              Contact DevZore
-
-              <ArrowRight
-                size={13}
-                className="group-hover:translate-x-1 transition-transform"
-              />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          FINAL CTA
-      ================================================== */}
-
-      <section className="pb-10 sm:pb-12">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-          <div
-            className={`relative overflow-hidden rounded-3xl border px-6 py-9 sm:px-10 sm:py-10 text-center ${
-              d
-                ? "border-purple-500/20 bg-gradient-to-br from-purple-500/[0.10] via-[#0a0710] to-indigo-500/[0.08]"
-                : "border-purple-100 bg-gradient-to-br from-purple-50 via-white to-indigo-50"
-            }`}
-          >
-            <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="absolute -bottom-24 -left-20 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative max-w-3xl mx-auto">
-              <Sparkles
-                size={24}
-                className="mx-auto text-purple-500"
-              />
-
-              <h2
-                className={`mt-4 text-3xl sm:text-4xl font-black tracking-tight ${
-                  d
-                    ? "text-white"
-                    : "text-gray-950"
-                }`}
-              >
-                Ready to Discuss Your Project?
+              <h2 className="mt-3 text-[28px] sm:text-[34px] md:text-[40px] font-semibold tracking-[-0.035em] leading-[1.08]">
+                Questions across the{" "}
+                <span className="text-[#25bfce]">full project journey.</span>
               </h2>
+            </div>
 
-              <p
-                className={`mt-3 text-[12px] sm:text-[14px] leading-7 ${
-                  d
-                    ? "text-gray-400"
-                    : "text-gray-600"
-                }`}
-              >
-                Share your idea, requirements and goals
-                with DevZore. We can discuss the right
-                approach for your website, application,
-                SaaS platform or custom software.
-              </p>
-
-              <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Link
-                  to="/contact"
-                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-700 px-6 py-3.5 text-[11px] font-black text-white transition-all hover:-translate-y-0.5"
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.08] border border-white/[0.08] rounded-2xl overflow-hidden">
+              {[
+                {
+                  icon: <Code2 size={18} />,
+                  title: "Development",
+                  text: "Websites, applications, architecture and technologies.",
+                },
+                {
+                  icon: <CreditCard size={18} />,
+                  title: "Pricing & Scope",
+                  text: "Project estimates, requirements and scope considerations.",
+                },
+                {
+                  icon: <Clock3 size={18} />,
+                  title: "Process",
+                  text: "Planning, development, feedback, testing and launch.",
+                },
+                {
+                  icon: <Settings size={18} />,
+                  title: "Support",
+                  text: "Maintenance, updates, troubleshooting and improvements.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-[#071923] p-5 min-h-[165px] hover:bg-[#0a202a] transition-colors"
                 >
-                  Start Your Project
+                  <div className="w-9 h-9 rounded-xl bg-[#0c2a35] text-[#27c1cf] flex items-center justify-center">
+                    {item.icon}
+                  </div>
 
-                  <ArrowRight
-                    size={14}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
-                </Link>
+                  <h3 className="text-[14px] font-semibold mt-5">
+                    {item.title}
+                  </h3>
 
-                <Link
-                  to="/guides"
-                  className={`group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border px-6 py-3.5 text-[11px] font-black transition-all ${
-                    d
-                      ? "border-white/[0.1] bg-white/[0.04] text-white hover:bg-white/[0.08]"
-                      : "border-gray-300 bg-white text-gray-900 hover:bg-gray-50"
-                  }`}
-                >
-                  Development Guides
-
-                  <ArrowRight
-                    size={14}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
-                </Link>
-              </div>
+                  <p className="text-slate-400 text-[11px] leading-5 mt-2">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ==================================================
-          INTERNAL LINKS
-      ================================================== */}
+        {/* STILL HAVE QUESTIONS */}
 
-      <section className="pb-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div
-            className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-5 border-t ${
-              d
-                ? "border-white/[0.06]"
-                : "border-gray-200"
-            }`}
-          >
-            <Link
-              to="/allservices"
-              className="text-[10px] text-gray-500 hover:text-purple-500 transition"
-            >
-              All Services
-            </Link>
+        <section
+          className="py-10 md:py-12 bg-[#f7f9fa]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1000px] mx-auto px-5 sm:px-6">
+            <div className="rounded-2xl border border-slate-200 bg-white px-5 sm:px-7 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 w-10 h-10 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                  <MessageCircle size={18} />
+                </div>
 
-            <Link
-              to="/web-development"
-              className="text-[10px] text-gray-500 hover:text-purple-500 transition"
-            >
-              Web Development
-            </Link>
+                <div>
+                  <h2 className="text-[18px] sm:text-[20px] font-semibold text-[#071923] tracking-[-0.02em]">
+                    Still have a question?
+                  </h2>
 
-            <Link
-              to="/generative-ai-development"
-              className="text-[10px] text-gray-500 hover:text-purple-500 transition"
-            >
-              Generative AI
-            </Link>
+                  <p className="mt-1 max-w-xl text-[11px] sm:text-[12px] leading-6 text-slate-500">
+                    Tell us about your project or question and we can discuss
+                    your requirements, technical considerations and next steps.
+                  </p>
+                </div>
+              </div>
 
-            <Link
-              to="/saas-product-development"
-              className="text-[10px] text-gray-500 hover:text-purple-500 transition"
-            >
-              SaaS Development
-            </Link>
+              <Link
+                to="/contact"
+                onClick={scrollTop}
+                className="group shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-[#071923] hover:bg-[#0b2631] px-5 py-3 text-[10px] font-semibold text-white transition-colors"
+              >
+                Contact DevZore
 
-            <Link
-              to="/guides"
-              className="text-[10px] text-gray-500 hover:text-purple-500 transition"
-            >
-              Development Guides
-            </Link>
-
-            <Link
-              to="/blog"
-              className="text-[10px] text-gray-500 hover:text-purple-500 transition"
-            >
-              Blog
-            </Link>
-
-            <Link
-              to="/contact"
-              className="text-[10px] text-gray-500 hover:text-purple-500 transition"
-            >
-              Contact DevZore
-            </Link>
+                <ArrowRight
+                  size={13}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* FINAL CTA */}
+
+        <section className="relative py-10 md:py-12 bg-[#071923] text-white overflow-hidden">
+          <div className="absolute inset-0" style={darkGrid} />
+
+          <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-[620px] h-[400px] bg-[#0796A8]/10 blur-[145px]" />
+
+          <div className="relative max-w-[900px] mx-auto px-5 sm:px-6 text-center">
+            <div className="w-10 h-10 mx-auto rounded-xl bg-[#0b2a35] text-[#28c5d4] flex items-center justify-center">
+              <Sparkles size={19} />
+            </div>
+
+            <h2 className="mt-4 text-[29px] sm:text-[35px] md:text-[40px] font-semibold tracking-[-0.04em] leading-[1.06]">
+              Ready to discuss{" "}
+              <span className="text-[#25bfce]">your project?</span>
+            </h2>
+
+            <p className="max-w-2xl mx-auto mt-3 text-[13px] sm:text-[14px] leading-6 text-slate-400">
+              Share your idea, requirements and goals with DevZore. We can
+              discuss the right approach for your website, application, SaaS
+              platform or custom software.
+            </p>
+
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                to="/contact"
+                onClick={scrollTop}
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+              >
+                Start Your Project
+
+                <ArrowRight
+                  size={13}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </Link>
+
+              <Link
+                to="/guides"
+                onClick={scrollTop}
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[11px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
+              >
+                Development Guides
+
+                <ArrowRight
+                  size={13}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* INTERNAL LINKS */}
+
+        <section className="bg-[#06151d] border-t border-white/[0.06]">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6 py-5">
+            <nav
+              aria-label="DevZore FAQ related pages"
+              className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
+            >
+              {[
+                ["All Services", "/allservices"],
+                ["Web Development", "/web-development"],
+                ["Generative AI", "/generative-ai-development"],
+                ["SaaS Development", "/saas-product-development"],
+                ["Development Guides", "/guides"],
+                ["Blog", "/blog"],
+                ["Contact DevZore", "/contact"],
+              ].map(([label, path]) => (
+                <Link
+                  key={path}
+                  to={path}
+                  onClick={scrollTop}
+                  className="text-[9px] font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 

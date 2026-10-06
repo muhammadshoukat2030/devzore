@@ -1,454 +1,558 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import {
-  Users,
-  CreditCard,
-  BarChart3,
-  Lock,
-  Zap,
-  RefreshCw,
-  Server,
-  Settings,
-  Globe,
-  CheckCircle,
-  Plus,
-  Minus,
   ArrowRight,
-  Layers,
-  Code2,
-  Rocket,
-  Monitor,
+  ArrowUpRight,
+  BarChart3,
+  Check,
+  CheckCircle2,
   ChevronDown,
   ChevronUp,
+  CircleCheck,
+  Clock3,
+  Code2,
+  CreditCard,
   Database,
-  Cloud,
-} from 'lucide-react';
+  Gauge,
+  Layers3,
+  LockKeyhole,
+  Mail,
+  MenuSquare,
+  Minus,
+  Plus,
+  RefreshCw,
+  Rocket,
+  Send,
+  Server,
+  Settings2,
+  ShieldCheck,
+  TrendingUp,
+  Users,
+  Workflow,
+  Zap,
+} from "lucide-react";
 
-const SaaSProductDevelopment = ({ isDark }) => {
-  const d = isDark;
-
+const SaaSProductDevelopment = () => {
   const [activeFaq, setActiveFaq] = useState(null);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
 
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    service: "SaaS Product Development",
+    timeline: "",
+    message: "",
+  });
+
+  // GRID
+
+  const lightGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
+    backgroundSize: "48px 48px",
   };
 
-  const whatsappUrl =
-    'https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20a%20SaaS%20development%20project.';
+  const darkGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+    backgroundSize: "52px 52px",
+  };
 
-  /* =========================
-     SERVICES
-  ========================= */
+  // SERVICES
 
-  const features = [
+  const services = [
     {
-      icon: <Users size={20} />,
-      color: 'purple',
-      title: 'Multi-Tenant SaaS Architecture',
-      desc: 'Build SaaS applications with tenant-aware data models, workspace management, organization settings, permissions and scalable application architecture.',
+      icon: <Users size={21} />,
+      number: "01",
+      title: "Multi-Tenant SaaS Architecture",
+      desc:
+        "Build SaaS applications with tenant-aware data models, workspace management, organisation settings and role-based access.",
+      points: [
+        "Workspace management",
+        "Tenant-aware data structure",
+        "Roles and permissions",
+      ],
     },
     {
-      icon: <CreditCard size={20} />,
-      color: 'green',
-      title: 'Subscription Billing & Payments',
-      desc: 'Integrate subscription plans, recurring billing, trials, upgrades, downgrades, invoices and payment webhooks using suitable payment providers based on your product requirements.',
+      icon: <CreditCard size={21} />,
+      number: "02",
+      title: "Subscription Billing & Payments",
+      desc:
+        "Implement subscription plans, recurring billing, trials, upgrades, downgrades and payment workflows around your product requirements.",
+      points: [
+        "Subscription plans",
+        "Payment integration",
+        "Billing webhooks",
+      ],
     },
     {
-      icon: <BarChart3 size={20} />,
-      color: 'blue',
-      title: 'SaaS Analytics Dashboards',
-      desc: 'Create SaaS dashboards for product metrics, customer activity, usage data, revenue reporting and operational insights using modern React interfaces.',
+      icon: <BarChart3 size={21} />,
+      number: "03",
+      title: "SaaS Dashboards",
+      desc:
+        "Develop responsive dashboards for account activity, product usage, business metrics, reporting and operational workflows.",
+      points: [
+        "Product dashboards",
+        "Usage reporting",
+        "Operational insights",
+      ],
     },
     {
-      icon: <Lock size={20} />,
-      color: 'red',
-      title: 'Authentication & Access Control',
-      desc: 'Secure authentication flows, account management, team invitations, role-based access control and optional third-party sign-in for modern SaaS applications.',
+      icon: <LockKeyhole size={21} />,
+      number: "04",
+      title: "Authentication & Access Control",
+      desc:
+        "Secure user accounts with authentication, team invitations, account management and role-based permissions.",
+      points: [
+        "Secure authentication",
+        "Role-based access",
+        "Team invitations",
+      ],
     },
     {
-      icon: <Zap size={20} />,
-      color: 'amber',
-      title: 'SaaS API Development',
-      desc: 'REST or GraphQL APIs designed around your SaaS product requirements with validation, authorization, rate limiting, documentation and third-party integrations.',
+      icon: <Zap size={21} />,
+      number: "05",
+      title: "SaaS API Development",
+      desc:
+        "Develop backend APIs with validation, authorization, product workflows and integrations with external services.",
+      points: [
+        "REST API development",
+        "Third-party integrations",
+        "Validation and authorization",
+      ],
     },
     {
-      icon: <RefreshCw size={20} />,
-      color: 'cyan',
-      title: 'User Onboarding Experience',
-      desc: 'Design onboarding flows, setup steps, product guidance and account configuration experiences that help users understand and start using your SaaS product.',
-    },
-    {
-      icon: <Server size={20} />,
-      color: 'indigo',
-      title: 'Cloud-Ready SaaS Infrastructure',
-      desc: 'Structure SaaS applications for modern cloud deployment with environment configuration, caching, database management, CI/CD workflows and deployment automation where appropriate.',
-    },
-    {
-      icon: <Settings size={20} />,
-      color: 'orange',
-      title: 'SaaS Admin Panel Development',
-      desc: 'Build internal administration tools for managing users, organizations, subscriptions, application settings, support operations and product-specific workflows.',
-    },
-    {
-      icon: <Monitor size={20} />,
-      color: 'pink',
-      title: 'SaaS UI/UX Design',
-      desc: 'SaaS UI/UX design for dashboards, onboarding flows, account settings, data-heavy interfaces and responsive product experiences focused on usability and clear user journeys.',
-    },
-    {
-      icon: <Code2 size={20} />,
-      color: 'blue',
-      title: 'Custom SaaS Software Development',
-      desc: 'Custom SaaS software development for startups and businesses that need purpose-built cloud software, subscription workflows, dashboards, APIs, databases and product-specific functionality.',
-    },
-    {
-      icon: <Layers size={20} />,
-      color: 'purple',
-      title: 'SaaS Web Application Development',
-      desc: 'Full-stack SaaS web application development covering responsive frontend interfaces, backend services, database architecture, authentication, user management and integrations.',
-    },
-    {
-      icon: <Rocket size={20} />,
-      color: 'green',
-      title: 'SaaS MVP Development',
-      desc: 'Build a focused SaaS MVP with the essential features required to validate your product idea, onboard early users and create a foundation for future development.',
+      icon: <Settings2 size={21} />,
+      number: "06",
+      title: "SaaS Admin Panels",
+      desc:
+        "Build internal administration tools for managing users, organisations, subscriptions, settings and product operations.",
+      points: [
+        "User management",
+        "Subscription management",
+        "Product administration",
+      ],
     },
   ];
 
-  /* =========================
-     SAAS TYPES
-  ========================= */
+  // STANDARDS
+
+  const standards = [
+    {
+      icon: <Layers3 size={19} />,
+      title: "Product-Focused Architecture",
+      desc:
+        "Application structure is planned around your users, workflows, business model and expected product growth.",
+    },
+    {
+      icon: <Gauge size={19} />,
+      title: "Performance Considered",
+      desc:
+        "Rendering, application state, assets, APIs and important user interactions are considered throughout development.",
+    },
+    {
+      icon: <LockKeyhole size={19} />,
+      title: "Security Conscious",
+      desc:
+        "Authentication, authorization, validation and secure configuration are applied where the product requires them.",
+    },
+    {
+      icon: <Database size={19} />,
+      title: "Data Architecture",
+      desc:
+        "Database models and relationships are planned around application workflows and product requirements.",
+    },
+    {
+      icon: <Server size={19} />,
+      title: "Integration Ready",
+      desc:
+        "SaaS products can connect with payment providers, email services, analytics platforms and external APIs.",
+    },
+    {
+      icon: <RefreshCw size={19} />,
+      title: "Built for Iteration",
+      desc:
+        "Organised frontend and backend structure makes future product improvements easier to introduce.",
+    },
+  ];
+
+  // SAAS TYPES
 
   const saasTypes = [
     {
-      title: 'B2B SaaS Development',
-      desc: 'Custom B2B SaaS development for CRM platforms, project management systems, operations software, reporting tools, business automation and team collaboration.',
+      icon: <Workflow size={18} />,
+      title: "B2B SaaS",
+      desc:
+        "Software for business workflows, CRM systems, operations, reporting, automation and team collaboration.",
     },
     {
-      title: 'B2C SaaS Development',
-      desc: 'Customer-facing SaaS applications with user accounts, subscriptions, personalized dashboards, payments and scalable cloud-based product functionality.',
+      icon: <Users size={18} />,
+      title: "B2C SaaS",
+      desc:
+        "Customer-facing products with accounts, subscriptions, dashboards and personalised experiences.",
     },
     {
-      title: 'Vertical SaaS Development',
-      desc: 'Industry-specific SaaS platforms designed around specialized business workflows for education, real estate, logistics, retail and professional services.',
-    },
-    {
-      title: 'SaaS MVP Development',
-      desc: 'Focused SaaS MVP development for startups and founders who want to validate a software product with essential functionality before expanding it.',
-    },
-    {
-      title: 'AI-Powered SaaS Applications',
-      desc: 'SaaS software with suitable AI API integrations for assistants, automation, document processing, intelligent search, content workflows and product-specific AI features.',
-    },
-    {
-      title: 'Marketplace SaaS Platforms',
-      desc: 'Multi-user marketplace SaaS applications with customer and provider accounts, dashboards, payments, administration and marketplace workflows.',
-    },
-  ];
-
-  /* =========================
-     BENEFITS
-  ========================= */
-
-  const benefits = [
-    {
-      icon: <Layers size={18} />,
-      title: 'Product-Focused Architecture',
-      desc: 'Architecture is planned around your users, workflows, business model and expected product evolution instead of forcing every project into the same template.',
-    },
-    {
-      icon: <Code2 size={18} />,
-      title: 'Maintainable SaaS Development',
-      desc: 'Reusable components, organized APIs, clear project structure and practical documentation make future product development easier to manage.',
-    },
-    {
-      icon: <Lock size={18} />,
-      title: 'Security-Conscious Engineering',
-      desc: 'Authentication, authorization, input validation, secure configuration and dependency management are considered throughout SaaS development.',
+      icon: <Layers3 size={18} />,
+      title: "Vertical SaaS",
+      desc:
+        "Industry-specific platforms designed around specialised business processes and operational requirements.",
     },
     {
       icon: <Rocket size={18} />,
-      title: 'Built for Future Growth',
-      desc: 'We structure SaaS products so new features, integrations, users and workflows can be added without unnecessary rebuilding.',
+      title: "SaaS MVPs",
+      desc:
+        "Focused first releases for startups and founders validating a new subscription-based software product.",
     },
   ];
 
-  /* =========================
-     TECHNOLOGY
-  ========================= */
+  // REQUIREMENTS
 
-  const technologies = [
-    {
-      icon: <Monitor size={18} />,
-      title: 'Frontend',
-      items: 'React.js · Next.js · TypeScript · Tailwind CSS',
-    },
-    {
-      icon: <Server size={18} />,
-      title: 'Backend & APIs',
-      items: 'Node.js · Express.js · REST · GraphQL',
-    },
-    {
-      icon: <Database size={18} />,
-      title: 'Databases',
-      items: 'MongoDB · PostgreSQL · Redis · Prisma',
-    },
-    {
-      icon: <CreditCard size={18} />,
-      title: 'Billing & Integrations',
-      items: 'Stripe · Webhooks · Email APIs · Third-Party APIs',
-    },
-    {
-      icon: <Cloud size={18} />,
-      title: 'Cloud & Deployment',
-      items: 'AWS · Vercel · Docker · GitHub Actions',
-    },
-    {
-      icon: <Zap size={18} />,
-      title: 'Product Infrastructure',
-      items: 'Authentication · RBAC · Analytics · Monitoring',
-    },
+  const productRequirements = [
+    "Your product needs multiple user roles or permission levels",
+    "You need subscription or recurring payment workflows",
+    "Multiple companies or workspaces will use the platform",
+    "Users need dashboards, reports or account-specific data",
+    "The application needs external API integrations",
+    "You need an internal admin panel for product operations",
+    "The existing SaaS application is becoming difficult to maintain",
+    "The product needs a stronger foundation for future functionality",
   ];
 
-  /* =========================
-     PROCESS
-  ========================= */
+  // PROCESS
 
   const process = [
     {
-      n: '01',
-      title: 'SaaS Discovery & Product Planning',
-      desc: 'We discuss your SaaS idea, target users, business model, core workflows, integrations and product priorities before defining the technical direction.',
+      number: "01",
+      title: "Discovery",
+      desc:
+        "We understand the SaaS product, target users, business model, core features, user roles and operational requirements.",
     },
     {
-      n: '02',
-      title: 'Architecture & Database Design',
-      desc: 'We plan application structure, database models, tenant strategy, authentication, APIs, integrations and deployment requirements around your product.',
+      number: "02",
+      title: "Product Planning",
+      desc:
+        "We organise user journeys, data requirements, permissions, subscription logic and technical priorities.",
     },
     {
-      n: '03',
-      title: 'SaaS UI/UX & Product Experience',
-      desc: 'Key screens, SaaS dashboards, onboarding flows, account settings and responsive interfaces are designed around clear user journeys and practical usability.',
+      number: "03",
+      title: "UI & UX Direction",
+      desc:
+        "Dashboards, onboarding, navigation and important product screens are planned around clear user workflows.",
     },
     {
-      n: '04',
-      title: 'SaaS Application Development',
-      desc: 'Frontend, backend, database and third-party integrations are developed in organized stages so core functionality can be reviewed as the product progresses.',
+      number: "04",
+      title: "Development",
+      desc:
+        "Frontend, backend, databases, APIs, authentication and required integrations are developed around the approved scope.",
     },
     {
-      n: '05',
-      title: 'Testing & Optimization',
-      desc: 'We review application functionality, responsive behavior, API handling, permissions, error states, security considerations and performance before production release.',
+      number: "05",
+      title: "Testing",
+      desc:
+        "Core workflows, permissions, billing flows, responsive behaviour, integrations and important edge cases are reviewed.",
     },
     {
-      n: '06',
-      title: 'Deployment & Handover',
-      desc: 'The SaaS application is prepared for production deployment, environment configuration and project handover with the documentation required for ongoing development.',
+      number: "06",
+      title: "Launch & Iteration",
+      desc:
+        "The SaaS product is prepared for production and can continue with monitoring, improvements and additional features.",
     },
   ];
 
-  /* =========================
-     FAQ
-  ========================= */
+  // USE CASES
+
+  const useCases = [
+    "CRM Platforms",
+    "Project Management",
+    "Business Automation",
+    "Customer Portals",
+    "Analytics Platforms",
+    "Booking Software",
+    "Education SaaS",
+    "Healthcare SaaS",
+    "Real Estate Software",
+    "Retail Platforms",
+    "Logistics Software",
+    "Professional Services",
+  ];
+
+  // WHY DEVZORE
+
+  const whyDevZore = [
+    {
+      icon: <MenuSquare size={18} />,
+      title: "Built Around Your Product",
+      desc:
+        "Application structure and functionality are planned around your actual users and workflows instead of a generic SaaS template.",
+    },
+    {
+      icon: <Zap size={18} />,
+      title: "Product-Focused Development",
+      desc:
+        "Development priorities stay connected to real product requirements and important customer workflows.",
+    },
+    {
+      icon: <ShieldCheck size={18} />,
+      title: "Professional Engineering",
+      desc:
+        "Maintainability, permissions, validation, responsive behaviour and future requirements are considered throughout development.",
+    },
+    {
+      icon: <Code2 size={18} />,
+      title: "Source Code Handover",
+      desc:
+        "Repositories, source code and agreed project assets can be handed over according to the project agreement.",
+    },
+    {
+      icon: <Clock3 size={18} />,
+      title: "Clear Communication",
+      desc:
+        "Requirements, feedback, progress and deliverables stay organised throughout SaaS product development.",
+    },
+    {
+      icon: <TrendingUp size={18} />,
+      title: "Ready to Grow",
+      desc:
+        "The product can be structured so users, integrations and new functionality can be added as the business develops.",
+    },
+  ];
+
+  // FAQ
 
   const faqs = [
     {
-      q: 'What is SaaS product development?',
-      a: 'SaaS product development is the process of designing and building cloud-based software that users access online, commonly through an account or subscription model. A SaaS product can include authentication, dashboards, billing, team management, APIs, analytics and cloud infrastructure depending on its requirements.',
+      q: "What is SaaS product development?",
+      a:
+        "SaaS product development is the process of building software that users access online, usually through accounts and often through recurring subscriptions. It can include dashboards, authentication, billing, APIs, databases and product-specific workflows.",
     },
     {
-      q: 'What SaaS development services does DevZore provide?',
-      a: 'DevZore provides custom SaaS development services including SaaS MVP development, SaaS web application development, React dashboards, Node.js backend development, database architecture, authentication, multi-tenant functionality, subscription billing integrations, admin panels, APIs and production deployment.',
+      q: "How much does SaaS development cost?",
+      a:
+        "The cost depends on product scope, user roles, dashboards, billing requirements, integrations, backend complexity and interface requirements. A project-specific estimate can be prepared after the requirements are reviewed.",
     },
     {
-      q: 'How much does SaaS product development cost?',
-      a: 'SaaS development cost depends on product scope, user roles, dashboard complexity, billing requirements, integrations, backend architecture and other features. DevZore reviews the requirements first and then prepares a project-specific proposal.',
+      q: "How long does it take to build a SaaS product?",
+      a:
+        "The timeline depends on scope and complexity. A focused SaaS MVP normally requires less development work than a larger multi-tenant application with advanced permissions, integrations, billing and reporting.",
     },
     {
-      q: 'How long does it take to build a SaaS application?',
-      a: 'There is no single development timeline for every SaaS product. A focused SaaS MVP can require significantly less work than a multi-role platform with billing, analytics, integrations and complex workflows. The timeline is estimated after reviewing the actual scope and priorities.',
+      q: "Can DevZore build a SaaS MVP?",
+      a:
+        "Yes. DevZore can build focused SaaS MVPs with essential functionality such as authentication, dashboards, account management, APIs, databases and subscription workflows.",
     },
     {
-      q: 'Can you build a SaaS MVP for a startup?',
-      a: 'Yes. DevZore can develop a focused SaaS MVP around the core functionality needed to validate a product idea. The architecture can also be planned so additional functionality can be introduced as the product evolves.',
+      q: "Can you build multi-tenant SaaS software?",
+      a:
+        "Yes. Multi-tenant architecture can support multiple organisations or workspaces while keeping access and data organised according to the product requirements.",
     },
     {
-      q: 'Do you provide B2B and B2C SaaS development?',
-      a: 'Yes. DevZore develops both B2B and B2C SaaS applications. B2B products can include organization accounts, teams, permissions, business dashboards and workflow automation, while B2C products can include individual accounts, subscriptions, personalized experiences and customer-facing functionality.',
+      q: "Can you integrate subscription billing?",
+      a:
+        "Yes. Subscription plans, trials, checkout, recurring billing and webhook-based billing events can be implemented with suitable payment providers.",
     },
     {
-      q: 'Do you build multi-tenant SaaS applications?',
-      a: 'Yes. When multi-tenancy is appropriate, we can design organization or workspace-based SaaS applications with tenant-aware data access, user roles, permissions and administration workflows.',
+      q: "Can SaaS applications have different user roles?",
+      a:
+        "Yes. Role-based access can be implemented for administrators, owners, managers, team members or other product-specific roles.",
     },
     {
-      q: 'Can you build subscription-based software?',
-      a: 'Yes. Subscription software development can include plans, trials, checkout, recurring billing, upgrades, downgrades, billing webhooks and account access rules depending on the selected payment provider and product requirements.',
+      q: "Can you develop dashboards and reporting?",
+      a:
+        "Yes. SaaS products can include dashboards, charts, activity information, usage data and product-specific reporting features.",
     },
     {
-      q: 'Can you integrate Stripe subscription billing?',
-      a: 'Yes. Depending on project requirements and service availability, Stripe can be integrated for subscriptions, checkout, plan changes, billing events and webhook-based payment workflows.',
+      q: "Can you connect a SaaS product with external APIs?",
+      a:
+        "Yes. SaaS products can integrate with compatible third-party APIs for payments, email, analytics, storage, authentication and other services.",
     },
     {
-      q: 'Can you add AI features to a SaaS product?',
-      a: 'Yes. Suitable AI APIs can be integrated for assistants, content workflows, document processing, intelligent search, automation and other product-specific functionality.',
+      q: "Can DevZore improve an existing SaaS application?",
+      a:
+        "Yes. Existing SaaS products can be reviewed for frontend structure, backend architecture, APIs, database design, usability, performance and maintainability.",
     },
     {
-      q: 'Can you build both the SaaS frontend and backend?',
-      a: 'Yes. DevZore provides full-stack SaaS development covering frontend interfaces, backend APIs, database architecture, authentication, integrations and deployment configuration.',
+      q: "Will the SaaS product be mobile responsive?",
+      a:
+        "Yes. Web-based SaaS interfaces can be developed responsively for desktop, tablet and supported mobile screen sizes.",
     },
     {
-      q: 'Which technologies do you use for SaaS development?',
-      a: 'Technology is selected according to product requirements. Common choices include React or Next.js for frontend development, Node.js and Express.js for backend APIs, MongoDB or PostgreSQL for data storage, and modern cloud deployment services.',
+      q: "Can you build an admin panel for my SaaS product?",
+      a:
+        "Yes. Admin panels can be developed for user management, organisations, subscriptions, settings, reports and product operations.",
     },
     {
-      q: 'Can you develop a SaaS dashboard in React?',
-      a: 'Yes. We build React SaaS dashboards with account management, tables, filters, charts, forms, permissions, responsive layouts and API-driven data according to application requirements.',
+      q: "Can the product grow after launch?",
+      a:
+        "Yes. The application can be structured with future development in mind so new functionality, users, integrations and workflows can be added as requirements evolve.",
     },
     {
-      q: 'Can you develop Node.js APIs for a SaaS platform?',
-      a: 'Yes. Node.js and Express.js can be used to build backend APIs for authentication, users, organizations, billing, dashboards, integrations, administration and other SaaS functionality.',
-    },
-    {
-      q: 'Can DevZore work on an existing SaaS application?',
-      a: 'Yes. Existing SaaS applications can be reviewed for new feature development, frontend improvements, API integrations, dashboard development, backend changes and other product requirements.',
-    },
-    {
-      q: 'Do you provide SaaS development services worldwide?',
-      a: 'DevZore provides remote SaaS development services for startups, founders and businesses that can work with our development process regardless of location.',
-    },
-    {
-      q: 'Will I own the SaaS source code?',
-      a: 'Project ownership, repositories, credentials, design files and handover terms should be defined clearly in the project agreement. DevZore can structure projects so clients receive the agreed source code and project assets at handover.',
+      q: "Will I receive the source code?",
+      a:
+        "Source-code ownership, repositories, credentials and project assets can be defined clearly in the project agreement before development begins.",
     },
   ];
 
-  const visibleFaqs = showAllFaqs ? faqs : faqs.slice(0, 5);
-
-  /* =========================
-     RELATED SERVICES
-  ========================= */
+  // RELATED SERVICES
 
   const relatedServices = [
     {
-      icon: <Layers size={21} />,
-      title: 'MERN Stack Development',
-      desc: 'Full-stack MongoDB, Express, React and Node.js development for modern web applications and SaaS platforms.',
-      path: '/mern-stack-development',
+      label: "MVP",
+      title: "Startup MVP Development",
+      desc:
+        "Focused MVP development for validating SaaS, web and mobile product ideas.",
+      path: "/startup-mvp",
     },
     {
-      icon: <Server size={21} />,
-      title: 'Backend & API Development',
-      desc: 'Backend systems, REST APIs, GraphQL services, databases and integrations for web, mobile and SaaS products.',
-      path: '/backend-api',
+      label: "BACKEND",
+      title: "Backend & API Development",
+      desc:
+        "APIs, databases, authentication and backend services for SaaS applications.",
+      path: "/backend-api",
     },
     {
-      icon: <Rocket size={21} />,
-      title: 'Startup MVP Development',
-      desc: 'Turn a software idea into a focused MVP with the essential functionality required for early users and product validation.',
-      path: '/startup-mvp',
+      label: "FULL STACK",
+      title: "MERN Stack Development",
+      desc:
+        "Full-stack development for dashboards, SaaS platforms and custom business software.",
+      path: "/mern-stack-development",
+    },
+    {
+      label: "DESIGN",
+      title: "UI/UX Design",
+      desc:
+        "User-focused interfaces and product flows for SaaS dashboards and digital products.",
+      path: "/ui-ux-design",
     },
   ];
 
-  const colorMap = {
-    purple: d
-      ? 'bg-purple-500/10 border-purple-500/20 text-purple-400'
-      : 'bg-purple-50 border-purple-100 text-purple-600',
-    green: d
-      ? 'bg-green-500/10 border-green-500/20 text-green-400'
-      : 'bg-green-50 border-green-100 text-green-600',
-    blue: d
-      ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'
-      : 'bg-blue-50 border-blue-100 text-blue-600',
-    red: d
-      ? 'bg-red-500/10 border-red-500/20 text-red-400'
-      : 'bg-red-50 border-red-100 text-red-600',
-    amber: d
-      ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
-      : 'bg-amber-50 border-amber-100 text-amber-600',
-    cyan: d
-      ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'
-      : 'bg-cyan-50 border-cyan-100 text-cyan-600',
-    indigo: d
-      ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'
-      : 'bg-indigo-50 border-indigo-100 text-indigo-600',
-    orange: d
-      ? 'bg-orange-500/10 border-orange-500/20 text-orange-400'
-      : 'bg-orange-50 border-orange-100 text-orange-600',
-    pink: d
-      ? 'bg-pink-500/10 border-pink-500/20 text-pink-400'
-      : 'bg-pink-50 border-pink-100 text-pink-600',
+  // HELPERS
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
-  /* =========================
-     SCHEMA
-  ========================= */
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const subject = encodeURIComponent(
+      `SaaS Product Development Enquiry - ${formData.name}`
+    );
+
+    const body = encodeURIComponent(
+`Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || "Not provided"}
+Service: ${formData.service}
+Timeline: ${formData.timeline || "Not specified"}
+
+Project Details:
+${formData.message}`
+    );
+
+    window.location.href =
+      `mailto:hellodevzore@gmail.com?subject=${subject}&body=${body}`;
+  };
+
+  // SCHEMA
 
   const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    '@id': 'https://devzore.com/saas-product-development#service',
-    name: 'SaaS Product Development Services',
-    url: 'https://devzore.com/saas-product-development',
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://devzore.com/saas-product-development#service",
+    name: "SaaS Product Development Services",
+    url: "https://devzore.com/saas-product-development",
+    serviceType: "SaaS Product Development",
     description:
-      'Custom SaaS development services for B2B and B2C SaaS products, SaaS MVPs, subscription software, cloud applications, multi-tenant platforms, React dashboards and Node.js backend systems.',
-    serviceType: 'SaaS Product Development',
+      "Custom SaaS product development services including SaaS MVPs, dashboards, authentication, subscriptions, APIs, admin panels and custom web applications.",
     provider: {
-      '@id': 'https://devzore.com/#organization',
+      "@type": "Organization",
+      "@id": "https://devzore.com/#organization",
+      name: "DevZore",
+      url: "https://devzore.com/",
     },
-    areaServed: 'Worldwide',
+    areaServed: {
+      "@type": "Place",
+      name: "Worldwide",
+    },
     hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'SaaS Development Services',
-      itemListElement: features.map((feature) => ({
-        '@type': 'Offer',
+      "@type": "OfferCatalog",
+      name: "SaaS Development Services",
+      itemListElement: services.map((service) => ({
+        "@type": "Offer",
         itemOffered: {
-          '@type': 'Service',
-          name: feature.title,
-          description: feature.desc,
+          "@type": "Service",
+          name: service.title,
+          description: service.desc,
         },
       })),
     },
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://devzore.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: "https://devzore.com/allservices",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "SaaS Product Development",
+        item: "https://devzore.com/saas-product-development",
+      },
+    ],
+  };
+
   const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
     mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
+      "@type": "Question",
       name: faq.q,
       acceptedAnswer: {
-        '@type': 'Answer',
+        "@type": "Answer",
         text: faq.a,
       },
     })),
   };
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://devzore.com/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Services',
-        item: 'https://devzore.com/allservices',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: 'SaaS Product Development',
-        item: 'https://devzore.com/saas-product-development',
-      },
-    ],
-  };
+  const visibleFaqs = showAllFaqs ? faqs : faqs.slice(0, 3);
+
+  const SectionLabel = ({ children, light = false }) => (
+    <div
+      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+        light ? "text-[#28c5d4]" : "text-[#07899a]"
+      }`}
+    >
+      <span className="w-5 h-[2px] bg-[#0796A8]" />
+      {children}
+    </div>
+  );
 
   return (
     <>
@@ -458,255 +562,415 @@ const SaaSProductDevelopment = ({ isDark }) => {
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
+          {JSON.stringify(breadcrumbSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
+          {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
 
       <div
-        className={`min-h-screen transition-colors duration-300 ${
-          d ? 'bg-[#030303]' : 'bg-white'
-        }`}
+        className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
+        style={{
+          fontFamily:
+            '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+        }}
       >
-        {/* ================= HERO ================= */}
+        {/* HERO */}
 
         <section
-          aria-labelledby="saas-heading"
-          className={`pt-24 pb-10 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
-          }`}
+          aria-labelledby="saas-development-heading"
+          className="relative overflow-hidden bg-[#04111a] text-white"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div>
-                <div className="flex flex-wrap gap-2 mb-5">
-                  <div
-                    className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border ${
-                      d
-                        ? 'bg-purple-600/10 border-purple-500/20 text-purple-400'
-                        : 'bg-purple-50 border-purple-200 text-purple-700'
-                    }`}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                    SaaS Product Development
-                  </div>
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute -top-32 right-[5%] w-[500px] h-[500px] rounded-full bg-[#078fa5]/10 blur-[130px]" />
 
-                  <div
-                    className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold border ${
-                      d
-                        ? 'bg-green-500/10 border-green-500/20 text-green-400'
-                        : 'bg-green-50 border-green-200 text-green-700'
-                    }`}
-                  >
-                    <Globe size={11} />
-                    Remote Development Services
+            <div
+              className="absolute inset-0 opacity-50"
+              style={darkGrid}
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/75" />
+          </div>
+
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-28 pb-14 sm:pb-16 lg:pb-20">
+            <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-8 lg:gap-12 items-center">
+              <div className="relative z-10">
+                <div className="flex flex-wrap items-center gap-2.5 mb-6">
+                  <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.15em] uppercase text-[#c4ced5]">
+                    <Layers3
+                      size={14}
+                      className="text-[#26becb]"
+                    />
+
+                    SaaS Product Development
                   </div>
                 </div>
 
                 <h1
-                  id="saas-heading"
-                  className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4 ${
-                    d ? 'text-white' : 'text-gray-900'
-                  }`}
+                  id="saas-development-heading"
+                  className="max-w-[760px] text-[42px] sm:text-[52px] lg:text-[64px] xl:text-[72px] leading-[1.055] font-semibold tracking-[-0.045em]"
                 >
-                  SaaS Development Services{' '}
-                  <span className="text-purple-600">
-                    for Custom Software Products
+                  Turn your product idea into a{" "}
+                  <span className="text-[#22bdca]">
+                    working SaaS platform.
                   </span>
                 </h1>
 
-                <p
-                  className={`text-lg font-semibold mb-4 ${
-                    d ? 'text-gray-300' : 'text-gray-700'
-                  }`}
-                >
-                  SaaS MVPs · B2B & B2C SaaS · Multi-Tenant Platforms ·
-                  Subscription Software · React Dashboards · Node.js APIs
+                <p className="max-w-[700px] mt-7 text-[17px] sm:text-[18px] lg:text-[19px] leading-8 font-normal text-slate-300">
+                  Scalable SaaS products and subscription platforms built
+                  around your requirements, users and business goals.
                 </p>
 
-                <p
-                  className={`text-base leading-relaxed mb-4 ${
-                    d ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  DevZore is a{' '}
-                  <strong className={d ? 'text-white' : 'text-gray-900'}>
-                    SaaS development company
-                  </strong>{' '}
-                  providing custom SaaS product development for startups,
-                  founders and businesses. Our SaaS development services cover
-                  frontend development, backend APIs, cloud databases,
-                  authentication, subscription billing, dashboards,
-                  administration systems and third-party integrations.
+                <p className="max-w-[650px] mt-3 text-[14px] sm:text-[15px] leading-7 font-normal text-slate-400">
+                  From SaaS MVP development to multi-tenant applications,
+                  dashboards, subscriptions and APIs, DevZore develops the
+                  product around the workflows your customers actually need.
                 </p>
 
-                <p
-                  className={`text-base leading-relaxed mb-6 ${
-                    d ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  From SaaS MVP development and B2B SaaS development to B2C
-                  SaaS applications and established software platforms, we
-                  build cloud-based products around your users, workflows and
-                  business requirements.
-                </p>
-
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    to="/contact"
-                    onClick={scrollTop}
-                    className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mt-8">
+                  <a
+                    href="#project-enquiry"
+                    className="inline-flex justify-center items-center gap-3 rounded-lg bg-white hover:bg-slate-100 px-6 py-3.5 text-[13px] font-semibold text-[#071923] transition-all"
                   >
-                    Discuss Your SaaS Project
-                    <ArrowRight size={14} />
-                  </Link>
+                    Start a Project
+                    <ArrowRight size={15} />
+                  </a>
 
                   <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+                    href="#saas-development-services"
+                    className="inline-flex justify-center items-center gap-3 px-5 py-3.5 text-[13px] font-semibold text-white transition-colors hover:text-[#26c4d2]"
                   >
-                    WhatsApp Us
+                    Explore SaaS Development
+                    <ArrowRight size={15} />
                   </a>
                 </div>
               </div>
 
-              {/* CAPABILITIES */}
+              {/* PRODUCT VISUAL */}
 
-              <div
-                className={`p-7 rounded-3xl border ${
-                  d
-                    ? 'bg-white/[0.02] border-white/[0.06]'
-                    : 'bg-[#fafafa] border-gray-200'
-                }`}
-              >
-                <p
-                  className={`text-[11px] font-black uppercase tracking-widest mb-5 ${
-                    d ? 'text-gray-500' : 'text-gray-400'
-                  }`}
-                >
-                  SaaS Development Capabilities
-                </p>
+              <div className="relative min-h-[390px] lg:min-h-[450px] hidden md:block">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="absolute w-[400px] h-[400px] rounded-full bg-[#0796A8]/15 blur-[90px]" />
 
-                <div className="space-y-3">
-                  {[
-                    ['Multi-Tenant SaaS Architecture', 'Organizations, workspaces and tenant-aware data'],
-                    ['Subscription Billing', 'Plans, checkout and recurring billing workflows'],
-                    ['Authentication & User Management', 'Accounts, teams, roles and permissions'],
-                    ['SaaS Dashboards', 'Business data, activity and product insights'],
-                    ['Backend API Development', 'REST or GraphQL APIs for SaaS products'],
-                    ['Third-Party Integrations', 'Payments, email, storage and external services'],
-                    ['SaaS Admin Panels', 'Users, accounts, subscriptions and settings'],
-                    ['Responsive SaaS UI/UX', 'Desktop, tablet and mobile experiences'],
-                  ].map(([title, note]) => (
-                    <div
-                      key={title}
-                      className={`flex items-start gap-3 pb-3 border-b last:border-0 ${
-                        d ? 'border-white/[0.05]' : 'border-gray-100'
-                      }`}
-                    >
-                      <CheckCircle
-                        size={14}
-                        className="text-purple-500 flex-shrink-0 mt-0.5"
-                      />
+                  <div className="relative w-full max-w-[570px]">
+                    <div className="relative rounded-[20px] border border-white/10 bg-[#091d27]/95 shadow-[0_35px_90px_rgba(0,0,0,0.45)] overflow-hidden">
+                      <div className="h-9 px-4 border-b border-white/10 bg-[#0b222d] flex items-center justify-between">
+                        <div className="flex gap-1.5">
+                          {[1, 2, 3].map((item) => (
+                            <span
+                              key={item}
+                              className="w-2 h-2 rounded-full bg-white/20"
+                            />
+                          ))}
+                        </div>
 
-                      <div>
-                        <p
-                          className={`text-[13px] font-bold ${
-                            d ? 'text-white' : 'text-gray-900'
-                          }`}
-                        >
-                          {title}
-                        </p>
+                        <div className="w-[46%] h-4 rounded bg-white/[0.05]" />
+                        <div className="w-5" />
+                      </div>
 
-                        <p
-                          className={`text-[11px] mt-0.5 ${
-                            d ? 'text-gray-500' : 'text-gray-500'
-                          }`}
-                        >
-                          {note}
-                        </p>
+                      <div className="grid grid-cols-[62px_1fr] min-h-[300px]">
+                        <div className="border-r border-white/[0.08] p-3">
+                          <div className="w-8 h-8 rounded-lg bg-[#1bbac8]/20 border border-[#1bbac8]/30 mb-5" />
+
+                          <div className="space-y-3">
+                            {[1, 2, 3, 4, 5].map((item) => (
+                              <div
+                                key={item}
+                                className="w-7 h-2 rounded bg-white/[0.07]"
+                              />
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="p-5">
+                          <div className="flex justify-between items-center mb-6">
+                            <div>
+                              <div className="w-20 h-2 rounded bg-[#1bbac8]/60 mb-2.5" />
+                              <div className="w-36 h-3.5 rounded bg-white/80" />
+                            </div>
+
+                            <div className="w-16 h-7 rounded-lg bg-[#18bdcb]" />
+                          </div>
+
+                          <div className="grid grid-cols-3 gap-3 mb-3">
+                            {[1, 2, 3].map((item) => (
+                              <div
+                                key={item}
+                                className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3"
+                              >
+                                <div className="w-7 h-7 rounded-lg bg-[#159daf]/15 mb-4" />
+                                <div className="w-14 h-2 rounded bg-white/30 mb-2" />
+                                <div className="w-10 h-2 rounded bg-white/10" />
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="grid grid-cols-[1.2fr_0.8fr] gap-3">
+                            <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
+                              <div className="flex items-end gap-2 h-20">
+                                {[35, 55, 42, 80, 62, 90, 70].map(
+                                  (height, index) => (
+                                    <div
+                                      key={index}
+                                      className="flex-1 rounded-t bg-[#16aebd]/40"
+                                      style={{ height: `${height}%` }}
+                                    />
+                                  )
+                                )}
+                              </div>
+                            </div>
+
+                            <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
+                              <div className="w-14 h-2 rounded bg-white/20 mb-3" />
+
+                              <div className="space-y-2.5">
+                                {[1, 2, 3, 4].map((item) => (
+                                  <div
+                                    key={item}
+                                    className="h-2 rounded bg-white/[0.07]"
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  ))}
+
+                    <div className="absolute -left-6 top-16 w-24 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <Users
+                        size={18}
+                        className="text-[#29c7d5]"
+                      />
+
+                      <p className="text-[9px] font-semibold mt-2">
+                        Users
+                      </p>
+                    </div>
+
+                    <div className="absolute -right-5 top-14 w-24 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <CreditCard
+                        size={18}
+                        className="text-[#29c7d5]"
+                      />
+
+                      <p className="text-[9px] font-semibold mt-2">
+                        Billing
+                      </p>
+                    </div>
+
+                    <div className="absolute -right-4 bottom-10 w-24 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <BarChart3
+                        size={18}
+                        className="text-[#29c7d5]"
+                      />
+
+                      <p className="text-[9px] font-semibold mt-2">
+                        Analytics
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* STRIP */}
+
+          <div className="relative border-t border-white/[0.08] bg-[#06151d]/90">
+            <div className="max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10">
+              <div className="grid grid-cols-2 lg:grid-cols-4">
+                {[
+                  ["01", "SaaS MVPs"],
+                  ["02", "B2B SaaS"],
+                  ["03", "Subscription Platforms"],
+                  ["04", "Custom SaaS"],
+                ].map(([number, title], index) => (
+                  <div
+                    key={title}
+                    className={`py-4 ${
+                      index !== 3
+                        ? "lg:border-r border-white/[0.07]"
+                        : ""
+                    } ${index > 0 ? "lg:pl-7" : ""}`}
+                  >
+                    <span className="block text-[9px] font-bold text-[#1bb8c7] mb-1">
+                      {number}
+                    </span>
+
+                    <span className="text-[11px] font-semibold text-slate-300">
+                      {title}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* ================= SERVICES ================= */}
+        {/* INTRO */}
 
         <section
-          aria-labelledby="features-heading"
-          className={`py-12 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
-          }`}
+          className="relative py-14 md:py-16 bg-[#f8fafb]"
+          style={lightGrid}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                SaaS Development Services
-              </p>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.72fr_1.28fr] gap-8 lg:gap-14">
+              <div>
+                <SectionLabel>SaaS Development</SectionLabel>
+
+                <h2 className="text-[#071923] text-[30px] sm:text-[36px] md:text-[44px] leading-[1.08] tracking-[-0.035em] font-semibold mt-4">
+                  More than software.{" "}
+                  <span className="text-[#0796A8]">
+                    A product people rely on.
+                  </span>
+                </h2>
+              </div>
+
+              <div>
+                <p className="text-[16px] leading-8 font-normal text-slate-700">
+                  A successful SaaS product combines useful workflows,
+                  dependable infrastructure and an interface users can
+                  understand without unnecessary friction.
+                </p>
+
+                <p className="text-[14px] leading-7 mt-4 font-normal text-slate-500">
+                  DevZore develops SaaS applications around the actual product
+                  model. That can include user accounts, subscriptions,
+                  dashboards, teams, administration tools, integrations and
+                  product-specific business logic.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SERVICES */}
+
+        <section
+          id="saas-development-services"
+          aria-labelledby="saas-services-heading"
+          className="py-14 md:py-16 bg-white"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-10">
+              <SectionLabel>What We Build</SectionLabel>
 
               <h2
-                id="features-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
+                id="saas-services-heading"
+                className="text-[#071923] text-[30px] sm:text-[36px] md:text-[44px] leading-[1.08] tracking-[-0.035em] font-semibold mt-4"
               >
-                Custom SaaS Application Development Services
+                SaaS functionality designed around your product.
               </h2>
 
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                Full-stack SaaS software development covering SaaS UI/UX,
-                frontend interfaces, backend systems, databases, APIs,
-                subscriptions, user management, integrations and cloud-ready
-                application architecture.
+              <p className="text-slate-600 text-[14px] sm:text-[15px] leading-7 mt-4 max-w-2xl font-normal">
+                Different SaaS products need different combinations of users,
+                permissions, data, billing and workflows. We develop the
+                application around the product instead of forcing every
+                project into the same structure.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {features.map((item) => (
+              {services.map((service) => (
+                <article
+                  key={service.title}
+                  className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#0796A8]/40 hover:shadow-[0_18px_50px_rgba(7,25,35,0.08)]"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#071923] to-[#18bdcb]" />
+
+                  <div className="flex justify-between items-start">
+                    <div className="w-11 h-11 rounded-xl bg-[#f0f4f5] text-[#075f70] flex items-center justify-center">
+                      {service.icon}
+                    </div>
+
+                    <span className="text-[10px] font-semibold text-slate-300">
+                      {service.number}
+                    </span>
+                  </div>
+
+                  <h3 className="text-[#071923] text-[17px] leading-6 font-semibold mt-5">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-600 text-[13px] leading-6 mt-2.5 font-normal">
+                    {service.desc}
+                  </p>
+
+                  <div className="mt-5 pt-4 border-t border-slate-100 space-y-2.5">
+                    {service.points.map((point) => (
+                      <div
+                        key={point}
+                        className="flex items-center gap-2.5"
+                      >
+                        <CheckCircle2
+                          size={13}
+                          className="text-[#0796A8]"
+                        />
+
+                        <span className="text-[11px] font-medium text-slate-600">
+                          {point}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* STANDARDS */}
+
+        <section
+          aria-labelledby="saas-standards-heading"
+          className="relative py-14 md:py-16 bg-[#071923] text-white overflow-hidden"
+        >
+          <div
+            className="absolute inset-0 opacity-70"
+            style={darkGrid}
+          />
+
+          <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-[#0796A8]/10 blur-[140px]" />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[820px] mb-10">
+              <SectionLabel light>Development Standards</SectionLabel>
+
+              <h2
+                id="saas-standards-heading"
+                className="text-[30px] sm:text-[36px] md:text-[44px] leading-[1.08] tracking-[-0.035em] font-semibold mt-4"
+              >
+                Built for users today,{" "}
+                <span className="text-[#25bfce]">
+                  structured for future growth.
+                </span>
+              </h2>
+
+              <p className="text-slate-400 text-[14px] sm:text-[15px] leading-7 mt-4 max-w-2xl font-normal">
+                SaaS development decisions affect usability, security, data,
+                billing, maintainability and how easily the product can
+                continue evolving.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {standards.map((item) => (
                 <article
                   key={item.title}
-                  className={`p-5 rounded-2xl border transition-all hover:border-purple-500/25 ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]'
-                      : 'bg-white border-gray-200 hover:shadow-sm'
-                  }`}
+                  className="rounded-xl border border-white/[0.09] bg-white/[0.035] p-5 sm:p-6 hover:bg-white/[0.055] hover:border-[#1bbac8]/25 transition-all"
                 >
-                  <div
-                    className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-3 ${
-                      colorMap[item.color]
-                    }`}
-                  >
+                  <div className="w-10 h-10 rounded-lg border border-[#1bbac8]/20 bg-[#0e2b36] text-[#27c2d0] flex items-center justify-center">
                     {item.icon}
                   </div>
 
-                  <h3
-                    className={`text-[15px] font-bold mb-2 ${
-                      d ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
+                  <h3 className="text-[15px] font-semibold mt-5">
                     {item.title}
                   </h3>
 
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
+                  <p className="text-[12px] leading-6 text-slate-400 mt-2 font-normal">
                     {item.desc}
                   </p>
                 </article>
@@ -715,240 +979,126 @@ const SaaSProductDevelopment = ({ isDark }) => {
           </div>
         </section>
 
-        {/* ================= TYPES ================= */}
+        {/* SAAS TYPES */}
 
         <section
           aria-labelledby="saas-types-heading"
-          className={`py-12 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
-          }`}
+          className="py-14 md:py-16 bg-[#f7f9fa]"
+          style={lightGrid}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                SaaS Solutions
-              </p>
-
-              <h2
-                id="saas-types-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                Types of SaaS Products We Develop
-              </h2>
-
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                Custom SaaS application development for different business
-                models, audiences and software product requirements.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {saasTypes.map((type) => (
-                <div
-                  key={type.title}
-                  className={`p-5 rounded-2xl border ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-white border-gray-200'
-                  }`}
-                >
-                  <CheckCircle size={16} className="text-purple-500 mb-3" />
-
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
-                    {type.title}
-                  </h3>
-
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
-                    {type.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ================= BENEFITS ================= */}
-
-        <section
-          aria-labelledby="why-saas-heading"
-          className={`py-12 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                SaaS Engineering
-              </p>
-
-              <h2
-                id="why-saas-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                SaaS Engineering Built Around Your Product
-              </h2>
-
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                SaaS software needs architecture that supports users,
-                permissions, business data, integrations and future product
-                changes without unnecessary complexity.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {benefits.map((item) => (
-                <div
-                  key={item.title}
-                  className={`p-5 rounded-2xl border ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-white border-gray-200'
-                  }`}
-                >
-                  <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${
-                      d
-                        ? 'bg-purple-500/10 text-purple-400'
-                        : 'bg-purple-50 text-purple-600'
-                    }`}
-                  >
-                    {item.icon}
-                  </div>
-
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
-                    {item.title}
-                  </h3>
-
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ================= SEARCH CONTENT ================= */}
-
-        <section
-          aria-labelledby="saas-search-heading"
-          className={`py-12 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.82fr_1.18fr] gap-8 lg:gap-14 items-start">
               <div>
-                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                  Full-Stack SaaS Development
-                </p>
+                <SectionLabel>SaaS Products</SectionLabel>
 
                 <h2
-                  id="saas-search-heading"
-                  className={`text-3xl font-black mb-4 ${
-                    d ? 'text-white' : 'text-gray-900'
-                  }`}
+                  id="saas-types-heading"
+                  className="text-[#071923] text-[30px] sm:text-[36px] md:text-[44px] font-semibold tracking-[-0.035em] leading-[1.08] mt-4"
                 >
-                  Custom SaaS Development for B2B, B2C & Startup Products
+                  Different SaaS models need{" "}
+                  <span className="text-[#0796A8]">
+                    different product workflows.
+                  </span>
                 </h2>
 
-                <p
-                  className={`text-sm leading-7 mb-3 ${
-                    d ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  Our SaaS application development services support startups,
-                  founders and established businesses building subscription
-                  software, cloud software and custom web applications.
+                <p className="text-slate-600 text-[14px] sm:text-[15px] leading-7 mt-5 font-normal">
+                  The right SaaS architecture depends on who uses the product,
+                  how accounts are organised and how customers interact with
+                  the software.
                 </p>
 
-                <p
-                  className={`text-sm leading-7 ${
-                    d ? 'text-gray-400' : 'text-gray-600'
-                  }`}
+                <p className="text-slate-500 text-[13px] leading-6 mt-3 font-normal">
+                  We adapt the application structure around the business model,
+                  product stage, user roles and expected future requirements.
+                </p>
+
+                <a
+                  href="#project-enquiry"
+                  className="inline-flex items-center gap-2 mt-6 text-[12px] font-semibold text-[#07899a] hover:text-[#071923] transition-colors"
                 >
-                  DevZore develops SaaS web applications using technologies
-                  such as React, Next.js, Node.js, MongoDB and PostgreSQL.
-                  Platforms can include multi-tenant architecture, subscription
-                  billing, role-based access, dashboards, admin panels, APIs
-                  and cloud deployment.
+                  Discuss Your SaaS Product
+                  <ArrowRight size={14} />
+                </a>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                {saasTypes.map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 hover:border-[#0796A8]/35 transition-colors"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[#eef4f5] text-[#07899a] flex items-center justify-center">
+                      {item.icon}
+                    </div>
+
+                    <h3 className="text-[#071923] font-semibold text-[16px] leading-6 mt-5">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-slate-500 text-[12px] leading-6 mt-2 font-normal">
+                      {item.desc}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* REQUIREMENTS */}
+
+        <section
+          aria-labelledby="product-requirements-heading"
+          className="py-14 md:py-16 bg-white"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+              <div>
+                <SectionLabel>Product Requirements</SectionLabel>
+
+                <div className="w-10 h-10 mt-5 rounded-xl bg-[#edf5f6] text-[#07899a] flex items-center justify-center">
+                  <Workflow size={19} />
+                </div>
+
+                <h2
+                  id="product-requirements-heading"
+                  className="text-[#071923] text-[30px] sm:text-[36px] md:text-[44px] font-semibold tracking-[-0.035em] leading-[1.08] mt-5"
+                >
+                  Does your SaaS product need more than a basic application?
+                </h2>
+
+                <p className="text-slate-600 text-[14px] sm:text-[15px] leading-7 mt-5 font-normal">
+                  SaaS products often combine users, billing, permissions,
+                  reporting, data and third-party services into one connected
+                  experience.
+                </p>
+
+                <p className="text-slate-500 text-[13px] leading-6 mt-3 font-normal">
+                  We can review the product requirements and organise these
+                  systems into a practical application structure.
                 </p>
               </div>
 
-              <div
-                className={`p-6 rounded-2xl border ${
-                  d
-                    ? 'bg-white/[0.02] border-white/[0.06]'
-                    : 'bg-[#fafafa] border-gray-200'
-                }`}
-              >
-                <p
-                  className={`text-[12px] font-black uppercase tracking-widest mb-4 ${
-                    d ? 'text-gray-400' : 'text-gray-500'
-                  }`}
-                >
-                  SaaS Development Expertise
+              <div className="rounded-2xl border border-slate-200 bg-[#f8fafb] p-5 sm:p-6">
+                <p className="text-[#071923] text-[10px] font-bold tracking-[0.17em] uppercase">
+                  Common SaaS requirements
                 </p>
 
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    'SaaS Development',
-                    'Custom SaaS Development',
-                    'SaaS Product Development',
-                    'SaaS Application Development',
-                    'SaaS Software Development',
-                    'SaaS Platform Development',
-                    'SaaS Web Application Development',
-                    'SaaS MVP Development',
-                    'B2B SaaS Development',
-                    'B2C SaaS Development',
-                    'Subscription Software Development',
-                    'Cloud Software Development',
-                    'SaaS UI/UX Design',
-                    'Multi-Tenant SaaS',
-                    'React SaaS Development',
-                    'Node.js SaaS Backend',
-                  ].map((item) => (
-                    <span
+                <div className="grid sm:grid-cols-2 gap-2.5 mt-5">
+                  {productRequirements.map((item) => (
+                    <div
                       key={item}
-                      className={`px-3 py-2 rounded-lg border text-[11px] font-semibold ${
-                        d
-                          ? 'bg-white/[0.03] border-white/[0.08] text-gray-300'
-                          : 'bg-white border-gray-200 text-gray-700'
-                      }`}
+                      className="flex items-start gap-2.5 rounded-xl bg-white border border-slate-100 p-3.5"
                     >
-                      {item}
-                    </span>
+                      <CheckCircle2
+                        size={14}
+                        className="text-[#0796A8] flex-shrink-0 mt-0.5"
+                      />
+
+                      <span className="text-slate-600 text-[11px] leading-5 font-normal">
+                        {item}
+                      </span>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -956,251 +1106,310 @@ const SaaSProductDevelopment = ({ isDark }) => {
           </div>
         </section>
 
-        {/* ================= TECHNOLOGY ================= */}
+        {/* PROCESS */}
 
         <section
-          aria-labelledby="technology-heading"
-          className={`py-12 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
-          }`}
+          aria-labelledby="saas-process-heading"
+          className="relative py-14 md:py-16 bg-[#071923] text-white"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Technology
-              </p>
+          <div
+            className="absolute inset-0"
+            style={darkGrid}
+          />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[820px] mb-10">
+              <SectionLabel light>Our Process</SectionLabel>
 
               <h2
-                id="technology-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
+                id="saas-process-heading"
+                className="text-[30px] sm:text-[36px] md:text-[44px] font-semibold tracking-[-0.035em] leading-[1.08] mt-4"
               >
-                Technologies for SaaS Product Development
+                From SaaS concept{" "}
+                <span className="text-[#25bfce]">
+                  to production.
+                </span>
               </h2>
 
-              <p
-                className={`text-base ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                We select technologies according to your SaaS architecture,
-                integrations, product requirements and future development
-                needs.
+              <p className="text-slate-400 text-[14px] sm:text-[15px] leading-7 mt-4 font-normal">
+                A structured process keeps product requirements, user
+                workflows, development, testing and launch easier to manage.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {technologies.map((tech) => (
-                <div
-                  key={tech.title}
-                  className={`p-5 rounded-2xl border ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-white border-gray-200'
-                  }`}
-                >
-                  <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center mb-3 ${
-                      d
-                        ? 'bg-purple-500/10 text-purple-400'
-                        : 'bg-purple-50 text-purple-600'
-                    }`}
-                  >
-                    {tech.icon}
-                  </div>
-
-                  <h3
-                    className={`font-bold text-sm mb-2 ${
-                      d ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
-                    {tech.title}
-                  </h3>
-
-                  <p
-                    className={`text-[12px] leading-6 ${
-                      d ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
-                    {tech.items}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ================= PROCESS ================= */}
-
-        <section
-          aria-labelledby="process-heading"
-          className={`py-12 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Our Process
-              </p>
-
-              <h2
-                id="process-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                Our SaaS Product Development Process
-              </h2>
-
-              <p
-                className={`text-base max-w-2xl mx-auto ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                A structured SaaS development workflow from product planning
-                and architecture through development, testing and deployment.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.08] border border-white/[0.08] rounded-2xl overflow-hidden">
               {process.map((step) => (
-                <div
-                  key={step.n}
-                  className={`p-5 rounded-2xl border ${
-                    d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-[#fafafa] border-gray-200'
-                  }`}
+                <article
+                  key={step.number}
+                  className="relative bg-[#071923] p-6 min-h-[190px] hover:bg-[#0a202a] transition-colors"
                 >
-                  <div className="text-[13px] font-black mb-2 text-purple-500">
-                    {step.n}
-                  </div>
+                  <span className="text-[10px] font-bold text-[#22bfce]">
+                    {step.number}
+                  </span>
 
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
+                  <h3 className="text-[17px] font-semibold mt-7">
                     {step.title}
                   </h3>
 
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
+                  <p className="text-slate-400 text-[12px] leading-6 mt-2.5 font-normal">
                     {step.desc}
                   </p>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ================= FAQ ================= */}
+        {/* USE CASES */}
 
         <section
-          aria-labelledby="faq-heading"
-          className={`py-12 border-b ${
-            d
-              ? 'border-white/[0.06] bg-[#050505]'
-              : 'border-gray-100 bg-[#fafafa]'
-          }`}
+          aria-labelledby="saas-use-cases-heading"
+          className="py-14 md:py-16 bg-[#f7f9fa]"
+          style={lightGrid}
         >
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Questions & Answers
-              </p>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.75fr_1.25fr] gap-8 lg:gap-14">
+              <div>
+                <SectionLabel>SaaS Use Cases</SectionLabel>
+
+                <h2
+                  id="saas-use-cases-heading"
+                  className="text-[#071923] text-[30px] sm:text-[36px] md:text-[44px] font-semibold tracking-[-0.035em] leading-[1.08] mt-4"
+                >
+                  Different products. Different workflows.
+                </h2>
+
+                <p className="text-slate-600 text-[14px] leading-7 mt-5 font-normal">
+                  SaaS architecture and functionality can be adapted to the
+                  industry, user journey, business model and operational
+                  requirements of the product.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                {useCases.map((item, index) => (
+                  <div
+                    key={item}
+                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-5 hover:border-[#0796A8]/40 transition-colors"
+                  >
+                    <div>
+                      <span className="text-[9px] font-bold text-[#0796A8]">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <h3 className="text-[#071923] text-[13px] font-semibold mt-1.5">
+                        {item}
+                      </h3>
+                    </div>
+
+                    <ArrowUpRight
+                      size={14}
+                      className="text-slate-300 group-hover:text-[#0796A8]"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* WHY DEVZORE */}
+
+        <section
+          aria-labelledby="why-devzore-heading"
+          className="py-14 md:py-16 bg-white"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[850px] mb-10">
+              <SectionLabel>Why DevZore</SectionLabel>
 
               <h2
-                id="faq-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
+                id="why-devzore-heading"
+                className="text-[#071923] text-[30px] sm:text-[36px] md:text-[44px] font-semibold tracking-[-0.035em] leading-[1.08] mt-4"
               >
-                SaaS Product Development FAQ
+                Built around your SaaS product,{" "}
+                <span className="text-[#0796A8]">
+                  not a generic template.
+                </span>
               </h2>
 
-              <p
-                className={`text-base ${
-                  d ? 'text-gray-400' : 'text-gray-600'
-                }`}
-              >
-                Common questions about custom SaaS development, SaaS MVPs,
-                B2B and B2C applications, subscriptions and technology.
+              <p className="text-slate-600 text-[14px] sm:text-[15px] leading-7 mt-4 font-normal">
+                We focus on what the software needs to achieve for the business
+                and the users who will depend on it.
               </p>
             </div>
 
-            <div className="space-y-3">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {whyDevZore.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-2xl border border-slate-200 bg-[#fbfcfc] p-5 sm:p-6 hover:border-[#0796A8]/35 transition-colors"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[#eef4f5] text-[#07899a] flex items-center justify-center">
+                    {item.icon}
+                  </div>
+
+                  <h3 className="text-[#071923] text-[16px] leading-6 font-semibold mt-5">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-slate-500 text-[12px] leading-6 mt-2 font-normal">
+                    {item.desc}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* RELATED */}
+
+        <section
+          aria-labelledby="related-services-heading"
+          className="py-14 md:py-16 bg-[#f7f9fa] border-y border-slate-200"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-9">
+              <div>
+                <SectionLabel>Related Services</SectionLabel>
+
+                <h2
+                  id="related-services-heading"
+                  className="text-[#071923] text-[30px] sm:text-[36px] md:text-[44px] font-semibold tracking-[-0.035em] leading-[1.08] mt-4"
+                >
+                  More ways DevZore can help.
+                </h2>
+              </div>
+
+              <Link
+                to="/allservices"
+                onClick={scrollTop}
+                className="inline-flex items-center gap-2 text-[12px] font-semibold text-[#07899a]"
+              >
+                View All Services
+                <ArrowRight size={14} />
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+              {relatedServices.map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  onClick={scrollTop}
+                  className="group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 hover:border-[#0796A8]/40 hover:-translate-y-1 transition-all"
+                >
+                  <span className="text-[9px] tracking-[0.16em] font-bold text-[#0796A8]">
+                    {service.label}
+                  </span>
+
+                  <h3 className="text-[#071923] text-[16px] leading-6 font-semibold mt-4">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-500 text-[11px] leading-6 mt-2 font-normal">
+                    {service.desc}
+                  </p>
+
+                  <div className="flex items-center justify-between mt-5 pt-4 border-t border-slate-100">
+                    <span className="text-[10px] font-medium text-slate-500 group-hover:text-[#07899a]">
+                      Explore service
+                    </span>
+
+                    <ArrowUpRight
+                      size={14}
+                      className="text-[#07899a]"
+                    />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+
+        <section
+          aria-labelledby="faq-heading"
+          className="py-14 md:py-16 bg-white"
+        >
+          <div className="max-w-[980px] mx-auto px-5 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-9">
+              <div>
+                <SectionLabel>FAQ</SectionLabel>
+
+                <h2
+                  id="faq-heading"
+                  className="text-[#071923] text-[30px] sm:text-[36px] md:text-[44px] font-semibold tracking-[-0.035em] leading-[1.08] mt-4"
+                >
+                  SaaS development questions clients actually ask.
+                </h2>
+              </div>
+
+              <a
+                href="#project-enquiry"
+                className="self-start md:self-auto inline-flex items-center gap-2 rounded-lg bg-[#071923] px-5 py-3 text-[11px] font-semibold text-white"
+              >
+                Ask Your Question
+                <ArrowRight size={13} />
+              </a>
+            </div>
+
+            <div className="border-t border-slate-200">
               {visibleFaqs.map((faq, index) => {
                 const isOpen = activeFaq === index;
 
                 return (
                   <div
                     key={faq.q}
-                    className={`rounded-xl border overflow-hidden transition-all duration-300 ${
-                      isOpen
-                        ? d
-                          ? 'border-purple-500/40 bg-purple-600/5'
-                          : 'border-purple-200 bg-purple-50/50'
-                        : d
-                          ? 'border-white/[0.06] bg-white/[0.02]'
-                          : 'border-gray-200 bg-white'
-                    }`}
+                    className="border-b border-slate-200"
                   >
                     <button
                       type="button"
-                      onClick={() => setActiveFaq(isOpen ? null : index)}
+                      onClick={() =>
+                        setActiveFaq(isOpen ? null : index)
+                      }
                       aria-expanded={isOpen}
                       aria-controls={`saas-faq-${index}`}
-                      className="w-full px-5 py-4 text-left flex items-start justify-between gap-4"
+                      className="w-full flex items-center justify-between gap-5 py-5 text-left"
                     >
                       <span
-                        className={`text-[14px] font-bold ${
+                        className={`text-[14px] sm:text-[15px] font-semibold transition-colors ${
                           isOpen
-                            ? 'text-purple-500'
-                            : d
-                              ? 'text-white'
-                              : 'text-gray-900'
+                            ? "text-[#07899a]"
+                            : "text-[#071923]"
                         }`}
                       >
                         {faq.q}
                       </span>
 
-                      <div
-                        className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${
+                      <span
+                        className={`w-8 h-8 flex-shrink-0 rounded-full border flex items-center justify-center transition-all ${
                           isOpen
-                            ? 'bg-purple-600 text-white'
-                            : d
-                              ? 'bg-white/[0.06] text-gray-500'
-                              : 'bg-gray-100 text-gray-500'
+                            ? "border-[#0796A8] bg-[#0796A8] text-white"
+                            : "border-slate-200 text-[#071923]"
                         }`}
                       >
-                        {isOpen ? <Minus size={13} /> : <Plus size={13} />}
-                      </div>
+                        {isOpen ? (
+                          <Minus size={13} />
+                        ) : (
+                          <Plus size={13} />
+                        )}
+                      </span>
                     </button>
 
                     <div
                       id={`saas-faq-${index}`}
-                      className={`overflow-hidden transition-all duration-300 ${
+                      className={`grid transition-all duration-300 ${
                         isOpen
-                          ? 'max-h-[500px] opacity-100'
-                          : 'max-h-0 opacity-0'
+                          ? "grid-rows-[1fr] opacity-100"
+                          : "grid-rows-[0fr] opacity-0"
                       }`}
                     >
-                      <div
-                        className={`px-5 pb-4 border-t text-[14px] leading-relaxed ${
-                          d
-                            ? 'border-white/[0.06] text-gray-400'
-                            : 'border-purple-100 text-gray-600'
-                        }`}
-                      >
-                        <p className="pt-4">{faq.a}</p>
+                      <div className="overflow-hidden">
+                        <p className="max-w-3xl pb-5 text-[13px] leading-7 text-slate-600 font-normal">
+                          {faq.a}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -1208,30 +1417,24 @@ const SaaSProductDevelopment = ({ isDark }) => {
               })}
             </div>
 
-            {faqs.length > 5 && (
-              <div className="text-center mt-6">
+            {faqs.length > 3 && (
+              <div className="flex justify-center mt-6">
                 <button
                   type="button"
                   onClick={() => {
-                    setShowAllFaqs((prev) => !prev);
+                    setShowAllFaqs((current) => !current);
                     setActiveFaq(null);
                   }}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm font-bold transition-all ${
-                    d
-                      ? 'border-white/10 text-gray-300 hover:border-purple-500/30 hover:text-purple-400'
-                      : 'border-gray-200 text-gray-700 hover:border-purple-200 hover:text-purple-700'
-                  }`}
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#071923]/15 bg-[#f8fafb] px-5 py-3 text-[11px] font-semibold text-[#071923] hover:border-[#0796A8]/50 transition-colors"
                 >
+                  {showAllFaqs
+                    ? "Show Less Questions"
+                    : `Show More Questions (${faqs.length - 3})`}
+
                   {showAllFaqs ? (
-                    <>
-                      Show Less
-                      <ChevronUp size={15} />
-                    </>
+                    <ChevronUp size={14} />
                   ) : (
-                    <>
-                      Show More FAQs
-                      <ChevronDown size={15} />
-                    </>
+                    <ChevronDown size={14} />
                   )}
                 </button>
               </div>
@@ -1239,143 +1442,261 @@ const SaaSProductDevelopment = ({ isDark }) => {
           </div>
         </section>
 
-        {/* ================= RELATED ================= */}
+        {/* PROJECT FORM */}
 
         <section
-          aria-labelledby="related-services-heading"
-          className={`py-12 border-b ${
-            d ? 'border-white/[0.06]' : 'border-gray-100'
-          }`}
+          id="project-enquiry"
+          aria-labelledby="project-enquiry-heading"
+          className="relative py-14 md:py-16 bg-[#071923] text-white overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-7">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Explore More
-              </p>
+          <div
+            className="absolute inset-0 opacity-70"
+            style={darkGrid}
+          />
 
-              <h2
-                id="related-services-heading"
-                className={`text-2xl md:text-3xl font-black ${
-                  d ? 'text-white' : 'text-gray-900'
-                }`}
-              >
-                Related Software Development Services
-              </h2>
-            </div>
+          <div className="absolute -top-20 left-[5%] w-[450px] h-[450px] rounded-full bg-[#0796A8]/10 blur-[130px]" />
 
-            <div className="grid md:grid-cols-3 gap-4">
-              {relatedServices.map((service) => (
-                <Link
-                  key={service.path}
-                  to={service.path}
-                  onClick={scrollTop}
-                  className={`group p-6 rounded-2xl border transition-all duration-300 ${
-                    d
-                      ? 'bg-white/[0.015] border-white/[0.08] hover:bg-white/[0.035] hover:border-purple-500/30'
-                      : 'bg-white border-gray-200 hover:border-purple-200 hover:shadow-md'
-                  }`}
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.82fr_1.18fr] gap-9 lg:gap-14">
+              <div>
+                <SectionLabel light>Start a Project</SectionLabel>
+
+                <h2
+                  id="project-enquiry-heading"
+                  className="text-[32px] sm:text-[38px] md:text-[48px] leading-[1.07] tracking-[-0.04em] font-semibold mt-4"
                 >
-                  <div
-                    className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${
-                      d
-                        ? 'bg-purple-500/10 text-purple-400'
-                        : 'bg-purple-50 text-purple-600'
-                    }`}
-                  >
-                    {service.icon}
-                  </div>
+                  Tell us what you{" "}
+                  <span className="text-[#25bfce]">
+                    want to build.
+                  </span>
+                </h2>
 
-                  <h3
-                    className={`text-base font-black mb-2 ${
-                      d ? 'text-white' : 'text-gray-900'
-                    }`}
-                  >
-                    {service.title}
-                  </h3>
+                <p className="text-slate-300 text-[15px] leading-7 mt-5 max-w-lg font-normal">
+                  Share a few details about your SaaS product, target users,
+                  business model and required workflows. We can review the
+                  requirements and discuss the most appropriate next step.
+                </p>
 
-                  <p
-                    className={`text-[13px] leading-relaxed mb-4 ${
-                      d ? 'text-gray-400' : 'text-gray-600'
-                    }`}
-                  >
-                    {service.desc}
+                <div className="mt-7 space-y-3.5">
+                  {[
+                    "SaaS MVP and subscription products",
+                    "Multi-tenant platforms",
+                    "Dashboards and administration systems",
+                    "Backend APIs and integrations",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-2.5"
+                    >
+                      <div className="w-5 h-5 rounded-full bg-[#19b9c8]/10 border border-[#19b9c8]/25 flex items-center justify-center">
+                        <Check
+                          size={10}
+                          className="text-[#2ac6d4]"
+                        />
+                      </div>
+
+                      <span className="text-[12px] font-medium text-slate-300">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-white/[0.08]">
+                  <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-slate-500">
+                    Prefer a direct conversation?
                   </p>
 
-                  <span className="inline-flex items-center gap-2 text-[12px] font-bold text-purple-500 group-hover:gap-3 transition-all">
-                    Learn More
-                    <ArrowRight size={13} />
-                  </span>
-                </Link>
-              ))}
-            </div>
+                  <a
+                    href="mailto:hellodevzore@gmail.com"
+                    className="inline-flex items-center gap-2 mt-3 text-[13px] font-medium text-[#26c4d2]"
+                  >
+                    <Mail size={14} />
+                    hellodevzore@gmail.com
+                  </a>
+                </div>
+              </div>
 
-            <div className="text-center mt-6">
-              <Link
-                to="/allservices"
-                onClick={scrollTop}
-                className={`inline-flex items-center gap-2 text-[13px] font-bold ${
-                  d
-                    ? 'text-gray-400 hover:text-purple-400'
-                    : 'text-gray-600 hover:text-purple-700'
-                }`}
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-2xl border border-white/[0.1] bg-[#0a202a]/90 p-5 sm:p-7 shadow-[0_30px_80px_rgba(0,0,0,0.25)]"
               >
-                View All DevZore Services
-                <ArrowRight size={13} />
-              </Link>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      htmlFor="saas-name"
+                      className="block text-[10px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-2"
+                    >
+                      Your Name *
+                    </label>
+
+                    <input
+                      id="saas-name"
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-4 py-3.5 text-[13px] font-normal text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="saas-email"
+                      className="block text-[10px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-2"
+                    >
+                      Email Address *
+                    </label>
+
+                    <input
+                      id="saas-email"
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="you@company.com"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-4 py-3.5 text-[13px] font-normal text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="saas-company"
+                      className="block text-[10px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-2"
+                    >
+                      Company / Startup
+                    </label>
+
+                    <input
+                      id="saas-company"
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      placeholder="Company name"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-4 py-3.5 text-[13px] font-normal text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="saas-service"
+                      className="block text-[10px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-2"
+                    >
+                      Project Type
+                    </label>
+
+                    <select
+                      id="saas-service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-4 py-3.5 text-[13px] font-normal text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    >
+                      <option>SaaS Product Development</option>
+                      <option>SaaS MVP Development</option>
+                      <option>B2B SaaS</option>
+                      <option>B2C SaaS</option>
+                      <option>Multi-Tenant SaaS</option>
+                      <option>SaaS Dashboard</option>
+                      <option>Subscription Platform</option>
+                      <option>Existing SaaS Improvement</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label
+                      htmlFor="saas-timeline"
+                      className="block text-[10px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-2"
+                    >
+                      Preferred Timeline
+                    </label>
+
+                    <select
+                      id="saas-timeline"
+                      name="timeline"
+                      value={formData.timeline}
+                      onChange={handleChange}
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-4 py-3.5 text-[13px] font-normal text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    >
+                      <option value="">Select a timeline</option>
+                      <option>As soon as possible</option>
+                      <option>Within 1 month</option>
+                      <option>1–3 months</option>
+                      <option>3+ months</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label
+                      htmlFor="saas-message"
+                      className="block text-[10px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-2"
+                    >
+                      Project Details *
+                    </label>
+
+                    <textarea
+                      id="saas-message"
+                      name="message"
+                      required
+                      rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us about your SaaS idea, users, business model, important workflows and features..."
+                      className="w-full resize-none rounded-lg border border-white/[0.1] bg-[#071923] px-4 py-3.5 text-[13px] font-normal leading-6 text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-5">
+                  <p className="text-[10px] leading-5 text-slate-500 max-w-sm font-normal">
+                    Share enough detail for us to understand the product. We
+                    can discuss scope, specifications and technical
+                    requirements in more detail afterwards.
+                  </p>
+
+                  <button
+                    type="submit"
+                    className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#1bbdca] hover:bg-[#28c9d5] px-6 py-3.5 text-[12px] font-semibold text-[#071923] transition-colors"
+                  >
+                    Send Project Enquiry
+                    <Send size={14} />
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </section>
 
-        {/* ================= FINAL CTA ================= */}
+        {/* BOTTOM CTA */}
 
-        <section className="py-12">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-              Start Your SaaS Project
-            </p>
+        <section className="bg-[#06151d] border-t border-white/[0.06]">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6 py-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <p className="text-white text-[15px] font-semibold">
+                  Have a SaaS product idea? We’re here to help you build it.
+                </p>
 
-            <h2
-              className={`text-3xl font-black mb-3 ${
-                d ? 'text-white' : 'text-gray-900'
-              }`}
-            >
-              Need a SaaS Development Partner?
-            </h2>
+                <p className="text-slate-500 text-[11px] leading-5 mt-1.5 font-normal">
+                  SaaS platforms, MVPs and custom software development by
+                  DevZore.
+                </p>
+              </div>
 
-            <p
-              className={`text-base mb-6 max-w-2xl mx-auto leading-relaxed ${
-                d ? 'text-gray-400' : 'text-gray-600'
-              }`}
-            >
-              Tell us about your SaaS product, target users and core features.
-              We can discuss your SaaS MVP, application architecture,
-              frontend, backend, database, subscriptions, integrations and
-              deployment requirements.
-            </p>
-
-            <div className="flex flex-wrap gap-3 justify-center">
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="flex items-center gap-2 px-8 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
+                className="inline-flex self-start items-center gap-2 rounded-lg bg-white px-5 py-3 text-[11px] font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
               >
-                Discuss Your SaaS Project
-                <ArrowRight size={15} />
+                Contact DevZore
+                <ArrowUpRight size={13} />
               </Link>
-
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-center gap-2 px-8 py-3.5 font-bold rounded-xl text-sm border transition-all ${
-                  d
-                    ? 'border-white/10 text-gray-300 hover:border-[#25D366]/30 hover:text-[#25D366]'
-                    : 'border-gray-200 text-gray-700 hover:border-[#25D366]/40 hover:text-[#159447]'
-                }`}
-              >
-                WhatsApp DevZore
-                <ArrowRight size={15} />
-              </a>
             </div>
           </div>
         </section>

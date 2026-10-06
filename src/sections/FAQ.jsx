@@ -191,7 +191,7 @@ const FAQ = ({ isDark = true }) => {
   ];
 
   // ======================================================
-  // FILTERED FAQS
+  // FILTERING
   // ======================================================
 
   const filteredFaqs = useMemo(() => {
@@ -201,10 +201,6 @@ const FAQ = ({ isDark = true }) => {
 
     return faqs.filter((faq) => faq.category === activeCategory);
   }, [activeCategory]);
-
-  // ======================================================
-  // VISIBLE FAQS
-  // ======================================================
 
   const visibleFaqs = showAll
     ? filteredFaqs
@@ -237,6 +233,7 @@ const FAQ = ({ isDark = true }) => {
   const scrollTop = () => {
     window.scrollTo({
       top: 0,
+      left: 0,
       behavior: "smooth",
     });
   };
@@ -249,46 +246,138 @@ const FAQ = ({ isDark = true }) => {
     <section
       id="faq"
       aria-labelledby="faq-heading"
-      className={`py-10 sm:py-12 transition-colors duration-300 ${
-        d ? "bg-[#030303]" : "bg-white"
+      className={`relative overflow-hidden py-12 sm:py-14 lg:py-16 transition-colors duration-300 ${
+        d ? "bg-[#061923]" : "bg-[#f7f8f8]"
       }`}
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ==================================================
+          SUBTLE BACKGROUND
+      ================================================== */}
+
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+      >
+        <div
+          className={`absolute
+            -top-40
+            right-[-120px]
+            w-[420px]
+            h-[420px]
+            rounded-full
+            blur-[150px]
+            ${
+              d
+                ? "bg-cyan-400/[0.035]"
+                : "bg-cyan-100/40"
+            }
+          `}
+        />
+
+        <div
+          className={`absolute
+            -bottom-52
+            left-[-140px]
+            w-[440px]
+            h-[440px]
+            rounded-full
+            blur-[160px]
+            ${
+              d
+                ? "bg-cyan-400/[0.02]"
+                : "bg-slate-200/60"
+            }
+          `}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ==================================================
             HEADER
         ================================================== */}
 
-        <div className="max-w-3xl mx-auto text-center mb-7">
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-9">
+
+          {/* LABEL */}
+
           <div
-            className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border mb-3 ${
-              d
-                ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
-                : "bg-purple-50 border-purple-200 text-purple-700"
-            }`}
+            className={`inline-flex
+              items-center
+              gap-2
+              text-[9px]
+              sm:text-[10px]
+              font-black
+              uppercase
+              tracking-[0.2em]
+              mb-3
+              ${
+                d
+                  ? "text-cyan-400"
+                  : "text-[#08788c]"
+              }
+            `}
           >
-            <MessageSquare size={11} />
-            FAQ
+            <span
+              className={`w-6 h-[2px] ${
+                d ? "bg-cyan-400" : "bg-[#08788c]"
+              }`}
+            />
+
+            Frequently Asked Questions
+
+            <span
+              className={`w-6 h-[2px] ${
+                d ? "bg-cyan-400" : "bg-[#08788c]"
+              }`}
+            />
           </div>
+
+          {/* TITLE */}
 
           <h2
             id="faq-heading"
-            className={`text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight mb-3 ${
-              d ? "text-white" : "text-slate-950"
-            }`}
+            className={`text-[28px]
+              sm:text-[36px]
+              lg:text-[42px]
+              leading-[1.08]
+              tracking-[-0.035em]
+              font-black
+              ${
+                d ? "text-white" : "text-[#061923]"
+              }
+            `}
           >
-            Frequently Asked{" "}
-            <span className="text-purple-600">
-              Questions
+            Questions? We&apos;ve got{" "}
+            <span
+              className={
+                d
+                  ? "text-cyan-400"
+                  : "text-[#08788c]"
+              }
+            >
+              answers.
             </span>
           </h2>
 
+          {/* DESCRIPTION */}
+
           <p
-            className={`text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto ${
-              d ? "text-gray-400" : "text-slate-600"
-            }`}
+            className={`mt-4
+              max-w-2xl
+              mx-auto
+              text-[11px]
+              sm:text-[13px]
+              lg:text-[14px]
+              leading-6 sm:leading-7
+              ${
+                d
+                  ? "text-slate-400"
+                  : "text-slate-600"
+              }
+            `}
           >
-            Answers about DevZore&apos;s development services, project process,
+            Find answers about our development services, project process,
             pricing, technologies, SEO, digital marketing and ongoing support.
           </p>
         </div>
@@ -297,33 +386,50 @@ const FAQ = ({ isDark = true }) => {
             QUICK LINKS
         ================================================== */}
 
-        <div className="grid sm:grid-cols-3 gap-2 mb-6">
+        <div className="grid sm:grid-cols-3 gap-2.5 mb-7">
 
           {/* DEVELOPMENT */}
 
           <Link
             to="/allservices"
             onClick={scrollTop}
-            className={`group flex items-center gap-2.5 p-3 rounded-xl border transition-all ${
-              d
-                ? "bg-white/[0.02] border-white/[0.06] hover:border-purple-500/25 hover:bg-white/[0.04]"
-                : "bg-slate-50 border-slate-200 hover:border-purple-200 hover:bg-white"
-            }`}
+            className={`group
+              flex
+              items-center
+              gap-3
+              p-3.5
+              rounded-xl
+              border
+              transition-all
+              duration-200
+              ${
+                d
+                  ? "bg-white/[0.025] border-white/[0.07] hover:bg-white/[0.045] hover:border-cyan-400/20"
+                  : "bg-white border-slate-200 hover:border-[#08788c]/30 hover:shadow-sm"
+              }
+            `}
           >
             <div
-              className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                d
-                  ? "bg-purple-500/10 text-purple-400"
-                  : "bg-purple-50 text-purple-600"
-              }`}
+              className={`w-9 h-9
+                rounded-lg
+                flex
+                items-center
+                justify-center
+                shrink-0
+                ${
+                  d
+                    ? "bg-cyan-400/[0.08] text-cyan-400"
+                    : "bg-[#08788c]/[0.07] text-[#08788c]"
+                }
+              `}
             >
-              <Code2 size={14} />
+              <Code2 size={15} />
             </div>
 
             <div className="min-w-0">
               <p
-                className={`text-[11px] font-bold ${
-                  d ? "text-white" : "text-slate-900"
+                className={`text-[11px] sm:text-[12px] font-bold ${
+                  d ? "text-white" : "text-[#061923]"
                 }`}
               >
                 Development
@@ -331,7 +437,7 @@ const FAQ = ({ isDark = true }) => {
 
               <p
                 className={`text-[9px] mt-0.5 ${
-                  d ? "text-gray-500" : "text-slate-500"
+                  d ? "text-slate-500" : "text-slate-500"
                 }`}
               >
                 Web, mobile & software
@@ -339,8 +445,10 @@ const FAQ = ({ isDark = true }) => {
             </div>
 
             <ArrowRight
-              size={11}
-              className="ml-auto text-purple-500 transition-transform group-hover:translate-x-0.5"
+              size={12}
+              className={`ml-auto transition-transform group-hover:translate-x-0.5 ${
+                d ? "text-cyan-400" : "text-[#08788c]"
+              }`}
             />
           </Link>
 
@@ -349,26 +457,43 @@ const FAQ = ({ isDark = true }) => {
           <Link
             to="/seo-services"
             onClick={scrollTop}
-            className={`group flex items-center gap-2.5 p-3 rounded-xl border transition-all ${
-              d
-                ? "bg-white/[0.02] border-white/[0.06] hover:border-green-500/25 hover:bg-white/[0.04]"
-                : "bg-slate-50 border-slate-200 hover:border-green-200 hover:bg-white"
-            }`}
+            className={`group
+              flex
+              items-center
+              gap-3
+              p-3.5
+              rounded-xl
+              border
+              transition-all
+              duration-200
+              ${
+                d
+                  ? "bg-white/[0.025] border-white/[0.07] hover:bg-white/[0.045] hover:border-cyan-400/20"
+                  : "bg-white border-slate-200 hover:border-[#08788c]/30 hover:shadow-sm"
+              }
+            `}
           >
             <div
-              className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                d
-                  ? "bg-green-500/10 text-green-400"
-                  : "bg-green-50 text-green-600"
-              }`}
+              className={`w-9 h-9
+                rounded-lg
+                flex
+                items-center
+                justify-center
+                shrink-0
+                ${
+                  d
+                    ? "bg-cyan-400/[0.08] text-cyan-400"
+                    : "bg-[#08788c]/[0.07] text-[#08788c]"
+                }
+              `}
             >
-              <Search size={14} />
+              <Search size={15} />
             </div>
 
             <div className="min-w-0">
               <p
-                className={`text-[11px] font-bold ${
-                  d ? "text-white" : "text-slate-900"
+                className={`text-[11px] sm:text-[12px] font-bold ${
+                  d ? "text-white" : "text-[#061923]"
                 }`}
               >
                 SEO Services
@@ -376,7 +501,7 @@ const FAQ = ({ isDark = true }) => {
 
               <p
                 className={`text-[9px] mt-0.5 ${
-                  d ? "text-gray-500" : "text-slate-500"
+                  d ? "text-slate-500" : "text-slate-500"
                 }`}
               >
                 Technical & on-page SEO
@@ -384,8 +509,10 @@ const FAQ = ({ isDark = true }) => {
             </div>
 
             <ArrowRight
-              size={11}
-              className="ml-auto text-green-500 transition-transform group-hover:translate-x-0.5"
+              size={12}
+              className={`ml-auto transition-transform group-hover:translate-x-0.5 ${
+                d ? "text-cyan-400" : "text-[#08788c]"
+              }`}
             />
           </Link>
 
@@ -394,26 +521,43 @@ const FAQ = ({ isDark = true }) => {
           <Link
             to="/digital-marketing"
             onClick={scrollTop}
-            className={`group flex items-center gap-2.5 p-3 rounded-xl border transition-all ${
-              d
-                ? "bg-white/[0.02] border-white/[0.06] hover:border-pink-500/25 hover:bg-white/[0.04]"
-                : "bg-slate-50 border-slate-200 hover:border-pink-200 hover:bg-white"
-            }`}
+            className={`group
+              flex
+              items-center
+              gap-3
+              p-3.5
+              rounded-xl
+              border
+              transition-all
+              duration-200
+              ${
+                d
+                  ? "bg-white/[0.025] border-white/[0.07] hover:bg-white/[0.045] hover:border-cyan-400/20"
+                  : "bg-white border-slate-200 hover:border-[#08788c]/30 hover:shadow-sm"
+              }
+            `}
           >
             <div
-              className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                d
-                  ? "bg-pink-500/10 text-pink-400"
-                  : "bg-pink-50 text-pink-600"
-              }`}
+              className={`w-9 h-9
+                rounded-lg
+                flex
+                items-center
+                justify-center
+                shrink-0
+                ${
+                  d
+                    ? "bg-cyan-400/[0.08] text-cyan-400"
+                    : "bg-[#08788c]/[0.07] text-[#08788c]"
+                }
+              `}
             >
-              <Megaphone size={14} />
+              <Megaphone size={15} />
             </div>
 
             <div className="min-w-0">
               <p
-                className={`text-[11px] font-bold ${
-                  d ? "text-white" : "text-slate-900"
+                className={`text-[11px] sm:text-[12px] font-bold ${
+                  d ? "text-white" : "text-[#061923]"
                 }`}
               >
                 Digital Marketing
@@ -421,7 +565,7 @@ const FAQ = ({ isDark = true }) => {
 
               <p
                 className={`text-[9px] mt-0.5 ${
-                  d ? "text-gray-500" : "text-slate-500"
+                  d ? "text-slate-500" : "text-slate-500"
                 }`}
               >
                 Content, social & campaigns
@@ -429,8 +573,10 @@ const FAQ = ({ isDark = true }) => {
             </div>
 
             <ArrowRight
-              size={11}
-              className="ml-auto text-pink-500 transition-transform group-hover:translate-x-0.5"
+              size={12}
+              className={`ml-auto transition-transform group-hover:translate-x-0.5 ${
+                d ? "text-cyan-400" : "text-[#08788c]"
+              }`}
             />
           </Link>
         </div>
@@ -440,7 +586,13 @@ const FAQ = ({ isDark = true }) => {
         ================================================== */}
 
         <div
-          className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-5"
+          className="
+            flex
+            flex-wrap
+            justify-center
+            gap-1.5 sm:gap-2
+            mb-6
+          "
           aria-label="FAQ categories"
         >
           {categories.map((category) => {
@@ -451,6 +603,8 @@ const FAQ = ({ isDark = true }) => {
                     (faq) => faq.category === category
                   ).length;
 
+            const selected = activeCategory === category;
+
             return (
               <button
                 key={category}
@@ -458,22 +612,39 @@ const FAQ = ({ isDark = true }) => {
                 onClick={() =>
                   handleCategoryChange(category)
                 }
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[9px] sm:text-[10px] font-bold transition-all duration-200 border ${
-                  activeCategory === category
-                    ? "bg-purple-600 text-white border-purple-600 shadow-[0_0_12px_rgba(124,58,237,0.18)]"
-                    : d
-                    ? "bg-white/[0.03] border-white/[0.07] text-gray-500 hover:text-white hover:bg-white/[0.05]"
-                    : "bg-white border-slate-200 text-slate-500 hover:text-slate-900"
-                }`}
+                className={`inline-flex
+                  items-center
+                  gap-1.5
+                  px-3
+                  py-1.5
+                  rounded-lg
+                  border
+                  text-[9px]
+                  sm:text-[10px]
+                  font-bold
+                  transition-all
+                  duration-200
+                  ${
+                    selected
+                      ? d
+                        ? "bg-cyan-400 border-cyan-400 text-[#061923]"
+                        : "bg-[#061923] border-[#061923] text-white"
+                      : d
+                      ? "bg-white/[0.025] border-white/[0.07] text-slate-500 hover:text-white hover:bg-white/[0.05]"
+                      : "bg-white border-slate-200 text-slate-500 hover:border-slate-300 hover:text-[#061923]"
+                  }
+                `}
               >
                 {category}
 
                 <span
                   className={`text-[8px] ${
-                    activeCategory === category
-                      ? "text-purple-100"
+                    selected
+                      ? d
+                        ? "text-[#061923]/60"
+                        : "text-white/60"
                       : d
-                      ? "text-gray-600"
+                      ? "text-slate-600"
                       : "text-slate-400"
                   }`}
                 >
@@ -488,22 +659,28 @@ const FAQ = ({ isDark = true }) => {
             FAQ ACCORDION
         ================================================== */}
 
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           {visibleFaqs.map((faq, index) => {
             const isOpen = activeIndex === index;
 
             return (
               <div
                 key={`${activeCategory}-${faq.question}`}
-                className={`rounded-xl border overflow-hidden transition-all duration-300 ${
-                  isOpen
-                    ? d
-                      ? "border-purple-500/30 bg-purple-600/[0.035]"
-                      : "border-purple-200 bg-purple-50/40"
-                    : d
-                    ? "border-white/[0.06] bg-white/[0.018] hover:border-white/[0.10]"
-                    : "border-slate-200 bg-white hover:border-slate-300"
-                }`}
+                className={`rounded-xl
+                  border
+                  overflow-hidden
+                  transition-all
+                  duration-300
+                  ${
+                    isOpen
+                      ? d
+                        ? "border-cyan-400/25 bg-cyan-400/[0.035]"
+                        : "border-[#08788c]/25 bg-[#08788c]/[0.025]"
+                      : d
+                      ? "border-white/[0.07] bg-white/[0.02] hover:border-white/[0.12]"
+                      : "border-slate-200 bg-white hover:border-slate-300"
+                  }
+                `}
               >
                 {/* QUESTION */}
 
@@ -511,20 +688,42 @@ const FAQ = ({ isDark = true }) => {
                   type="button"
                   onClick={() => toggleFaq(index)}
                   aria-expanded={isOpen}
-                  className="w-full px-4 py-3.5 sm:px-4 sm:py-4 text-left flex items-center justify-between gap-4"
+                  className="
+                    w-full
+                    px-4
+                    py-3.5
+                    sm:px-5
+                    sm:py-4
+                    text-left
+                    flex
+                    items-center
+                    justify-between
+                    gap-4
+                  "
                 >
                   <div className="flex items-center gap-3 min-w-0">
 
                     {/* CATEGORY */}
 
                     <span
-                      className={`hidden sm:inline-flex shrink-0 text-[8px] font-bold px-2 py-1 rounded-full ${
-                        isOpen
-                          ? "bg-purple-500/15 text-purple-400"
-                          : d
-                          ? "bg-white/[0.05] text-gray-600"
-                          : "bg-slate-100 text-slate-500"
-                      }`}
+                      className={`hidden
+                        sm:inline-flex
+                        shrink-0
+                        text-[8px]
+                        font-bold
+                        px-2
+                        py-1
+                        rounded-md
+                        ${
+                          isOpen
+                            ? d
+                              ? "bg-cyan-400/[0.09] text-cyan-400"
+                              : "bg-[#08788c]/[0.07] text-[#08788c]"
+                            : d
+                            ? "bg-white/[0.05] text-slate-500"
+                            : "bg-slate-100 text-slate-500"
+                        }
+                      `}
                     >
                       {faq.category}
                     </span>
@@ -532,33 +731,52 @@ const FAQ = ({ isDark = true }) => {
                     {/* QUESTION TEXT */}
 
                     <span
-                      className={`text-[11px] sm:text-[12px] lg:text-[13px] font-bold leading-relaxed ${
-                        isOpen
-                          ? "text-purple-500"
-                          : d
-                          ? "text-gray-200"
-                          : "text-slate-900"
-                      }`}
+                      className={`text-[11px]
+                        sm:text-[12px]
+                        lg:text-[13px]
+                        font-bold
+                        leading-relaxed
+                        ${
+                          isOpen
+                            ? d
+                              ? "text-cyan-400"
+                              : "text-[#08788c]"
+                            : d
+                            ? "text-slate-200"
+                            : "text-[#061923]"
+                        }
+                      `}
                     >
                       {faq.question}
                     </span>
                   </div>
 
-                  {/* ICON */}
+                  {/* PLUS / MINUS */}
 
                   <div
-                    className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all ${
-                      isOpen
-                        ? "bg-purple-600 text-white"
-                        : d
-                        ? "bg-white/[0.05] text-gray-500"
-                        : "bg-slate-100 text-slate-500"
-                    }`}
+                    className={`shrink-0
+                      w-7 h-7
+                      sm:w-8 sm:h-8
+                      rounded-lg
+                      flex
+                      items-center
+                      justify-center
+                      transition-all
+                      ${
+                        isOpen
+                          ? d
+                            ? "bg-cyan-400 text-[#061923]"
+                            : "bg-[#061923] text-white"
+                          : d
+                          ? "bg-white/[0.05] text-slate-500"
+                          : "bg-slate-100 text-slate-500"
+                      }
+                    `}
                   >
                     {isOpen ? (
-                      <Minus size={12} />
+                      <Minus size={13} />
                     ) : (
-                      <Plus size={12} />
+                      <Plus size={13} />
                     )}
                   </div>
                 </button>
@@ -566,26 +784,43 @@ const FAQ = ({ isDark = true }) => {
                 {/* ANSWER */}
 
                 <div
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    isOpen
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  }`}
+                  className={`grid
+                    transition-all
+                    duration-300
+                    ease-in-out
+                    ${
+                      isOpen
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }
+                  `}
                 >
                   <div className="overflow-hidden">
                     <div
-                      className={`mx-4 pb-4 pt-3 border-t ${
-                        d
-                          ? "border-white/[0.06]"
-                          : "border-purple-100"
-                      }`}
+                      className={`mx-4
+                        sm:mx-5
+                        pb-4
+                        sm:pb-5
+                        pt-3
+                        border-t
+                        ${
+                          d
+                            ? "border-white/[0.07]"
+                            : "border-slate-200"
+                        }
+                      `}
                     >
                       <p
-                        className={`text-[11px] sm:text-[12px] leading-relaxed sm:leading-6 ${
-                          d
-                            ? "text-gray-400"
-                            : "text-slate-600"
-                        }`}
+                        className={`text-[10px]
+                          sm:text-[12px]
+                          leading-[1.8]
+                          sm:leading-6
+                          ${
+                            d
+                              ? "text-slate-400"
+                              : "text-slate-600"
+                          }
+                        `}
                       >
                         {faq.answer}
                       </p>
@@ -602,25 +837,42 @@ const FAQ = ({ isDark = true }) => {
         ================================================== */}
 
         {filteredFaqs.length > INITIAL_FAQ_COUNT && (
-          <div className="flex flex-col items-center mt-5">
+          <div className="flex flex-col items-center mt-6">
 
             <button
               type="button"
               onClick={handleShowMore}
               aria-expanded={showAll}
-              className={`group inline-flex items-center justify-center gap-2 min-w-[180px] px-5 py-2.5 rounded-xl border text-[11px] sm:text-xs font-bold transition-all duration-200 ${
-                showAll
-                  ? d
-                    ? "bg-white/[0.04] border-white/[0.10] text-gray-300 hover:text-white hover:bg-white/[0.06]"
-                    : "bg-white border-slate-300 text-slate-700 hover:bg-slate-50"
-                  : d
-                  ? "bg-purple-600/[0.08] border-purple-500/20 text-purple-400 hover:bg-purple-600 hover:text-white hover:border-purple-600"
-                  : "bg-purple-50 border-purple-200 text-purple-600 hover:bg-purple-600 hover:text-white hover:border-purple-600"
-              }`}
+              className={`group
+                inline-flex
+                items-center
+                justify-center
+                gap-2
+                min-w-[180px]
+                px-5
+                py-2.5
+                rounded-lg
+                border
+                text-[10px]
+                sm:text-[11px]
+                font-bold
+                transition-all
+                duration-200
+                ${
+                  showAll
+                    ? d
+                      ? "bg-white/[0.035] border-white/[0.09] text-slate-300 hover:bg-white/[0.06] hover:text-white"
+                      : "bg-white border-slate-300 text-slate-700 hover:border-slate-400"
+                    : d
+                    ? "bg-cyan-400/[0.07] border-cyan-400/20 text-cyan-400 hover:bg-cyan-400 hover:text-[#061923]"
+                    : "bg-white border-[#08788c]/25 text-[#08788c] hover:bg-[#061923] hover:border-[#061923] hover:text-white"
+                }
+              `}
             >
               {showAll ? (
                 <>
                   Show Less
+
                   <ChevronUp
                     size={14}
                     className="transition-transform group-hover:-translate-y-0.5"
@@ -631,11 +883,16 @@ const FAQ = ({ isDark = true }) => {
                   Show All FAQs
 
                   <span
-                    className={`text-[9px] px-1.5 py-0.5 rounded-full ${
-                      d
-                        ? "bg-purple-500/15"
-                        : "bg-purple-100"
-                    }`}
+                    className={`text-[8px]
+                      px-1.5
+                      py-0.5
+                      rounded-full
+                      ${
+                        d
+                          ? "bg-cyan-400/[0.09]"
+                          : "bg-[#08788c]/[0.07]"
+                      }
+                    `}
                   >
                     +{hiddenFaqCount}
                   </span>
@@ -650,11 +907,15 @@ const FAQ = ({ isDark = true }) => {
 
             {!showAll && activeCategory === "All" && (
               <p
-                className={`text-[9px] sm:text-[10px] mt-2 ${
-                  d
-                    ? "text-gray-600"
-                    : "text-slate-400"
-                }`}
+                className={`text-[9px]
+                  sm:text-[10px]
+                  mt-2.5
+                  ${
+                    d
+                      ? "text-slate-600"
+                      : "text-slate-400"
+                  }
+                `}
               >
                 Showing {INITIAL_FAQ_COUNT} of {faqs.length} questions
               </p>
@@ -663,70 +924,144 @@ const FAQ = ({ isDark = true }) => {
         )}
 
         {/* ==================================================
-            COMPACT CONTACT CTA
+            CONTACT CTA
         ================================================== */}
 
         <div
-          className={`relative overflow-hidden mt-7 px-5 py-5 sm:px-6 sm:py-5 rounded-2xl border ${
-            d
-              ? "bg-purple-600/[0.045] border-purple-500/15"
-              : "bg-purple-50 border-purple-100"
-          }`}
+          className={`relative
+            overflow-hidden
+            mt-8
+            px-5
+            py-5
+            sm:px-6
+            sm:py-6
+            rounded-2xl
+            border
+            ${
+              d
+                ? "bg-white/[0.025] border-white/[0.08]"
+                : "bg-white border-slate-200"
+            }
+          `}
         >
-          {/* GLOW */}
+          {/* CTA BACKGROUND */}
 
           <div
             aria-hidden="true"
-            className="absolute -top-24 right-0 w-64 h-64 bg-purple-600/10 blur-[90px] rounded-full pointer-events-none"
+            className={`absolute
+              -top-28
+              right-[-50px]
+              w-64
+              h-64
+              rounded-full
+              blur-[90px]
+              pointer-events-none
+              ${
+                d
+                  ? "bg-cyan-400/[0.055]"
+                  : "bg-cyan-100/60"
+              }
+            `}
           />
 
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div
+            className="
+              relative
+              z-10
+              flex
+              flex-col
+              md:flex-row
+              md:items-center
+              md:justify-between
+              gap-5
+            "
+          >
 
-            {/* TEXT */}
+            {/* CTA TEXT */}
 
             <div className="flex items-start gap-3 max-w-2xl">
               <div
-                className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                  d
-                    ? "bg-purple-500/10 text-purple-400"
-                    : "bg-white text-purple-600"
-                }`}
+                className={`w-10 h-10
+                  rounded-xl
+                  flex
+                  items-center
+                  justify-center
+                  shrink-0
+                  ${
+                    d
+                      ? "bg-cyan-400/[0.08] text-cyan-400"
+                      : "bg-[#08788c]/[0.07] text-[#08788c]"
+                  }
+                `}
               >
-                <MessageSquare size={16} />
+                <MessageSquare size={17} />
               </div>
 
               <div>
                 <h3
-                  className={`text-sm sm:text-base font-black mb-1 ${
-                    d
-                      ? "text-white"
-                      : "text-slate-900"
-                  }`}
+                  className={`text-[14px]
+                    sm:text-base
+                    font-black
+                    ${
+                      d
+                        ? "text-white"
+                        : "text-[#061923]"
+                    }
+                  `}
                 >
-                  Still Have a Question?
+                  Still have a question?
                 </h3>
 
                 <p
-                  className={`text-[10px] sm:text-[11px] leading-relaxed ${
-                    d
-                      ? "text-gray-500"
-                      : "text-slate-500"
-                  }`}
+                  className={`mt-1
+                    text-[10px]
+                    sm:text-[11px]
+                    leading-relaxed
+                    ${
+                      d
+                        ? "text-slate-500"
+                        : "text-slate-500"
+                    }
+                  `}
                 >
-                  Tell us about your project and we can discuss your
-                  development, SEO or digital marketing requirements.
+                  Tell us about your project and we&apos;ll discuss the
+                  right development, SEO or digital marketing approach.
                 </p>
               </div>
             </div>
 
-            {/* BUTTONS */}
+            {/* CTA BUTTONS */}
 
-            <div className="flex flex-col sm:flex-row gap-2 shrink-0">
-
+            <div
+              className="
+                grid
+                grid-cols-2
+                sm:flex
+                gap-2
+                shrink-0
+              "
+            >
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-[11px] transition-all hover:shadow-[0_0_18px_rgba(124,58,237,0.25)]"
+                className={`inline-flex
+                  items-center
+                  justify-center
+                  gap-2
+                  px-4
+                  sm:px-5
+                  py-2.5
+                  rounded-lg
+                  text-[9px]
+                  sm:text-[10px]
+                  font-black
+                  transition-all
+                  ${
+                    d
+                      ? "bg-cyan-400 text-[#061923] hover:bg-cyan-300"
+                      : "bg-[#061923] text-white hover:bg-[#0a2734]"
+                  }
+                `}
               >
                 Contact DevZore
                 <ArrowRight size={12} />
@@ -736,7 +1071,25 @@ const FAQ = ({ isDark = true }) => {
                 href="https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20have%20a%20question%20about%20your%20services."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-lg text-[11px] hover:bg-[#25D366]/15 transition-all"
+                className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2
+                  px-4
+                  sm:px-5
+                  py-2.5
+                  bg-[#25D366]/10
+                  border
+                  border-[#25D366]/25
+                  text-[#20b858]
+                  font-black
+                  rounded-lg
+                  text-[9px]
+                  sm:text-[10px]
+                  hover:bg-[#25D366]/15
+                  transition-all
+                "
               >
                 <svg
                   className="w-3.5 h-3.5 fill-current"

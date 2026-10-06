@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -26,7 +26,7 @@ import Services from "./sections/Services";
 import Solutions from "./sections/Solutions";
 import Projects from "./sections/Projects";
 import WhyUs from "./sections/WhyUs";
-import Process from "./sections/Process";
+// import Process from "./sections/Process";
 import TechStack from "./sections/TechStack";
 import Testimonials from "./sections/Testimonials";
 import FAQ from "./sections/FAQ";
@@ -61,16 +61,7 @@ import SeoServices from "./pages/SeoServices";
 import DigitalMarketing from "./pages/DigitalMarketing";
 
 // ======================================================
-// SOLUTION PAGES - FUTURE
-// ======================================================
-// IMPORTANT:
-// Uncomment each import ONLY after that page file exists.
-//
-// Example:
-// 1. Create src/pages/StartupSolutions.jsx
-// 2. Uncomment its import below
-// 3. Uncomment its SEO block
-// 4. Uncomment its Route
+// SOLUTION PAGES
 // ======================================================
 
 import StartupSolutions from "./pages/StartupSolutions";
@@ -81,7 +72,7 @@ import ManagementSystems from "./pages/ManagementSystems";
 import CustomSoftwareSolutions from "./pages/CustomSoftwareSolutions";
 
 // ======================================================
-// RESOURCE PAGES - FUTURE
+// RESOURCE PAGES
 // ======================================================
 
 import DevelopmentGuides from "./pages/DevelopmentGuides";
@@ -89,7 +80,7 @@ import FAQs from "./pages/FAQs";
 import Resources from "./pages/Resources";
 
 // ======================================================
-// COMPANY PAGES - FUTURE
+// COMPANY PAGES
 // ======================================================
 
 import OurProcess from "./pages/OurProcess";
@@ -406,11 +397,8 @@ const seoData = {
   },
 
   // ====================================================
-  // FUTURE SOLUTION PAGES
+  // SOLUTION PAGES
   // ====================================================
-  // Uncomment each block when its page is created.
-  // ====================================================
-
 
   "/startup-solutions": {
     title:
@@ -479,9 +467,8 @@ const seoData = {
   },
 
   // ====================================================
-  // FUTURE RESOURCE PAGES
+  // RESOURCE PAGES
   // ====================================================
-
 
   "/guides": {
     title:
@@ -515,8 +502,9 @@ const seoData = {
     keywords:
       "software development resources, web development resources, technology insights, SaaS resources, business technology resources",
   },
+
   // ====================================================
-  // FUTURE COMPANY PAGES
+  // COMPANY PAGES
   // ====================================================
 
   "/our-process": {
@@ -645,15 +633,6 @@ function SEOManager() {
 
   // ====================================================
   // DYNAMIC BLOG DETAILS
-  //
-  // BlogDetails.jsx should handle its own:
-  // title
-  // description
-  // canonical
-  // robots
-  // Open Graph
-  // Twitter
-  // Article structured data
   // ====================================================
 
   if (pathname.startsWith("/blog/")) {
@@ -718,8 +697,6 @@ function SEOManager() {
   return (
     <Helmet>
       <html lang="en" />
-
-      {/* PRIMARY SEO */}
 
       <title>{page.title}</title>
 
@@ -858,23 +835,22 @@ function ScrollToTop() {
 
 function NotFound() {
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4">
-      <p className="text-sm font-bold uppercase tracking-[0.25em] text-purple-600">
+    <div className="min-h-[70vh] flex flex-col items-center justify-center text-center px-4 bg-white">
+      <p className="text-sm font-bold uppercase tracking-[0.25em] text-[#0796A8]">
         Error 404
       </p>
 
-      <h1 className="mt-3 text-5xl sm:text-7xl font-black">
+      <h1 className="mt-3 text-5xl sm:text-7xl font-black text-[#071923]">
         Page Not Found
       </h1>
 
-      <p className="mt-4 max-w-lg text-[var(--text-muted)]">
-        The page you're looking for doesn't exist or may
-        have been moved.
+      <p className="mt-4 max-w-lg text-slate-600">
+        The page you're looking for doesn't exist or may have been moved.
       </p>
 
       <Link
         to="/"
-        className="mt-8 inline-flex items-center justify-center rounded-xl bg-purple-600 px-6 py-3 font-bold text-white transition hover:bg-purple-700"
+        className="mt-8 inline-flex items-center justify-center rounded-xl bg-[#071923] px-6 py-3 font-bold text-white transition hover:bg-[#0A2430]"
       >
         Back to Home
       </Link>
@@ -886,37 +862,18 @@ function NotFound() {
 // APP CONTENT
 // ======================================================
 
-function AppContent({ isDark, toggleTheme }) {
+function AppContent() {
   const { pathname } = useLocation();
 
-  const isAdminRoute =
-    pathname.startsWith("/admin");
+  const isAdminRoute = pathname.startsWith("/admin");
 
   return (
-    <div
-      className={`
-        min-h-screen
-        font-sans
-        flex
-        flex-col
-        transition-colors
-        duration-300
-        ${isDark
-          ? "bg-[#030303] text-white selection:bg-purple-500/30"
-          : "bg-[#fafafa] text-[#111827] selection:bg-purple-200"
-        }
-      `}
-    >
+    <div className="min-h-screen font-sans flex flex-col bg-white text-[#071923] selection:bg-cyan-100">
       {/* ================================================
           PUBLIC NAVBAR
       ================================================ */}
 
-      {!isAdminRoute && (
-        <Navbar
-          isDark={isDark}
-          toggleTheme={toggleTheme}
-        />
-      )}
+      {!isAdminRoute && <Navbar />}
 
       {/* ================================================
           ROUTES
@@ -932,16 +889,16 @@ function AppContent({ isDark, toggleTheme }) {
             path="/"
             element={
               <>
-                <Hero isDark={isDark} />
-                <TrustBar isDark={isDark} />
-                <Services isDark={isDark} />
-                <Solutions isDark={isDark} />
-                <Projects isDark={isDark} />
-                <WhyUs isDark={isDark} />
-                <Process isDark={isDark} />
-                <TechStack isDark={isDark} />
-                <Testimonials isDark={isDark} />
-                <FAQ isDark={isDark} />
+                <Hero />
+                <TrustBar />
+                <Services />
+                <Solutions />
+                <Projects />
+                <WhyUs />
+                {/* <Process /> */}
+                <TechStack />
+                <Testimonials />
+                <FAQ />
               </>
             }
           />
@@ -952,239 +909,145 @@ function AppContent({ isDark, toggleTheme }) {
 
           <Route
             path="/allservices"
-            element={
-              <AllServices isDark={isDark} />
-            }
+            element={<AllServices />}
           />
 
           <Route
             path="/web-development"
-            element={
-              <WebDevelopment isDark={isDark} />
-            }
+            element={<WebDevelopment />}
           />
 
           <Route
             path="/mobile-apps"
-            element={
-              <MobileApp isDark={isDark} />
-            }
+            element={<MobileApp />}
           />
 
           <Route
             path="/generative-ai-development"
-            element={
-              <GenerativeAIDevelopment
-                isDark={isDark}
-              />
-            }
+            element={<GenerativeAIDevelopment />}
           />
 
           <Route
             path="/ecommerce"
-            element={
-              <ECommerce isDark={isDark} />
-            }
+            element={<ECommerce />}
           />
 
           <Route
             path="/mern-stack-development"
-            element={
-              <MernStackDevelopment
-                isDark={isDark}
-              />
-            }
+            element={<MernStackDevelopment />}
           />
 
           <Route
             path="/reactdevelopment"
-            element={
-              <ReactDevelopment
-                isDark={isDark}
-              />
-            }
+            element={<ReactDevelopment />}
           />
 
           <Route
             path="/backend-api"
-            element={
-              <BackendApi isDark={isDark} />
-            }
+            element={<BackendApi />}
           />
 
           <Route
             path="/saas-product-development"
-            element={
-              <SaaSProductDevelopment
-                isDark={isDark}
-              />
-            }
+            element={<SaaSProductDevelopment />}
           />
 
           <Route
             path="/ui-ux-design"
-            element={
-              <UiUxDesign isDark={isDark} />
-            }
+            element={<UiUxDesign />}
           />
 
           <Route
             path="/startup-mvp"
-            element={
-              <StartupMVP isDark={isDark} />
-            }
+            element={<StartupMVP />}
           />
 
           <Route
             path="/seo-services"
-            element={
-              <SeoServices isDark={isDark} />
-            }
+            element={<SeoServices />}
           />
 
           <Route
             path="/digital-marketing"
-            element={
-              <DigitalMarketing
-                isDark={isDark}
-              />
-            }
+            element={<DigitalMarketing />}
           />
 
           <Route
             path="/maintenance"
-            element={
-              <Maintenance isDark={isDark} />
-            }
+            element={<Maintenance />}
           />
 
           {/* ============================================
-              SOLUTIONS - FUTURE
-              
-              When page files are created:
-              1. Uncomment import at top
-              2. Uncomment SEO block
-              3. Uncomment route below
+              SOLUTIONS
           ============================================ */}
-
 
           <Route
             path="/startup-solutions"
-            element={
-              <StartupSolutions
-                isDark={isDark}
-              />
-            }
+            element={<StartupSolutions />}
           />
 
           <Route
             path="/business-solutions"
-            element={
-              <BusinessSolutions
-                isDark={isDark}
-              />
-            }
+            element={<BusinessSolutions />}
           />
 
           <Route
             path="/ecommerce-solutions"
-            element={
-              <EcommerceSolutions
-                isDark={isDark}
-              />
-            }
+            element={<EcommerceSolutions />}
           />
 
           <Route
             path="/saas-solutions"
-            element={
-              <SaaSSolutions
-                isDark={isDark}
-              />
-            }
+            element={<SaaSSolutions />}
           />
 
           <Route
             path="/management-systems"
-            element={
-              <ManagementSystems
-                isDark={isDark}
-              />
-            }
+            element={<ManagementSystems />}
           />
 
           <Route
             path="/custom-software-solutions"
-            element={
-              <CustomSoftwareSolutions
-                isDark={isDark}
-              />
-            }
+            element={<CustomSoftwareSolutions />}
           />
 
           {/* ============================================
-              PORTFOLIO
-
-              Current Navbar uses /#projects.
-              No separate Portfolio page is required yet.
-
-              FUTURE:
-              /portfolio
-              /portfolio/:slug
-          ============================================ */}
-
-          {/* ============================================
-              RESOURCES - FUTURE
+              RESOURCES
           ============================================ */}
 
           <Route
             path="/guides"
-            element={
-              <DevelopmentGuides
-                isDark={isDark}
-              />
-            }
+            element={<DevelopmentGuides />}
           />
 
           <Route
             path="/faqs"
-            element={
-              <FAQs isDark={isDark} />
-            }
+            element={<FAQs />}
           />
 
           <Route
             path="/resources"
-            element={
-              <Resources isDark={isDark} />
-            }
+            element={<Resources />}
           />
 
           {/* ============================================
-              COMPANY - FUTURE
+              COMPANY
           ============================================ */}
 
           <Route
             path="/our-process"
-            element={
-              <OurProcess isDark={isDark} />
-            }
+            element={<OurProcess />}
           />
 
           <Route
             path="/technologies"
-            element={
-              <Technologies isDark={isDark} />
-            }
+            element={<Technologies />}
           />
-
 
           {/*
           <Route
             path="/careers"
-            element={
-              <Careers isDark={isDark} />
-            }
+            element={<Careers />}
           />
           */}
 
@@ -1194,23 +1057,17 @@ function AppContent({ isDark, toggleTheme }) {
 
           <Route
             path="/about"
-            element={
-              <About isDark={isDark} />
-            }
+            element={<About />}
           />
 
           <Route
             path="/contact"
-            element={
-              <Contact isDark={isDark} />
-            }
+            element={<Contact />}
           />
 
           <Route
             path="/thank-you"
-            element={
-              <ThankYou isDark={isDark} />
-            }
+            element={<ThankYou />}
           />
 
           {/* ============================================
@@ -1219,16 +1076,12 @@ function AppContent({ isDark, toggleTheme }) {
 
           <Route
             path="/blog"
-            element={
-              <BlogPost isDark={isDark} />
-            }
+            element={<BlogPost />}
           />
 
           <Route
             path="/blog/:slug"
-            element={
-              <BlogDetails isDark={isDark} />
-            }
+            element={<BlogDetails />}
           />
 
           {/* ============================================
@@ -1237,16 +1090,12 @@ function AppContent({ isDark, toggleTheme }) {
 
           <Route
             path="/privacy-policy"
-            element={
-              <PrivacyPolicy isDark={isDark} />
-            }
+            element={<PrivacyPolicy />}
           />
 
           <Route
             path="/terms-and-conditions"
-            element={
-              <Terms isDark={isDark} />
-            }
+            element={<Terms />}
           />
 
           {/* ============================================
@@ -1255,9 +1104,7 @@ function AppContent({ isDark, toggleTheme }) {
 
           <Route
             path="/admin/login"
-            element={
-              <AdminLogin isDark={isDark} />
-            }
+            element={<AdminLogin />}
           />
 
           {/* ============================================
@@ -1266,12 +1113,7 @@ function AppContent({ isDark, toggleTheme }) {
 
           <Route
             path="/admin"
-            element={
-              <AdminLayout
-                isDark={isDark}
-                toggleTheme={toggleTheme}
-              />
-            }
+            element={<AdminLayout />}
           >
             <Route
               index
@@ -1285,56 +1127,32 @@ function AppContent({ isDark, toggleTheme }) {
 
             <Route
               path="dashboard"
-              element={
-                <AdminDashboard
-                  isDark={isDark}
-                />
-              }
+              element={<AdminDashboard />}
             />
 
             <Route
               path="posts"
-              element={
-                <AdminPosts
-                  isDark={isDark}
-                />
-              }
+              element={<AdminPosts />}
             />
 
             <Route
               path="posts/new"
-              element={
-                <AdminPostEditor
-                  isDark={isDark}
-                />
-              }
+              element={<AdminPostEditor />}
             />
 
             <Route
               path="posts/edit/:id"
-              element={
-                <AdminPostEditor
-                  isDark={isDark}
-                />
-              }
+              element={<AdminPostEditor />}
             />
 
             <Route
               path="categories"
-              element={
-                <AdminCategories
-                  isDark={isDark}
-                />
-              }
+              element={<AdminCategories />}
             />
 
             <Route
               path="comments"
-              element={
-                <AdminComments
-                  isDark={isDark}
-                />
-              }
+              element={<AdminComments />}
             />
           </Route>
 
@@ -1353,9 +1171,7 @@ function AppContent({ isDark, toggleTheme }) {
           PUBLIC FOOTER
       ================================================ */}
 
-      {!isAdminRoute && (
-        <Footer isDark={isDark} />
-      )}
+      {!isAdminRoute && <Footer />}
     </div>
   );
 }
@@ -1365,50 +1181,13 @@ function AppContent({ isDark, toggleTheme }) {
 // ======================================================
 
 function App() {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-
-    return (
-      localStorage.getItem("devzore-theme") ===
-      "dark"
-    );
-  });
-
-  // ====================================================
-  // THEME
-  // ====================================================
-
-  useEffect(() => {
-    const html = document.documentElement;
-
-    html.classList.toggle("dark", isDark);
-
-    localStorage.setItem(
-      "devzore-theme",
-      isDark ? "dark" : "light"
-    );
-  }, [isDark]);
-
-  const toggleTheme = () => {
-    setIsDark((current) => !current);
-  };
-
-  // ====================================================
-  // APP
-  // ====================================================
-
   return (
     <BrowserRouter>
       <ScrollToTop />
 
       <SEOManager />
 
-      <AppContent
-        isDark={isDark}
-        toggleTheme={toggleTheme}
-      />
+      <AppContent />
     </BrowserRouter>
   );
 }

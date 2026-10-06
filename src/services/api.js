@@ -2,20 +2,68 @@ import axios from "axios";
 import cookieManager from "../utils/cookieManager";
 
 // ======================================================
-// API BASE URL
-// ======================================================
-//
-// Local:
-// http://localhost:5000/api
-//
-// Production:
-// VITE_API_URL environment variable se aayega.
-//
+// API CONFIG
 // ======================================================
 
-const API_URL =
-  import.meta.env.VITE_API_URL ||
+const DEFAULT_LOCAL_API_URL =
   "http://localhost:5000/api";
+
+const DEFAULT_TIMEOUT = 20000; // 20 sec
+
+/*
+ * Google Drive image upload/compression mein
+ * normal API request se zyada time lag sakta hai.
+ */
+const UPLOAD_TIMEOUT = 60000; // 60 sec
+
+const MAX_GET_RETRIES = 2;
+
+// ======================================================
+// NORMALIZE API URL
+// ======================================================
+
+const normalizeApiUrl = (value) => {
+  const url = String(
+    value || DEFAULT_LOCAL_API_URL
+  )
+    .trim()
+    .replace(/\/+$/, "");
+
+  return url || DEFAULT_LOCAL_API_URL;
+};
+
+const API_URL = normalizeApiUrl(
+  import.meta.env.VITE_API_URL
+);
+
+// ======================================================
+// ENVIRONMENT
+// ======================================================
+
+const isDevelopment =
+  import.meta.env.DEV === true;
+
+// ======================================================
+// SAFE LOGGING
+// ======================================================
+
+const debugLog = (...args) => {
+  if (isDevelopment) {
+    console.log(...args);
+  }
+};
+
+const debugWarn = (...args) => {
+  if (isDevelopment) {
+    console.warn(...args);
+  }
+};
+
+const debugError = (...args) => {
+  if (isDevelopment) {
+    console.error(...args);
+  }
+};
 
 // ======================================================
 // AXIOS INSTANCE
@@ -24,55 +72,60 @@ const API_URL =
 const api = axios.create({
   baseURL: API_URL,
 
+  timeout: DEFAULT_TIMEOUT,
+
+  /*
+   * Keep this because your backend CORS config
+   * already supports credentials.
+   *
+   * Bearer JWT still remains the primary auth method.
+   */
+  withCredentials: true,
+
   headers: {
     Accept: "application/json",
   },
-
-  timeout: 15000,
-
-  // Cookies ko cross-origin requests ke saath allow karta hai.
-  withCredentials: true,
 });
 
 // ======================================================
 // GET AUTH TOKEN
 // ======================================================
-//
-// IMPORTANT:
-//
-// 1. Pehle localStorage check hoga.
-// 2. Agar wahan token nahi mila to cookie check hogi.
-//
-// authService.js bhi adminToken isi naam se save karta hai.
-//
-// ======================================================
 
 const getAuthToken = () => {
   try {
-    // --------------------------------------------------
-    // 1. LOCAL STORAGE - PRIMARY
-    // --------------------------------------------------
+    /*
+     * Browser guard.
+     */
+    if (typeof window === "undefined") {
+      return null;
+    }
+
+    // ----------------------------------------------
+    // 1. localStorage
+    // ----------------------------------------------
 
     const localToken =
-      localStorage.getItem("adminToken");
+      window.localStorage.getItem(
+        "adminToken"
+      );
 
     if (
-      localToken &&
       typeof localToken === "string" &&
       localToken.trim()
     ) {
       return localToken.trim();
     }
 
-    // --------------------------------------------------
-    // 2. COOKIE - FALLBACK
-    // --------------------------------------------------
+    // ----------------------------------------------
+    // 2. Cookie fallback
+    // ----------------------------------------------
 
     const cookieToken =
-      cookieManager.getCookie("adminToken");
+      cookieManager.getCookie(
+        "adminToken"
+      );
 
     if (
-      cookieToken &&
       typeof cookieToken === "string" &&
       cookieToken.trim()
     ) {
@@ -81,9 +134,9 @@ const getAuthToken = () => {
 
     return null;
   } catch (error) {
-    console.error(
+    debugError(
       "❌ Failed to read authentication token:",
-      error
+      error?.message || error
     );
 
     return null;
@@ -91,85 +144,108 @@ const getAuthToken = () => {
 };
 
 // ======================================================
-// REQUEST INTERCEPTOR
+// REMOVE CONTENT TYPE
 // ======================================================
-//
-// Har API request se pehle:
-//
-// 1. adminToken read karega
-// 2. Authorization header add karega
-//
-// Authorization: Bearer JWT_TOKEN
-//
+
+const removeContentTypeHeader = (
+  headers
+) => {
+  if (!headers) {
+    return;
+  }
+
+  /*
+   * AxiosHeaders
+   */
+  if (
+    typeof headers.delete ===
+    "function"
+  ) {
+    headers.delete(
+      "Content-Type"
+    );
+
+    headers.delete(
+      "content-type"
+    );
+
+    return;
+  }
+
+  /*
+   * Plain object fallback
+   */
+  delete headers["Content-Type"];
+  delete headers["content-type"];
+};
+
+// ======================================================
+// REQUEST INTERCEPTOR
 // ======================================================
 
 api.interceptors.request.use(
   (config) => {
-    // --------------------------------------------------
-    // GET TOKEN
-    // --------------------------------------------------
+    const method =
+      String(
+        config.method ||
+          "GET"
+      ).toUpperCase();
 
-    const token = getAuthToken();
+    const token =
+      getAuthToken();
 
-    // --------------------------------------------------
-    // ATTACH JWT
-    // --------------------------------------------------
+    config.headers =
+      config.headers || {};
+
+    // ----------------------------------------------
+    // JWT
+    // ----------------------------------------------
 
     if (token) {
-      config.headers =
-        config.headers || {};
-
       config.headers.Authorization =
         `Bearer ${token}`;
 
-      console.log(
-        `🔐 JWT attached → ${
-          config.method?.toUpperCase() || "REQUEST"
-        } ${config.url}`
+      debugLog(
+        `🔐 JWT attached → ${method} ${config.url}`
       );
     } else {
-      console.warn(
-        `⚠️ No JWT available → ${
-          config.method?.toUpperCase() || "REQUEST"
-        } ${config.url}`
+      debugLog(
+        `ℹ️ Public/no-token request → ${method} ${config.url}`
       );
     }
 
-    // ==================================================
-    // FORM DATA / IMAGE UPLOAD
-    // ==================================================
-    //
-    // FormData ke saath Content-Type manually set
-    // nahi karna.
-    //
-    // Browser automatically:
-    //
-    // multipart/form-data; boundary=....
-    //
-    // generate karega.
-    //
-    // ==================================================
+    // ----------------------------------------------
+    // FORMDATA
+    // ----------------------------------------------
 
-    if (
-      typeof FormData !== "undefined" &&
-      config.data instanceof FormData
-    ) {
-      // AxiosHeaders object
-      if (
-        config.headers &&
-        typeof config.headers.delete === "function"
-      ) {
-        config.headers.delete("Content-Type");
-      } else if (config.headers) {
-        // Normal JS object fallback
-        delete config.headers["Content-Type"];
-        delete config.headers["content-type"];
-      }
+    const isFormData =
+      typeof FormData !==
+        "undefined" &&
+      config.data instanceof
+        FormData;
 
-      console.log(
-        `📦 FormData detected → ${
-          config.method?.toUpperCase() || "REQUEST"
-        } ${config.url}`
+    if (isFormData) {
+      /*
+       * Never manually set:
+       *
+       * multipart/form-data
+       *
+       * Browser/Axios ko boundary generate
+       * karne do.
+       */
+      removeContentTypeHeader(
+        config.headers
+      );
+
+      /*
+       * Google Drive upload ko slightly longer
+       * timeout.
+       */
+      config.timeout =
+        UPLOAD_TIMEOUT;
+
+      debugLog(
+        `📦 FormData request → ${method} ${config.url}`
       );
     }
 
@@ -177,198 +253,370 @@ api.interceptors.request.use(
   },
 
   (error) => {
-    console.error(
+    debugError(
       "❌ Request interceptor error:",
-      error
+      error?.message || error
     );
 
-    return Promise.reject(error);
+    return Promise.reject(
+      error
+    );
   }
 );
 
 // ======================================================
-// RATE LIMIT RETRY STORAGE
+// RETRY HELPERS
 // ======================================================
 
-const retryCount = {};
+const isSafeRetryMethod = (
+  method
+) => {
+  const safeMethods = [
+    "get",
+    "head",
+    "options",
+  ];
+
+  return safeMethods.includes(
+    String(
+      method || ""
+    ).toLowerCase()
+  );
+};
+
+const sleep = (ms) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+
+const getRetryDelay = (
+  error,
+  retryNumber
+) => {
+  const retryAfter =
+    error?.response?.headers?.[
+      "retry-after"
+    ];
+
+  /*
+   * Retry-After in seconds.
+   */
+  const parsedRetryAfter =
+    Number(retryAfter);
+
+  if (
+    Number.isFinite(
+      parsedRetryAfter
+    ) &&
+    parsedRetryAfter > 0
+  ) {
+    return Math.min(
+      parsedRetryAfter *
+        1000,
+      10000
+    );
+  }
+
+  /*
+   * Exponential:
+   * retry 1 -> 2 sec
+   * retry 2 -> 4 sec
+   */
+  return Math.min(
+    Math.pow(
+      2,
+      retryNumber
+    ) * 1000,
+    5000
+  );
+};
 
 // ======================================================
 // RESPONSE INTERCEPTOR
 // ======================================================
 
 api.interceptors.response.use(
-  // ----------------------------------------------------
-  // SUCCESS RESPONSE
-  // ----------------------------------------------------
-
+  // SUCCESS
   (response) => {
     return response;
   },
 
-  // ----------------------------------------------------
-  // ERROR RESPONSE
-  // ----------------------------------------------------
-
+  // ERROR
   async (error) => {
     const status =
-      error.response?.status;
+      error?.response?.status;
 
     const config =
-      error.config || {};
+      error?.config || {};
 
     const url =
-      config.url || "unknown";
+      config.url ||
+      "unknown";
 
     const method =
-      config.method?.toUpperCase() ||
-      "REQUEST";
+      String(
+        config.method ||
+          "REQUEST"
+      ).toUpperCase();
 
-    // ==================================================
-    // 401 - UNAUTHORIZED
-    // ==================================================
+    // ----------------------------------------------
+    // NETWORK / TIMEOUT
+    // ----------------------------------------------
+
+    if (!error.response) {
+      if (
+        error.code ===
+          "ECONNABORTED" ||
+        error.code ===
+          "ETIMEDOUT"
+      ) {
+        debugError(
+          `❌ Request timeout → ${method} ${url}`
+        );
+
+        error.message =
+          "The request took too long. Please try again.";
+      } else {
+        debugError(
+          `❌ Network error → ${method} ${url}`,
+          error?.message
+        );
+
+        error.message =
+          "Network error. Please check that the backend server is running and try again.";
+      }
+
+      return Promise.reject(
+        error
+      );
+    }
+
+    // ----------------------------------------------
+    // 400
+    // ----------------------------------------------
+
+    if (status === 400) {
+      debugError(
+        `❌ 400 Bad Request → ${method} ${url}`,
+        error.response?.data
+      );
+    }
+
+    // ----------------------------------------------
+    // 401
+    // ----------------------------------------------
 
     if (status === 401) {
-      console.error(
-        `❌ 401 Unauthorized → ${method} ${url}`
-      );
-
-      console.error(
-        "Backend response:",
+      debugError(
+        `❌ 401 Unauthorized → ${method} ${url}`,
         error.response?.data
       );
 
-      const token =
-        getAuthToken();
-
-      console.log(
-        "JWT present in browser:",
-        Boolean(token)
+      debugLog(
+        "JWT present:",
+        Boolean(
+          getAuthToken()
+        )
       );
 
       /*
        * IMPORTANT:
        *
-       * Token ko yahan automatically delete nahi karte.
+       * Token yahan automatically delete nahi
+       * kar rahe.
        *
-       * Is se debugging ke waqt ek failed request
-       * baqi admin session ko destroy nahi karegi.
-       *
-       * authService.getMe() invalid/expired token ko
-       * separately handle kar sakta hai.
+       * AuthContext/authService decide karega
+       * ke login session invalid hai ya sirf
+       * ek request fail hui hai.
        */
     }
 
-    // ==================================================
-    // 403 - FORBIDDEN
-    // ==================================================
+    // ----------------------------------------------
+    // 403
+    // ----------------------------------------------
 
     if (status === 403) {
-      console.error(
-        `❌ 403 Forbidden → ${method} ${url}`
-      );
-
-      console.error(
-        "Backend response:",
+      debugError(
+        `❌ 403 Forbidden → ${method} ${url}`,
         error.response?.data
       );
     }
 
-    // ==================================================
-    // 400 - BAD REQUEST
-    // ==================================================
+    // ----------------------------------------------
+    // 404
+    // ----------------------------------------------
 
-    if (status === 400) {
-      console.error(
-        `❌ 400 Bad Request → ${method} ${url}`
+    if (status === 404) {
+      debugWarn(
+        `⚠️ 404 Not Found → ${method} ${url}`
       );
+    }
 
-      console.error(
-        "Backend response:",
+    // ----------------------------------------------
+    // 409
+    // ----------------------------------------------
+
+    if (status === 409) {
+      debugWarn(
+        `⚠️ 409 Conflict → ${method} ${url}`,
         error.response?.data
       );
     }
 
-    // ==================================================
-    // 413 - FILE TOO LARGE
-    // ==================================================
+    // ----------------------------------------------
+    // 413
+    // ----------------------------------------------
 
     if (status === 413) {
-      console.error(
-        "❌ Upload rejected: file is too large."
-      );
-    }
-
-    // ==================================================
-    // 429 - RATE LIMIT
-    // ==================================================
-
-    if (status === 429) {
-      retryCount[url] =
-        (retryCount[url] || 0) + 1;
-
-      // Maximum 2 retries
-      if (retryCount[url] <= 2) {
-        const delay =
-          Math.pow(
-            2,
-            retryCount[url]
-          ) * 1000;
-
-        console.warn(
-          `⏳ Rate limited → retry ${retryCount[url]}/2 in ${delay}ms`
-        );
-
-        await new Promise(
-          (resolve) => {
-            setTimeout(
-              resolve,
-              delay
-            );
-          }
-        );
-
-        return api(config);
-      }
-
-      retryCount[url] = 0;
-    } else {
-      // Successful/non-429 response path ke baad
-      // retry counter reset.
-      retryCount[url] = 0;
-    }
-
-    // ==================================================
-    // NETWORK ERROR
-    // ==================================================
-
-    if (!error.response) {
-      console.error(
-        "❌ Network Error:",
-        error.message
+      debugError(
+        `❌ File too large → ${method} ${url}`
       );
 
       error.message =
-        "Network error. Please check whether the backend server is running.";
+        error?.response?.data
+          ?.message ||
+        "The selected file is too large.";
     }
 
-    // ==================================================
-    // SERVER ERROR
-    // ==================================================
+    // ----------------------------------------------
+    // 429
+    // ----------------------------------------------
 
-    if (
-      status &&
-      status >= 500
-    ) {
-      console.error(
-        `❌ Server Error ${status} → ${method} ${url}`,
-        error.response?.data ||
-          error.message
+    if (status === 429) {
+      /*
+       * VERY IMPORTANT:
+       *
+       * POST / PUT / PATCH / DELETE ko automatic
+       * retry nahi karna.
+       *
+       * Warna:
+       *
+       * - image duplicate upload
+       * - post duplicate create
+       * - duplicate delete/update
+       *
+       * ho sakta hai.
+       */
+      if (
+        isSafeRetryMethod(
+          config.method
+        )
+      ) {
+        config.__retryCount =
+          Number(
+            config.__retryCount ||
+              0
+          );
+
+        if (
+          config.__retryCount <
+          MAX_GET_RETRIES
+        ) {
+          config.__retryCount +=
+            1;
+
+          const delay =
+            getRetryDelay(
+              error,
+              config.__retryCount
+            );
+
+          debugWarn(
+            `⏳ Rate limited → retry ${config.__retryCount}/${MAX_GET_RETRIES} in ${delay}ms → ${method} ${url}`
+          );
+
+          await sleep(
+            delay
+          );
+
+          return api(config);
+        }
+      }
+
+      debugError(
+        `❌ Rate limit reached → ${method} ${url}`
       );
     }
 
-    return Promise.reject(error);
+    // ----------------------------------------------
+    // GOOGLE DRIVE AUTH
+    // ----------------------------------------------
+
+    if (
+      status === 503 &&
+      error?.response?.data
+        ?.code ===
+        "GOOGLE_DRIVE_AUTH_REQUIRED"
+    ) {
+      debugError(
+        "❌ Google Drive authorization needs renewal."
+      );
+
+      error.message =
+        error?.response?.data
+          ?.message ||
+        "Google Drive needs to be reconnected.";
+    }
+
+    // ----------------------------------------------
+    // SERVER ERRORS
+    // ----------------------------------------------
+
+    if (
+      status >= 500 &&
+      status !== 503
+    ) {
+      debugError(
+        `❌ Server error ${status} → ${method} ${url}`,
+        error.response?.data
+      );
+    }
+
+    // ----------------------------------------------
+    // CLEAN USER-FACING MESSAGE
+    // ----------------------------------------------
+
+    if (
+      error?.response?.data
+        ?.message
+    ) {
+      error.message =
+        error.response.data.message;
+    } else if (
+      Array.isArray(
+        error?.response?.data
+          ?.errors
+      ) &&
+      error.response.data.errors
+        .length > 0
+    ) {
+      error.message =
+        error.response.data.errors
+          .map(
+            (item) =>
+              item?.msg ||
+              item?.message
+          )
+          .filter(Boolean)
+          .join(", ") ||
+        error.message;
+    }
+
+    return Promise.reject(
+      error
+    );
   }
 );
+
+// ======================================================
+// EXPORTED HELPERS
+// ======================================================
+
+export const getApiBaseUrl =
+  () => API_URL;
+
+export const getStoredAuthToken =
+  () => getAuthToken();
 
 // ======================================================
 // EXPORT

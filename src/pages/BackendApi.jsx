@@ -2,358 +2,484 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
-  Server,
-  ArrowRight,
-  CheckCircle,
-  Shield,
-  Code2,
-  Globe,
-  Database,
-  Layers,
-  Settings,
-  TrendingUp,
-  Plus,
-  Minus,
   Activity,
-  Key,
-  Lock,
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  CheckCircle2,
+  ChevronDown,
+  ChevronUp,
+  CircleCheck,
   Cloud,
+  Code2,
+  Database,
+  Globe2,
+  Key,
+  Layers3,
+  Lock,
+  Mail,
+  Minus,
+  Plus,
+  Send,
+  Server,
+  Settings2,
+  ShieldCheck,
+  TrendingUp,
+  Zap,
 } from "lucide-react";
 
-const BackendApi = ({ isDark }) => {
-  const d = isDark;
+const BackendApi = () => {
   const [activeFaq, setActiveFaq] = useState(null);
+  const [showAllFaqs, setShowAllFaqs] = useState(false);
 
-  // ======================================================
-  // BACKEND & API DEVELOPMENT SERVICES
-  // ======================================================
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    service: "Backend & API Development",
+    timeline: "",
+    message: "",
+  });
+
+  // BACKGROUND GRIDS
+
+  const lightGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
+    backgroundSize: "48px 48px",
+  };
+
+  const darkGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+    backgroundSize: "52px 52px",
+  };
+
+  // BACKEND SERVICES
 
   const features = [
     {
-      icon: <Server size={20} />,
-      color: "purple",
+      icon: <Server size={21} />,
+      number: "01",
       title: "REST API Development",
-      desc: "Custom REST API and RESTful API development using Node.js and Express.js for web applications, mobile apps, SaaS platforms and business software, with structured endpoints, validation, pagination and clear documentation.",
+      desc:
+        "Custom REST and RESTful APIs for web applications, mobile apps, SaaS platforms and business software using structured endpoints and maintainable backend architecture.",
+      points: [
+        "Structured API endpoints",
+        "Validation & pagination",
+        "Clear API architecture",
+      ],
     },
     {
-      icon: <Code2 size={20} />,
-      color: "blue",
+      icon: <Code2 size={21} />,
+      number: "02",
       title: "GraphQL API Development",
-      desc: "GraphQL API development for applications that need flexible queries, mutations, subscriptions and efficient communication between frontend and backend systems.",
+      desc:
+        "GraphQL APIs for applications that need flexible queries, mutations, subscriptions and structured frontend-to-backend communication.",
+      points: [
+        "Queries & mutations",
+        "GraphQL schemas",
+        "Application integration",
+      ],
     },
     {
-      icon: <Database size={20} />,
-      color: "green",
-      title: "Database Development & Integration",
-      desc: "MongoDB, PostgreSQL and MySQL database development including schemas, relationships, indexing, queries, data models and database integration designed around your application requirements.",
+      icon: <Database size={21} />,
+      number: "03",
+      title: "Database Development",
+      desc:
+        "Database architecture and integration for application data, relationships, indexes, queries and business workflows.",
+      points: [
+        "Data modelling",
+        "Database integration",
+        "Query optimisation",
+      ],
     },
     {
-      icon: <Shield size={20} />,
-      color: "red",
+      icon: <ShieldCheck size={21} />,
+      number: "04",
       title: "Secure Backend Development",
-      desc: "Authentication and authorization systems using JWT, refresh tokens, OAuth, role-based access control, validation, rate limiting and security-conscious API development practices.",
+      desc:
+        "Authentication, authorization, validation, permissions and security-conscious backend development for modern applications.",
+      points: [
+        "Authentication",
+        "Role-based access",
+        "Input validation",
+      ],
     },
     {
-      icon: <Activity size={20} />,
-      color: "amber",
+      icon: <Activity size={21} />,
+      number: "05",
       title: "Real-Time Backend Development",
-      desc: "Real-time server-side development using WebSockets and Socket.io for chat applications, live notifications, dashboards, collaboration tools and event-driven application features.",
+      desc:
+        "Real-time backend functionality for chat, live notifications, dashboards, collaboration and event-driven application experiences.",
+      points: [
+        "Live notifications",
+        "Real-time updates",
+        "Event-driven workflows",
+      ],
     },
     {
-      icon: <Layers size={20} />,
-      color: "indigo",
-      title: "SaaS Backend & Scalable Architecture",
-      desc: "Scalable backend development for SaaS products and larger applications, including modular services, APIs, queues, reusable business logic and maintainable application components.",
+      icon: <Layers3 size={21} />,
+      number: "06",
+      title: "SaaS Backend Development",
+      desc:
+        "Backend systems for SaaS products with account management, permissions, APIs, business logic and scalable application workflows.",
+      points: [
+        "SaaS architecture",
+        "Account workflows",
+        "Reusable business logic",
+      ],
     },
     {
-      icon: <Key size={20} />,
-      color: "cyan",
+      icon: <Key size={21} />,
+      number: "07",
       title: "Third-Party API Integration",
-      desc: "Integrate payment gateways, email services, maps, authentication providers, AI APIs, webhooks, storage platforms and other third-party services into your application.",
+      desc:
+        "Integrate payment providers, email platforms, authentication services, AI APIs, webhooks and other external systems.",
+      points: [
+        "Payment APIs",
+        "Webhooks",
+        "External platforms",
+      ],
     },
     {
-      icon: <TrendingUp size={20} />,
-      color: "orange",
-      title: "Backend Performance Optimisation",
-      desc: "Improve backend performance through database query optimisation, caching, indexing, pagination, connection management and application-level performance improvements.",
+      icon: <TrendingUp size={21} />,
+      number: "08",
+      title: "Backend Optimisation",
+      desc:
+        "Improve backend performance through better queries, indexing, caching, pagination and application-level optimisation.",
+      points: [
+        "Query optimisation",
+        "Caching strategies",
+        "Performance review",
+      ],
     },
     {
-      icon: <Settings size={20} />,
-      color: "pink",
-      title: "Cloud Deployment & DevOps",
-      desc: "Deploy backend applications using suitable cloud infrastructure, Docker, CI/CD pipelines, environment configuration, reverse proxies and production monitoring.",
+      icon: <Cloud size={21} />,
+      number: "09",
+      title: "Deployment & Backend Support",
+      desc:
+        "Prepare backend applications for production environments with configuration, deployment support and ongoing improvements.",
+      points: [
+        "Production preparation",
+        "Environment setup",
+        "Ongoing support",
+      ],
     },
   ];
 
-  // ======================================================
-  // TECHNOLOGY STACK
-  // ======================================================
+  // APPLICATION BACKENDS
 
-  const techStack = [
+  const applicationBackends = [
     {
-      category: "Backend Development",
-      items: ["Node.js", "Express.js", "TypeScript", "JavaScript", "NestJS"],
+      icon: <Globe2 size={19} />,
+      title: "Web Application Backend",
+      desc:
+        "Server-side APIs, databases, authentication and business logic for modern web applications.",
     },
     {
-      category: "API Development",
-      items: ["REST APIs", "GraphQL", "WebSockets", "Socket.io", "Webhooks"],
+      icon: <Server size={19} />,
+      title: "Mobile App Backend",
+      desc:
+        "Authentication, data, notifications, storage and APIs for connected mobile applications.",
     },
     {
-      category: "Databases",
-      items: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Elasticsearch"],
+      icon: <Layers3 size={19} />,
+      title: "SaaS Backend",
+      desc:
+        "Backend architecture for subscription products, dashboards, users and product-specific workflows.",
     },
     {
-      category: "Authentication & Security",
-      items: ["JWT", "OAuth", "RBAC", "bcrypt", "Helmet", "Rate Limiting"],
+      icon: <Database size={19} />,
+      title: "Database-Driven Systems",
+      desc:
+        "Backend applications designed around structured business data and operational workflows.",
     },
     {
-      category: "Cloud & DevOps",
-      items: ["AWS", "Docker", "GitHub Actions", "Nginx", "CI/CD"],
+      icon: <Key size={19} />,
+      title: "API Integration Systems",
+      desc:
+        "Connect applications with payments, messaging, storage, AI services and external platforms.",
     },
     {
-      category: "Testing & Documentation",
-      items: ["Jest", "Supertest", "Postman", "Swagger", "OpenAPI"],
+      icon: <Activity size={19} />,
+      title: "Real-Time Applications",
+      desc:
+        "Server-side functionality for live events, messaging, notifications and interactive systems.",
     },
   ];
 
-  // ======================================================
-  // DEVELOPMENT PROCESS
-  // ======================================================
-
-  const process = [
-    {
-      n: "01",
-      title: "Backend & API Architecture",
-      desc: "We review your application requirements, frontend or mobile app needs, business logic, API requirements, integrations, authentication and data structure before backend development begins.",
-    },
-    {
-      n: "02",
-      title: "Database Architecture",
-      desc: "We design MongoDB, PostgreSQL, MySQL or another suitable database structure with appropriate relationships, schemas, validation, indexes and data access patterns.",
-    },
-    {
-      n: "03",
-      title: "Core Backend Development",
-      desc: "We build server-side functionality, authentication, APIs, business logic, middleware, validation, error handling and database operations using a maintainable backend architecture.",
-    },
-    {
-      n: "04",
-      title: "API & Third-Party Integrations",
-      desc: "Payment services, email providers, maps, AI APIs, cloud storage, authentication providers, webhooks and other external systems are integrated according to project requirements.",
-    },
-    {
-      n: "05",
-      title: "Testing, Security & Performance",
-      desc: "Backend functionality is reviewed for validation, authentication, authorization, error handling, API security, database performance and application reliability.",
-    },
-    {
-      n: "06",
-      title: "Deployment & Documentation",
-      desc: "We prepare the backend for production deployment and provide relevant API documentation, environment information and deployment guidance according to the project scope.",
-    },
-  ];
-
-  // ======================================================
-  // DEVELOPMENT APPROACH
-  // ======================================================
+  // DEVELOPMENT STANDARDS
 
   const whyUs = [
     {
-      icon: <Code2 size={16} />,
+      icon: <Code2 size={19} />,
       title: "Clean Backend Architecture",
-      desc: "Modular backend code designed to remain understandable, maintainable and easier to extend as your application grows.",
+      desc:
+        "Modular backend code structured to remain understandable, maintainable and easier to extend.",
     },
     {
-      icon: <Shield size={16} />,
-      title: "Security-Conscious Development",
-      desc: "Authentication, authorization, validation, rate limiting and secure configuration are considered throughout backend and API development.",
+      icon: <ShieldCheck size={19} />,
+      title: "Security Conscious",
+      desc:
+        "Authentication, authorization, validation and secure configuration are considered throughout development.",
     },
     {
-      icon: <Database size={16} />,
+      icon: <Database size={19} />,
       title: "Database-Focused Engineering",
-      desc: "Database structures, relationships and queries are designed around the actual data and workflows of your application.",
+      desc:
+        "Database structures and queries are designed around real application data and business workflows.",
     },
     {
-      icon: <Activity size={16} />,
-      title: "Performance-Focused APIs",
-      desc: "API responses, database queries, caching and backend architecture are developed with performance and scalability in mind.",
+      icon: <Activity size={19} />,
+      title: "Performance Considered",
+      desc:
+        "API responses, database queries, caching and backend architecture are developed with performance in mind.",
     },
     {
-      icon: <Cloud size={16} />,
-      title: "Production Deployment",
-      desc: "Backend applications can be prepared for cloud deployment with environment configuration, CI/CD and suitable production infrastructure.",
+      icon: <Cloud size={19} />,
+      title: "Production Ready",
+      desc:
+        "Backend applications can be prepared for production deployment with suitable environment configuration.",
     },
     {
-      icon: <Globe size={16} />,
-      title: "Remote Backend Development",
-      desc: "DevZore provides remote backend development and API development services for startups, businesses and software products worldwide.",
+      icon: <Globe2 size={19} />,
+      title: "Remote Collaboration",
+      desc:
+        "Backend and API projects can be handled remotely through organised communication and development workflows.",
     },
   ];
 
-  // ======================================================
+  // SECURITY
+
+  const securityPoints = [
+    "JWT Authentication",
+    "Role-Based Access Control",
+    "OAuth Integration",
+    "Input Validation",
+    "API Rate Limiting",
+    "Password Hashing",
+    "Secure Environment Variables",
+    "CORS Configuration",
+  ];
+
+  // PROCESS
+
+  const process = [
+    {
+      number: "01",
+      title: "Backend Architecture",
+      desc:
+        "We review the application, business logic, APIs, users, authentication, integrations and data requirements.",
+    },
+    {
+      number: "02",
+      title: "Database Planning",
+      desc:
+        "Application data, relationships, validation, indexes and access patterns are planned around the project.",
+    },
+    {
+      number: "03",
+      title: "Core Development",
+      desc:
+        "APIs, authentication, business logic, middleware, validation and database operations are developed.",
+    },
+    {
+      number: "04",
+      title: "Integrations",
+      desc:
+        "Payment services, email, storage, AI APIs, webhooks and other required external systems are connected.",
+    },
+    {
+      number: "05",
+      title: "Testing & Security",
+      desc:
+        "Authentication, permissions, validation, errors, workflows and important performance areas are reviewed.",
+    },
+    {
+      number: "06",
+      title: "Deployment & Handover",
+      desc:
+        "The backend is prepared for production along with agreed configuration, documentation and project handover.",
+    },
+  ];
+
+  // USE CASES
+
+  const useCases = [
+    "Web Application APIs",
+    "Mobile App Backends",
+    "SaaS Platforms",
+    "Business Systems",
+    "Customer Portals",
+    "Admin Dashboards",
+    "E-Commerce Backends",
+    "Authentication Systems",
+    "Payment Integrations",
+    "Real-Time Applications",
+    "Third-Party Integrations",
+    "Custom Business APIs",
+  ];
+
   // FAQ
-  // ======================================================
 
   const faqs = [
     {
       q: "What backend development services does DevZore provide?",
-      a: "DevZore provides custom backend development services for web applications, mobile apps, SaaS platforms and business software. Services can include Node.js development, Express.js development, REST APIs, GraphQL APIs, authentication, database development, third-party API integration, real-time functionality and backend deployment.",
+      a:
+        "DevZore provides custom backend development for web applications, mobile apps, SaaS products and business software. Services can include APIs, authentication, databases, third-party integrations, real-time functionality and deployment preparation.",
     },
     {
       q: "How much does backend and API development cost?",
-      a: "Backend and API development cost depends on application complexity, database requirements, authentication, integrations, business logic, security requirements and deployment needs. After reviewing the project scope, DevZore can provide a tailored proposal.",
+      a:
+        "Cost depends on application complexity, database requirements, authentication, integrations, business logic, security requirements and deployment needs. A project-specific estimate can be prepared after reviewing the scope.",
     },
     {
       q: "Do you provide custom backend development?",
-      a: "Yes. We can develop a custom backend around your application's users, business logic, database structure, permissions, integrations and frontend or mobile application requirements.",
+      a:
+        "Yes. Backend systems can be developed around your application's users, business logic, database structure, permissions, integrations and frontend requirements.",
     },
     {
       q: "Do you provide Node.js and Express.js development?",
-      a: "Yes. Node.js and Express.js can be used to build backend systems and APIs for web applications, mobile applications, SaaS products, dashboards and custom business software.",
+      a:
+        "Yes. Node.js and Express.js can be used to develop backend systems and APIs for web applications, mobile apps, SaaS products and custom software.",
     },
     {
       q: "Do you build REST APIs and RESTful APIs?",
-      a: "Yes. We develop REST and RESTful APIs with structured endpoints, authentication, validation, error handling, pagination and database integration according to application requirements.",
+      a:
+        "Yes. REST APIs can include structured endpoints, authentication, validation, error handling, pagination and database integration.",
     },
     {
       q: "Do you provide GraphQL API development?",
-      a: "Yes. GraphQL can be used when an application benefits from flexible data queries, mutations, subscriptions or a structured GraphQL API layer. The choice between REST and GraphQL depends on the project requirements.",
+      a:
+        "Yes. GraphQL can be used where an application benefits from flexible data queries, mutations or subscriptions. The appropriate API approach depends on the project.",
     },
     {
       q: "Can you build a backend for a web application?",
-      a: "Yes. Web backend development can include server-side business logic, user authentication, database development, APIs, permissions, file handling, payments, notifications and integrations for React, Next.js and other frontend applications.",
+      a:
+        "Yes. Web application backends can include server-side logic, authentication, databases, APIs, permissions, payments, notifications and integrations.",
     },
     {
       q: "Can you build a backend for a mobile app?",
-      a: "Yes. Mobile app backend development can include authentication, user accounts, databases, REST or GraphQL APIs, notifications, payments, file storage, real-time functionality and administration systems.",
+      a:
+        "Yes. Mobile app backends can include authentication, accounts, databases, APIs, notifications, payments, storage and administration functionality.",
     },
     {
       q: "Can you build a backend for a SaaS application?",
-      a: "Yes. SaaS backend development can include user and organization management, authentication, subscription workflows, APIs, databases, permissions, dashboards, billing integrations and other product-specific business logic.",
+      a:
+        "Yes. SaaS backend development can include users, organisations, permissions, APIs, databases, subscriptions and product-specific business logic.",
     },
     {
       q: "Can you integrate third-party APIs and payment gateways?",
-      a: "Yes. Third-party API integration can include payment providers, email services, maps, authentication providers, AI services, cloud storage, webhooks and other external platforms when suitable API access is available.",
+      a:
+        "Yes. Suitable payment providers, email services, maps, authentication platforms, AI services, cloud storage and other APIs can be integrated where access is available.",
     },
     {
       q: "Do you provide database development and integration?",
-      a: "Yes. Database development can include MongoDB, PostgreSQL, MySQL and other suitable technologies. We can design schemas, relationships, indexes and queries and integrate the database with your backend APIs and application logic.",
+      a:
+        "Yes. Database work can include data modelling, relationships, indexes, queries and integration with backend APIs and business logic.",
     },
     {
       q: "Do you work with MongoDB and PostgreSQL?",
-      a: "Yes. Database technology is selected according to application requirements. MongoDB, PostgreSQL, MySQL and other databases can be used depending on data structure, relationships, query requirements and application architecture.",
+      a:
+        "Yes. Database technology can be selected according to application data, relationships, query requirements and architecture.",
     },
     {
       q: "Do you provide API documentation?",
-      a: "API projects can include endpoint documentation, request and response examples, authentication instructions and development environment information. Postman collections, Swagger or OpenAPI documentation can also be included according to project scope.",
+      a:
+        "API projects can include endpoint documentation, request and response examples, authentication instructions and development environment information according to project scope.",
     },
     {
       q: "How do you approach backend API security?",
-      a: "Backend security can include authentication, authorization, input validation, rate limiting, secure headers, password hashing, protected environment variables and appropriate database and API access controls.",
+      a:
+        "Security can include authentication, authorization, input validation, rate limiting, secure configuration, password hashing and appropriate access controls.",
     },
     {
-      q: "Can you improve or integrate an existing API?",
-      a: "Yes. Existing backend systems can be reviewed for API structure, database queries, authentication, integrations, error handling, performance and maintainability. Appropriate improvements depend on the current codebase and project requirements.",
+      q: "Can you improve an existing backend or API?",
+      a:
+        "Yes. Existing systems can be reviewed for API structure, queries, authentication, integrations, error handling, performance and maintainability.",
     },
     {
-      q: "Can a React or Next.js frontend connect to your backend APIs?",
-      a: "Yes. Backend APIs can be designed for React, Next.js and other frontend applications with appropriate authentication, CORS configuration, data structures and API endpoints.",
+      q: "Can React or Next.js connect to your backend APIs?",
+      a:
+        "Yes. APIs can be designed to work with React, Next.js and other compatible frontend applications with suitable authentication, CORS and data structures.",
     },
   ];
 
-  // ======================================================
   // RELATED SERVICES
-  // ======================================================
 
   const relatedServices = [
     {
-      icon: <Code2 size={22} />,
+      label: "FULL STACK",
       title: "MERN Stack Development",
-      desc: "Build complete MongoDB, Express, React and Node.js applications with integrated frontend and backend development.",
+      desc:
+        "Complete MongoDB, Express, React and Node.js application development.",
       path: "/mern-stack-development",
     },
     {
-      icon: <Layers size={22} />,
-      title: "SaaS Development",
-      desc: "Build SaaS products with authentication, APIs, databases, dashboards, integrations and scalable backend architecture.",
+      label: "PRODUCT",
+      title: "SaaS Product Development",
+      desc:
+        "Custom SaaS products with users, dashboards, APIs and product workflows.",
       path: "/saas-product-development",
     },
     {
-      icon: <Globe size={22} />,
+      label: "FRONTEND",
+      title: "React Development",
+      desc:
+        "Responsive React applications connected to secure backend services and APIs.",
+      path: "/reactdevelopment",
+    },
+    {
+      label: "WEB",
       title: "Web Development",
-      desc: "Connect backend APIs to responsive, modern and maintainable web applications built around your business requirements.",
+      desc:
+        "Business websites and custom web applications built around real requirements.",
       path: "/web-development",
     },
   ];
 
-  // ======================================================
-  // BACKEND CAPABILITIES
-  // ======================================================
+  // HELPERS
 
-  const backendCapabilities = [
-    {
-      title: "Web Application Backend",
-      desc: "Server-side APIs, databases and business logic for modern web applications.",
-    },
-    {
-      title: "Mobile App Backend",
-      desc: "Authentication, data, notifications, storage and APIs for mobile applications.",
-    },
-    {
-      title: "SaaS Backend Development",
-      desc: "Backend architecture for subscription-based and software products.",
-    },
-    {
-      title: "Database Development",
-      desc: "MongoDB, PostgreSQL, MySQL and structured application data models.",
-    },
-    {
-      title: "API Development & Integration",
-      desc: "Custom APIs plus integrations with external platforms, payments and webhooks.",
-    },
-    {
-      title: "Real-Time Systems",
-      desc: "WebSocket and Socket.io functionality for live application features.",
-    },
-  ];
-
-  // ======================================================
-  // COLOR MAP
-  // ======================================================
-
-  const colorMap = {
-    purple: d
-      ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
-      : "bg-purple-50 border-purple-100 text-purple-600",
-    blue: d
-      ? "bg-blue-500/10 border-blue-500/20 text-blue-400"
-      : "bg-blue-50 border-blue-100 text-blue-600",
-    green: d
-      ? "bg-green-500/10 border-green-500/20 text-green-400"
-      : "bg-green-50 border-green-100 text-green-600",
-    red: d
-      ? "bg-red-500/10 border-red-500/20 text-red-400"
-      : "bg-red-50 border-red-100 text-red-600",
-    amber: d
-      ? "bg-amber-500/10 border-amber-500/20 text-amber-400"
-      : "bg-amber-50 border-amber-100 text-amber-600",
-    indigo: d
-      ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-400"
-      : "bg-indigo-50 border-indigo-100 text-indigo-600",
-    cyan: d
-      ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-400"
-      : "bg-cyan-50 border-cyan-100 text-cyan-600",
-    orange: d
-      ? "bg-orange-500/10 border-orange-500/20 text-orange-400"
-      : "bg-orange-50 border-orange-100 text-orange-600",
-    pink: d
-      ? "bg-pink-500/10 border-pink-500/20 text-pink-400"
-      : "bg-pink-50 border-pink-100 text-pink-600",
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
-  // ======================================================
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const subject = encodeURIComponent(
+      `Backend & API Development Enquiry - ${formData.name}`
+    );
+
+    const body = encodeURIComponent(
+`Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || "Not provided"}
+Service: ${formData.service}
+Timeline: ${formData.timeline || "Not specified"}
+
+Project Details:
+${formData.message}`
+    );
+
+    window.location.href = `mailto:hellodevzore@gmail.com?subject=${subject}&body=${body}`;
+  };
+
   // STRUCTURED DATA
-  // ======================================================
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -361,16 +487,19 @@ const BackendApi = ({ isDark }) => {
     "@id": "https://devzore.com/backend-api#service",
     name: "Backend & API Development Services",
     url: "https://devzore.com/backend-api",
-    description:
-      "Custom backend development and API development services for web applications, mobile apps and SaaS platforms using Node.js, Express.js, REST APIs, GraphQL, MongoDB and PostgreSQL.",
     serviceType: "Backend and API Development",
+    description:
+      "Custom backend and API development services for web applications, mobile apps and SaaS products including APIs, authentication, databases and integrations.",
     provider: {
       "@type": "Organization",
       "@id": "https://devzore.com/#organization",
       name: "DevZore",
       url: "https://devzore.com/",
     },
-    areaServed: "Worldwide",
+    areaServed: {
+      "@type": "Place",
+      name: "Worldwide",
+    },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Backend & API Development Services",
@@ -383,19 +512,6 @@ const BackendApi = ({ isDark }) => {
         },
       })),
     },
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-      },
-    })),
   };
 
   const breadcrumbSchema = {
@@ -423,408 +539,325 @@ const BackendApi = ({ isDark }) => {
     ],
   };
 
-  const whatsappMessage = encodeURIComponent(
-    "Hi DevZore! I would like to discuss a backend and API development project."
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
+  const visibleFaqs = showAllFaqs ? faqs : faqs.slice(0, 3);
+
+  // SECTION LABEL
+
+  const SectionLabel = ({ children, light = false }) => (
+    <div
+      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+        light ? "text-[#28c5d4]" : "text-[#07899a]"
+      }`}
+    >
+      <span className="w-5 h-[2px] bg-[#0796A8]" />
+      {children}
+    </div>
   );
 
   return (
     <>
-      {/* ==================================================
-          STRUCTURED DATA
-          Main title/meta/canonical are managed in App.jsx
-      ================================================== */}
-
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
+          {JSON.stringify(breadcrumbSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
+          {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
 
-      <main
-        className={`min-h-screen transition-colors duration-300 ${
-          d ? "bg-[#030303]" : "bg-white"
-        }`}
+      <div
+        className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
+        style={{
+          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+        }}
       >
-        {/* ==================================================
-            HERO
-        ================================================== */}
+        {/* HERO */}
 
         <section
           aria-labelledby="backend-heading"
-          className={`pt-24 pb-10 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
-          }`}
+          className="relative overflow-hidden bg-[#04111a] text-white"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div>
-                <div className="flex flex-wrap gap-3 mb-5">
-                  <div
-                    className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border ${
-                      d
-                        ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
-                        : "bg-purple-50 border-purple-200 text-purple-700"
-                    }`}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                    Backend & API Development
-                  </div>
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute -top-32 right-[5%] w-[500px] h-[500px] rounded-full bg-[#078fa5]/12 blur-[130px]" />
 
-                  <div
-                    className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold border ${
-                      d
-                        ? "bg-green-500/10 border-green-500/20 text-green-400"
-                        : "bg-green-50 border-green-200 text-green-700"
-                    }`}
-                  >
-                    <Globe size={11} />
-                    Worldwide Projects
+            <div
+              className="absolute inset-0 opacity-50"
+              style={darkGrid}
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/70" />
+          </div>
+
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14">
+            <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-8 lg:gap-12 items-center">
+              <div className="relative z-10">
+                <div className="flex flex-wrap items-center gap-3 mb-5">
+                  <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.16em] uppercase text-[#c4ced5]">
+                    <CircleCheck
+                      size={14}
+                      className="text-[#26becb]"
+                    />
+                    Backend & API Development
                   </div>
                 </div>
 
                 <h1
                   id="backend-heading"
-                  className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4 ${
-                    d ? "text-white" : "text-gray-900"
-                  }`}
+                  className="max-w-[800px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
-                  Backend & API Development Services{" "}
-                  <span className="text-purple-600">
-                    for Modern Applications
+                  Backend systems built for{" "}
+                  <span className="text-[#22bdca]">
+                    reliable modern applications.
                   </span>
                 </h1>
 
-                <p
-                  className={`text-lg font-semibold mb-4 ${
-                    d ? "text-gray-300" : "text-gray-700"
-                  }`}
-                >
-                  Node.js · Express.js · REST APIs · GraphQL · MongoDB ·
-                  PostgreSQL · Authentication · API Integrations
+                <p className="max-w-[700px] mt-5 text-[16px] sm:text-[17px] leading-7 text-slate-300">
+                  DevZore develops backend systems, APIs, authentication,
+                  databases and integrations for web applications, mobile
+                  apps, SaaS products and custom business software.
                 </p>
 
-                <p
-                  className={`text-base leading-relaxed mb-4 ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  DevZore provides custom backend development and API
-                  development services for web applications, mobile apps,
-                  SaaS products and business software. We develop Node.js and
-                  Express.js backend systems, RESTful APIs, GraphQL APIs,
-                  databases, authentication systems and third-party API
-                  integrations for modern applications.
+                <p className="max-w-[650px] mt-3 text-[13px] sm:text-[14px] leading-6 text-slate-400">
+                  From application logic and database architecture to secure
+                  APIs and third-party integrations, we build around the real
+                  workflows your software needs to support.
                 </p>
 
-                <p
-                  className={`text-base leading-relaxed mb-6 ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  From web backend development and application backend
-                  development to database integration, server-side business
-                  logic and scalable APIs, our development approach focuses on
-                  security, maintainability, performance and clear technical
-                  architecture.
-                </p>
-
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {[
-                    {
-                      icon: <Server size={17} />,
-                      label: "Custom Backend",
-                    },
-                    {
-                      icon: <Code2 size={17} />,
-                      label: "REST & GraphQL APIs",
-                    },
-                    {
-                      icon: <Database size={17} />,
-                      label: "Database Integration",
-                    },
-                    {
-                      icon: <Shield size={17} />,
-                      label: "Secure Architecture",
-                    },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className={`flex items-center gap-3 p-3 rounded-xl border ${
-                        d
-                          ? "bg-white/[0.02] border-white/[0.06]"
-                          : "bg-gray-50 border-gray-200"
-                      }`}
-                    >
-                      <span className="text-purple-500">{item.icon}</span>
-
-                      <span
-                        className={`text-[12px] font-bold ${
-                          d ? "text-gray-300" : "text-gray-700"
-                        }`}
-                      >
-                        {item.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    to="/contact"
-                    className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mt-6">
+                  <a
+                    href="#backend-project-enquiry"
+                    className="inline-flex justify-center items-center gap-2.5 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[12px] font-semibold text-[#071923] transition-all"
                   >
-                    Discuss Your Backend Project
+                    Start Your Backend Project
                     <ArrowRight size={14} />
-                  </Link>
+                  </a>
 
                   <a
-                    href={`https://wa.me/923348004300?text=${whatsappMessage}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+                    href="#backend-development-services"
+                    className="inline-flex justify-center items-center gap-2.5 px-4 py-3 text-[12px] font-semibold text-white hover:text-[#28c5d4] transition-colors"
                   >
-                    WhatsApp Us
+                    Explore Backend Services
+                    <ArrowRight size={14} />
                   </a>
                 </div>
-              </div>
 
-              {/* BACKEND CAPABILITIES */}
-
-              <div
-                className={`p-7 rounded-3xl border ${
-                  d
-                    ? "bg-white/[0.02] border-white/[0.06]"
-                    : "bg-[#fafafa] border-gray-200"
-                }`}
-              >
-                <p
-                  className={`text-[11px] font-black uppercase tracking-widest mb-5 ${
-                    d ? "text-gray-500" : "text-gray-400"
-                  }`}
-                >
-                  Backend Development Capabilities
-                </p>
-
-                <div className="space-y-4">
-                  {backendCapabilities.map((item) => (
-                    <div
-                      key={item.title}
-                      className={`flex items-start gap-3 pb-4 border-b last:border-0 last:pb-0 ${
-                        d ? "border-white/[0.05]" : "border-gray-100"
-                      }`}
+                <div className="flex flex-wrap gap-x-5 gap-y-2 mt-5">
+                  {[
+                    "Custom APIs",
+                    "Authentication",
+                    "Databases",
+                    "Integrations",
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center gap-1.5 text-[10px] font-medium text-slate-400"
                     >
-                      <CheckCircle
-                        size={14}
-                        className="text-purple-500 flex-shrink-0 mt-0.5"
+                      <CheckCircle2
+                        size={12}
+                        className="text-[#20becd]"
                       />
-
-                      <div>
-                        <p
-                          className={`text-[13px] font-bold ${
-                            d ? "text-white" : "text-gray-900"
-                          }`}
-                        >
-                          {item.title}
-                        </p>
-
-                        <p
-                          className={`text-[11px] mt-1 leading-relaxed ${
-                            d ? "text-gray-500" : "text-gray-500"
-                          }`}
-                        >
-                          {item.desc}
-                        </p>
-                      </div>
-                    </div>
+                      {item}
+                    </span>
                   ))}
                 </div>
+              </div>
 
-                <div
-                  className={`mt-5 p-3 rounded-xl ${
-                    d ? "bg-purple-600/5" : "bg-purple-50"
-                  }`}
-                >
-                  <p
-                    className={`text-[11px] font-semibold text-center ${
-                      d ? "text-purple-400" : "text-purple-700"
-                    }`}
-                  >
-                    Remote backend and API development services available
-                    worldwide
-                  </p>
+              {/* BACKEND VISUAL */}
+
+              <div className="relative min-h-[380px] lg:min-h-[430px] hidden md:block">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="absolute w-[390px] h-[390px] rounded-full bg-[#0796A8]/15 blur-[90px]" />
+
+                  <div className="relative w-full max-w-[560px]">
+                    <div className="relative rounded-[20px] border border-white/10 bg-[#091d27]/95 shadow-[0_35px_90px_rgba(0,0,0,0.45)] overflow-hidden">
+                      <div className="h-9 px-4 border-b border-white/10 bg-[#0b222d] flex items-center justify-between">
+                        <div className="flex gap-1.5">
+                          {[1, 2, 3].map((item) => (
+                            <span
+                              key={item}
+                              className="w-2 h-2 rounded-full bg-white/20"
+                            />
+                          ))}
+                        </div>
+
+                        <div className="w-[46%] h-4 rounded bg-white/[0.05]" />
+                        <div className="w-5" />
+                      </div>
+
+                      <div className="grid grid-cols-[66px_1fr] min-h-[285px]">
+                        <div className="border-r border-white/[0.08] p-3">
+                          <div className="w-8 h-8 rounded-lg bg-[#1bbac8]/20 border border-[#1bbac8]/30 mb-5 flex items-center justify-center">
+                            <Server
+                              size={14}
+                              className="text-[#23bfce]"
+                            />
+                          </div>
+
+                          <div className="space-y-3">
+                            {[1, 2, 3, 4, 5].map((item) => (
+                              <div
+                                key={item}
+                                className="w-7 h-2 rounded bg-white/[0.07]"
+                              />
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="p-5">
+                          <div className="flex justify-between items-center mb-5">
+                            <div>
+                              <div className="w-20 h-2 rounded bg-[#1bbac8]/60 mb-2" />
+                              <div className="w-36 h-3 rounded bg-white/80" />
+                            </div>
+
+                            <div className="w-16 h-7 rounded-lg bg-[#18bdcb]" />
+                          </div>
+
+                          <div className="grid grid-cols-3 gap-3">
+                            {[
+                              ["APIs", "24"],
+                              ["Users", "8.4K"],
+                              ["Services", "12"],
+                            ].map(([label, value]) => (
+                              <div
+                                key={label}
+                                className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3"
+                              >
+                                <p className="text-[7px] text-slate-500">
+                                  {label}
+                                </p>
+
+                                <p className="text-[15px] font-semibold mt-2">
+                                  {value}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="grid grid-cols-[1.2fr_0.8fr] gap-3 mt-3">
+                            <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
+                              <p className="text-[8px] text-slate-400">
+                                API Activity
+                              </p>
+
+                              <div className="flex items-end gap-2 h-20 mt-3">
+                                {[35, 56, 42, 74, 60, 84, 70, 94].map(
+                                  (height, index) => (
+                                    <div
+                                      key={index}
+                                      className="flex-1 rounded-t bg-[#18b7c6]/40"
+                                      style={{
+                                        height: `${height}%`,
+                                      }}
+                                    />
+                                  )
+                                )}
+                              </div>
+                            </div>
+
+                            <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
+                              <p className="text-[8px] text-slate-400">
+                                Services
+                              </p>
+
+                              <div className="space-y-2.5 mt-3">
+                                {[1, 2, 3, 4].map((item) => (
+                                  <div
+                                    key={item}
+                                    className="flex items-center gap-2"
+                                  >
+                                    <div className="w-5 h-5 rounded-md bg-[#18bdcb]/10" />
+                                    <div className="flex-1 h-2 rounded bg-white/[0.08]" />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="absolute -left-6 top-14 w-24 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <Database
+                        size={18}
+                        className="text-[#29c7d5]"
+                      />
+
+                      <p className="text-[9px] font-semibold mt-2">
+                        Database
+                      </p>
+                    </div>
+
+                    <div className="absolute -right-5 top-16 w-24 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <ShieldCheck
+                        size={18}
+                        className="text-[#29c7d5]"
+                      />
+
+                      <p className="text-[9px] font-semibold mt-2">
+                        Secure APIs
+                      </p>
+                    </div>
+
+                    <div className="absolute -right-4 bottom-10 w-24 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <Activity
+                        size={18}
+                        className="text-[#29c7d5]"
+                      />
+
+                      <p className="text-[9px] font-semibold mt-2">
+                        Real-Time
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
 
-        {/* ==================================================
-            BACKEND SERVICES
-        ================================================== */}
+          {/* CAPABILITY STRIP */}
 
-        <section
-          aria-labelledby="backend-features-heading"
-          className={`py-10 border-b ${
-            d
-              ? "border-white/[0.06] bg-[#050505]"
-              : "border-gray-100 bg-[#fafafa]"
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Backend Services
-              </p>
-
-              <h2
-                id="backend-features-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Custom Backend & API Development Services
-              </h2>
-
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Backend development services for web applications, mobile apps
-                and SaaS platforms — including REST API development, GraphQL,
-                Node.js development, database development, authentication,
-                third-party API integration, real-time systems and cloud
-                deployment.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {features.map((item) => (
-                <article
-                  key={item.title}
-                  className={`p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-purple-500/25"
-                      : "bg-white border-gray-200 hover:border-purple-200 hover:shadow-sm"
-                  }`}
-                >
-                  <div
-                    className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${
-                      colorMap[item.color]
-                    }`}
-                  >
-                    {item.icon}
-                  </div>
-
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {item.title}
-                  </h3>
-
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    {item.desc}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ==================================================
-            APPLICATION BACKENDS
-        ================================================== */}
-
-        <section
-          aria-labelledby="backend-solutions-heading"
-          className={`py-10 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-10 items-start">
-              <div>
-                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                  Application Backends
-                </p>
-
-                <h2
-                  id="backend-solutions-heading"
-                  className={`text-3xl font-black mb-4 ${
-                    d ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  Backend Development for Web Apps, Mobile Apps & SaaS
-                </h2>
-
-                <p
-                  className={`text-sm leading-7 mb-4 ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  A reliable application needs a backend that can manage
-                  business logic, users, authentication, databases,
-                  permissions, integrations and communication between
-                  different parts of the software.
-                </p>
-
-                <p
-                  className={`text-sm leading-7 ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  DevZore develops application backends for React and Next.js
-                  web applications, React Native mobile apps, SaaS products,
-                  dashboards, e-commerce platforms and custom business
-                  software. The backend architecture is planned around the
-                  actual requirements of the application.
-                </p>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-3">
+          <div className="relative border-t border-white/[0.08] bg-[#06151d]/90">
+            <div className="max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10">
+              <div className="grid grid-cols-2 lg:grid-cols-4">
                 {[
-                  "Node.js Backend Development",
-                  "Express.js Development",
-                  "REST API Development",
-                  "GraphQL API Development",
-                  "MongoDB Development",
-                  "PostgreSQL Development",
-                  "SaaS Backend Development",
-                  "Mobile App Backend",
-                ].map((item) => (
+                  ["01", "REST APIs"],
+                  ["02", "Authentication"],
+                  ["03", "Databases"],
+                  ["04", "Integrations"],
+                ].map(([number, title], index) => (
                   <div
-                    key={item}
-                    className={`flex items-center gap-3 p-4 rounded-xl border ${
-                      d
-                        ? "bg-white/[0.02] border-white/[0.06]"
-                        : "bg-[#fafafa] border-gray-200"
-                    }`}
+                    key={title}
+                    className={`py-4 ${
+                      index !== 3
+                        ? "lg:border-r border-white/[0.07]"
+                        : ""
+                    } ${index > 0 ? "lg:pl-7" : ""}`}
                   >
-                    <CheckCircle
-                      size={14}
-                      className="text-purple-500 flex-shrink-0"
-                    />
+                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-1">
+                      {number}
+                    </span>
 
-                    <span
-                      className={`text-[13px] font-semibold ${
-                        d ? "text-gray-300" : "text-gray-700"
-                      }`}
-                    >
-                      {item}
+                    <span className="text-[11px] font-medium text-slate-300">
+                      {title}
                     </span>
                   </div>
                 ))}
@@ -833,147 +866,225 @@ const BackendApi = ({ isDark }) => {
           </div>
         </section>
 
-        {/* ==================================================
-            TECHNOLOGY STACK
-        ================================================== */}
+        {/* INTRO */}
 
         <section
-          aria-labelledby="backend-tech-heading"
-          className={`py-10 border-b ${
-            d
-              ? "border-white/[0.06] bg-[#050505]"
-              : "border-gray-100 bg-[#fafafa]"
-          }`}
+          className="relative py-10 md:py-12 bg-[#f8fafb]"
+          style={lightGrid}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Technologies
-              </p>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.72fr_1.28fr] gap-7 lg:gap-12">
+              <div>
+                <SectionLabel>Backend Development</SectionLabel>
+
+                <h2 className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold mt-3">
+                  More than endpoints.{" "}
+                  <span className="text-[#0796A8]">
+                    The engine behind your application.
+                  </span>
+                </h2>
+              </div>
+
+              <div>
+                <p className="text-[15px] leading-7 text-slate-700">
+                  A reliable backend manages data, users, permissions,
+                  workflows, integrations and communication between different
+                  parts of a software product.
+                </p>
+
+                <p className="text-[13px] leading-6 mt-3 text-slate-500">
+                  DevZore develops backend systems around the actual application
+                  requirements, whether the product is a web application,
+                  mobile app, SaaS platform, dashboard or custom business
+                  system.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SERVICES */}
+
+        <section
+          id="backend-development-services"
+          aria-labelledby="backend-services-heading"
+          className="py-10 md:py-12 bg-white"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[820px] mb-7">
+              <SectionLabel>Backend Services</SectionLabel>
 
               <h2
-                id="backend-tech-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
+                id="backend-services-heading"
+                className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold mt-3"
               >
-                Backend Development Technology Stack
+                Backend and API solutions built around your application.
               </h2>
 
-              <p
-                className={`text-base max-w-2xl mx-auto ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Technologies for server-side development, API development,
-                databases, authentication, testing, documentation and backend
-                deployment.
+              <p className="text-slate-600 text-[14px] leading-6 mt-3 max-w-2xl">
+                Different applications require different data, authentication,
+                integrations and server-side workflows. The backend is planned
+                around those requirements.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {techStack.map((category) => (
-                <div
-                  key={category.category}
-                  className={`p-5 rounded-2xl border ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06]"
-                      : "bg-white border-gray-200"
-                  }`}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {features.map((service) => (
+                <article
+                  key={service.title}
+                  className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#0796A8]/40 hover:shadow-[0_18px_50px_rgba(7,25,35,0.08)]"
                 >
-                  <p className="text-[11px] font-black uppercase tracking-widest mb-3 text-purple-500">
-                    {category.category}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#071923] to-[#18bdcb]" />
+
+                  <div className="flex justify-between items-start">
+                    <div className="w-10 h-10 rounded-xl bg-[#f0f4f5] text-[#075f70] flex items-center justify-center">
+                      {service.icon}
+                    </div>
+
+                    <span className="text-[10px] font-semibold text-slate-300">
+                      {service.number}
+                    </span>
+                  </div>
+
+                  <h3 className="text-[#071923] text-[16px] leading-6 font-semibold mt-4">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-600 text-[12px] leading-5 mt-2">
+                    {service.desc}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {category.items.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`text-[11px] font-medium px-2.5 py-1 rounded-md border ${
-                          d
-                            ? "bg-white/[0.04] border-white/[0.08] text-gray-300"
-                            : "bg-[#fafafa] border-gray-200 text-gray-700"
-                        }`}
+                  <div className="mt-4 pt-3 border-t border-slate-100 space-y-2">
+                    {service.points.map((point) => (
+                      <div
+                        key={point}
+                        className="flex items-center gap-2"
                       >
-                        {tech}
-                      </span>
+                        <CheckCircle2
+                          size={12}
+                          className="text-[#0796A8]"
+                        />
+
+                        <span className="text-[10px] font-medium text-slate-600">
+                          {point}
+                        </span>
+                      </div>
                     ))}
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ==================================================
-            DEVELOPMENT APPROACH
-        ================================================== */}
+        {/* APPLICATION BACKENDS */}
 
         <section
-          aria-labelledby="why-backend-heading"
-          className={`py-10 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
-          }`}
+          aria-labelledby="application-backends-heading"
+          className="py-10 md:py-12 bg-[#f7f9fa]"
+          style={lightGrid}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Development Approach
-              </p>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.82fr_1.18fr] gap-8 lg:gap-12 items-start">
+              <div>
+                <SectionLabel>Application Backends</SectionLabel>
+
+                <h2
+                  id="application-backends-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] font-semibold tracking-[-0.035em] leading-[1.08] mt-3"
+                >
+                  Backend development for{" "}
+                  <span className="text-[#0796A8]">
+                    connected software products.
+                  </span>
+                </h2>
+
+                <p className="text-slate-600 text-[14px] leading-6 mt-4">
+                  Backend architecture can be adapted to different products,
+                  user roles, data requirements and integrations.
+                </p>
+
+                <a
+                  href="#backend-project-enquiry"
+                  className="inline-flex items-center gap-2 mt-5 text-[11px] font-semibold text-[#07899a] hover:text-[#071923] transition-colors"
+                >
+                  Discuss Your Backend
+                  <ArrowRight size={13} />
+                </a>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                {applicationBackends.map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-[#0796A8]/35 transition-colors"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-[#eef4f5] text-[#07899a] flex items-center justify-center">
+                      {item.icon}
+                    </div>
+
+                    <h3 className="text-[#071923] font-semibold text-[14px] mt-4">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-slate-500 text-[11px] leading-5 mt-1.5">
+                      {item.desc}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* DEVELOPMENT STANDARDS */}
+
+        <section
+          aria-labelledby="backend-standards-heading"
+          className="relative py-10 md:py-12 bg-[#071923] text-white overflow-hidden"
+        >
+          <div
+            className="absolute inset-0 opacity-70"
+            style={darkGrid}
+          />
+
+          <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-[#0796A8]/10 blur-[140px]" />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[820px] mb-7">
+              <SectionLabel light>Development Standards</SectionLabel>
 
               <h2
-                id="why-backend-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
+                id="backend-standards-heading"
+                className="text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold mt-3"
               >
-                Backend Development Built Around Your Application
+                Built for reliability,{" "}
+                <span className="text-[#25bfce]">
+                  security and future growth.
+                </span>
               </h2>
 
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                We focus on custom backend development that supports your
-                actual product requirements instead of forcing every
-                application into the same technical structure.
+              <p className="text-slate-400 text-[14px] leading-6 mt-3 max-w-2xl">
+                Backend decisions affect security, data quality, performance,
+                integrations and how easily the product can evolve.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               {whyUs.map((item) => (
                 <article
                   key={item.title}
-                  className={`p-6 rounded-2xl border ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06]"
-                      : "bg-[#fafafa] border-gray-200"
-                  }`}
+                  className="rounded-xl border border-white/[0.09] bg-white/[0.035] p-5 hover:bg-white/[0.055] hover:border-[#1bbac8]/25 transition-all"
                 >
-                  <div
-                    className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-4 ${
-                      d
-                        ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
-                        : "bg-purple-50 border-purple-100 text-purple-600"
-                    }`}
-                  >
+                  <div className="w-9 h-9 rounded-lg border border-[#1bbac8]/20 bg-[#0e2b36] text-[#27c2d0] flex items-center justify-center">
                     {item.icon}
                   </div>
 
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
+                  <h3 className="text-[14px] font-semibold mt-4">
                     {item.title}
                   </h3>
 
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
+                  <p className="text-[11px] leading-5 text-slate-400 mt-1.5">
                     {item.desc}
                   </p>
                 </article>
@@ -982,163 +1093,57 @@ const BackendApi = ({ isDark }) => {
           </div>
         </section>
 
-        {/* ==================================================
-            DEVELOPMENT PROCESS
-        ================================================== */}
+        {/* SECURITY */}
 
         <section
-          aria-labelledby="backend-process-heading"
-          className={`py-10 border-b ${
-            d
-              ? "border-white/[0.06] bg-[#050505]"
-              : "border-gray-100 bg-[#fafafa]"
-          }`}
+          aria-labelledby="backend-security-heading"
+          className="py-10 md:py-12 bg-white"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Our Process
-              </p>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <div>
+                <SectionLabel>Backend Security</SectionLabel>
 
-              <h2
-                id="backend-process-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Our Backend & API Development Process
-              </h2>
-
-              <p
-                className={`text-base max-w-2xl mx-auto ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                A structured process from backend architecture and database
-                design to API development, security, testing, documentation
-                and deployment.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {process.map((step) => (
-                <article
-                  key={step.n}
-                  className={`p-6 rounded-2xl border ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06]"
-                      : "bg-white border-gray-200"
-                  }`}
-                >
-                  <div
-                    className={`text-[13px] font-black mb-3 ${
-                      d ? "text-purple-400" : "text-purple-600"
-                    }`}
-                  >
-                    {step.n}
-                  </div>
-
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {step.title}
-                  </h3>
-
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    {step.desc}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ==================================================
-            SECURITY
-        ================================================== */}
-
-        <section
-          aria-labelledby="secure-api-heading"
-          className={`py-10 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div
-              className={`rounded-3xl border p-7 md:p-9 ${
-                d
-                  ? "bg-white/[0.02] border-white/[0.06]"
-                  : "bg-[#fafafa] border-gray-200"
-              }`}
-            >
-              <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-center">
-                <div>
-                  <div
-                    className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${
-                      d
-                        ? "bg-purple-500/10 text-purple-400"
-                        : "bg-purple-50 text-purple-600"
-                    }`}
-                  >
-                    <Lock size={21} />
-                  </div>
-
-                  <h2
-                    id="secure-api-heading"
-                    className={`text-3xl font-black mb-3 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    Secure Backend & API Development
-                  </h2>
-
-                  <p
-                    className={`text-sm leading-7 ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    Backend security starts with architecture. Authentication,
-                    authorization, input validation and API access controls are
-                    considered throughout development rather than being treated
-                    only as a final-stage addition.
-                  </p>
+                <div className="w-10 h-10 mt-4 rounded-xl bg-[#edf5f6] text-[#07899a] flex items-center justify-center">
+                  <Lock size={19} />
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {[
-                    "JWT Authentication",
-                    "Role-Based Access Control",
-                    "OAuth Integration",
-                    "Input Validation",
-                    "API Rate Limiting",
-                    "Password Hashing",
-                    "Secure Environment Variables",
-                    "CORS Configuration",
-                  ].map((item) => (
+                <h2
+                  id="backend-security-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] font-semibold tracking-[-0.035em] leading-[1.08] mt-4"
+                >
+                  Security should be considered from the architecture stage.
+                </h2>
+
+                <p className="text-slate-600 text-[14px] leading-6 mt-3">
+                  Authentication, authorization, validation and API access
+                  controls should be part of backend development rather than
+                  treated only as final-stage additions.
+                </p>
+
+                <p className="text-slate-500 text-[12px] leading-5 mt-3">
+                  The exact security approach depends on the application,
+                  users, data and integrations involved.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-[#f8fafb] p-5">
+                <p className="text-[#071923] text-[10px] font-semibold tracking-[0.16em] uppercase">
+                  Common security considerations
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-2.5 mt-4">
+                  {securityPoints.map((item) => (
                     <div
                       key={item}
-                      className={`flex items-center gap-3 p-4 rounded-xl border ${
-                        d
-                          ? "bg-black/20 border-white/[0.06]"
-                          : "bg-white border-gray-200"
-                      }`}
+                      className="flex items-center gap-2.5 rounded-xl bg-white border border-slate-100 p-3"
                     >
-                      <Shield
+                      <ShieldCheck
                         size={14}
-                        className="text-purple-500 flex-shrink-0"
+                        className="text-[#0796A8] flex-shrink-0"
                       />
 
-                      <span
-                        className={`text-[12px] font-semibold ${
-                          d ? "text-gray-300" : "text-gray-700"
-                        }`}
-                      >
+                      <span className="text-slate-600 text-[10px] leading-5">
                         {item}
                       </span>
                     </div>
@@ -1149,60 +1154,214 @@ const BackendApi = ({ isDark }) => {
           </div>
         </section>
 
-        {/* ==================================================
-            FAQ
-        ================================================== */}
+        {/* PROCESS */}
 
         <section
-          aria-labelledby="backend-faq-heading"
-          className={`py-10 border-b ${
-            d
-              ? "border-white/[0.06] bg-[#050505]"
-              : "border-gray-100 bg-[#fafafa]"
-          }`}
+          aria-labelledby="backend-process-heading"
+          className="relative py-10 md:py-12 bg-[#071923] text-white"
         >
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Questions & Answers
-              </p>
+          <div
+            className="absolute inset-0"
+            style={darkGrid}
+          />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[820px] mb-7">
+              <SectionLabel light>Our Process</SectionLabel>
 
               <h2
-                id="backend-faq-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
+                id="backend-process-heading"
+                className="text-[28px] sm:text-[33px] md:text-[39px] font-semibold tracking-[-0.035em] leading-[1.08] mt-3"
               >
-                Backend & API Development FAQ
+                From backend requirements{" "}
+                <span className="text-[#25bfce]">
+                  to production deployment.
+                </span>
               </h2>
 
-              <p
-                className={`text-base ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Common questions about backend development, Node.js,
-                Express.js, REST APIs, GraphQL, databases, integrations,
-                security and application backends.
+              <p className="text-slate-400 text-[14px] leading-6 mt-3">
+                A clear backend workflow keeps architecture, data, APIs,
+                integrations, security and deployment organised.
               </p>
             </div>
 
-            <div className="space-y-3">
-              {faqs.map((faq, index) => {
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.08] border border-white/[0.08] rounded-2xl overflow-hidden">
+              {process.map((step) => (
+                <article
+                  key={step.number}
+                  className="relative bg-[#071923] p-5 min-h-[175px] hover:bg-[#0a202a] transition-colors"
+                >
+                  <span className="text-[10px] font-semibold text-[#22bfce]">
+                    {step.number}
+                  </span>
+
+                  <h3 className="text-[15px] font-semibold mt-6">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-slate-400 text-[11px] leading-5 mt-2">
+                    {step.desc}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* USE CASES */}
+
+        <section
+          aria-labelledby="backend-use-cases-heading"
+          className="py-10 md:py-12 bg-[#f7f9fa]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.75fr_1.25fr] gap-8 lg:gap-12">
+              <div>
+                <SectionLabel>Backend Use Cases</SectionLabel>
+
+                <h2
+                  id="backend-use-cases-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] font-semibold tracking-[-0.035em] leading-[1.08] mt-3"
+                >
+                  Different applications. Different backend requirements.
+                </h2>
+
+                <p className="text-slate-600 text-[13px] leading-6 mt-3">
+                  Backend architecture can be adapted around the product,
+                  users, data model and integrations that need to work
+                  together.
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                {useCases.map((item, index) => (
+                  <div
+                    key={item}
+                    className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 hover:border-[#0796A8]/40 transition-colors"
+                  >
+                    <div>
+                      <span className="text-[8px] font-semibold text-[#0796A8]">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <h3 className="text-[#071923] text-[11px] font-semibold mt-1">
+                        {item}
+                      </h3>
+                    </div>
+
+                    <ArrowUpRight
+                      size={13}
+                      className="text-slate-300 group-hover:text-[#0796A8]"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* RELATED SERVICES */}
+
+        <section
+          aria-labelledby="backend-related-heading"
+          className="py-10 md:py-12 bg-white border-y border-slate-200"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+              <div>
+                <SectionLabel>Related Services</SectionLabel>
+
+                <h2
+                  id="backend-related-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[38px] font-semibold tracking-[-0.035em] mt-3"
+                >
+                  Supporting your complete application.
+                </h2>
+              </div>
+
+              <Link
+                to="/allservices"
+                onClick={scrollTop}
+                className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#07899a]"
+              >
+                View All Services
+                <ArrowRight size={13} />
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+              {relatedServices.map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  onClick={scrollTop}
+                  className="group rounded-2xl border border-slate-200 bg-[#fbfcfc] p-5 hover:border-[#0796A8]/40 hover:-translate-y-1 transition-all"
+                >
+                  <span className="text-[8px] tracking-[0.15em] font-semibold text-[#0796A8]">
+                    {service.label}
+                  </span>
+
+                  <h3 className="text-[#071923] text-[14px] font-semibold mt-3">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-slate-500 text-[10px] leading-5 mt-2">
+                    {service.desc}
+                  </p>
+
+                  <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-100">
+                    <span className="text-[9px] font-medium text-slate-500 group-hover:text-[#07899a]">
+                      Explore service
+                    </span>
+
+                    <ArrowUpRight
+                      size={13}
+                      className="text-[#07899a]"
+                    />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+
+        <section
+          aria-labelledby="backend-faq-heading"
+          className="py-10 md:py-12 bg-[#f7f9fa]"
+        >
+          <div className="max-w-[980px] mx-auto px-5 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+              <div>
+                <SectionLabel>FAQ</SectionLabel>
+
+                <h2
+                  id="backend-faq-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[38px] font-semibold tracking-[-0.035em] mt-3"
+                >
+                  Backend and API questions clients ask.
+                </h2>
+              </div>
+
+              <a
+                href="#backend-project-enquiry"
+                className="self-start md:self-auto inline-flex items-center gap-2 rounded-lg bg-[#071923] px-4 py-2.5 text-[10px] font-semibold text-white"
+              >
+                Ask Your Question
+                <ArrowRight size={12} />
+              </a>
+            </div>
+
+            <div className="border-t border-slate-200">
+              {visibleFaqs.map((faq, index) => {
                 const isOpen = activeFaq === index;
 
                 return (
                   <div
                     key={faq.q}
-                    className={`rounded-xl border overflow-hidden transition-all duration-300 ${
-                      isOpen
-                        ? d
-                          ? "border-purple-500/40 bg-purple-600/5"
-                          : "border-purple-200 bg-purple-50/50"
-                        : d
-                        ? "border-white/[0.06] bg-white/[0.02]"
-                        : "border-gray-200 bg-white"
-                    }`}
+                    className="border-b border-slate-200"
                   >
                     <button
                       type="button"
@@ -1211,229 +1370,339 @@ const BackendApi = ({ isDark }) => {
                       }
                       aria-expanded={isOpen}
                       aria-controls={`backend-faq-${index}`}
-                      className="w-full p-5 text-left flex items-start justify-between gap-4"
+                      className="w-full flex items-center justify-between gap-5 py-4 text-left"
                     >
                       <span
-                        className={`text-[14px] font-bold ${
+                        className={`text-[13px] sm:text-[14px] font-semibold transition-colors ${
                           isOpen
-                            ? "text-purple-500"
-                            : d
-                            ? "text-white"
-                            : "text-gray-900"
+                            ? "text-[#07899a]"
+                            : "text-[#071923]"
                         }`}
                       >
                         {faq.q}
                       </span>
 
                       <span
-                        className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${
+                        className={`w-7 h-7 flex-shrink-0 rounded-full border flex items-center justify-center transition-all ${
                           isOpen
-                            ? "bg-purple-600 text-white"
-                            : d
-                            ? "bg-white/[0.06] text-gray-500"
-                            : "bg-gray-100 text-gray-500"
+                            ? "border-[#0796A8] bg-[#0796A8] text-white"
+                            : "border-slate-200 text-[#071923]"
                         }`}
                       >
                         {isOpen ? (
-                          <Minus size={13} />
+                          <Minus size={12} />
                         ) : (
-                          <Plus size={13} />
+                          <Plus size={12} />
                         )}
                       </span>
                     </button>
 
                     <div
                       id={`backend-faq-${index}`}
-                      className={`overflow-hidden transition-all duration-300 ${
+                      className={`grid transition-all duration-300 ${
                         isOpen
-                          ? "max-h-[600px] opacity-100"
-                          : "max-h-0 opacity-0"
+                          ? "grid-rows-[1fr] opacity-100"
+                          : "grid-rows-[0fr] opacity-0"
                       }`}
                     >
-                      <div
-                        className={`px-5 pb-5 border-t text-[14px] leading-relaxed ${
-                          d
-                            ? "border-white/[0.06] text-gray-400"
-                            : "border-purple-100 text-gray-600"
-                        }`}
-                      >
-                        <p className="pt-4">{faq.a}</p>
+                      <div className="overflow-hidden">
+                        <p className="max-w-3xl pb-4 text-[12px] leading-6 text-slate-600">
+                          {faq.a}
+                        </p>
                       </div>
                     </div>
                   </div>
                 );
               })}
             </div>
+
+            {faqs.length > 3 && (
+              <div className="flex justify-center mt-5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAllFaqs((current) => !current);
+                    setActiveFaq(null);
+                  }}
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#071923]/15 bg-white px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:border-[#0796A8]/50 transition-colors"
+                >
+                  {showAllFaqs
+                    ? "Show Less Questions"
+                    : `Show More Questions (${faqs.length - 3})`}
+
+                  {showAllFaqs ? (
+                    <ChevronUp size={13} />
+                  ) : (
+                    <ChevronDown size={13} />
+                  )}
+                </button>
+              </div>
+            )}
           </div>
         </section>
 
-        {/* ==================================================
-            RELATED SERVICES
-        ================================================== */}
+        {/* PROJECT ENQUIRY */}
 
         <section
-          aria-labelledby="related-backend-services"
-          className={`py-10 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
-          }`}
+          id="backend-project-enquiry"
+          aria-labelledby="backend-project-enquiry-heading"
+          className="relative py-10 md:py-12 bg-[#071923] text-white overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-7">
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-purple-500 mb-2">
-                Related Services
-              </p>
+          <div
+            className="absolute inset-0 opacity-70"
+            style={darkGrid}
+          />
 
-              <h2
-                id="related-backend-services"
-                className={`text-2xl md:text-3xl font-black ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Supporting Your Application Development
-              </h2>
+          <div className="absolute -top-20 left-[5%] w-[450px] h-[450px] rounded-full bg-[#0796A8]/10 blur-[130px]" />
 
-              <p
-                className={`mt-3 text-sm max-w-2xl leading-relaxed ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Explore related development services for building complete web
-                applications, SaaS products and full-stack software solutions.
-              </p>
-            </div>
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.82fr_1.18fr] gap-8 lg:gap-12">
+              <div>
+                <SectionLabel light>Start a Backend Project</SectionLabel>
 
-            <div className="grid md:grid-cols-3 gap-5">
-              {relatedServices.map((service) => (
-                <Link
-                  key={service.path}
-                  to={service.path}
-                  className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
-                    d
-                      ? "bg-white/[0.015] border-white/[0.08] hover:bg-white/[0.035] hover:border-purple-500/30"
-                      : "bg-white border-gray-200 hover:border-purple-200 hover:shadow-sm"
-                  }`}
+                <h2
+                  id="backend-project-enquiry-heading"
+                  className="text-[30px] sm:text-[35px] md:text-[40px] leading-[1.06] tracking-[-0.04em] font-semibold mt-3"
                 >
-                  <div
-                    className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${
-                      d
-                        ? "bg-purple-500/10 text-purple-400"
-                        : "bg-purple-50 text-purple-600"
-                    }`}
-                  >
-                    {service.icon}
-                  </div>
+                  Tell us what your{" "}
+                  <span className="text-[#25bfce]">
+                    application needs behind the interface.
+                  </span>
+                </h2>
 
-                  <h3
-                    className={`text-[16px] font-black mb-2 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {service.title}
-                  </h3>
+                <p className="text-slate-300 text-[14px] leading-6 mt-4 max-w-lg">
+                  Share the application, users, APIs, database requirements
+                  and integrations you need. We can review the requirements
+                  and discuss the appropriate backend approach.
+                </p>
 
-                  <p
-                    className={`text-[13px] leading-relaxed mb-4 ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    {service.desc}
+                <div className="mt-5 space-y-2.5">
+                  {[
+                    "REST and application APIs",
+                    "Authentication and permissions",
+                    "Databases and business logic",
+                    "Payments and third-party integrations",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-2.5"
+                    >
+                      <div className="w-5 h-5 rounded-full bg-[#19b9c8]/10 border border-[#19b9c8]/25 flex items-center justify-center">
+                        <Check
+                          size={10}
+                          className="text-[#2ac6d4]"
+                        />
+                      </div>
+
+                      <span className="text-[11px] font-medium text-slate-300">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 pt-5 border-t border-white/[0.08]">
+                  <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-slate-500">
+                    Prefer a direct conversation?
                   </p>
 
-                  <span className="inline-flex items-center gap-2 text-[13px] font-bold text-purple-500">
-                    Learn More
-                    <ArrowRight
-                      size={14}
-                      className="transition-transform group-hover:translate-x-1"
+                  <a
+                    href="mailto:hellodevzore@gmail.com"
+                    className="inline-flex items-center gap-2 mt-2 text-[12px] font-medium text-[#26c4d2]"
+                  >
+                    <Mail size={14} />
+                    hellodevzore@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              {/* FORM */}
+
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-2xl border border-white/[0.1] bg-[#0a202a]/90 p-5 sm:p-6 shadow-[0_30px_80px_rgba(0,0,0,0.25)]"
+              >
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      htmlFor="backend-name"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Your Name *
+                    </label>
+
+                    <input
+                      id="backend-name"
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
                     />
-                  </span>
-                </Link>
-              ))}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="backend-email"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Email Address *
+                    </label>
+
+                    <input
+                      id="backend-email"
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="you@company.com"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="backend-company"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Company
+                    </label>
+
+                    <input
+                      id="backend-company"
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      placeholder="Company name"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="backend-service"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Project Type
+                    </label>
+
+                    <select
+                      id="backend-service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    >
+                      <option>Backend & API Development</option>
+                      <option>REST API Development</option>
+                      <option>GraphQL API Development</option>
+                      <option>Web Application Backend</option>
+                      <option>Mobile App Backend</option>
+                      <option>SaaS Backend</option>
+                      <option>Database Development</option>
+                      <option>API Integration</option>
+                      <option>Existing Backend Improvement</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label
+                      htmlFor="backend-timeline"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Preferred Timeline
+                    </label>
+
+                    <select
+                      id="backend-timeline"
+                      name="timeline"
+                      value={formData.timeline}
+                      onChange={handleChange}
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    >
+                      <option value="">Select a timeline</option>
+                      <option>As soon as possible</option>
+                      <option>Within 1 month</option>
+                      <option>1–3 months</option>
+                      <option>3+ months</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label
+                      htmlFor="backend-message"
+                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Project Details *
+                    </label>
+
+                    <textarea
+                      id="backend-message"
+                      name="message"
+                      required
+                      rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us about your application, users, database, APIs, authentication and integrations..."
+                      className="w-full resize-none rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] leading-5 text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-4">
+                  <p className="text-[9px] leading-4 text-slate-500 max-w-sm">
+                    Share enough detail for us to understand the backend
+                    requirements. Technical scope can be discussed in more
+                    detail afterwards.
+                  </p>
+
+                  <button
+                    type="submit"
+                    className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#1bbdca] hover:bg-[#28c9d5] px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+                  >
+                    Send Backend Enquiry
+                    <Send size={13} />
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </section>
 
-        {/* ==================================================
-            FINAL CTA
-        ================================================== */}
+        {/* BOTTOM CTA */}
 
-        <section
-          aria-labelledby="backend-cta-heading"
-          className="py-10"
-        >
-          <div className="max-w-4xl mx-auto px-6">
-            <div
-              className={`p-7 md:p-9 rounded-3xl border text-center ${
-                d
-                  ? "bg-white/[0.02] border-white/[0.06]"
-                  : "bg-[#fafafa] border-gray-200"
-              }`}
-            >
-              <div
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-[11px] font-bold uppercase tracking-widest mb-4 ${
-                  d
-                    ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
-                    : "bg-purple-50 border-purple-200 text-purple-700"
-                }`}
-              >
-                <Server size={12} />
-                Start Your Project
+        <section className="bg-[#06151d] border-t border-white/[0.06]">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6 py-5">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <p className="text-white text-[14px] font-semibold">
+                  Need a reliable backend? We’re ready to build it.
+                </p>
+
+                <p className="text-slate-500 text-[10px] mt-1">
+                  APIs, databases, authentication and backend systems by
+                  DevZore.
+                </p>
               </div>
 
-              <h2
-                id="backend-cta-heading"
-                className={`text-3xl md:text-4xl font-black mb-4 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
+              <Link
+                to="/contact"
+                onClick={scrollTop}
+                className="inline-flex self-start items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
               >
-                Need Backend or API Development for Your Application?
-              </h2>
-
-              <p
-                className={`text-base mb-7 max-w-2xl mx-auto leading-relaxed ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Tell us about your web application, mobile app, SaaS product,
-                database or API integration requirements. DevZore can help
-                plan and develop a secure, maintainable backend around your
-                application requirements.
-              </p>
-
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Link
-                  to="/contact"
-                  className="flex items-center gap-2 px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
-                >
-                  Discuss Your Project
-                  <ArrowRight size={15} />
-                </Link>
-
-                <a
-                  href={`https://wa.me/923348004300?text=${whatsappMessage}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-8 py-4 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
-                >
-                  WhatsApp DevZore
-                  <ArrowRight size={15} />
-                </a>
-
-                <Link
-                  to="/allservices"
-                  className={`flex items-center gap-2 px-8 py-4 font-bold rounded-xl text-sm border transition-all ${
-                    d
-                      ? "border-white/10 text-gray-300 hover:border-white/20 hover:bg-white/[0.04]"
-                      : "border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50"
-                  }`}
-                >
-                  View All Services
-                  <ArrowRight size={15} />
-                </Link>
-              </div>
+                Contact DevZore
+                <ArrowUpRight size={12} />
+              </Link>
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 };

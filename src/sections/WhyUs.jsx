@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  CheckCircle2,
+  Check,
   Code2,
   Gauge,
   Headphones,
@@ -11,9 +11,7 @@ import {
   Smartphone,
 } from "lucide-react";
 
-const WhyUs = ({ isDark = true }) => {
-  const d = isDark;
-
+const WhyUs = () => {
   // ======================================================
   // WHY DEVZORE
   // ======================================================
@@ -21,33 +19,39 @@ const WhyUs = ({ isDark = true }) => {
   const reasons = [
     {
       icon: Code2,
-      title: "Business-Focused Development",
-      desc: "We build around real business requirements instead of forcing every project into the same technical approach.",
+      number: "01",
+      title: "Business-Focused",
+      desc: "Solutions built around your actual business requirements.",
     },
     {
       icon: MessageCircle,
+      number: "02",
       title: "Clear Communication",
-      desc: "Requirements, progress and feedback stay clear throughout planning, development and delivery.",
+      desc: "Clear requirements, progress updates and feedback throughout.",
     },
     {
       icon: Gauge,
-      title: "Performance in Mind",
-      desc: "We focus on responsive interfaces, efficient development and practical performance improvements.",
+      number: "03",
+      title: "Performance Mindset",
+      desc: "Fast, practical and responsive digital experiences.",
     },
     {
       icon: Smartphone,
+      number: "04",
       title: "Responsive by Default",
-      desc: "Digital products are designed to work across mobile, tablet and desktop experiences.",
+      desc: "Built to work smoothly across mobile, tablet and desktop.",
     },
     {
       icon: ShieldCheck,
-      title: "Maintainable Development",
-      desc: "Clean structure, reusable components and modern practices help make future updates easier.",
+      number: "05",
+      title: "Maintainable Code",
+      desc: "Structured development designed for easier future updates.",
     },
     {
       icon: Headphones,
-      title: "Post-Launch Support",
-      desc: "We can continue with maintenance, bug fixes, improvements and additional features after launch.",
+      number: "06",
+      title: "Ongoing Support",
+      desc: "Maintenance, improvements and new features after launch.",
     },
   ];
 
@@ -56,262 +60,454 @@ const WhyUs = ({ isDark = true }) => {
   // ======================================================
 
   const assurances = [
-    "Clear Project Scope",
-    "Source Code Handover",
-    "Modern Tech Stack",
-    "Direct Communication",
-    "Responsive Development",
-    "Post-Launch Support",
+    "Clear project scope",
+    "Source code handover",
+    "Modern technology stack",
+    "Direct communication",
+    "Responsive development",
+    "Post-launch support",
   ];
-
-  // ======================================================
-  // SCROLL TOP
-  // ======================================================
 
   const scrollTop = () => {
     window.scrollTo({
       top: 0,
+      left: 0,
       behavior: "smooth",
     });
   };
-
-  // ======================================================
-  // RENDER
-  // ======================================================
 
   return (
     <section
       id="why-us"
       aria-labelledby="whyus-heading"
-      className={`py-10 sm:py-12 transition-colors duration-300 ${
-        d ? "bg-[#050505]" : "bg-slate-50"
-      }`}
+      className="relative overflow-hidden bg-[#061923] text-white"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ==================================================
+          BACKGROUND DETAILS
+      ================================================== */}
 
-        {/* ==================================================
-            HEADER
-        ================================================== */}
-
-        <div className="max-w-3xl mb-7 sm:mb-8">
-          <div
-            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-widest border mb-3 ${
-              d
-                ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
-                : "bg-purple-50 border-purple-200 text-purple-700"
-            }`}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-
-            Why DevZore
-          </div>
-
-          <h2
-            id="whyus-heading"
-            className={`text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight mb-3 ${
-              d ? "text-white" : "text-slate-950"
-            }`}
-          >
-            A Practical Development Partner for{" "}
-            <span className="text-purple-600">
-              Digital Products
-            </span>
-          </h2>
-
-          <p
-            className={`text-sm sm:text-base leading-relaxed max-w-2xl ${
-              d ? "text-gray-400" : "text-slate-600"
-            }`}
-          >
-            DevZore combines technical development, clear communication
-            and ongoing support to help businesses turn requirements
-            into reliable digital products.
-          </p>
-        </div>
-
-        {/* ==================================================
-            REASONS GRID
-            MOBILE: 2
-            TABLET: 2
-            DESKTOP: 3
-        ================================================== */}
-
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3 mb-6">
-          {reasons.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <div
-                key={item.title}
-                className={`group rounded-xl border p-3 sm:p-4 transition-all duration-300 ${
-                  d
-                    ? "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-purple-500/25"
-                    : "bg-white border-slate-200 hover:border-purple-200 hover:shadow-sm"
-                }`}
-              >
-                {/* ICON */}
-
-                <div
-                  className={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center mb-2.5 transition-all duration-300 ${
-                    d
-                      ? "bg-purple-500/10 text-purple-400 group-hover:bg-purple-600 group-hover:text-white"
-                      : "bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white"
-                  }`}
-                >
-                  <Icon
-                    size={16}
-                    aria-hidden="true"
-                  />
-                </div>
-
-                {/* TITLE */}
-
-                <h3
-                  className={`text-[11px] sm:text-[13px] font-bold leading-snug mb-1.5 ${
-                    d ? "text-white" : "text-slate-900"
-                  }`}
-                >
-                  {item.title}
-                </h3>
-
-                {/* DESCRIPTION */}
-
-                <p
-                  className={`text-[9px] sm:text-[11px] leading-[1.55] sm:leading-5 ${
-                    d ? "text-gray-500" : "text-slate-500"
-                  }`}
-                >
-                  {item.desc}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* ==================================================
-            PROJECT ASSURANCE STRIP
-        ================================================== */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+      >
+        <div
+          className="
+            absolute inset-0
+            bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)]
+            bg-[size:48px_48px]
+          "
+        />
 
         <div
-          className={`rounded-xl border px-4 py-4 sm:px-5 mb-5 ${
-            d
-              ? "bg-white/[0.02] border-white/[0.07]"
-              : "bg-white border-slate-200"
-          }`}
-        >
-          <div className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-6">
+          className="
+            absolute -top-40 -right-28
+            h-[380px] w-[380px]
+            rounded-full
+            bg-cyan-500/[0.08]
+            blur-[130px]
+          "
+        />
 
-            {/* LABEL */}
+        <div
+          className="
+            absolute -bottom-48 -left-24
+            h-[360px] w-[360px]
+            rounded-full
+            bg-blue-600/[0.07]
+            blur-[140px]
+          "
+        />
+      </div>
 
-            <div className="shrink-0">
-              <p
-                className={`text-[9px] sm:text-[10px] font-black uppercase tracking-[0.18em] ${
-                  d ? "text-purple-400" : "text-purple-600"
-                }`}
-              >
-                What You Can Expect
-              </p>
-            </div>
+      {/* ==================================================
+          MAIN CONTAINER
+      ================================================== */}
 
-            {/* ITEMS */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap gap-x-4 gap-y-2 flex-1">
+        {/* ==================================================
+            TOP SECTION
+        ================================================== */}
+
+        <div className="grid gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+
+          {/* LEFT */}
+
+          <div className="max-w-xl">
+            <p
+              className="
+                mb-3
+                font-mono
+                text-[9px]
+                font-bold
+                uppercase
+                tracking-[0.18em]
+                text-cyan-400
+                sm:text-[10px]
+              "
+            >
+              Why DevZore
+            </p>
+
+            <h2
+              id="whyus-heading"
+              className="
+                max-w-[620px]
+                text-[27px]
+                font-semibold
+                leading-[1.08]
+                tracking-[-0.035em]
+                sm:text-[34px]
+                lg:text-[40px]
+                xl:text-[43px]
+              "
+            >
+              A practical development partner for{" "}
+              <span className="text-cyan-400">
+                digital products.
+              </span>
+            </h2>
+
+            <p
+              className="
+                mt-4
+                max-w-lg
+                text-[11px]
+                leading-[1.75]
+                text-slate-300
+                sm:text-[13px]
+                sm:leading-6
+              "
+            >
+              DevZore helps businesses turn requirements into
+              websites, applications and software products with
+              a clear development process and modern technology.
+            </p>
+
+            {/* ASSURANCES */}
+
+            <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-3">
               {assurances.map((item) => (
                 <div
                   key={item}
-                  className={`flex items-center gap-1.5 text-[9px] sm:text-[11px] font-medium ${
-                    d ? "text-gray-400" : "text-slate-600"
-                  }`}
+                  className="
+                    flex items-center gap-2
+                    text-[9px]
+                    font-medium
+                    text-slate-300
+                    sm:text-[11px]
+                  "
                 >
-                  <CheckCircle2
-                    size={12}
-                    className="text-purple-500 shrink-0"
-                    aria-hidden="true"
-                  />
+                  <span
+                    className="
+                      flex h-4 w-4 shrink-0
+                      items-center justify-center
+                      rounded-full
+                      bg-cyan-400/10
+                      text-cyan-400
+                    "
+                  >
+                    <Check size={10} strokeWidth={3} />
+                  </span>
 
                   <span>{item}</span>
                 </div>
               ))}
             </div>
+
+            {/* CTA */}
+
+            <div className="mt-7">
+              <Link
+                to="/contact"
+                onClick={scrollTop}
+                className="
+                  group
+                  inline-flex items-center justify-center gap-2
+                  rounded-lg
+                  bg-white
+                  px-5 py-3
+                  text-[10px]
+                  font-bold
+                  text-[#061923]
+                  transition-all duration-200
+                  hover:-translate-y-0.5
+                  hover:bg-cyan-50
+                  sm:text-[11px]
+                "
+              >
+                Discuss Your Project
+
+                <ArrowRight
+                  size={13}
+                  className="
+                    transition-transform duration-200
+                    group-hover:translate-x-1
+                  "
+                />
+              </Link>
+            </div>
+          </div>
+
+          {/* ==================================================
+              RIGHT — REASONS GRID
+          ================================================== */}
+
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+            {reasons.map((reason) => {
+              const Icon = reason.icon;
+
+              return (
+                <div
+                  key={reason.title}
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-xl
+                    border border-white/[0.08]
+                    bg-white/[0.035]
+                    p-3
+                    transition-all duration-300
+                    hover:-translate-y-0.5
+                    hover:border-cyan-400/30
+                    hover:bg-white/[0.055]
+                    sm:p-4
+                  "
+                >
+                  {/* TOP LINE */}
+
+                  <div
+                    className="
+                      absolute left-0 top-0
+                      h-[2px] w-full
+                      bg-gradient-to-r
+                      from-cyan-400
+                      via-cyan-400/50
+                      to-transparent
+                      opacity-70
+                    "
+                  />
+
+                  {/* NUMBER */}
+
+                  <span
+                    className="
+                      absolute right-3 top-3
+                      font-mono
+                      text-[8px]
+                      font-bold
+                      text-white/20
+                    "
+                  >
+                    {reason.number}
+                  </span>
+
+                  {/* ICON */}
+
+                  <div
+                    className="
+                      mb-3
+                      flex h-8 w-8
+                      items-center justify-center
+                      rounded-lg
+                      border border-white/[0.07]
+                      bg-white/[0.05]
+                      text-cyan-400
+                      transition-colors duration-300
+                      group-hover:bg-cyan-400
+                      group-hover:text-[#061923]
+                    "
+                  >
+                    <Icon size={14} />
+                  </div>
+
+                  {/* TITLE */}
+
+                  <h3
+                    className="
+                      pr-3
+                      text-[11px]
+                      font-semibold
+                      leading-tight
+                      text-white
+                      sm:text-[13px]
+                    "
+                  >
+                    {reason.title}
+                  </h3>
+
+                  {/* DESCRIPTION */}
+
+                  <p
+                    className="
+                      mt-1.5
+                      text-[8.5px]
+                      leading-[1.55]
+                      text-slate-400
+                      sm:text-[10px]
+                    "
+                  >
+                    {reason.desc}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         {/* ==================================================
-            COMPACT CTA
+            BOTTOM DIVIDER
+        ================================================== */}
+
+        <div className="my-8 border-t border-white/[0.08] sm:my-10" />
+
+        {/* ==================================================
+            PROJECT CTA
         ================================================== */}
 
         <div
-          className={`relative overflow-hidden rounded-xl border p-5 sm:p-6 ${
-            d
-              ? "bg-purple-600/[0.05] border-purple-500/15"
-              : "bg-purple-50 border-purple-100"
-          }`}
+          className="
+            relative
+            overflow-hidden
+            rounded-xl
+            border border-white/[0.08]
+            bg-white/[0.035]
+            px-4 py-5
+            sm:px-6 sm:py-6
+            lg:px-7
+          "
         >
-          {/* BACKGROUND GLOW */}
+          {/* GLOW */}
 
           <div
             aria-hidden="true"
-            className="absolute -top-20 right-0 w-56 h-56 bg-purple-600/10 blur-[80px] rounded-full pointer-events-none"
+            className="
+              pointer-events-none
+              absolute -right-16 -top-24
+              h-64 w-64
+              rounded-full
+              bg-cyan-400/[0.08]
+              blur-[90px]
+            "
           />
 
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
-
-            {/* CONTENT */}
+          <div
+            className="
+              relative z-10
+              flex flex-col gap-5
+              lg:flex-row
+              lg:items-center
+              lg:justify-between
+            "
+          >
+            {/* TEXT */}
 
             <div className="max-w-2xl">
-              <span
-                className={`text-[9px] sm:text-[10px] font-black uppercase tracking-[0.18em] ${
-                  d ? "text-purple-400" : "text-purple-600"
-                }`}
+              <p
+                className="
+                  font-mono
+                  text-[8px]
+                  font-bold
+                  uppercase
+                  tracking-[0.18em]
+                  text-cyan-400
+                  sm:text-[9px]
+                "
               >
-                Have a Project in Mind?
-              </span>
+                Have a project in mind?
+              </p>
 
               <h3
-                className={`text-lg sm:text-xl font-black mt-1.5 mb-1.5 ${
-                  d ? "text-white" : "text-slate-900"
-                }`}
+                className="
+                  mt-1.5
+                  text-[20px]
+                  font-semibold
+                  leading-tight
+                  tracking-[-0.025em]
+                  text-white
+                  sm:text-[24px]
+                "
               >
-                Let&apos;s Discuss What You Want to Build
+                Tell us what you want to build.
               </h3>
 
               <p
-                className={`text-[11px] sm:text-[13px] leading-relaxed ${
-                  d ? "text-gray-400" : "text-slate-600"
-                }`}
+                className="
+                  mt-2
+                  max-w-xl
+                  text-[10px]
+                  leading-[1.65]
+                  text-slate-400
+                  sm:text-[11px]
+                "
               >
-                Share your requirements and we can discuss the right
-                development approach for your website, application or
+                Share your requirements and we can discuss the
+                right approach for your website, application or
                 software product.
               </p>
             </div>
 
             {/* BUTTONS */}
 
-            <div className="flex flex-row gap-2 shrink-0">
-
-              {/* CONTACT */}
-
+            <div className="flex flex-row gap-2 lg:shrink-0">
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 px-4 sm:px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-[10px] sm:text-xs transition-all hover:shadow-[0_0_18px_rgba(124,58,237,0.25)]"
+                className="
+                  group
+                  inline-flex flex-1
+                  items-center justify-center gap-2
+                  whitespace-nowrap
+                  rounded-lg
+                  bg-white
+                  px-4 py-2.5
+                  text-[9px]
+                  font-bold
+                  text-[#061923]
+                  transition-all duration-200
+                  hover:-translate-y-0.5
+                  hover:bg-cyan-50
+                  sm:flex-none
+                  sm:px-5
+                  sm:text-[10px]
+                "
               >
-                Discuss Project
+                Start a Project
 
                 <ArrowRight
-                  size={13}
-                  aria-hidden="true"
+                  size={12}
+                  className="
+                    transition-transform
+                    group-hover:translate-x-1
+                  "
                 />
               </Link>
-
-              {/* WHATSAPP */}
 
               <a
                 href="https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 px-4 sm:px-5 py-2.5 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-lg text-[10px] sm:text-xs hover:bg-[#25D366]/15 transition-all"
+                aria-label="Discuss a project with DevZore on WhatsApp"
+                className="
+                  inline-flex flex-1
+                  items-center justify-center
+                  whitespace-nowrap
+                  rounded-lg
+                  border border-cyan-400/25
+                  bg-cyan-400/[0.07]
+                  px-4 py-2.5
+                  text-[9px]
+                  font-bold
+                  text-cyan-300
+                  transition-all duration-200
+                  hover:-translate-y-0.5
+                  hover:border-cyan-400/40
+                  hover:bg-cyan-400/[0.12]
+                  sm:flex-none
+                  sm:px-5
+                  sm:text-[10px]
+                "
               >
                 WhatsApp
               </a>

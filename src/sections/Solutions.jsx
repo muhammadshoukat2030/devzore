@@ -11,16 +11,10 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-// ======================================================
-// SOLUTIONS
-// ======================================================
-
-const Solutions = ({ isDark = true }) => {
-  const d = isDark;
-
-  // ====================================================
-  // SOLUTION DATA
-  // ====================================================
+const Solutions = () => {
+  // ======================================================
+  // SOLUTIONS DATA
+  // ======================================================
 
   const solutions = [
     {
@@ -28,10 +22,10 @@ const Solutions = ({ isDark = true }) => {
       title: "Startups & MVPs",
       subtitle: "From idea to first launch",
       description:
-        "Turn your product idea into a focused MVP designed to validate, launch and improve.",
+        "Focused MVP development for startups that need to validate an idea and launch a practical first version.",
       points: [
         "MVP Development",
-        "Product Validation",
+        "Core Feature Planning",
         "Scalable Foundation",
       ],
       path: "/startup-mvp",
@@ -43,7 +37,7 @@ const Solutions = ({ isDark = true }) => {
       title: "Business Automation",
       subtitle: "Simplify daily operations",
       description:
-        "Custom software solutions that help businesses manage workflows, data and repetitive processes.",
+        "Custom software for managing business workflows, internal data and repetitive operational processes.",
       points: [
         "Admin Dashboards",
         "Workflow Systems",
@@ -56,9 +50,9 @@ const Solutions = ({ isDark = true }) => {
     {
       icon: ShoppingCart,
       title: "E-Commerce Solutions",
-      subtitle: "Build and grow online",
+      subtitle: "Build and manage online sales",
       description:
-        "Digital commerce solutions for managing products, customers, orders and online payments.",
+        "E-commerce solutions for products, customers, orders, payments and responsive online shopping experiences.",
       points: [
         "Online Stores",
         "Payment Integration",
@@ -71,9 +65,9 @@ const Solutions = ({ isDark = true }) => {
     {
       icon: Layers3,
       title: "SaaS Platforms",
-      subtitle: "Scalable digital products",
+      subtitle: "Build scalable digital products",
       description:
-        "Build subscription-based software platforms with dashboards, accounts, APIs and scalable architecture.",
+        "SaaS applications with user accounts, dashboards, APIs and subscription-based product workflows.",
       points: [
         "SaaS Architecture",
         "User Dashboards",
@@ -88,7 +82,7 @@ const Solutions = ({ isDark = true }) => {
       title: "AI-Powered Solutions",
       subtitle: "Add intelligence to products",
       description:
-        "Integrate generative AI and intelligent features into modern web applications and business workflows.",
+        "Generative AI integrations for applications, assistants and practical business workflows.",
       points: [
         "Generative AI",
         "AI Integrations",
@@ -104,7 +98,7 @@ const Solutions = ({ isDark = true }) => {
       title: "Digital Growth",
       subtitle: "Improve online visibility",
       description:
-        "Strengthen your digital presence through search optimization, content structure and marketing strategy.",
+        "Technical SEO and digital marketing support focused on stronger search visibility and online presence.",
       points: [
         "Technical SEO",
         "Search Strategy",
@@ -115,9 +109,9 @@ const Solutions = ({ isDark = true }) => {
     },
   ];
 
-  // ====================================================
+  // ======================================================
   // SCROLL TOP
-  // ====================================================
+  // ======================================================
 
   const scrollTop = () => {
     window.scrollTo({
@@ -127,49 +121,39 @@ const Solutions = ({ isDark = true }) => {
     });
   };
 
-  // ====================================================
+  // ======================================================
   // RENDER
-  // ====================================================
+  // ======================================================
 
   return (
     <section
       id="solutions"
       aria-labelledby="solutions-heading"
-      className={`relative overflow-hidden border-y transition-colors duration-300 ${
-        d
-          ? "bg-[#050505] border-white/[0.06]"
-          : "bg-white border-slate-200"
-      }`}
+      className="
+        relative
+        overflow-hidden
+        bg-[#f6f7f7]
+        border-y
+        border-slate-200
+        py-12
+        sm:py-14
+        lg:py-16
+      "
     >
       {/* ==================================================
-          BACKGROUND DECORATION
+          SUBTLE BACKGROUND GRID
       ================================================== */}
 
       <div
         aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-      >
-        {/* GRID */}
-
-        <div
-          className={`absolute inset-0 ${
-            d
-              ? "bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)]"
-              : "bg-[linear-gradient(rgba(15,23,42,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.025)_1px,transparent_1px)]"
-          } bg-[size:48px_48px]`}
-        />
-
-        {/* GLOW */}
-
-        <div
-          className={`absolute top-0 left-1/2 -translate-x-1/2
-            w-[500px] h-[250px]
-            rounded-full blur-[120px]
-            opacity-10
-            ${d ? "bg-purple-600" : "bg-purple-300"}
-          `}
-        />
-      </div>
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-[linear-gradient(rgba(6,25,35,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(6,25,35,0.025)_1px,transparent_1px)]
+          bg-[size:48px_48px]
+        "
+      />
 
       {/* ==================================================
           CONTAINER
@@ -177,10 +161,13 @@ const Solutions = ({ isDark = true }) => {
 
       <div
         className="
-          relative z-10
-          max-w-7xl mx-auto
-          px-4 sm:px-6 lg:px-8
-          py-12 sm:py-14 lg:py-16
+          relative
+          z-10
+          max-w-7xl
+          mx-auto
+          px-4
+          sm:px-6
+          lg:px-8
         "
       >
         {/* ==================================================
@@ -189,96 +176,120 @@ const Solutions = ({ isDark = true }) => {
 
         <div
           className="
-            flex flex-col
+            flex
+            flex-col
             lg:flex-row
             lg:items-end
             lg:justify-between
             gap-5
-            mb-8 sm:mb-10
+            mb-8
+            sm:mb-10
           "
         >
           {/* LEFT */}
 
           <div className="max-w-3xl">
-            <div
-              className={`inline-flex items-center gap-2
-                px-3 py-1.5
-                rounded-full border
-                text-[9px] sm:text-[10px]
-                font-black uppercase
-                tracking-[0.18em]
-                mb-4
-                ${
-                  d
-                    ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
-                    : "bg-purple-50 border-purple-200 text-purple-700"
-                }
-              `}
-            >
-              Solutions
+
+            {/* LABEL */}
+
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-7 h-[2px] bg-[#17bebb]" />
+
+              <span
+                className="
+                  text-[9px]
+                  sm:text-[10px]
+                  font-black
+                  uppercase
+                  tracking-[0.2em]
+                  text-[#061923]/60
+                "
+              >
+                Solutions That Work
+              </span>
             </div>
+
+            {/* HEADING */}
 
             <h2
               id="solutions-heading"
-              className={`text-[28px] sm:text-4xl lg:text-[42px]
-                leading-[1.1]
-                font-black tracking-tight
-                ${
-                  d ? "text-white" : "text-slate-950"
-                }
-              `}
+              className="
+                max-w-[800px]
+                text-[28px]
+                sm:text-[36px]
+                lg:text-[44px]
+                font-semibold
+                tracking-[-0.035em]
+                leading-[1.07]
+                text-[#061923]
+              "
             >
-              Solutions for Different
-              <span className="text-purple-600">
-                {" "}Business Challenges
+              Solutions built around
+              <span className="block">
+                real business needs.
               </span>
             </h2>
 
+            {/* DESCRIPTION */}
+
             <p
-              className={`mt-4
+              className="
+                mt-4
                 max-w-2xl
-                text-[13px] sm:text-[15px]
-                leading-6 sm:leading-7
-                ${
-                  d ? "text-gray-400" : "text-slate-600"
-                }
-              `}
+                text-[12px]
+                sm:text-[14px]
+                leading-6
+                sm:leading-7
+                text-slate-600
+              "
             >
-              From launching a startup to automating business
-              operations, DevZore builds practical digital
-              solutions around your goals, users and
-              requirements.
+              From startup MVPs and business systems to e-commerce,
+              SaaS and AI integrations, we build digital solutions
+              around practical requirements.
             </p>
           </div>
 
-          {/* DESKTOP LINK */}
+          {/* DESKTOP BUTTON */}
 
           <Link
             to="/allservices"
             onClick={scrollTop}
-            className={`hidden lg:inline-flex
-              items-center gap-2
-              text-[12px] font-bold
-              transition-colors
-              ${
-                d
-                  ? "text-gray-400 hover:text-purple-400"
-                  : "text-slate-600 hover:text-purple-600"
-              }
-            `}
-          >
-            Explore Our Capabilities
+            className="
+              hidden
+              lg:inline-flex
+              items-center
+              justify-center
+              gap-2
+              shrink-0
 
-            <ArrowRight size={14} />
+              px-5
+              py-3
+
+              rounded-lg
+              bg-white
+              border
+              border-slate-200
+
+              shadow-[0_3px_10px_rgba(6,25,35,0.07)]
+
+              text-[11px]
+              font-bold
+              text-[#061923]
+
+              transition-all
+              duration-200
+
+              hover:border-[#061923]/30
+              hover:shadow-[0_5px_14px_rgba(6,25,35,0.10)]
+            "
+          >
+            Explore Capabilities
+            <ArrowRight size={13} />
           </Link>
         </div>
 
         {/* ==================================================
             SOLUTION CARDS
-
-            Mobile: 2 columns
-            Tablet: 2 columns
-            Desktop: 3 columns
         ================================================== */}
 
         <div
@@ -299,53 +310,104 @@ const Solutions = ({ isDark = true }) => {
                 to={solution.path}
                 onClick={scrollTop}
                 aria-label={`Explore ${solution.title}`}
-                className={`group
+                className="
+                  group
                   relative
-                  flex flex-col
-                  overflow-hidden
-                  rounded-xl sm:rounded-2xl
-                  border
-                  p-3 sm:p-5
-                  min-h-[215px] sm:min-h-[275px]
-                  transition-all duration-300
-                  hover:-translate-y-1
-                  ${
-                    solution.featured
-                      ? d
-                        ? "bg-purple-500/[0.07] border-purple-500/25 hover:border-purple-500/50"
-                        : "bg-purple-50/60 border-purple-200 hover:border-purple-300"
-                      : d
-                        ? "bg-white/[0.02] border-white/[0.07] hover:bg-white/[0.04] hover:border-purple-500/25"
-                        : "bg-white border-slate-200 hover:border-purple-200 hover:shadow-lg"
-                  }
-                `}
-              >
-                {/* ==========================================
-                    TOP ROW
-                ========================================== */}
 
-                <div className="flex items-start justify-between gap-2">
+                  flex
+                  flex-col
+
+                  min-w-0
+                  overflow-hidden
+
+                  min-h-[215px]
+                  min-[420px]:min-h-[240px]
+                  sm:min-h-[280px]
+
+                  p-3
+                  sm:p-5
+
+                  rounded-xl
+                  sm:rounded-2xl
+
+                  bg-white
+
+                  border
+                  border-slate-200
+
+                  shadow-[0_5px_18px_rgba(6,25,35,0.045)]
+
+                  transition-all
+                  duration-300
+
+                  hover:-translate-y-[2px]
+                  hover:border-slate-300
+                  hover:shadow-[0_10px_26px_rgba(6,25,35,0.08)]
+                "
+              >
+                {/* ==================================================
+                    PERMANENT TOP ACCENT LINE
+                ================================================== */}
+
+                <div
+                  aria-hidden="true"
+                  className="
+                    absolute
+                    top-0
+                    left-0
+                    right-0
+                    h-[2px]
+
+                    bg-gradient-to-r
+                    from-[#0d5066]
+                    via-[#118da0]
+                    to-[#17bebb]
+                  "
+                />
+
+                {/* ==================================================
+                    TOP ROW
+                ================================================== */}
+
+                <div
+                  className="
+                    flex
+                    items-start
+                    justify-between
+                    gap-2
+                  "
+                >
                   {/* ICON */}
 
                   <div
-                    className={`w-8 h-8
-                      sm:w-10 sm:h-10
-                      rounded-lg sm:rounded-xl
-                      flex items-center justify-center
+                    className="
+                      w-8
+                      h-8
+
+                      sm:w-10
+                      sm:h-10
+
+                      rounded-lg
+                      sm:rounded-xl
+
+                      flex
+                      items-center
+                      justify-center
+
                       shrink-0
-                      transition-all duration-300
-                      ${
-                        solution.featured
-                          ? "bg-purple-600 text-white"
-                          : d
-                            ? "bg-purple-500/10 text-purple-400 group-hover:bg-purple-600 group-hover:text-white"
-                            : "bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white"
-                      }
-                    `}
+
+                      bg-[#061923]/[0.055]
+                      text-[#0d5066]
+
+                      transition-colors
+                      duration-200
+
+                      group-hover:bg-[#061923]/[0.075]
+                    "
                   >
                     <Icon
                       size={16}
-                      className="sm:w-[19px] sm:h-[19px]"
+                      className="sm:w-[18px] sm:h-[18px]"
                       aria-hidden="true"
                     />
                   </div>
@@ -353,122 +415,145 @@ const Solutions = ({ isDark = true }) => {
                   {/* NUMBER */}
 
                   <span
-                    className={`text-[9px] sm:text-[10px]
-                      font-mono font-bold
-                      ${
-                        d
-                          ? "text-gray-700"
-                          : "text-slate-300"
-                      }
-                    `}
+                    className="
+                      text-[8px]
+                      sm:text-[9px]
+                      font-black
+                      tracking-[0.08em]
+                      text-slate-300
+                    "
                   >
                     {solution.number}
                   </span>
                 </div>
 
-                {/* ==========================================
+                {/* ==================================================
                     CONTENT
-                ========================================== */}
+                ================================================== */}
 
-                <div className="mt-3 sm:mt-5">
-                  {/* FEATURED BADGE */}
+                <div className="mt-3 sm:mt-4">
+
+                  {/* AI BADGE */}
 
                   {solution.featured && (
                     <span
-                      className={`inline-flex
+                      className="
+                        inline-flex
                         mb-2
-                        px-2 py-0.5
+
+                        px-2
+                        py-0.5
+
                         rounded-full
-                        text-[7px] sm:text-[8px]
-                        uppercase font-black
+
+                        bg-[#17bebb]/[0.08]
+                        border
+                        border-[#17bebb]/20
+
+                        text-[7px]
+                        sm:text-[8px]
+
+                        uppercase
+                        font-black
                         tracking-[0.12em]
-                        ${
-                          d
-                            ? "bg-purple-500/15 text-purple-300"
-                            : "bg-purple-100 text-purple-700"
-                        }
-                      `}
+
+                        text-[#087f8c]
+                      "
                     >
                       AI Solution
                     </span>
                   )}
 
+                  {/* TITLE */}
+
                   <h3
-                    className={`text-[12px]
+                    className="
+                      text-[12px]
                       sm:text-[16px]
+
                       font-bold
+                      tracking-[-0.015em]
                       leading-tight
-                      transition-colors
-                      group-hover:text-purple-500
-                      ${
-                        d
-                          ? "text-white"
-                          : "text-slate-900"
-                      }
-                    `}
+
+                      text-[#061923]
+                    "
                   >
                     {solution.title}
                   </h3>
 
+                  {/* SUBTITLE */}
+
                   <p
-                    className={`mt-1
-                      text-[8px] sm:text-[10px]
+                    className="
+                      mt-1
+
+                      text-[8px]
+                      sm:text-[10px]
+
                       font-semibold
-                      ${
-                        d
-                          ? "text-gray-500"
-                          : "text-slate-400"
-                      }
-                    `}
+                      text-slate-400
+                    "
                   >
                     {solution.subtitle}
                   </p>
 
+                  {/* DESCRIPTION */}
+
                   <p
-                    className={`mt-2 sm:mt-3
-                      text-[9px] sm:text-[12px]
-                      leading-[1.55] sm:leading-5
-                      ${
-                        d
-                          ? "text-gray-500"
-                          : "text-slate-500"
-                      }
-                    `}
+                    className="
+                      mt-2
+                      sm:mt-3
+
+                      text-[9px]
+                      sm:text-[11px]
+
+                      leading-[1.55]
+                      sm:leading-[1.65]
+
+                      text-slate-500
+                    "
                   >
                     {solution.description}
                   </p>
                 </div>
 
-                {/* ==========================================
+                {/* ==================================================
                     POINTS
-                    Hidden on very small mobile to keep
-                    cards compact.
-                ========================================== */}
+                ================================================== */}
 
                 <div
                   className="
-                    hidden min-[420px]:block
-                    mt-3 sm:mt-4
+                    hidden
+                    min-[420px]:block
+
+                    mt-3
+                    sm:mt-4
+
                     space-y-1.5
                   "
                 >
                   {solution.points.map((point) => (
                     <div
                       key={point}
-                      className={`flex items-center gap-1.5
-                        text-[8px] sm:text-[10px]
+                      className="
+                        flex
+                        items-center
+                        gap-1.5
+
+                        text-[8px]
+                        sm:text-[10px]
+
                         font-medium
-                        ${
-                          d
-                            ? "text-gray-500"
-                            : "text-slate-500"
-                        }
-                      `}
+                        text-slate-600
+                      "
                     >
                       <CheckCircle2
                         size={10}
-                        className="text-purple-500 shrink-0"
                         aria-hidden="true"
+                        className="
+                          shrink-0
+                          text-[#0ea5b7]
+                        "
                       />
 
                       <span>{point}</span>
@@ -476,128 +561,230 @@ const Solutions = ({ isDark = true }) => {
                   ))}
                 </div>
 
-                {/* ==========================================
+                {/* ==================================================
                     CTA
-                ========================================== */}
+                ================================================== */}
 
                 <div
-                  className={`mt-auto pt-3 sm:pt-5
-                    flex items-center gap-1.5
-                    text-[9px] sm:text-[11px]
+                  className="
+                    mt-auto
+                    pt-3
+                    sm:pt-5
+
+                    flex
+                    items-center
+                    gap-1.5
+
+                    text-[9px]
+                    sm:text-[10px]
+
                     font-bold
-                    ${
-                      d
-                        ? "text-purple-400"
-                        : "text-purple-600"
-                    }
-                  `}
+                    text-[#061923]
+                  "
                 >
                   Explore Solution
 
                   <ArrowRight
                     size={11}
                     className="
-                      transition-transform duration-200
+                      transition-transform
+                      duration-200
+
                       group-hover:translate-x-1
                     "
                   />
                 </div>
-
-                {/* ==========================================
-                    HOVER GLOW
-                ========================================== */}
-
-                <div
-                  aria-hidden="true"
-                  className="
-                    absolute
-                    -right-12 -bottom-12
-                    w-28 h-28
-                    rounded-full
-                    bg-purple-600/0
-                    blur-3xl
-                    group-hover:bg-purple-600/10
-                    transition-all duration-500
-                    pointer-events-none
-                  "
-                />
               </Link>
             );
           })}
         </div>
 
         {/* ==================================================
-            BOTTOM STRIP
+            BOTTOM CTA
         ================================================== */}
 
         <div
-          className={`mt-7 sm:mt-9
-            rounded-xl sm:rounded-2xl
+          className="
+            relative
+            overflow-hidden
+
+            mt-7
+            sm:mt-9
+
+            rounded-xl
+            sm:rounded-2xl
+
+            bg-white
+
             border
-            px-4 py-4
-            sm:px-6 sm:py-5
-            flex flex-col
+            border-slate-200
+
+            shadow-[0_5px_18px_rgba(6,25,35,0.045)]
+
+            px-4
+            py-4
+
+            sm:px-6
+            sm:py-5
+
+            flex
+            flex-col
+
             sm:flex-row
             sm:items-center
             sm:justify-between
+
             gap-4
-            ${
-              d
-                ? "bg-white/[0.02] border-white/[0.07]"
-                : "bg-slate-50 border-slate-200"
-            }
-          `}
+          "
         >
-          <div>
+          {/* LEFT ACCENT */}
+
+          <div
+            aria-hidden="true"
+            className="
+              absolute
+              left-0
+              top-0
+              bottom-0
+
+              w-[3px]
+
+              bg-gradient-to-b
+              from-[#0d5066]
+              to-[#17bebb]
+            "
+          />
+
+          {/* TEXT */}
+
+          <div className="max-w-2xl">
+            <span
+              className="
+                text-[8px]
+                sm:text-[9px]
+
+                uppercase
+                tracking-[0.18em]
+                font-black
+
+                text-[#087f8c]
+              "
+            >
+              Custom Requirements
+            </span>
+
             <h3
-              className={`text-[13px] sm:text-[15px]
+              className="
+                mt-1
+
+                text-[14px]
+                sm:text-[17px]
+
                 font-bold
-                ${
-                  d ? "text-white" : "text-slate-900"
-                }
-              `}
+                tracking-[-0.02em]
+
+                text-[#061923]
+              "
             >
               Have a different business challenge?
             </h3>
 
             <p
-              className={`mt-1
-                text-[10px] sm:text-[12px]
-                ${
-                  d
-                    ? "text-gray-500"
-                    : "text-slate-500"
-                }
-              `}
+              className="
+                mt-1
+
+                text-[10px]
+                sm:text-[11px]
+
+                leading-relaxed
+                text-slate-500
+              "
             >
-              Tell us what you need and we can discuss a
-              solution around your requirements.
+              Share your requirements and we can discuss an approach
+              based on your project and business needs.
             </p>
           </div>
+
+          {/* CTA BUTTON */}
 
           <Link
             to="/contact"
             onClick={scrollTop}
             className="
               inline-flex
-              items-center justify-center
+              items-center
+              justify-center
               gap-2
+
               shrink-0
-              px-5 py-2.5
+
+              w-full
+              sm:w-auto
+
+              px-5
+              py-2.5
+
               rounded-lg
-              bg-purple-600
-              hover:bg-purple-700
+
+              bg-[#061923]
+              border
+              border-[#061923]
+
               text-white
-              text-[11px] sm:text-[12px]
+
+              text-[10px]
+              sm:text-[11px]
+
               font-bold
-              transition-all duration-200
-              hover:-translate-y-0.5
-              hover:shadow-[0_0_20px_rgba(124,58,237,0.25)]
+
+              transition-all
+              duration-200
+
+              hover:shadow-[0_6px_16px_rgba(6,25,35,0.16)]
             "
           >
             Discuss Your Project
+            <ArrowRight size={12} />
+          </Link>
+        </div>
 
-            <ArrowRight size={13} />
+        {/* ==================================================
+            MOBILE ALL SERVICES
+        ================================================== */}
+
+        <div className="lg:hidden mt-3">
+          <Link
+            to="/allservices"
+            onClick={scrollTop}
+            className="
+              flex
+              items-center
+              justify-center
+              gap-2
+
+              w-full
+
+              py-3
+
+              rounded-lg
+
+              bg-white
+
+              border
+              border-slate-200
+
+              text-[#061923]
+              text-[10px]
+              font-bold
+
+              transition-all
+              duration-200
+
+              hover:border-[#061923]/30
+            "
+          >
+            Explore Our Capabilities
+            <ArrowRight size={11} />
           </Link>
         </div>
       </div>

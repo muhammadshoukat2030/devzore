@@ -1,1622 +1,973 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import {
-  Shield,
-  Eye,
-  Database,
-  Globe,
-  Cookie,
-  Lock,
   ArrowRight,
-  CheckCircle,
-  Mail,
+  CheckCircle2,
+  Cookie,
+  Database,
+  Eye,
   FileText,
-  UserCheck,
+  Globe2,
+  LockKeyhole,
+  Mail,
   Server,
-} from 'lucide-react';
+  ShieldCheck,
+  UserCheck,
+} from "lucide-react";
 
-const PrivacyPolicy = ({ isDark }) => {
-  const d = isDark;
+const PrivacyPolicy = () => {
+  const lastUpdated = "September 19, 2026";
 
-  const lastUpdated = 'September 19, 2026';
+  // BACKGROUNDS
+
+  const lightGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
+    backgroundSize: "48px 48px",
+  };
+
+  const darkGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+    backgroundSize: "52px 52px",
+  };
+
+  // NAVIGATION
 
   const navItems = [
     {
-      id: 'collection',
-      label: 'Data We Collect',
-      icon: <Database size={15} />,
+      id: "collection",
+      label: "Data We Collect",
+      icon: <Database size={14} />,
     },
     {
-      id: 'usage',
-      label: 'How We Use Data',
-      icon: <Eye size={15} />,
+      id: "usage",
+      label: "How We Use Data",
+      icon: <Eye size={14} />,
     },
     {
-      id: 'security',
-      label: 'Data Security',
-      icon: <Shield size={15} />,
+      id: "security",
+      label: "Data Security",
+      icon: <ShieldCheck size={14} />,
     },
     {
-      id: 'cookies',
-      label: 'Cookies & Analytics',
-      icon: <Cookie size={15} />,
+      id: "cookies",
+      label: "Cookies & Analytics",
+      icon: <Cookie size={14} />,
     },
     {
-      id: 'thirdparty',
-      label: 'Third-Party Services',
-      icon: <Globe size={15} />,
+      id: "thirdparty",
+      label: "Third-Party Services",
+      icon: <Globe2 size={14} />,
     },
     {
-      id: 'retention',
-      label: 'Data Retention',
-      icon: <Lock size={15} />,
+      id: "retention",
+      label: "Data Retention",
+      icon: <LockKeyhole size={14} />,
     },
     {
-      id: 'rights',
-      label: 'Your Rights',
-      icon: <UserCheck size={15} />,
+      id: "rights",
+      label: "Your Rights",
+      icon: <UserCheck size={14} />,
     },
     {
-      id: 'contact',
-      label: 'Contact Us',
-      icon: <Mail size={15} />,
+      id: "contact",
+      label: "Contact Us",
+      icon: <Mail size={14} />,
     },
   ];
 
-  const sectionClass = `
-    scroll-mt-28
-    py-10
-    sm:py-12
-    border-b
-    ${d ? 'border-white/[0.06]' : 'border-slate-200'}
-  `;
-
-  const h2Class = `
-    text-xl
-    sm:text-2xl
-    font-black
-    tracking-tight
-    ${d ? 'text-white' : 'text-slate-950'}
-  `;
-
-  const pClass = `
-    text-[13px]
-    sm:text-[14px]
-    leading-7
-    mb-4
-    ${d ? 'text-gray-400' : 'text-slate-600'}
-  `;
-
-  const cardClass = `
-    p-5
-    rounded-2xl
-    border
-    mb-3
-    ${d
-      ? 'bg-white/[0.02] border-white/[0.06]'
-      : 'bg-slate-50 border-slate-200'
-    }
-  `;
-
-  const itemTextClass = `
-    text-[13px]
-    leading-6
-    ${d ? 'text-gray-400' : 'text-slate-600'}
-  `;
+  // HELPERS
 
   const scrollTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      left: 0,
+      behavior: "smooth",
     });
   };
 
-  const whatsappUrl =
-    'https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20have%20a%20question%20about%20your%20privacy%20policy.';
+  const SectionLabel = ({ children }) => (
+    <div className="flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase text-[#07899a]">
+      <span className="w-5 h-[2px] bg-[#0796A8]" />
+      {children}
+    </div>
+  );
+
+  const sectionClass =
+    "scroll-mt-24 py-8 sm:py-9 border-b border-slate-200";
+
+  const headingClass =
+    "text-[22px] sm:text-[26px] leading-tight font-semibold tracking-[-0.025em] text-[#071923]";
+
+  const paragraphClass =
+    "text-[12px] sm:text-[13px] leading-6 text-slate-600 mb-4";
+
+  const cardClass =
+    "rounded-xl border border-slate-200 bg-[#fbfcfc] p-4 sm:p-5 mb-3";
+
+  // STRUCTURED DATA
+
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://devzore.com/privacy-policy#webpage",
+    name: "Privacy Policy",
+    url: "https://devzore.com/privacy-policy",
+    description:
+      "Read DevZore's Privacy Policy to understand how information may be collected, used, stored and protected when using the DevZore website and services.",
+    isPartOf: {
+      "@id": "https://devzore.com/#website",
+    },
+    about: {
+      "@id": "https://devzore.com/#organization",
+    },
+    inLanguage: "en",
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://devzore.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Privacy Policy",
+        item: "https://devzore.com/privacy-policy",
+      },
+    ],
+  };
 
   return (
     <>
-      {/* =====================================================
-    STRUCTURED DATA ONLY
-    Global title, description, canonical and social SEO
-    are handled by App.jsx / SEOManager.
-===================================================== */}
       <Helmet>
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "@id": "https://devzore.com/privacy-policy#webpage",
-            name: "Privacy Policy | DevZore",
-            url: "https://devzore.com/privacy-policy",
-            description:
-              "Read DevZore's Privacy Policy to learn how we collect, use, store and protect your information when you use our website, software and digital services.",
-            isPartOf: {
-              "@id": "https://devzore.com/#website",
-            },
-            about: {
-              "@id": "https://devzore.com/#organization",
-            },
-            inLanguage: "en",
-          })}
+          {JSON.stringify(pageSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://devzore.com/",
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Privacy Policy",
-                item: "https://devzore.com/privacy-policy",
-              },
-            ],
-          })}
+          {JSON.stringify(breadcrumbSchema)}
         </script>
       </Helmet>
 
       <div
-        className={`
-          min-h-screen
-          overflow-x-hidden
-          transition-colors
-          duration-300
-          ${d ? 'bg-[#030303]' : 'bg-[#f8fafc]'}
-        `}
+        className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
+        style={{
+          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+        }}
       >
-        {/* =====================================================
-            HERO
-        ====================================================== */}
+        {/* HERO */}
+
         <section
           aria-labelledby="privacy-heading"
-          className={`
-            relative
-            pt-28
-            sm:pt-32
-            lg:pt-36
-            pb-12
-            sm:pb-14
-            border-b
-            overflow-hidden
-            ${d
-              ? 'border-white/[0.06] bg-[#030303]'
-              : 'border-slate-200 bg-white'
-            }
-          `}
+          className="relative overflow-hidden bg-[#04111a] text-white"
         >
-          <div
-            aria-hidden="true"
-            className={`
-              absolute
-              pointer-events-none
-              left-1/2
-              -translate-x-1/2
-              -top-40
-              w-[400px]
-              sm:w-[600px]
-              h-[400px]
-              rounded-full
-              blur-[120px]
-              opacity-20
-              ${d ? 'bg-purple-700' : 'bg-purple-200'}
-            `}
-          />
-
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
+          <div className="absolute inset-0 pointer-events-none">
             <div
-              className={`
-                inline-flex
-                items-center
-                gap-2
-                px-3.5
-                py-1.5
-                rounded-full
-                border
-                text-[10px]
-                sm:text-[11px]
-                font-bold
-                uppercase
-                tracking-[0.15em]
-                mb-5
-                ${d
-                  ? 'bg-purple-500/10 border-purple-500/20 text-purple-300'
-                  : 'bg-purple-50 border-purple-200 text-purple-700'
-                }
-              `}
-            >
-              <Shield size={13} />
+              className="absolute inset-0 opacity-55"
+              style={darkGrid}
+            />
+
+            <div className="absolute -top-32 left-[10%] w-[540px] h-[540px] rounded-full bg-[#0796A8]/12 blur-[150px]" />
+
+            <div className="absolute top-12 right-[4%] w-[420px] h-[420px] rounded-full bg-[#20bdcb]/7 blur-[135px]" />
+
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#04111a]/85" />
+          </div>
+
+          <div className="relative max-w-[1100px] mx-auto px-5 sm:px-6 pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14 text-center">
+            <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+              <ShieldCheck size={14} className="text-[#25c0ce]" />
               Privacy Policy
             </div>
 
             <h1
               id="privacy-heading"
-              className={`
-                text-3xl
-                sm:text-4xl
-                lg:text-5xl
-                font-black
-                tracking-tight
-                leading-tight
-                ${d ? 'text-white' : 'text-slate-950'}
-              `}
+              className="mt-5 text-[40px] sm:text-[48px] lg:text-[58px] leading-[1.04] font-semibold tracking-[-0.045em]"
             >
-              How DevZore Handles
-              <span className="text-purple-600"> Your Information</span>
+              How DevZore handles{" "}
+              <span className="text-[#22bdca]">
+                your information.
+              </span>
             </h1>
 
-            <p
-              className={`
-                mt-5
-                max-w-3xl
-                mx-auto
-                text-sm
-                sm:text-base
-                leading-7
-                ${d ? 'text-gray-400' : 'text-slate-600'}
-              `}
-            >
+            <p className="max-w-[760px] mx-auto mt-5 text-[15px] sm:text-[16px] leading-7 text-slate-300">
               This Privacy Policy explains what information may be collected
               when you use the DevZore website or contact us, why that
-              information may be used, and the choices available to you.
+              information may be used and the choices available to you.
             </p>
 
-            <div
-              className={`
-                mt-6
-                inline-flex
-                items-center
-                gap-2
-                px-4
-                py-2
-                rounded-xl
-                border
-                text-[11px]
-                font-semibold
-                ${d
-                  ? 'bg-white/[0.025] border-white/[0.07] text-gray-400'
-                  : 'bg-slate-50 border-slate-200 text-slate-500'
-                }
-              `}
-            >
-              <FileText size={13} className="text-purple-500" />
+            <div className="mt-6 inline-flex items-center gap-2 rounded-lg border border-white/[0.09] bg-white/[0.03] px-4 py-2.5 text-[10px] font-medium text-slate-400">
+              <FileText size={12} className="text-[#25c0ce]" />
               Last updated: {lastUpdated}
             </div>
           </div>
         </section>
 
-        {/* =====================================================
-            CONTENT
-        ====================================================== */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <div className="grid lg:grid-cols-4 gap-10 lg:gap-14">
+        {/* CONTENT */}
 
-            {/* ================= SIDEBAR ================= */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-28">
-                <p
-                  className={`
-                    text-[10px]
-                    font-black
-                    uppercase
-                    tracking-[0.16em]
-                    mb-4
-                    ${d ? 'text-gray-600' : 'text-slate-400'}
-                  `}
-                >
-                  Contents
-                </p>
+        <section
+          className="py-10 md:py-12 bg-[#f8fafb]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.3fr_0.7fr] gap-8 lg:gap-12 items-start">
+              {/* SIDEBAR */}
 
-                <nav
-                  aria-label="Privacy policy sections"
-                  className="space-y-1"
-                >
-                  {navItems.map((item) => (
+              <aside className="hidden lg:block">
+                <div className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-slate-400 mb-3">
+                    Policy Contents
+                  </p>
+
+                  <nav
+                    aria-label="Privacy policy sections"
+                    className="space-y-1"
+                  >
+                    {navItems.map((item) => (
+                      <a
+                        key={item.id}
+                        href={`#${item.id}`}
+                        className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[11px] font-medium text-slate-600 hover:bg-[#edf4f5] hover:text-[#07899a] transition-colors"
+                      >
+                        <span className="text-[#07899a]">
+                          {item.icon}
+                        </span>
+
+                        {item.label}
+                      </a>
+                    ))}
+                  </nav>
+
+                  <div className="mt-4 pt-4 border-t border-slate-200">
+                    <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                      Last Updated
+                    </p>
+
+                    <p className="mt-1 text-[11px] font-semibold text-[#071923]">
+                      {lastUpdated}
+                    </p>
+                  </div>
+
+                  <div className="mt-4 rounded-xl border border-[#0796A8]/15 bg-[#edf6f7] p-4">
+                    <Mail size={15} className="text-[#07899a]" />
+
+                    <p className="mt-2 text-[10px] leading-5 text-slate-600">
+                      Have a question about this policy?
+                    </p>
+
                     <a
-                      key={item.id}
-                      href={`#${item.id}`}
-                      className={`
-                        flex
-                        items-center
-                        gap-2.5
-                        px-3
-                        py-2.5
-                        rounded-lg
-                        text-[12px]
-                        font-semibold
-                        transition-all
-                        ${d
-                          ? 'text-gray-400 hover:text-purple-400 hover:bg-purple-600/10'
-                          : 'text-slate-500 hover:text-purple-600 hover:bg-purple-50'
-                        }
-                      `}
+                      href="mailto:hellodevzore@gmail.com"
+                      className="block mt-1 text-[10px] font-semibold text-[#07899a] break-all"
                     >
-                      <span className="text-purple-500">
-                        {item.icon}
-                      </span>
-
-                      {item.label}
+                      hellodevzore@gmail.com
                     </a>
-                  ))}
-                </nav>
+                  </div>
+                </div>
+              </aside>
 
-                <div
-                  className={`
-                    mt-6
-                    p-4
-                    rounded-xl
-                    border
-                    ${d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-white border-slate-200'
-                    }
-                  `}
-                >
-                  <p
-                    className={`
-                      text-[10px]
-                      font-bold
-                      uppercase
-                      tracking-widest
-                      mb-1
-                      ${d ? 'text-gray-600' : 'text-slate-400'}
-                    `}
-                  >
-                    Last Updated
-                  </p>
+              {/* POLICY */}
 
-                  <p
-                    className={`
-                      text-[12px]
-                      font-semibold
-                      ${d ? 'text-white' : 'text-slate-900'}
-                    `}
-                  >
-                    {lastUpdated}
-                  </p>
+              <div>
+                {/* INTRO */}
+
+                <div className="rounded-2xl border border-[#0796A8]/15 bg-[#edf6f7] p-5 mb-2">
+                  <div className="flex items-start gap-3">
+                    <div className="w-9 h-9 shrink-0 rounded-xl bg-white text-[#07899a] flex items-center justify-center">
+                      <ShieldCheck size={16} />
+                    </div>
+
+                    <div>
+                      <h2 className="text-[13px] font-semibold text-[#071923]">
+                        About This Privacy Policy
+                      </h2>
+
+                      <p className="mt-2 text-[11px] sm:text-[12px] leading-6 text-slate-600">
+                        This policy applies to information handled through
+                        devzore.com and information you voluntarily provide
+                        when contacting DevZore about software development,
+                        web development, mobile applications, SaaS products,
+                        technical services or related enquiries.
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div
-                  className={`
-                    mt-3
-                    p-4
-                    rounded-xl
-                    border
-                    ${d
-                      ? 'bg-purple-500/[0.05] border-purple-500/15'
-                      : 'bg-purple-50 border-purple-100'
-                    }
-                  `}
-                >
-                  <Mail
-                    size={16}
-                    className="text-purple-500 mb-2"
-                  />
+                {/* COLLECTION */}
 
-                  <p
-                    className={`
-                      text-[11px]
-                      leading-5
-                      ${d ? 'text-gray-400' : 'text-slate-600'}
-                    `}
-                  >
-                    Have a privacy question?
-                  </p>
+                <section id="collection" className={sectionClass}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <Database size={16} />
+                    </div>
 
-                  <a
-                    href="mailto:hellodevzore@gmail.com"
-                    className="block mt-1 text-[11px] font-bold text-purple-500 hover:underline break-all"
-                  >
-                    hellodevzore@gmail.com
-                  </a>
-                </div>
-              </div>
-            </aside>
-
-            {/* ================= MAIN ================= */}
-            <div className="lg:col-span-3">
-
-              {/* INTRODUCTION */}
-              <div
-                className={`
-                  p-5
-                  sm:p-6
-                  rounded-2xl
-                  border
-                  mb-2
-                  ${d
-                    ? 'bg-purple-500/[0.04] border-purple-500/15'
-                    : 'bg-purple-50 border-purple-100'
-                  }
-                `}
-              >
-                <div className="flex items-start gap-3">
-                  <Shield
-                    size={18}
-                    className="text-purple-500 shrink-0 mt-0.5"
-                  />
-
-                  <div>
-                    <h2
-                      className={`
-                        text-sm
-                        font-bold
-                        mb-2
-                        ${d ? 'text-white' : 'text-slate-900'}
-                      `}
-                    >
-                      About This Privacy Policy
+                    <h2 className={headingClass}>
+                      Information We May Collect
                     </h2>
-
-                    <p
-                      className={`
-                        text-[13px]
-                        leading-6
-                        ${d ? 'text-gray-400' : 'text-slate-600'}
-                      `}
-                    >
-                      This policy applies to information handled through
-                      devzore.com and information you voluntarily provide
-                      when contacting DevZore about software development,
-                      web development, mobile applications, SaaS products,
-                      technical services or related enquiries.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* =================================================
-                  DATA COLLECTION
-              ================================================== */}
-              <section
-                id="collection"
-                className={sectionClass}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-blue-500/10 text-blue-400'
-                        : 'bg-blue-50 text-blue-600'
-                      }
-                    `}
-                  >
-                    <Database size={16} />
                   </div>
 
-                  <h2 className={h2Class}>
-                    Information We May Collect
-                  </h2>
-                </div>
-
-                <p className={pClass}>
-                  The information we receive depends on how you interact
-                  with DevZore. You may browse the website without directly
-                  providing personal information, while contacting us may
-                  require you to provide certain details.
-                </p>
-
-                <div className={cardClass}>
-                  <h3
-                    className={`
-                      text-[13px]
-                      font-bold
-                      mb-3
-                      ${d ? 'text-white' : 'text-slate-900'}
-                    `}
-                  >
-                    Information You Provide
-                  </h3>
-
-                  <ul className={`${itemTextClass} space-y-2`}>
-                    <li>
-                      • Your name and email address when you contact us.
-                    </li>
-
-                    <li>
-                      • Your phone number or WhatsApp number if you choose
-                      to provide it.
-                    </li>
-
-                    <li>
-                      • Company or business information that you voluntarily
-                      share with us.
-                    </li>
-
-                    <li>
-                      • Project requirements, technical requirements,
-                      business goals and other information included in your
-                      enquiry.
-                    </li>
-
-                    <li>
-                      • Messages, documents or other information you send
-                      through email, WhatsApp or another agreed communication
-                      channel.
-                    </li>
-                  </ul>
-                </div>
-
-                <div className={cardClass}>
-                  <h3
-                    className={`
-                      text-[13px]
-                      font-bold
-                      mb-3
-                      ${d ? 'text-white' : 'text-slate-900'}
-                    `}
-                  >
-                    Technical & Usage Information
-                  </h3>
-
-                  <p className={itemTextClass}>
-                    Depending on the technologies and analytics services
-                    active on our website, certain technical information may
-                    be processed automatically. This can include browser
-                    type, device information, pages viewed, referring pages,
-                    approximate location derived from technical data, IP
-                    address and general website usage information.
+                  <p className={paragraphClass}>
+                    The information we receive depends on how you interact
+                    with DevZore. You may browse the website without directly
+                    providing personal information, while contacting us may
+                    require you to provide certain details.
                   </p>
-                </div>
 
-                <div className={cardClass}>
-                  <h3
-                    className={`
-                      text-[13px]
-                      font-bold
-                      mb-3
-                      ${d ? 'text-white' : 'text-slate-900'}
-                    `}
-                  >
-                    Please Avoid Sending Unnecessary Sensitive Information
-                  </h3>
+                  <div className={cardClass}>
+                    <h3 className="text-[13px] font-semibold text-[#071923] mb-3">
+                      Information You Provide
+                    </h3>
 
-                  <p className={itemTextClass}>
-                    Please do not send passwords, payment card details,
-                    private authentication credentials or sensitive personal
-                    information unless it is genuinely required for an agreed
-                    project and an appropriate secure method has been
-                    arranged.
-                  </p>
-                </div>
-              </section>
+                    <div className="space-y-2">
+                      {[
+                        "Your name and email address when you contact us.",
+                        "Your phone number if you choose to provide it.",
+                        "Company or business information that you voluntarily share with us.",
+                        "Project requirements, technical requirements, business goals and other information included in your enquiry.",
+                        "Messages, documents or other information you send through email or another agreed communication channel.",
+                      ].map((item) => (
+                        <div
+                          key={item}
+                          className="flex items-start gap-2.5"
+                        >
+                          <CheckCircle2
+                            size={12}
+                            className="text-[#07899a] shrink-0 mt-1"
+                          />
 
-              {/* =================================================
-                  USAGE
-              ================================================== */}
-              <section
-                id="usage"
-                className={sectionClass}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-purple-500/10 text-purple-400'
-                        : 'bg-purple-50 text-purple-600'
-                      }
-                    `}
-                  >
-                    <Eye size={16} />
-                  </div>
-
-                  <h2 className={h2Class}>
-                    How We May Use Your Information
-                  </h2>
-                </div>
-
-                <p className={pClass}>
-                  Information may be used where reasonably necessary to
-                  communicate with you, understand your requirements, provide
-                  requested services and operate or improve our website.
-                </p>
-
-                {[
-                  {
-                    title: 'Responding to Enquiries',
-                    desc:
-                      'To understand your request, communicate with you and discuss potential software development or digital services.',
-                  },
-                  {
-                    title: 'Project Planning',
-                    desc:
-                      'To understand project requirements, features, technical needs, timelines and other information necessary to discuss a potential project.',
-                  },
-                  {
-                    title: 'Providing Services',
-                    desc:
-                      'Where you become a client, relevant information may be used to manage communication and perform agreed project work.',
-                  },
-                  {
-                    title: 'Website Improvement',
-                    desc:
-                      'Technical or analytics information may be used to understand website performance, usability and general visitor behaviour.',
-                  },
-                  {
-                    title: 'Security & Reliability',
-                    desc:
-                      'Technical information may be processed where necessary to protect the website, investigate problems and reduce misuse.',
-                  },
-                  {
-                    title: 'Legal & Business Records',
-                    desc:
-                      'Certain information may be retained where reasonably necessary for accounting, contractual, legal or business record purposes.',
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className={`${cardClass} flex items-start gap-3`}
-                  >
-                    <CheckCircle
-                      size={15}
-                      className="text-purple-500 shrink-0 mt-0.5"
-                    />
-
-                    <div>
-                      <h3
-                        className={`
-                          text-[13px]
-                          font-bold
-                          mb-1
-                          ${d ? 'text-white' : 'text-slate-900'}
-                        `}
-                      >
-                        {item.title}
-                      </h3>
-
-                      <p
-                        className={`
-                          text-[12px]
-                          leading-5
-                          ${d ? 'text-gray-400' : 'text-slate-600'}
-                        `}
-                      >
-                        {item.desc}
-                      </p>
+                          <p className="text-[11px] leading-5 text-slate-600">
+                            {item}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ))}
-              </section>
 
-              {/* =================================================
-                  SECURITY
-              ================================================== */}
-              <section
-                id="security"
-                className={sectionClass}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-green-500/10 text-green-400'
-                        : 'bg-green-50 text-green-600'
-                      }
-                    `}
-                  >
-                    <Shield size={16} />
+                  <div className={cardClass}>
+                    <h3 className="text-[13px] font-semibold text-[#071923] mb-2">
+                      Technical & Usage Information
+                    </h3>
+
+                    <p className="text-[11px] leading-6 text-slate-600">
+                      Depending on the technologies and analytics services
+                      active on our website, certain technical information may
+                      be processed automatically. This can include browser
+                      type, device information, pages viewed, referring pages,
+                      approximate location derived from technical data, IP
+                      address and general website usage information.
+                    </p>
                   </div>
 
-                  <h2 className={h2Class}>
-                    Data Security
-                  </h2>
-                </div>
+                  <div className={cardClass}>
+                    <h3 className="text-[13px] font-semibold text-[#071923] mb-2">
+                      Avoid Sending Unnecessary Sensitive Information
+                    </h3>
 
-                <p className={pClass}>
-                  We take reasonable technical and organisational measures
-                  to reduce the risk of unauthorised access, misuse, loss,
-                  alteration or disclosure of information handled by
-                  DevZore.
-                </p>
+                    <p className="text-[11px] leading-6 text-slate-600">
+                      Please do not send passwords, payment card details,
+                      private authentication credentials or sensitive personal
+                      information unless it is genuinely required for an agreed
+                      project and an appropriate secure method has been
+                      arranged.
+                    </p>
+                  </div>
+                </section>
 
-                <div className="grid sm:grid-cols-2 gap-3">
+                {/* USAGE */}
+
+                <section id="usage" className={sectionClass}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <Eye size={16} />
+                    </div>
+
+                    <h2 className={headingClass}>
+                      How We May Use Your Information
+                    </h2>
+                  </div>
+
+                  <p className={paragraphClass}>
+                    Information may be used where reasonably necessary to
+                    communicate with you, understand your requirements, provide
+                    requested services and operate or improve our website.
+                  </p>
+
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {[
+                      {
+                        title: "Responding to Enquiries",
+                        desc:
+                          "To understand your request, communicate with you and discuss potential software development or digital services.",
+                      },
+                      {
+                        title: "Project Planning",
+                        desc:
+                          "To understand project requirements, features, technical needs, timelines and other information necessary to discuss a potential project.",
+                      },
+                      {
+                        title: "Providing Services",
+                        desc:
+                          "Where you become a client, relevant information may be used to manage communication and perform agreed project work.",
+                      },
+                      {
+                        title: "Website Improvement",
+                        desc:
+                          "Technical or analytics information may be used to understand website performance, usability and general visitor behaviour.",
+                      },
+                      {
+                        title: "Security & Reliability",
+                        desc:
+                          "Technical information may be processed where necessary to protect the website, investigate problems and reduce misuse.",
+                      },
+                      {
+                        title: "Legal & Business Records",
+                        desc:
+                          "Certain information may be retained where reasonably necessary for accounting, contractual, legal or business record purposes.",
+                      },
+                    ].map((item) => (
+                      <article
+                        key={item.title}
+                        className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4"
+                      >
+                        <CheckCircle2
+                          size={13}
+                          className="text-[#07899a]"
+                        />
+
+                        <h3 className="mt-3 text-[12px] font-semibold text-[#071923]">
+                          {item.title}
+                        </h3>
+
+                        <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                          {item.desc}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+
+                {/* SECURITY */}
+
+                <section id="security" className={sectionClass}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <ShieldCheck size={16} />
+                    </div>
+
+                    <h2 className={headingClass}>Data Security</h2>
+                  </div>
+
+                  <p className={paragraphClass}>
+                    We take reasonable technical and organisational measures
+                    to reduce the risk of unauthorised access, misuse, loss,
+                    alteration or disclosure of information handled by
+                    DevZore.
+                  </p>
+
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {[
+                      {
+                        icon: <LockKeyhole size={15} />,
+                        title: "Secure Connections",
+                        desc:
+                          "Our website uses HTTPS to help protect information transmitted between your browser and the website.",
+                      },
+                      {
+                        icon: <UserCheck size={15} />,
+                        title: "Controlled Access",
+                        desc:
+                          "Access to project or enquiry information should be limited to people who reasonably require it for business or project purposes.",
+                      },
+                      {
+                        icon: <Database size={15} />,
+                        title: "Data Minimisation",
+                        desc:
+                          "We aim to avoid collecting or retaining information that is not reasonably needed for the relevant purpose.",
+                      },
+                      {
+                        icon: <Server size={15} />,
+                        title: "Technical Safeguards",
+                        desc:
+                          "Hosting, application and account security measures may be used to help protect website and project information.",
+                      },
+                    ].map((item) => (
+                      <article
+                        key={item.title}
+                        className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                          {item.icon}
+                        </div>
+
+                        <h3 className="mt-3 text-[12px] font-semibold text-[#071923]">
+                          {item.title}
+                        </h3>
+
+                        <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                          {item.desc}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+
+                  <p className="mt-4 text-[10px] leading-5 text-slate-500">
+                    No internet transmission or storage system can be
+                    guaranteed to be completely secure. We therefore cannot
+                    guarantee absolute security of information transmitted or
+                    stored electronically.
+                  </p>
+                </section>
+
+                {/* COOKIES */}
+
+                <section id="cookies" className={sectionClass}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <Cookie size={16} />
+                    </div>
+
+                    <h2 className={headingClass}>
+                      Cookies, Local Storage & Analytics
+                    </h2>
+                  </div>
+
+                  <p className={paragraphClass}>
+                    Websites can use cookies, browser storage and similar
+                    technologies for functionality, preferences, analytics and
+                    security. The technologies used by DevZore may change as
+                    the website develops.
+                  </p>
+
                   {[
                     {
-                      icon: <Lock size={15} />,
-                      title: 'Secure Connections',
+                      title: "Essential Technologies",
                       desc:
-                        'Our website uses HTTPS to help protect information transmitted between your browser and the website.',
+                        "Some browser or website technologies may be necessary for core functionality, security or reliable operation.",
                     },
                     {
-                      icon: <UserCheck size={15} />,
-                      title: 'Controlled Access',
+                      title: "Preference Storage",
                       desc:
-                        'Access to project or enquiry information should be limited to people who reasonably require it for business or project purposes.',
+                        "Browser storage may be used to remember preferences where that functionality is enabled.",
                     },
                     {
-                      icon: <Database size={15} />,
-                      title: 'Data Minimisation',
+                      title: "Analytics",
                       desc:
-                        'We aim to avoid collecting or retaining information that is not reasonably needed for the relevant purpose.',
-                    },
-                    {
-                      icon: <Server size={15} />,
-                      title: 'Technical Safeguards',
-                      desc:
-                        'Hosting, application and account security measures may be used to help protect website and project information.',
+                        "If analytics tools are enabled, they may process technical and usage information to help us understand how the website is used.",
                     },
                   ].map((item) => (
-                    <div
-                      key={item.title}
-                      className={`
-                        p-5
-                        rounded-2xl
-                        border
-                        ${d
-                          ? 'bg-white/[0.02] border-white/[0.06]'
-                          : 'bg-slate-50 border-slate-200'
-                        }
-                      `}
-                    >
-                      <div className="text-purple-500 mb-3">
-                        {item.icon}
-                      </div>
-
-                      <h3
-                        className={`
-                          text-[12px]
-                          font-bold
-                          mb-1.5
-                          ${d ? 'text-white' : 'text-slate-900'}
-                        `}
-                      >
+                    <div key={item.title} className={cardClass}>
+                      <h3 className="text-[12px] font-semibold text-[#071923]">
                         {item.title}
                       </h3>
 
-                      <p
-                        className={`
-                          text-[11px]
-                          leading-5
-                          ${d ? 'text-gray-500' : 'text-slate-500'}
-                        `}
-                      >
+                      <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
                         {item.desc}
                       </p>
                     </div>
                   ))}
-                </div>
 
-                <p
-                  className={`
-                    mt-5
-                    text-[12px]
-                    leading-6
-                    ${d ? 'text-gray-500' : 'text-slate-500'}
-                  `}
-                >
-                  No internet transmission or storage system can be
-                  guaranteed to be completely secure. We therefore cannot
-                  guarantee absolute security of information transmitted or
-                  stored electronically.
-                </p>
-              </section>
-
-              {/* =================================================
-                  COOKIES
-              ================================================== */}
-              <section
-                id="cookies"
-                className={sectionClass}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-amber-500/10 text-amber-400'
-                        : 'bg-amber-50 text-amber-600'
-                      }
-                    `}
-                  >
-                    <Cookie size={16} />
-                  </div>
-
-                  <h2 className={h2Class}>
-                    Cookies, Local Storage & Analytics
-                  </h2>
-                </div>
-
-                <p className={pClass}>
-                  Websites can use cookies, browser storage and similar
-                  technologies for functionality, preferences, analytics and
-                  security. The technologies used by DevZore may change as
-                  the website develops.
-                </p>
-
-                {[
-                  {
-                    title: 'Essential Technologies',
-                    desc:
-                      'Some browser or website technologies may be necessary for core functionality, security or reliable operation.',
-                  },
-                  {
-                    title: 'Preference Storage',
-                    desc:
-                      'Browser storage may be used to remember preferences such as light or dark appearance where that functionality is enabled.',
-                  },
-                  {
-                    title: 'Analytics',
-                    desc:
-                      'If analytics tools are enabled, they may process technical and usage information to help us understand how the website is used.',
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className={cardClass}
-                  >
-                    <h3
-                      className={`
-                        text-[13px]
-                        font-bold
-                        mb-1.5
-                        ${d ? 'text-white' : 'text-slate-900'}
-                      `}
-                    >
-                      {item.title}
-                    </h3>
-
-                    <p
-                      className={`
-                        text-[12px]
-                        leading-5
-                        ${d ? 'text-gray-400' : 'text-slate-600'}
-                      `}
-                    >
-                      {item.desc}
-                    </p>
-                  </div>
-                ))}
-
-                <p
-                  className={`
-                    text-[12px]
-                    leading-6
-                    ${d ? 'text-gray-500' : 'text-slate-500'}
-                  `}
-                >
-                  You can usually control cookies through your browser
-                  settings. Disabling certain storage technologies may affect
-                  some website features.
-                </p>
-              </section>
-
-              {/* =================================================
-                  THIRD PARTIES
-              ================================================== */}
-              <section
-                id="thirdparty"
-                className={sectionClass}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-indigo-500/10 text-indigo-400'
-                        : 'bg-indigo-50 text-indigo-600'
-                      }
-                    `}
-                  >
-                    <Globe size={16} />
-                  </div>
-
-                  <h2 className={h2Class}>
-                    Third-Party Services
-                  </h2>
-                </div>
-
-                <p className={pClass}>
-                  DevZore may rely on third-party providers for website
-                  hosting, communication, analytics, infrastructure or other
-                  business services. Those providers may process limited
-                  information according to their own terms and privacy
-                  practices.
-                </p>
-
-                {[
-                  {
-                    title: 'Hosting & Infrastructure Providers',
-                    desc:
-                      'Providers used to host, deploy, secure or operate our website and software infrastructure may process technical information.',
-                  },
-                  {
-                    title: 'Email & Communication Services',
-                    desc:
-                      'When you contact us through email or messaging services, information may also be processed by the relevant communication provider.',
-                  },
-                  {
-                    title: 'Analytics & Performance Services',
-                    desc:
-                      'Where enabled, analytics or performance tools may process website usage and technical information.',
-                  },
-                  {
-                    title: 'Client-Requested Services',
-                    desc:
-                      'During project work, third-party platforms may be used when required by the project or agreed with the client.',
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className={`
-                      flex
-                      items-start
-                      gap-3
-                      p-4
-                      rounded-xl
-                      border
-                      mb-2
-                      ${d
-                        ? 'bg-white/[0.02] border-white/[0.06]'
-                        : 'bg-slate-50 border-slate-200'
-                      }
-                    `}
-                  >
-                    <CheckCircle
-                      size={14}
-                      className="text-purple-500 shrink-0 mt-0.5"
-                    />
-
-                    <div>
-                      <h3
-                        className={`
-                          text-[12px]
-                          font-bold
-                          mb-1
-                          ${d ? 'text-white' : 'text-slate-900'}
-                        `}
-                      >
-                        {item.title}
-                      </h3>
-
-                      <p
-                        className={`
-                          text-[11px]
-                          leading-5
-                          ${d ? 'text-gray-500' : 'text-slate-500'}
-                        `}
-                      >
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-
-                <div
-                  className={`
-                    mt-4
-                    p-4
-                    rounded-xl
-                    border
-                    ${d
-                      ? 'bg-green-500/[0.04] border-green-500/15'
-                      : 'bg-green-50 border-green-100'
-                    }
-                  `}
-                >
-                  <p
-                    className={`
-                      text-[12px]
-                      leading-5
-                      ${d ? 'text-gray-400' : 'text-slate-600'}
-                    `}
-                  >
-                    DevZore does not sell personal information as part of
-                    its software development business.
+                  <p className="text-[10px] leading-5 text-slate-500">
+                    You can usually control cookies through your browser
+                    settings. Disabling certain storage technologies may affect
+                    some website features.
                   </p>
-                </div>
-              </section>
+                </section>
 
-              {/* =================================================
-                  RETENTION
-              ================================================== */}
-              <section
-                id="retention"
-                className={sectionClass}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-cyan-500/10 text-cyan-400'
-                        : 'bg-cyan-50 text-cyan-600'
-                      }
-                    `}
-                  >
-                    <Lock size={16} />
+                {/* THIRD PARTY */}
+
+                <section id="thirdparty" className={sectionClass}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <Globe2 size={16} />
+                    </div>
+
+                    <h2 className={headingClass}>Third-Party Services</h2>
                   </div>
 
-                  <h2 className={h2Class}>
-                    Data Retention
-                  </h2>
-                </div>
+                  <p className={paragraphClass}>
+                    DevZore may rely on third-party providers for website
+                    hosting, communication, analytics, infrastructure or other
+                    business services. Those providers may process limited
+                    information according to their own terms and privacy
+                    practices.
+                  </p>
 
-                <p className={pClass}>
-                  We aim to retain personal information only for as long as
-                  it is reasonably needed for the purpose for which it was
-                  collected, to maintain appropriate business records, or to
-                  meet applicable contractual or legal obligations.
-                </p>
-
-                {[
-                  {
-                    title: 'Project Enquiries',
-                    desc:
-                      'Enquiry information may be retained while discussions are active and for a reasonable period afterwards where follow-up may be relevant.',
-                  },
-                  {
-                    title: 'Client & Project Information',
-                    desc:
-                      'Information connected with completed or active projects may be retained where reasonably needed for support, project history, contractual records or future work.',
-                  },
-                  {
-                    title: 'Business & Financial Records',
-                    desc:
-                      'Records may be retained for periods required by applicable accounting, tax or other legal obligations.',
-                  },
-                  {
-                    title: 'Technical Information',
-                    desc:
-                      'Technical logs or analytics information may be retained according to operational requirements and the settings of the relevant service provider.',
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className={cardClass}
-                  >
-                    <h3
-                      className={`
-                        text-[12px]
-                        font-bold
-                        mb-1
-                        ${d ? 'text-white' : 'text-slate-900'}
-                      `}
-                    >
-                      {item.title}
-                    </h3>
-
-                    <p
-                      className={`
-                        text-[11px]
-                        leading-5
-                        ${d ? 'text-gray-500' : 'text-slate-500'}
-                      `}
-                    >
-                      {item.desc}
-                    </p>
-                  </div>
-                ))}
-              </section>
-
-              {/* =================================================
-                  RIGHTS
-              ================================================== */}
-              <section
-                id="rights"
-                className={sectionClass}
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-green-500/10 text-green-400'
-                        : 'bg-green-50 text-green-600'
-                      }
-                    `}
-                  >
-                    <UserCheck size={16} />
-                  </div>
-
-                  <h2 className={h2Class}>
-                    Your Privacy Choices & Rights
-                  </h2>
-                </div>
-
-                <p className={pClass}>
-                  Depending on the laws that apply to you and the
-                  circumstances of the processing, you may have certain
-                  rights or choices regarding your personal information.
-                </p>
-
-                <div className="grid sm:grid-cols-2 gap-3">
                   {[
                     {
-                      title: 'Access',
+                      title: "Hosting & Infrastructure Providers",
                       desc:
-                        'You may ask what personal information DevZore holds about you.',
+                        "Providers used to host, deploy, secure or operate our website and software infrastructure may process technical information.",
                     },
                     {
-                      title: 'Correction',
+                      title: "Email & Communication Services",
                       desc:
-                        'You may ask us to correct information that is inaccurate or incomplete.',
+                        "When you contact us through email or messaging services, information may also be processed by the relevant communication provider.",
                     },
                     {
-                      title: 'Deletion',
+                      title: "Analytics & Performance Services",
                       desc:
-                        'You may request deletion of information where there is no overriding reason or legal requirement for us to retain it.',
+                        "Where enabled, analytics or performance tools may process website usage and technical information.",
                     },
                     {
-                      title: 'Communication Preferences',
+                      title: "Client-Requested Services",
                       desc:
-                        'You may ask us to stop optional promotional or non-essential communications.',
-                    },
-                    {
-                      title: 'Processing Questions',
-                      desc:
-                        'You may contact us if you have concerns or questions about how your information is being handled.',
-                    },
-                    {
-                      title: 'Data Requests',
-                      desc:
-                        'Where applicable, you may request a copy of information associated with you in a reasonably available format.',
+                        "During project work, third-party platforms may be used when required by the project or agreed with the client.",
                     },
                   ].map((item) => (
                     <div
                       key={item.title}
-                      className={`
-                        p-4
-                        rounded-xl
-                        border
-                        ${d
-                          ? 'bg-white/[0.02] border-white/[0.06]'
-                          : 'bg-slate-50 border-slate-200'
-                        }
-                      `}
+                      className="flex items-start gap-3 rounded-xl border border-slate-200 bg-[#fbfcfc] p-4 mb-2"
                     >
-                      <p className="text-[12px] font-bold mb-1 text-purple-500">
-                        {item.title}
-                      </p>
-
-                      <p
-                        className={`
-                          text-[11px]
-                          leading-5
-                          ${d ? 'text-gray-400' : 'text-slate-600'}
-                        `}
-                      >
-                        {item.desc}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <p
-                  className={`
-                    text-[12px]
-                    leading-6
-                    mt-5
-                    ${d ? 'text-gray-500' : 'text-slate-500'}
-                  `}
-                >
-                  To make a privacy-related request, contact us at{' '}
-                  <a
-                    href="mailto:hellodevzore@gmail.com"
-                    className="text-purple-500 font-semibold hover:underline"
-                  >
-                    hellodevzore@gmail.com
-                  </a>
-                  . We may need enough information to identify the relevant
-                  records before completing a request.
-                </p>
-              </section>
-
-              {/* =================================================
-                  CHILDREN
-              ================================================== */}
-              <section className={sectionClass}>
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-pink-500/10 text-pink-400'
-                        : 'bg-pink-50 text-pink-600'
-                      }
-                    `}
-                  >
-                    <Shield size={16} />
-                  </div>
-
-                  <h2 className={h2Class}>
-                    Children&apos;s Privacy
-                  </h2>
-                </div>
-
-                <p className={pClass}>
-                  DevZore&apos;s website and software development services
-                  are intended primarily for businesses, professionals,
-                  organisations and people seeking software services. They
-                  are not designed specifically to collect personal
-                  information from children.
-                </p>
-
-                <p className={pClass}>
-                  If you believe a child has provided personal information
-                  through our website without appropriate permission, please
-                  contact us so the situation can be reviewed.
-                </p>
-              </section>
-
-              {/* =================================================
-                  INTERNATIONAL PROCESSING
-              ================================================== */}
-              <section className={sectionClass}>
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-blue-500/10 text-blue-400'
-                        : 'bg-blue-50 text-blue-600'
-                      }
-                    `}
-                  >
-                    <Globe size={16} />
-                  </div>
-
-                  <h2 className={h2Class}>
-                    International Services & Data Processing
-                  </h2>
-                </div>
-
-                <p className={pClass}>
-                  DevZore can work remotely with clients in different
-                  locations. Website hosting, communication platforms,
-                  infrastructure providers and other technology services may
-                  process information in countries different from your own.
-                </p>
-
-                <p className={pClass}>
-                  Privacy protections and legal requirements can vary by
-                  jurisdiction. Where appropriate, we aim to use reputable
-                  service providers and reasonable safeguards for information
-                  handled in connection with our services.
-                </p>
-              </section>
-
-              {/* =================================================
-                  POLICY CHANGES
-              ================================================== */}
-              <section className={sectionClass}>
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-purple-500/10 text-purple-400'
-                        : 'bg-purple-50 text-purple-600'
-                      }
-                    `}
-                  >
-                    <FileText size={16} />
-                  </div>
-
-                  <h2 className={h2Class}>
-                    Changes to This Privacy Policy
-                  </h2>
-                </div>
-
-                <p className={pClass}>
-                  We may update this Privacy Policy when our website,
-                  services, technologies or privacy practices change.
-                  The current version will be published on this page with
-                  an updated revision date.
-                </p>
-
-                <p className={pClass}>
-                  We encourage visitors and clients to review this page
-                  periodically if privacy practices are important to their
-                  use of our services.
-                </p>
-              </section>
-
-              {/* =================================================
-                  CONTACT
-              ================================================== */}
-              <section
-                id="contact"
-                className="scroll-mt-28 pt-10 sm:pt-12"
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div
-                    className={`
-                      w-9
-                      h-9
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      ${d
-                        ? 'bg-pink-500/10 text-pink-400'
-                        : 'bg-pink-50 text-pink-600'
-                      }
-                    `}
-                  >
-                    <Mail size={16} />
-                  </div>
-
-                  <h2 className={h2Class}>
-                    Privacy Questions & Contact
-                  </h2>
-                </div>
-
-                <p className={pClass}>
-                  If you have a question about this Privacy Policy, want to
-                  ask how information associated with you is handled, or want
-                  to make a privacy-related request, you can contact DevZore
-                  using the details below.
-                </p>
-
-                <div
-                  className={`
-                    p-5
-                    sm:p-6
-                    rounded-2xl
-                    border
-                    mb-6
-                    ${d
-                      ? 'bg-white/[0.02] border-white/[0.06]'
-                      : 'bg-white border-slate-200'
-                    }
-                  `}
-                >
-                  <p
-                    className={`
-                      text-[13px]
-                      font-bold
-                      mb-4
-                      ${d ? 'text-white' : 'text-slate-900'}
-                    `}
-                  >
-                    DevZore
-                  </p>
-
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <Mail
-                        size={15}
-                        className="text-purple-500 shrink-0 mt-0.5"
+                      <CheckCircle2
+                        size={13}
+                        className="text-[#07899a] shrink-0 mt-0.5"
                       />
 
                       <div>
-                        <p
-                          className={`
-                            text-[10px]
-                            uppercase
-                            tracking-wider
-                            font-bold
-                            ${d ? 'text-gray-600' : 'text-slate-400'}
-                          `}
-                        >
+                        <h3 className="text-[12px] font-semibold text-[#071923]">
+                          {item.title}
+                        </h3>
+
+                        <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="mt-4 rounded-xl border border-[#0796A8]/15 bg-[#edf6f7] p-4">
+                    <p className="text-[11px] leading-5 text-slate-600">
+                      DevZore does not sell personal information as part of its
+                      software development business.
+                    </p>
+                  </div>
+                </section>
+
+                {/* RETENTION */}
+
+                <section id="retention" className={sectionClass}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <LockKeyhole size={16} />
+                    </div>
+
+                    <h2 className={headingClass}>Data Retention</h2>
+                  </div>
+
+                  <p className={paragraphClass}>
+                    We aim to retain personal information only for as long as
+                    it is reasonably needed for the purpose for which it was
+                    collected, to maintain appropriate business records or to
+                    meet applicable contractual or legal obligations.
+                  </p>
+
+                  {[
+                    {
+                      title: "Project Enquiries",
+                      desc:
+                        "Enquiry information may be retained while discussions are active and for a reasonable period afterwards where follow-up may be relevant.",
+                    },
+                    {
+                      title: "Client & Project Information",
+                      desc:
+                        "Information connected with completed or active projects may be retained where reasonably needed for support, project history, contractual records or future work.",
+                    },
+                    {
+                      title: "Business & Financial Records",
+                      desc:
+                        "Records may be retained for periods required by applicable accounting, tax or other legal obligations.",
+                    },
+                    {
+                      title: "Technical Information",
+                      desc:
+                        "Technical logs or analytics information may be retained according to operational requirements and the settings of the relevant service provider.",
+                    },
+                  ].map((item) => (
+                    <div key={item.title} className={cardClass}>
+                      <h3 className="text-[12px] font-semibold text-[#071923]">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                        {item.desc}
+                      </p>
+                    </div>
+                  ))}
+                </section>
+
+                {/* RIGHTS */}
+
+                <section id="rights" className={sectionClass}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <UserCheck size={16} />
+                    </div>
+
+                    <h2 className={headingClass}>
+                      Your Privacy Choices & Rights
+                    </h2>
+                  </div>
+
+                  <p className={paragraphClass}>
+                    Depending on the laws that apply to you and the
+                    circumstances of the processing, you may have certain
+                    rights or choices regarding your personal information.
+                  </p>
+
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {[
+                      {
+                        title: "Access",
+                        desc:
+                          "You may ask what personal information DevZore holds about you.",
+                      },
+                      {
+                        title: "Correction",
+                        desc:
+                          "You may ask us to correct information that is inaccurate or incomplete.",
+                      },
+                      {
+                        title: "Deletion",
+                        desc:
+                          "You may request deletion of information where there is no overriding reason or legal requirement for us to retain it.",
+                      },
+                      {
+                        title: "Communication Preferences",
+                        desc:
+                          "You may ask us to stop optional promotional or non-essential communications.",
+                      },
+                      {
+                        title: "Processing Questions",
+                        desc:
+                          "You may contact us if you have concerns or questions about how your information is being handled.",
+                      },
+                      {
+                        title: "Data Requests",
+                        desc:
+                          "Where applicable, you may request a copy of information associated with you in a reasonably available format.",
+                      },
+                    ].map((item) => (
+                      <article
+                        key={item.title}
+                        className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4"
+                      >
+                        <h3 className="text-[12px] font-semibold text-[#07899a]">
+                          {item.title}
+                        </h3>
+
+                        <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                          {item.desc}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+
+                  <p className="mt-4 text-[10px] leading-5 text-slate-500">
+                    To make a privacy-related request, contact us at{" "}
+                    <a
+                      href="mailto:hellodevzore@gmail.com"
+                      className="font-semibold text-[#07899a]"
+                    >
+                      hellodevzore@gmail.com
+                    </a>
+                    . We may need enough information to identify the relevant
+                    records before completing a request.
+                  </p>
+                </section>
+
+                {/* CHILDREN */}
+
+                <section className={sectionClass}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <ShieldCheck size={16} />
+                    </div>
+
+                    <h2 className={headingClass}>Children&apos;s Privacy</h2>
+                  </div>
+
+                  <p className={paragraphClass}>
+                    DevZore&apos;s website and software development services
+                    are intended primarily for businesses, professionals,
+                    organisations and people seeking software services. They
+                    are not designed specifically to collect personal
+                    information from children.
+                  </p>
+
+                  <p className={paragraphClass}>
+                    If you believe a child has provided personal information
+                    through our website without appropriate permission, please
+                    contact us so the situation can be reviewed.
+                  </p>
+                </section>
+
+                {/* INTERNATIONAL */}
+
+                <section className={sectionClass}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <Globe2 size={16} />
+                    </div>
+
+                    <h2 className={headingClass}>
+                      International Services & Data Processing
+                    </h2>
+                  </div>
+
+                  <p className={paragraphClass}>
+                    DevZore can work remotely with clients in different
+                    locations. Website hosting, communication platforms,
+                    infrastructure providers and other technology services may
+                    process information in countries different from your own.
+                  </p>
+
+                  <p className={paragraphClass}>
+                    Privacy protections and legal requirements can vary by
+                    jurisdiction. Where appropriate, we aim to use reputable
+                    service providers and reasonable safeguards for information
+                    handled in connection with our services.
+                  </p>
+                </section>
+
+                {/* POLICY CHANGES */}
+
+                <section className={sectionClass}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <FileText size={16} />
+                    </div>
+
+                    <h2 className={headingClass}>
+                      Changes to This Privacy Policy
+                    </h2>
+                  </div>
+
+                  <p className={paragraphClass}>
+                    We may update this Privacy Policy when our website,
+                    services, technologies or privacy practices change. The
+                    current version will be published on this page with an
+                    updated revision date.
+                  </p>
+
+                  <p className={paragraphClass}>
+                    We encourage visitors and clients to review this page
+                    periodically if privacy practices are important to their
+                    use of our services.
+                  </p>
+                </section>
+
+                {/* CONTACT */}
+
+                <section
+                  id="contact"
+                  className="scroll-mt-24 pt-8 sm:pt-9"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                      <Mail size={16} />
+                    </div>
+
+                    <h2 className={headingClass}>
+                      Privacy Questions & Contact
+                    </h2>
+                  </div>
+
+                  <p className={paragraphClass}>
+                    If you have a question about this Privacy Policy, want to
+                    ask how information associated with you is handled, or want
+                    to make a privacy-related request, you can contact DevZore
+                    using the details below.
+                  </p>
+
+                  <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+                    <p className="text-[13px] font-semibold text-[#071923]">
+                      DevZore
+                    </p>
+
+                    <div className="mt-4 grid sm:grid-cols-2 gap-3">
+                      <div className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4">
+                        <Mail size={14} className="text-[#07899a]" />
+
+                        <p className="mt-2 text-[8px] font-bold uppercase tracking-[0.15em] text-slate-400">
                           Email
                         </p>
 
                         <a
                           href="mailto:hellodevzore@gmail.com"
-                          className="text-[13px] font-semibold text-purple-500 hover:underline break-all"
+                          className="block mt-1 text-[11px] font-semibold text-[#07899a] break-all"
                         >
                           hellodevzore@gmail.com
                         </a>
                       </div>
-                    </div>
 
-                    <div className="flex items-start gap-3">
-                      <Globe
-                        size={15}
-                        className="text-purple-500 shrink-0 mt-0.5"
-                      />
+                      <div className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4">
+                        <Globe2 size={14} className="text-[#07899a]" />
 
-                      <div>
-                        <p
-                          className={`
-                            text-[10px]
-                            uppercase
-                            tracking-wider
-                            font-bold
-                            ${d ? 'text-gray-600' : 'text-slate-400'}
-                          `}
-                        >
+                        <p className="mt-2 text-[8px] font-bold uppercase tracking-[0.15em] text-slate-400">
                           Website
                         </p>
 
                         <a
                           href="https://devzore.com"
-                          className="text-[13px] font-semibold text-purple-500 hover:underline"
+                          className="block mt-1 text-[11px] font-semibold text-[#07899a]"
                         >
                           devzore.com
                         </a>
                       </div>
                     </div>
-
-                    <div className="flex items-start gap-3">
-                      <Mail
-                        size={15}
-                        className="text-purple-500 shrink-0 mt-0.5"
-                      />
-
-                      <div>
-                        <p
-                          className={`
-                            text-[10px]
-                            uppercase
-                            tracking-wider
-                            font-bold
-                            ${d ? 'text-gray-600' : 'text-slate-400'}
-                          `}
-                        >
-                          WhatsApp
-                        </p>
-
-                        <a
-                          href={whatsappUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[13px] font-semibold text-purple-500 hover:underline"
-                        >
-                          +92 334 8004300
-                        </a>
-                      </div>
-                    </div>
                   </div>
-                </div>
 
-                {/* ================= ACTIONS ================= */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Link
-                    to="/contact"
-                    onClick={scrollTop}
-                    className="
-                      inline-flex
-                      items-center
-                      justify-center
-                      gap-2
-                      px-6
-                      py-3
-                      rounded-xl
-                      bg-purple-600
-                      hover:bg-purple-700
-                      text-white
-                      text-sm
-                      font-bold
-                      transition-all
-                    "
-                  >
-                    Contact DevZore
-                    <ArrowRight size={14} />
-                  </Link>
+                  <div className="mt-5 flex flex-col sm:flex-row gap-3">
+                    <Link
+                      to="/contact"
+                      onClick={scrollTop}
+                      className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[#0796A8] hover:bg-[#078899] px-5 py-3 text-[11px] font-semibold text-white transition-colors"
+                    >
+                      Contact DevZore
 
-                  <Link
-                    to="/terms-and-conditions"
-                    onClick={scrollTop}
-                    className={`
-                      inline-flex
-                      items-center
-                      justify-center
-                      gap-2
-                      px-6
-                      py-3
-                      rounded-xl
-                      border
-                      text-sm
-                      font-bold
-                      transition-all
-                      ${d
-                        ? 'border-white/10 text-gray-300 hover:bg-white/[0.04]'
-                        : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
-                      }
-                    `}
-                  >
-                    Terms & Conditions
-                  </Link>
-                </div>
+                      <ArrowRight
+                        size={12}
+                        className="group-hover:translate-x-1 transition-transform"
+                      />
+                    </Link>
 
-                {/* ================= FOOT NOTE ================= */}
-                <div
-                  className={`
-                    mt-10
-                    pt-6
-                    border-t
-                    flex
-                    flex-col
-                    md:flex-row
-                    items-center
-                    justify-between
-                    gap-4
-                    ${d ? 'border-white/[0.06]' : 'border-slate-200'}
-                  `}
-                >
-                  <Link
-                    to="/"
-                    onClick={scrollTop}
-                    className={`
-                      text-[12px]
-                      font-semibold
-                      hover:text-purple-500
-                      transition-colors
-                      ${d ? 'text-gray-500' : 'text-slate-500'}
-                    `}
-                  >
-                    ← Back to Home
-                  </Link>
+                    <Link
+                      to="/terms-and-conditions"
+                      onClick={scrollTop}
+                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-[11px] font-semibold text-[#071923] hover:border-[#0796A8]/40 transition-colors"
+                    >
+                      Terms & Conditions
+                    </Link>
+                  </div>
 
-                  <p
-                    className={`
-                      text-[10px]
-                      sm:text-[11px]
-                      text-center
-                      ${d ? 'text-gray-600' : 'text-slate-400'}
-                    `}
-                  >
-                    © 2026 DevZore · Privacy Policy · Last Updated{' '}
-                    {lastUpdated}
-                  </p>
-                </div>
-              </section>
+                  {/* FOOT */}
+
+                  <div className="mt-8 pt-5 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-3">
+                    <Link
+                      to="/"
+                      onClick={scrollTop}
+                      className="text-[10px] font-medium text-slate-500 hover:text-[#07899a] transition-colors"
+                    >
+                      ← Back to Home
+                    </Link>
+
+                    <p className="text-[9px] text-slate-400 text-center">
+                      © 2026 DevZore · Privacy Policy · Last Updated{" "}
+                      {lastUpdated}
+                    </p>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </>
   );

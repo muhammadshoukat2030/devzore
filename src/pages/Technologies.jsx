@@ -1,1106 +1,1372 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
+  ArrowUpRight,
+  Braces,
+  Check,
   CheckCircle2,
-  Code2,
-  Server,
-  Database,
-  Smartphone,
   Cloud,
+  Code2,
+  Database,
+  Gauge,
   GitBranch,
   Layers3,
-  Braces,
-  Globe2,
-  ShieldCheck,
-  Gauge,
-  Workflow,
-  Cpu,
-  Sparkles,
   MonitorSmartphone,
   Network,
+  Rocket,
+  Server,
+  ShieldCheck,
+  Smartphone,
+  Workflow,
+  Zap,
 } from "lucide-react";
 
-const Technologies = ({ isDark }) => {
-  const d = isDark;
+const Technologies = () => {
+  // BACKGROUNDS
 
-  /* ==================================================
-     TECHNOLOGY CATEGORIES
-  ================================================== */
+  const lightGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
+    backgroundSize: "48px 48px",
+  };
+
+  const darkGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+    backgroundSize: "52px 52px",
+  };
+
+  // TECHNOLOGY CATEGORIES
 
   const technologyCategories = [
     {
-      icon: MonitorSmartphone,
+      number: "01",
+      icon: <MonitorSmartphone size={20} />,
       title: "Frontend Development",
+      shortTitle: "Frontend",
       description:
-        "Frontend technologies power the part of a digital product that users see and interact with. We use modern tools to build responsive, fast and maintainable interfaces for websites and web applications.",
+        "Frontend technologies are used to build the interfaces customers and users interact with. We focus on responsive layouts, reusable components, accessible structure and maintainable application interfaces.",
       technologies: [
         {
           name: "React",
+          label: "User Interface Library",
           description:
-            "Used for building reusable, interactive and component-based user interfaces for modern web applications.",
+            "React helps us build interactive web applications using reusable components and structured application interfaces.",
+          useCases: [
+            "Web applications",
+            "Business dashboards",
+            "Customer portals",
+          ],
         },
         {
           name: "Next.js",
+          label: "React Framework",
           description:
-            "A React framework suitable for production-grade websites and applications that need strong performance, routing and SEO capabilities.",
+            "Next.js can be used when a React-based product requires structured routing, server rendering capabilities, performance features and search-friendly page delivery.",
+          useCases: [
+            "Business websites",
+            "Content-driven platforms",
+            "Production web products",
+          ],
         },
         {
           name: "JavaScript",
+          label: "Programming Language",
           description:
-            "The core programming language used to create interactive functionality and dynamic behavior across modern web applications.",
+            "JavaScript powers interactive behaviour, application logic and communication between modern frontend interfaces and backend services.",
+          useCases: [
+            "Interactive interfaces",
+            "Application logic",
+            "Frontend integrations",
+          ],
         },
         {
           name: "HTML5",
+          label: "Page Structure",
           description:
-            "Provides the semantic structure and foundation of accessible, well-organized web pages.",
+            "HTML provides the semantic structure behind web pages and helps organize content, forms, navigation and accessible page elements.",
+          useCases: [
+            "Semantic pages",
+            "Accessible content",
+            "Structured interfaces",
+          ],
         },
         {
           name: "CSS3",
+          label: "Interface Styling",
           description:
-            "Used to control layouts, responsive behavior, visual styling and presentation across different screen sizes.",
+            "CSS controls layouts, responsive behaviour, typography, spacing and the visual presentation of web applications across different screen sizes.",
+          useCases: [
+            "Responsive layouts",
+            "Visual systems",
+            "Device adaptation",
+          ],
         },
         {
           name: "Tailwind CSS",
+          label: "Utility-First CSS",
           description:
-            "A utility-first CSS framework that helps us build consistent and responsive interfaces efficiently.",
+            "Tailwind CSS helps create consistent responsive interfaces through reusable utility classes and structured design patterns.",
+          useCases: [
+            "Design systems",
+            "Responsive interfaces",
+            "Reusable styling",
+          ],
         },
       ],
     },
-
     {
-      icon: Server,
+      number: "02",
+      icon: <Server size={20} />,
       title: "Backend Development",
+      shortTitle: "Backend",
       description:
-        "Backend technologies handle application logic, authentication, business rules, APIs and communication between the frontend, database and external services.",
+        "Backend development handles application logic, authentication, permissions, business workflows, APIs and communication between interfaces, databases and external services.",
       technologies: [
         {
           name: "Node.js",
+          label: "Server Runtime",
           description:
-            "A JavaScript runtime used to build scalable server-side applications, APIs and backend services.",
+            "Node.js allows JavaScript to run on the server and can power APIs, application logic, authentication systems and backend services.",
+          useCases: [
+            "Application backends",
+            "REST APIs",
+            "Business logic",
+          ],
         },
         {
           name: "Express.js",
+          label: "Backend Framework",
           description:
-            "A lightweight Node.js framework commonly used for REST APIs, routing, middleware and backend application logic.",
+            "Express.js provides routing, middleware and request handling for structured Node.js backend applications and APIs.",
+          useCases: [
+            "API routing",
+            "Server middleware",
+            "Backend services",
+          ],
         },
         {
           name: "REST APIs",
+          label: "Application Communication",
           description:
-            "Structured application interfaces that allow frontend applications, mobile apps and external services to communicate securely with backend systems.",
+            "REST APIs allow websites, mobile applications and external systems to securely exchange application data and trigger backend functionality.",
+          useCases: [
+            "Frontend connectivity",
+            "Mobile APIs",
+            "Third-party integrations",
+          ],
         },
         {
           name: "Authentication",
+          label: "User Access",
           description:
-            "Secure login and authorization systems used to control user access and protect application functionality.",
+            "Authentication and authorization systems control account access and help ensure users can only reach the functionality permitted for their role.",
+          useCases: [
+            "User login",
+            "Role-based access",
+            "Protected application areas",
+          ],
         },
       ],
     },
-
     {
-      icon: Database,
+      number: "03",
+      icon: <Database size={20} />,
       title: "Database & Data",
+      shortTitle: "Data",
       description:
-        "Reliable data management is essential for modern software. We structure databases around the application's requirements so information remains organized, accessible and manageable as the product grows.",
+        "Database structure affects how reliably an application can store, retrieve and manage information. Data models should match the actual workflows and reporting needs of the product.",
       technologies: [
         {
           name: "MongoDB",
+          label: "NoSQL Database",
           description:
-            "A flexible NoSQL database commonly used with modern JavaScript applications and scalable web platforms.",
+            "MongoDB is a document-oriented database suited to many modern web applications, SaaS products and business systems.",
+          useCases: [
+            "Application data",
+            "User records",
+            "Business systems",
+          ],
         },
         {
           name: "Mongoose",
+          label: "MongoDB Modeling",
           description:
-            "An object modeling library that helps structure, validate and manage MongoDB data in Node.js applications.",
+            "Mongoose provides schema-based modeling and validation for MongoDB data inside Node.js applications.",
+          useCases: [
+            "Schema modeling",
+            "Data validation",
+            "Application models",
+          ],
         },
         {
           name: "Database Design",
+          label: "Data Architecture",
           description:
-            "Planning collections, relationships, indexes and data structures according to real application requirements.",
+            "Database design involves structuring collections, relationships, indexes and fields according to application requirements and expected workflows.",
+          useCases: [
+            "Data modeling",
+            "Application structure",
+            "Reporting requirements",
+          ],
         },
         {
           name: "Data Validation",
+          label: "Data Reliability",
           description:
-            "Validation rules help maintain consistent and reliable application data before information is stored.",
+            "Validation rules help ensure information entering an application follows expected formats and remains consistent before storage.",
+          useCases: [
+            "Form validation",
+            "API validation",
+            "Data consistency",
+          ],
         },
       ],
     },
-
     {
-      icon: Smartphone,
+      number: "04",
+      icon: <Smartphone size={20} />,
       title: "Mobile App Development",
+      shortTitle: "Mobile",
       description:
-        "For mobile products, we use technologies that support modern cross-platform application development and integration with backend systems.",
+        "Mobile application development combines responsive interface work with backend connectivity, authentication, APIs and data workflows suited to mobile users.",
       technologies: [
         {
           name: "React Native",
+          label: "Cross-Platform Development",
           description:
-            "Used to build mobile applications for Android and iOS while sharing a significant portion of the application codebase.",
+            "React Native can be used to build applications for Android and iOS while sharing a significant part of the application codebase.",
+          useCases: [
+            "Android applications",
+            "iOS applications",
+            "Cross-platform products",
+          ],
         },
         {
           name: "Mobile APIs",
+          label: "Backend Connectivity",
           description:
-            "Connect mobile applications with authentication, databases, dashboards and other backend services.",
+            "Mobile APIs connect applications with user accounts, databases, business logic, dashboards and external services.",
+          useCases: [
+            "Authentication",
+            "Application data",
+            "Backend workflows",
+          ],
         },
         {
           name: "Responsive UI",
+          label: "Mobile Experience",
           description:
-            "Interfaces designed around mobile usability, different device sizes and practical user interaction.",
+            "Mobile interfaces are structured around smaller screens, touch interactions, clear navigation and different device sizes.",
+          useCases: [
+            "Mobile layouts",
+            "Touch interactions",
+            "Device adaptation",
+          ],
         },
         {
           name: "App Integration",
+          label: "Connected Services",
           description:
-            "Integration of mobile applications with APIs, authentication systems and external services when required.",
+            "Mobile products can connect with backend APIs, authentication systems, databases and supported external services where required.",
+          useCases: [
+            "API integration",
+            "User accounts",
+            "External services",
+          ],
         },
       ],
     },
-
     {
-      icon: Cloud,
-      title: "Deployment & Cloud",
+      number: "05",
+      icon: <Cloud size={20} />,
+      title: "Deployment & Infrastructure",
+      shortTitle: "Deployment",
       description:
-        "Development does not stop when the code is finished. Applications also need a reliable production environment, domain configuration and deployment workflow.",
+        "Production software requires more than working source code. Hosting, DNS, database services, environment variables and deployment configuration all need to work together.",
       technologies: [
         {
           name: "Vercel",
+          label: "Application Deployment",
           description:
-            "A deployment platform commonly used for modern frontend applications and web projects with automated deployment workflows.",
+            "Vercel supports deployment workflows for modern web applications and can connect directly with source-code repositories for automated releases.",
+          useCases: [
+            "Frontend deployment",
+            "Web applications",
+            "Automated releases",
+          ],
         },
         {
           name: "Cloudflare",
+          label: "DNS & Web Infrastructure",
           description:
-            "Used for services such as DNS management, domain configuration and web infrastructure depending on project requirements.",
+            "Cloudflare can support domain configuration, DNS management and other web infrastructure requirements depending on the project.",
+          useCases: [
+            "DNS management",
+            "Domain configuration",
+            "Web infrastructure",
+          ],
         },
         {
           name: "MongoDB Atlas",
+          label: "Managed Database Hosting",
           description:
-            "A managed cloud database platform used to host and operate MongoDB databases.",
+            "MongoDB Atlas provides managed cloud hosting for MongoDB databases used by deployed applications.",
+          useCases: [
+            "Cloud databases",
+            "Application storage",
+            "Managed MongoDB",
+          ],
         },
         {
           name: "Environment Configuration",
+          label: "Production Configuration",
           description:
-            "Secure management of production settings, environment variables, API URLs and application configuration.",
+            "Environment variables and production configuration keep API URLs, service settings and sensitive application configuration separate from source code.",
+          useCases: [
+            "Environment variables",
+            "Production settings",
+            "Secure configuration",
+          ],
         },
       ],
     },
-
     {
-      icon: GitBranch,
+      number: "06",
+      icon: <GitBranch size={20} />,
       title: "Development Workflow",
+      shortTitle: "Workflow",
       description:
-        "A structured development workflow makes software easier to maintain, test and improve. Version control and organized repositories are an important part of our development process.",
+        "A structured development workflow makes software easier to track, maintain, deploy and improve across different stages of the project.",
       technologies: [
         {
           name: "Git",
+          label: "Version Control",
           description:
-            "Version control used to track source-code changes and maintain a structured development history.",
+            "Git tracks source-code changes and provides a structured history that supports safer development and future updates.",
+          useCases: [
+            "Version history",
+            "Code changes",
+            "Development workflow",
+          ],
         },
         {
           name: "GitHub",
+          label: "Code Repository",
           description:
-            "Used for source-code repositories, collaboration, version management and deployment integrations.",
+            "GitHub is used for source-code repositories, version management, project collaboration and supported deployment integrations.",
+          useCases: [
+            "Source repositories",
+            "Code collaboration",
+            "Deployment integration",
+          ],
         },
         {
           name: "NPM",
+          label: "Package Management",
           description:
-            "Package management for JavaScript projects, dependencies, development tools and application libraries.",
+            "NPM manages JavaScript packages, libraries and development dependencies used throughout modern application projects.",
+          useCases: [
+            "Dependencies",
+            "Libraries",
+            "Development tooling",
+          ],
         },
         {
           name: "Vite",
+          label: "Frontend Build Tool",
           description:
-            "A modern frontend development and build tool used for fast development workflows and optimized production builds.",
+            "Vite provides a fast frontend development environment and production build process for modern JavaScript applications.",
+          useCases: [
+            "Frontend development",
+            "Production builds",
+            "Local development",
+          ],
         },
       ],
     },
   ];
 
-  /* ==================================================
-     STACK FEATURES
-  ================================================== */
+  // DEVELOPMENT PRINCIPLES
 
-  const stackFeatures = [
+  const developmentPrinciples = [
     {
-      icon: Layers3,
-      title: "Modern Architecture",
+      icon: <Layers3 size={18} />,
+      title: "Requirement-Led Architecture",
       description:
-        "Technology is selected around the structure and requirements of the product rather than following one fixed setup for every project.",
+        "Architecture is planned around the actual users, workflows, features and growth requirements of the product.",
     },
     {
-      icon: Gauge,
-      title: "Performance Focused",
+      icon: <Gauge size={18} />,
+      title: "Performance Considered",
       description:
-        "We consider application structure, frontend performance, APIs and database design throughout development.",
+        "Frontend behaviour, API design, application structure and database access are considered with performance in mind.",
     },
     {
-      icon: ShieldCheck,
+      icon: <ShieldCheck size={18} />,
       title: "Security Awareness",
       description:
-        "Authentication, authorization, data validation and secure configuration are considered throughout the development process.",
+        "Authentication, authorization, validation and configuration are considered according to the needs of the application.",
     },
     {
-      icon: Workflow,
-      title: "Maintainable Development",
+      icon: <Workflow size={18} />,
+      title: "Maintainable Structure",
       description:
-        "Organized components, reusable logic and structured code make applications easier to maintain and extend.",
+        "Reusable components, organized logic and clear application structure help make future changes easier.",
+    },
+    {
+      icon: <Network size={18} />,
+      title: "Connected Systems",
+      description:
+        "Frontend applications, backend services, databases and external integrations are designed to work as one connected product.",
+    },
+    {
+      icon: <Zap size={18} />,
+      title: "Practical Technology Choices",
+      description:
+        "We aim to choose technology based on product requirements rather than adding tools that create unnecessary complexity.",
     },
   ];
 
-  /* ==================================================
-     PRODUCT TYPES
-  ================================================== */
+  // PRODUCT TYPES
 
   const productTypes = [
-    "Business Websites",
-    "Web Applications",
-    "Mobile Applications",
-    "SaaS Platforms",
-    "E-Commerce Systems",
-    "Management Systems",
-    "Backend & APIs",
-    "Startup MVPs",
+    {
+      title: "Business Websites",
+      description:
+        "Responsive websites with service pages, forms, content and business-focused functionality.",
+    },
+    {
+      title: "Web Applications",
+      description:
+        "Interactive applications with dashboards, workflows, user accounts and application logic.",
+    },
+    {
+      title: "Mobile Applications",
+      description:
+        "Cross-platform applications connected with backend APIs and business systems.",
+    },
+    {
+      title: "SaaS Platforms",
+      description:
+        "Multi-user products with authentication, dashboards and subscription-based workflows.",
+    },
+    {
+      title: "E-Commerce Systems",
+      description:
+        "Online stores with products, customer accounts, checkout and administrative functionality.",
+    },
+    {
+      title: "Management Systems",
+      description:
+        "Business platforms for sales, inventory, customers, reporting and operational workflows.",
+    },
+    {
+      title: "Backend & APIs",
+      description:
+        "Application logic, authentication, database communication and integration services.",
+    },
+    {
+      title: "Startup MVPs",
+      description:
+        "Focused first versions of digital products designed around essential functionality.",
+    },
   ];
 
-  return (
+  // MERN STACK
+
+  const mernStack = [
+    {
+      letter: "M",
+      name: "MongoDB",
+      role: "Database",
+      description:
+        "Stores application information using flexible document-based data structures.",
+    },
+    {
+      letter: "E",
+      name: "Express.js",
+      role: "Backend Framework",
+      description:
+        "Handles server routing, middleware and API functionality inside Node.js applications.",
+    },
+    {
+      letter: "R",
+      name: "React",
+      role: "Frontend Library",
+      description:
+        "Builds reusable and interactive interfaces for users and application dashboards.",
+    },
+    {
+      letter: "N",
+      name: "Node.js",
+      role: "Server Runtime",
+      description:
+        "Runs backend JavaScript used for APIs, application logic and server-side workflows.",
+    },
+  ];
+
+  // HELPERS
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const SectionLabel = ({ children, light = false }) => (
     <div
-      className={`min-h-screen overflow-hidden transition-colors duration-300 ${
-        d
-          ? "bg-[#030303] text-white"
-          : "bg-[#fafafa] text-[#111827]"
+      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+        light ? "text-[#28c5d4]" : "text-[#07899a]"
       }`}
     >
-      {/* ==================================================
-          HERO
-      ================================================== */}
+      <span className="w-5 h-[2px] bg-[#0796A8]" />
+      {children}
+    </div>
+  );
 
-      <section
-        className={`relative overflow-hidden border-b pt-[108px] pb-12 sm:pt-[116px] sm:pb-14 ${
-          d ? "border-white/[0.06]" : "border-gray-200"
-        }`}
+  // STRUCTURED DATA
+
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://devzore.com/technologies#webpage",
+    url: "https://devzore.com/technologies",
+    name: "Technologies Used by DevZore",
+    description:
+      "Explore the frontend, backend, database, mobile, deployment and development technologies DevZore uses to build modern digital products.",
+    isPartOf: {
+      "@id": "https://devzore.com/#website",
+    },
+    about: {
+      "@id": "https://devzore.com/#organization",
+    },
+  };
+
+  const technologyListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "DevZore Technology Categories",
+    itemListElement: technologyCategories.map((category, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: category.title,
+      description: category.description,
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://devzore.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Technologies",
+        item: "https://devzore.com/technologies",
+      },
+    ],
+  };
+
+  return (
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(pageSchema)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(technologyListSchema)}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
+
+      <div
+        className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
+        style={{
+          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+        }}
       >
-        {/* BACKGROUND GLOW */}
+        {/* HERO */}
 
-        <div className="pointer-events-none absolute inset-0">
-          <div
-            className={`absolute left-1/2 top-[-180px] h-[500px] w-[800px] -translate-x-1/2 rounded-full blur-[120px] ${
-              d ? "bg-purple-700/10" : "bg-purple-300/20"
-            }`}
-          />
-
-          <div
-            className={`absolute right-[-150px] top-[-130px] h-[500px] w-[500px] rounded-full blur-[120px] ${
-              d ? "bg-indigo-700/10" : "bg-indigo-200/20"
-            }`}
-          />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mx-auto max-w-6xl text-center">
-            {/* BADGE */}
-
+        <section
+          aria-labelledby="technologies-heading"
+          className="relative overflow-hidden bg-[#04111a] text-white"
+        >
+          <div className="absolute inset-0 pointer-events-none">
             <div
-              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[10px] font-black uppercase tracking-[0.18em] sm:text-[11px] ${
-                d
-                  ? "border-purple-500/20 bg-purple-500/[0.08] text-purple-400"
-                  : "border-purple-200 bg-purple-50 text-purple-700"
-              }`}
-            >
-              <Cpu size={14} />
-              Technologies
+              className="absolute inset-0 opacity-55"
+              style={darkGrid}
+            />
+
+            <div className="absolute -top-28 left-[8%] w-[560px] h-[560px] rounded-full bg-[#0796A8]/12 blur-[150px]" />
+
+            <div className="absolute top-10 right-[4%] w-[430px] h-[430px] rounded-full bg-[#20bdcb]/7 blur-[135px]" />
+
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#04111a]/85" />
+          </div>
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14">
+            <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-14 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+                  <Code2 size={14} className="text-[#25c0ce]" />
+                  Technologies
+                </div>
+
+                <h1
+                  id="technologies-heading"
+                  className="mt-5 text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                >
+                  Technologies selected around{" "}
+                  <span className="text-[#22bdca]">
+                    real product requirements.
+                  </span>
+                </h1>
+
+                <p className="max-w-[680px] mt-5 text-[16px] sm:text-[17px] leading-7 text-slate-300">
+                  DevZore works across frontend, backend, databases, mobile
+                  development, APIs and deployment to build complete digital
+                  products.
+                </p>
+
+                <p className="max-w-[640px] mt-3 text-[13px] sm:text-[14px] leading-6 text-slate-400">
+                  The technology stack is chosen according to the product,
+                  users, required functionality, integrations and future
+                  development needs.
+                </p>
+
+                <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                  <Link
+                    to="/contact"
+                    onClick={scrollTop}
+                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-[12px] font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
+                  >
+                    Discuss Your Project
+
+                    <ArrowRight
+                      size={14}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </Link>
+
+                  <a
+                    href="#technology-stack"
+                    className="group inline-flex items-center justify-center gap-2 px-5 py-3 text-[12px] font-semibold text-white hover:text-[#28c5d4] transition-colors"
+                  >
+                    Explore Technologies
+
+                    <ArrowRight
+                      size={14}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </a>
+                </div>
+
+                <div className="mt-7 pt-5 border-t border-white/[0.08] flex flex-wrap gap-x-6 gap-y-2.5">
+                  {[
+                    "Frontend",
+                    "Backend",
+                    "Database",
+                    "Deployment",
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center gap-2 text-[10px] font-medium text-slate-400"
+                    >
+                      <CheckCircle2
+                        size={12}
+                        className="text-[#25c0ce]"
+                      />
+
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* HERO VISUAL */}
+
+              <div className="hidden md:block">
+                <div className="rounded-[22px] border border-white/[0.1] bg-[#091d27]/95 p-5 shadow-[0_35px_90px_rgba(0,0,0,0.4)]">
+                  <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
+                    <div>
+                      <p className="text-[9px] uppercase tracking-[0.17em] font-semibold text-[#25c0ce]">
+                        Product Architecture
+                      </p>
+
+                      <p className="mt-1 text-[14px] font-semibold">
+                        Connected Development Layers
+                      </p>
+                    </div>
+
+                    <div className="w-9 h-9 rounded-xl bg-[#0c2a35] text-[#28c5d4] flex items-center justify-center">
+                      <Network size={18} />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3 mt-4">
+                    {[
+                      {
+                        icon: <MonitorSmartphone size={17} />,
+                        title: "Frontend",
+                        text: "Interfaces & interaction",
+                      },
+                      {
+                        icon: <Server size={17} />,
+                        title: "Backend",
+                        text: "Logic & APIs",
+                      },
+                      {
+                        icon: <Database size={17} />,
+                        title: "Database",
+                        text: "Application data",
+                      },
+                      {
+                        icon: <Cloud size={17} />,
+                        title: "Deployment",
+                        text: "Production delivery",
+                      },
+                    ].map((item) => (
+                      <div
+                        key={item.title}
+                        className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-4"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-[#0c2a35] text-[#28c5d4] flex items-center justify-center">
+                          {item.icon}
+                        </div>
+
+                        <p className="mt-3 text-[11px] font-semibold text-white">
+                          {item.title}
+                        </p>
+
+                        <p className="mt-1 text-[8px] text-slate-500">
+                          {item.text}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-3 rounded-xl border border-white/[0.07] bg-[#071923] p-3.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[9px] text-slate-400">
+                        Product requirement
+                      </span>
+
+                      <span className="text-[8px] font-semibold text-[#25c0ce]">
+                        Technology choice
+                      </span>
+                    </div>
+
+                    <div className="mt-3 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
+                      <div className="w-[78%] h-full rounded-full bg-gradient-to-r from-[#0796A8] to-[#22bdca]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* HERO STRIP */}
+
+          <div className="relative border-t border-white/[0.08] bg-[#06151d]/90">
+            <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4">
+                {[
+                  ["01", "User Interface"],
+                  ["02", "Application Logic"],
+                  ["03", "Data Layer"],
+                  ["04", "Production"],
+                ].map(([number, label], index) => (
+                  <div
+                    key={label}
+                    className={`py-4 ${
+                      index !== 3
+                        ? "lg:border-r border-white/[0.07]"
+                        : ""
+                    } ${index > 0 ? "lg:pl-7" : ""}`}
+                  >
+                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-1">
+                      {number}
+                    </span>
+
+                    <span className="text-[11px] font-medium text-slate-300">
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* INTRO */}
+
+        <section
+          className="py-10 md:py-12 bg-[#f8fafb]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.7fr_1.3fr] gap-7 lg:gap-12">
+              <div>
+                <SectionLabel>Technology Approach</SectionLabel>
+
+                <h2 className="mt-3 text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold">
+                  The right technology for{" "}
+                  <span className="text-[#0796A8]">
+                    the right product.
+                  </span>
+                </h2>
+              </div>
+
+              <div>
+                <p className="text-[15px] leading-7 text-slate-700">
+                  Technology affects performance, maintenance, integrations,
+                  development speed and how easily a product can evolve.
+                  Choosing a stack should therefore start with the requirements
+                  rather than the popularity of a particular tool.
+                </p>
+
+                <p className="mt-3 text-[13px] leading-6 text-slate-500">
+                  A marketing website, SaaS application, mobile product and
+                  business management system can have very different
+                  requirements. The architecture should reflect those
+                  differences.
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-2.5 mt-5">
+                  {[
+                    "Product requirements first",
+                    "Appropriate architecture",
+                    "Maintainable development",
+                    "Production-ready delivery",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-2.5 rounded-lg border border-slate-200 bg-white px-3.5 py-2.5"
+                    >
+                      <CheckCircle2
+                        size={13}
+                        className="text-[#07899a]"
+                      />
+
+                      <span className="text-[10px] font-medium text-slate-700">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TECHNOLOGY CATEGORIES */}
+
+        <section
+          id="technology-stack"
+          aria-labelledby="technology-stack-heading"
+          className="py-10 md:py-12 bg-white scroll-mt-24"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[820px] mb-8">
+              <SectionLabel>Development Stack</SectionLabel>
+
+              <h2
+                id="technology-stack-heading"
+                className="mt-3 text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold"
+              >
+                Technologies across the{" "}
+                <span className="text-[#0796A8]">
+                  full product stack.
+                </span>
+              </h2>
+
+              <p className="mt-3 text-[14px] leading-6 text-slate-600">
+                Each category handles a different part of the product, from
+                user interfaces and backend logic to data storage and
+                production deployment.
+              </p>
             </div>
 
-            {/* HEADING */}
+            <div className="space-y-5">
+              {technologyCategories.map((category) => (
+                <article
+                  key={category.title}
+                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white"
+                >
+                  {/* CATEGORY HEADER */}
 
-            <h1
-              className={`mt-6 text-[38px] font-black leading-[1.02] tracking-[-0.045em] sm:text-5xl lg:text-[64px] xl:text-[70px] ${
-                d ? "text-white" : "text-[#090d18]"
-              }`}
-            >
-              Technologies Behind
-              <span className="mt-1 block bg-gradient-to-r from-purple-600 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
-                Modern Digital Products
+                  <div className="grid lg:grid-cols-[0.72fr_1.28fr] gap-5 border-b border-slate-200 bg-[#f8fafb] p-5 sm:p-6">
+                    <div className="flex items-start gap-3.5">
+                      <div className="w-10 h-10 shrink-0 rounded-xl bg-[#eaf4f5] text-[#07899a] flex items-center justify-center">
+                        {category.icon}
+                      </div>
+
+                      <div>
+                        <span className="text-[9px] font-semibold text-[#07899a]">
+                          {category.number}
+                        </span>
+
+                        <h3 className="mt-1 text-[16px] font-semibold text-[#071923]">
+                          {category.title}
+                        </h3>
+
+                        <div className="mt-2 h-[2px] w-8 bg-[#0796A8]" />
+                      </div>
+                    </div>
+
+                    <p className="text-[12px] leading-6 text-slate-600">
+                      {category.description}
+                    </p>
+                  </div>
+
+                  {/* TECHNOLOGIES */}
+
+                  <div className="grid md:grid-cols-2 xl:grid-cols-3">
+                    {category.technologies.map((technology, index) => (
+                      <div
+                        key={technology.name}
+                        className={`p-5 border-slate-200 ${
+                          index % 3 !== 2
+                            ? "xl:border-r"
+                            : ""
+                        } ${
+                          index % 2 === 0
+                            ? "md:border-r xl:border-r"
+                            : "md:border-r-0"
+                        } ${
+                          index <
+                          category.technologies.length -
+                            (category.technologies.length % 3 || 3)
+                            ? "xl:border-b"
+                            : ""
+                        } ${
+                          index <
+                          category.technologies.length -
+                            (category.technologies.length % 2 || 2)
+                            ? "md:border-b"
+                            : ""
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                            <Braces size={14} />
+                          </div>
+
+                          <span className="text-[8px] uppercase tracking-[0.12em] font-semibold text-slate-400">
+                            {technology.label}
+                          </span>
+                        </div>
+
+                        <h4 className="mt-4 text-[14px] font-semibold text-[#071923]">
+                          {technology.name}
+                        </h4>
+
+                        <p className="mt-2 text-[10px] leading-5 text-slate-500">
+                          {technology.description}
+                        </p>
+
+                        <div className="mt-4 pt-3 border-t border-slate-100 space-y-1.5">
+                          {technology.useCases.map((useCase) => (
+                            <div
+                              key={useCase}
+                              className="flex items-center gap-2 text-[9px] text-slate-500"
+                            >
+                              <Check
+                                size={10}
+                                className="text-[#07899a] shrink-0"
+                              />
+
+                              {useCase}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* MERN */}
+
+        <section
+          aria-labelledby="mern-stack-heading"
+          className="relative py-10 md:py-12 bg-[#071923] text-white overflow-hidden"
+        >
+          <div className="absolute inset-0" style={darkGrid} />
+
+          <div className="absolute top-0 right-0 w-[500px] h-[430px] rounded-full bg-[#0796A8]/10 blur-[140px]" />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.75fr_1.25fr] gap-8 lg:gap-12 items-center">
+              <div>
+                <SectionLabel light>Full-Stack Development</SectionLabel>
+
+                <h2
+                  id="mern-stack-heading"
+                  className="mt-3 text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold"
+                >
+                  How the{" "}
+                  <span className="text-[#25bfce]">MERN stack</span>{" "}
+                  fits together.
+                </h2>
+
+                <p className="mt-3 text-[13px] leading-6 text-slate-400">
+                  MERN combines MongoDB, Express.js, React and Node.js into a
+                  JavaScript-based full-stack architecture for building web
+                  applications and digital products.
+                </p>
+
+                <p className="mt-3 text-[12px] leading-6 text-slate-500">
+                  It can support dashboards, management platforms, SaaS
+                  products, portals and other applications where frontend,
+                  backend and database systems need to work together.
+                </p>
+
+                <Link
+                  to="/mern-stack-development"
+                  onClick={scrollTop}
+                  className="group mt-5 inline-flex items-center gap-2 text-[10px] font-semibold text-[#28c5d4]"
+                >
+                  Explore MERN Stack Development
+
+                  <ArrowRight
+                    size={12}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </Link>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-px bg-white/[0.08] border border-white/[0.08] rounded-2xl overflow-hidden">
+                {mernStack.map((item) => (
+                  <article
+                    key={item.name}
+                    className="bg-[#071923] p-5 min-h-[180px] hover:bg-[#0a202a] transition-colors"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="w-10 h-10 rounded-xl bg-[#0c2a35] text-[#28c5d4] flex items-center justify-center text-[15px] font-semibold">
+                        {item.letter}
+                      </div>
+
+                      <span className="text-[8px] uppercase tracking-[0.14em] text-slate-500">
+                        {item.role}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-4 text-[14px] font-semibold">
+                      {item.name}
+                    </h3>
+
+                    <p className="mt-2 text-[10px] leading-5 text-slate-400">
+                      {item.description}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* DEVELOPMENT PRINCIPLES */}
+
+        <section
+          aria-labelledby="technology-principles-heading"
+          className="py-10 md:py-12 bg-[#f7f9fa]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel>Development Principles</SectionLabel>
+
+              <h2
+                id="technology-principles-heading"
+                className="mt-3 text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold"
+              >
+                Technology is only{" "}
+                <span className="text-[#0796A8]">
+                  part of the solution.
+                </span>
+              </h2>
+
+              <p className="mt-3 text-[13px] leading-6 text-slate-600 max-w-2xl">
+                Good software also depends on architecture, security,
+                maintainability, performance and how well the different parts
+                of the product work together.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {developmentPrinciples.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-xl border border-slate-200 bg-white p-5 hover:border-[#0796A8]/35 transition-colors"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                    {item.icon}
+                  </div>
+
+                  <h3 className="mt-4 text-[13px] font-semibold text-[#071923]">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-2 text-[10px] leading-5 text-slate-500">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PRODUCT TYPES */}
+
+        <section
+          aria-labelledby="technology-products-heading"
+          className="py-10 md:py-12 bg-white"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.7fr_1.3fr] gap-8 lg:gap-12">
+              <div>
+                <SectionLabel>Flexible Architecture</SectionLabel>
+
+                <h2
+                  id="technology-products-heading"
+                  className="mt-3 text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold"
+                >
+                  Different products need{" "}
+                  <span className="text-[#0796A8]">
+                    different technical decisions.
+                  </span>
+                </h2>
+
+                <p className="mt-3 text-[13px] leading-6 text-slate-600">
+                  The development stack can change according to functionality,
+                  integrations, users, data requirements and how the product
+                  may need to grow in the future.
+                </p>
+
+                <Link
+                  to="/contact"
+                  onClick={scrollTop}
+                  className="group mt-5 inline-flex items-center gap-2 text-[10px] font-semibold text-[#07899a]"
+                >
+                  Discuss Your Requirements
+
+                  <ArrowRight
+                    size={12}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </Link>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                {productTypes.map((item, index) => (
+                  <article
+                    key={item.title}
+                    className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4"
+                  >
+                    <span className="text-[8px] font-semibold text-[#07899a]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <h3 className="mt-1 text-[13px] font-semibold text-[#071923]">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                      {item.description}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* RELATED SERVICES */}
+
+        <section
+          aria-labelledby="technology-related-heading"
+          className="py-10 md:py-12 bg-[#f7f9fa] border-y border-slate-200"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel>Related Services</SectionLabel>
+
+              <h2
+                id="technology-related-heading"
+                className="mt-3 text-[28px] sm:text-[33px] md:text-[38px] leading-[1.08] tracking-[-0.035em] font-semibold"
+              >
+                See how these technologies support{" "}
+                <span className="text-[#0796A8]">
+                  real development services.
+                </span>
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+              {[
+                {
+                  icon: <Code2 size={18} />,
+                  title: "Web Development",
+                  desc:
+                    "Custom websites and web applications built around business requirements.",
+                  path: "/web-development",
+                },
+                {
+                  icon: <Layers3 size={18} />,
+                  title: "MERN Stack",
+                  desc:
+                    "Full-stack application development with connected frontend, backend and database systems.",
+                  path: "/mern-stack-development",
+                },
+                {
+                  icon: <Server size={18} />,
+                  title: "Backend & APIs",
+                  desc:
+                    "APIs, authentication, business logic, databases and integration services.",
+                  path: "/backend-api",
+                },
+                {
+                  icon: <Smartphone size={18} />,
+                  title: "Mobile Apps",
+                  desc:
+                    "Cross-platform mobile applications connected with backend systems and APIs.",
+                  path: "/mobile-apps",
+                },
+              ].map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  onClick={scrollTop}
+                  className="group rounded-xl border border-slate-200 bg-white p-4 hover:border-[#0796A8]/40 hover:-translate-y-1 transition-all"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                    {service.icon}
+                  </div>
+
+                  <h3 className="mt-3 text-[13px] font-semibold text-[#071923]">
+                    {service.title}
+                  </h3>
+
+                  <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                    {service.desc}
+                  </p>
+
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]">
+                    Explore Service
+                    <ArrowUpRight size={10} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FINAL CTA */}
+
+        <section className="relative py-10 md:py-12 bg-[#071923] text-white overflow-hidden">
+          <div className="absolute inset-0" style={darkGrid} />
+
+          <div className="absolute -top-28 left-1/2 -translate-x-1/2 w-[620px] h-[400px] bg-[#0796A8]/10 blur-[145px]" />
+
+          <div className="relative max-w-[900px] mx-auto px-5 sm:px-6 text-center">
+            <div className="w-10 h-10 mx-auto rounded-xl bg-[#0b2a35] text-[#28c5d4] flex items-center justify-center">
+              <Rocket size={19} />
+            </div>
+
+            <h2 className="mt-4 text-[29px] sm:text-[35px] md:text-[40px] font-semibold tracking-[-0.04em] leading-[1.06]">
+              Need the right technical approach for{" "}
+              <span className="text-[#25bfce]">
+                your product?
               </span>
-            </h1>
+            </h2>
 
-            {/* DESCRIPTION */}
-
-            <p
-              className={`mx-auto mt-5 max-w-4xl text-[15px] leading-7 sm:text-[17px] ${
-                d ? "text-gray-400" : "text-gray-600"
-              }`}
-            >
-              DevZore uses modern frontend, backend, database, mobile and
-              deployment technologies to build reliable websites,
-              applications, SaaS platforms and custom software solutions.
+            <p className="max-w-2xl mx-auto mt-3 text-[13px] sm:text-[14px] leading-6 text-slate-400">
+              Share your project requirements and we can discuss the product
+              structure, functionality and development approach that best fits
+              what you want to build.
             </p>
 
-            {/* CTA */}
-
-            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 to="/contact"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-purple-600 px-6 py-3.5 text-[12px] font-bold text-white transition-all hover:bg-purple-700 hover:shadow-[0_10px_35px_rgba(147,51,234,0.25)] sm:w-auto"
+                onClick={scrollTop}
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
               >
                 Discuss Your Project
+
                 <ArrowRight
-                  size={15}
-                  className="transition-transform group-hover:translate-x-1"
+                  size={13}
+                  className="group-hover:translate-x-1 transition-transform"
                 />
               </Link>
 
               <Link
                 to="/allservices"
-                className={`group inline-flex w-full items-center justify-center gap-2 rounded-xl border px-6 py-3.5 text-[12px] font-bold transition-all sm:w-auto ${
-                  d
-                    ? "border-white/[0.12] text-white hover:bg-white/[0.06]"
-                    : "border-gray-300 bg-white text-gray-800 hover:bg-gray-100"
-                }`}
+                onClick={scrollTop}
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[11px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
               >
-                Explore Our Services
+                Explore Services
+
                 <ArrowRight
-                  size={15}
-                  className="transition-transform group-hover:translate-x-1"
+                  size={13}
+                  className="group-hover:translate-x-1 transition-transform"
                 />
               </Link>
             </div>
+          </div>
+        </section>
 
-            {/* TRUST POINTS */}
+        {/* BOTTOM LINKS */}
 
-            <div
-              className={`mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t pt-6 ${
-                d ? "border-white/[0.07]" : "border-gray-200"
-              }`}
+        <section className="bg-[#06151d] border-t border-white/[0.06]">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6 py-5">
+            <nav
+              aria-label="DevZore technology related pages"
+              className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
             >
               {[
-                "Modern Stack",
-                "Scalable Architecture",
-                "Secure Development",
-                "Production Ready",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className={`flex items-center gap-2 text-[11px] font-medium sm:text-[12px] ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  <CheckCircle2 size={14} className="text-purple-500" />
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          INTRODUCTION
-      ================================================== */}
-
-      <section className="py-12 sm:py-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-            {/* LEFT */}
-
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-purple-500">
-                Our Technology Approach
-              </p>
-
-              <h2
-                className={`mt-3 text-3xl font-black leading-[1.08] tracking-tight sm:text-4xl lg:text-[44px] ${
-                  d ? "text-white" : "text-gray-950"
-                }`}
-              >
-                The Right Technology for
-                <span className="block text-purple-500">
-                  the Right Product
-                </span>
-              </h2>
-
-              <p
-                className={`mt-4 text-[14px] leading-7 ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Technology selection affects performance, maintainability,
-                development speed and the future growth of a digital product.
-                That is why we consider the actual requirements of the project
-                before deciding how it should be built.
-              </p>
-
-              <p
-                className={`mt-3 text-[14px] leading-7 ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                A business website, SaaS application, management system and
-                mobile app may require different architecture. Our goal is to
-                use technologies that fit the product instead of adding
-                unnecessary complexity.
-              </p>
-            </div>
-
-            {/* RIGHT */}
-
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                {
-                  icon: Code2,
-                  title: "Frontend",
-                  text: "Responsive interfaces",
-                },
-                {
-                  icon: Server,
-                  title: "Backend",
-                  text: "APIs & business logic",
-                },
-                {
-                  icon: Database,
-                  title: "Database",
-                  text: "Structured data",
-                },
-                {
-                  icon: Cloud,
-                  title: "Deployment",
-                  text: "Production delivery",
-                },
-              ].map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={item.title}
-                    className={`rounded-2xl border p-5 transition-all duration-300 hover:-translate-y-1 ${
-                      d
-                        ? "border-white/[0.07] bg-white/[0.025] hover:border-purple-500/30"
-                        : "border-gray-200 bg-white hover:border-purple-200 hover:shadow-lg"
-                    }`}
-                  >
-                    <div
-                      className={`flex h-10 w-10 items-center justify-center rounded-xl ${
-                        d
-                          ? "bg-purple-500/[0.1] text-purple-400"
-                          : "bg-purple-50 text-purple-600"
-                      }`}
-                    >
-                      <Icon size={19} />
-                    </div>
-
-                    <h3
-                      className={`mt-4 text-[14px] font-black ${
-                        d ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      {item.title}
-                    </h3>
-
-                    <p
-                      className={`mt-1 text-[11px] ${
-                        d ? "text-gray-500" : "text-gray-600"
-                      }`}
-                    >
-                      {item.text}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          TECHNOLOGY STACK
-      ================================================== */}
-
-      <section
-        className={`border-y py-12 sm:py-14 ${
-          d
-            ? "border-white/[0.05] bg-white/[0.015]"
-            : "border-gray-200 bg-white"
-        }`}
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-purple-500">
-              Technology Stack
-            </p>
-
-            <h2
-              className={`mt-3 text-3xl font-black tracking-tight sm:text-4xl ${
-                d ? "text-white" : "text-gray-950"
-              }`}
-            >
-              Tools We Use to
-              <span className="text-purple-500">
-                {" "}Build Digital Products
-              </span>
-            </h2>
-
-            <p
-              className={`mt-3 text-[13px] leading-6 ${
-                d ? "text-gray-400" : "text-gray-600"
-              }`}
-            >
-              Our development stack covers the major layers required to take a
-              digital product from interface development to backend systems,
-              databases and production deployment.
-            </p>
-          </div>
-
-          <div className="mt-8 space-y-5">
-            {technologyCategories.map((category) => {
-              const CategoryIcon = category.icon;
-
-              return (
-                <div
-                  key={category.title}
-                  className={`overflow-hidden rounded-2xl border ${
-                    d
-                      ? "border-white/[0.07] bg-[#080808]"
-                      : "border-gray-200 bg-[#fafafa]"
-                  }`}
-                >
-                  <div
-                    className={`grid gap-5 border-b p-5 sm:p-6 lg:grid-cols-[0.75fr_1.25fr] lg:items-center ${
-                      d
-                        ? "border-white/[0.07]"
-                        : "border-gray-200"
-                    }`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div
-                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
-                          d
-                            ? "bg-purple-500/[0.1] text-purple-400"
-                            : "bg-purple-50 text-purple-600"
-                        }`}
-                      >
-                        <CategoryIcon size={21} />
-                      </div>
-
-                      <div>
-                        <h3
-                          className={`text-[16px] font-bold ${
-                            d ? "text-white" : "text-gray-900"
-                          }`}
-                        >
-                          {category.title}
-                        </h3>
-
-                        <div className="mt-2 h-1 w-10 rounded-full bg-purple-500" />
-                      </div>
-                    </div>
-
-                    <p
-                      className={`text-[12px] leading-6 ${
-                        d ? "text-gray-500" : "text-gray-600"
-                      }`}
-                    >
-                      {category.description}
-                    </p>
-                  </div>
-
-                  <div className="grid md:grid-cols-2">
-                    {category.technologies.map((technology, index) => (
-                      <div
-                        key={technology.name}
-                        className={`p-5 sm:p-6 ${
-                          index % 2 === 0
-                            ? d
-                              ? "md:border-r md:border-white/[0.07]"
-                              : "md:border-r md:border-gray-200"
-                            : ""
-                        } ${
-                          index < category.technologies.length - 2
-                            ? d
-                              ? "border-b border-white/[0.07]"
-                              : "border-b border-gray-200"
-                            : ""
-                        }`}
-                      >
-                        <div className="flex items-start gap-3">
-                          <div
-                            className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${
-                              d
-                                ? "bg-purple-500/[0.1] text-purple-400"
-                                : "bg-purple-50 text-purple-600"
-                            }`}
-                          >
-                            <Braces size={14} />
-                          </div>
-
-                          <div>
-                            <h4
-                              className={`text-[13px] font-bold ${
-                                d ? "text-white" : "text-gray-900"
-                              }`}
-                            >
-                              {technology.name}
-                            </h4>
-
-                            <p
-                              className={`mt-1.5 text-[11px] leading-6 ${
-                                d ? "text-gray-500" : "text-gray-600"
-                              }`}
-                            >
-                              {technology.description}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          MERN STACK
-      ================================================== */}
-
-      <section className="py-12 sm:py-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-purple-500">
-                Full-Stack Development
-              </p>
-
-              <h2
-                className={`mt-3 text-3xl font-black tracking-tight sm:text-4xl ${
-                  d ? "text-white" : "text-gray-950"
-                }`}
-              >
-                MERN Stack
-                <span className="block text-purple-500">
-                  Development
-                </span>
-              </h2>
-
-              <p
-                className={`mt-4 text-[13px] leading-7 ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                MERN combines MongoDB, Express.js, React and Node.js into a
-                JavaScript-based full-stack development architecture. It can
-                be used for dashboards, SaaS applications, management systems,
-                portals and other custom web applications.
-              </p>
-
-              <Link
-                to="/mern-stack-development"
-                className="group mt-5 inline-flex items-center gap-2 text-[12px] font-bold text-purple-500 hover:text-purple-600"
-              >
-                Explore MERN Stack Development
-                <ArrowRight
-                  size={14}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { letter: "M", name: "MongoDB", role: "Database" },
-                {
-                  letter: "E",
-                  name: "Express.js",
-                  role: "Backend Framework",
-                },
-                { letter: "R", name: "React", role: "Frontend Library" },
-                { letter: "N", name: "Node.js", role: "Server Runtime" },
-              ].map((item) => (
-                <div
-                  key={item.name}
-                  className={`rounded-2xl border p-5 text-center transition-all duration-300 hover:-translate-y-1 ${
-                    d
-                      ? "border-white/[0.07] bg-white/[0.025] hover:border-purple-500/30"
-                      : "border-gray-200 bg-white hover:border-purple-200 hover:shadow-lg"
-                  }`}
-                >
-                  <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-fuchsia-500 text-lg font-black text-white">
-                    {item.letter}
-                  </div>
-
-                  <h3
-                    className={`mt-3 text-[13px] font-bold ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {item.name}
-                  </h3>
-
-                  <p
-                    className={`mt-1 text-[10px] ${
-                      d ? "text-gray-500" : "text-gray-600"
-                    }`}
-                  >
-                    {item.role}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          DEVELOPMENT PRINCIPLES
-      ================================================== */}
-
-      <section
-        className={`border-y py-12 sm:py-14 ${
-          d
-            ? "border-white/[0.05] bg-white/[0.015]"
-            : "border-gray-200 bg-white"
-        }`}
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-purple-500">
-              Development Principles
-            </p>
-
-            <h2
-              className={`mt-3 text-3xl font-black tracking-tight sm:text-4xl ${
-                d ? "text-white" : "text-gray-950"
-              }`}
-            >
-              Technology Is Only
-              <span className="text-purple-500">
-                {" "}Part of the Solution
-              </span>
-            </h2>
-
-            <p
-              className={`mt-3 text-[13px] leading-6 ${
-                d ? "text-gray-400" : "text-gray-600"
-              }`}
-            >
-              Good software also depends on architecture, maintainability,
-              security, performance and a development process that fits the
-              product.
-            </p>
-          </div>
-
-          <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {stackFeatures.map((feature) => {
-              const Icon = feature.icon;
-
-              return (
-                <div
-                  key={feature.title}
-                  className={`rounded-2xl border p-5 transition-all duration-300 hover:-translate-y-1 ${
-                    d
-                      ? "border-white/[0.07] bg-[#080808] hover:border-purple-500/30"
-                      : "border-gray-200 bg-[#fafafa] hover:border-purple-200 hover:shadow-lg"
-                  }`}
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10 text-purple-500">
-                    <Icon size={19} />
-                  </div>
-
-                  <h3
-                    className={`mt-4 text-[14px] font-bold ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {feature.title}
-                  </h3>
-
-                  <p
-                    className={`mt-2 text-[11px] leading-6 ${
-                      d ? "text-gray-500" : "text-gray-600"
-                    }`}
-                  >
-                    {feature.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          PRODUCT TYPES
-      ================================================== */}
-
-      <section className="py-12 sm:py-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-purple-500">
-                Flexible Technology
-              </p>
-
-              <h2
-                className={`mt-3 text-3xl font-black leading-tight sm:text-4xl ${
-                  d ? "text-white" : "text-gray-950"
-                }`}
-              >
-                Different Products.
-                <span className="block text-purple-500">
-                  Different Requirements.
-                </span>
-              </h2>
-
-              <p
-                className={`mt-4 text-[13px] leading-7 ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                The technology stack can change depending on the product,
-                features, integrations, scalability requirements and business
-                objectives. We select the development approach according to
-                what the project actually needs.
-              </p>
-
-              <Link
-                to="/contact"
-                className="group mt-5 inline-flex items-center gap-2 text-[12px] font-bold text-purple-500 hover:text-purple-600"
-              >
-                Discuss Your Requirements
-                <ArrowRight
-                  size={14}
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </Link>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2">
-              {productTypes.map((item) => (
-                <div
-                  key={item}
-                  className={`flex items-center gap-3 rounded-xl border px-5 py-4 text-[12px] font-semibold transition-all ${
-                    d
-                      ? "border-white/[0.07] bg-white/[0.025] text-gray-300 hover:border-purple-500/30"
-                      : "border-gray-200 bg-white text-gray-700 hover:border-purple-200 hover:shadow-md"
-                  }`}
-                >
-                  <CheckCircle2
-                    size={15}
-                    className="shrink-0 text-purple-500"
-                  />
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          DEVELOPMENT ECOSYSTEM
-      ================================================== */}
-
-      <section className="pb-12 sm:pb-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div
-            className={`rounded-[22px] border p-5 sm:p-7 lg:p-8 ${
-              d
-                ? "border-white/[0.07] bg-white/[0.02]"
-                : "border-gray-200 bg-white"
-            }`}
-          >
-            <div className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-              <div>
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-500/10 text-purple-500">
-                  <Network size={20} />
-                </div>
-
-                <h2
-                  className={`mt-4 text-3xl font-black ${
-                    d ? "text-white" : "text-gray-950"
-                  }`}
-                >
-                  A Connected Development Ecosystem
-                </h2>
-
-                <p
-                  className={`mt-3 text-[13px] leading-7 ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  Modern software is usually a combination of multiple layers.
-                  The frontend communicates with APIs, APIs work with databases
-                  and external services, and the completed application is
-                  deployed into a production environment.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                {[
-                  { icon: Globe2, text: "Frontend" },
-                  { icon: Server, text: "Backend" },
-                  { icon: Database, text: "Database" },
-                  { icon: Network, text: "APIs" },
-                  { icon: Cloud, text: "Cloud" },
-                ].map((item, index, arr) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <React.Fragment key={item.text}>
-                      <div
-                        className={`flex items-center gap-2 rounded-xl border px-4 py-3 text-[11px] font-bold ${
-                          d
-                            ? "border-white/[0.07] bg-[#080808] text-gray-300"
-                            : "border-gray-200 bg-gray-50 text-gray-700"
-                        }`}
-                      >
-                        <Icon size={14} className="text-purple-500" />
-                        {item.text}
-                      </div>
-
-                      {index !== arr.length - 1 && (
-                        <ArrowRight
-                          size={13}
-                          className="hidden text-purple-400 xl:block"
-                        />
-                      )}
-                    </React.Fragment>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          FINAL CTA
-      ================================================== */}
-
-      <section className="pb-12 sm:pb-14">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div
-            className={`relative overflow-hidden rounded-[24px] border px-5 py-9 text-center sm:px-8 sm:py-10 ${
-              d
-                ? "border-purple-500/20 bg-gradient-to-br from-purple-600/[0.12] via-white/[0.02] to-indigo-600/[0.08]"
-                : "border-purple-200 bg-gradient-to-br from-purple-50 via-white to-indigo-50"
-            }`}
-          >
-            {/* GLOW */}
-
-            <div className="pointer-events-none absolute inset-0">
-              <div className="absolute left-1/2 top-0 h-[180px] w-[350px] -translate-x-1/2 rounded-full bg-purple-500/10 blur-[90px]" />
-            </div>
-
-            <div className="relative mx-auto max-w-2xl">
-              <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-purple-600 text-white shadow-lg shadow-purple-500/20">
-                <Sparkles size={20} />
-              </div>
-
-              <h2
-                className={`mt-4 text-[27px] font-black tracking-tight sm:text-[35px] ${
-                  d ? "text-white" : "text-gray-950"
-                }`}
-              >
-                Ready to Build with Modern Technologies?
-              </h2>
-
-              <p
-                className={`mt-3 text-[12px] leading-6 sm:text-[14px] ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Tell us what you want to build. DevZore can help you choose the
-                right frontend, backend, database and deployment technologies
-                for your digital product.
-              </p>
-
-              <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
+                ["Web Development", "/web-development"],
+                ["MERN Stack", "/mern-stack-development"],
+                ["React Development", "/reactdevelopment"],
+                ["Mobile Apps", "/mobile-apps"],
+                ["Backend & API", "/backend-api"],
+                ["SaaS Development", "/saas-product-development"],
+                ["Contact DevZore", "/contact"],
+              ].map(([label, path]) => (
                 <Link
-                  to="/contact"
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 px-5 py-3 text-[11px] font-bold text-white transition-all hover:bg-purple-700"
+                  key={path}
+                  to={path}
+                  onClick={scrollTop}
+                  className="text-[9px] font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
                 >
-                  Discuss Your Project
-                  <ArrowRight
-                    size={13}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
+                  {label}
                 </Link>
-
-                <Link
-                  to="/our-process"
-                  className={`group inline-flex items-center justify-center gap-2 rounded-xl border px-5 py-3 text-[11px] font-bold transition-all ${
-                    d
-                      ? "border-white/[0.12] text-gray-300 hover:bg-white/[0.05]"
-                      : "border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
-                  }`}
-                >
-                  View Our Process
-                  <ArrowRight
-                    size={13}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
-                </Link>
-              </div>
-            </div>
+              ))}
+            </nav>
           </div>
-        </div>
-      </section>
-
-      {/* ==================================================
-          INTERNAL LINKS
-      ================================================== */}
-
-      <section className="pb-10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div
-            className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t pt-5 ${
-              d ? "border-white/[0.06]" : "border-gray-200"
-            }`}
-          >
-            <Link
-              to="/web-development"
-              className="text-[10px] text-gray-500 transition hover:text-purple-500"
-            >
-              Web Development
-            </Link>
-
-            <Link
-              to="/mern-stack-development"
-              className="text-[10px] text-gray-500 transition hover:text-purple-500"
-            >
-              MERN Stack Development
-            </Link>
-
-            <Link
-              to="/mobile-apps"
-              className="text-[10px] text-gray-500 transition hover:text-purple-500"
-            >
-              Mobile App Development
-            </Link>
-
-            <Link
-              to="/backend-api"
-              className="text-[10px] text-gray-500 transition hover:text-purple-500"
-            >
-              Backend & API
-            </Link>
-
-            <Link
-              to="/saas-product-development"
-              className="text-[10px] text-gray-500 transition hover:text-purple-500"
-            >
-              SaaS Development
-            </Link>
-
-            <Link
-              to="/contact"
-              className="text-[10px] text-gray-500 transition hover:text-purple-500"
-            >
-              Contact DevZore
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 

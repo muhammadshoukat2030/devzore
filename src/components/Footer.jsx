@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -13,6 +13,9 @@ import {
 const Footer = () => {
   const year = new Date().getFullYear();
 
+  const footerRef = useRef(null);
+  const [footerVisible, setFooterVisible] = useState(false);
+
   // ======================================================
   // SCROLL TO TOP
   // ======================================================
@@ -26,35 +29,66 @@ const Footer = () => {
   };
 
   // ======================================================
+  // HIDE MOBILE CTA WHEN FOOTER ENTERS VIEW
+  // ======================================================
+
+  useEffect(() => {
+    const footer = footerRef.current;
+
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setFooterVisible(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0,
+        rootMargin: "0px 0px -40px 0px",
+      }
+    );
+
+    observer.observe(footer);
+
+    return () => observer.disconnect();
+  }, []);
+
+  // ======================================================
   // SERVICES
   // ======================================================
 
   const services = [
-    { label: "Web Development", path: "/web-development" },
-    { label: "Mobile App Development", path: "/mobile-apps" },
     {
       label: "Generative AI Development",
       path: "/generative-ai-development",
     },
     {
-      label: "MERN Stack Development",
-      path: "/mern-stack-development",
+      label: "Web Development",
+      path: "/web-development",
+    },
+    {
+      label: "Mobile App Development",
+      path: "/mobile-apps",
     },
     {
       label: "SaaS Product Development",
       path: "/saas-product-development",
     },
     {
+      label: "MERN Stack Development",
+      path: "/mern-stack-development",
+    },
+    {
       label: "E-Commerce Development",
       path: "/ecommerce",
     },
     {
-      label: "React Development",
-      path: "/reactdevelopment",
-    },
-    {
       label: "Backend & API Development",
       path: "/backend-api",
+    },
+    {
+      label: "React Development",
+      path: "/reactdevelopment",
     },
     {
       label: "UI/UX Design",
@@ -127,16 +161,12 @@ const Footer = () => {
       path: "/technologies",
     },
     {
-      label: "Contact Us",
-      path: "/contact",
-    },
-    {
       label: "Our Projects",
       path: "/#projects",
     },
     {
-      label: "All Services",
-      path: "/allservices",
+      label: "Contact Us",
+      path: "/contact",
     },
   ];
 
@@ -186,24 +216,24 @@ const Footer = () => {
     {
       label: "Facebook",
       href: "https://www.facebook.com/profile.php?id=61591616471858",
-      icon: <Facebook size={17} />,
+      icon: <Facebook size={16} />,
     },
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/dev-zore-833893418/",
-      icon: <Linkedin size={17} />,
+      icon: <Linkedin size={16} />,
     },
     {
       label: "Instagram",
       href: "https://www.instagram.com/devz.ore/",
-      icon: <Instagram size={17} />,
+      icon: <Instagram size={16} />,
     },
     {
       label: "TikTok",
       href: "https://www.tiktok.com/@dev_zore",
       icon: (
         <svg
-          className="w-[17px] h-[17px] fill-current"
+          className="w-4 h-4 fill-current"
           viewBox="0 0 24 24"
           aria-hidden="true"
         >
@@ -215,52 +245,40 @@ const Footer = () => {
       label: "Fiverr",
       href: "https://www.fiverr.com/sellers/devzore/",
       icon: (
-        <svg
-          className="w-[17px] h-[17px] fill-current"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="M23.004 15.588a.995.995 0 10-1.99 0 .995.995 0 001.99 0zm-2.987-1.99h-.995v3.98h.995v-3.98zm-1.99 2.985a1.99 1.99 0 01-1.99 1.99V14.6a1.99 1.99 0 011.99 1.99v-.007zm-1.99 1.99a1.99 1.99 0 01-1.99-1.99 1.99 1.99 0 011.99-1.99v3.98zm-2.987-3.98H8.013v.995h2.987v2.985h.995v-2.985h.995v-.995h-.96zm-4.98.995H6.023a.995.995 0 000 1.99h.995v.995H6.023a1.99 1.99 0 010-3.98H7.07v.995zm-2.987-.995H0V24h6.017v-.995H.995v-6.012h5.022v-.995H6.017v-.995zM3.032 6.02a1.99 1.99 0 100 3.98 1.99 1.99 0 000-3.98zm0 2.985a.995.995 0 110-1.99.995.995 0 010 1.99z" />
-        </svg>
+        <span className="text-[10px] font-black">
+          fi
+        </span>
       ),
     },
     {
       label: "Upwork",
       href: "https://www.upwork.com/freelancers/~012e5cc1a7d6ceb834",
       icon: (
-        <svg
-          className="w-[17px] h-[17px] fill-current"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.546-1.405 0-2.543-1.14-2.543-2.546V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z" />
-        </svg>
+        <span className="text-[9px] font-black">
+          up
+        </span>
       ),
     },
   ];
 
   // ======================================================
-  // STYLES
+  // REUSABLE STYLES
   // ======================================================
 
   const headingClass = `
-    text-[10px]
-    sm:text-[11px]
-    font-black
-    uppercase
-    tracking-[0.18em]
-    text-gray-300
+    text-[11px]
+    font-bold
+    text-white
     mb-4
   `;
 
   const linkClass = `
     inline-flex
-    items-start
     text-[11px]
     sm:text-[12px]
-    leading-[1.5]
-    text-gray-400
-    hover:text-purple-400
+    leading-relaxed
+    text-[#8BA7B5]
+    hover:text-[#20C7C7]
     transition-colors
     duration-200
   `;
@@ -270,237 +288,227 @@ const Footer = () => {
   // ======================================================
 
   return (
-    <footer
-      aria-label="DevZore website footer"
-      className="relative bg-[#070B14] border-t border-white/[0.07] text-white"
-    >
-      {/* ==================================================
-          CTA
-      ================================================== */}
-
-      <section
-        aria-labelledby="footer-cta-heading"
-        className="border-b border-white/[0.07]"
+    <>
+      <footer
+        ref={footerRef}
+        aria-label="DevZore website footer"
+        className="relative bg-[#02090D] text-white mt-6"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7 sm:py-9">
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.035] p-5 sm:p-7 lg:px-8 lg:py-7">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 lg:gap-10">
+        {/* ==================================================
+            PROJECT CTA
+        ================================================== */}
+
+        {/* <section className="bg-[#061923] border-b border-white/[0.06]">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+            <div className="py-10 sm:py-12 lg:py-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-7">
               <div className="max-w-2xl">
-                <p className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.18em] text-purple-400 mb-2">
-                  Start Your Project
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#20C7C7] mb-3">
+                  Start a project
                 </p>
 
-                <h2
-                  id="footer-cta-heading"
-                  className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight leading-tight text-white"
-                >
-                  Have a digital product in mind?
+                <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-semibold tracking-tight leading-tight text-white">
+                  Have an idea? We&apos;re here to build it.
                 </h2>
 
-                <p className="mt-2 max-w-xl text-xs sm:text-sm leading-6 text-gray-400">
-                  Tell us about your website, mobile app, SaaS,
-                  e-commerce, AI or custom software requirements.
+                <p className="mt-3 max-w-xl text-sm sm:text-[15px] leading-6 text-[#8BA7B5]">
+                  From websites and mobile apps to SaaS, AI and
+                  custom software — tell us what you want to build.
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-2.5 shrink-0">
-                <Link
-                  to="/contact"
-                  onClick={scrollTop}
-                  className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg bg-purple-600 hover:bg-purple-700 text-white text-xs sm:text-sm font-bold transition-colors"
-                >
-                  Discuss Your Project
-                  <ArrowRight size={14} />
-                </Link>
+              <Link
+                to="/contact"
+                onClick={scrollTop}
+                className="
+                  group
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-3
+                  w-fit
+                  px-6
+                  py-3.5
+                  rounded-xl
+                  bg-white
+                  text-[#061923]
+                  text-sm
+                  font-bold
+                  border
+                  border-white
+                  hover:bg-[#20C7C7]
+                  hover:border-[#20C7C7]
+                  transition-all
+                  duration-300
+                "
+              >
+                Discuss Your Project
 
-                <a
-                  href="https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20a%20project."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 rounded-lg border border-white/10 text-gray-300 hover:text-white hover:border-purple-500/50 hover:bg-purple-500/10 text-xs sm:text-sm font-bold transition-colors"
-                >
-                  WhatsApp
-                </a>
-              </div>
+                <ArrowRight
+                  size={15}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section> */}
 
-      {/* ==================================================
-          MAIN FOOTER
-      ================================================== */}
+        {/* ==================================================
+            MAIN FOOTER
+        ================================================== */}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-11">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-9 lg:gap-10">
-          {/* ==================================================
-              BRAND
-          ================================================== */}
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-10 sm:py-12">
+          <div className="grid lg:grid-cols-[1.15fr_2fr] gap-10 lg:gap-14">
 
-          <div className="lg:col-span-4">
-            <Link
-              to="/"
-              onClick={scrollTop}
-              aria-label="DevZore home"
-              className="inline-flex items-center"
-            >
-              <img
-                src="/logo.png"
-                alt="DevZore Software Agency"
-                width="58"
-                height="58"
-                loading="lazy"
-                className="h-[58px] w-[58px] object-contain"
-              />
+            {/* ==================================================
+                BRAND
+            ================================================== */}
 
-              <div className="-ml-2">
-                <div className="text-lg sm:text-xl font-black text-white">
-                  Dev
-                  <span className="text-purple-500">
-                    Zore
-                  </span>
-                </div>
-
-                <div className="text-[8px] uppercase tracking-[0.18em] mt-0.5 text-gray-500">
-                  Software Agency
-                </div>
-              </div>
-            </Link>
-
-            <p className="mt-4 max-w-sm text-xs sm:text-sm leading-6 text-gray-400">
-              DevZore builds modern websites, web applications,
-              mobile apps, SaaS platforms, AI-powered products and
-              custom software solutions for startups and businesses.
-            </p>
-
-            {/* BUSINESS CARD */}
-
-            <div className="mt-5 flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-3 max-w-sm">
-              <div className="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center text-[10px] text-white font-black shrink-0">
-                DZ
-              </div>
-
-              <div>
-                <p className="text-xs font-bold text-gray-200">
-                  Digital solutions for modern businesses
-                </p>
-
-                <p className="text-[10px] mt-0.5 text-gray-500">
-                  Available for international projects
-                </p>
-              </div>
-            </div>
-
-            {/* CONTACT */}
-
-            <div className="mt-5 flex flex-col gap-2.5">
-              <a
-                href="mailto:hellodevzore@gmail.com"
-                className="inline-flex items-center gap-2.5 text-xs text-gray-400 hover:text-purple-400 transition-colors"
+            <div>
+              <Link
+                to="/"
+                onClick={scrollTop}
+                aria-label="DevZore home"
+                className="inline-flex items-center"
               >
-                <Mail
-                  size={14}
-                  className="shrink-0"
+                <img
+                  src="/logo.png"
+                  alt="DevZore Software Agency"
+                  width="55"
+                  height="55"
+                  loading="lazy"
+                  className="h-[55px] w-[55px] object-contain"
                 />
 
-                hellodevzore@gmail.com
-              </a>
+                <div className="-ml-2">
+                  <div className="text-xl font-black text-white">
+                    Dev
+                    <span className="text-[#20C7C7]">
+                      Zore
+                    </span>
+                  </div>
 
-              <a
-                href="https://wa.me/923348004300"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 text-xs text-gray-400 hover:text-purple-400 transition-colors"
-              >
-                <Phone
-                  size={14}
-                  className="shrink-0"
-                />
+                  <div className="text-[8px] uppercase tracking-[0.18em] mt-0.5 text-[#6F8A98]">
+                    Software Agency
+                  </div>
+                </div>
+              </Link>
 
-                +92 334 8004300
-              </a>
-            </div>
-
-            {/* SOCIALS */}
-
-            <div className="mt-5">
-              <p className="text-[9px] font-black uppercase tracking-[0.16em] text-gray-500 mb-2.5">
-                Follow DevZore
+              <p className="mt-4 max-w-[360px] text-xs sm:text-[13px] leading-6 text-[#8BA7B5]">
+                DevZore designs and develops modern websites,
+                web applications, mobile products, SaaS platforms,
+                AI-enabled solutions and custom software for
+                startups and businesses.
               </p>
 
-              <div className="flex flex-wrap gap-2">
-                {socials.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`DevZore on ${social.label}`}
-                    title={social.label}
-                    className="w-8 h-8 rounded-lg border border-white/[0.08] bg-white/[0.025] text-gray-400 flex items-center justify-center hover:bg-purple-600 hover:border-purple-600 hover:text-white transition-all duration-200"
-                  >
-                    {social.icon}
-                  </a>
-                ))}
+              {/* CONTACT */}
+
+              <div className="mt-6 space-y-3">
+                <a
+                  href="mailto:hellodevzore@gmail.com"
+                  className="flex items-center gap-2.5 w-fit text-xs text-[#8BA7B5] hover:text-[#20C7C7] transition-colors"
+                >
+                  <Mail size={14} />
+
+                  hellodevzore@gmail.com
+                </a>
+
+                <a
+                  href="https://wa.me/923348004300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 w-fit text-xs text-[#8BA7B5] hover:text-[#20C7C7] transition-colors"
+                >
+                  <Phone size={14} />
+
+                  +92 334 8004300
+                </a>
+              </div>
+
+              {/* SOCIAL */}
+
+              <div className="mt-6">
+                <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#607B88] mb-3">
+                  Follow DevZore
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {socials.map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`DevZore on ${social.label}`}
+                      title={social.label}
+                      className="
+                        w-8
+                        h-8
+                        rounded-lg
+                        border
+                        border-white/[0.09]
+                        bg-white/[0.03]
+                        text-[#8BA7B5]
+                        flex
+                        items-center
+                        justify-center
+                        hover:bg-[#20C7C7]
+                        hover:border-[#20C7C7]
+                        hover:text-[#061923]
+                        transition-all
+                        duration-200
+                      "
+                    >
+                      {social.icon}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* ==================================================
-              NAVIGATION
-          ================================================== */}
+            {/* ==================================================
+                FOOTER NAVIGATION
+            ================================================== */}
 
-          <div className="lg:col-span-8">
             <div
               className="
                 grid
                 grid-cols-2
-                md:grid-cols-4
-                gap-x-5
-                md:gap-x-6
-                lg:gap-x-8
-                gap-y-8
+                sm:grid-cols-3
+                lg:grid-cols-4
+                gap-x-6
+                gap-y-9
               "
             >
-              {/* ==================================================
-                  SERVICES
-              ================================================== */}
+              {/* SERVICES */}
 
-              <div className="col-span-2">
+              <div className="col-span-2 sm:col-span-3 lg:col-span-2">
                 <h3 className={headingClass}>
                   Services
                 </h3>
 
-                <ul className="grid grid-cols-2 gap-x-5 lg:gap-x-8 gap-y-3">
+                <ul className="grid grid-cols-2 gap-x-5 gap-y-2.5">
                   {services.map((service) => (
-                    <li
-                      key={service.path}
-                      className="min-w-0"
-                    >
+                    <li key={service.path}>
                       <Link
                         to={service.path}
                         onClick={scrollTop}
                         className={linkClass}
                       >
-                        <span className="break-words">
-                          {service.label}
-                        </span>
+                        {service.label}
                       </Link>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              {/* ==================================================
-                  SOLUTIONS
-              ================================================== */}
+              {/* SOLUTIONS */}
 
               <div>
                 <h3 className={headingClass}>
                   Solutions
                 </h3>
 
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   {solutions.map((item) => (
                     <li key={item.path}>
                       <Link
@@ -515,16 +523,14 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* ==================================================
-                  COMPANY
-              ================================================== */}
+              {/* COMPANY */}
 
               <div>
                 <h3 className={headingClass}>
                   Company
                 </h3>
 
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   {company.map((item) => (
                     <li key={item.path}>
                       {item.path.startsWith("/#") ? (
@@ -548,16 +554,14 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* ==================================================
-                  RESOURCES
-              ================================================== */}
+              {/* RESOURCES */}
 
               <div>
                 <h3 className={headingClass}>
                   Resources
                 </h3>
 
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   {resources.map((item) => (
                     <li key={item.path}>
                       <Link
@@ -572,16 +576,14 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* ==================================================
-                  LEGAL
-              ================================================== */}
+              {/* LEGAL */}
 
               <div>
                 <h3 className={headingClass}>
                   Legal
                 </h3>
 
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   {legal.map((item) => (
                     <li key={item.path}>
                       <Link
@@ -593,120 +595,147 @@ const Footer = () => {
                       </Link>
                     </li>
                   ))}
+
+                  <li>
+                    <a
+                      href="/sitemap.xml"
+                      className={linkClass}
+                    >
+                      Sitemap
+                    </a>
+                  </li>
                 </ul>
               </div>
 
-              {/* ==================================================
-                  QUICK LINKS
-              ================================================== */}
+              {/* ALL SERVICES CTA */}
 
               <div className="col-span-2">
-                <h3 className={headingClass}>
-                  Explore
-                </h3>
+                <Link
+                  to="/allservices"
+                  onClick={scrollTop}
+                  className="
+                    group
+                    inline-flex
+                    items-center
+                    gap-2
+                    text-xs
+                    font-bold
+                    text-[#20C7C7]
+                    hover:text-white
+                    transition-colors
+                  "
+                >
+                  View all services
 
-                <div className="flex flex-wrap gap-x-5 gap-y-3">
-                  <Link
-                    to="/web-development"
-                    onClick={scrollTop}
-                    className={linkClass}
-                  >
-                    Web Development
-                  </Link>
+                  <ArrowRight
+                    size={13}
+                    className="transition-transform group-hover:translate-x-1"
+                  />
+                </Link>
+              </div>
+            </div>
+          </div>
 
-                  <Link
-                    to="/mobile-apps"
-                    onClick={scrollTop}
-                    className={linkClass}
-                  >
-                    Mobile Apps
-                  </Link>
+          {/* ==================================================
+              BOTTOM
+          ================================================== */}
 
-                  <Link
-                    to="/generative-ai-development"
-                    onClick={scrollTop}
-                    className={linkClass}
-                  >
-                    Generative AI
-                  </Link>
+          <div className="mt-10 pt-5 border-t border-white/[0.08]">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <p className="text-[10px] sm:text-[11px] text-[#607B88]">
+                © {year}{" "}
+                <span className="text-[#8BA7B5] font-semibold">
+                  DevZore
+                </span>
+                . All Rights Reserved.
+              </p>
 
-                  <Link
-                    to="/saas-product-development"
-                    onClick={scrollTop}
-                    className={linkClass}
-                  >
-                    SaaS Development
-                  </Link>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <Link
+                  to="/privacy-policy"
+                  onClick={scrollTop}
+                  className="text-[10px] sm:text-[11px] text-[#607B88] hover:text-[#20C7C7] transition-colors"
+                >
+                  Privacy
+                </Link>
 
-                  <Link
-                    to="/startup-mvp"
-                    onClick={scrollTop}
-                    className={linkClass}
-                  >
-                    Startup MVP
-                  </Link>
+                <Link
+                  to="/terms-and-conditions"
+                  onClick={scrollTop}
+                  className="text-[10px] sm:text-[11px] text-[#607B88] hover:text-[#20C7C7] transition-colors"
+                >
+                  Terms
+                </Link>
 
-                  <Link
-                    to="/resources"
-                    onClick={scrollTop}
-                    className={linkClass}
-                  >
-                    Resources
-                  </Link>
-                </div>
+                <a
+                  href="/sitemap.xml"
+                  className="text-[10px] sm:text-[11px] text-[#607B88] hover:text-[#20C7C7] transition-colors"
+                >
+                  Sitemap
+                </a>
               </div>
             </div>
           </div>
         </div>
+      </footer>
 
-        {/* ==================================================
-            BOTTOM BAR
-        ================================================== */}
+      {/* ==================================================
+          MOBILE STICKY CONTACT BUTTON
+          ONLY MOBILE
+          HIDES WHEN FOOTER IS VISIBLE
+      ================================================== */}
 
-        <div className="mt-8 sm:mt-10 pt-5 border-t border-white/[0.07]">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <p className="text-[10px] sm:text-[11px] text-gray-500">
-              © {year}{" "}
-              <span className="font-semibold text-gray-400">
-                DevZore
-              </span>
-              . All Rights Reserved.
-            </p>
+      <div
+        className={`
+          md:hidden
+          fixed
+          left-3
+          right-3
+          bottom-3
+          z-[60]
+          transition-all
+          duration-300
+          ${
+            footerVisible
+              ? "opacity-0 translate-y-6 pointer-events-none"
+              : "opacity-100 translate-y-0"
+          }
+        `}
+      >
+        <Link
+          to="/contact"
+          onClick={scrollTop}
+          className="
+            group
+            flex
+            items-center
+            justify-center
+            gap-2
+            w-full
+            h-12
+            rounded-xl
+            bg-[#20C7C7]
+            text-[#061923]
+            text-[13px]
+            font-bold
+            shadow-[0_10px_35px_rgba(0,0,0,0.28)]
+            border
+            border-[#36D5D5]
+            transition-all
+            active:scale-[0.98]
+          "
+        >
+          Contact Us
 
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <Link
-                to="/privacy-policy"
-                onClick={scrollTop}
-                className="text-[10px] sm:text-[11px] text-gray-500 hover:text-purple-400 transition-colors"
-              >
-                Privacy
-              </Link>
-
-              <Link
-                to="/terms-and-conditions"
-                onClick={scrollTop}
-                className="text-[10px] sm:text-[11px] text-gray-500 hover:text-purple-400 transition-colors"
-              >
-                Terms
-              </Link>
-
-              <a
-                href="/sitemap.xml"
-                className="text-[10px] sm:text-[11px] text-gray-500 hover:text-purple-400 transition-colors"
-              >
-                Sitemap
-              </a>
-
-              <span className="hidden sm:inline text-[10px] sm:text-[11px] font-semibold text-purple-500">
-                ⚡ Engineered with precision
-              </span>
-            </div>
-          </div>
-        </div>
+          <ArrowRight
+            size={14}
+            className="transition-transform group-hover:translate-x-1"
+          />
+        </Link>
       </div>
 
       {/* ==================================================
-          BACK TO TOP
+          DESKTOP BACK TO TOP
       ================================================== */}
 
       <button
@@ -715,39 +744,34 @@ const Footer = () => {
         aria-label="Back to top"
         title="Back to top"
         className="
-          group
+          hidden
+          md:flex
           fixed
           z-50
-          right-3
-          sm:right-5
-          bottom-4
-          sm:bottom-5
+          right-5
+          bottom-5
           w-10
           h-10
           rounded-full
-          flex
           items-center
           justify-center
           border
           border-white/10
-          bg-[#111827]/95
-          text-gray-300
+          bg-[#061923]/95
+          text-[#A9BBC4]
           shadow-lg
           backdrop-blur-md
-          hover:bg-purple-600
-          hover:text-white
-          hover:border-purple-600
+          hover:bg-[#20C7C7]
+          hover:text-[#061923]
+          hover:border-[#20C7C7]
           transition-all
           duration-300
           hover:-translate-y-1
         "
       >
-        <ArrowUp
-          size={17}
-          className="transition-transform duration-300 group-hover:-translate-y-0.5"
-        />
+        <ArrowUp size={17} />
       </button>
-    </footer>
+    </>
   );
 };
 

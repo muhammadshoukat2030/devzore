@@ -1,92 +1,122 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
+  ArrowLeft,
   ArrowRight,
-  CheckCircle,
+  BrainCircuit,
   Code2,
   Smartphone,
-  Zap,
-  Palette,
-  Search,
-  Wrench,
-  Server,
-  Globe2,
-  ShieldCheck,
   Layers3,
-  BrainCircuit,
-  Sparkles,
 } from "lucide-react";
 
 // ======================================================
-// ANIMATED HERO WORDS
+// HERO SLIDES
+// Images must exist inside:
+//
+// public/hero/ai-development.webp
+// public/hero/web-development.webp
+// public/hero/mobile-development.webp
+// public/hero/saas-development.webp
 // ======================================================
 
-const WORDS = [
-  "Web Applications",
-  "Generative AI Solutions",
-  "Mobile Apps",
-  "SaaS Platforms",
-  "Startup MVPs",
-  "MERN Stack Apps",
-  "E-Commerce Stores",
-  "React Applications",
+const slides = [
+  {
+    eyebrow: "GENERATIVE AI DEVELOPMENT",
+    title: "Build practical AI solutions for modern businesses.",
+    description:
+      "AI assistants, RAG systems and intelligent integrations designed around real business workflows.",
+    buttonText: "Explore AI Development",
+    path: "/generative-ai-development",
+    image: "/hero/ai-development.webp",
+    position: "center",
+    icon: BrainCircuit,
+  },
+  {
+    eyebrow: "WEB DEVELOPMENT",
+    title: "Modern web applications built for growing businesses.",
+    description:
+      "Responsive websites and scalable web applications built with modern frontend and backend technologies.",
+    buttonText: "Explore Web Development",
+    path: "/web-development",
+    image: "/hero/web-development.webp",
+    position: "center",
+    icon: Code2,
+  },
+  {
+    eyebrow: "MOBILE APP DEVELOPMENT",
+    title: "Mobile experiences designed around your business.",
+    description:
+      "Cross-platform mobile applications with modern interfaces, APIs and practical business functionality.",
+    buttonText: "Explore Mobile Apps",
+    path: "/mobile-apps",
+    image: "/hero/mobile-development.webp",
+    position: "center",
+    icon: Smartphone,
+  },
+  {
+    eyebrow: "SAAS & MVP DEVELOPMENT",
+    title: "Turn your product idea into a working digital platform.",
+    description:
+      "Scalable SaaS products and startup MVPs built around your requirements, users and business goals.",
+    buttonText: "Explore SaaS Development",
+    path: "/saas-product-development",
+    image: "/hero/saas-development.webp",
+    position: "center",
+    icon: Layers3,
+  },
 ];
 
 // ======================================================
 // HERO
 // ======================================================
 
-const Hero = ({ isDark = true }) => {
-  const d = isDark;
-
-  const [wordIdx, setWordIdx] = useState(0);
-  const [displayed, setDisplayed] = useState("");
-  const [deleting, setDeleting] = useState(false);
-
-  const timeoutRef = useRef(null);
+const Hero = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [firstImageLoaded, setFirstImageLoaded] = useState(false);
 
   // ======================================================
-  // TYPE / DELETE ANIMATION
+  // PRELOAD HERO IMAGES
   // ======================================================
 
   useEffect(() => {
-    const currentWord = WORDS[wordIdx];
-
-    if (!deleting && displayed.length < currentWord.length) {
-      timeoutRef.current = setTimeout(() => {
-        setDisplayed(
-          currentWord.slice(0, displayed.length + 1)
-        );
-      }, 50);
-    } else if (
-      !deleting &&
-      displayed.length === currentWord.length
-    ) {
-      timeoutRef.current = setTimeout(() => {
-        setDeleting(true);
-      }, 1800);
-    } else if (deleting && displayed.length > 0) {
-      timeoutRef.current = setTimeout(() => {
-        setDisplayed(displayed.slice(0, -1));
-      }, 25);
-    } else {
-      setDeleting(false);
-
-      setWordIdx(
-        (currentIndex) =>
-          (currentIndex + 1) % WORDS.length
-      );
-    }
-
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [displayed, deleting, wordIdx]);
+    slides.forEach((slide) => {
+      const image = new Image();
+      image.src = slide.image;
+    });
+  }, []);
 
   // ======================================================
-  // HELPERS
+  // AUTO SLIDER
+  // ======================================================
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((current) => (current + 1) % slides.length);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // ======================================================
+  // SLIDER CONTROLS
+  // ======================================================
+
+  const nextSlide = () => {
+    setActiveSlide((current) => (current + 1) % slides.length);
+  };
+
+  const previousSlide = () => {
+    setActiveSlide(
+      (current) => (current - 1 + slides.length) % slides.length
+    );
+  };
+
+  const goToSlide = (index) => {
+    setActiveSlide(index);
+  };
+
+  // ======================================================
+  // SCROLL TOP
   // ======================================================
 
   const scrollTop = () => {
@@ -97,326 +127,344 @@ const Hero = ({ isDark = true }) => {
     });
   };
 
-  // ======================================================
-  // SERVICE LINKS
-  // ======================================================
-
-  const services = [
-    {
-      icon: <BrainCircuit size={13} />,
-      label: "Generative AI",
-      path: "/generative-ai-development",
-      dot: "bg-violet-500",
-    },
-    {
-      icon: <Code2 size={13} />,
-      label: "Web Development",
-      path: "/web-development",
-      dot: "bg-purple-500",
-    },
-    {
-      icon: <Smartphone size={13} />,
-      label: "Mobile Apps",
-      path: "/mobile-apps",
-      dot: "bg-blue-500",
-    },
-    {
-      icon: <Zap size={13} />,
-      label: "SaaS Development",
-      path: "/saas-product-development",
-      dot: "bg-green-500",
-    },
-    {
-      icon: <Search size={13} />,
-      label: "SEO Services",
-      path: "/seo-services",
-      dot: "bg-pink-500",
-    },
-    {
-      icon: <Palette size={13} />,
-      label: "UI/UX Design",
-      path: "/ui-ux-design",
-      dot: "bg-amber-500",
-    },
-    {
-      icon: <Wrench size={13} />,
-      label: "Maintenance",
-      path: "/maintenance",
-      dot: "bg-cyan-500",
-    },
-  ];
-
-  // ======================================================
-  // TRUST ITEMS
-  // ======================================================
-
-  const trustItems = [
-    "Custom Software Development",
-    "AI-Enabled Solutions",
-    "Responsive Applications",
-    "Worldwide Remote Collaboration",
-  ];
-
-  // ======================================================
-  // CAPABILITIES
-  // ======================================================
-
-  const capabilities = [
-    {
-      icon: <BrainCircuit size={18} />,
-      title: "Generative AI",
-      description:
-        "AI assistants, RAG systems and intelligent workflows",
-    },
-    {
-      icon: <Code2 size={18} />,
-      title: "Web Applications",
-      description:
-        "Modern frontend and full-stack applications",
-    },
-    {
-      icon: <Smartphone size={18} />,
-      title: "Mobile Applications",
-      description:
-        "Cross-platform mobile experiences",
-    },
-    {
-      icon: <Layers3 size={18} />,
-      title: "SaaS Products",
-      description:
-        "Scalable SaaS products and startup MVPs",
-    },
-  ];
-
-  // ======================================================
-  // RIGHT PANEL SERVICES
-  // ======================================================
-
-  const panelServices = [
-    {
-      dot: "bg-violet-500",
-      name: "Generative AI Development",
-      tech: "AI Assistants · RAG · LLM Integration",
-      path: "/generative-ai-development",
-    },
-    {
-      dot: "bg-purple-500",
-      name: "Web Development",
-      tech: "React · Next.js · Node.js",
-      path: "/web-development",
-    },
-    {
-      dot: "bg-blue-500",
-      name: "Mobile App Development",
-      tech: "Cross-Platform · Mobile UI · APIs",
-      path: "/mobile-apps",
-    },
-    {
-      dot: "bg-green-500",
-      name: "SaaS & MVP Development",
-      tech: "Products · APIs · Databases",
-      path: "/saas-product-development",
-    },
-    {
-      dot: "bg-pink-500",
-      name: "Backend & API Development",
-      tech: "Node.js · Express · REST APIs",
-      path: "/backend-api",
-    },
-  ];
-
-  // ======================================================
-  // RENDER
-  // ======================================================
+  const slide = slides[activeSlide];
+  const SlideIcon = slide.icon;
 
   return (
     <section
       aria-labelledby="hero-heading"
-      className={`relative overflow-hidden transition-colors duration-300 ${
-        d ? "bg-[#030303]" : "bg-white"
-      }`}
+      className="
+        relative
+        isolate
+        overflow-hidden
+        w-full
+        bg-[#020b13]
+        text-white
+
+        min-h-[600px]
+        sm:min-h-[650px]
+        lg:min-h-[680px]
+        xl:min-h-[720px]
+      "
     >
       {/* ==================================================
-          BACKGROUND
+          BACKGROUND SLIDER
       ================================================== */}
 
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-      >
-        {/* GRID */}
+      <div className="absolute inset-0 overflow-hidden">
+        {slides.map((item, index) => {
+          const active = index === activeSlide;
+
+          return (
+            <div
+              key={item.image}
+              aria-hidden="true"
+              className={`
+                absolute
+                inset-0
+
+                transition-all
+                duration-[1200ms]
+                ease-in-out
+
+                ${
+                  active
+                    ? "opacity-100 scale-100"
+                    : "opacity-0 scale-[1.025]"
+                }
+              `}
+            >
+              <img
+                src={item.image}
+                alt=""
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding="async"
+                onLoad={() => {
+                  if (index === 0) {
+                    setFirstImageLoaded(true);
+                  }
+                }}
+                className="
+                  absolute
+                  inset-0
+
+                  w-full
+                  h-full
+
+                  object-cover
+                "
+                style={{
+                  objectPosition: item.position,
+                }}
+              />
+            </div>
+          );
+        })}
+
+        {/* ==================================================
+            DESKTOP LEFT DARK OVERLAY
+        ================================================== */}
 
         <div
-          className={`absolute inset-0 ${
-            d
-              ? "bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)]"
-              : "bg-[linear-gradient(rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.04)_1px,transparent_1px)]"
-          } bg-[size:40px_40px] sm:bg-[size:48px_48px]`}
+          aria-hidden="true"
+          className="
+            hidden
+            lg:block
+
+            absolute
+            inset-0
+
+            bg-gradient-to-r
+
+            from-[#020b13]
+            from-[0%]
+
+            via-[#020b13]/95
+            via-[30%]
+
+            to-transparent
+            to-[68%]
+          "
         />
 
-        {/* PURPLE GLOW */}
+        {/* ==================================================
+            DESKTOP BOTTOM OVERLAY
+        ================================================== */}
 
         <div
-          className={`absolute -top-24 left-1/2 -translate-x-1/2
-            w-[300px] sm:w-[600px] lg:w-[760px]
-            h-[280px] sm:h-[430px]
-            rounded-full
-            blur-[110px] sm:blur-[120px]
-            opacity-20
-            ${d ? "bg-purple-700" : "bg-purple-200"}`}
+          aria-hidden="true"
+          className="
+            hidden
+            lg:block
+
+            absolute
+            inset-0
+
+            bg-gradient-to-t
+
+            from-[#020b13]/90
+            via-[#020b13]/10
+            to-[#020b13]/10
+          "
         />
 
-        {/* BLUE GLOW */}
+        {/* ==================================================
+            TOP NAVBAR / HERO CONNECTION
+        ================================================== */}
 
         <div
-          className={`absolute bottom-0 right-0
-            w-[220px] sm:w-[360px]
-            h-[220px] sm:h-[360px]
-            rounded-full
-            blur-[100px]
-            opacity-10
-            ${d ? "bg-blue-700" : "bg-blue-200"}`}
+          aria-hidden="true"
+          className="
+            hidden
+            lg:block
+
+            absolute
+            top-0
+            left-0
+            right-0
+
+            h-32
+
+            bg-gradient-to-b
+            from-[#020b13]/30
+            to-transparent
+          "
+        />
+
+        {/* ==================================================
+            SUBTLE GLOBAL TINT
+        ================================================== */}
+
+        <div
+          aria-hidden="true"
+          className="
+            hidden
+            lg:block
+
+            absolute
+            inset-0
+
+            bg-[#00101a]/10
+          "
+        />
+
+        {/* ==================================================
+            MOBILE / TABLET OVERLAYS
+        ================================================== */}
+
+        <div
+          aria-hidden="true"
+          className="
+            lg:hidden
+
+            absolute
+            inset-0
+
+            bg-gradient-to-b
+
+            from-[#020b13]/72
+            via-[#020b13]/68
+            to-[#020b13]/95
+          "
+        />
+
+        <div
+          aria-hidden="true"
+          className="
+            lg:hidden
+
+            absolute
+            inset-0
+
+            bg-gradient-to-r
+
+            from-[#020b13]/80
+            via-[#020b13]/40
+            to-[#020b13]/20
+          "
         />
       </div>
 
       {/* ==================================================
-          CONTAINER
+          IMAGE LOADING FALLBACK
+      ================================================== */}
+
+      {!firstImageLoaded && (
+        <div
+          aria-hidden="true"
+          className="
+            absolute
+            inset-0
+            bg-[#020b13]
+          "
+        />
+      )}
+
+      {/* ==================================================
+          HERO CONTENT WRAPPER
       ================================================== */}
 
       <div
         className="
-          relative z-10
-          max-w-7xl mx-auto
-          w-full
-          px-4 sm:px-6 lg:px-8
-          pt-10 pb-8
-          sm:pt-14 sm:pb-10
-          lg:pt-20 lg:pb-14
+          relative
+          z-10
+
+          max-w-[1440px]
+          mx-auto
+
+          min-h-[600px]
+          sm:min-h-[650px]
+          lg:min-h-[680px]
+          xl:min-h-[720px]
+
+          px-5
+          sm:px-7
+          lg:px-12
+          xl:px-13
         "
       >
-        <div className="grid lg:grid-cols-[1.04fr_0.96fr] gap-8 lg:gap-12 xl:gap-16 items-center">
+        <div
+          className="
+            flex
+            flex-col
+            justify-center
 
+            min-h-[600px]
+            sm:min-h-[650px]
+            lg:min-h-[680px]
+            xl:min-h-[720px]
+
+            pt-12
+            pb-28
+
+            sm:pt-16
+            sm:pb-32
+
+            lg:pt-1
+            lg:pb-28
+          "
+        >
           {/* ==================================================
-              LEFT SIDE
+              ACTIVE SLIDE CONTENT
           ================================================== */}
 
-          <div className="text-center lg:text-left min-w-0">
+          <div
+            key={activeSlide}
+            className="
+              max-w-[650px]
+              lg:max-w-[660px]
 
-            {/* BADGE */}
+              animate-[heroFade_.7s_ease-out]
+            "
+          >
+            {/* ==================================================
+                EYEBROW
+            ================================================== */}
 
             <div
-              className={`inline-flex items-center gap-2
-                px-3 py-1.5
-                sm:px-4 sm:py-2
-                rounded-full border
-                mb-3 sm:mb-5
-                text-[8px] sm:text-[11px]
-                font-bold uppercase
-                tracking-[0.14em] sm:tracking-[0.16em]
-                ${
-                  d
-                    ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
-                    : "bg-purple-50 border-purple-200 text-purple-700"
-                }`}
-            >
-              <Sparkles size={12} />
+              className="
+                flex
+                items-center
+                gap-2.5
 
-              Software Development & AI Agency
+                mb-4
+                sm:mb-5
+              "
+            >
+              <SlideIcon
+                size={14}
+                strokeWidth={2}
+                className="
+                  shrink-0
+                  text-purple-400
+                "
+              />
+
+              <span
+                className="
+                  text-[10px]
+                  sm:text-[11px]
+
+                  uppercase
+
+                  tracking-[0.16em]
+
+                  font-bold
+
+                  text-gray-300
+                "
+              >
+                {slide.eyebrow}
+              </span>
             </div>
 
             {/* ==================================================
-                H1
+                HEADING
             ================================================== */}
 
             <h1
               id="hero-heading"
-              className={`font-black tracking-[-0.04em] ${
-                d ? "text-white" : "text-slate-950"
-              }`}
+              className="
+                max-w-[620px]
+
+                text-[36px]
+                min-[390px]:text-[39px]
+                sm:text-[48px]
+                lg:text-[52px]
+                xl:text-[57px]
+
+                leading-[1.03]
+                sm:leading-[1.04]
+
+                tracking-[-0.035em]
+
+                font-semibold
+
+                text-white
+              "
             >
-              <span
-                className="
-                  block
-                  text-[34px]
-                  min-[390px]:text-[37px]
-                  sm:text-[54px]
-                  lg:text-[56px]
-                  xl:text-[64px]
-                  leading-[1]
-                "
-              >
-                We Build
-              </span>
-
-              {/* ANIMATED WORD */}
-
-              <span
-                className="
-                  flex items-center
-                  justify-center lg:justify-start
-
-                  h-[48px]
-                  min-[390px]:h-[52px]
-                  sm:h-[78px]
-                  lg:h-[82px]
-                  xl:h-[90px]
-
-                  overflow-hidden
-                "
-              >
-                <span
-                  className="
-                    inline-flex items-center
-                    whitespace-nowrap
-
-                    text-[27px]
-                    min-[390px]:text-[30px]
-                    sm:text-[46px]
-                    lg:text-[48px]
-                    xl:text-[56px]
-
-                    leading-none
-                    text-purple-600
-                  "
-                >
-                  {displayed}
-
-                  <span
-                    aria-hidden="true"
-                    className="
-                      inline-block
-                      w-[2px] sm:w-[3px]
-                      h-[0.82em]
-                      ml-1
-                      bg-purple-500
-                      animate-pulse
-                    "
-                  />
-                </span>
-              </span>
-
-              <span
-                className={`block
-                  max-w-[360px] sm:max-w-none
-                  mx-auto lg:mx-0
-
-                  text-[30px]
-                  min-[390px]:text-[33px]
-                  sm:text-[50px]
-                  lg:text-[52px]
-                  xl:text-[60px]
-
-                  leading-[0.98]
-                  sm:leading-[1.02]
-
-                  ${
-                    d
-                      ? "text-gray-300"
-                      : "text-slate-700"
-                  }`}
-              >
-                for Growing Businesses
-              </span>
+              {slide.title}
             </h1>
 
             {/* ==================================================
@@ -424,538 +472,446 @@ const Hero = ({ isDark = true }) => {
             ================================================== */}
 
             <p
-              className={`mt-4 sm:mt-6
-                text-[12px]
-                min-[390px]:text-[13px]
-                sm:text-base
-                lg:text-[17px]
+              className="
+                mt-5
+                sm:mt-6
+
+                max-w-[550px]
+
+                text-[13px]
+                sm:text-[15px]
+                lg:text-[16px]
+
                 leading-[1.75]
-                sm:leading-7
-                max-w-[680px]
-                mx-auto lg:mx-0
 
-                ${
-                  d
-                    ? "text-gray-400"
-                    : "text-slate-600"
-                }`}
+                text-gray-300
+              "
             >
-              DevZore builds{" "}
-              <strong
-                className={`font-semibold ${
-                  d
-                    ? "text-gray-200"
-                    : "text-slate-800"
-                }`}
-              >
-                custom software, web applications,
-                mobile apps, SaaS products and
-                AI-enabled solutions
-              </strong>{" "}
-              for startups and growing businesses.
-              We turn business requirements into
-              practical, scalable digital products.
-            </p>
-
-            <p
-              className={`mt-2 sm:mt-3
-                text-[10px]
-                min-[390px]:text-[11px]
-                sm:text-sm
-                leading-[1.7]
-                sm:leading-6
-                max-w-[680px]
-                mx-auto lg:mx-0
-
-                ${
-                  d
-                    ? "text-gray-500"
-                    : "text-slate-500"
-                }`}
-            >
-              From React and MERN stack development to
-              backend APIs, Generative AI integrations,
-              UI/UX, e-commerce and ongoing technical
-              support, our team supports projects from
-              planning and development through deployment.
+              {slide.description}
             </p>
 
             {/* ==================================================
-                SERVICE CHIPS
+                CTA BUTTONS
             ================================================== */}
 
             <div
               className="
-                grid grid-cols-2
-                sm:flex sm:flex-wrap
-                gap-1.5 sm:gap-2
-                justify-center lg:justify-start
-                mt-4 sm:mt-6
-                max-w-[420px] sm:max-w-none
-                mx-auto lg:mx-0
+                mt-7
+                sm:mt-8
+
+                flex
+                flex-wrap
+                items-center
+
+                gap-3
               "
             >
-              {services.map((service) => (
-                <Link
-                  key={service.path}
-                  to={service.path}
-                  onClick={scrollTop}
-                  className={`group
-                    inline-flex items-center
-                    justify-center sm:justify-start
-                    gap-1.5
+              {/* START PROJECT */}
 
-                    px-2 py-1.5
-                    sm:px-3 sm:py-2
-
-                    rounded-lg
-                    text-[8px]
-                    min-[390px]:text-[9px]
-                    sm:text-[11px]
-                    font-semibold
-                    border
-
-                    transition-all duration-200
-                    hover:-translate-y-0.5
-
-                    ${
-                      d
-                        ? "bg-white/[0.035] border-white/[0.08] text-gray-400 hover:text-white hover:border-purple-500/30"
-                        : "bg-slate-50 border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-white hover:border-purple-300"
-                    }`}
-                >
-                  <span
-                    className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full shrink-0 ${service.dot}`}
-                  />
-
-                  <span className="text-purple-500 shrink-0">
-                    {service.icon}
-                  </span>
-
-                  <span className="truncate">
-                    {service.label}
-                  </span>
-                </Link>
-              ))}
-            </div>
-
-            {/* ==================================================
-                CTA
-            ================================================== */}
-
-            <div
-              className="
-                flex flex-col sm:flex-row flex-wrap
-                gap-2 sm:gap-2.5
-                justify-center lg:justify-start
-                mt-4 sm:mt-6
-                max-w-[420px] sm:max-w-none
-                mx-auto lg:mx-0
-              "
-            >
               <Link
                 to="/contact"
                 onClick={scrollTop}
                 className="
-                  inline-flex items-center justify-center gap-2
-                  w-full sm:w-auto
-                  px-5 sm:px-6
-                  py-2.5 sm:py-3
-                  bg-purple-600
-                  hover:bg-purple-700
-                  text-white
-                  font-bold
-                  rounded-lg sm:rounded-xl
-                  text-[11px] sm:text-sm
-                  transition-all duration-200
-                  hover:shadow-[0_0_24px_rgba(124,58,237,0.30)]
+                  group
+
+                  inline-flex
+                  items-center
+                  justify-center
+
+                  gap-2.5
+
+                  px-5
+                  sm:px-6
+
+                  py-3
+                  sm:py-3.5
+
+                  rounded-lg
+
+                  bg-white
+
+                  text-[#06101a]
+
+                  text-[12px]
+                  sm:text-[13px]
+
+                  font-semibold
+
+                  shadow-lg
+                  shadow-black/10
+
+                  transition-all
+                  duration-200
+
+                  hover:bg-gray-100
                   hover:-translate-y-0.5
                 "
               >
-                Start Your Project
-                <ArrowRight size={14} />
+                Start a Project
+
+                <ArrowRight
+                  size={14}
+                  className="
+                    transition-transform
+                    duration-200
+
+                    group-hover:translate-x-0.5
+                  "
+                />
               </Link>
 
-              <a
-                href="https://wa.me/923348004300?text=Hi%20DevZore%21%20I%20want%20to%20discuss%20a%20software%20development%20project."
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Discuss your project with DevZore on WhatsApp"
-                className="
-                  inline-flex items-center justify-center gap-2
-                  w-full sm:w-auto
-                  px-5 sm:px-6
-                  py-2.5 sm:py-3
-
-                  border border-[#25D366]/30
-                  bg-[#25D366]/10
-                  text-[#25D366]
-
-                  font-bold
-                  rounded-lg sm:rounded-xl
-                  text-[11px] sm:text-sm
-
-                  transition-all duration-200
-                  hover:bg-[#25D366]/15
-                  hover:-translate-y-0.5
-                "
-              >
-                <svg
-                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.888-11.888 3.176 0 6.161 1.237 8.404 3.481 2.245 2.244 3.481 5.229 3.481 8.405 0 6.556-5.332 11.888-11.888 11.888-2.022 0-4.005-.515-5.755-1.492l-6.229 1.715zm6.726-2.845c1.516.896 3.19 1.37 4.908 1.37 5.405 0 9.803-4.398 9.803-9.803 0-2.62-1.021-5.082-2.875-6.934-1.854-1.853-4.314-2.873-6.931-2.873-5.405 0-9.803 4.398-9.803 9.803 0 1.932.569 3.812 1.644 5.448l-.991 3.619 3.703-.975zm11.332-6.848c-.287-.144-1.701-.84-1.968-.937-.267-.097-.461-.144-.656.144-.195.288-.755.937-.925 1.129-.17.192-.34.215-.627.072-.287-.144-1.213-.447-2.311-1.427-.854-.761-1.43-1.701-1.597-1.988-.167-.288-.018-.444.126-.587.13-.13.287-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.656-1.583-.899-2.16-.236-.571-.475-.494-.656-.504l-.56-.01c-.192 0-.504.072-.768.36-.264.288-1.008.985-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.031 3.102 4.921 4.352.688.297 1.225.474 1.643.606.692.219 1.322.188 1.82.114.555-.083 1.701-.696 1.943-1.368.243-.672.243-1.248.17-1.368-.073-.12-.267-.192-.553-.336z" />
-                </svg>
-
-                WhatsApp Us
-              </a>
+              {/* EXPLORE SERVICE */}
 
               <Link
-                to="/allservices"
+                to={slide.path}
                 onClick={scrollTop}
-                className={`inline-flex items-center justify-center gap-2
-                  w-full sm:w-auto
-                  px-5 sm:px-6
-                  py-2.5 sm:py-3
-                  border
-                  font-bold
-                  rounded-lg sm:rounded-xl
-                  text-[11px] sm:text-sm
-                  transition-all duration-200
-                  hover:-translate-y-0.5
+                className="
+                  group
 
-                  ${
-                    d
-                      ? "border-white/10 text-gray-300 hover:bg-white/[0.04] hover:border-white/20"
-                      : "border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300"
-                  }`}
+                  inline-flex
+                  items-center
+                  justify-center
+
+                  gap-2
+
+                  px-4
+                  py-3
+
+                  text-[11px]
+                  sm:text-[12px]
+
+                  font-semibold
+
+                  text-gray-200
+
+                  transition-colors
+                  duration-200
+
+                  hover:text-white
+                "
               >
-                View Services
-              </Link>
-            </div>
+                {slide.buttonText}
 
-            {/* ==================================================
-                TRUST SIGNALS
-            ================================================== */}
-
-            <div
-              className="
-                hidden sm:flex
-                flex-wrap
-                gap-x-5 gap-y-2
-                justify-center lg:justify-start
-                mt-6
-              "
-            >
-              {trustItems.map((item) => (
-                <span
-                  key={item}
-                  className={`inline-flex items-center gap-1.5
-                    text-[11px] font-medium
-                    ${
-                      d
-                        ? "text-gray-500"
-                        : "text-slate-500"
-                    }`}
-                >
-                  <CheckCircle
-                    size={12}
-                    className="text-purple-500 shrink-0"
-                  />
-
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* ==================================================
-              RIGHT PANEL
-          ================================================== */}
-
-          <div className="hidden lg:block min-w-0">
-            <div
-              className={`relative rounded-[28px] border
-                p-5 xl:p-6
-                shadow-2xl
-
-                ${
-                  d
-                    ? "bg-white/[0.025] border-white/[0.08] shadow-black/20"
-                    : "bg-slate-50 border-slate-200 shadow-slate-200/50"
-                }`}
-            >
-              {/* BROWSER BAR */}
-
-              <div
-                className={`flex items-center gap-2
-                  mb-5 pb-4 border-b
-
-                  ${
-                    d
-                      ? "border-white/[0.07]"
-                      : "border-slate-200"
-                  }`}
-              >
-                <div
-                  className="flex gap-1.5"
-                  aria-hidden="true"
-                >
-                  <span className="w-3 h-3 rounded-full bg-red-500" />
-                  <span className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <span className="w-3 h-3 rounded-full bg-green-500" />
-                </div>
-
-                <span
-                  className={`text-[10px] xl:text-[11px]
-                    font-mono ml-2
-
-                    ${
-                      d
-                        ? "text-gray-500"
-                        : "text-slate-400"
-                    }`}
-                >
-                  devzore.com — digital product engineering
-                </span>
-              </div>
-
-              {/* ==================================================
-                  CAPABILITIES
-              ================================================== */}
-
-              <div className="grid grid-cols-2 gap-3 mb-5">
-                {capabilities.map((item) => (
-                  <div
-                    key={item.title}
-                    className={`p-4 rounded-xl border
-                      transition-all duration-200
-                      hover:-translate-y-0.5
-
-                      ${
-                        d
-                          ? "bg-white/[0.025] border-white/[0.07] hover:border-purple-500/20"
-                          : "bg-white border-slate-200 hover:border-purple-200"
-                      }`}
-                  >
-                    <div
-                      className={`w-9 h-9
-                        rounded-lg
-                        flex items-center justify-center
-                        mb-3
-
-                        ${
-                          d
-                            ? "bg-purple-600/10 text-purple-400"
-                            : "bg-purple-50 text-purple-600"
-                        }`}
-                    >
-                      {item.icon}
-                    </div>
-
-                    <h2
-                      className={`text-[13px] font-bold mb-1 ${
-                        d
-                          ? "text-white"
-                          : "text-slate-900"
-                      }`}
-                    >
-                      {item.title}
-                    </h2>
-
-                    <p
-                      className={`text-[10px] leading-relaxed ${
-                        d
-                          ? "text-gray-500"
-                          : "text-slate-500"
-                      }`}
-                    >
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {/* ==================================================
-                  SERVICES LIST
-              ================================================== */}
-
-              <div
-                className={`mb-2.5
-                  text-[9px]
-                  uppercase
-                  tracking-[0.18em]
-                  font-bold
-
-                  ${
-                    d
-                      ? "text-gray-600"
-                      : "text-slate-400"
-                  }`}
-              >
-                Core Development Services
-              </div>
-
-              <div className="space-y-1">
-                {panelServices.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={scrollTop}
-                    className={`group
-                      flex items-center gap-3
-                      px-3 py-2.5
-                      rounded-xl
-                      transition-all duration-200
-                      hover:-translate-y-0.5
-                      border border-transparent
-
-                      ${
-                        d
-                          ? "hover:bg-purple-600/10 hover:border-purple-500/20"
-                          : "hover:bg-purple-50 hover:border-purple-100"
-                      }`}
-                  >
-                    <span
-                      className={`w-2 h-2 rounded-full shrink-0 ${item.dot}`}
-                    />
-
-                    <div className="flex-grow min-w-0">
-                      <p
-                        className={`text-[12px]
-                          font-semibold truncate
-                          transition-colors
-                          group-hover:text-purple-500
-
-                          ${
-                            d
-                              ? "text-gray-200"
-                              : "text-slate-800"
-                          }`}
-                      >
-                        {item.name}
-                      </p>
-
-                      <p
-                        className={`text-[9px] truncate ${
-                          d
-                            ? "text-gray-500"
-                            : "text-slate-500"
-                        }`}
-                      >
-                        {item.tech}
-                      </p>
-                    </div>
-
-                    <ArrowRight
-                      size={12}
-                      className={`shrink-0
-                        transition-all duration-200
-                        opacity-0
-                        group-hover:opacity-100
-                        group-hover:translate-x-0.5
-
-                        ${
-                          d
-                            ? "text-purple-400"
-                            : "text-purple-600"
-                        }`}
-                    />
-                  </Link>
-                ))}
-              </div>
-
-              {/* ==================================================
-                  WORLDWIDE
-              ================================================== */}
-
-              <div
-                className={`mt-4 pt-4 border-t
-                  flex items-center
-                  justify-between gap-4
-
-                  ${
-                    d
-                      ? "border-white/[0.07]"
-                      : "border-slate-200"
-                  }`}
-              >
-                <div className="flex items-center gap-2 min-w-0">
-                  <Globe2
-                    size={13}
-                    className="text-green-500 shrink-0"
-                  />
-
-                  <span
-                    className={`text-[10px] font-semibold ${
-                      d
-                        ? "text-gray-400"
-                        : "text-slate-600"
-                    }`}
-                  >
-                    Available for worldwide remote projects
-                  </span>
-                </div>
-
-                <Link
-                  to="/contact"
-                  onClick={scrollTop}
+                <ArrowRight
+                  size={13}
                   className="
-                    inline-flex items-center gap-1
-                    text-[10px]
-                    font-bold
-                    text-purple-500
-                    hover:text-purple-400
-                    transition-colors
-                    whitespace-nowrap
+                    transition-transform
+                    duration-200
+
+                    group-hover:translate-x-1
                   "
-                >
-                  Start a Project
-                  <ArrowRight size={10} />
-                </Link>
-              </div>
-
-              {/* ==================================================
-                  QUALITY NOTE
-              ================================================== */}
-
-              <div
-                className={`mt-3 p-3 rounded-xl
-                  flex items-start gap-3
-
-                  ${
-                    d
-                      ? "bg-white/[0.02]"
-                      : "bg-white"
-                  }`}
-              >
-                <ShieldCheck
-                  size={16}
-                  className="text-purple-500 shrink-0 mt-0.5"
                 />
-
-                <p
-                  className={`text-[9px]
-                    xl:text-[10px]
-                    leading-relaxed
-
-                    ${
-                      d
-                        ? "text-gray-500"
-                        : "text-slate-500"
-                    }`}
-                >
-                  Built with maintainable architecture,
-                  responsive interfaces, security-conscious
-                  development and practical business
-                  requirements in mind.
-                </p>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
       </div>
+
+      {/* ==================================================
+          BOTTOM SLIDER CONTROLS
+      ================================================== */}
+
+      <div
+        className="
+          absolute
+          z-20
+
+          left-0
+          right-0
+          bottom-0
+        "
+      >
+        <div
+          className="
+            max-w-[1440px]
+            mx-auto
+
+            px-5
+            sm:px-7
+            lg:px-12
+            xl:px-16
+
+            pb-5
+            sm:pb-7
+            lg:pb-8
+          "
+        >
+          <div
+            className="
+              flex
+              items-end
+              justify-between
+
+              gap-6
+            "
+          >
+            {/* ==================================================
+                PROGRESS INDICATORS
+            ================================================== */}
+
+            <div>
+              <p
+                className="
+                  hidden
+                  sm:block
+
+                  mb-3
+
+                  text-[9px]
+
+                  uppercase
+                  tracking-[0.18em]
+
+                  font-bold
+
+                  text-gray-500
+                "
+              >
+                DevZore Capabilities
+              </p>
+
+              <div
+                className="
+                  flex
+                  items-center
+                  gap-2
+                "
+              >
+                {slides.map((item, index) => (
+                  <button
+                    key={item.eyebrow}
+                    type="button"
+                    onClick={() => goToSlide(index)}
+                    aria-label={`Show ${item.eyebrow}`}
+                    aria-current={
+                      activeSlide === index
+                        ? "true"
+                        : undefined
+                    }
+                    className={`
+                      relative
+
+                      h-[3px]
+
+                      rounded-full
+
+                      transition-all
+                      duration-300
+
+                      ${
+                        activeSlide === index
+                          ? "w-9 sm:w-12 bg-white"
+                          : "w-4 sm:w-6 bg-white/25 hover:bg-white/50"
+                      }
+                    `}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* ==================================================
+                PREVIOUS / NEXT
+            ================================================== */}
+
+            <div
+              className="
+                flex
+                items-center
+                gap-2
+              "
+            >
+              <button
+                type="button"
+                onClick={previousSlide}
+                aria-label="Previous hero slide"
+                className="
+                  w-10
+                  h-10
+
+                  sm:w-11
+                  sm:h-11
+
+                  rounded-full
+
+                  flex
+                  items-center
+                  justify-center
+
+                  border
+                  border-white/15
+
+                  bg-black/20
+
+                  backdrop-blur-md
+
+                  text-gray-300
+
+                  transition-all
+                  duration-200
+
+                  hover:bg-white
+                  hover:border-white
+                  hover:text-black
+                "
+              >
+                <ArrowLeft size={17} />
+              </button>
+
+              <button
+                type="button"
+                onClick={nextSlide}
+                aria-label="Next hero slide"
+                className="
+                  w-10
+                  h-10
+
+                  sm:w-11
+                  sm:h-11
+
+                  rounded-full
+
+                  flex
+                  items-center
+                  justify-center
+
+                  border
+                  border-white/15
+
+                  bg-black/20
+
+                  backdrop-blur-md
+
+                  text-white
+
+                  transition-all
+                  duration-200
+
+                  hover:bg-white
+                  hover:border-white
+                  hover:text-black
+                "
+              >
+                <ArrowRight size={17} />
+              </button>
+            </div>
+          </div>
+
+          {/* ==================================================
+              DESKTOP SLIDE LABELS
+          ================================================== */}
+
+          <div
+            className="
+              hidden
+              lg:grid
+
+              grid-cols-4
+
+              mt-5
+              pt-4
+
+              border-t
+              border-white/10
+            "
+          >
+            {slides.map((item, index) => {
+              const active = activeSlide === index;
+
+              return (
+                <button
+                  key={item.eyebrow}
+                  type="button"
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Go to ${item.eyebrow}`}
+                  className={`
+                    group
+
+                    text-left
+
+                    pr-5
+
+                    transition-all
+                    duration-300
+
+                    ${
+                      active
+                        ? "opacity-100"
+                        : "opacity-40 hover:opacity-75"
+                    }
+                  `}
+                >
+                  <span
+                    className="
+                      block
+
+                      text-[8px]
+
+                      font-mono
+
+                      text-gray-500
+
+                      mb-1
+                    "
+                  >
+                    0{index + 1}
+                  </span>
+
+                  <span
+                    className={`
+                      block
+
+                      text-[10px]
+                      xl:text-[11px]
+
+                      font-semibold
+
+                      transition-colors
+
+                      ${
+                        active
+                          ? "text-white"
+                          : "text-gray-400 group-hover:text-gray-200"
+                      }
+                    `}
+                  >
+                    {item.eyebrow
+                      .toLowerCase()
+                      .replace(/\b\w/g, (character) =>
+                        character.toUpperCase()
+                      )}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* ==================================================
+          LOCAL HERO ANIMATION
+      ================================================== */}
+
+      <style>
+        {`
+          @keyframes heroFade {
+            0% {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+
+            100% {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .animate-\\[heroFade_\\.7s_ease-out\\] {
+              animation: none !important;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 };

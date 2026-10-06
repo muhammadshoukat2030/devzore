@@ -1,244 +1,611 @@
 import api from "./api";
 
-// ======================================================
-// CONSTANTS
-// ======================================================
+// CONFIG
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
-const MAX_WIDTH = 1920;
-const MAX_HEIGHT = 1920;
-const DEFAULT_QUALITY = 0.82;
 
-// ======================================================
-// CREATE SAFE FILE NAME
-// ======================================================
+const MAX_IMAGE_WIDTH = 1600;
+const MAX_IMAGE_HEIGHT = 1600;
 
-const createSafeFileName = (fileName = "image") => {
-  const nameWithoutExtension = fileName.replace(/\.[^/.]+$/, "");
+const MIN_IMAGE_WIDTH = 640;
+const MIN_IMAGE_HEIGHT = 640;
+
+const TARGET_IMAGE_SIZE = 70 * 1024; // ~70 KB
+const MAX_TARGET_SIZE = 80 * 1024; // ~80 KB
+
+const START_QUALITY = 0.82;
+const MIN_QUALITY = 0.38;
+const QUALITY_STEP = 0.07;
+
+const RESIZE_STEP = 0.88;
+
+const MAX_COMPRESSION_ATTEMPTS = 20;
+
+const OUTPUT_MIME_TYPE = "image/webp";
+const OUTPUT_EXTENSION = "webp";
+
+// SUPPORTED TYPES
+
+const SUPPORTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+  "image/avif",
+];
+
+// SAFE FILE NAME
+
+const createSafeFileName = (
+  fileName = "image",
+  extension = OUTPUT_EXTENSION
+) => {
+  const nameWithoutExtension = String(fileName)
+    .replace(/\.[^/.]+$/, "")
+    .trim();
 
   const safeName = nameWithoutExtension
-    .trim()
     .toLowerCase()
     .replace(/[^a-z0-9_-]+/g, "-")
     .replace(/-+/g, "-")
     .replace(/^-|-$/g, "");
 
-  return `${safeName || "image"}.jpg`;
+  return `${safeName || "image"}.${extension}`;
 };
 
-// ======================================================
-// VALIDATE IMAGE
-// ======================================================
+// VALIDATION
 
 const validateImage = (file) => {
   if (!file) {
     throw new Error("Please select an image.");
   }
 
+  if (!(file instanceof File) && !(file instanceof Blob)) {
+    throw new Error("Invalid image file.");
+  }
+
   if (!file.type || !file.type.startsWith("image/")) {
     throw new Error("Only image files are allowed.");
   }
 
+  if (file.type === "image/svg+xml") {
+    throw new Error(
+      "SVG images are not supported. Please use JPG, PNG, WebP or AVIF."
+    );
+  }
+
+  if (
+    file.type &&
+    !SUPPORTED_IMAGE_TYPES.includes(file.type.toLowerCase())
+  ) {
+    throw new Error(
+      "Unsupported image format. Please use JPG, PNG, WebP or AVIF."
+    );
+  }
+
+  if (!file.size) {
+    throw new Error("The selected image is empty.");
+  }
+
   if (file.size > MAX_FILE_SIZE) {
-    throw new Error("Image must be smaller than 5MB.");
+    throw new Error(
+      "Image must be 5 MB or smaller."
+    );
   }
 
   return true;
 };
 
-// ======================================================
-// COMPRESS IMAGE
-// ======================================================
+// LOAD IMAGE
 
-const compressImage = async (
-  file,
-  quality = DEFAULT_QUALITY
-) => {
+const loadImage = (file) => {
   return new Promise((resolve, reject) => {
-    if (!file) {
-      reject(new Error("Please select an image."));
-      return;
-    }
+    const objectUrl = URL.createObjectURL(file);
 
-    const reader = new FileReader();
+    const image = new Image();
 
-    reader.onload = (event) => {
-      const img = new Image();
+    image.onload = () => {
+      URL.revokeObjectURL(objectUrl);
 
-      img.onload = () => {
-        try {
-          let width = img.naturalWidth || img.width;
-          let height = img.naturalHeight || img.height;
-
-          if (!width || !height) {
-            reject(
-              new Error(
-                "Could not determine image dimensions."
-              )
-            );
-            return;
-          }
-
-          // ------------------------------------------
-          // Resize while preserving aspect ratio
-          // ------------------------------------------
-
-          const scale = Math.min(
-            MAX_WIDTH / width,
-            MAX_HEIGHT / height,
-            1
-          );
-
-          width = Math.round(width * scale);
-          height = Math.round(height * scale);
-
-          const canvas =
-            document.createElement("canvas");
-
-          canvas.width = width;
-          canvas.height = height;
-
-          const ctx = canvas.getContext("2d");
-
-          if (!ctx) {
-            reject(
-              new Error(
-                "Your browser could not process the selected image."
-              )
-            );
-            return;
-          }
-
-          // White background prevents transparency
-          // becoming black after JPEG conversion.
-          ctx.fillStyle = "#ffffff";
-          ctx.fillRect(0, 0, width, height);
-
-          ctx.drawImage(
-            img,
-            0,
-            0,
-            width,
-            height
-          );
-
-          // ------------------------------------------
-          // Convert to JPEG
-          // ------------------------------------------
-
-          canvas.toBlob(
-            (blob) => {
-              if (!blob) {
-                reject(
-                  new Error(
-                    "Image compression failed."
-                  )
-                );
-                return;
-              }
-
-              resolve(blob);
-            },
-            "image/jpeg",
-            quality
-          );
-        } catch (error) {
-          reject(
-            new Error(
-              error?.message ||
-                "Failed to process selected image."
-            )
-          );
-        }
-      };
-
-      img.onerror = () => {
-        reject(
-          new Error(
-            "The selected image could not be loaded."
-          )
-        );
-      };
-
-      if (!event.target?.result) {
-        reject(
-          new Error(
-            "Failed to read the selected image."
-          )
-        );
-        return;
-      }
-
-      img.src = event.target.result;
+      resolve(image);
     };
 
-    reader.onerror = () => {
+    image.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+
       reject(
         new Error(
-          "Failed to read the selected image."
+          "The selected image could not be loaded."
         )
       );
     };
 
-    reader.readAsDataURL(file);
+    image.src = objectUrl;
   });
 };
 
-// ======================================================
-// UPLOAD IMAGE
-// ======================================================
+// INITIAL DIMENSIONS
 
-const uploadImage = async (file) => {
-  try {
-    // ------------------------------------------
-    // Validate
-    // ------------------------------------------
+const calculateInitialDimensions = (
+  originalWidth,
+  originalHeight
+) => {
+  const scale = Math.min(
+    MAX_IMAGE_WIDTH / originalWidth,
+    MAX_IMAGE_HEIGHT / originalHeight,
+    1
+  );
 
-    validateImage(file);
+  return {
+    width: Math.max(
+      1,
+      Math.round(originalWidth * scale)
+    ),
 
-    console.log("📷 Selected image:", {
-      name: file.name,
-      type: file.type,
-      size: file.size,
+    height: Math.max(
+      1,
+      Math.round(originalHeight * scale)
+    ),
+  };
+};
+
+// CANVAS
+
+const createCanvas = (
+  image,
+  width,
+  height
+) => {
+  const canvas =
+    document.createElement("canvas");
+
+  canvas.width = width;
+  canvas.height = height;
+
+  const context =
+    canvas.getContext("2d", {
+      alpha: true,
     });
 
-    // ------------------------------------------
-    // Compress image
-    // ------------------------------------------
+  if (!context) {
+    throw new Error(
+      "Your browser could not process the selected image."
+    );
+  }
 
-    const compressedBlob =
-      await compressImage(
-        file,
-        DEFAULT_QUALITY
+  /*
+   * Better resize quality.
+   */
+  context.imageSmoothingEnabled = true;
+  context.imageSmoothingQuality = "high";
+
+  context.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+  context.drawImage(
+    image,
+    0,
+    0,
+    width,
+    height
+  );
+
+  return canvas;
+};
+
+// CANVAS -> BLOB
+
+const canvasToBlob = (
+  canvas,
+  mimeType,
+  quality
+) => {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(
+      (blob) => {
+        if (!blob) {
+          reject(
+            new Error(
+              "Image compression failed."
+            )
+          );
+
+          return;
+        }
+
+        resolve(blob);
+      },
+
+      mimeType,
+      quality
+    );
+  });
+};
+
+// INTERNAL ADAPTIVE COMPRESSION
+
+const compressImageWithMetadata = async (
+  file
+) => {
+  validateImage(file);
+
+  const image =
+    await loadImage(file);
+
+  const originalWidth =
+    image.naturalWidth ||
+    image.width;
+
+  const originalHeight =
+    image.naturalHeight ||
+    image.height;
+
+  if (
+    !originalWidth ||
+    !originalHeight
+  ) {
+    throw new Error(
+      "Could not determine image dimensions."
+    );
+  }
+
+  let { width, height } =
+    calculateInitialDimensions(
+      originalWidth,
+      originalHeight
+    );
+
+  let quality = START_QUALITY;
+  let blob = null;
+
+  let attempts = 0;
+
+  while (
+    attempts <
+    MAX_COMPRESSION_ATTEMPTS
+  ) {
+    attempts += 1;
+
+    const canvas =
+      createCanvas(
+        image,
+        width,
+        height
       );
 
-    console.log("📦 Compressed image:", {
-      originalSize: file.size,
-      compressedSize: compressedBlob.size,
-      type: compressedBlob.type,
-    });
+    blob = await canvasToBlob(
+      canvas,
+      OUTPUT_MIME_TYPE,
+      quality
+    );
 
-    // ------------------------------------------
-    // Create upload file
-    // ------------------------------------------
-
-    const safeFileName =
-      createSafeFileName(file.name);
-
-    const compressedFile = new File(
-      [compressedBlob],
-      safeFileName,
+    console.log(
+      `📦 Compression attempt ${attempts}:`,
       {
-        type: "image/jpeg",
-        lastModified: Date.now(),
+        sizeKB: Math.round(
+          blob.size / 1024
+        ),
+
+        width,
+        height,
+
+        quality: Number(
+          quality.toFixed(2)
+        ),
       }
     );
 
-    // ------------------------------------------
-    // FormData
-    // ------------------------------------------
+    /*
+     * Ideal result reached.
+     */
+    if (
+      blob.size <=
+      TARGET_IMAGE_SIZE
+    ) {
+      break;
+    }
 
-    const formData = new FormData();
+    /*
+     * First reduce quality.
+     */
+    if (
+      quality - QUALITY_STEP >=
+      MIN_QUALITY
+    ) {
+      quality -= QUALITY_STEP;
+
+      continue;
+    }
+
+    /*
+     * If quality has already reached minimum,
+     * reduce dimensions slightly.
+     */
+    const canResizeFurther =
+      width > MIN_IMAGE_WIDTH ||
+      height > MIN_IMAGE_HEIGHT;
+
+    if (canResizeFurther) {
+      const nextWidth = Math.max(
+        MIN_IMAGE_WIDTH,
+        Math.round(
+          width * RESIZE_STEP
+        )
+      );
+
+      const nextHeight = Math.max(
+        MIN_IMAGE_HEIGHT,
+        Math.round(
+          height * RESIZE_STEP
+        )
+      );
+
+      /*
+       * Preserve ratio if one dimension has
+       * already reached minimum.
+       */
+      const ratio =
+        originalWidth /
+        originalHeight;
+
+      if (
+        originalWidth >=
+        originalHeight
+      ) {
+        width = nextWidth;
+
+        height = Math.max(
+          1,
+          Math.round(
+            width / ratio
+          )
+        );
+      } else {
+        height = nextHeight;
+
+        width = Math.max(
+          1,
+          Math.round(
+            height * ratio
+          )
+        );
+      }
+
+      /*
+       * After resize we can slightly restore
+       * quality and try again.
+       */
+      quality = Math.min(
+        0.72,
+        START_QUALITY
+      );
+
+      continue;
+    }
+
+    /*
+     * Nothing more useful to reduce.
+     */
+    break;
+  }
+
+  if (!blob) {
+    throw new Error(
+      "Image compression failed."
+    );
+  }
+
+  const finalSizeKB =
+    blob.size / 1024;
+
+  if (
+    blob.size >
+    MAX_TARGET_SIZE
+  ) {
+    console.warn(
+      "⚠️ Image is still above preferred 80 KB after compression:",
+      `${finalSizeKB.toFixed(1)} KB`
+    );
+  } else {
+    console.log(
+      "✅ Image compressed below preferred limit:",
+      `${finalSizeKB.toFixed(1)} KB`
+    );
+  }
+
+  return {
+    blob,
+
+    width,
+    height,
+
+    size: blob.size,
+
+    quality: Number(
+      quality.toFixed(2)
+    ),
+
+    format: OUTPUT_EXTENSION,
+
+    mimeType:
+      OUTPUT_MIME_TYPE,
+
+    originalWidth,
+    originalHeight,
+
+    originalSize:
+      file.size,
+
+    attempts,
+  };
+};
+
+// PUBLIC COMPRESS FUNCTION
+
+const compressImage = async (
+  file
+) => {
+  const result =
+    await compressImageWithMetadata(
+      file
+    );
+
+  return result.blob;
+};
+
+// GOOGLE DRIVE PUBLIC URL
+
+const createGoogleDrivePublicUrl = (
+  fileId
+) => {
+  if (!fileId) {
+    return "";
+  }
+
+  return `https://drive.google.com/uc?export=view&id=${encodeURIComponent(
+    fileId
+  )}`;
+};
+
+// GOOGLE DRIVE VIEW URL
+
+const createGoogleDriveViewUrl = (
+  fileId
+) => {
+  if (!fileId) {
+    return "";
+  }
+
+  return `https://drive.google.com/file/d/${encodeURIComponent(
+    fileId
+  )}/view`;
+};
+
+// GET STABLE IMAGE URL
+
+const getStableImageUrl = (
+  data
+) => {
+  if (!data) {
+    return "";
+  }
+
+  /*
+   * If backend explicitly returns a permanent
+   * public URL, always prefer it.
+   */
+  if (data.publicUrl) {
+    return data.publicUrl;
+  }
+
+  if (data.driveUrl) {
+    return data.driveUrl;
+  }
+
+  /*
+   * Google Drive file ID is enough to create
+   * a public browser-renderable URL.
+   *
+   * This avoids:
+   *
+   * /api/upload/image/:fileId
+   *
+   * for newly uploaded images.
+   *
+   * Therefore page rendering does not need the
+   * Google OAuth refresh token on every image load.
+   */
+  const fileId =
+    data.publicId ||
+    data.fileId;
+
+  if (fileId) {
+    return createGoogleDrivePublicUrl(
+      fileId
+    );
+  }
+
+  /*
+   * Fallback for compatibility with older backend.
+   */
+  return data.url || "";
+};
+
+// UPLOAD IMAGE
+
+const uploadImage = async (
+  file
+) => {
+  try {
+    validateImage(file);
+
+    console.log(
+      "================================="
+    );
+
+    console.log(
+      "📷 IMAGE SELECTED"
+    );
+
+    console.log({
+      name:
+        file.name ||
+        "image",
+
+      type:
+        file.type,
+
+      originalSizeKB:
+        Number(
+          (
+            file.size / 1024
+          ).toFixed(1)
+        ),
+    });
+
+    console.log(
+      "================================="
+    );
+
+    // Compress
+
+    const compressed =
+      await compressImageWithMetadata(
+        file
+      );
+
+    const safeFileName =
+      createSafeFileName(
+        file.name ||
+          "image",
+        OUTPUT_EXTENSION
+      );
+
+    // Build upload file
+
+    const compressedFile =
+      new File(
+        [compressed.blob],
+
+        safeFileName,
+
+        {
+          type:
+            OUTPUT_MIME_TYPE,
+
+          lastModified:
+            Date.now(),
+        }
+      );
+
+    // FormData
+
+    const formData =
+      new FormData();
 
     formData.append(
       "image",
@@ -246,26 +613,28 @@ const uploadImage = async (file) => {
     );
 
     console.log(
-      "🚀 Uploading image through authenticated API..."
+      "🚀 Uploading compressed image..."
     );
 
-    // IMPORTANT:
-    // Do NOT manually set Content-Type here.
-    //
-    // api.js will:
-    // 1. attach Authorization: Bearer <JWT>
-    // 2. allow browser to generate multipart boundary
+    /*
+     * IMPORTANT:
+     *
+     * Do not manually add:
+     *
+     * Content-Type: multipart/form-data
+     *
+     * Browser must create the multipart boundary.
+     *
+     * api.js should attach Authorization token.
+     */
+    const response =
+      await api.post(
+        "/upload/image",
+        formData
+      );
 
-    const response = await api.post(
-      "/upload/image",
-      formData
-    );
-
-    const data = response?.data;
-
-    // ------------------------------------------
-    // Validate server response
-    // ------------------------------------------
+    const data =
+      response?.data;
 
     if (!data?.success) {
       throw new Error(
@@ -274,38 +643,120 @@ const uploadImage = async (file) => {
       );
     }
 
-    if (!data?.url) {
+    const publicId =
+      data.publicId ||
+      data.fileId ||
+      "";
+
+    const stableUrl =
+      getStableImageUrl(data);
+
+    if (!stableUrl) {
       throw new Error(
-        "The server did not return an image URL."
+        "The server did not return enough information to create the image URL."
       );
     }
 
     console.log(
-      "✅ Image uploaded successfully:",
-      data
+      "================================="
+    );
+
+    console.log(
+      "✅ IMAGE UPLOADED SUCCESSFULLY"
+    );
+
+    console.log(
+      "Public ID:",
+      publicId
+    );
+
+    console.log(
+      "Stable URL:",
+      stableUrl
+    );
+
+    console.log(
+      "Final browser compression:",
+      `${(
+        compressed.size /
+        1024
+      ).toFixed(1)} KB`
+    );
+
+    console.log(
+      "================================="
     );
 
     return {
       success: true,
 
-      url: data.url,
+      /*
+       * IMPORTANT:
+       *
+       * AdminPostEditor should save this URL
+       * into coverImage/content.
+       *
+       * For Google Drive uploads this is a
+       * public Drive URL instead of backend
+       * OAuth image proxy URL.
+       */
+      url: stableUrl,
 
-      publicId:
-        data.publicId ||
-        data.filename ||
-        "",
+      publicUrl:
+        stableUrl,
+
+      publicId,
+
+      fileId:
+        publicId,
 
       width:
         data.width ||
-        null,
+        compressed.width,
 
       height:
         data.height ||
-        null,
+        compressed.height,
 
       format:
         data.format ||
-        "webp",
+        compressed.format,
+
+      mimeType:
+        data.mimeType ||
+        OUTPUT_MIME_TYPE,
+
+      size:
+        data.size ||
+        compressed.size,
+
+      localCompressedSize:
+        compressed.size,
+
+      originalSize:
+        file.size,
+
+      filename:
+        data.filename ||
+        safeFileName,
+
+      webViewLink:
+        data.webViewLink ||
+        createGoogleDriveViewUrl(
+          publicId
+        ),
+
+      downloadUrl:
+        data.downloadUrl ||
+        "",
+
+      /*
+       * Backend URL kept only for debugging /
+       * backward compatibility.
+       */
+      backendUrl:
+        data.url ||
+        "",
     };
   } catch (error) {
     console.error(
@@ -326,7 +777,8 @@ const uploadImage = async (file) => {
     }
 
     const message =
-      error?.response?.data?.message ||
+      error?.response?.data
+        ?.message ||
       error?.message ||
       "Image upload failed.";
 
@@ -345,31 +797,40 @@ const uploadImage = async (file) => {
   }
 };
 
-// ======================================================
 // DELETE IMAGE
-// ======================================================
 
-const deleteImage = async (publicId) => {
+const deleteImage = async (
+  publicId
+) => {
   try {
-    if (!publicId) {
+    const cleanPublicId =
+      String(
+        publicId || ""
+      ).trim();
+
+    if (!cleanPublicId) {
       throw new Error(
         "Image public ID is required."
       );
     }
 
     const encodedPublicId =
-      encodeURIComponent(publicId);
+      encodeURIComponent(
+        cleanPublicId
+      );
 
     console.log(
       "🗑️ Deleting image:",
-      publicId
+      cleanPublicId
     );
 
-    const response = await api.delete(
-      `/upload/image/${encodedPublicId}`
-    );
+    const response =
+      await api.delete(
+        `/upload/image/${encodedPublicId}`
+      );
 
-    const data = response?.data;
+    const data =
+      response?.data;
 
     if (!data?.success) {
       throw new Error(
@@ -390,7 +851,8 @@ const deleteImage = async (publicId) => {
     );
 
     const message =
-      error?.response?.data?.message ||
+      error?.response?.data
+        ?.message ||
       error?.message ||
       "Image deletion failed.";
 
@@ -401,47 +863,103 @@ const deleteImage = async (publicId) => {
       error?.response?.status ||
       null;
 
+    deleteError.data =
+      error?.response?.data ||
+      null;
+
     throw deleteError;
   }
 };
 
-// ======================================================
-// CREATE IMAGE PREVIEW
-// ======================================================
+// PREVIEW URL
 
-const createPreviewUrl = (file) => {
+const createPreviewUrl = (
+  file
+) => {
   if (!file) {
     return "";
   }
 
-  return URL.createObjectURL(file);
+  return URL.createObjectURL(
+    file
+  );
 };
 
-// ======================================================
-// REVOKE IMAGE PREVIEW
-// ======================================================
+// REVOKE PREVIEW
 
-const revokePreviewUrl = (url) => {
+const revokePreviewUrl = (
+  url
+) => {
   if (
     url &&
     typeof url === "string" &&
     url.startsWith("blob:")
   ) {
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(
+      url
+    );
   }
 };
 
-// ======================================================
+// FILE SIZE FORMATTER
+
+const formatFileSize = (
+  bytes
+) => {
+  if (
+    bytes === null ||
+    bytes === undefined ||
+    Number.isNaN(
+      Number(bytes)
+    )
+  ) {
+    return "";
+  }
+
+  const size =
+    Number(bytes);
+
+  if (size < 1024) {
+    return `${size} B`;
+  }
+
+  if (
+    size <
+    1024 * 1024
+  ) {
+    return `${(
+      size / 1024
+    ).toFixed(1)} KB`;
+  }
+
+  return `${(
+    size /
+    (1024 * 1024)
+  ).toFixed(2)} MB`;
+};
+
 // EXPORT
-// ======================================================
 
 const uploadService = {
-  compressImage,
   validateImage,
+
+  compressImage,
+
   uploadImage,
+
   deleteImage,
+
   createPreviewUrl,
+
   revokePreviewUrl,
+
+  createGoogleDrivePublicUrl,
+
+  createGoogleDriveViewUrl,
+
+  getStableImageUrl,
+
+  formatFileSize,
 };
 
 export default uploadService;

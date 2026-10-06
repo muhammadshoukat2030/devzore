@@ -2,114 +2,239 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
-  Smartphone,
   ArrowRight,
-  CheckCircle,
-  Shield,
-  Zap,
-  Code2,
-  Globe,
-  Plus,
-  Minus,
-  Wifi,
+  ArrowUpRight,
   Bell,
-  Lock,
-  Layers,
-  TrendingUp,
-  Store,
-  Database,
-  RefreshCw,
-  Users,
   BriefcaseBusiness,
+  Check,
+  CheckCircle2,
+  ChevronDown,
+  ChevronUp,
+  CircleCheck,
+  Code2,
+  Database,
+  Gauge,
+  Globe2,
+  Layers3,
+  LockKeyhole,
+  Mail,
+  Minus,
+  Palette,
+  Plus,
+  RefreshCw,
+  Rocket,
+  Send,
+  Server,
+  ShieldCheck,
+  ShoppingCart,
+  Smartphone,
+  Store,
+  TrendingUp,
+  Users,
+  Zap,
 } from "lucide-react";
 
-const MobileApp = ({ isDark }) => {
-  const d = isDark;
+/* =========================================================
+   MOBILE APP DEVELOPMENT
+========================================================= */
+
+const MobileApp = () => {
   const [activeFaq, setActiveFaq] = useState(null);
+  const [showAllFaqs, setShowAllFaqs] = useState(false);
 
-  /* =====================================================
-     WHAT WE BUILD
-  ===================================================== */
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    service: "Mobile App Development",
+    timeline: "",
+    message: "",
+  });
 
-  const whatWeBuild = [
-    {
-      icon: <BriefcaseBusiness size={20} />,
-      color: "purple",
-      title: "Business Mobile App Development",
-      desc: "Custom mobile apps for businesses including internal operations, field teams, inventory, customer management, sales workflows and other business processes.",
-    },
-    {
-      icon: <TrendingUp size={20} />,
-      color: "blue",
-      title: "Startup App Development",
-      desc: "Mobile application development for startups, from focused MVPs and early product releases to scalable applications prepared for future features and growth.",
-    },
-    {
-      icon: <Store size={20} />,
-      color: "green",
-      title: "E-Commerce & Marketplace Apps",
-      desc: "Mobile shopping applications with product catalogs, customer accounts, secure checkout workflows, payments, order tracking and push notifications.",
-    },
-    {
-      icon: <Bell size={20} />,
-      color: "orange",
-      title: "Booking & On-Demand Apps",
-      desc: "Custom applications for appointments, service booking, delivery workflows, customer requests and location-based mobile experiences.",
-    },
-    {
-      icon: <Users size={20} />,
-      color: "cyan",
-      title: "Community & Communication Apps",
-      desc: "Mobile products with user profiles, messaging, notifications, media sharing, feeds and other interactive communication features.",
-    },
-    {
-      icon: <Layers size={20} />,
-      color: "pink",
-      title: "Enterprise Mobile Applications",
-      desc: "Mobile software development for organisations that need secure workflows, role-based access, dashboards, integrations and business data on mobile devices.",
-    },
-  ];
+  /* =========================================================
+     GRID
+  ========================================================= */
 
-  /* =====================================================
+  const lightGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
+    backgroundSize: "48px 48px",
+  };
+
+  const darkGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+    backgroundSize: "52px 52px",
+  };
+
+  /* =========================================================
      MOBILE DEVELOPMENT SERVICES
-  ===================================================== */
+  ========================================================= */
 
   const mobileServices = [
     {
-      icon: <Smartphone size={18} />,
+      icon: <Smartphone size={20} />,
+      number: "01",
       title: "iOS App Development",
-      desc: "Cross-platform iOS and iPhone app development using React Native with platform-specific functionality where required.",
+      desc:
+        "Cross-platform iOS and iPhone app development using React Native with platform-specific functionality where required.",
+      points: [
+        "React Native development",
+        "iPhone-ready interfaces",
+        "Platform integrations",
+      ],
     },
     {
-      icon: <Smartphone size={18} />,
+      icon: <Smartphone size={20} />,
+      number: "02",
       title: "Android App Development",
-      desc: "Android application development for smartphones and supported devices with responsive interfaces and backend integrations.",
+      desc:
+        "Android application development for smartphones and supported devices with responsive interfaces and backend integrations.",
+      points: [
+        "Android applications",
+        "Responsive mobile UI",
+        "API integrations",
+      ],
     },
     {
-      icon: <Code2 size={18} />,
-      title: "Cross-Platform App Development",
-      desc: "Shared React Native architecture for iOS and Android that helps reduce duplicated development while supporting platform-specific requirements.",
+      icon: <Code2 size={20} />,
+      number: "03",
+      title: "Cross-Platform Development",
+      desc:
+        "Shared React Native architecture for iOS and Android that reduces duplicated development while supporting platform-specific requirements.",
+      points: [
+        "Shared codebase",
+        "iOS & Android",
+        "Maintainable architecture",
+      ],
     },
     {
-      icon: <Layers size={18} />,
-      title: "Mobile App Design & UI/UX",
-      desc: "Mobile UI/UX design including user flows, screen layouts, navigation, interaction patterns and interfaces designed around the product experience.",
+      icon: <Palette size={20} />,
+      number: "04",
+      title: "Mobile UI/UX Design",
+      desc:
+        "Mobile UI/UX design including user flows, screen layouts, navigation, interaction patterns and product-focused interfaces.",
+      points: [
+        "User flows",
+        "Mobile interfaces",
+        "Interaction design",
+      ],
     },
     {
-      icon: <Database size={18} />,
+      icon: <Database size={20} />,
+      number: "05",
       title: "Backend & API Integration",
-      desc: "Connect mobile applications with REST APIs, databases, authentication systems, payments and third-party services.",
+      desc:
+        "Connect mobile applications with REST APIs, databases, authentication systems, payments and third-party services.",
+      points: [
+        "REST APIs",
+        "Authentication",
+        "Database integration",
+      ],
     },
     {
-      icon: <RefreshCw size={18} />,
-      title: "App Maintenance & Improvements",
-      desc: "Continued mobile application development including bug fixes, compatibility updates, performance improvements and additional features.",
+      icon: <RefreshCw size={20} />,
+      number: "06",
+      title: "Maintenance & Improvements",
+      desc:
+        "Continued mobile application development including bug fixes, compatibility updates, performance improvements and additional features.",
+      points: [
+        "Bug fixes",
+        "Compatibility updates",
+        "Feature development",
+      ],
     },
   ];
 
-  /* =====================================================
+  /* =========================================================
+     WHAT WE BUILD
+  ========================================================= */
+
+  const whatWeBuild = [
+    {
+      icon: <BriefcaseBusiness size={18} />,
+      title: "Business Mobile Apps",
+      desc:
+        "Custom mobile applications for internal operations, field teams, inventory, customer management, sales workflows and other business processes.",
+    },
+    {
+      icon: <Rocket size={18} />,
+      title: "Startup Mobile Apps",
+      desc:
+        "Focused MVPs and scalable mobile products designed for startups that need to validate, launch and grow their product.",
+    },
+    {
+      icon: <ShoppingCart size={18} />,
+      title: "E-Commerce Apps",
+      desc:
+        "Mobile shopping applications with products, customer accounts, checkout workflows, payments, orders and notifications.",
+    },
+    {
+      icon: <Bell size={18} />,
+      title: "Booking & On-Demand Apps",
+      desc:
+        "Applications for appointments, service bookings, delivery workflows, customer requests and location-based experiences.",
+    },
+    {
+      icon: <Users size={18} />,
+      title: "Community Apps",
+      desc:
+        "Mobile products with profiles, messaging, notifications, media sharing, feeds and interactive communication features.",
+    },
+    {
+      icon: <Layers3 size={18} />,
+      title: "Enterprise Mobile Apps",
+      desc:
+        "Secure mobile software with role-based access, dashboards, integrations and business data for organisations and teams.",
+    },
+  ];
+
+  /* =========================================================
+     DEVELOPMENT STANDARDS
+  ========================================================= */
+
+  const standards = [
+    {
+      icon: <Smartphone size={19} />,
+      title: "Mobile-First Experience",
+      desc:
+        "Interfaces are planned specifically around mobile screens, touch interactions and common mobile user behaviour.",
+    },
+    {
+      icon: <Gauge size={19} />,
+      title: "Performance Focused",
+      desc:
+        "Rendering, application assets, API calls and common interactions are considered throughout development.",
+    },
+    {
+      icon: <LockKeyhole size={19} />,
+      title: "Security Conscious",
+      desc:
+        "Authentication, permissions, secure storage and appropriate data handling are considered where required.",
+    },
+    {
+      icon: <Server size={19} />,
+      title: "Backend Ready",
+      desc:
+        "Applications can connect with custom APIs, databases, authentication services and third-party platforms.",
+    },
+    {
+      icon: <Bell size={19} />,
+      title: "Notifications Ready",
+      desc:
+        "Push notification workflows can be integrated for relevant application events and customer communication.",
+    },
+    {
+      icon: <Code2 size={19} />,
+      title: "Maintainable Architecture",
+      desc:
+        "Reusable components and organised application structure make future improvements easier to manage.",
+    },
+  ];
+
+  /* =========================================================
      TECHNOLOGY STACK
-  ===================================================== */
+  ========================================================= */
 
   const techStack = [
     {
@@ -146,193 +271,239 @@ const MobileApp = ({ isDark }) => {
     },
   ];
 
-  /* =====================================================
+  /* =========================================================
      PROCESS
-  ===================================================== */
+  ========================================================= */
 
   const process = [
     {
-      n: "01",
-      title: "Discovery & App Planning",
-      desc: "We define your mobile app goals, target users, platforms, core features, integrations and technical requirements before development begins.",
+      number: "01",
+      title: "Discovery & Planning",
+      desc:
+        "We define your app goals, target users, platforms, core features, integrations and technical requirements.",
     },
     {
-      n: "02",
-      title: "Mobile UI/UX Design",
-      desc: "User flows, wireframes and mobile interfaces are planned around usability, product requirements and the expected user journey.",
+      number: "02",
+      title: "Mobile UI/UX",
+      desc:
+        "User flows, screen layouts and mobile interfaces are planned around usability and the expected product journey.",
     },
     {
-      n: "03",
-      title: "Mobile App Development",
-      desc: "The application is developed using structured components, frontend logic, APIs, authentication and required backend integrations.",
+      number: "03",
+      title: "App Development",
+      desc:
+        "The application is developed with structured components, frontend logic, APIs, authentication and required integrations.",
     },
     {
-      n: "04",
-      title: "Testing & Quality Assurance",
-      desc: "Important user flows, device behaviour, API integrations, authentication, notifications and application functionality are tested before release.",
+      number: "04",
+      title: "Testing",
+      desc:
+        "Important user flows, device behaviour, APIs, authentication, notifications and application functionality are reviewed.",
     },
     {
-      n: "05",
-      title: "App Store Release Preparation",
-      desc: "We prepare production builds and can assist with technical requirements for Apple App Store and Google Play submission.",
+      number: "05",
+      title: "Release Preparation",
+      desc:
+        "Production builds are prepared and we can assist with technical requirements for App Store and Google Play submission.",
     },
     {
-      n: "06",
-      title: "Maintenance & Iteration",
-      desc: "After launch, continued development, bug fixes, compatibility updates and additional features can be provided according to project requirements.",
+      number: "06",
+      title: "Support & Iteration",
+      desc:
+        "After launch, continued development, fixes, compatibility updates and additional features can be provided.",
     },
   ];
 
-  /* =====================================================
+  /* =========================================================
      WHY DEVZORE
-  ===================================================== */
+  ========================================================= */
 
-  const whyUs = [
+  const whyDevZore = [
     {
-      icon: <Smartphone size={16} />,
-      title: "iOS & Android Development",
-      desc: "We build cross-platform mobile applications for iOS and Android using React Native and platform-specific functionality where needed.",
+      icon: <Smartphone size={18} />,
+      title: "iOS & Android",
+      desc:
+        "Cross-platform applications for iOS and Android using React Native with platform-specific functionality where required.",
     },
     {
-      icon: <Shield size={16} />,
-      title: "Security-Conscious Development",
-      desc: "Authentication, secure storage, API protection, permissions and appropriate data-handling practices are considered throughout development.",
+      icon: <ShieldCheck size={18} />,
+      title: "Security-Conscious",
+      desc:
+        "Authentication, secure storage, API protection and permissions are considered throughout development.",
     },
     {
-      icon: <Zap size={16} />,
+      icon: <Zap size={18} />,
       title: "Performance Focus",
-      desc: "We reduce unnecessary rendering, optimise application assets and structure common interactions for responsive mobile experiences.",
+      desc:
+        "Application structure, assets, rendering and common interactions are developed with performance in mind.",
     },
     {
-      icon: <Code2 size={16} />,
+      icon: <Code2 size={18} />,
       title: "Maintainable Code",
-      desc: "Reusable components, organised project structure and clear application logic help make future improvements easier to manage.",
+      desc:
+        "Reusable components, organised structure and clear application logic help simplify future development.",
     },
     {
-      icon: <Store size={16} />,
+      icon: <Store size={18} />,
       title: "Release Assistance",
-      desc: "We can help prepare production builds and technical requirements for publishing applications to supported mobile app stores.",
+      desc:
+        "We can assist with production builds and technical preparation for supported mobile application stores.",
     },
     {
-      icon: <Globe size={16} />,
-      title: "Remote Development Worldwide",
-      desc: "DevZore works remotely with startups and businesses worldwide using online communication and project collaboration workflows.",
+      icon: <Globe2 size={18} />,
+      title: "Remote Collaboration",
+      desc:
+        "Projects can be managed remotely through organised communication, repositories and development workflows.",
     },
   ];
 
-  /* =====================================================
+  /* =========================================================
      FAQ
-  ===================================================== */
+  ========================================================= */
 
   const faqs = [
     {
       q: "How much does mobile app development cost?",
-      a: "Mobile app development cost depends on the required features, platforms, integrations, user roles, UI/UX complexity and backend requirements. After reviewing your project, DevZore can provide a proposal based on the required scope and deliverables.",
+      a:
+        "Mobile app development cost depends on required features, platforms, integrations, user roles, UI/UX complexity and backend requirements. After reviewing the project, DevZore can prepare an estimate based on the required scope.",
     },
     {
       q: "How long does it take to develop a mobile application?",
-      a: "The timeline depends on the size and complexity of the application. A focused startup app or MVP generally requires less development than an enterprise mobile application with payments, real-time functionality, multiple user roles and complex backend integrations.",
+      a:
+        "The timeline depends on application size and complexity. A focused MVP normally requires less development time than a larger application with payments, multiple user roles, real-time features and complex integrations.",
     },
     {
-      q: "Do you provide Android and iOS app development?",
-      a: "Yes. DevZore provides cross-platform Android and iOS app development using React Native. Much of the application code can be shared while platform-specific functionality can be implemented when required.",
+      q: "Do you develop apps for both Android and iOS?",
+      a:
+        "Yes. DevZore develops cross-platform Android and iOS applications using React Native. Much of the codebase can be shared while platform-specific functionality can be implemented when required.",
     },
     {
       q: "Can you build a custom mobile app for my business?",
-      a: "Yes. Custom mobile app development can be tailored around your business workflows, customers, employees, services, inventory, bookings, sales or other operational requirements.",
+      a:
+        "Yes. Mobile applications can be developed around business workflows such as customers, employees, services, inventory, bookings, sales and internal operations.",
     },
     {
       q: "Do you provide mobile app development for startups?",
-      a: "Yes. We can help startups develop focused mobile products and MVPs, including product planning, mobile UI/UX, frontend development, APIs, authentication, testing and release preparation.",
+      a:
+        "Yes. We can help startups develop focused mobile products and MVPs including planning, UI/UX, frontend development, APIs, authentication, testing and release preparation.",
     },
     {
       q: "What is cross-platform mobile app development?",
-      a: "Cross-platform development allows applications for platforms such as iOS and Android to share a significant portion of their codebase. DevZore uses React Native for cross-platform mobile application development.",
+      a:
+        "Cross-platform development allows iOS and Android applications to share a significant portion of their codebase. DevZore uses React Native for cross-platform mobile development.",
     },
     {
       q: "Do you provide mobile app UI/UX design?",
-      a: "Yes. Mobile app design can include user flows, wireframes, screen layouts, navigation patterns, interface design and prototypes according to the needs of the project.",
+      a:
+        "Yes. Mobile app design can include user flows, wireframes, screen layouts, navigation patterns, interface design and prototypes according to project requirements.",
     },
     {
       q: "Can you connect a mobile app to an existing backend?",
-      a: "Yes. We can integrate a mobile application with an existing REST API or compatible backend service, or develop a new backend and API when required.",
+      a:
+        "Yes. We can integrate a mobile application with an existing compatible REST API or backend service, or develop a new backend and API when required.",
     },
     {
-      q: "Can mobile apps include push notifications and offline functionality?",
-      a: "Yes. Push notifications can be implemented for relevant application events, while local storage and synchronization strategies can support selected offline functionality when required.",
+      q: "Can mobile apps include push notifications?",
+      a:
+        "Yes. Push notifications can be implemented for relevant application events, reminders, updates and other communication requirements.",
+    },
+    {
+      q: "Can the application support offline functionality?",
+      a:
+        "Selected offline functionality can be implemented using local storage and appropriate synchronization strategies depending on the application requirements.",
     },
     {
       q: "Do you help with App Store and Google Play submission?",
-      a: "Yes. DevZore can assist with production builds and technical preparation for Apple App Store and Google Play submission. Final approval remains subject to Apple and Google's policies and review processes.",
-    },
-    {
-      q: "Can I hire a mobile app developer through DevZore?",
-      a: "You can contact DevZore with your project requirements to discuss mobile application development for a startup, business or digital product. The development scope and collaboration approach can then be defined around the project.",
+      a:
+        "Yes. DevZore can assist with production builds and technical preparation for Apple App Store and Google Play submission. Final approval remains subject to each platform's review policies.",
     },
     {
       q: "Do you provide mobile app maintenance after launch?",
-      a: "Yes. Ongoing maintenance, bug fixes, compatibility updates, performance improvements and additional feature development can be provided according to the agreed support arrangement.",
+      a:
+        "Yes. Maintenance can include bug fixes, compatibility updates, performance improvements and additional feature development according to the agreed support arrangement.",
     },
   ];
 
-  /* =====================================================
+  /* =========================================================
      RELATED SERVICES
-  ===================================================== */
+  ========================================================= */
 
   const relatedServices = [
     {
+      label: "DESIGN",
       title: "UI/UX Design",
-      desc: "Plan user flows, mobile UI/UX and product interfaces before development.",
+      desc:
+        "User flows, mobile interfaces and product experiences designed before and during development.",
       path: "/ui-ux-design",
-      icon: <Layers size={18} />,
     },
     {
+      label: "BACKEND",
       title: "Backend & API Development",
-      desc: "Build APIs, databases, authentication and server-side functionality for your mobile application.",
+      desc:
+        "APIs, databases, authentication and server-side functionality for mobile applications.",
       path: "/backend-api",
-      icon: <Database size={18} />,
     },
     {
+      label: "STARTUP",
       title: "Startup MVP Development",
-      desc: "Turn a focused startup product idea into an initial working web or mobile release.",
+      desc:
+        "Turn a focused product idea into an initial working web or mobile release.",
       path: "/startup-mvp",
-      icon: <Zap size={18} />,
+    },
+    {
+      label: "FULL STACK",
+      title: "MERN Stack Development",
+      desc:
+        "Full-stack development for dashboards, applications and connected digital products.",
+      path: "/mern-stack-development",
     },
   ];
 
-  /* =====================================================
-     COLORS
-  ===================================================== */
+  /* =========================================================
+     HELPERS
+  ========================================================= */
 
-  const colorMap = {
-    purple: d
-      ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
-      : "bg-purple-50 border-purple-100 text-purple-600",
-
-    blue: d
-      ? "bg-blue-500/10 border-blue-500/20 text-blue-400"
-      : "bg-blue-50 border-blue-100 text-blue-600",
-
-    green: d
-      ? "bg-green-500/10 border-green-500/20 text-green-400"
-      : "bg-green-50 border-green-100 text-green-600",
-
-    cyan: d
-      ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-400"
-      : "bg-cyan-50 border-cyan-100 text-cyan-600",
-
-    orange: d
-      ? "bg-orange-500/10 border-orange-500/20 text-orange-400"
-      : "bg-orange-50 border-orange-100 text-orange-600",
-
-    pink: d
-      ? "bg-pink-500/10 border-pink-500/20 text-pink-400"
-      : "bg-pink-50 border-pink-100 text-pink-600",
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   };
 
-  /* =====================================================
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const subject = encodeURIComponent(
+      `Mobile App Development Enquiry - ${formData.name}`
+    );
+
+    const body = encodeURIComponent(
+`Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || "Not provided"}
+Service: ${formData.service}
+Timeline: ${formData.timeline || "Not specified"}
+
+Project Details:
+${formData.message}`
+    );
+
+    window.location.href = `mailto:hello@devzore.com?subject=${subject}&body=${body}`;
+  };
+
+  /* =========================================================
      STRUCTURED DATA
-  ===================================================== */
+  ========================================================= */
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -349,7 +520,10 @@ const MobileApp = ({ isDark }) => {
       name: "DevZore",
       url: "https://devzore.com/",
     },
-    areaServed: "Worldwide",
+    areaServed: {
+      "@type": "Place",
+      name: "Worldwide",
+    },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Mobile Application Development Services",
@@ -362,19 +536,6 @@ const MobileApp = ({ isDark }) => {
         },
       })),
     },
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-      },
-    })),
   };
 
   const breadcrumbSchema = {
@@ -402,261 +563,405 @@ const MobileApp = ({ isDark }) => {
     ],
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
+  const visibleFaqs = showAllFaqs ? faqs : faqs.slice(0, 3);
+
+  /* =========================================================
+     SECTION LABEL
+  ========================================================= */
+
+  const SectionLabel = ({ children, light = false }) => (
+    <div
+      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+        light ? "text-[#28c5d4]" : "text-[#07899a]"
+      }`}
+    >
+      <span className="w-5 h-[2px] bg-[#0796A8]" />
+      {children}
+    </div>
+  );
+
   return (
     <>
-      {/* =====================================================
-          STRUCTURED DATA
-          Main title/meta/canonical/OG tags are handled in App.jsx
-      ===================================================== */}
-
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
+          {JSON.stringify(breadcrumbSchema)}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
+          {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
 
-      <main
-        className={`min-h-screen transition-colors duration-300 ${
-          d ? "bg-[#030303]" : "bg-white"
-        }`}
+      <div
+        className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
+        style={{
+          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+        }}
       >
         {/* =====================================================
             HERO
         ===================================================== */}
 
         <section
-          aria-labelledby="mobile-heading"
-          className={`pt-24 pb-10 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
-          }`}
+          aria-labelledby="mobile-app-heading"
+          className="relative overflow-hidden bg-[#04111a] text-white"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
-              <div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <div
-                    className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border ${
-                      d
-                        ? "bg-purple-600/10 border-purple-500/20 text-purple-400"
-                        : "bg-purple-50 border-purple-200 text-purple-700"
-                    }`}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-                    Mobile App Development
-                  </div>
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute -top-32 right-[5%] w-[560px] h-[560px] rounded-full bg-[#078fa5]/14 blur-[140px]" />
 
-                  <div
-                    className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold border ${
-                      d
-                        ? "bg-green-500/10 border-green-500/20 text-green-400"
-                        : "bg-green-50 border-green-200 text-green-700"
-                    }`}
-                  >
-                    <Globe size={11} />
-                    Worldwide Clients
+            <div
+              className="absolute inset-0 opacity-50"
+              style={darkGrid}
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/65" />
+          </div>
+
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12 lg:pb-14">
+            <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-7 lg:gap-10 items-center">
+              {/* LEFT */}
+
+              <div className="relative z-10">
+                <div className="flex flex-wrap items-center gap-3 mb-4">
+                  <div className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold tracking-[0.16em] uppercase text-slate-300">
+                    <CircleCheck
+                      size={13}
+                      className="text-[#26becb]"
+                    />
+                    Mobile App Development
                   </div>
                 </div>
 
                 <h1
-                  id="mobile-heading"
-                  className={`text-4xl lg:text-5xl font-black tracking-tight leading-tight mb-4 ${
-                    d ? "text-white" : "text-gray-900"
-                  }`}
+                  id="mobile-app-heading"
+                  className="max-w-[760px] text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[68px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
-                  Custom Mobile App Development for{" "}
-                  <span className="text-purple-600">
-                    iOS & Android
+                  Mobile apps built for{" "}
+                  <span className="text-[#23bfce]">
+                    real users and growth.
                   </span>
                 </h1>
 
-                <p
-                  className={`text-lg font-semibold mb-4 ${
-                    d ? "text-gray-300" : "text-gray-700"
-                  }`}
-                >
-                  React Native · iOS · Android · Mobile UI/UX · APIs
+                <p className="max-w-2xl mt-5 text-[16px] sm:text-[17px] lg:text-[18px] leading-7 text-slate-300 font-normal">
+                  DevZore develops custom mobile applications for startups and
+                  businesses across iOS and Android using React Native and
+                  modern backend technologies.
                 </p>
 
-                <p
-                  className={`text-base leading-relaxed mb-4 ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  DevZore provides mobile app development services for startups
-                  and businesses that need reliable, modern and maintainable
-                  mobile products. We build custom mobile applications for iOS
-                  and Android using React Native and modern backend technologies.
+                <p className="max-w-xl mt-2.5 text-[13px] sm:text-[14px] leading-6 text-slate-400 font-normal">
+                  From a focused MVP to a business or customer application, we
+                  combine mobile UI/UX, application development, APIs,
+                  authentication, notifications and release preparation.
                 </p>
 
-                <p
-                  className={`text-base leading-relaxed mb-6 ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  From business mobile app development and startup applications
-                  to e-commerce and enterprise mobile software, our development
-                  process can cover mobile UI/UX, APIs, authentication,
-                  notifications, payments, testing and release preparation.
-                </p>
-
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    to="/contact"
-                    className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
+                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2.5 mt-6">
+                  <a
+                    href="#mobile-project-enquiry"
+                    className="inline-flex justify-center items-center gap-2.5 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[12px] font-semibold text-[#071923] transition-all"
                   >
-                    Get a Mobile App Quote
+                    Start Your App
                     <ArrowRight size={14} />
-                  </Link>
+                  </a>
 
                   <a
-                    href="https://wa.me/923348004300?text=Hi%20DevZore!%20I%20would%20like%20to%20discuss%20a%20mobile%20app%20development%20project."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
+                    href="#mobile-development-services"
+                    className="inline-flex justify-center items-center gap-2.5 px-5 py-3 text-[12px] font-semibold text-white hover:text-[#28c5d4] transition-colors"
                   >
-                    WhatsApp Us
+                    Explore Mobile Development
+                    <ArrowRight size={14} />
                   </a>
+                </div>
+
+                <div className="flex flex-wrap gap-x-5 gap-y-2 mt-5">
+                  {[
+                    "iOS & Android",
+                    "React Native",
+                    "API Integration",
+                    "Custom Development",
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium text-slate-400"
+                    >
+                      <CheckCircle2
+                        size={12}
+                        className="text-[#20becd]"
+                      />
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              {/* CAPABILITIES */}
+              {/* RIGHT MOBILE VISUAL */}
 
-              <div
-                className={`p-6 md:p-7 rounded-3xl border ${
-                  d
-                    ? "bg-white/[0.02] border-white/[0.06]"
-                    : "bg-[#fafafa] border-gray-200"
-                }`}
-              >
-                <p
-                  className={`text-[11px] font-black uppercase tracking-widest mb-5 ${
-                    d ? "text-gray-500" : "text-gray-400"
-                  }`}
-                >
-                  Mobile Development Capabilities
-                </p>
+              <div className="relative min-h-[390px] lg:min-h-[430px] hidden md:block">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="absolute w-[370px] h-[370px] rounded-full bg-[#0796A8]/16 blur-[90px]" />
 
-                <div className="space-y-3">
-                  {[
-                    {
-                      title: "iOS Application Development",
-                      desc: "Mobile applications prepared for supported Apple devices.",
-                    },
-                    {
-                      title: "Android Application Development",
-                      desc: "Modern Android applications using cross-platform technology.",
-                    },
-                    {
-                      title: "Cross-Platform Development",
-                      desc: "Shared React Native architecture for iOS and Android.",
-                    },
-                    {
-                      title: "Mobile UI/UX Design",
-                      desc: "User flows and interfaces designed for mobile experiences.",
-                    },
-                    {
-                      title: "Backend & API Integration",
-                      desc: "APIs, authentication, databases and third-party integrations.",
-                    },
-                    {
-                      title: "App Release Preparation",
-                      desc: "Production builds and technical store submission support.",
-                    },
-                  ].map((item) => (
-                    <div
-                      key={item.title}
-                      className={`flex items-start gap-3 pb-3 border-b last:border-0 last:pb-0 ${
-                        d ? "border-white/[0.05]" : "border-gray-100"
-                      }`}
-                    >
-                      <CheckCircle
-                        size={14}
-                        className="text-purple-500 flex-shrink-0 mt-0.5"
-                      />
+                  <div className="relative scale-[0.88] lg:scale-95">
+                    <div className="relative w-[230px] h-[450px] rounded-[38px] border-[6px] border-[#263943] bg-[#071923] shadow-[0_40px_100px_rgba(0,0,0,0.5)] overflow-hidden">
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[84px] h-[21px] rounded-b-[14px] bg-[#02080b] z-20" />
 
-                      <div>
-                        <p
-                          className={`text-[13px] font-bold ${
-                            d ? "text-white" : "text-gray-900"
-                          }`}
-                        >
-                          {item.title}
-                        </p>
+                      <div className="px-5 pt-9 pb-4">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <span className="text-[8px] text-[#24c4d3] font-semibold tracking-wider">
+                              DEVZORE
+                            </span>
 
-                        <p
-                          className={`text-[11px] mt-0.5 leading-relaxed ${
-                            d ? "text-gray-500" : "text-gray-500"
-                          }`}
-                        >
-                          {item.desc}
-                        </p>
+                            <p className="text-[7px] text-slate-500">
+                              MOBILE PRODUCT
+                            </p>
+                          </div>
+
+                          <div className="w-7 h-7 rounded-lg bg-[#19bdca]/10 flex items-center justify-center">
+                            <Smartphone
+                              size={13}
+                              className="text-[#20c0cf]"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="mt-6">
+                          <p className="text-[8px] font-semibold tracking-[0.16em] text-[#20bfce] uppercase">
+                            Dashboard
+                          </p>
+
+                          <h3 className="text-[20px] leading-tight font-semibold mt-2">
+                            Your business.
+                            <br />
+                            In your pocket.
+                          </h3>
+
+                          <p className="text-[9px] leading-4.5 text-slate-400 mt-2">
+                            A connected mobile experience designed around users,
+                            data and real workflows.
+                          </p>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 mt-5">
+                          <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-3">
+                            <TrendingUp
+                              size={13}
+                              className="text-[#20c0cf]"
+                            />
+
+                            <p className="text-[15px] font-semibold mt-3">
+                              24.8K
+                            </p>
+
+                            <p className="text-[7px] text-slate-500">
+                              Activity
+                            </p>
+                          </div>
+
+                          <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-3">
+                            <Users
+                              size={13}
+                              className="text-[#20c0cf]"
+                            />
+
+                            <p className="text-[15px] font-semibold mt-3">
+                              8.2K
+                            </p>
+
+                            <p className="text-[7px] text-slate-500">
+                              Users
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-3 mt-2">
+                          <div className="flex justify-between items-center">
+                            <p className="text-[8px] font-medium">
+                              Product Activity
+                            </p>
+
+                            <span className="text-[7px] text-[#20c0cf]">
+                              Live
+                            </span>
+                          </div>
+
+                          <div className="flex items-end gap-1.5 h-[62px] mt-2.5">
+                            {[35, 55, 42, 72, 52, 86, 67, 94].map(
+                              (height, index) => (
+                                <div
+                                  key={index}
+                                  className="flex-1 rounded-t bg-[#18b7c6]/40"
+                                  style={{ height: `${height}%` }}
+                                />
+                              )
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  ))}
-                </div>
 
-                <div
-                  className={`mt-4 p-3 rounded-xl ${
-                    d ? "bg-purple-600/5" : "bg-purple-50"
-                  }`}
-                >
-                  <p
-                    className={`text-[11px] font-semibold text-center ${
-                      d ? "text-purple-400" : "text-purple-700"
-                    }`}
-                  >
-                    Available for remote mobile app development projects
-                    worldwide
-                  </p>
+                    {/* FLOATING CARDS */}
+
+                    <div className="absolute -left-28 top-20 w-28 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <Palette
+                        size={18}
+                        className="text-[#29c7d5]"
+                      />
+
+                      <p className="text-[9px] font-medium mt-2">
+                        Mobile UI/UX
+                      </p>
+                    </div>
+
+                    <div className="absolute -right-28 top-16 w-28 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <Zap
+                        size={18}
+                        className="text-[#29c7d5]"
+                      />
+
+                      <p className="text-[9px] font-medium mt-2">
+                        Performance
+                      </p>
+                    </div>
+
+                    <div className="absolute -left-24 bottom-14 w-28 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <Database
+                        size={18}
+                        className="text-[#29c7d5]"
+                      />
+
+                      <p className="text-[9px] font-medium mt-2">
+                        API Connected
+                      </p>
+                    </div>
+
+                    <div className="absolute -right-24 bottom-16 w-28 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 p-3 shadow-xl">
+                      <ShieldCheck
+                        size={18}
+                        className="text-[#29c7d5]"
+                      />
+
+                      <p className="text-[9px] font-medium mt-2">
+                        Secure
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CAPABILITY STRIP */}
+
+          <div className="relative border-t border-white/[0.08] bg-[#06151d]/90">
+            <div className="max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10">
+              <div className="grid grid-cols-2 lg:grid-cols-4">
+                {[
+                  ["01", "iOS Apps"],
+                  ["02", "Android Apps"],
+                  ["03", "React Native"],
+                  ["04", "Mobile UI/UX"],
+                ].map(([number, title], index) => (
+                  <div
+                    key={title}
+                    className={`py-3.5 ${
+                      index !== 3
+                        ? "lg:border-r border-white/[0.07]"
+                        : ""
+                    } ${index > 0 ? "lg:pl-7" : ""}`}
+                  >
+                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-0.5">
+                      {number}
+                    </span>
+
+                    <span className="text-[11px] font-medium text-slate-300">
+                      {title}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
         {/* =====================================================
-            MOBILE DEVELOPMENT SERVICES
+            INTRO
         ===================================================== */}
 
         <section
-          aria-labelledby="mobile-services-heading"
-          className={`py-12 border-b ${
-            d
-              ? "border-white/[0.06] bg-[#050505]"
-              : "border-gray-100 bg-[#fafafa]"
-          }`}
+          className="relative py-11 md:py-13 bg-[#f8fafb]"
+          style={lightGrid}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-widest text-purple-500 mb-2">
-                Mobile Development Services
-              </p>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.72fr_1.28fr] gap-7 lg:gap-12">
+              <div>
+                <SectionLabel>Mobile Development</SectionLabel>
+
+                <h2 className="text-[#071923] text-[30px] sm:text-[35px] md:text-[42px] leading-[1.08] tracking-[-0.035em] font-semibold mt-3">
+                  More than screens.{" "}
+                  <span className="text-[#078fa1]">
+                    A complete mobile product.
+                  </span>
+                </h2>
+              </div>
+
+              <div>
+                <p className="text-[15px] sm:text-[16px] leading-7 text-slate-700 font-normal">
+                  A successful mobile application needs to combine useful
+                  functionality, clear user journeys, reliable backend
+                  services and an interface that feels natural on a mobile
+                  device.
+                </p>
+
+                <p className="text-[13px] sm:text-[14px] leading-6 mt-2.5 text-slate-500 font-normal">
+                  DevZore develops mobile applications around real product and
+                  business requirements. That can mean a startup MVP, customer
+                  application, e-commerce app, booking platform or internal
+                  business system.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            SERVICES
+        ===================================================== */}
+
+        <section
+          id="mobile-development-services"
+          aria-labelledby="mobile-services-heading"
+          className="py-11 md:py-13 bg-white"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel>Mobile Services</SectionLabel>
 
               <h2
                 id="mobile-services-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
+                className="text-[#071923] text-[30px] sm:text-[35px] md:text-[42px] leading-[1.08] tracking-[-0.035em] font-semibold mt-3"
               >
-                Mobile Application Development Services
+                Mobile development from interface to backend.
               </h2>
 
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                From Android and iOS development to mobile UI/UX and backend
-                integrations, we build the technical components required for
-                modern mobile products.
+              <p className="text-slate-600 text-[14px] leading-6 mt-3 max-w-2xl">
+                We develop the technical components required to turn a mobile
+                product idea into a working application.
               </p>
             </div>
 
@@ -664,37 +969,45 @@ const MobileApp = ({ isDark }) => {
               {mobileServices.map((service) => (
                 <article
                   key={service.title}
-                  className={`p-5 rounded-2xl border transition-all ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06] hover:border-purple-500/25"
-                      : "bg-white border-gray-200 hover:border-purple-200 hover:shadow-sm"
-                  }`}
+                  className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#0796A8]/40 hover:shadow-[0_16px_40px_rgba(7,25,35,0.07)]"
                 >
-                  <div
-                    className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-3 ${
-                      d
-                        ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
-                        : "bg-purple-50 border-purple-100 text-purple-600"
-                    }`}
-                  >
-                    {service.icon}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#071923] to-[#18bdcb]" />
+
+                  <div className="flex justify-between items-start">
+                    <div className="w-10 h-10 rounded-xl bg-[#eef3f4] text-[#075f70] flex items-center justify-center">
+                      {service.icon}
+                    </div>
+
+                    <span className="text-[9px] font-semibold text-slate-300">
+                      {service.number}
+                    </span>
                   </div>
 
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
+                  <h3 className="text-[#071923] text-[16px] leading-6 font-semibold mt-4">
                     {service.title}
                   </h3>
 
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
+                  <p className="text-slate-600 text-[12px] leading-5.5 mt-2 font-normal">
                     {service.desc}
                   </p>
+
+                  <div className="mt-4 pt-3.5 border-t border-slate-100 space-y-2">
+                    {service.points.map((point) => (
+                      <div
+                        key={point}
+                        className="flex items-center gap-2"
+                      >
+                        <CheckCircle2
+                          size={12}
+                          className="text-[#0796A8]"
+                        />
+
+                        <span className="text-[10px] font-medium text-slate-600">
+                          {point}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </article>
               ))}
             </div>
@@ -707,67 +1020,118 @@ const MobileApp = ({ isDark }) => {
 
         <section
           aria-labelledby="mobile-build-heading"
-          className={`py-12 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
-          }`}
+          className="py-11 md:py-13 bg-[#f7f9fa]"
+          style={lightGrid}
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-widest text-purple-500 mb-2">
-                What We Build
-              </p>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.82fr_1.18fr] gap-7 lg:gap-10 items-start">
+              <div>
+                <SectionLabel>What We Build</SectionLabel>
+
+                <h2
+                  id="mobile-build-heading"
+                  className="text-[#071923] text-[30px] sm:text-[35px] md:text-[42px] font-semibold tracking-[-0.035em] leading-[1.08] mt-3"
+                >
+                  Mobile applications designed around{" "}
+                  <span className="text-[#078fa1]">
+                    real workflows.
+                  </span>
+                </h2>
+
+                <p className="text-slate-600 text-[14px] leading-6 mt-3">
+                  Different mobile products require different functionality,
+                  user journeys and backend architecture.
+                </p>
+
+                <p className="text-slate-500 text-[12px] leading-5.5 mt-2">
+                  We adapt the application structure around the people using
+                  the product and the business processes it needs to support.
+                </p>
+
+                <a
+                  href="#mobile-project-enquiry"
+                  className="inline-flex items-center gap-2 mt-4 text-[11px] font-semibold text-[#07899a] hover:text-[#071923] transition-colors"
+                >
+                  Discuss Your Mobile App
+                  <ArrowRight size={13} />
+                </a>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                {whatWeBuild.map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-2xl border border-slate-200 bg-white p-5 hover:border-[#0796A8]/35 transition-colors"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-[#eef4f5] text-[#07899a] flex items-center justify-center">
+                      {item.icon}
+                    </div>
+
+                    <h3 className="text-[#071923] font-semibold text-[15px] mt-3.5">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-slate-500 text-[11px] leading-5.5 mt-1.5">
+                      {item.desc}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            STANDARDS
+        ===================================================== */}
+
+        <section
+          aria-labelledby="mobile-standards-heading"
+          className="relative py-11 md:py-13 bg-[#071923] text-white overflow-hidden"
+        >
+          <div
+            className="absolute inset-0 opacity-70"
+            style={darkGrid}
+          />
+
+          <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-[#0796A8]/10 blur-[140px]" />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel light>Development Standards</SectionLabel>
 
               <h2
-                id="mobile-build-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
+                id="mobile-standards-heading"
+                className="text-[30px] sm:text-[35px] md:text-[42px] leading-[1.08] tracking-[-0.035em] font-semibold mt-3"
               >
-                Custom Mobile Apps for Startups & Businesses
+                Built for the device,{" "}
+                <span className="text-[#25bfce]">
+                  engineered for the product.
+                </span>
               </h2>
 
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Our custom app development approach adapts the application
-                architecture, interfaces and integrations around your users,
-                workflows and business requirements.
+              <p className="text-slate-400 text-[14px] leading-6 mt-3 max-w-2xl">
+                Mobile development decisions affect usability, performance,
+                security, integrations and how easily the application can
+                evolve after launch.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {whatWeBuild.map((item) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+              {standards.map((item) => (
                 <article
                   key={item.title}
-                  className={`p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-purple-500/25"
-                      : "bg-[#fafafa] border-gray-200 hover:border-purple-200 hover:shadow-sm"
-                  }`}
+                  className="rounded-xl border border-white/[0.08] bg-white/[0.035] p-5 hover:bg-white/[0.055] hover:border-[#1bbac8]/25 transition-all"
                 >
-                  <div
-                    className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-3 ${
-                      colorMap[item.color]
-                    }`}
-                  >
+                  <div className="w-9 h-9 rounded-lg border border-[#1bbac8]/20 bg-[#0e2b36] text-[#27c2d0] flex items-center justify-center">
                     {item.icon}
                   </div>
 
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
+                  <h3 className="text-[14px] font-semibold mt-3.5">
                     {item.title}
                   </h3>
 
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
+                  <p className="text-[11px] leading-5 text-slate-400 mt-1.5">
                     {item.desc}
                   </p>
                 </article>
@@ -777,72 +1141,174 @@ const MobileApp = ({ isDark }) => {
         </section>
 
         {/* =====================================================
-            TECHNOLOGY STACK
+            TECHNOLOGY
         ===================================================== */}
 
         <section
           aria-labelledby="mobile-tech-heading"
-          className={`py-12 border-b ${
-            d
-              ? "border-white/[0.06] bg-[#050505]"
-              : "border-gray-100 bg-[#fafafa]"
-          }`}
+          className="py-11 md:py-13 bg-white"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-widest text-purple-500 mb-2">
-                Technology
-              </p>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel>Technology Stack</SectionLabel>
 
               <h2
                 id="mobile-tech-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
+                className="text-[#071923] text-[30px] sm:text-[35px] md:text-[42px] font-semibold tracking-[-0.035em] leading-[1.08] mt-3"
               >
-                Mobile App Development Technology Stack
+                Modern technologies for connected mobile products.
               </h2>
 
-              <p
-                className={`text-base max-w-2xl mx-auto ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Technologies selected according to application functionality,
-                integrations, security, maintainability and deployment
-                requirements.
+              <p className="text-slate-600 text-[14px] leading-6 mt-3">
+                Technologies are selected according to application
+                functionality, integrations, security, maintainability and
+                deployment requirements.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {techStack.map((cat) => (
-                <div
-                  key={cat.category}
-                  className={`p-4 rounded-2xl border ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06]"
-                      : "bg-white border-gray-200"
-                  }`}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {techStack.map((category) => (
+                <article
+                  key={category.category}
+                  className="rounded-2xl border border-slate-200 bg-[#fbfcfc] p-4 hover:border-[#0796A8]/35 transition-colors"
                 >
-                  <p className="text-[11px] font-black uppercase tracking-widest mb-3 text-purple-500">
-                    {cat.category}
+                  <p className="text-[9px] font-semibold tracking-[0.16em] uppercase text-[#07899a]">
+                    {category.category}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {cat.items.map((tech) => (
+                  <div className="flex flex-wrap gap-1.5 mt-3">
+                    {category.items.map((tech) => (
                       <span
                         key={tech}
-                        className={`text-[10px] font-medium px-2 py-1 rounded-md border ${
-                          d
-                            ? "bg-white/[0.04] border-white/[0.08] text-gray-300"
-                            : "bg-[#fafafa] border-gray-200 text-gray-700"
-                        }`}
+                        className="rounded-md border border-slate-200 bg-white px-2 py-1.5 text-[9px] font-medium text-slate-600"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            BUSINESS / STARTUPS
+        ===================================================== */}
+
+        <section
+          aria-labelledby="mobile-business-heading"
+          className="py-11 md:py-13 bg-[#f7f9fa]"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel>Who We Build For</SectionLabel>
+
+              <h2
+                id="mobile-business-heading"
+                className="text-[#071923] text-[30px] sm:text-[35px] md:text-[40px] font-semibold tracking-[-0.035em] leading-[1.08] mt-3"
+              >
+                Mobile development for businesses and startups.
+              </h2>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-4">
+              <article className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+                <div className="w-10 h-10 rounded-xl bg-[#eef4f5] text-[#07899a] flex items-center justify-center">
+                  <BriefcaseBusiness size={19} />
                 </div>
+
+                <p className="text-[9px] font-semibold tracking-[0.16em] uppercase text-[#07899a] mt-4">
+                  For Businesses
+                </p>
+
+                <h3 className="text-[#071923] text-[20px] font-semibold mt-1.5">
+                  Custom Mobile Apps for Business
+                </h3>
+
+                <p className="text-slate-600 text-[12px] leading-6 mt-2.5">
+                  A custom application can support customers, employees,
+                  sales, operations, bookings, inventory and other business
+                  workflows. We plan the product around the processes and
+                  integrations your organisation actually needs.
+                </p>
+              </article>
+
+              <article className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+                <div className="w-10 h-10 rounded-xl bg-[#eef4f5] text-[#07899a] flex items-center justify-center">
+                  <Rocket size={19} />
+                </div>
+
+                <p className="text-[9px] font-semibold tracking-[0.16em] uppercase text-[#07899a] mt-4">
+                  For Startups
+                </p>
+
+                <h3 className="text-[#071923] text-[20px] font-semibold mt-1.5">
+                  Mobile App Development for Startups
+                </h3>
+
+                <p className="text-slate-600 text-[12px] leading-6 mt-2.5">
+                  Startup development can begin with a focused MVP and evolve
+                  as the product gains users. We can support product planning,
+                  UI/UX, development, APIs, testing and future iterations.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            PROCESS
+        ===================================================== */}
+
+        <section
+          aria-labelledby="mobile-process-heading"
+          className="relative py-11 md:py-13 bg-[#071923] text-white"
+        >
+          <div
+            className="absolute inset-0"
+            style={darkGrid}
+          />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel light>Our Process</SectionLabel>
+
+              <h2
+                id="mobile-process-heading"
+                className="text-[30px] sm:text-[35px] md:text-[42px] font-semibold tracking-[-0.035em] leading-[1.08] mt-3"
+              >
+                From product idea{" "}
+                <span className="text-[#25bfce]">
+                  to mobile release.
+                </span>
+              </h2>
+
+              <p className="text-slate-400 text-[14px] leading-6 mt-3">
+                A structured workflow keeps requirements, design, development,
+                testing and release easier to manage.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.08] border border-white/[0.08] rounded-2xl overflow-hidden">
+              {process.map((step) => (
+                <article
+                  key={step.number}
+                  className="relative bg-[#071923] p-5 min-h-[170px] hover:bg-[#0a202a] transition-colors"
+                >
+                  <span className="text-[10px] font-semibold text-[#22bfce]">
+                    {step.number}
+                  </span>
+
+                  <h3 className="text-[15px] font-semibold mt-5">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-slate-400 text-[11px] leading-5 mt-2">
+                    {step.desc}
+                  </p>
+                </article>
               ))}
             </div>
           </div>
@@ -854,344 +1320,47 @@ const MobileApp = ({ isDark }) => {
 
         <section
           aria-labelledby="mobile-why-heading"
-          className={`py-12 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
-          }`}
+          className="py-11 md:py-13 bg-white"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mb-8">
-              <p className="text-[11px] font-black uppercase tracking-widest text-purple-500 mb-2">
-                Why DevZore
-              </p>
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-7">
+              <SectionLabel>Why DevZore</SectionLabel>
 
               <h2
                 id="mobile-why-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
+                className="text-[#071923] text-[30px] sm:text-[35px] md:text-[42px] font-semibold tracking-[-0.04em] leading-[1.08] mt-3"
               >
-                A Practical Mobile App Development Approach
+                Product-focused development,{" "}
+                <span className="text-[#078fa1]">
+                  not just mobile screens.
+                </span>
               </h2>
 
-              <p
-                className={`text-base leading-relaxed ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                DevZore combines mobile application development, backend
-                integration and product-focused engineering to build software
-                around real business requirements.
+              <p className="text-slate-600 text-[14px] leading-6 mt-3">
+                We focus on how the application needs to work for its users,
+                business and future development requirements.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {whyUs.map((item) => (
+              {whyDevZore.map((item) => (
                 <article
                   key={item.title}
-                  className={`p-5 rounded-2xl border transition-all ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06] hover:border-purple-500/20"
-                      : "bg-[#fafafa] border-gray-200 hover:border-purple-200 hover:shadow-sm"
-                  }`}
+                  className="rounded-2xl border border-slate-200 bg-[#fbfcfc] p-5 hover:border-[#0796A8]/35 transition-colors"
                 >
-                  <div
-                    className={`w-9 h-9 rounded-xl border flex items-center justify-center mb-3 ${
-                      d
-                        ? "bg-purple-500/10 border-purple-500/20 text-purple-400"
-                        : "bg-purple-50 border-purple-100 text-purple-600"
-                    }`}
-                  >
+                  <div className="w-9 h-9 rounded-xl bg-[#eef4f5] text-[#07899a] flex items-center justify-center">
                     {item.icon}
                   </div>
 
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
+                  <h3 className="text-[#071923] text-[15px] font-semibold mt-3.5">
                     {item.title}
                   </h3>
 
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
+                  <p className="text-slate-500 text-[11px] leading-5 mt-1.5">
                     {item.desc}
                   </p>
                 </article>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            PROCESS
-        ===================================================== */}
-
-        <section
-          aria-labelledby="mobile-process-heading"
-          className={`py-12 border-b ${
-            d
-              ? "border-white/[0.06] bg-[#050505]"
-              : "border-gray-100 bg-[#fafafa]"
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-widest text-purple-500 mb-2">
-                Development Process
-              </p>
-
-              <h2
-                id="mobile-process-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
-              >
-                How We Build Mobile Applications
-              </h2>
-
-              <p
-                className={`text-base max-w-2xl mx-auto ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                A structured mobile software development workflow from initial
-                requirements through design, development, testing and release.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {process.map((step) => (
-                <article
-                  key={step.n}
-                  className={`p-5 rounded-2xl border ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06]"
-                      : "bg-white border-gray-200"
-                  }`}
-                >
-                  <div
-                    className={`text-[13px] font-black mb-2 ${
-                      d ? "text-purple-400" : "text-purple-600"
-                    }`}
-                  >
-                    {step.n}
-                  </div>
-
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    {step.title}
-                  </h3>
-
-                  <p
-                    className={`text-[13px] leading-relaxed ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    {step.desc}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            BUSINESS / STARTUP SECTION
-        ===================================================== */}
-
-        <section
-          aria-labelledby="mobile-business-heading"
-          className={`py-12 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
-          }`}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-8">
-              <article
-                className={`p-6 rounded-2xl border ${
-                  d
-                    ? "bg-white/[0.02] border-white/[0.06]"
-                    : "bg-[#fafafa] border-gray-200"
-                }`}
-              >
-                <p className="text-[11px] font-black uppercase tracking-widest text-purple-500 mb-2">
-                  For Businesses
-                </p>
-
-                <h2
-                  id="mobile-business-heading"
-                  className={`text-2xl font-black mb-3 ${
-                    d ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  Custom Mobile App Development for Business
-                </h2>
-
-                <p
-                  className={`text-[14px] leading-relaxed ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  A custom mobile app can support customers, employees, sales,
-                  operations, bookings, inventory and other business workflows.
-                  We plan the application around the processes and integrations
-                  your organisation actually needs.
-                </p>
-              </article>
-
-              <article
-                className={`p-6 rounded-2xl border ${
-                  d
-                    ? "bg-white/[0.02] border-white/[0.06]"
-                    : "bg-[#fafafa] border-gray-200"
-                }`}
-              >
-                <p className="text-[11px] font-black uppercase tracking-widest text-purple-500 mb-2">
-                  For Startups
-                </p>
-
-                <h2
-                  className={`text-2xl font-black mb-3 ${
-                    d ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  Mobile App Development for Startups
-                </h2>
-
-                <p
-                  className={`text-[14px] leading-relaxed ${
-                    d ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  Startup app development can begin with a focused MVP and
-                  evolve as the product gains users and requirements become
-                  clearer. We can support product planning, mobile UI/UX,
-                  development, APIs, testing and future iterations.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            FAQ
-        ===================================================== */}
-
-        <section
-          aria-labelledby="mobile-faq-heading"
-          className={`py-12 border-b ${
-            d
-              ? "border-white/[0.06] bg-[#050505]"
-              : "border-gray-100 bg-[#fafafa]"
-          }`}
-        >
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="text-center mb-8">
-              <p className="text-[11px] font-black uppercase tracking-widest text-purple-500 mb-2">
-                FAQ
-              </p>
-
-              <h2
-                id="mobile-faq-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
-              >
-                Mobile App Development FAQ
-              </h2>
-
-              <p
-                className={`text-base ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Common questions about custom mobile application development,
-                platforms, costs, features and launch.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              {faqs.map((faq, index) => {
-                const isOpen = activeFaq === index;
-
-                return (
-                  <div
-                    key={faq.q}
-                    className={`rounded-xl border overflow-hidden transition-all duration-300 ${
-                      isOpen
-                        ? d
-                          ? "border-purple-500/40 bg-purple-600/5"
-                          : "border-purple-200 bg-purple-50/50"
-                        : d
-                          ? "border-white/[0.06] bg-white/[0.02]"
-                          : "border-gray-200 bg-white"
-                    }`}
-                  >
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setActiveFaq(isOpen ? null : index)
-                      }
-                      aria-expanded={isOpen}
-                      aria-controls={`mobile-faq-${index}`}
-                      className="w-full p-4 text-left flex items-start justify-between gap-4"
-                    >
-                      <span
-                        className={`text-[14px] font-bold leading-snug ${
-                          isOpen
-                            ? "text-purple-500"
-                            : d
-                              ? "text-white"
-                              : "text-gray-900"
-                        }`}
-                      >
-                        {faq.q}
-                      </span>
-
-                      <span
-                        className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center ${
-                          isOpen
-                            ? "bg-purple-600 text-white"
-                            : d
-                              ? "bg-white/[0.06] text-gray-500"
-                              : "bg-gray-100 text-gray-500"
-                        }`}
-                      >
-                        {isOpen ? (
-                          <Minus size={13} />
-                        ) : (
-                          <Plus size={13} />
-                        )}
-                      </span>
-                    </button>
-
-                    <div
-                      id={`mobile-faq-${index}`}
-                      className={`overflow-hidden transition-all duration-300 ${
-                        isOpen
-                          ? "max-h-[500px] opacity-100"
-                          : "max-h-0 opacity-0"
-                      }`}
-                    >
-                      <div
-                        className={`px-4 pb-4 border-t text-[14px] leading-relaxed ${
-                          d
-                            ? "border-white/[0.06] text-gray-400"
-                            : "border-purple-100 text-gray-600"
-                        }`}
-                      >
-                        <p className="pt-4">{faq.a}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
             </div>
           </div>
         </section>
@@ -1202,161 +1371,447 @@ const MobileApp = ({ isDark }) => {
 
         <section
           aria-labelledby="mobile-related-heading"
-          className={`py-12 border-b ${
-            d ? "border-white/[0.06]" : "border-gray-100"
-          }`}
+          className="py-11 md:py-13 bg-[#f7f9fa] border-y border-slate-200"
         >
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-7">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-7">
               <div>
-                <p className="text-[11px] font-black uppercase tracking-widest text-purple-500 mb-2">
-                  Related Services
-                </p>
+                <SectionLabel>Related Services</SectionLabel>
 
                 <h2
                   id="mobile-related-heading"
-                  className={`text-2xl font-black ${
-                    d ? "text-white" : "text-gray-900"
-                  }`}
+                  className="text-[#071923] text-[30px] sm:text-[35px] md:text-[40px] font-semibold tracking-[-0.035em] leading-[1.08] mt-3"
                 >
-                  Supporting Your Mobile Product
+                  Supporting your complete product.
                 </h2>
               </div>
 
               <Link
                 to="/allservices"
-                className={`inline-flex items-center gap-2 text-[13px] font-semibold ${
-                  d
-                    ? "text-purple-400 hover:text-purple-300"
-                    : "text-purple-600 hover:text-purple-700"
-                }`}
+                onClick={scrollTop}
+                className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#07899a]"
               >
                 View All Services
                 <ArrowRight size={13} />
               </Link>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
               {relatedServices.map((service) => (
-                <article
+                <Link
                   key={service.path}
-                  className={`group p-5 rounded-2xl border transition-all ${
-                    d
-                      ? "bg-white/[0.02] border-white/[0.06] hover:border-purple-500/25 hover:bg-white/[0.04]"
-                      : "bg-[#fafafa] border-gray-200 hover:border-purple-200 hover:shadow-sm"
-                  }`}
+                  to={service.path}
+                  onClick={scrollTop}
+                  className="group rounded-2xl border border-slate-200 bg-white p-5 hover:border-[#0796A8]/40 hover:-translate-y-1 transition-all"
                 >
-                  <div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${
-                      d
-                        ? "bg-purple-500/10 text-purple-400"
-                        : "bg-purple-50 text-purple-600"
-                    }`}
-                  >
-                    {service.icon}
-                  </div>
+                  <span className="text-[8px] tracking-[0.16em] font-semibold text-[#0796A8]">
+                    {service.label}
+                  </span>
 
-                  <h3
-                    className={`text-[14px] font-bold mb-2 ${
-                      d ? "text-white" : "text-gray-900"
-                    }`}
-                  >
+                  <h3 className="text-[#071923] text-[14px] leading-5 font-semibold mt-3">
                     {service.title}
                   </h3>
 
-                  <p
-                    className={`text-[13px] leading-relaxed mb-4 ${
-                      d ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
+                  <p className="text-slate-500 text-[10px] leading-5 mt-2">
                     {service.desc}
                   </p>
 
-                  <Link
-                    to={service.path}
-                    className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-purple-500"
-                  >
-                    Learn More
-                    <ArrowRight
-                      size={12}
-                      className="transition-transform group-hover:translate-x-1"
+                  <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-100">
+                    <span className="text-[9px] font-medium text-slate-500 group-hover:text-[#07899a]">
+                      Explore service
+                    </span>
+
+                    <ArrowUpRight
+                      size={13}
+                      className="text-[#07899a]"
                     />
-                  </Link>
-                </article>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
         </section>
 
         {/* =====================================================
-            FINAL CTA
+            FAQ
         ===================================================== */}
 
         <section
-          aria-labelledby="mobile-cta-heading"
-          className="py-12"
+          aria-labelledby="mobile-faq-heading"
+          className="py-11 md:py-13 bg-white"
         >
-          <div className="max-w-4xl mx-auto px-6">
-            <div
-              className={`p-7 md:p-8 rounded-3xl border text-center ${
-                d
-                  ? "bg-white/[0.02] border-white/[0.06]"
-                  : "bg-[#fafafa] border-gray-200"
-              }`}
-            >
-              <div
-                className={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 ${
-                  d ? "bg-purple-600/15" : "bg-purple-50"
-                }`}
-              >
-                <Smartphone
-                  size={22}
-                  className="text-purple-500"
-                />
+          <div className="max-w-[980px] mx-auto px-5 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+              <div>
+                <SectionLabel>FAQ</SectionLabel>
+
+                <h2
+                  id="mobile-faq-heading"
+                  className="text-[#071923] text-[30px] sm:text-[35px] md:text-[40px] font-semibold tracking-[-0.035em] leading-[1.08] mt-3"
+                >
+                  Mobile app development questions clients ask.
+                </h2>
               </div>
 
-              <h2
-                id="mobile-cta-heading"
-                className={`text-3xl font-black mb-3 ${
-                  d ? "text-white" : "text-gray-900"
-                }`}
+              <a
+                href="#mobile-project-enquiry"
+                className="self-start md:self-auto inline-flex items-center gap-2 rounded-lg bg-[#071923] px-4 py-2.5 text-[10px] font-semibold text-white"
               >
-                Need a Mobile App Developer for Your Project?
-              </h2>
+                Ask Your Question
+                <ArrowRight size={12} />
+              </a>
+            </div>
 
-              <p
-                className={`text-base mb-6 max-w-2xl mx-auto leading-relaxed ${
-                  d ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                Tell us about your mobile application, business requirements
-                and target users. We can discuss the development scope,
-                technology and next steps for your iOS and Android project.
-              </p>
+            <div className="border-t border-slate-200">
+              {visibleFaqs.map((faq, index) => {
+                const isOpen = activeFaq === index;
 
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Link
-                  to="/contact"
-                  className="flex items-center gap-2 px-8 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-sm transition-all hover:shadow-[0_0_24px_rgba(124,58,237,0.3)]"
+                return (
+                  <div
+                    key={faq.q}
+                    className="border-b border-slate-200"
+                  >
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveFaq(isOpen ? null : index)
+                      }
+                      aria-expanded={isOpen}
+                      aria-controls={`mobile-faq-${index}`}
+                      className="w-full flex items-center justify-between gap-5 py-4 text-left"
+                    >
+                      <span
+                        className={`text-[13px] sm:text-[14px] font-semibold transition-colors ${
+                          isOpen
+                            ? "text-[#07899a]"
+                            : "text-[#071923]"
+                        }`}
+                      >
+                        {faq.q}
+                      </span>
+
+                      <span
+                        className={`w-7 h-7 flex-shrink-0 rounded-full border flex items-center justify-center transition-all ${
+                          isOpen
+                            ? "border-[#0796A8] bg-[#0796A8] text-white"
+                            : "border-slate-200 text-[#071923]"
+                        }`}
+                      >
+                        {isOpen ? (
+                          <Minus size={12} />
+                        ) : (
+                          <Plus size={12} />
+                        )}
+                      </span>
+                    </button>
+
+                    <div
+                      id={`mobile-faq-${index}`}
+                      className={`grid transition-all duration-300 ${
+                        isOpen
+                          ? "grid-rows-[1fr] opacity-100"
+                          : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="max-w-3xl pb-4 text-[12px] leading-6 text-slate-600">
+                          {faq.a}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {faqs.length > 3 && (
+              <div className="flex justify-center mt-5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAllFaqs((current) => !current);
+                    setActiveFaq(null);
+                  }}
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#071923]/15 bg-[#f8fafb] px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:border-[#0796A8]/50 transition-colors"
                 >
-                  Discuss Your Mobile App
-                  <ArrowRight size={15} />
-                </Link>
+                  {showAllFaqs
+                    ? "Show Less Questions"
+                    : `Show More Questions (${faqs.length - 3})`}
 
-                <a
-                  href="https://wa.me/923348004300?text=Hi%20DevZore!%20I%20would%20like%20to%20discuss%20a%20mobile%20app%20development%20project."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-8 py-3.5 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold rounded-xl text-sm hover:bg-[#25D366]/20 transition-all"
-                >
-                  WhatsApp DevZore
-                  <ArrowRight size={15} />
-                </a>
+                  {showAllFaqs ? (
+                    <ChevronUp size={13} />
+                  ) : (
+                    <ChevronDown size={13} />
+                  )}
+                </button>
               </div>
+            )}
+          </div>
+        </section>
+
+        {/* =====================================================
+            PROJECT ENQUIRY
+        ===================================================== */}
+
+        <section
+          id="mobile-project-enquiry"
+          aria-labelledby="mobile-project-enquiry-heading"
+          className="relative py-11 md:py-13 bg-[#071923] text-white overflow-hidden"
+        >
+          <div
+            className="absolute inset-0 opacity-70"
+            style={darkGrid}
+          />
+
+          <div className="absolute -top-20 left-[5%] w-[450px] h-[450px] rounded-full bg-[#0796A8]/10 blur-[130px]" />
+
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="grid lg:grid-cols-[0.82fr_1.18fr] gap-7 lg:gap-12">
+              <div>
+                <SectionLabel light>Start a Project</SectionLabel>
+
+                <h2
+                  id="mobile-project-enquiry-heading"
+                  className="text-[30px] sm:text-[35px] md:text-[42px] leading-[1.07] tracking-[-0.04em] font-semibold mt-3"
+                >
+                  Tell us about your{" "}
+                  <span className="text-[#25bfce]">
+                    mobile app idea.
+                  </span>
+                </h2>
+
+                <p className="text-slate-300 text-[14px] leading-6 mt-3 max-w-lg">
+                  Share the product idea, users and important features. We can
+                  review the requirements and discuss the appropriate
+                  development approach.
+                </p>
+
+                <div className="mt-5 space-y-2.5">
+                  {[
+                    "iOS and Android applications",
+                    "Startup MVPs",
+                    "Business mobile applications",
+                    "Backend and API integrations",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-2.5"
+                    >
+                      <div className="w-5 h-5 rounded-full bg-[#19b9c8]/10 border border-[#19b9c8]/25 flex items-center justify-center">
+                        <Check
+                          size={10}
+                          className="text-[#2ac6d4]"
+                        />
+                      </div>
+
+                      <span className="text-[11px] font-medium text-slate-300">
+                        {item}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-white/[0.08]">
+                  <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-slate-500">
+                    Prefer a direct conversation?
+                  </p>
+
+                  <a
+                    href="mailto:hello@devzore.com"
+                    className="inline-flex items-center gap-2 mt-2 text-[12px] font-medium text-[#26c4d2]"
+                  >
+                    <Mail size={14} />
+                    hello@devzore.com
+                  </a>
+                </div>
+              </div>
+
+              {/* FORM */}
+
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-2xl border border-white/[0.1] bg-[#0a202a]/90 p-5 sm:p-6 shadow-[0_30px_80px_rgba(0,0,0,0.25)]"
+              >
+                <div className="grid md:grid-cols-2 gap-3.5">
+                  <div>
+                    <label
+                      htmlFor="mobile-name"
+                      className="block text-[9px] font-semibold tracking-[0.13em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Your Name *
+                    </label>
+
+                    <input
+                      id="mobile-name"
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="mobile-email"
+                      className="block text-[9px] font-semibold tracking-[0.13em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Email Address *
+                    </label>
+
+                    <input
+                      id="mobile-email"
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="you@company.com"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="mobile-company"
+                      className="block text-[9px] font-semibold tracking-[0.13em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Company
+                    </label>
+
+                    <input
+                      id="mobile-company"
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      placeholder="Company name"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="mobile-service"
+                      className="block text-[9px] font-semibold tracking-[0.13em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Project Type
+                    </label>
+
+                    <select
+                      id="mobile-service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    >
+                      <option>Mobile App Development</option>
+                      <option>iOS App</option>
+                      <option>Android App</option>
+                      <option>Cross-Platform App</option>
+                      <option>Startup MVP</option>
+                      <option>Business Mobile App</option>
+                      <option>E-Commerce App</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label
+                      htmlFor="mobile-timeline"
+                      className="block text-[9px] font-semibold tracking-[0.13em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Preferred Timeline
+                    </label>
+
+                    <select
+                      id="mobile-timeline"
+                      name="timeline"
+                      value={formData.timeline}
+                      onChange={handleChange}
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    >
+                      <option value="">Select a timeline</option>
+                      <option>As soon as possible</option>
+                      <option>Within 1 month</option>
+                      <option>1–3 months</option>
+                      <option>3+ months</option>
+                      <option>Not sure yet</option>
+                    </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label
+                      htmlFor="mobile-message"
+                      className="block text-[9px] font-semibold tracking-[0.13em] uppercase text-slate-400 mb-1.5"
+                    >
+                      Project Details *
+                    </label>
+
+                    <textarea
+                      id="mobile-message"
+                      name="message"
+                      required
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us about your app, target users, important features and requirements..."
+                      className="w-full resize-none rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] leading-5 text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-4">
+                  <p className="text-[9px] leading-4 text-slate-500 max-w-sm">
+                    Share enough information for us to understand the product.
+                    Detailed specifications can be discussed afterwards.
+                  </p>
+
+                  <button
+                    type="submit"
+                    className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#1bbdca] hover:bg-[#28c9d5] px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+                  >
+                    Send Project Enquiry
+                    <Send size={13} />
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </section>
-      </main>
+
+        {/* =====================================================
+            BOTTOM CTA
+        ===================================================== */}
+
+        <section className="bg-[#06151d] border-t border-white/[0.06]">
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6 py-5">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <p className="text-white text-[14px] font-semibold">
+                  Have a mobile app idea? We’re ready to build it.
+                </p>
+
+                <p className="text-slate-500 text-[10px] mt-1">
+                  iOS, Android, React Native and custom mobile products by
+                  DevZore.
+                </p>
+              </div>
+
+              <Link
+                to="/contact"
+                onClick={scrollTop}
+                className="inline-flex self-start items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
+              >
+                Contact DevZore
+                <ArrowUpRight size={12} />
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 };
