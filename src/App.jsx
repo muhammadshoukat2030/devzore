@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import {
   BrowserRouter,
   Routes,
@@ -7,6 +8,7 @@ import {
   Link,
   Navigate,
 } from "react-router-dom";
+
 import { Helmet } from "react-helmet-async";
 
 // ======================================================
@@ -26,7 +28,6 @@ import Services from "./sections/Services";
 import Solutions from "./sections/Solutions";
 import Projects from "./sections/Projects";
 import WhyUs from "./sections/WhyUs";
-// import Process from "./sections/Process";
 import TechStack from "./sections/TechStack";
 import Testimonials from "./sections/Testimonials";
 import FAQ from "./sections/FAQ";
@@ -38,6 +39,7 @@ import FAQ from "./sections/FAQ";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ThankYou from "./pages/ThankYou";
+
 import BlogPost from "./pages/BlogPost";
 import BlogDetails from "./pages/BlogDetails";
 
@@ -87,13 +89,7 @@ import OurProcess from "./pages/OurProcess";
 import Technologies from "./pages/Technologies";
 
 // ======================================================
-// CAREERS - FUTURE
-// ======================================================
-
-// import Careers from "./pages/Careers";
-
-// ======================================================
-// LEGAL
+// LEGAL PAGES
 // ======================================================
 
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -116,6 +112,7 @@ import AdminComments from "./pages/admin/AdminComments";
 // ======================================================
 
 const BASE_URL = "https://devzore.com";
+
 const DEFAULT_OG_IMAGE = `${BASE_URL}/logo.png`;
 
 const INDEX_ROBOTS =
@@ -169,21 +166,6 @@ const seoData = {
 
     keywords:
       "contact software development company, contact web development company, hire software development company, hire web developer, hire website developer, hire web development company, get website development quote, website development consultation, software development consultation, custom software consultation, web development quote, website development quote",
-  },
-
-  // ====================================================
-  // BLOG
-  // ====================================================
-
-  "/blog": {
-    title:
-      "Web & Software Development Blog, Guides & Insights | DevZore",
-
-    description:
-      "Explore practical guides and insights about websites, web development, React, MERN, SaaS, software development, SEO, performance and digital technology.",
-
-    keywords:
-      "website development guide, web development guide, business website guide, website design guide, website development cost, web development blog, software development blog, React development guide, MERN stack guide, SaaS development guide, website SEO guide, website speed guide, website security guide, software engineering insights",
   },
 
   // ====================================================
@@ -322,7 +304,7 @@ const seoData = {
   },
 
   // ====================================================
-  // UI / UX DESIGN
+  // UI UX
   // ====================================================
 
   "/ui-ux-design": {
@@ -367,7 +349,7 @@ const seoData = {
   },
 
   // ====================================================
-  // SEO SERVICES
+  // SEO
   // ====================================================
 
   "/seo-services": {
@@ -397,7 +379,7 @@ const seoData = {
   },
 
   // ====================================================
-  // SOLUTION PAGES
+  // SOLUTIONS
   // ====================================================
 
   "/startup-solutions": {
@@ -467,7 +449,7 @@ const seoData = {
   },
 
   // ====================================================
-  // RESOURCE PAGES
+  // RESOURCES
   // ====================================================
 
   "/guides": {
@@ -504,7 +486,7 @@ const seoData = {
   },
 
   // ====================================================
-  // COMPANY PAGES
+  // COMPANY
   // ====================================================
 
   "/our-process": {
@@ -529,25 +511,13 @@ const seoData = {
       "software development technologies, web development technologies, technology stack, React, Node.js, MongoDB, Express, JavaScript, SaaS technology stack",
   },
 
-  /*
-  "/careers": {
-    title:
-      "Careers at DevZore | Software Development Opportunities",
-
-    description:
-      "Explore career and collaboration opportunities at DevZore across software development, web development, design and digital technology.",
-
-    keywords:
-      "DevZore careers, software developer jobs, web developer careers, software development opportunities",
-  },
-  */
-
   // ====================================================
-  // PRIVACY POLICY
+  // PRIVACY
   // ====================================================
 
   "/privacy-policy": {
-    title: "Privacy Policy | DevZore",
+    title:
+      "Privacy Policy | DevZore",
 
     description:
       "Read DevZore's Privacy Policy to understand how information may be collected, used, stored and protected when using our website and services.",
@@ -557,11 +527,12 @@ const seoData = {
   },
 
   // ====================================================
-  // TERMS & CONDITIONS
+  // TERMS
   // ====================================================
 
   "/terms-and-conditions": {
-    title: "Terms & Conditions | DevZore",
+    title:
+      "Terms & Conditions | DevZore",
 
     description:
       "Read DevZore's Terms and Conditions covering website use, software development services, client responsibilities, payments, support and related policies.",
@@ -572,22 +543,45 @@ const seoData = {
 };
 
 // ======================================================
+// NORMALIZE PATH
+// ======================================================
+
+const normalizePathname = (pathname = "/") => {
+  if (!pathname || pathname === "/") {
+    return "/";
+  }
+
+  const cleaned = pathname.replace(/\/+$/, "");
+
+  return cleaned || "/";
+};
+
+// ======================================================
 // SEO MANAGER
 // ======================================================
 
 function SEOManager() {
   const { pathname } = useLocation();
 
+  const currentPath =
+    normalizePathname(pathname);
+
   // ====================================================
   // ADMIN
   // ====================================================
 
-  if (pathname.startsWith("/admin")) {
+  if (
+    currentPath.startsWith(
+      "/admin"
+    )
+  ) {
     return (
       <Helmet>
         <html lang="en" />
 
-        <title>DevZore Admin</title>
+        <title>
+          DevZore Admin
+        </title>
 
         <meta
           name="robots"
@@ -603,15 +597,20 @@ function SEOManager() {
   }
 
   // ====================================================
-  // THANK YOU / CONVERSION PAGE
+  // THANK YOU
   // ====================================================
 
-  if (pathname === "/thank-you") {
+  if (
+    currentPath ===
+    "/thank-you"
+  ) {
     return (
       <Helmet>
         <html lang="en" />
 
-        <title>Thank You | DevZore</title>
+        <title>
+          Thank You | DevZore
+        </title>
 
         <meta
           name="description"
@@ -632,21 +631,37 @@ function SEOManager() {
   }
 
   // ====================================================
-  // DYNAMIC BLOG DETAILS
+  // BLOG
+  // ====================================================
+  //
+  // IMPORTANT:
+  //
+  // BlogPost.jsx handles /blog SEO.
+  // BlogDetails.jsx handles /blog/:slug SEO.
+  //
+  // SEOManager ko yahan kuch output nahi karna,
+  // warna duplicate title/meta/canonical ho sakte hain.
   // ====================================================
 
-  if (pathname.startsWith("/blog/")) {
+  if (
+    currentPath ===
+      "/blog" ||
+    currentPath.startsWith(
+      "/blog/"
+    )
+  ) {
     return null;
   }
 
   // ====================================================
-  // CURRENT STATIC PAGE
+  // STATIC PAGE
   // ====================================================
 
-  const page = seoData[pathname];
+  const page =
+    seoData[currentPath];
 
   // ====================================================
-  // UNKNOWN ROUTE / 404
+  // UNKNOWN / 404
   // ====================================================
 
   if (!page) {
@@ -654,7 +669,9 @@ function SEOManager() {
       <Helmet>
         <html lang="en" />
 
-        <title>Page Not Found | DevZore</title>
+        <title>
+          Page Not Found | DevZore
+        </title>
 
         <meta
           name="description"
@@ -675,77 +692,72 @@ function SEOManager() {
   }
 
   // ====================================================
-  // CANONICAL URL
+  // CANONICAL
   // ====================================================
 
   const canonical =
-    pathname === "/"
+    currentPath === "/"
       ? `${BASE_URL}/`
-      : `${BASE_URL}${pathname}`;
+      : `${BASE_URL}${currentPath}`;
 
   // ====================================================
   // SOCIAL IMAGE
   // ====================================================
 
   const socialImage =
-    page.ogImage || DEFAULT_OG_IMAGE;
+    page.ogImage ||
+    DEFAULT_OG_IMAGE;
 
   // ====================================================
-  // SEO OUTPUT
+  // OUTPUT
   // ====================================================
 
   return (
     <Helmet>
       <html lang="en" />
 
-      <title>{page.title}</title>
+      <title>
+        {page.title}
+      </title>
 
       <meta
         name="description"
-        content={page.description}
+        content={
+          page.description
+        }
       />
 
       {page.keywords && (
         <meta
           name="keywords"
-          content={page.keywords}
+          content={
+            page.keywords
+          }
         />
       )}
 
       <meta
         name="robots"
-        content={INDEX_ROBOTS}
-      />
-
-      <meta
-        name="googlebot"
-        content={INDEX_ROBOTS}
-      />
-
-      <link
-        rel="canonical"
-        href={canonical}
-      />
-
-      {/* OPEN GRAPH */}
-
-      <meta
-        property="og:title"
-        content={page.ogTitle || page.title}
-      />
-
-      <meta
-        property="og:description"
         content={
-          page.ogDescription ||
-          page.description
+          INDEX_ROBOTS
         }
       />
 
       <meta
-        property="og:url"
-        content={canonical}
+        name="googlebot"
+        content={
+          INDEX_ROBOTS
+        }
       />
+
+      <link
+        rel="canonical"
+        href={
+          canonical
+        }
+      />
+
+      {/* OPEN GRAPH */}
 
       <meta
         property="og:type"
@@ -758,13 +770,38 @@ function SEOManager() {
       />
 
       <meta
+        property="og:title"
+        content={
+          page.ogTitle ||
+          page.title
+        }
+      />
+
+      <meta
+        property="og:description"
+        content={
+          page.ogDescription ||
+          page.description
+        }
+      />
+
+      <meta
+        property="og:url"
+        content={
+          canonical
+        }
+      />
+
+      <meta
         property="og:locale"
         content="en_US"
       />
 
       <meta
         property="og:image"
-        content={socialImage}
+        content={
+          socialImage
+        }
       />
 
       <meta
@@ -784,7 +821,10 @@ function SEOManager() {
 
       <meta
         name="twitter:title"
-        content={page.ogTitle || page.title}
+        content={
+          page.ogTitle ||
+          page.title
+        }
       />
 
       <meta
@@ -797,7 +837,9 @@ function SEOManager() {
 
       <meta
         name="twitter:image"
-        content={socialImage}
+        content={
+          socialImage
+        }
       />
 
       <meta
@@ -816,12 +858,15 @@ function SEOManager() {
 // ======================================================
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname } =
+    useLocation();
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
+
       left: 0,
+
       behavior: "auto",
     });
   }, [pathname]);
@@ -845,7 +890,9 @@ function NotFound() {
       </h1>
 
       <p className="mt-4 max-w-lg text-slate-600">
-        The page you're looking for doesn't exist or may have been moved.
+        The page you're looking
+        for doesn't exist or may
+        have been moved.
       </p>
 
       <Link
@@ -859,261 +906,343 @@ function NotFound() {
 }
 
 // ======================================================
+// HOME PAGE
+// ======================================================
+
+function HomePage() {
+  return (
+    <>
+      <Hero />
+
+      <TrustBar />
+
+      <Services />
+
+      <Solutions />
+
+      <Projects />
+
+      <WhyUs />
+
+      <TechStack />
+
+      <Testimonials />
+
+      <FAQ />
+    </>
+  );
+}
+
+// ======================================================
 // APP CONTENT
 // ======================================================
 
 function AppContent() {
-  const { pathname } = useLocation();
+  const { pathname } =
+    useLocation();
 
-  const isAdminRoute = pathname.startsWith("/admin");
+  const isAdminRoute =
+    pathname.startsWith(
+      "/admin"
+    );
 
   return (
     <div className="min-h-screen font-sans flex flex-col bg-white text-[#071923] selection:bg-cyan-100">
       {/* ================================================
           PUBLIC NAVBAR
-      ================================================ */}
+          ================================================ */}
 
-      {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && (
+        <Navbar />
+      )}
 
       {/* ================================================
           ROUTES
-      ================================================ */}
+          ================================================ */}
 
       <main className="flex-grow">
         <Routes>
-          {/* ============================================
-              HOME
-          ============================================ */}
+          {/* HOME */}
 
           <Route
             path="/"
             element={
-              <>
-                <Hero />
-                <TrustBar />
-                <Services />
-                <Solutions />
-                <Projects />
-                <WhyUs />
-                {/* <Process /> */}
-                <TechStack />
-                <Testimonials />
-                <FAQ />
-              </>
+              <HomePage />
             }
           />
 
           {/* ============================================
               SERVICES
-          ============================================ */}
+              ============================================ */}
 
           <Route
             path="/allservices"
-            element={<AllServices />}
+            element={
+              <AllServices />
+            }
           />
 
           <Route
             path="/web-development"
-            element={<WebDevelopment />}
+            element={
+              <WebDevelopment />
+            }
           />
 
           <Route
             path="/mobile-apps"
-            element={<MobileApp />}
+            element={
+              <MobileApp />
+            }
           />
 
           <Route
             path="/generative-ai-development"
-            element={<GenerativeAIDevelopment />}
+            element={
+              <GenerativeAIDevelopment />
+            }
           />
 
           <Route
             path="/ecommerce"
-            element={<ECommerce />}
+            element={
+              <ECommerce />
+            }
           />
 
           <Route
             path="/mern-stack-development"
-            element={<MernStackDevelopment />}
+            element={
+              <MernStackDevelopment />
+            }
           />
 
           <Route
             path="/reactdevelopment"
-            element={<ReactDevelopment />}
+            element={
+              <ReactDevelopment />
+            }
           />
 
           <Route
             path="/backend-api"
-            element={<BackendApi />}
+            element={
+              <BackendApi />
+            }
           />
 
           <Route
             path="/saas-product-development"
-            element={<SaaSProductDevelopment />}
+            element={
+              <SaaSProductDevelopment />
+            }
           />
 
           <Route
             path="/ui-ux-design"
-            element={<UiUxDesign />}
+            element={
+              <UiUxDesign />
+            }
           />
 
           <Route
             path="/startup-mvp"
-            element={<StartupMVP />}
+            element={
+              <StartupMVP />
+            }
           />
 
           <Route
             path="/seo-services"
-            element={<SeoServices />}
+            element={
+              <SeoServices />
+            }
           />
 
           <Route
             path="/digital-marketing"
-            element={<DigitalMarketing />}
+            element={
+              <DigitalMarketing />
+            }
           />
 
           <Route
             path="/maintenance"
-            element={<Maintenance />}
+            element={
+              <Maintenance />
+            }
           />
 
           {/* ============================================
               SOLUTIONS
-          ============================================ */}
+              ============================================ */}
 
           <Route
             path="/startup-solutions"
-            element={<StartupSolutions />}
+            element={
+              <StartupSolutions />
+            }
           />
 
           <Route
             path="/business-solutions"
-            element={<BusinessSolutions />}
+            element={
+              <BusinessSolutions />
+            }
           />
 
           <Route
             path="/ecommerce-solutions"
-            element={<EcommerceSolutions />}
+            element={
+              <EcommerceSolutions />
+            }
           />
 
           <Route
             path="/saas-solutions"
-            element={<SaaSSolutions />}
+            element={
+              <SaaSSolutions />
+            }
           />
 
           <Route
             path="/management-systems"
-            element={<ManagementSystems />}
+            element={
+              <ManagementSystems />
+            }
           />
 
           <Route
             path="/custom-software-solutions"
-            element={<CustomSoftwareSolutions />}
+            element={
+              <CustomSoftwareSolutions />
+            }
           />
 
           {/* ============================================
               RESOURCES
-          ============================================ */}
+              ============================================ */}
 
           <Route
             path="/guides"
-            element={<DevelopmentGuides />}
+            element={
+              <DevelopmentGuides />
+            }
           />
 
           <Route
             path="/faqs"
-            element={<FAQs />}
+            element={
+              <FAQs />
+            }
           />
 
           <Route
             path="/resources"
-            element={<Resources />}
+            element={
+              <Resources />
+            }
           />
 
           {/* ============================================
               COMPANY
-          ============================================ */}
+              ============================================ */}
 
           <Route
             path="/our-process"
-            element={<OurProcess />}
+            element={
+              <OurProcess />
+            }
           />
 
           <Route
             path="/technologies"
-            element={<Technologies />}
+            element={
+              <Technologies />
+            }
           />
-
-          {/*
-          <Route
-            path="/careers"
-            element={<Careers />}
-          />
-          */}
 
           {/* ============================================
-              PUBLIC PAGES
-          ============================================ */}
+              PUBLIC
+              ============================================ */}
 
           <Route
             path="/about"
-            element={<About />}
+            element={
+              <About />
+            }
           />
 
           <Route
             path="/contact"
-            element={<Contact />}
+            element={
+              <Contact />
+            }
           />
 
           <Route
             path="/thank-you"
-            element={<ThankYou />}
+            element={
+              <ThankYou />
+            }
           />
 
           {/* ============================================
               BLOG
-          ============================================ */}
+              ============================================ */}
 
           <Route
             path="/blog"
-            element={<BlogPost />}
+            element={
+              <BlogPost />
+            }
           />
 
           <Route
             path="/blog/:slug"
-            element={<BlogDetails />}
+            element={
+              <BlogDetails />
+            }
           />
 
           {/* ============================================
               LEGAL
-          ============================================ */}
+              ============================================ */}
 
           <Route
             path="/privacy-policy"
-            element={<PrivacyPolicy />}
+            element={
+              <PrivacyPolicy />
+            }
           />
 
           <Route
             path="/terms-and-conditions"
-            element={<Terms />}
+            element={
+              <Terms />
+            }
           />
 
           {/* ============================================
               ADMIN LOGIN
-          ============================================ */}
+              ============================================ */}
 
           <Route
             path="/admin/login"
-            element={<AdminLogin />}
+            element={
+              <AdminLogin />
+            }
           />
 
           {/* ============================================
               ADMIN AREA
-          ============================================ */}
+              ============================================ */}
 
           <Route
             path="/admin"
-            element={<AdminLayout />}
+            element={
+              <AdminLayout />
+            }
           >
             <Route
               index
@@ -1127,51 +1256,67 @@ function AppContent() {
 
             <Route
               path="dashboard"
-              element={<AdminDashboard />}
+              element={
+                <AdminDashboard />
+              }
             />
 
             <Route
               path="posts"
-              element={<AdminPosts />}
+              element={
+                <AdminPosts />
+              }
             />
 
             <Route
               path="posts/new"
-              element={<AdminPostEditor />}
+              element={
+                <AdminPostEditor />
+              }
             />
 
             <Route
               path="posts/edit/:id"
-              element={<AdminPostEditor />}
+              element={
+                <AdminPostEditor />
+              }
             />
 
             <Route
               path="categories"
-              element={<AdminCategories />}
+              element={
+                <AdminCategories />
+              }
             />
 
             <Route
               path="comments"
-              element={<AdminComments />}
+              element={
+                <AdminComments />
+              }
             />
           </Route>
 
           {/* ============================================
               404 - ALWAYS LAST
-          ============================================ */}
+              ============================================ */}
 
           <Route
             path="*"
-            element={<NotFound />}
+            element={
+              <NotFound />
+            }
           />
         </Routes>
       </main>
 
       {/* ================================================
           PUBLIC FOOTER
-      ================================================ */}
+          ================================================ */}
 
-      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && (
+        <Footer />
+      )}
     </div>
   );
 }
@@ -1191,5 +1336,9 @@ function App() {
     </BrowserRouter>
   );
 }
+
+// ======================================================
+// EXPORT
+// ======================================================
 
 export default App;

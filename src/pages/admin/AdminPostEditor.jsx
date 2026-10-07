@@ -19,10 +19,22 @@ import postService from "../../services/postService";
 import categoryService from "../../services/categoryService";
 import uploadService from "../../services/uploadService";
 
+// ======================================================
 // HELPERS
+// ======================================================
 
-const getBlogImageUrl = (post) =>
-  post?.coverImage || "";
+const getBlogImageUrl = (post) => {
+  const value = post?.coverImage || "";
+
+  if (!value) {
+    return "";
+  }
+
+  return (
+    uploadService.resolveImageUrl?.(value) ||
+    value
+  );
+};
 
 const generateSlug = (value = "") => {
   return String(value)
@@ -46,7 +58,8 @@ const getFileAltText = (
 const normalizeLinkUrl = (
   value = ""
 ) => {
-  const url = value.trim();
+  const url = String(value)
+    .trim();
 
   if (!url) {
     return "";
@@ -94,7 +107,109 @@ const toDateTimeLocalValue = (
     .slice(0, 16);
 };
 
-// CUSTOM CONTENT IMAGE
+// ======================================================
+// NORMALIZE OLD CONTENT IMAGE URLS
+// ======================================================
+
+const normalizeContentImageUrls = (
+  html = ""
+) => {
+  if (!html) {
+    return "";
+  }
+
+  /*
+   * Browser-only helper.
+   *
+   * Old Google Drive URLs / localhost image URLs
+   * are automatically converted to stable DevZore
+   * backend image URLs.
+   */
+
+  if (
+    typeof window === "undefined" ||
+    typeof DOMParser === "undefined"
+  ) {
+    return html;
+  }
+
+  try {
+    const parser = new DOMParser();
+
+    const documentObject =
+      parser.parseFromString(
+        html,
+        "text/html"
+      );
+
+    const images =
+      documentObject.querySelectorAll(
+        "img"
+      );
+
+    images.forEach((image) => {
+      const currentSrc =
+        image.getAttribute("src") ||
+        "";
+
+      if (!currentSrc) {
+        return;
+      }
+
+      const stableSrc =
+        uploadService.resolveImageUrl?.(
+          currentSrc
+        ) || currentSrc;
+
+      image.setAttribute(
+        "src",
+        stableSrc
+      );
+
+      const existingPublicId =
+        image.getAttribute(
+          "data-public-id"
+        );
+
+      if (!existingPublicId) {
+        const publicId =
+          uploadService.extractGoogleDriveFileId?.(
+            currentSrc
+          );
+
+        if (publicId) {
+          image.setAttribute(
+            "data-public-id",
+            publicId
+          );
+        }
+      }
+
+      image.setAttribute(
+        "loading",
+        "lazy"
+      );
+
+      image.setAttribute(
+        "decoding",
+        "async"
+      );
+    });
+
+    return documentObject.body.innerHTML;
+  } catch (error) {
+    console.error(
+      "Content image normalization error:",
+      error
+    );
+
+    return html;
+  }
+};
+
+// ======================================================
+// CUSTOM TIPTAP IMAGE
+// ======================================================
 
 const ContentImage = Image.extend({
   addAttributes() {
@@ -159,11 +274,15 @@ const ContentImage = Image.extend({
   allowBase64: false,
 });
 
-// MAIN
+// ======================================================
+// MAIN COMPONENT
+// ======================================================
 
 const AdminPostEditor = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
+
+  const navigate =
+    useNavigate();
 
   const isEditMode =
     Boolean(id);
@@ -174,7 +293,9 @@ const AdminPostEditor = () => {
   const contentImagePositionRef =
     useRef(null);
 
+  // ====================================================
   // STATE
+  // ====================================================
 
   const [loading, setLoading] =
     useState(false);
@@ -202,6 +323,11 @@ const AdminPostEditor = () => {
   const [
     slugManuallyEdited,
     setSlugManuallyEdited,
+  ] = useState(false);
+
+  const [
+    coverPreviewFailed,
+    setCoverPreviewFailed,
   ] = useState(false);
 
   const [
@@ -233,7 +359,9 @@ const AdminPostEditor = () => {
     seoKeywords: "",
   });
 
-  // EDITOR
+  // ====================================================
+  // TIPTAP EDITOR
+  // ====================================================
 
   const editor = useEditor({
     extensions: [
@@ -263,7 +391,9 @@ const AdminPostEditor = () => {
     },
   });
 
-  // CATEGORIES
+  // ====================================================
+  // LOAD CATEGORIES
+  // ====================================================
 
   useEffect(() => {
     let cancelled = false;
@@ -289,7 +419,8 @@ const AdminPostEditor = () => {
                   ? response.data
                       .categories
                   : Array.isArray(
-                        response?.categories
+                        response
+                          ?.categories
                       )
                     ? response.categories
                     : [];
@@ -320,7 +451,9 @@ const AdminPostEditor = () => {
     };
   }, []);
 
-  // LOAD POST
+  // ====================================================
+  // LOAD EXISTING POST
+  // ====================================================
 
   useEffect(() => {
     if (
@@ -349,9 +482,13 @@ const AdminPostEditor = () => {
             response?.post ||
             response;
 
+          const postId =
+            post?._id ||
+            post?.id;
+
           if (
             !post ||
-            !post._id
+            !postId
           ) {
             throw new Error(
               "Post not found."
@@ -361,6 +498,30 @@ const AdminPostEditor = () => {
           if (cancelled) {
             return;
           }
+
+          const originalCoverImage =
+            post.coverImage ||
+            "";
+
+          const normalizedCoverImage =
+            originalCoverImage
+              ? uploadService.resolveImageUrl?.(
+                  originalCoverImage
+                ) ||
+                originalCoverImage
+              : "";
+
+          const coverPublicId =
+            post.coverImagePublicId ||
+            uploadService.extractGoogleDriveFileId?.(
+              originalCoverImage
+            ) ||
+            "";
+
+          const normalizedContent =
+            normalizeContentImageUrls(
+              post.content || ""
+            );
 
           setFormData({
             title:
@@ -373,14 +534,13 @@ const AdminPostEditor = () => {
               post.excerpt || "",
 
             content:
-              post.content || "",
+              normalizedContent,
 
             coverImage:
-              post.coverImage || "",
+              normalizedCoverImage,
 
             coverImagePublicId:
-              post.coverImagePublicId ||
-              "",
+              coverPublicId,
 
             coverImageAlt:
               post.coverImageAlt ||
@@ -388,6 +548,7 @@ const AdminPostEditor = () => {
 
             category:
               post.category?._id ||
+              post.category?.id ||
               post.category ||
               "",
 
@@ -412,7 +573,8 @@ const AdminPostEditor = () => {
                 ? post.tags.join(
                     ", "
                   )
-                : post.tags || "",
+                : post.tags ||
+                  "",
 
             seoTitle:
               post.seoTitle ||
@@ -426,6 +588,10 @@ const AdminPostEditor = () => {
               post.seoKeywords ||
               "",
           });
+
+          setCoverPreviewFailed(
+            false
+          );
 
           setSlugManuallyEdited(
             Boolean(post.slug)
@@ -470,7 +636,9 @@ const AdminPostEditor = () => {
     navigate,
   ]);
 
-  // LOAD HTML INTO EDITOR
+  // ====================================================
+  // LOAD HTML INTO TIPTAP
+  // ====================================================
 
   useEffect(() => {
     if (
@@ -509,7 +677,9 @@ const AdminPostEditor = () => {
     formData.content,
   ]);
 
+  // ====================================================
   // INPUT CHANGE
+  // ====================================================
 
   const handleChange = (
     event
@@ -534,7 +704,9 @@ const AdminPostEditor = () => {
     );
   };
 
-  // TITLE
+  // ====================================================
+  // TITLE CHANGE
+  // ====================================================
 
   const handleTitleChange = (
     event
@@ -558,7 +730,9 @@ const AdminPostEditor = () => {
     );
   };
 
-  // SLUG
+  // ====================================================
+  // SLUG CHANGE
+  // ====================================================
 
   const handleSlugChange = (
     event
@@ -571,20 +745,25 @@ const AdminPostEditor = () => {
       (previous) => ({
         ...previous,
 
-        slug: generateSlug(
-          event.target.value
-        ),
+        slug:
+          generateSlug(
+            event.target.value
+          ),
       })
     );
   };
 
-  // COVER URL
+  // ====================================================
+  // COVER URL CHANGE
+  // ====================================================
 
   const handleCoverUrlChange = (
     event
   ) => {
     const value =
       event.target.value;
+
+    setCoverPreviewFailed(false);
 
     setFormData(
       (previous) => ({
@@ -594,19 +773,61 @@ const AdminPostEditor = () => {
           value,
 
         /*
-         * Manually pasted URL ka Google
-         * Drive publicId unknown hota hai.
+         * Manually changing URL means previous
+         * Drive ID must not be kept accidentally.
          */
         coverImagePublicId:
           value ===
           previous.coverImage
-            ? previous.coverImagePublicId
+            ? previous
+                .coverImagePublicId
             : "",
       })
     );
   };
 
+  // ====================================================
+  // NORMALIZE MANUAL COVER URL
+  // ====================================================
+
+  const handleCoverUrlBlur =
+    () => {
+      const raw =
+        formData.coverImage.trim();
+
+      if (!raw) {
+        return;
+      }
+
+      const stableUrl =
+        uploadService.resolveImageUrl?.(
+          raw
+        ) || raw;
+
+      const publicId =
+        uploadService.extractGoogleDriveFileId?.(
+          raw
+        ) || "";
+
+      setCoverPreviewFailed(false);
+
+      setFormData(
+        (previous) => ({
+          ...previous,
+
+          coverImage:
+            stableUrl,
+
+          coverImagePublicId:
+            publicId ||
+            previous.coverImagePublicId,
+        })
+      );
+    };
+
+  // ====================================================
   // COVER IMAGE UPLOAD
+  // ====================================================
 
   const handleCoverImageUpload =
     async (event) => {
@@ -636,15 +857,24 @@ const AdminPostEditor = () => {
           );
         }
 
+        setCoverPreviewFailed(
+          false
+        );
+
         setFormData(
           (previous) => ({
             ...previous,
 
+            /*
+             * response.url is the stable
+             * production backend image URL.
+             */
             coverImage:
               response.url,
 
             coverImagePublicId:
               response.publicId ||
+              response.fileId ||
               "",
 
             coverImageAlt:
@@ -657,9 +887,7 @@ const AdminPostEditor = () => {
 
         const sizeText =
           uploadService.formatFileSize?.(
-            response
-              .localCompressedSize ||
-              response.size
+            response.size
           );
 
         toast.success(
@@ -689,35 +917,44 @@ const AdminPostEditor = () => {
       }
     };
 
+  // ====================================================
   // REMOVE COVER
+  // ====================================================
 
   const handleRemoveCoverImage =
     () => {
+      setCoverPreviewFailed(
+        false
+      );
+
       setFormData(
         (previous) => ({
           ...previous,
 
           coverImage: "",
+
           coverImagePublicId:
             "",
+
           coverImageAlt: "",
         })
       );
 
       /*
-       * Drive image ko yahan immediately
-       * delete nahi karte.
+       * Do not delete from Drive immediately.
        *
-       * Agar user post save kiye baghair
-       * page leave kare to existing post
-       * ki image break nahi hogi.
+       * Backend can remove old image after the
+       * post update is successfully saved.
        */
+
       toast.success(
-        "Cover image removed from this post. Save the post to apply the change."
+        "Cover image removed. Save the post to apply this change."
       );
     };
 
-  // CONTENT IMAGE PICKER
+  // ====================================================
+  // OPEN CONTENT IMAGE PICKER
+  // ====================================================
 
   const openContentImagePicker =
     () => {
@@ -729,8 +966,8 @@ const AdminPostEditor = () => {
       }
 
       /*
-       * Upload ke dauran current cursor
-       * position preserve karte hain.
+       * Preserve insertion position while
+       * upload is running.
        */
       contentImagePositionRef.current =
         editor.state.selection.from;
@@ -738,7 +975,9 @@ const AdminPostEditor = () => {
       contentImageInputRef.current?.click();
     };
 
+  // ====================================================
   // CONTENT IMAGE UPLOAD
+  // ====================================================
 
   const handleContentImageUpload =
     async (event) => {
@@ -801,7 +1040,9 @@ const AdminPostEditor = () => {
             .chain()
             .focus();
 
-        if (safePosition) {
+        if (
+          safePosition !== null
+        ) {
           chain =
             chain.setTextSelection(
               safePosition
@@ -811,19 +1052,28 @@ const AdminPostEditor = () => {
         const inserted =
           chain
             .setImage({
-              src: response.url,
+              /*
+               * Stable DevZore backend URL.
+               */
+              src:
+                response.url,
 
-              alt: imageAlt,
+              alt:
+                imageAlt,
 
-              title: imageAlt,
+              title:
+                imageAlt,
 
               publicId:
                 response.publicId ||
+                response.fileId ||
                 null,
 
-              loading: "lazy",
+              loading:
+                "lazy",
 
-              decoding: "async",
+              decoding:
+                "async",
             })
             .run();
 
@@ -834,9 +1084,8 @@ const AdminPostEditor = () => {
         }
 
         /*
-         * Image ke baad ek paragraph add kar
-         * dete hain taa-ke typing continue
-         * karna easy ho.
+         * Add an editable paragraph near
+         * the image so writing can continue.
          */
         editor
           .chain()
@@ -846,9 +1095,7 @@ const AdminPostEditor = () => {
 
         const sizeText =
           uploadService.formatFileSize?.(
-            response
-              .localCompressedSize ||
-              response.size
+            response.size
           );
 
         toast.success(
@@ -881,7 +1128,9 @@ const AdminPostEditor = () => {
       }
     };
 
-  // LINK
+  // ====================================================
+  // ADD / EDIT LINK
+  // ====================================================
 
   const addLink = () => {
     if (!editor) {
@@ -927,14 +1176,21 @@ const AdminPostEditor = () => {
         "link"
       )
       .setLink({
-        href: cleanUrl,
-        target: "_blank",
-        rel: "noopener noreferrer",
+        href:
+          cleanUrl,
+
+        target:
+          "_blank",
+
+        rel:
+          "noopener noreferrer",
       })
       .run();
   };
 
-  // ERROR MESSAGE
+  // ====================================================
+  // API ERROR MESSAGE
+  // ====================================================
 
   const getErrorMessage = (
     error
@@ -972,7 +1228,9 @@ const AdminPostEditor = () => {
     return "Failed to save post.";
   };
 
-  // VALIDATION
+  // ====================================================
+  // FORM VALIDATION
+  // ====================================================
 
   const validateForm = (
     selectedStatus
@@ -1105,7 +1363,9 @@ const AdminPostEditor = () => {
     return true;
   };
 
-  // SUBMIT
+  // ====================================================
+  // SUBMIT POST
+  // ====================================================
 
   const handleSubmit =
     async (
@@ -1130,8 +1390,14 @@ const AdminPostEditor = () => {
       try {
         setLoading(true);
 
+        /*
+         * Normalize all old/current article images
+         * before saving.
+         */
         const content =
-          editor.getHTML();
+          normalizeContentImageUrls(
+            editor.getHTML()
+          );
 
         const tags =
           formData.tags
@@ -1165,6 +1431,36 @@ const AdminPostEditor = () => {
             ).toISOString();
         }
 
+        // ----------------------------------------------
+        // NORMALIZE COVER IMAGE
+        // ----------------------------------------------
+
+        const rawCoverImage =
+          formData.coverImage.trim();
+
+        const finalCoverImage =
+          rawCoverImage
+            ? uploadService.resolveImageUrl?.(
+                rawCoverImage
+              ) ||
+              rawCoverImage
+            : "";
+
+        const extractedPublicId =
+          uploadService.extractGoogleDriveFileId?.(
+            rawCoverImage
+          ) || "";
+
+        const finalCoverImagePublicId =
+          formData
+            .coverImagePublicId
+            .trim() ||
+          extractedPublicId;
+
+        // ----------------------------------------------
+        // POST PAYLOAD
+        // ----------------------------------------------
+
         const postData = {
           title:
             formData.title.trim(),
@@ -1178,10 +1474,10 @@ const AdminPostEditor = () => {
           content,
 
           coverImage:
-            formData.coverImage.trim(),
+            finalCoverImage,
 
           coverImagePublicId:
-            formData.coverImagePublicId.trim(),
+            finalCoverImagePublicId,
 
           coverImageAlt:
             formData.coverImageAlt.trim(),
@@ -1205,16 +1501,15 @@ const AdminPostEditor = () => {
             formData.seoTitle.trim(),
 
           seoDescription:
-            formData.seoDescription.trim(),
+            formData
+              .seoDescription
+              .trim(),
 
           seoKeywords:
-            formData.seoKeywords.trim(),
+            formData
+              .seoKeywords
+              .trim(),
         };
-
-        console.log(
-          "Submitting post:",
-          postData
-        );
 
         if (isEditMode) {
           await postService.updatePost(
@@ -1286,7 +1581,9 @@ const AdminPostEditor = () => {
       }
     };
 
+  // ====================================================
   // LOADING
+  // ====================================================
 
   if (pageLoading) {
     return (
@@ -1302,11 +1599,15 @@ const AdminPostEditor = () => {
     );
   }
 
+  // ====================================================
   // UI
+  // ====================================================
 
   return (
     <div className="pb-10">
-      {/* CONTENT IMAGE FILE INPUT */}
+      {/* =================================================
+          CONTENT IMAGE INPUT
+      ================================================= */}
 
       <input
         ref={
@@ -1320,7 +1621,9 @@ const AdminPostEditor = () => {
         className="hidden"
       />
 
-      {/* HEADER */}
+      {/* =================================================
+          HEADER
+      ================================================= */}
 
       <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -1339,9 +1642,8 @@ const AdminPostEditor = () => {
           </h1>
 
           <p className="mt-1 text-sm text-slate-500">
-            Create, format and
-            publish DevZore Journal
-            articles.
+            Create, format and publish
+            DevZore Journal articles.
           </p>
         </div>
 
@@ -1353,13 +1655,19 @@ const AdminPostEditor = () => {
         </Link>
       </div>
 
-      {/* GRID */}
+      {/* =================================================
+          PAGE GRID
+      ================================================= */}
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
-        {/* MAIN */}
+        {/* ===============================================
+            MAIN COLUMN
+        =============================================== */}
 
         <div className="min-w-0 space-y-6">
-          {/* INFORMATION */}
+          {/* =============================================
+              POST INFORMATION
+          ============================================= */}
 
           <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
             <h2 className="mb-5 text-lg font-bold text-[#071923]">
@@ -1367,6 +1675,8 @@ const AdminPostEditor = () => {
             </h2>
 
             <div className="space-y-5">
+              {/* TITLE */}
+
               <div>
                 <label
                   htmlFor="post-title"
@@ -1390,6 +1700,8 @@ const AdminPostEditor = () => {
                   className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[14px] outline-none transition focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
                 />
               </div>
+
+              {/* SLUG */}
 
               <div>
                 <label
@@ -1418,6 +1730,8 @@ const AdminPostEditor = () => {
                   your-blog-post-title
                 </p>
               </div>
+
+              {/* EXCERPT */}
 
               <div>
                 <div className="mb-2 flex items-center justify-between">
@@ -1454,16 +1768,18 @@ const AdminPostEditor = () => {
                 />
 
                 <p className="mt-1.5 text-[11px] leading-5 text-slate-400">
-                  This appears below
-                  the article title and
-                  can also be used as a
-                  short article summary.
+                  This appears below the
+                  article title and can also
+                  be used as the short
+                  article summary.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* EDITOR */}
+          {/* =============================================
+              ARTICLE EDITOR
+          ============================================= */}
 
           <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
             <div className="border-b border-slate-200 px-5 py-4 sm:px-6">
@@ -1484,9 +1800,11 @@ const AdminPostEditor = () => {
             {editor && (
               <div className="sticky top-0 z-10 flex flex-wrap items-center gap-1 border-b border-slate-200 bg-[#f8fafb] p-3">
                 <ToolbarButton
-                  active={editor.isActive(
-                    "paragraph"
-                  )}
+                  active={
+                    editor.isActive(
+                      "paragraph"
+                    )
+                  }
                   onClick={() =>
                     editor
                       .chain()
@@ -1500,33 +1818,21 @@ const AdminPostEditor = () => {
 
                 <ToolbarDivider />
 
-                <ToolbarButton
-                  active={editor.isActive(
-                    "heading",
-                    {
-                      level: 1,
-                    }
-                  )}
-                  onClick={() =>
-                    editor
-                      .chain()
-                      .focus()
-                      .toggleHeading({
-                        level: 1,
-                      })
-                      .run()
-                  }
-                >
-                  H1
-                </ToolbarButton>
+                {/*
+                 * No H1 here.
+                 *
+                 * Public blog title is already H1.
+                 */}
 
                 <ToolbarButton
-                  active={editor.isActive(
-                    "heading",
-                    {
-                      level: 2,
-                    }
-                  )}
+                  active={
+                    editor.isActive(
+                      "heading",
+                      {
+                        level: 2,
+                      }
+                    )
+                  }
                   onClick={() =>
                     editor
                       .chain()
@@ -1541,12 +1847,14 @@ const AdminPostEditor = () => {
                 </ToolbarButton>
 
                 <ToolbarButton
-                  active={editor.isActive(
-                    "heading",
-                    {
-                      level: 3,
-                    }
-                  )}
+                  active={
+                    editor.isActive(
+                      "heading",
+                      {
+                        level: 3,
+                      }
+                    )
+                  }
                   onClick={() =>
                     editor
                       .chain()
@@ -1561,12 +1869,14 @@ const AdminPostEditor = () => {
                 </ToolbarButton>
 
                 <ToolbarButton
-                  active={editor.isActive(
-                    "heading",
-                    {
-                      level: 4,
-                    }
-                  )}
+                  active={
+                    editor.isActive(
+                      "heading",
+                      {
+                        level: 4,
+                      }
+                    )
+                  }
                   onClick={() =>
                     editor
                       .chain()
@@ -1583,9 +1893,11 @@ const AdminPostEditor = () => {
                 <ToolbarDivider />
 
                 <ToolbarButton
-                  active={editor.isActive(
-                    "bold"
-                  )}
+                  active={
+                    editor.isActive(
+                      "bold"
+                    )
+                  }
                   onClick={() =>
                     editor
                       .chain()
@@ -1598,9 +1910,11 @@ const AdminPostEditor = () => {
                 </ToolbarButton>
 
                 <ToolbarButton
-                  active={editor.isActive(
-                    "italic"
-                  )}
+                  active={
+                    editor.isActive(
+                      "italic"
+                    )
+                  }
                   onClick={() =>
                     editor
                       .chain()
@@ -1613,9 +1927,11 @@ const AdminPostEditor = () => {
                 </ToolbarButton>
 
                 <ToolbarButton
-                  active={editor.isActive(
-                    "strike"
-                  )}
+                  active={
+                    editor.isActive(
+                      "strike"
+                    )
+                  }
                   onClick={() =>
                     editor
                       .chain()
@@ -1632,9 +1948,11 @@ const AdminPostEditor = () => {
                 <ToolbarDivider />
 
                 <ToolbarButton
-                  active={editor.isActive(
-                    "bulletList"
-                  )}
+                  active={
+                    editor.isActive(
+                      "bulletList"
+                    )
+                  }
                   onClick={() =>
                     editor
                       .chain()
@@ -1647,9 +1965,11 @@ const AdminPostEditor = () => {
                 </ToolbarButton>
 
                 <ToolbarButton
-                  active={editor.isActive(
-                    "orderedList"
-                  )}
+                  active={
+                    editor.isActive(
+                      "orderedList"
+                    )
+                  }
                   onClick={() =>
                     editor
                       .chain()
@@ -1662,9 +1982,11 @@ const AdminPostEditor = () => {
                 </ToolbarButton>
 
                 <ToolbarButton
-                  active={editor.isActive(
-                    "blockquote"
-                  )}
+                  active={
+                    editor.isActive(
+                      "blockquote"
+                    )
+                  }
                   onClick={() =>
                     editor
                       .chain()
@@ -1679,10 +2001,14 @@ const AdminPostEditor = () => {
                 <ToolbarDivider />
 
                 <ToolbarButton
-                  active={editor.isActive(
-                    "link"
-                  )}
-                  onClick={addLink}
+                  active={
+                    editor.isActive(
+                      "link"
+                    )
+                  }
+                  onClick={
+                    addLink
+                  }
                 >
                   🔗 Link
                 </ToolbarButton>
@@ -1704,7 +2030,9 @@ const AdminPostEditor = () => {
 
                 <ToolbarButton
                   disabled={
-                    !editor.can().undo()
+                    !editor
+                      .can()
+                      .undo()
                   }
                   onClick={() =>
                     editor
@@ -1719,7 +2047,9 @@ const AdminPostEditor = () => {
 
                 <ToolbarButton
                   disabled={
-                    !editor.can().redo()
+                    !editor
+                      .can()
+                      .redo()
                   }
                   onClick={() =>
                     editor
@@ -1734,7 +2064,7 @@ const AdminPostEditor = () => {
               </div>
             )}
 
-            {/* EDITOR AREA */}
+            {/* EDITOR */}
 
             <div className="admin-tiptap-content">
               <EditorContent
@@ -1744,20 +2074,24 @@ const AdminPostEditor = () => {
 
             <div className="border-t border-slate-200 bg-slate-50 px-5 py-3">
               <p className="text-[10px] leading-5 text-slate-500">
-                Image button opens your
-                computer file selector.
-                Uploaded images are
-                compressed automatically
-                before being stored.
+                Article images are
+                uploaded to Google Drive,
+                then stored inside the
+                article using a permanent
+                DevZore backend image URL.
               </p>
             </div>
           </section>
         </div>
 
-        {/* SIDEBAR */}
+        {/* ===============================================
+            SIDEBAR
+        =============================================== */}
 
         <aside className="space-y-6">
-          {/* PUBLISH */}
+          {/* =============================================
+              PUBLISH
+          ============================================= */}
 
           <section className="rounded-2xl border border-slate-200 bg-white p-5">
             <h2 className="mb-5 text-lg font-bold text-[#071923]">
@@ -1823,10 +2157,11 @@ const AdminPostEditor = () => {
                   />
 
                   <p className="mt-2 text-[10px] leading-5 text-slate-500">
-                    Time is selected in
-                    your browser's local
-                    timezone and converted
-                    to UTC before saving.
+                    The time is selected
+                    in your browser's
+                    local timezone and
+                    converted to UTC when
+                    saved.
                   </p>
                 </div>
               )}
@@ -1895,7 +2230,9 @@ const AdminPostEditor = () => {
             </div>
           </section>
 
-          {/* CATEGORY */}
+          {/* =============================================
+              CATEGORY
+          ============================================= */}
 
           <section className="rounded-2xl border border-slate-200 bg-white p-5">
             <h2 className="mb-4 text-lg font-bold text-[#071923]">
@@ -1921,6 +2258,10 @@ const AdminPostEditor = () => {
                   const categoryId =
                     category._id ||
                     category.id;
+
+                  if (!categoryId) {
+                    return null;
+                  }
 
                   return (
                     <option
@@ -1949,7 +2290,9 @@ const AdminPostEditor = () => {
             )}
           </section>
 
-          {/* COVER IMAGE */}
+          {/* =============================================
+              COVER IMAGE
+          ============================================= */}
 
           <section className="rounded-2xl border border-slate-200 bg-white p-5">
             <div className="mb-4 flex items-start justify-between gap-3">
@@ -1960,8 +2303,9 @@ const AdminPostEditor = () => {
 
                 <p className="mt-1 text-[10px] leading-5 text-slate-500">
                   Optional. Recommended
-                  for blog cards and
-                  article sharing.
+                  for blog cards, article
+                  pages and social
+                  sharing.
                 </p>
               </div>
 
@@ -2000,7 +2344,7 @@ const AdminPostEditor = () => {
               }`}
             >
               {uploadingCoverImage
-                ? "Compressing & Uploading..."
+                ? "Uploading..."
                 : formData.coverImage
                   ? "Replace Cover Image"
                   : "📸 Choose Cover Image"}
@@ -2008,11 +2352,12 @@ const AdminPostEditor = () => {
 
             <p className="mt-2 text-[10px] leading-5 text-slate-400">
               JPG, PNG, WebP or AVIF ·
-              Max 5 MB · Auto compressed
-              before upload.
+              Max 5 MB · Server
+              automatically converts
+              and compresses to WebP.
             </p>
 
-            {/* OPTIONAL URL */}
+            {/* OR */}
 
             <div className="my-4 flex items-center gap-3">
               <div className="h-px flex-1 bg-slate-200" />
@@ -2023,6 +2368,8 @@ const AdminPostEditor = () => {
 
               <div className="h-px flex-1 bg-slate-200" />
             </div>
+
+            {/* MANUAL URL */}
 
             <label
               htmlFor="cover-image-url"
@@ -2041,42 +2388,71 @@ const AdminPostEditor = () => {
               onChange={
                 handleCoverUrlChange
               }
+              onBlur={
+                handleCoverUrlBlur
+              }
               placeholder="https://..."
               className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-[11px] outline-none transition focus:border-[#0796A8]"
             />
 
+            {/* PREVIEW */}
+
             {getBlogImageUrl(
               formData
-            ) && (
-              <div className="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
-                <img
-                  key={
-                    formData.coverImage
-                  }
-                  src={
-                    formData.coverImage
-                  }
-                  alt={
-                    formData.coverImageAlt ||
-                    "Cover preview"
-                  }
-                  className="h-44 w-full object-cover"
-                />
-              </div>
-            )}
+            ) &&
+              !coverPreviewFailed && (
+                <div className="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+                  <img
+                    key={
+                      formData.coverImage
+                    }
+                    src={getBlogImageUrl(
+                      formData
+                    )}
+                    alt={
+                      formData.coverImageAlt ||
+                      "Cover preview"
+                    }
+                    loading="lazy"
+                    decoding="async"
+                    onError={() =>
+                      setCoverPreviewFailed(
+                        true
+                      )
+                    }
+                    className="h-44 w-full object-cover"
+                  />
+                </div>
+              )}
+
+            {formData.coverImage &&
+              coverPreviewFailed && (
+                <div className="mt-4 flex min-h-[120px] items-center justify-center rounded-xl border border-red-100 bg-red-50 px-4 text-center">
+                  <p className="text-[11px] leading-5 text-red-500">
+                    Image preview could
+                    not be loaded. Check
+                    the image URL or
+                    upload the image
+                    again.
+                  </p>
+                </div>
+              )}
 
             {formData
               .coverImagePublicId && (
               <p className="mt-2 truncate text-[9px] text-slate-400">
                 Drive ID:{" "}
                 {
-                  formData.coverImagePublicId
+                  formData
+                    .coverImagePublicId
                 }
               </p>
             )}
           </section>
 
-          {/* IMAGE SEO */}
+          {/* =============================================
+              IMAGE SEO
+          ============================================= */}
 
           <section className="rounded-2xl border border-slate-200 bg-white p-5">
             <h2 className="mb-4 text-lg font-bold text-[#071923]">
@@ -2106,12 +2482,15 @@ const AdminPostEditor = () => {
             />
 
             <p className="mt-2 text-[10px] leading-5 text-slate-400">
-              Optional, but recommended
-              when a cover image is used.
+              Describe what the image
+              actually shows. Avoid
+              keyword stuffing.
             </p>
           </section>
 
-          {/* TAGS */}
+          {/* =============================================
+              TAGS
+          ============================================= */}
 
           <section className="rounded-2xl border border-slate-200 bg-white p-5">
             <h2 className="mb-4 text-lg font-bold text-[#071923]">
@@ -2136,7 +2515,9 @@ const AdminPostEditor = () => {
             </p>
           </section>
 
-          {/* SEO */}
+          {/* =============================================
+              SEO SETTINGS
+          ============================================= */}
 
           <section className="rounded-2xl border border-slate-200 bg-white p-5">
             <h2 className="mb-5 text-lg font-bold text-[#071923]">
@@ -2144,6 +2525,8 @@ const AdminPostEditor = () => {
             </h2>
 
             <div className="space-y-4">
+              {/* SEO TITLE */}
+
               <div>
                 <div className="mb-2 flex items-center justify-between">
                   <label className="text-sm font-medium text-slate-700">
@@ -2174,6 +2557,8 @@ const AdminPostEditor = () => {
                   className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[12px] outline-none transition focus:border-[#0796A8]"
                 />
               </div>
+
+              {/* SEO DESCRIPTION */}
 
               <div>
                 <div className="mb-2 flex items-center justify-between">
@@ -2206,6 +2591,8 @@ const AdminPostEditor = () => {
                 />
               </div>
 
+              {/* SEO KEYWORDS */}
+
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">
                   SEO Keywords
@@ -2229,7 +2616,9 @@ const AdminPostEditor = () => {
         </aside>
       </div>
 
-      {/* EDITOR STYLES */}
+      {/* =================================================
+          TIPTAP STYLES
+      ================================================= */}
 
       <style>{`
         .admin-tiptap-content .ProseMirror {
@@ -2260,27 +2649,29 @@ const AdminPostEditor = () => {
           margin-bottom: 0.75rem !important;
         }
 
+        /*
+         * H1 styling kept only for old posts that
+         * may already contain an H1.
+         */
+
         .admin-tiptap-content .ProseMirror h1 {
           font-size: 2rem !important;
-          font-weight: 850 !important;
         }
 
         .admin-tiptap-content .ProseMirror h2 {
           font-size: 1.65rem !important;
-          font-weight: 800 !important;
         }
 
         .admin-tiptap-content .ProseMirror h3 {
           font-size: 1.35rem !important;
-          font-weight: 800 !important;
         }
 
         .admin-tiptap-content .ProseMirror h4 {
           font-size: 1.12rem !important;
-          font-weight: 800 !important;
         }
 
-        .admin-tiptap-content .ProseMirror strong {
+        .admin-tiptap-content .ProseMirror strong,
+        .admin-tiptap-content .ProseMirror b {
           color: #071923;
           font-weight: 800 !important;
         }
@@ -2336,6 +2727,7 @@ const AdminPostEditor = () => {
           margin: 1.5rem auto;
           border-radius: 0.85rem;
           border: 1px solid #e2e8f0;
+          background: #f8fafc;
         }
 
         .admin-tiptap-content .ProseMirror img.ProseMirror-selectednode {
@@ -2421,7 +2813,9 @@ const AdminPostEditor = () => {
   );
 };
 
-// TOOLBAR
+// ======================================================
+// TOOLBAR BUTTON
+// ======================================================
 
 const ToolbarButton = ({
   children,
@@ -2448,6 +2842,10 @@ const ToolbarButton = ({
     </button>
   );
 };
+
+// ======================================================
+// TOOLBAR DIVIDER
+// ======================================================
 
 const ToolbarDivider = () => (
   <span className="mx-1 h-6 w-px bg-slate-300" />

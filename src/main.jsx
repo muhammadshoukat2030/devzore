@@ -8,14 +8,56 @@ import AuthContextProvider from "./context/AuthContext";
 import "./index.css";
 import "./App.css";
 
-const rootElement = document.getElementById("root");
+// ======================================================
+// ROOT ELEMENT
+// ======================================================
 
-ReactDOM.createRoot(rootElement).render(
-  <React.StrictMode>
-    <HelmetProvider>
-      <AuthContextProvider>
-        <App />
-      </AuthContextProvider>
-    </HelmetProvider>
-  </React.StrictMode>
+const rootElement =
+  document.getElementById("root");
+
+if (!rootElement) {
+  throw new Error(
+    'Root element with id="root" was not found.'
+  );
+}
+
+// ======================================================
+// REACT ROOT
+// ======================================================
+
+const root =
+  ReactDOM.createRoot(rootElement);
+
+// ======================================================
+// APP
+// ======================================================
+//
+// Provider order:
+//
+// HelmetProvider
+//   └── AuthContextProvider
+//         └── App
+//
+// IMPORTANT:
+//
+// React.StrictMode intentionally removed.
+//
+// Development mode mein StrictMode useEffect ko
+// extra run kar sakta hai, jis se:
+//
+// - duplicate API requests
+// - duplicate /auth/me requests
+// - blog views double increment
+// - confusing console logs
+//
+// nazar aa sakte hain.
+//
+// ======================================================
+
+root.render(
+  <HelmetProvider>
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
+  </HelmetProvider>
 );

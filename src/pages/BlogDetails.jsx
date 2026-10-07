@@ -1,11 +1,25 @@
-import React, { useEffect, useMemo, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+
 import { Helmet } from "react-helmet-async";
-import { Link, useNavigate, useParams } from "react-router-dom";
+
+import {
+  Link,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
+
 import toast from "react-hot-toast";
+
 import {
   ArrowLeft,
   ArrowRight,
   CalendarDays,
+  ChevronDown,
   Clock3,
   Eye,
   Globe,
@@ -23,222 +37,21 @@ import {
 import postService from "../services/postService";
 import commentService from "../services/commentService";
 
+// ======================================================
+// CONFIG
+// ======================================================
+
 const BASE_URL = "https://devzore.com";
 
-// HELPERS
+const PRODUCTION_API_URL =
+  "https://devzore-backend.vercel.app";
 
-const getBlogImageUrl = (post) => {
-  if (!post?.coverImage) return "";
-  return String(post.coverImage).trim();
-};
+const LOCAL_API_URL =
+  "http://localhost:5000";
 
-const formatDate = (date) => {
-  if (!date) return "";
-
-  const parsedDate = new Date(date);
-
-  if (Number.isNaN(parsedDate.getTime())) {
-    return "";
-  }
-
-  return parsedDate.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
-
-const toISODate = (date) => {
-  if (!date) return undefined;
-
-  const parsedDate = new Date(date);
-
-  if (Number.isNaN(parsedDate.getTime())) {
-    return undefined;
-  }
-
-  return parsedDate.toISOString();
-};
-
-const stripHtml = (html = "") => {
-  if (!html) return "";
-
-  return html
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;/gi, "'")
-    .replace(/&lt;/gi, "<")
-    .replace(/&gt;/gi, ">")
-    .replace(/\s+/g, " ")
-    .trim();
-};
-
-const truncateText = (text = "", maxLength = 160) => {
-  if (!text) return "";
-
-  if (text.length <= maxLength) {
-    return text;
-  }
-
-  return `${text.slice(0, maxLength - 1).trim()}…`;
-};
-
-const getReadTime = (post) => {
-  if (!post?.readTime) return "";
-
-  const value = String(post.readTime).trim();
-
-  if (!value) return "";
-
-  if (value.toLowerCase().includes("read")) {
-    return value;
-  }
-
-  if (value.toLowerCase().includes("min")) {
-    return `${value} read`;
-  }
-
-  return `${value} min read`;
-};
-
-const slugifyHeading = (text = "") => {
-  return String(text)
-    .toLowerCase()
-    .trim()
-    .replace(/&amp;/gi, "and")
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^-|-$/g, "");
-};
-
-const prepareArticleContent = (html = "") => {
-  if (!html) {
-    return {
-      html: "<p>No article content is available.</p>",
-      headings: [],
-    };
-  }
-
-  let cleanedHtml = String(html);
-
-  // Remove accidental editor labels
-  cleanedHtml = cleanedHtml
-    .replace(
-      /<p[^>]*>\s*(TITLE|SLUG|EXCERPT|CONTENT)\s*:?\s*<\/p>/gi,
-      ""
-    )
-    .replace(
-      /<h[1-6][^>]*>\s*(TITLE|SLUG|EXCERPT|CONTENT)\s*:?\s*<\/h[1-6]>/gi,
-      ""
-    )
-    .replace(
-      /<div[^>]*>\s*(TITLE|SLUG|EXCERPT|CONTENT)\s*:?\s*<\/div>/gi,
-      ""
-    );
-
-  if (
-    typeof window === "undefined" ||
-    typeof DOMParser === "undefined"
-  ) {
-    return {
-      html: cleanedHtml,
-      headings: [],
-    };
-  }
-
-  try {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(cleanedHtml, "text/html");
-
-    const headingElements = [
-      ...doc.querySelectorAll("h2, h3"),
-    ];
-
-    const usedIds = new Map();
-
-    const headings = headingElements
-      .map((heading) => {
-        const text = heading.textContent?.trim();
-
-        if (!text) return null;
-
-        let baseId =
-          heading.getAttribute("id") ||
-          slugifyHeading(text) ||
-          "article-section";
-
-        const existingCount = usedIds.get(baseId) || 0;
-        usedIds.set(baseId, existingCount + 1);
-
-        const finalId =
-          existingCount === 0
-            ? baseId
-            : `${baseId}-${existingCount + 1}`;
-
-        heading.setAttribute("id", finalId);
-
-        return {
-          id: finalId,
-          text,
-          level: heading.tagName.toLowerCase() === "h3" ? 3 : 2,
-        };
-      })
-      .filter(Boolean);
-
-    return {
-      html: doc.body.innerHTML,
-      headings,
-    };
-  } catch (error) {
-    console.error("Prepare article content error:", error);
-
-    return {
-      html: cleanedHtml,
-      headings: [],
-    };
-  }
-};
-
-const getTags = (post) => {
-  if (Array.isArray(post?.tags)) {
-    return post.tags
-      .map((tag) => {
-        if (typeof tag === "string") {
-          return tag.trim();
-        }
-
-        return tag?.name?.trim() || "";
-      })
-      .filter(Boolean)
-      .slice(0, 5);
-  }
-
-  if (typeof post?.tags === "string") {
-    return post.tags
-      .split(",")
-      .map((tag) => tag.trim())
-      .filter(Boolean)
-      .slice(0, 5);
-  }
-
-  if (typeof post?.seoKeywords === "string") {
-    return post.seoKeywords
-      .split(",")
-      .map((tag) => tag.trim())
-      .filter(Boolean)
-      .slice(0, 5);
-  }
-
-  return [];
-};
-
+// ======================================================
 // SERVICES
+// ======================================================
 
 const SERVICES = [
   {
@@ -248,6 +61,7 @@ const SERVICES = [
     icon: Globe,
     path: "/web-development",
   },
+
   {
     title: "Mobile App Development",
     description:
@@ -255,6 +69,7 @@ const SERVICES = [
     icon: Smartphone,
     path: "/mobile-apps",
   },
+
   {
     title: "MERN Stack Development",
     description:
@@ -262,6 +77,7 @@ const SERVICES = [
     icon: Layers,
     path: "/mern-stack-development",
   },
+
   {
     title: "SaaS Development",
     description:
@@ -269,6 +85,7 @@ const SERVICES = [
     icon: Rocket,
     path: "/saas-product-development",
   },
+
   {
     title: "SEO Services",
     description:
@@ -276,6 +93,7 @@ const SERVICES = [
     icon: Search,
     path: "/seo-services",
   },
+
   {
     title: "Digital Marketing",
     description:
@@ -285,396 +103,1591 @@ const SERVICES = [
   },
 ];
 
+// ======================================================
+// IMAGE HELPERS
+// ======================================================
+
+const isLocalFrontend = () => {
+  if (
+    typeof window === "undefined"
+  ) {
+    return false;
+  }
+
+  return [
+    "localhost",
+    "127.0.0.1",
+  ].includes(
+    window.location.hostname
+  );
+};
+
+const getImageApiBase = () => {
+  return isLocalFrontend()
+    ? LOCAL_API_URL
+    : PRODUCTION_API_URL;
+};
+
+// ======================================================
+// EXTRACT GOOGLE DRIVE FILE ID
+// ======================================================
+
+const extractGoogleDriveFileId = (
+  value = ""
+) => {
+  if (
+    !value ||
+    typeof value !== "string"
+  ) {
+    return "";
+  }
+
+  const url = value.trim();
+
+  if (!url) {
+    return "";
+  }
+
+  // ----------------------------------------------
+  // DevZore backend proxy URL
+  // /api/upload/image/FILE_ID
+  // ----------------------------------------------
+
+  const proxyMatch =
+    url.match(
+      /\/api\/upload\/image\/([a-zA-Z0-9_-]+)/i
+    );
+
+  if (proxyMatch?.[1]) {
+    return proxyMatch[1];
+  }
+
+  // ----------------------------------------------
+  // drive.google.com/file/d/FILE_ID/view
+  // ----------------------------------------------
+
+  const driveFileMatch =
+    url.match(
+      /drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/i
+    );
+
+  if (driveFileMatch?.[1]) {
+    return driveFileMatch[1];
+  }
+
+  // ----------------------------------------------
+  // drive.google.com/uc?...&id=FILE_ID
+  // drive.usercontent.google.com/...id=FILE_ID
+  // ----------------------------------------------
+
+  if (
+    url.includes(
+      "drive.google.com"
+    ) ||
+    url.includes(
+      "drive.usercontent.google.com"
+    )
+  ) {
+    const queryMatch =
+      url.match(
+        /[?&]id=([a-zA-Z0-9_-]+)/i
+      );
+
+    if (queryMatch?.[1]) {
+      return queryMatch[1];
+    }
+  }
+
+  return "";
+};
+
+// ======================================================
+// CREATE STABLE IMAGE URL
+// ======================================================
+
+const createStableImageUrl = (
+  fileId
+) => {
+  if (!fileId) {
+    return "";
+  }
+
+  return `${getImageApiBase()}/api/upload/image/${encodeURIComponent(
+    fileId
+  )}`;
+};
+
+// ======================================================
+// NORMALIZE IMAGE URL
+// ======================================================
+
+const normalizeImageUrl = (
+  value = ""
+) => {
+  if (
+    !value ||
+    typeof value !== "string"
+  ) {
+    return "";
+  }
+
+  const url = value.trim();
+
+  if (!url) {
+    return "";
+  }
+
+  /*
+   * blob: URLs sirf temporary preview ke liye
+   * hote hain. Published article mein ideally
+   * nahi hone chahiye.
+   */
+
+  if (
+    url.startsWith("blob:")
+  ) {
+    return url;
+  }
+
+  /*
+   * Google Drive ya purana DevZore proxy URL
+   * mila to file ID nikal kar current
+   * environment ka stable backend URL banao.
+   */
+
+  const driveFileId =
+    extractGoogleDriveFileId(
+      url
+    );
+
+  if (driveFileId) {
+    return createStableImageUrl(
+      driveFileId
+    );
+  }
+
+  /*
+   * Relative DevZore image proxy.
+   */
+
+  if (
+    url.startsWith(
+      "/api/upload/image/"
+    )
+  ) {
+    return `${getImageApiBase()}${url}`;
+  }
+
+  /*
+   * Normal external image URL ko as-is rehne do.
+   */
+
+  return url;
+};
+
+// ======================================================
+// COVER IMAGE
+// ======================================================
+
+const getBlogImageUrl = (
+  post
+) => {
+  return normalizeImageUrl(
+    post?.coverImage || ""
+  );
+};
+
+// ======================================================
+// DATE
+// ======================================================
+
+const formatDate = (
+  date
+) => {
+  if (!date) {
+    return "";
+  }
+
+  const parsedDate =
+    new Date(date);
+
+  if (
+    Number.isNaN(
+      parsedDate.getTime()
+    )
+  ) {
+    return "";
+  }
+
+  return parsedDate.toLocaleDateString(
+    "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
+};
+
+// ======================================================
+// ISO DATE
+// ======================================================
+
+const toISODate = (
+  date
+) => {
+  if (!date) {
+    return undefined;
+  }
+
+  const parsedDate =
+    new Date(date);
+
+  if (
+    Number.isNaN(
+      parsedDate.getTime()
+    )
+  ) {
+    return undefined;
+  }
+
+  return parsedDate.toISOString();
+};
+
+// ======================================================
+// STRIP HTML
+// ======================================================
+
+const stripHtml = (
+  html = ""
+) => {
+  if (!html) {
+    return "";
+  }
+
+  return String(html)
+    .replace(
+      /<script[\s\S]*?>[\s\S]*?<\/script>/gi,
+      " "
+    )
+    .replace(
+      /<style[\s\S]*?>[\s\S]*?<\/style>/gi,
+      " "
+    )
+    .replace(
+      /<[^>]+>/g,
+      " "
+    )
+    .replace(
+      /&nbsp;/gi,
+      " "
+    )
+    .replace(
+      /&amp;/gi,
+      "&"
+    )
+    .replace(
+      /&quot;/gi,
+      '"'
+    )
+    .replace(
+      /&#39;/gi,
+      "'"
+    )
+    .replace(
+      /&lt;/gi,
+      "<"
+    )
+    .replace(
+      /&gt;/gi,
+      ">"
+    )
+    .replace(
+      /\s+/g,
+      " "
+    )
+    .trim();
+};
+
+// ======================================================
+// TRUNCATE
+// ======================================================
+
+const truncateText = (
+  text = "",
+  maxLength = 160
+) => {
+  const value =
+    String(text || "")
+      .trim();
+
+  if (
+    value.length <=
+    maxLength
+  ) {
+    return value;
+  }
+
+  return `${value
+    .slice(
+      0,
+      maxLength - 1
+    )
+    .trim()}…`;
+};
+
+// ======================================================
+// READ TIME
+// ======================================================
+
+const getReadTime = (
+  post
+) => {
+  if (!post?.readTime) {
+    return "";
+  }
+
+  const value =
+    String(
+      post.readTime
+    ).trim();
+
+  if (!value) {
+    return "";
+  }
+
+  if (
+    value
+      .toLowerCase()
+      .includes("read")
+  ) {
+    return value;
+  }
+
+  if (
+    value
+      .toLowerCase()
+      .includes("min")
+  ) {
+    return `${value} read`;
+  }
+
+  return `${value} min read`;
+};
+
+// ======================================================
+// HEADING SLUG
+// ======================================================
+
+const slugifyHeading = (
+  text = ""
+) => {
+  return String(text)
+    .toLowerCase()
+    .trim()
+    .replace(
+      /&amp;/gi,
+      "and"
+    )
+    .replace(
+      /&/g,
+      "and"
+    )
+    .replace(
+      /[^a-z0-9\s-]/g,
+      ""
+    )
+    .replace(
+      /\s+/g,
+      "-"
+    )
+    .replace(
+      /-+/g,
+      "-"
+    )
+    .replace(
+      /^-|-$/g,
+      ""
+    );
+};
+
+// ======================================================
+// PREPARE ARTICLE HTML
+// ======================================================
+
+const prepareArticleContent = (
+  html = ""
+) => {
+  if (!html) {
+    return {
+      html:
+        "<p>No article content is available.</p>",
+      headings: [],
+    };
+  }
+
+  const rawHtml =
+    String(html);
+
+  if (
+    typeof window ===
+      "undefined" ||
+    typeof DOMParser ===
+      "undefined"
+  ) {
+    return {
+      html: rawHtml,
+      headings: [],
+    };
+  }
+
+  try {
+    const parser =
+      new DOMParser();
+
+    const doc =
+      parser.parseFromString(
+        rawHtml,
+        "text/html"
+      );
+
+    // ==============================================
+    // REMOVE UNSAFE ELEMENTS
+    // ==============================================
+
+    doc
+      .querySelectorAll(
+        "script, style, object, embed, form"
+      )
+      .forEach(
+        (element) => {
+          element.remove();
+        }
+      );
+
+    // ==============================================
+    // REMOVE INLINE EVENT HANDLERS / STYLES
+    // ==============================================
+
+    doc
+      .querySelectorAll("*")
+      .forEach(
+        (element) => {
+          [
+            ...element.attributes,
+          ].forEach(
+            (attribute) => {
+              if (
+                /^on/i.test(
+                  attribute.name
+                )
+              ) {
+                element.removeAttribute(
+                  attribute.name
+                );
+              }
+
+              /*
+               * Admin editor ke old inline styles
+               * public typography ko override na karein.
+               */
+              if (
+                attribute.name.toLowerCase() ===
+                "style"
+              ) {
+                element.removeAttribute(
+                  "style"
+                );
+              }
+            }
+          );
+        }
+      );
+
+    // ==============================================
+    // REMOVE ACCIDENTAL EDITOR LABELS
+    // ==============================================
+
+    doc
+      .querySelectorAll(
+        "p, div, h1, h2, h3, h4, h5, h6"
+      )
+      .forEach(
+        (element) => {
+          const text =
+            element.textContent
+              ?.trim()
+              .toUpperCase();
+
+          if (
+            /^(TITLE|SLUG|EXCERPT|CONTENT):?$/.test(
+              text || ""
+            )
+          ) {
+            element.remove();
+          }
+        }
+      );
+
+    // ==============================================
+    // OLD CONTENT H1 -> H2
+    // ==============================================
+
+    /*
+     * Public page ka main article title already H1 hai.
+     * Purane article body ke H1 ko H2 bana dete hain
+     * taake page par multiple H1 na hon.
+     */
+
+    doc
+      .querySelectorAll("h1")
+      .forEach(
+        (oldHeading) => {
+          const newHeading =
+            doc.createElement(
+              "h2"
+            );
+
+          newHeading.innerHTML =
+            oldHeading.innerHTML;
+
+          [
+            ...oldHeading.attributes,
+          ].forEach(
+            (attribute) => {
+              newHeading.setAttribute(
+                attribute.name,
+                attribute.value
+              );
+            }
+          );
+
+          oldHeading.replaceWith(
+            newHeading
+          );
+        }
+      );
+
+    // ==============================================
+    // FIX ARTICLE IMAGES
+    // ==============================================
+
+    doc
+      .querySelectorAll("img")
+      .forEach(
+        (image) => {
+          const currentSrc =
+            image.getAttribute(
+              "src"
+            ) || "";
+
+          const publicId =
+            image.getAttribute(
+              "data-public-id"
+            ) ||
+            extractGoogleDriveFileId(
+              currentSrc
+            );
+
+          const fixedSrc =
+            publicId
+              ? createStableImageUrl(
+                  publicId
+                )
+              : normalizeImageUrl(
+                  currentSrc
+                );
+
+          if (fixedSrc) {
+            image.setAttribute(
+              "src",
+              fixedSrc
+            );
+          }
+
+          if (publicId) {
+            image.setAttribute(
+              "data-public-id",
+              publicId
+            );
+          }
+
+          image.setAttribute(
+            "loading",
+            "lazy"
+          );
+
+          image.setAttribute(
+            "decoding",
+            "async"
+          );
+
+          if (
+            !image.getAttribute(
+              "alt"
+            )
+          ) {
+            image.setAttribute(
+              "alt",
+              "DevZore article image"
+            );
+          }
+
+          image.removeAttribute(
+            "width"
+          );
+
+          image.removeAttribute(
+            "height"
+          );
+        }
+      );
+
+    // ==============================================
+    // FIX LINKS
+    // ==============================================
+
+    doc
+      .querySelectorAll("a")
+      .forEach(
+        (anchor) => {
+          const href =
+            anchor.getAttribute(
+              "href"
+            );
+
+          if (!href) {
+            return;
+          }
+
+          if (
+            /^javascript:/i.test(
+              href
+            )
+          ) {
+            anchor.removeAttribute(
+              "href"
+            );
+
+            return;
+          }
+
+          if (
+            /^https?:\/\//i.test(
+              href
+            )
+          ) {
+            anchor.setAttribute(
+              "target",
+              "_blank"
+            );
+
+            anchor.setAttribute(
+              "rel",
+              "noopener noreferrer"
+            );
+          }
+        }
+      );
+
+    // ==============================================
+    // TABLE OF CONTENTS
+    // ==============================================
+
+    const headingElements = [
+      ...doc.querySelectorAll(
+        "h2, h3, h4"
+      ),
+    ];
+
+    const usedIds =
+      new Map();
+
+    const headings =
+      headingElements
+        .map(
+          (heading) => {
+            const text =
+              heading.textContent
+                ?.trim();
+
+            if (!text) {
+              return null;
+            }
+
+            let baseId =
+              heading.getAttribute(
+                "id"
+              ) ||
+              slugifyHeading(
+                text
+              ) ||
+              "article-section";
+
+            const count =
+              usedIds.get(
+                baseId
+              ) || 0;
+
+            usedIds.set(
+              baseId,
+              count + 1
+            );
+
+            const finalId =
+              count === 0
+                ? baseId
+                : `${baseId}-${
+                    count + 1
+                  }`;
+
+            heading.setAttribute(
+              "id",
+              finalId
+            );
+
+            const tagName =
+              heading.tagName
+                .toLowerCase();
+
+            const level =
+              tagName === "h4"
+                ? 4
+                : tagName ===
+                    "h3"
+                  ? 3
+                  : 2;
+
+            return {
+              id: finalId,
+              text,
+              level,
+            };
+          }
+        )
+        .filter(Boolean);
+
+    return {
+      html:
+        doc.body.innerHTML,
+      headings,
+    };
+  } catch (error) {
+    console.error(
+      "Prepare article content error:",
+      error
+    );
+
+    return {
+      html: rawHtml,
+      headings: [],
+    };
+  }
+};
+
+// ======================================================
+// TAGS
+// ======================================================
+
+const getTags = (
+  post
+) => {
+  if (
+    Array.isArray(
+      post?.tags
+    )
+  ) {
+    return post.tags
+      .map(
+        (tag) => {
+          if (
+            typeof tag ===
+            "string"
+          ) {
+            return tag.trim();
+          }
+
+          return (
+            tag?.name?.trim() ||
+            ""
+          );
+        }
+      )
+      .filter(Boolean)
+      .slice(0, 5);
+  }
+
+  if (
+    typeof post?.tags ===
+    "string"
+  ) {
+    return post.tags
+      .split(",")
+      .map((tag) =>
+        tag.trim()
+      )
+      .filter(Boolean)
+      .slice(0, 5);
+  }
+
+  if (
+    typeof post?.seoKeywords ===
+    "string"
+  ) {
+    return post.seoKeywords
+      .split(",")
+      .map((tag) =>
+        tag.trim()
+      )
+      .filter(Boolean)
+      .slice(0, 5);
+  }
+
+  return [];
+};
+
+// ======================================================
 // COMPONENT
+// ======================================================
 
 const BlogDetails = () => {
-  const { slug } = useParams();
-  const navigate = useNavigate();
+  const { slug } =
+    useParams();
 
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const navigate =
+    useNavigate();
 
-  const [relatedPosts, setRelatedPosts] = useState([]);
-  const [relatedLoading, setRelatedLoading] = useState(false);
+  const discussionRef =
+    useRef(null);
 
-  const [comments, setComments] = useState([]);
-  const [commentsLoading, setCommentsLoading] = useState(false);
-  const [commentsError, setCommentsError] = useState("");
+  // ====================================================
+  // POST
+  // ====================================================
 
-  const [commentForm, setCommentForm] = useState({
+  const [post, setPost] =
+    useState(null);
+
+  const [
+    loading,
+    setLoading,
+  ] = useState(true);
+
+  const [
+    error,
+    setError,
+  ] = useState("");
+
+  // ====================================================
+  // RELATED
+  // ====================================================
+
+  const [
+    relatedPosts,
+    setRelatedPosts,
+  ] = useState([]);
+
+  const [
+    relatedLoading,
+    setRelatedLoading,
+  ] = useState(false);
+
+  // ====================================================
+  // COMMENTS
+  // ====================================================
+
+  const [
+    comments,
+    setComments,
+  ] = useState([]);
+
+  const [
+    commentsLoading,
+    setCommentsLoading,
+  ] = useState(false);
+
+  const [
+    commentsError,
+    setCommentsError,
+  ] = useState("");
+
+  const [
+    commentsOpen,
+    setCommentsOpen,
+  ] = useState(false);
+
+  const [
+    commentForm,
+    setCommentForm,
+  ] = useState({
     name: "",
     email: "",
     content: "",
   });
 
-  const [commentSubmitting, setCommentSubmitting] = useState(false);
-  const [activeHeading, setActiveHeading] = useState("");
+  const [
+    commentSubmitting,
+    setCommentSubmitting,
+  ] = useState(false);
 
-  // FETCH POST
+  // ====================================================
+  // TOC
+  // ====================================================
+
+  const [
+    activeHeading,
+    setActiveHeading,
+  ] = useState("");
+
+  // ====================================================
+  // COVER IMAGE ERROR
+  // ====================================================
+
+  const [
+    coverImageError,
+    setCoverImageError,
+  ] = useState(false);
+
+  // ====================================================
+  // FETCH BLOG
+  // ====================================================
 
   useEffect(() => {
-    let isMounted = true;
+    let mounted = true;
 
-    const fetchBlog = async () => {
-      try {
-        setLoading(true);
-        setRelatedLoading(true);
-        setError("");
+    const fetchBlog =
+      async () => {
+        try {
+          setLoading(true);
 
-        const response = await postService.getPostBySlug(slug);
+          setRelatedLoading(
+            true
+          );
 
-        const blog =
-          response?.data?.post ||
-          response?.post ||
-          response?.data ||
-          response;
+          setError("");
 
-        if (!blog || typeof blog !== "object") {
-          throw new Error("Invalid blog data.");
+          setCoverImageError(
+            false
+          );
+
+          setCommentsOpen(
+            false
+          );
+
+          setActiveHeading(
+            ""
+          );
+
+          const response =
+            await postService.getPostBySlug(
+              slug
+            );
+
+          const blog =
+            response?.data?.post ||
+            response?.post ||
+            response?.data ||
+            response;
+
+          if (
+            !blog ||
+            typeof blog !==
+              "object"
+          ) {
+            throw new Error(
+              "Invalid blog data."
+            );
+          }
+
+          const blogId =
+            blog?._id ||
+            blog?.id;
+
+          if (!blogId) {
+            throw new Error(
+              "Blog post ID is missing."
+            );
+          }
+
+          if (!mounted) {
+            return;
+          }
+
+          let related = [];
+
+          if (
+            Array.isArray(
+              response?.data
+                ?.related
+            )
+          ) {
+            related =
+              response.data.related;
+          } else if (
+            Array.isArray(
+              response?.related
+            )
+          ) {
+            related =
+              response.related;
+          }
+
+          related =
+            related.filter(
+              (item) =>
+                item?._id !==
+                  blog?._id &&
+                item?.slug !==
+                  blog?.slug
+            );
+
+          setPost(blog);
+
+          setRelatedPosts(
+            related
+          );
+        } catch (err) {
+          console.error(
+            "Fetch single blog error:",
+            err
+          );
+
+          if (!mounted) {
+            return;
+          }
+
+          const message =
+            err?.response?.data
+              ?.message ||
+            err?.message ||
+            "Blog post not found.";
+
+          setPost(null);
+
+          setRelatedPosts(
+            []
+          );
+
+          setError(
+            message
+          );
+        } finally {
+          if (mounted) {
+            setLoading(false);
+
+            setRelatedLoading(
+              false
+            );
+          }
         }
-
-        if (!blog?._id) {
-          throw new Error("Blog post ID is missing.");
-        }
-
-        if (!isMounted) return;
-
-        let related = [];
-
-        if (Array.isArray(response?.data?.related)) {
-          related = response.data.related;
-        } else if (Array.isArray(response?.related)) {
-          related = response.related;
-        }
-
-        related = related.filter(
-          (item) =>
-            item?._id !== blog?._id &&
-            item?.slug !== blog?.slug
-        );
-
-        setPost(blog);
-        setRelatedPosts(related);
-      } catch (err) {
-        console.error("Fetch single blog error:", err);
-
-        if (!isMounted) return;
-
-        const message =
-          err?.response?.data?.message ||
-          err?.message ||
-          "Blog post not found.";
-
-        setPost(null);
-        setRelatedPosts([]);
-        setError(message);
-
-        toast.error("Unable to load article.");
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-          setRelatedLoading(false);
-        }
-      }
-    };
+      };
 
     if (slug) {
       fetchBlog();
     } else {
       setLoading(false);
-      setRelatedLoading(false);
-      setError("Blog slug is missing.");
+
+      setRelatedLoading(
+        false
+      );
+
+      setError(
+        "Blog slug is missing."
+      );
     }
 
     return () => {
-      isMounted = false;
+      mounted = false;
     };
   }, [slug]);
 
+  // ====================================================
   // FETCH COMMENTS
+  // ====================================================
 
   useEffect(() => {
-    let isMounted = true;
+    let mounted = true;
 
-    const fetchComments = async () => {
-      if (!post?._id) return;
+    const fetchComments =
+      async () => {
+        const postId =
+          post?._id ||
+          post?.id;
 
-      try {
-        setCommentsLoading(true);
-        setCommentsError("");
-
-        const response =
-          await commentService.getPostComments(post._id);
-
-        let commentList = [];
-
-        if (Array.isArray(response)) {
-          commentList = response;
-        } else if (Array.isArray(response?.data)) {
-          commentList = response.data;
-        } else if (Array.isArray(response?.data?.comments)) {
-          commentList = response.data.comments;
-        } else if (Array.isArray(response?.comments)) {
-          commentList = response.comments;
+        if (!postId) {
+          return;
         }
 
-        if (isMounted) {
-          setComments(commentList);
+        try {
+          setCommentsLoading(
+            true
+          );
+
+          setCommentsError(
+            ""
+          );
+
+          const response =
+            await commentService.getPostComments(
+              postId
+            );
+
+          let list = [];
+
+          if (
+            Array.isArray(
+              response
+            )
+          ) {
+            list = response;
+          } else if (
+            Array.isArray(
+              response?.data
+            )
+          ) {
+            list =
+              response.data;
+          } else if (
+            Array.isArray(
+              response?.data
+                ?.comments
+            )
+          ) {
+            list =
+              response.data.comments;
+          } else if (
+            Array.isArray(
+              response?.comments
+            )
+          ) {
+            list =
+              response.comments;
+          }
+
+          if (mounted) {
+            setComments(list);
+          }
+        } catch (err) {
+          console.error(
+            "Fetch comments error:",
+            err
+          );
+
+          if (!mounted) {
+            return;
+          }
+
+          setCommentsError(
+            err?.response?.data
+              ?.message ||
+              "Unable to load comments."
+          );
+
+          setComments([]);
+        } finally {
+          if (mounted) {
+            setCommentsLoading(
+              false
+            );
+          }
         }
-      } catch (err) {
-        console.error("Fetch comments error:", err);
-
-        if (!isMounted) return;
-
-        setCommentsError(
-          err?.response?.data?.message ||
-            "Unable to load comments."
-        );
-
-        setComments([]);
-      } finally {
-        if (isMounted) {
-          setCommentsLoading(false);
-        }
-      }
-    };
+      };
 
     fetchComments();
 
     return () => {
-      isMounted = false;
+      mounted = false;
     };
-  }, [post?._id]);
+  }, [post?._id, post?.id]);
 
-  // DATA
+  // ====================================================
+  // POST DATA
+  // ====================================================
 
   const categoryName =
-    post?.category && typeof post.category === "object"
+    post?.category &&
+    typeof post.category ===
+      "object"
       ? post.category?.name?.trim()
-      : typeof post?.category === "string"
+      : typeof post?.category ===
+          "string"
         ? post.category.trim()
         : "";
 
   const authorAvatar =
-    post?.author && typeof post.author === "object"
-      ? post.author?.avatar || ""
+    post?.author &&
+    typeof post.author ===
+      "object"
+      ? normalizeImageUrl(
+          post.author?.avatar ||
+            ""
+        )
       : "";
 
   const authorBio =
-    post?.author && typeof post.author === "object"
-      ? post.author?.bio || ""
+    post?.author &&
+    typeof post.author ===
+      "object"
+      ? post.author?.bio ||
+        ""
       : "";
 
   const publishedDate =
-    post?.publishedAt || post?.createdAt;
+    post?.publishedAt ||
+    post?.createdAt;
 
-  const readTime = getReadTime(post);
-  const coverImage = getBlogImageUrl(post);
+  const readTime =
+    getReadTime(post);
 
-  const articleTags = useMemo(() => getTags(post), [post]);
+  const coverImage =
+    getBlogImageUrl(post);
 
-  const preparedArticle = useMemo(
-    () => prepareArticleContent(post?.content || ""),
-    [post?.content]
-  );
+  const articleTags =
+    useMemo(
+      () =>
+        getTags(post),
+      [post]
+    );
 
-  // ACTIVE TABLE OF CONTENTS
+  const preparedArticle =
+    useMemo(
+      () =>
+        prepareArticleContent(
+          post?.content || ""
+        ),
+      [post?.content]
+    );
+
+  // ====================================================
+  // RESET COVER ERROR WHEN IMAGE CHANGES
+  // ====================================================
 
   useEffect(() => {
-    if (!preparedArticle.headings.length) {
+    setCoverImageError(
+      false
+    );
+  }, [coverImage]);
+
+  // ====================================================
+  // ACTIVE TABLE OF CONTENTS
+  // ====================================================
+
+  useEffect(() => {
+    if (
+      !preparedArticle
+        .headings.length
+    ) {
       return undefined;
     }
 
-    const elements = preparedArticle.headings
-      .map((heading) => document.getElementById(heading.id))
-      .filter(Boolean);
+    const elements =
+      preparedArticle.headings
+        .map(
+          (heading) =>
+            document.getElementById(
+              heading.id
+            )
+        )
+        .filter(Boolean);
 
     if (!elements.length) {
       return undefined;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort(
-            (a, b) =>
-              a.boundingClientRect.top -
-              b.boundingClientRect.top
-          );
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+          const visible =
+            entries
+              .filter(
+                (entry) =>
+                  entry.isIntersecting
+              )
+              .sort(
+                (a, b) =>
+                  a
+                    .boundingClientRect
+                    .top -
+                  b
+                    .boundingClientRect
+                    .top
+              );
 
-        if (visible.length > 0) {
-          setActiveHeading(visible[0].target.id);
+          if (
+            visible.length >
+            0
+          ) {
+            setActiveHeading(
+              visible[0]
+                .target.id
+            );
+          }
+        },
+
+        {
+          rootMargin:
+            "-100px 0px -65% 0px",
+
+          threshold: [
+            0,
+            1,
+          ],
         }
-      },
-      {
-        rootMargin: "-100px 0px -65% 0px",
-        threshold: [0, 1],
-      }
+      );
+
+    elements.forEach(
+      (element) =>
+        observer.observe(
+          element
+        )
     );
 
-    elements.forEach((element) => observer.observe(element));
-
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, [preparedArticle]);
 
+  // ====================================================
   // SEO
+  // ====================================================
 
-  const seo = useMemo(() => {
-    if (!post) return null;
+  const seo =
+    useMemo(() => {
+      if (!post) {
+        return null;
+      }
 
-    const cleanContent = stripHtml(preparedArticle.html);
+      const cleanContent =
+        stripHtml(
+          preparedArticle.html
+        );
 
-    const description = truncateText(
-      post?.metaDescription ||
-        post?.seoDescription ||
-        post?.excerpt ||
-        cleanContent ||
-        "Read software development insights and technical articles from DevZore.",
-      160
-    );
+      const description =
+        truncateText(
+          post?.seoDescription ||
+            post?.excerpt ||
+            cleanContent ||
+            "Read software development insights and technical articles from DevZore.",
+          160
+        );
 
-    const title =
-      post?.metaTitle ||
-      post?.seoTitle ||
-      post?.title ||
-      "DevZore Blog";
+      const title =
+        post?.seoTitle ||
+        post?.title ||
+        "DevZore Blog";
 
-    const canonicalSlug = post?.slug || slug || "";
+      const canonicalSlug =
+        post?.slug ||
+        slug ||
+        "";
 
-    return {
-      title,
-      description,
-      canonicalUrl: `${BASE_URL}/blog/${encodeURIComponent(
-        canonicalSlug
-      )}`,
-      image: coverImage || null,
-      datePublished: toISODate(
-        post?.publishedAt || post?.createdAt
-      ),
-      dateModified: toISODate(
-        post?.updatedAt ||
-          post?.publishedAt ||
-          post?.createdAt
-      ),
-    };
-  }, [post, slug, coverImage, preparedArticle.html]);
+      return {
+        title,
 
-  // COMMENT INPUT
+        description,
 
-  const handleCommentChange = (event) => {
-    const { name, value } = event.target;
+        canonicalUrl:
+          `${BASE_URL}/blog/${encodeURIComponent(
+            canonicalSlug
+          )}`,
 
-    setCommentForm((current) => ({
-      ...current,
-      [name]: value,
-    }));
-  };
+        image:
+          coverImage ||
+          null,
 
-  // COMMENT SUBMIT
+        datePublished:
+          toISODate(
+            post?.publishedAt ||
+              post?.createdAt
+          ),
 
-  const handleCommentSubmit = async (event) => {
-    event.preventDefault();
+        dateModified:
+          toISODate(
+            post?.updatedAt ||
+              post?.publishedAt ||
+              post?.createdAt
+          ),
+      };
+    }, [
+      post,
+      slug,
+      coverImage,
+      preparedArticle.html,
+    ]);
 
-    if (!post?._id) {
-      toast.error("Blog post ID is missing.");
-      return;
-    }
+  // ====================================================
+  // COMMENT CHANGE
+  // ====================================================
 
-    const name = commentForm.name.trim();
-    const email = commentForm.email.trim();
-    const content = commentForm.content.trim();
-
-    if (!name) {
-      toast.error("Please enter your name.");
-      return;
-    }
-
-    if (!email) {
-      toast.error("Please enter your email.");
-      return;
-    }
-
-    if (!content) {
-      toast.error("Please write a comment.");
-      return;
-    }
-
-    if (content.length < 10) {
-      toast.error("Comment must be at least 10 characters.");
-      return;
-    }
-
-    if (content.length > 500) {
-      toast.error("Comment cannot exceed 500 characters.");
-      return;
-    }
-
-    try {
-      setCommentSubmitting(true);
-
-      await commentService.createComment({
-        post: post._id,
+  const handleCommentChange =
+    (event) => {
+      const {
         name,
-        email,
-        content,
-      });
+        value,
+      } = event.target;
 
-      toast.success(
-        "Comment submitted. It may need admin approval before appearing."
+      setCommentForm(
+        (current) => ({
+          ...current,
+          [name]: value,
+        })
       );
+    };
 
-      setCommentForm({
-        name: "",
-        email: "",
-        content: "",
-      });
-    } catch (err) {
-      console.error("Create comment error:", err);
+  // ====================================================
+  // SUBMIT COMMENT
+  // ====================================================
 
-      toast.error(
-        err?.response?.data?.message ||
-          err?.response?.data?.errors?.[0]?.msg ||
-          err?.message ||
-          "Unable to submit comment."
-      );
-    } finally {
-      setCommentSubmitting(false);
-    }
-  };
+  const handleCommentSubmit =
+    async (event) => {
+      event.preventDefault();
 
+      const postId =
+        post?._id ||
+        post?.id;
+
+      if (!postId) {
+        toast.error(
+          "Blog post ID is missing."
+        );
+
+        return;
+      }
+
+      const name =
+        commentForm.name.trim();
+
+      const email =
+        commentForm.email.trim();
+
+      const content =
+        commentForm.content.trim();
+
+      if (!name) {
+        toast.error(
+          "Please enter your name."
+        );
+
+        return;
+      }
+
+      if (
+        name.length < 2
+      ) {
+        toast.error(
+          "Name must be at least 2 characters."
+        );
+
+        return;
+      }
+
+      if (!email) {
+        toast.error(
+          "Please enter your email."
+        );
+
+        return;
+      }
+
+      if (!content) {
+        toast.error(
+          "Please write a comment."
+        );
+
+        return;
+      }
+
+      if (
+        content.length < 10
+      ) {
+        toast.error(
+          "Comment must be at least 10 characters."
+        );
+
+        return;
+      }
+
+      if (
+        content.length > 500
+      ) {
+        toast.error(
+          "Comment cannot exceed 500 characters."
+        );
+
+        return;
+      }
+
+      try {
+        setCommentSubmitting(
+          true
+        );
+
+        await commentService.createComment(
+          {
+            post:
+              postId,
+
+            name,
+
+            email,
+
+            content,
+          }
+        );
+
+        toast.success(
+          "Comment submitted successfully. It will appear after approval."
+        );
+
+        setCommentForm({
+          name: "",
+          email: "",
+          content: "",
+        });
+      } catch (err) {
+        console.error(
+          "Create comment error:",
+          err
+        );
+
+        toast.error(
+          err?.response?.data
+            ?.message ||
+            err?.response?.data
+              ?.errors?.[0]
+              ?.msg ||
+            err?.message ||
+            "Unable to submit comment."
+        );
+      } finally {
+        setCommentSubmitting(
+          false
+        );
+      }
+    };
+
+  // ====================================================
   // COMMENT HELPERS
+  // ====================================================
 
-  const getCommentAuthorName = (comment) => {
-    if (comment?.name) {
-      return comment.name;
-    }
-
-    if (
-      comment?.user &&
-      typeof comment.user === "object"
-    ) {
+  const getCommentAuthorName =
+    (comment) => {
       return (
-        comment.user?.name ||
-        comment.user?.username ||
+        comment?.name ||
         "Anonymous"
       );
-    }
+    };
 
-    if (typeof comment?.user === "string") {
-      return comment.user;
-    }
+  const getCommentDate =
+    (comment) => {
+      return (
+        comment?.createdAt ||
+        comment?.updatedAt
+      );
+    };
 
-    return "Anonymous";
-  };
-
-  const getCommentDate = (comment) =>
-    comment?.createdAt ||
-    comment?.date ||
-    comment?.updatedAt;
-
-  // NAVIGATION
+  // ====================================================
+  // SCROLL TOP
+  // ====================================================
 
   const scrollTop = () => {
     window.scrollTo({
@@ -684,41 +1697,92 @@ const BlogDetails = () => {
     });
   };
 
-  const handleBackToBlog = () => {
-    navigate("/blog");
+  // ====================================================
+  // BACK
+  // ====================================================
 
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  };
+  const handleBackToBlog =
+    () => {
+      navigate("/blog");
 
-  const handleHeadingClick = (headingId) => {
-    const element = document.getElementById(headingId);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    };
 
-    if (!element) return;
+  // ====================================================
+  // TOC CLICK
+  // ====================================================
 
-    const top =
-      element.getBoundingClientRect().top +
-      window.scrollY -
-      105;
+  const handleHeadingClick =
+    (headingId) => {
+      const element =
+        document.getElementById(
+          headingId
+        );
 
-    window.scrollTo({
-      top,
-      behavior: "smooth",
-    });
+      if (!element) {
+        return;
+      }
 
-    window.history.replaceState(
-      null,
-      "",
-      `#${headingId}`
+      const top =
+        element
+          .getBoundingClientRect()
+          .top +
+        window.scrollY -
+        105;
+
+      window.scrollTo({
+        top,
+        behavior: "smooth",
+      });
+
+      window.history.replaceState(
+        null,
+        "",
+        `#${headingId}`
+      );
+
+      setActiveHeading(
+        headingId
+      );
+    };
+
+  // ====================================================
+  // COMMENTS
+  // ====================================================
+
+  const openComments = () => {
+    setCommentsOpen(true);
+
+    window.setTimeout(
+      () => {
+        discussionRef.current?.scrollIntoView(
+          {
+            behavior:
+              "smooth",
+            block:
+              "start",
+          }
+        );
+      },
+      80
     );
-
-    setActiveHeading(headingId);
   };
 
+  const toggleComments =
+    () => {
+      setCommentsOpen(
+        (current) =>
+          !current
+      );
+    };
+
+  // ====================================================
   // LOADING
+  // ====================================================
 
   if (loading) {
     return (
@@ -740,13 +1804,21 @@ const BlogDetails = () => {
     );
   }
 
+  // ====================================================
   // ERROR
+  // ====================================================
 
-  if (error || !post) {
+  if (
+    error ||
+    !post
+  ) {
     return (
       <>
         <Helmet>
-          <title>Article Not Found | DevZore</title>
+          <title>
+            Article Not Found |
+            DevZore
+          </title>
 
           <meta
             name="robots"
@@ -777,7 +1849,9 @@ const BlogDetails = () => {
 
             <button
               type="button"
-              onClick={handleBackToBlog}
+              onClick={
+                handleBackToBlog
+              }
               className="group mt-6 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-[11px] font-semibold text-[#071923]"
             >
               <ArrowLeft
@@ -793,110 +1867,203 @@ const BlogDetails = () => {
     );
   }
 
+  // ====================================================
+  // SEO TITLE
+  // ====================================================
+
+  const pageTitle =
+    seo.title
+      .toLowerCase()
+      .includes("devzore")
+      ? seo.title
+      : `${seo.title} | DevZore`;
+
+  // ====================================================
   // SCHEMA
+  // ====================================================
 
   const blogPostingSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "@id": `${seo.canonicalUrl}#article`,
-    headline: post?.title || seo.title,
-    description: seo.description,
-    url: seo.canonicalUrl,
+    "@context":
+      "https://schema.org",
+
+    "@type":
+      "BlogPosting",
+
+    "@id":
+      `${seo.canonicalUrl}#article`,
+
+    headline:
+      post?.title ||
+      seo.title,
+
+    description:
+      seo.description,
+
+    url:
+      seo.canonicalUrl,
 
     mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": seo.canonicalUrl,
+      "@type":
+        "WebPage",
+
+      "@id":
+        seo.canonicalUrl,
     },
 
     ...(seo.image && {
       image: {
-        "@type": "ImageObject",
-        url: seo.image,
+        "@type":
+          "ImageObject",
+
+        url:
+          seo.image,
 
         ...(post?.coverImageAlt && {
-          caption: post.coverImageAlt,
+          caption:
+            post.coverImageAlt,
         }),
       },
     }),
 
     ...(seo.datePublished && {
-      datePublished: seo.datePublished,
+      datePublished:
+        seo.datePublished,
     }),
 
     ...(seo.dateModified && {
-      dateModified: seo.dateModified,
+      dateModified:
+        seo.dateModified,
     }),
 
     author: {
-      "@type": "Organization",
-      name: "DevZore Engineering Team",
-      url: `${BASE_URL}/`,
+      "@type":
+        "Organization",
+
+      name:
+        "DevZore Engineering Team",
+
+      url:
+        `${BASE_URL}/`,
     },
 
     publisher: {
-      "@type": "Organization",
-      "@id": `${BASE_URL}/#organization`,
-      name: "DevZore",
-      url: `${BASE_URL}/`,
+      "@type":
+        "Organization",
+
+      "@id":
+        `${BASE_URL}/#organization`,
+
+      name:
+        "DevZore",
+
+      url:
+        `${BASE_URL}/`,
+
       logo: {
-        "@type": "ImageObject",
-        url: `${BASE_URL}/logo.png`,
+        "@type":
+          "ImageObject",
+
+        url:
+          `${BASE_URL}/logo.png`,
       },
     },
 
     ...(categoryName && {
-      articleSection: categoryName,
+      articleSection:
+        categoryName,
     }),
 
     ...(post?.seoKeywords?.trim() && {
-      keywords: post.seoKeywords.trim(),
+      keywords:
+        post.seoKeywords.trim(),
     }),
 
-    inLanguage: "en",
+    inLanguage:
+      "en",
+
+    isAccessibleForFree:
+      true,
   };
 
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+    "@context":
+      "https://schema.org",
+
+    "@type":
+      "BreadcrumbList",
 
     itemListElement: [
       {
-        "@type": "ListItem",
+        "@type":
+          "ListItem",
+
         position: 1,
+
         name: "Home",
-        item: `${BASE_URL}/`,
+
+        item:
+          `${BASE_URL}/`,
       },
+
       {
-        "@type": "ListItem",
+        "@type":
+          "ListItem",
+
         position: 2,
+
         name: "Blog",
-        item: `${BASE_URL}/blog`,
+
+        item:
+          `${BASE_URL}/blog`,
       },
+
       {
-        "@type": "ListItem",
+        "@type":
+          "ListItem",
+
         position: 3,
-        name: post?.title || seo.title || "Article",
-        item: seo.canonicalUrl,
+
+        name:
+          post?.title ||
+          seo.title ||
+          "Article",
+
+        item:
+          seo.canonicalUrl,
       },
     ],
   };
 
+  // ====================================================
+  // UI
+  // ====================================================
+
   return (
     <>
+      {/* =================================================
+          SEO
+      ================================================= */}
+
       <Helmet>
         <html lang="en" />
 
-        <title>{`${seo.title} | DevZore`}</title>
+        <title>
+          {pageTitle}
+        </title>
 
         <meta
           name="description"
-          content={seo.description}
+          content={
+            seo.description
+          }
         />
 
         {post?.seoKeywords?.trim() && (
           <meta
             name="keywords"
-            content={post.seoKeywords.trim()}
+            content={
+              post.seoKeywords.trim()
+            }
           />
         )}
 
@@ -912,7 +2079,9 @@ const BlogDetails = () => {
 
         <link
           rel="canonical"
-          href={seo.canonicalUrl}
+          href={
+            seo.canonicalUrl
+          }
         />
 
         <meta
@@ -924,6 +2093,8 @@ const BlogDetails = () => {
           name="googlebot"
           content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
+
+        {/* OPEN GRAPH */}
 
         <meta
           property="og:type"
@@ -937,17 +2108,23 @@ const BlogDetails = () => {
 
         <meta
           property="og:title"
-          content={seo.title}
+          content={
+            seo.title
+          }
         />
 
         <meta
           property="og:description"
-          content={seo.description}
+          content={
+            seo.description
+          }
         />
 
         <meta
           property="og:url"
-          content={seo.canonicalUrl}
+          content={
+            seo.canonicalUrl
+          }
         />
 
         <meta
@@ -958,37 +2135,50 @@ const BlogDetails = () => {
         {seo.image && (
           <meta
             property="og:image"
-            content={seo.image}
+            content={
+              seo.image
+            }
           />
         )}
 
-        {seo.image && post?.coverImageAlt && (
-          <meta
-            property="og:image:alt"
-            content={post.coverImageAlt}
-          />
-        )}
+        {seo.image &&
+          post?.coverImageAlt && (
+            <meta
+              property="og:image:alt"
+              content={
+                post.coverImageAlt
+              }
+            />
+          )}
 
         {seo.datePublished && (
           <meta
             property="article:published_time"
-            content={seo.datePublished}
+            content={
+              seo.datePublished
+            }
           />
         )}
 
         {seo.dateModified && (
           <meta
             property="article:modified_time"
-            content={seo.dateModified}
+            content={
+              seo.dateModified
+            }
           />
         )}
 
         {categoryName && (
           <meta
             property="article:section"
-            content={categoryName}
+            content={
+              categoryName
+            }
           />
         )}
+
+        {/* TWITTER */}
 
         <meta
           name="twitter:card"
@@ -1001,27 +2191,39 @@ const BlogDetails = () => {
 
         <meta
           name="twitter:title"
-          content={seo.title}
+          content={
+            seo.title
+          }
         />
 
         <meta
           name="twitter:description"
-          content={seo.description}
+          content={
+            seo.description
+          }
         />
 
         {seo.image && (
           <meta
             name="twitter:image"
-            content={seo.image}
+            content={
+              seo.image
+            }
           />
         )}
 
+        {/* JSON-LD */}
+
         <script type="application/ld+json">
-          {JSON.stringify(blogPostingSchema)}
+          {JSON.stringify(
+            blogPostingSchema
+          )}
         </script>
 
         <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
+          {JSON.stringify(
+            breadcrumbSchema
+          )}
         </script>
       </Helmet>
 
@@ -1032,14 +2234,18 @@ const BlogDetails = () => {
             '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
         }}
       >
-        {/* TOP */}
+        {/* =================================================
+            TOP BAR
+        ================================================= */}
 
         <section className="bg-white pt-20 sm:pt-24 lg:pt-28">
           <div className="max-w-[1120px] mx-auto px-5 sm:px-6">
             <div className="flex items-center justify-between gap-4 pb-4 border-b border-slate-200">
               <button
                 type="button"
-                onClick={handleBackToBlog}
+                onClick={
+                  handleBackToBlog
+                }
                 className="group inline-flex items-center gap-2 text-[10px] font-medium text-slate-500 transition-colors hover:text-[#07899a]"
               >
                 <ArrowLeft
@@ -1059,7 +2265,9 @@ const BlogDetails = () => {
           </div>
         </section>
 
-        {/* BREADCRUMB */}
+        {/* =================================================
+            BREADCRUMB
+        ================================================= */}
 
         <section className="bg-white">
           <div className="max-w-[1120px] mx-auto px-5 sm:px-6">
@@ -1070,17 +2278,24 @@ const BlogDetails = () => {
               <div className="flex items-center gap-2 overflow-hidden text-[9px] text-slate-400">
                 <Link
                   to="/"
-                  onClick={scrollTop}
+                  onClick={
+                    scrollTop
+                  }
                   className="shrink-0 transition-colors hover:text-[#07899a]"
+                  aria-label="Home"
                 >
-                  <Home size={11} />
+                  <Home
+                    size={11}
+                  />
                 </Link>
 
                 <span>/</span>
 
                 <Link
                   to="/blog"
-                  onClick={scrollTop}
+                  onClick={
+                    scrollTop
+                  }
                   className="shrink-0 transition-colors hover:text-[#07899a]"
                 >
                   Blogs
@@ -1089,7 +2304,10 @@ const BlogDetails = () => {
                 {categoryName && (
                   <>
                     <span>/</span>
-                    <span>{categoryName}</span>
+
+                    <span className="truncate">
+                      {categoryName}
+                    </span>
                   </>
                 )}
               </div>
@@ -1097,33 +2315,45 @@ const BlogDetails = () => {
           </div>
         </section>
 
-        {/* COVER + TITLE */}
+        {/* =================================================
+            COVER + ARTICLE HEADER
+        ================================================= */}
 
         <section className="bg-white">
-          <div className="max-w-[1120px] mx-auto px-5 sm:px-6 pb-9">
-            {coverImage && (
-              <figure className="mb-6">
-                <div className="w-full aspect-[16/6.4] min-h-[220px] max-h-[440px] overflow-hidden rounded-2xl bg-[#071923]">
-                  <img
-                    src={coverImage}
-                    alt={
-                      post?.coverImageAlt ||
-                      post?.title ||
-                      "DevZore article"
-                    }
-                    className="w-full h-full object-cover"
-                    fetchPriority="high"
-                    decoding="async"
-                  />
-                </div>
+          <div className="max-w-[1120px] mx-auto px-5 sm:px-6 pb-10">
+            {coverImage &&
+              !coverImageError && (
+                <figure className="mb-7">
+                  <div className="w-full aspect-[16/6.5] min-h-[220px] max-h-[440px] overflow-hidden rounded-2xl bg-[#071923]">
+                    <img
+                      src={
+                        coverImage
+                      }
+                      alt={
+                        post?.coverImageAlt ||
+                        post?.title ||
+                        "DevZore article"
+                      }
+                      className="w-full h-full object-cover"
+                      fetchPriority="high"
+                      decoding="async"
+                      onError={() =>
+                        setCoverImageError(
+                          true
+                        )
+                      }
+                    />
+                  </div>
 
-                {post?.coverImageAlt && (
-                  <figcaption className="mt-2 text-[9px] italic leading-5 text-slate-400">
-                    {post.coverImageAlt}
-                  </figcaption>
-                )}
-              </figure>
-            )}
+                  {post?.coverImageAlt && (
+                    <figcaption className="mt-2 text-[9px] italic leading-5 text-slate-400">
+                      {
+                        post.coverImageAlt
+                      }
+                    </figcaption>
+                  )}
+                </figure>
+              )}
 
             {categoryName && (
               <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-[#07899a]">
@@ -1131,23 +2361,28 @@ const BlogDetails = () => {
               </p>
             )}
 
-            <h1 className="mt-4 max-w-[980px] text-[36px] sm:text-[46px] lg:text-[54px] xl:text-[58px] leading-[1.08] font-semibold tracking-[-0.045em] text-[#172126]">
-              {post?.title || "Untitled Article"}
+            <h1 className="mt-4 max-w-[980px] text-[36px] sm:text-[46px] lg:text-[54px] xl:text-[58px] leading-[1.07] font-semibold tracking-[-0.045em] text-[#172126]">
+              {post?.title ||
+                "Untitled Article"}
             </h1>
 
             {post?.excerpt?.trim() && (
               <p className="mt-5 max-w-[850px] text-[15px] sm:text-[17px] leading-7 text-slate-600">
-                {post.excerpt.trim()}
+                {
+                  post.excerpt.trim()
+                }
               </p>
             )}
 
-            {/* AUTHOR META */}
+            {/* META */}
 
-            <div className="mt-7 border-t border-slate-200 pt-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="mt-7 border-t border-slate-200 pt-5 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
               <div className="flex items-center gap-3">
                 {authorAvatar ? (
                   <img
-                    src={authorAvatar}
+                    src={
+                      authorAvatar
+                    }
                     alt="DevZore Engineering Team"
                     loading="lazy"
                     decoding="async"
@@ -1155,67 +2390,104 @@ const BlogDetails = () => {
                   />
                 ) : (
                   <div className="w-10 h-10 shrink-0 rounded-full bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
-                    <User size={15} />
+                    <User
+                      size={15}
+                    />
                   </div>
                 )}
 
                 <div>
                   <p className="text-[11px] leading-5 text-slate-500">
                     Written by{" "}
+
                     <strong className="font-semibold text-[#071923]">
-                      DevZore Engineering
+                      DevZore
+                      Engineering
+                      Team
                     </strong>
                   </p>
 
-                  <div className="flex flex-wrap items-center gap-x-2 text-[9px] font-medium text-slate-400">
-                    <span>Team</span>
-
+                  <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] font-medium text-slate-400">
                     {publishedDate && (
-                      <>
-                        <span>·</span>
-                        <span>
-                          {formatDate(publishedDate)}
-                        </span>
-                      </>
+                      <span className="inline-flex items-center gap-1">
+                        <CalendarDays
+                          size={10}
+                        />
+
+                        {formatDate(
+                          publishedDate
+                        )}
+                      </span>
                     )}
 
                     {readTime && (
-                      <>
-                        <span>·</span>
-                        <span>{readTime}</span>
-                      </>
+                      <span className="inline-flex items-center gap-1">
+                        <Clock3
+                          size={10}
+                        />
+
+                        {readTime}
+                      </span>
                     )}
+
+                    {post?.views !==
+                      undefined &&
+                      post?.views !==
+                        null && (
+                        <span className="inline-flex items-center gap-1">
+                          <Eye
+                            size={10}
+                          />
+
+                          {Number(
+                            post.views
+                          ).toLocaleString()}{" "}
+                          views
+                        </span>
+                      )}
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
-                {post?.views !== undefined &&
-                  post?.views !== null && (
-                    <span className="inline-flex items-center gap-1.5 text-[9px] text-slate-400">
-                      <Eye size={11} />
-                      {post.views} views
-                    </span>
-                  )}
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={
+                    openComments
+                  }
+                  className="group inline-flex min-h-[36px] items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-2 text-[9px] font-semibold text-slate-600 transition-all hover:border-[#0796A8]/40 hover:bg-[#0796A8]/5 hover:text-[#07899a]"
+                >
+                  <MessageCircle
+                    size={12}
+                  />
 
-                {articleTags.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {articleTags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-[#f4f6f7] px-3 py-1.5 text-[9px] font-medium text-slate-600"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  Comments
+
+                  <span className="inline-flex min-w-[18px] h-[18px] items-center justify-center rounded-full bg-[#edf4f5] px-1 text-[8px] font-bold text-[#07899a]">
+                    {
+                      comments.length
+                    }
+                  </span>
+                </button>
+
+                {articleTags.map(
+                  (tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-[#f4f6f7] px-3 py-2 text-[9px] font-medium text-slate-600"
+                    >
+                      {tag}
+                    </span>
+                  )
                 )}
               </div>
             </div>
           </div>
         </section>
 
-        {/* ARTICLE */}
+        {/* =================================================
+            ARTICLE
+        ================================================= */}
 
         <section className="border-t border-slate-100 bg-white py-9 md:py-12">
           <div className="max-w-[1120px] mx-auto px-5 sm:px-6">
@@ -1224,49 +2496,67 @@ const BlogDetails = () => {
 
               <aside className="hidden lg:block">
                 <div className="sticky top-24">
-                  {preparedArticle.headings.length > 0 && (
+                  {preparedArticle
+                    .headings
+                    .length >
+                    0 && (
                     <div className="pb-6 border-b border-slate-200">
                       <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.17em] text-slate-500">
                         On This Page
                       </p>
 
                       <nav className="border-l border-slate-200">
-                        {preparedArticle.headings.map((heading) => {
-                          const active =
-                            activeHeading === heading.id;
+                        {preparedArticle.headings.map(
+                          (
+                            heading
+                          ) => {
+                            const active =
+                              activeHeading ===
+                              heading.id;
 
-                          return (
-                            <button
-                              key={heading.id}
-                              type="button"
-                              onClick={() =>
-                                handleHeadingClick(heading.id)
-                              }
-                              className={`relative block w-full text-left transition-colors ${
-                                heading.level === 3
-                                  ? "pl-5 py-1.5"
-                                  : "pl-3 py-2"
-                              } ${
-                                active
-                                  ? "font-semibold text-[#071923]"
-                                  : "text-slate-500 hover:text-[#07899a]"
-                              }`}
-                            >
-                              {active && (
-                                <span className="absolute -left-[1px] inset-y-0 w-[2px] bg-[#0796A8]" />
-                              )}
+                            return (
+                              <button
+                                key={
+                                  heading.id
+                                }
+                                type="button"
+                                onClick={() =>
+                                  handleHeadingClick(
+                                    heading.id
+                                  )
+                                }
+                                className={`relative block w-full text-left transition-colors ${
+                                  heading.level ===
+                                  4
+                                    ? "pl-7 py-1"
+                                    : heading.level ===
+                                        3
+                                      ? "pl-5 py-1.5"
+                                      : "pl-3 py-2"
+                                } ${
+                                  active
+                                    ? "font-semibold text-[#071923]"
+                                    : "text-slate-500 hover:text-[#07899a]"
+                                }`}
+                              >
+                                {active && (
+                                  <span className="absolute -left-[1px] inset-y-0 w-[2px] bg-[#0796A8]" />
+                                )}
 
-                              <span className="block text-[10px] leading-[1.45]">
-                                {heading.text}
-                              </span>
-                            </button>
-                          );
-                        })}
+                                <span className="block text-[10px] leading-[1.45]">
+                                  {
+                                    heading.text
+                                  }
+                                </span>
+                              </button>
+                            );
+                          }
+                        )}
                       </nav>
                     </div>
                   )}
 
-                  {/* SIDEBAR SERVICES */}
+                  {/* RELATED SERVICES */}
 
                   <div className="py-6 border-b border-slate-200">
                     <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-slate-500">
@@ -1274,53 +2564,79 @@ const BlogDetails = () => {
                     </p>
 
                     <div className="mt-3">
-                      {SERVICES.slice(0, 5).map((service) => (
-                        <Link
-                          key={service.title}
-                          to={service.path}
-                          onClick={scrollTop}
-                          className="group flex items-center gap-2 py-1.5 text-[10px] leading-5 text-slate-500 transition-colors hover:text-[#07899a]"
-                        >
-                          <ArrowRight
-                            size={9}
-                            className="shrink-0 text-[#0796A8]"
-                          />
+                      {SERVICES.slice(
+                        0,
+                        5
+                      ).map(
+                        (
+                          service
+                        ) => (
+                          <Link
+                            key={
+                              service.title
+                            }
+                            to={
+                              service.path
+                            }
+                            onClick={
+                              scrollTop
+                            }
+                            className="group flex items-center gap-2 py-1.5 text-[10px] leading-5 text-slate-500 transition-colors hover:text-[#07899a]"
+                          >
+                            <ArrowRight
+                              size={
+                                9
+                              }
+                              className="shrink-0 text-[#0796A8]"
+                            />
 
-                          {service.title}
-                        </Link>
-                      ))}
+                            {
+                              service.title
+                            }
+                          </Link>
+                        )
+                      )}
                     </div>
                   </div>
 
                   <div className="pt-6">
                     <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-slate-500">
-                      Work With DevZore
+                      Work With
+                      DevZore
                     </p>
 
                     <p className="mt-2 text-[10px] leading-5 text-slate-500">
-                      Planning a web, mobile, SaaS or custom
-                      software project?
+                      Planning a web,
+                      mobile, SaaS or
+                      custom software
+                      project?
                     </p>
 
                     <Link
                       to="/contact"
-                      onClick={scrollTop}
+                      onClick={
+                        scrollTop
+                      }
                       className="mt-3 inline-flex items-center gap-2 text-[10px] font-semibold text-[#07899a]"
                     >
                       Discuss Project
-                      <ArrowRight size={10} />
+
+                      <ArrowRight
+                        size={10}
+                      />
                     </Link>
                   </div>
                 </div>
               </aside>
 
-              {/* CONTENT */}
+              {/* MAIN CONTENT */}
 
               <div className="min-w-0 max-w-[800px]">
                 <article
                   className="blog-content"
                   dangerouslySetInnerHTML={{
-                    __html: preparedArticle.html,
+                    __html:
+                      preparedArticle.html,
                   }}
                 />
 
@@ -1331,7 +2647,9 @@ const BlogDetails = () => {
                     <div className="flex items-start gap-4">
                       {authorAvatar ? (
                         <img
-                          src={authorAvatar}
+                          src={
+                            authorAvatar
+                          }
                           alt="DevZore Engineering Team"
                           loading="lazy"
                           decoding="async"
@@ -1339,17 +2657,22 @@ const BlogDetails = () => {
                         />
                       ) : (
                         <div className="w-12 h-12 shrink-0 rounded-full bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
-                          <User size={17} />
+                          <User
+                            size={17}
+                          />
                         </div>
                       )}
 
                       <div>
                         <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-[#07899a]">
-                          About the Author
+                          About the
+                          Author
                         </p>
 
                         <h2 className="mt-1 text-[15px] font-semibold text-[#071923]">
-                          DevZore Engineering Team
+                          DevZore
+                          Engineering
+                          Team
                         </h2>
 
                         <p className="mt-2 text-[11px] sm:text-[12px] leading-6 text-slate-600">
@@ -1360,419 +2683,697 @@ const BlogDetails = () => {
                   </section>
                 )}
 
-                {/* RELATED ARTICLES */}
+                {/* =================================================
+                    RELATED ARTICLES
+                ================================================= */}
 
                 {(relatedLoading ||
-                  relatedPosts.length > 0) && (
+                  relatedPosts.length >
+                    0) && (
                   <section className="mt-12 border-t border-slate-200 pt-8">
                     <div className="mb-5 flex items-end justify-between gap-4">
                       <div>
                         <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-[#07899a]">
-                          Continue Reading
+                          Continue
+                          Reading
                         </p>
 
                         <h2 className="mt-2 text-[25px] sm:text-[29px] font-semibold tracking-[-0.03em] text-[#071923]">
-                          Related Articles
+                          Related
+                          Articles
                         </h2>
                       </div>
 
                       <Link
                         to="/blog"
-                        onClick={scrollTop}
+                        onClick={
+                          scrollTop
+                        }
                         className="hidden sm:inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]"
                       >
                         All Articles
-                        <ArrowRight size={10} />
+
+                        <ArrowRight
+                          size={10}
+                        />
                       </Link>
                     </div>
 
                     {relatedLoading ? (
                       <div className="grid sm:grid-cols-2 gap-4">
-                        {[1, 2].map((item) => (
-                          <div
-                            key={item}
-                            className="overflow-hidden rounded-xl border border-slate-200 bg-white animate-pulse"
-                          >
-                            <div className="h-[155px] bg-slate-200" />
+                        {[1, 2].map(
+                          (item) => (
+                            <div
+                              key={
+                                item
+                              }
+                              className="overflow-hidden rounded-xl border border-slate-200 bg-white animate-pulse"
+                            >
+                              <div className="h-[155px] bg-slate-200" />
 
-                            <div className="p-4">
-                              <div className="h-3 bg-slate-200 rounded" />
-                              <div className="mt-2 h-3 w-3/4 bg-slate-200 rounded" />
+                              <div className="p-4">
+                                <div className="h-3 bg-slate-200 rounded" />
+
+                                <div className="mt-2 h-3 w-3/4 bg-slate-200 rounded" />
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          )
+                        )}
                       </div>
                     ) : (
                       <div className="grid sm:grid-cols-2 gap-4">
                         {relatedPosts
-                          .slice(0, 4)
-                          .map((relatedPost) => {
-                            const relatedCategory =
-                              relatedPost?.category &&
-                              typeof relatedPost.category ===
-                                "object"
-                                ? relatedPost.category?.name
-                                : relatedPost?.category;
+                          .slice(
+                            0,
+                            4
+                          )
+                          .map(
+                            (
+                              relatedPost
+                            ) => {
+                              const relatedCategory =
+                                relatedPost?.category &&
+                                typeof relatedPost.category ===
+                                  "object"
+                                  ? relatedPost
+                                      .category
+                                      ?.name
+                                  : relatedPost?.category;
 
-                            const relatedImage =
-                              getBlogImageUrl(relatedPost);
+                              const relatedImage =
+                                getBlogImageUrl(
+                                  relatedPost
+                                );
 
-                            return (
-                              <Link
-                                key={
-                                  relatedPost?._id ||
-                                  relatedPost?.slug
-                                }
-                                to={`/blog/${encodeURIComponent(
-                                  relatedPost.slug
-                                )}`}
-                                onClick={scrollTop}
-                                className="group overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0796A8]/40 hover:shadow-[0_12px_36px_rgba(7,25,35,0.07)]"
-                              >
-                                {relatedImage && (
-                                  <div className="h-[155px] overflow-hidden bg-slate-100">
-                                    <img
-                                      src={relatedImage}
-                                      alt={
-                                        relatedPost?.coverImageAlt ||
-                                        relatedPost?.title ||
-                                        "Related article"
-                                      }
-                                      loading="lazy"
-                                      decoding="async"
-                                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                                    />
-                                  </div>
-                                )}
-
-                                <div className="p-4">
-                                  {relatedCategory && (
-                                    <p className="text-[8px] font-bold uppercase tracking-[0.14em] text-[#07899a]">
-                                      {relatedCategory}
-                                    </p>
+                              return (
+                                <Link
+                                  key={
+                                    relatedPost?._id ||
+                                    relatedPost?.id ||
+                                    relatedPost?.slug
+                                  }
+                                  to={`/blog/${encodeURIComponent(
+                                    relatedPost.slug
+                                  )}`}
+                                  onClick={
+                                    scrollTop
+                                  }
+                                  className="group overflow-hidden rounded-xl border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0796A8]/40 hover:shadow-[0_12px_36px_rgba(7,25,35,0.07)]"
+                                >
+                                  {relatedImage && (
+                                    <div className="h-[155px] overflow-hidden bg-slate-100">
+                                      <img
+                                        src={
+                                          relatedImage
+                                        }
+                                        alt={
+                                          relatedPost?.coverImageAlt ||
+                                          relatedPost?.title ||
+                                          "Related article"
+                                        }
+                                        loading="lazy"
+                                        decoding="async"
+                                        onError={(
+                                          event
+                                        ) => {
+                                          event.currentTarget.style.display =
+                                            "none";
+                                        }}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                                      />
+                                    </div>
                                   )}
 
-                                  <h3 className="mt-1.5 text-[14px] leading-5 font-semibold text-[#071923] line-clamp-2 transition-colors group-hover:text-[#07899a]">
-                                    {relatedPost?.title ||
-                                      "DevZore Article"}
-                                  </h3>
+                                  <div className="p-4">
+                                    {relatedCategory && (
+                                      <p className="text-[8px] font-bold uppercase tracking-[0.14em] text-[#07899a]">
+                                        {
+                                          relatedCategory
+                                        }
+                                      </p>
+                                    )}
 
-                                  <span className="mt-3 inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]">
-                                    Read Article
-                                    <ArrowRight size={9} />
-                                  </span>
-                                </div>
-                              </Link>
-                            );
-                          })}
+                                    <h3 className="mt-1.5 text-[14px] leading-5 font-semibold text-[#071923] line-clamp-2 transition-colors group-hover:text-[#07899a]">
+                                      {relatedPost?.title ||
+                                        "DevZore Article"}
+                                    </h3>
+
+                                    <span className="mt-3 inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]">
+                                      Read
+                                      Article
+
+                                      <ArrowRight
+                                        size={
+                                          9
+                                        }
+                                      />
+                                    </span>
+                                  </div>
+                                </Link>
+                              );
+                            }
+                          )}
                       </div>
                     )}
                   </section>
                 )}
 
-                {/* SERVICES */}
+                {/* =================================================
+                    SERVICES
+                ================================================= */}
 
                 <section className="mt-12 border-t border-slate-200 pt-8">
                   <div className="mb-5 flex items-end justify-between gap-4">
                     <div>
                       <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-[#07899a]">
-                        DevZore Services
+                        DevZore
+                        Services
                       </p>
 
                       <h2 className="mt-2 text-[25px] sm:text-[29px] leading-tight font-semibold tracking-[-0.03em] text-[#071923]">
-                        Need help with your digital product?
+                        Need help with
+                        your digital
+                        product?
                       </h2>
                     </div>
 
                     <Link
                       to="/allservices"
-                      onClick={scrollTop}
+                      onClick={
+                        scrollTop
+                      }
                       className="hidden sm:inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]"
                     >
                       All Services
-                      <ArrowRight size={10} />
+
+                      <ArrowRight
+                        size={10}
+                      />
                     </Link>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-3">
-                    {SERVICES.map((service, index) => {
-                      const Icon = service.icon;
+                    {SERVICES.map(
+                      (
+                        service,
+                        index
+                      ) => {
+                        const Icon =
+                          service.icon;
 
-                      return (
-                        <Link
-                          key={service.title}
-                          to={service.path}
-                          onClick={scrollTop}
-                          className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0796A8]/40"
-                        >
-                          <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#071923] to-[#18bdcb]" />
+                        return (
+                          <Link
+                            key={
+                              service.title
+                            }
+                            to={
+                              service.path
+                            }
+                            onClick={
+                              scrollTop
+                            }
+                            className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0796A8]/40"
+                          >
+                            <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#071923] to-[#18bdcb]" />
 
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
-                              <Icon size={15} />
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="w-9 h-9 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
+                                <Icon
+                                  size={
+                                    15
+                                  }
+                                />
+                              </div>
+
+                              <span className="text-[8px] font-semibold text-slate-300">
+                                {String(
+                                  index +
+                                    1
+                                ).padStart(
+                                  2,
+                                  "0"
+                                )}
+                              </span>
                             </div>
 
-                            <span className="text-[8px] font-semibold text-slate-300">
-                              {String(index + 1).padStart(
-                                2,
-                                "0"
-                              )}
-                            </span>
+                            <h3 className="mt-3 text-[13px] font-semibold text-[#071923]">
+                              {
+                                service.title
+                              }
+                            </h3>
+
+                            <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                              {
+                                service.description
+                              }
+                            </p>
+                          </Link>
+                        );
+                      }
+                    )}
+                  </div>
+                </section>
+
+                {/* =================================================
+                    COMMENTS
+                ================================================= */}
+
+                <section
+                  ref={
+                    discussionRef
+                  }
+                  id="discussion"
+                  className="mt-12 scroll-mt-24 border-t border-slate-200 pt-8"
+                >
+                  <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                    <button
+                      type="button"
+                      onClick={
+                        toggleComments
+                      }
+                      aria-expanded={
+                        commentsOpen
+                      }
+                      aria-controls="blog-comments-panel"
+                      className="group flex w-full items-center justify-between gap-5 px-5 py-5 text-left transition-colors hover:bg-[#f8fafb] sm:px-6"
+                    >
+                      <div className="flex min-w-0 items-center gap-4">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#edf6f7] text-[#07899a]">
+                          <MessageCircle
+                            size={18}
+                          />
+                        </div>
+
+                        <div className="min-w-0">
+                          <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-[#07899a]">
+                            Discussion
+                          </p>
+
+                          <h2 className="mt-1 text-[17px] sm:text-[19px] font-semibold tracking-[-0.02em] text-[#071923]">
+                            Join the
+                            conversation
+                          </h2>
+
+                          <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                            Share a
+                            thoughtful
+                            question or
+                            comment about
+                            this article.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex shrink-0 items-center gap-3">
+                        <span className="hidden sm:inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-[9px] font-semibold text-slate-500">
+                          {
+                            comments.length
+                          }{" "}
+                          {comments.length ===
+                          1
+                            ? "comment"
+                            : "comments"}
+                        </span>
+
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition-colors group-hover:border-[#0796A8]/30 group-hover:text-[#07899a]">
+                          <ChevronDown
+                            size={14}
+                            className={`transition-transform duration-300 ${
+                              commentsOpen
+                                ? "rotate-180"
+                                : ""
+                            }`}
+                          />
+                        </span>
+                      </div>
+                    </button>
+
+                    <div
+                      id="blog-comments-panel"
+                      className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+                        commentsOpen
+                          ? "grid-rows-[1fr]"
+                          : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="border-t border-slate-200 bg-[#fafcfc] p-5 sm:p-6">
+                          {/* COMMENT FORM */}
+
+                          <div className="mb-5">
+                            <h3 className="text-[14px] font-semibold text-[#071923]">
+                              Leave a
+                              comment
+                            </h3>
+
+                            <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                              Your email
+                              address will
+                              not be shown
+                              publicly.
+                              Comments are
+                              reviewed
+                              before
+                              publication.
+                            </p>
                           </div>
 
-                          <h3 className="mt-3 text-[13px] font-semibold text-[#071923]">
-                            {service.title}
-                          </h3>
+                          <form
+                            onSubmit={
+                              handleCommentSubmit
+                            }
+                            className="rounded-xl border border-slate-200 bg-white p-4 sm:p-5"
+                          >
+                            <div className="grid gap-4 sm:grid-cols-2">
+                              <div>
+                                <label
+                                  htmlFor="blog-comment-name"
+                                  className="mb-1.5 block text-[9px] font-bold uppercase tracking-[0.1em] text-slate-500"
+                                >
+                                  Name
+                                </label>
 
-                          <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
-                            {service.description}
-                          </p>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </section>
+                                <input
+                                  id="blog-comment-name"
+                                  type="text"
+                                  name="name"
+                                  value={
+                                    commentForm.name
+                                  }
+                                  onChange={
+                                    handleCommentChange
+                                  }
+                                  placeholder="Your name"
+                                  autoComplete="name"
+                                  minLength={
+                                    2
+                                  }
+                                  maxLength={
+                                    60
+                                  }
+                                  required
+                                  disabled={
+                                    commentSubmitting
+                                  }
+                                  className="w-full min-h-[44px] rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-[12px] text-[#071923] outline-none placeholder:text-slate-400 transition-all focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10 disabled:bg-slate-50"
+                                />
+                              </div>
 
-                {/* COMMENTS */}
+                              <div>
+                                <label
+                                  htmlFor="blog-comment-email"
+                                  className="mb-1.5 block text-[9px] font-bold uppercase tracking-[0.1em] text-slate-500"
+                                >
+                                  Email
+                                </label>
 
-                <section className="mt-12 border-t border-slate-200 pt-8">
-                  <div className="mb-5 flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-[#07899a]">
-                        Discussion
-                      </p>
+                                <input
+                                  id="blog-comment-email"
+                                  type="email"
+                                  name="email"
+                                  value={
+                                    commentForm.email
+                                  }
+                                  onChange={
+                                    handleCommentChange
+                                  }
+                                  placeholder="you@example.com"
+                                  autoComplete="email"
+                                  maxLength={
+                                    120
+                                  }
+                                  required
+                                  disabled={
+                                    commentSubmitting
+                                  }
+                                  className="w-full min-h-[44px] rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-[12px] text-[#071923] outline-none placeholder:text-slate-400 transition-all focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10 disabled:bg-slate-50"
+                                />
+                              </div>
+                            </div>
 
-                      <h2 className="mt-2 text-[25px] font-semibold tracking-[-0.03em] text-[#071923]">
-                        Join the conversation
-                      </h2>
-                    </div>
+                            <div className="mt-4">
+                              <label
+                                htmlFor="blog-comment-content"
+                                className="mb-1.5 block text-[9px] font-bold uppercase tracking-[0.1em] text-slate-500"
+                              >
+                                Comment
+                              </label>
 
-                    <span className="text-[9px] text-slate-400">
-                      {comments.length}{" "}
-                      {comments.length === 1
-                        ? "comment"
-                        : "comments"}
-                    </span>
-                  </div>
+                              <textarea
+                                id="blog-comment-content"
+                                name="content"
+                                value={
+                                  commentForm.content
+                                }
+                                onChange={
+                                  handleCommentChange
+                                }
+                                placeholder="Share your thoughts or ask a question about this article..."
+                                rows={
+                                  5
+                                }
+                                minLength={
+                                  10
+                                }
+                                maxLength={
+                                  500
+                                }
+                                required
+                                disabled={
+                                  commentSubmitting
+                                }
+                                className="w-full resize-y rounded-lg border border-slate-200 bg-white px-3.5 py-3 text-[12px] leading-6 text-[#071923] outline-none placeholder:text-slate-400 transition-all focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10 disabled:bg-slate-50"
+                              />
 
-                  <form
-                    onSubmit={handleCommentSubmit}
-                    className="rounded-2xl border border-slate-200 bg-[#fafbfb] p-5 sm:p-6"
-                  >
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      <div>
-                        <label
-                          htmlFor="blog-comment-name"
-                          className="block mb-1.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-slate-400"
-                        >
-                          Name
-                        </label>
+                              <div className="mt-1.5 flex items-center justify-between text-[8px] text-slate-400">
+                                <span>
+                                  10–500
+                                  characters
+                                </span>
 
-                        <input
-                          id="blog-comment-name"
-                          type="text"
-                          name="name"
-                          value={commentForm.name}
-                          onChange={handleCommentChange}
-                          placeholder="Your name"
-                          autoComplete="name"
-                          maxLength={60}
-                          required
-                          disabled={commentSubmitting}
-                          className="w-full min-h-[44px] rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-[12px] text-[#071923] outline-none placeholder:text-slate-400 transition-all focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
-                        />
-                      </div>
+                                <span>
+                                  {
+                                    commentForm
+                                      .content
+                                      .length
+                                  }
+                                  /500
+                                </span>
+                              </div>
+                            </div>
 
-                      <div>
-                        <label
-                          htmlFor="blog-comment-email"
-                          className="block mb-1.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-slate-400"
-                        >
-                          Email
-                        </label>
+                            <div className="mt-4 flex items-center justify-between gap-4">
+                              <p className="hidden text-[9px] leading-5 text-slate-400 sm:block">
+                                Comments
+                                appear
+                                after
+                                approval.
+                              </p>
 
-                        <input
-                          id="blog-comment-email"
-                          type="email"
-                          name="email"
-                          value={commentForm.email}
-                          onChange={handleCommentChange}
-                          placeholder="you@example.com"
-                          autoComplete="email"
-                          maxLength={120}
-                          required
-                          disabled={commentSubmitting}
-                          className="w-full min-h-[44px] rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-[12px] text-[#071923] outline-none placeholder:text-slate-400 transition-all focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
-                        />
-                      </div>
-                    </div>
+                              <button
+                                type="submit"
+                                disabled={
+                                  commentSubmitting
+                                }
+                                className="inline-flex min-h-[42px] items-center justify-center gap-2 rounded-lg bg-[#0796A8] px-5 py-2.5 text-[10px] font-semibold text-white transition-all hover:bg-[#078899] disabled:cursor-not-allowed disabled:opacity-50"
+                              >
+                                {commentSubmitting ? (
+                                  <>
+                                    <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
 
-                    <div className="mt-3">
-                      <label
-                        htmlFor="blog-comment-content"
-                        className="block mb-1.5 text-[9px] font-semibold uppercase tracking-[0.1em] text-slate-400"
-                      >
-                        Comment
-                      </label>
+                                    Submitting...
+                                  </>
+                                ) : (
+                                  <>
+                                    <Send
+                                      size={
+                                        11
+                                      }
+                                    />
 
-                      <textarea
-                        id="blog-comment-content"
-                        name="content"
-                        value={commentForm.content}
-                        onChange={handleCommentChange}
-                        placeholder="Write your comment..."
-                        rows={4}
-                        minLength={10}
-                        maxLength={500}
-                        required
-                        disabled={commentSubmitting}
-                        className="w-full resize-y rounded-lg border border-slate-200 bg-white px-3.5 py-3 text-[12px] text-[#071923] outline-none placeholder:text-slate-400 transition-all focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
-                      />
-                    </div>
+                                    Submit
+                                    Comment
+                                  </>
+                                )}
+                              </button>
+                            </div>
+                          </form>
 
-                    <div className="mt-2 flex justify-between text-[8px] text-slate-400">
-                      <span>10–500 characters</span>
+                          {/* COMMENTS LIST */}
 
-                      <span>
-                        {commentForm.content.length}/500
-                      </span>
-                    </div>
+                          <div className="mt-6">
+                            <div className="mb-3 flex items-center justify-between">
+                              <h3 className="text-[12px] font-semibold text-[#071923]">
+                                Published
+                                Comments
+                              </h3>
 
-                    <button
-                      type="submit"
-                      disabled={commentSubmitting}
-                      className="mt-4 inline-flex min-h-[42px] items-center justify-center gap-2 rounded-lg bg-[#0796A8] px-4 py-2.5 text-[10px] font-semibold text-white transition-colors hover:bg-[#078899] disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      {commentSubmitting ? (
-                        <>
-                          <span className="w-3.5 h-3.5 rounded-full border-2 border-white/30 border-t-white animate-spin" />
-                          Submitting...
-                        </>
-                      ) : (
-                        <>
-                          <Send size={11} />
-                          Post Comment
-                        </>
-                      )}
-                    </button>
-                  </form>
+                              <span className="text-[9px] text-slate-400">
+                                {
+                                  comments.length
+                                }{" "}
+                                approved
+                              </span>
+                            </div>
 
-                  {commentsLoading && (
-                    <p className="py-6 text-center text-[11px] text-slate-500">
-                      Loading comments...
-                    </p>
-                  )}
+                            {commentsLoading && (
+                              <div className="rounded-xl border border-slate-200 bg-white px-4 py-6 text-center">
+                                <div className="mx-auto h-5 w-5 animate-spin rounded-full border-2 border-slate-200 border-t-[#0796A8]" />
 
-                  {!commentsLoading && commentsError && (
-                    <div className="mt-4 rounded-xl border border-red-200 bg-red-50 p-3 text-[11px] text-red-600">
-                      {commentsError}
-                    </div>
-                  )}
+                                <p className="mt-2 text-[10px] text-slate-500">
+                                  Loading
+                                  comments...
+                                </p>
+                              </div>
+                            )}
 
-                  {!commentsLoading &&
-                    !commentsError &&
-                    comments.length === 0 && (
-                      <div className="mt-4 rounded-xl border border-slate-200 bg-white px-4 py-7 text-center">
-                        <MessageCircle
-                          size={20}
-                          className="mx-auto text-[#07899a]"
-                        />
-
-                        <p className="mt-2 text-[12px] font-semibold text-[#071923]">
-                          No comments yet
-                        </p>
-
-                        <p className="mt-1 text-[10px] text-slate-500">
-                          Be the first to join the discussion.
-                        </p>
-                      </div>
-                    )}
-
-                  {!commentsLoading &&
-                    !commentsError &&
-                    comments.length > 0 && (
-                      <div className="mt-5">
-                        {comments.map((comment, index) => {
-                          const commentKey =
-                            comment?._id ||
-                            comment?.id ||
-                            `comment-${index}`;
-
-                          const commentAuthor =
-                            getCommentAuthorName(comment);
-
-                          const commentDate =
-                            getCommentDate(comment);
-
-                          return (
-                            <article
-                              key={commentKey}
-                              className="border-b border-slate-200 py-4 last:border-b-0"
-                            >
-                              <div className="flex gap-3">
-                                <div className="w-8 h-8 shrink-0 rounded-full bg-[#071923] text-[#28c5d4] flex items-center justify-center text-[10px] font-semibold">
-                                  {commentAuthor
-                                    .charAt(0)
-                                    .toUpperCase()}
+                            {!commentsLoading &&
+                              commentsError && (
+                                <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-[10px] leading-5 text-red-600">
+                                  {
+                                    commentsError
+                                  }
                                 </div>
+                              )}
 
-                                <div className="min-w-0 flex-1">
-                                  <div className="flex items-start justify-between gap-3">
-                                    <h3 className="text-[11px] font-semibold text-[#071923]">
-                                      {commentAuthor}
-                                    </h3>
-
-                                    {commentDate && (
-                                      <time
-                                        dateTime={toISODate(
-                                          commentDate
-                                        )}
-                                        className="text-[8px] text-slate-400"
-                                      >
-                                        {formatDate(
-                                          commentDate
-                                        )}
-                                      </time>
-                                    )}
+                            {!commentsLoading &&
+                              !commentsError &&
+                              comments.length ===
+                                0 && (
+                                <div className="rounded-xl border border-slate-200 bg-white px-4 py-7 text-center">
+                                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-[#edf6f7] text-[#07899a]">
+                                    <MessageCircle
+                                      size={
+                                        17
+                                      }
+                                    />
                                   </div>
 
-                                  <p className="mt-1 text-[11px] sm:text-[12px] leading-6 whitespace-pre-wrap break-words text-slate-600">
-                                    {comment?.content ||
-                                      comment?.comment ||
-                                      comment?.text ||
-                                      ""}
+                                  <p className="mt-3 text-[12px] font-semibold text-[#071923]">
+                                    No
+                                    published
+                                    comments
+                                    yet
+                                  </p>
+
+                                  <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                                    You can be
+                                    the first
+                                    to join the
+                                    discussion.
                                   </p>
                                 </div>
-                              </div>
-                            </article>
-                          );
-                        })}
+                              )}
+
+                            {!commentsLoading &&
+                              !commentsError &&
+                              comments.length >
+                                0 && (
+                                <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                                  {comments.map(
+                                    (
+                                      comment,
+                                      index
+                                    ) => {
+                                      const commentKey =
+                                        comment?._id ||
+                                        comment?.id ||
+                                        `comment-${index}`;
+
+                                      const commentAuthor =
+                                        getCommentAuthorName(
+                                          comment
+                                        );
+
+                                      const commentDate =
+                                        getCommentDate(
+                                          comment
+                                        );
+
+                                      return (
+                                        <article
+                                          key={
+                                            commentKey
+                                          }
+                                          className="border-b border-slate-100 p-4 last:border-b-0 sm:p-5"
+                                        >
+                                          <div className="flex items-start gap-3">
+                                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#071923] text-[10px] font-bold text-[#28c5d4]">
+                                              {commentAuthor
+                                                .charAt(
+                                                  0
+                                                )
+                                                .toUpperCase()}
+                                            </div>
+
+                                            <div className="min-w-0 flex-1">
+                                              <div className="flex flex-wrap items-center justify-between gap-2">
+                                                <h4 className="text-[11px] font-semibold text-[#071923]">
+                                                  {
+                                                    commentAuthor
+                                                  }
+                                                </h4>
+
+                                                {commentDate && (
+                                                  <time
+                                                    dateTime={toISODate(
+                                                      commentDate
+                                                    )}
+                                                    className="text-[8px] text-slate-400"
+                                                  >
+                                                    {formatDate(
+                                                      commentDate
+                                                    )}
+                                                  </time>
+                                                )}
+                                              </div>
+
+                                              <p className="mt-2 whitespace-pre-wrap break-words text-[11px] leading-6 text-slate-600 sm:text-[12px]">
+                                                {comment?.content ||
+                                                  ""}
+                                              </p>
+                                            </div>
+                                          </div>
+                                        </article>
+                                      );
+                                    }
+                                  )}
+                                </div>
+                              )}
+                          </div>
+                        </div>
                       </div>
-                    )}
+                    </div>
+                  </div>
                 </section>
+
+                {/* BACK */}
+
+                <div className="mt-10 border-t border-slate-200 py-6">
+                  <button
+                    type="button"
+                    onClick={
+                      handleBackToBlog
+                    }
+                    className="group inline-flex items-center gap-2 text-[10px] font-semibold text-slate-500 transition-colors hover:text-[#07899a]"
+                  >
+                    <ArrowLeft
+                      size={12}
+                      className="transition-transform group-hover:-translate-x-1"
+                    />
+
+                    Explore More
+                    Articles
+                  </button>
+                </div>
               </div>
-            </div>
-
-            {/* BACK */}
-
-            <div className="mt-10 border-t border-slate-200 py-6">
-              <button
-                type="button"
-                onClick={handleBackToBlog}
-                className="group inline-flex items-center gap-2 text-[10px] font-semibold text-slate-500 transition-colors hover:text-[#07899a]"
-              >
-                <ArrowLeft
-                  size={12}
-                  className="transition-transform group-hover:-translate-x-1"
-                />
-
-                Explore More Articles
-              </button>
             </div>
           </div>
         </section>
 
-        {/* CTA */}
+        {/* =================================================
+            CTA
+        ================================================= */}
 
         <section className="bg-[#f7f9fa] py-10 md:py-12">
           <div className="max-w-[1120px] mx-auto px-5 sm:px-6">
@@ -1782,26 +3383,36 @@ const BlogDetails = () => {
               <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-5">
                 <div className="max-w-2xl">
                   <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#28c5d4]">
-                    Work With DevZore
+                    Work With
+                    DevZore
                   </p>
 
                   <h2 className="mt-2 text-[24px] sm:text-[30px] leading-tight font-semibold tracking-[-0.03em]">
-                    Have a software or digital project in mind?
+                    Have a software
+                    or digital
+                    project in mind?
                   </h2>
 
                   <p className="mt-2 text-[11px] sm:text-[12px] leading-6 text-slate-400">
-                    Share what you are planning to build and
-                    discuss your requirements and development
-                    approach with DevZore.
+                    Share what you
+                    are planning to
+                    build and discuss
+                    your requirements
+                    and development
+                    approach with
+                    DevZore.
                   </p>
                 </div>
 
                 <Link
                   to="/contact"
-                  onClick={scrollTop}
+                  onClick={
+                    scrollTop
+                  }
                   className="group shrink-0 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-[10px] font-semibold text-[#071923] transition-colors hover:bg-slate-100"
                 >
-                  Discuss Your Project
+                  Discuss Your
+                  Project
 
                   <ArrowRight
                     size={11}
@@ -1813,7 +3424,9 @@ const BlogDetails = () => {
           </div>
         </section>
 
-        {/* ARTICLE CONTENT STYLES */}
+        {/* =================================================
+            ARTICLE CSS
+        ================================================= */}
 
         <style>{`
           html {
@@ -1826,16 +3439,15 @@ const BlogDetails = () => {
             color: #334155;
             font-size: 16px;
             line-height: 1.82;
-            overflow-wrap: break-word;
-            word-break: normal;
+            overflow-wrap: anywhere;
           }
 
           .blog-content > *:first-child {
-            margin-top: 0;
+            margin-top: 0 !important;
           }
 
           .blog-content > *:last-child {
-            margin-bottom: 0;
+            margin-bottom: 0 !important;
           }
 
           .blog-content p {
@@ -1848,47 +3460,73 @@ const BlogDetails = () => {
           .blog-content h4,
           .blog-content h5,
           .blog-content h6 {
-            color: #172126;
-            font-weight: 600;
-            letter-spacing: -0.035em;
-            line-height: 1.18;
+            color: #071923 !important;
+            font-family:
+              "Inter",
+              "Segoe UI",
+              Arial,
+              Helvetica,
+              sans-serif !important;
+            font-weight: 800 !important;
+            letter-spacing: -0.035em !important;
+            line-height: 1.17 !important;
             scroll-margin-top: 110px;
           }
 
+          /*
+           * Old H1 article content is converted
+           * to H2 before rendering. H1 remains
+           * here only as defensive styling.
+           */
+
           .blog-content h1 {
-            margin: 2.5rem 0 1rem;
-            font-size: clamp(2rem, 4vw, 2.65rem);
+            margin: 2.6rem 0 1rem !important;
+            font-size: clamp(
+              2rem,
+              4vw,
+              2.75rem
+            ) !important;
           }
 
           .blog-content h2 {
-            margin: 2.55rem 0 0.95rem;
-            font-size: clamp(1.7rem, 3vw, 2.1rem);
+            margin: 2.5rem 0 0.95rem !important;
+            font-size: clamp(
+              1.65rem,
+              3vw,
+              2.15rem
+            ) !important;
           }
 
           .blog-content h3 {
-            margin: 2.1rem 0 0.8rem;
-            font-size: clamp(1.3rem, 2.5vw, 1.58rem);
+            margin: 2.1rem 0 0.8rem !important;
+            font-size: clamp(
+              1.35rem,
+              2.5vw,
+              1.7rem
+            ) !important;
           }
 
           .blog-content h4 {
-            margin: 1.85rem 0 0.7rem;
-            font-size: 1.15rem;
+            margin: 1.9rem 0 0.7rem !important;
+            font-size: 1.2rem !important;
           }
 
           .blog-content h5 {
-            margin: 1.7rem 0 0.65rem;
-            font-size: 1.04rem;
+            margin: 1.7rem 0 0.65rem !important;
+            font-size: 1.05rem !important;
           }
 
           .blog-content h6 {
-            margin: 1.6rem 0 0.6rem;
-            font-size: 0.96rem;
+            margin: 1.6rem 0 0.6rem !important;
+            font-size: 0.95rem !important;
+            text-transform: uppercase;
+            letter-spacing: 0.08em !important;
           }
 
           .blog-content strong,
           .blog-content b {
-            color: #172126;
-            font-weight: 700;
+            color: #071923 !important;
+            font-weight: 800 !important;
           }
 
           .blog-content em,
@@ -1896,16 +3534,26 @@ const BlogDetails = () => {
             font-style: italic;
           }
 
+          .blog-content s {
+            text-decoration: line-through;
+          }
+
           .blog-content a {
-            color: #07899a;
-            font-weight: 500;
+            color: #07899a !important;
+            font-weight: 600;
             text-decoration: underline;
-            text-decoration-color: rgba(7, 137, 154, 0.35);
+            text-decoration-color:
+              rgba(
+                7,
+                137,
+                154,
+                0.35
+              );
             text-underline-offset: 3px;
           }
 
           .blog-content a:hover {
-            color: #075f70;
+            color: #075f70 !important;
             text-decoration-color: #075f70;
           }
 
@@ -1930,14 +3578,27 @@ const BlogDetails = () => {
 
           .blog-content li::marker {
             color: #0796a8;
+            font-weight: 700;
           }
 
           .blog-content blockquote {
             margin: 1.8rem 0;
-            padding: 0.95rem 0 0.95rem 1.35rem;
-            border-left: 3px solid #18bdcb;
+            padding:
+              1rem
+              1rem
+              1rem
+              1.25rem;
+            border-left:
+              3px solid
+              #18bdcb;
+            border-radius:
+              0
+              0.7rem
+              0.7rem
+              0;
+            background: #f4f9fa;
             color: #172126;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             line-height: 1.75;
           }
@@ -1946,15 +3607,24 @@ const BlogDetails = () => {
             margin-bottom: 0;
           }
 
+          /* INLINE ARTICLE IMAGES */
+
           .blog-content img {
             display: block;
-            width: 100%;
-            max-width: 100%;
-            height: auto;
+            width: auto !important;
+            max-width: 100% !important;
+            height: auto !important;
             max-height: 560px;
             object-fit: contain;
-            margin: 1.9rem auto 0.65rem;
-            border-radius: 0.8rem;
+            margin:
+              1.9rem
+              auto
+              0.8rem !important;
+            border-radius: 0.85rem;
+            border:
+              1px solid
+              #e2e8f0;
+            background: #f8fafc;
           }
 
           .blog-content figure {
@@ -1964,7 +3634,7 @@ const BlogDetails = () => {
           }
 
           .blog-content figure img {
-            margin: 0;
+            margin: 0 auto !important;
           }
 
           .blog-content figcaption {
@@ -1973,6 +3643,7 @@ const BlogDetails = () => {
             font-size: 0.7rem;
             line-height: 1.55;
             font-style: italic;
+            text-align: center;
           }
 
           .blog-content pre {
@@ -1981,7 +3652,9 @@ const BlogDetails = () => {
             overflow-x: auto;
             margin: 1.8rem 0;
             padding: 1.1rem;
-            border: 1px solid #16303b;
+            border:
+              1px solid
+              #16303b;
             border-radius: 0.8rem;
             background: #04111a;
             color: #e2e8f0;
@@ -2002,7 +3675,9 @@ const BlogDetails = () => {
 
           .blog-content p code,
           .blog-content li code {
-            padding: 0.15rem 0.35rem;
+            padding:
+              0.15rem
+              0.35rem;
             border-radius: 0.3rem;
             background: #e8f1f2;
             color: #075f70;
@@ -2023,7 +3698,9 @@ const BlogDetails = () => {
           .blog-content td {
             min-width: 120px;
             padding: 0.75rem;
-            border: 1px solid #e2e8f0;
+            border:
+              1px solid
+              #e2e8f0;
             text-align: left;
             vertical-align: top;
           }
@@ -2031,7 +3708,7 @@ const BlogDetails = () => {
           .blog-content th {
             background: #edf4f5;
             color: #071923;
-            font-weight: 600;
+            font-weight: 700;
           }
 
           .blog-content iframe,
@@ -2045,7 +3722,9 @@ const BlogDetails = () => {
 
           .blog-content hr {
             border: 0;
-            border-top: 1px solid #e2e8f0;
+            border-top:
+              1px solid
+              #e2e8f0;
             margin: 2.2rem 0;
           }
 
@@ -2057,31 +3736,40 @@ const BlogDetails = () => {
             }
 
             .blog-content h1 {
-              margin-top: 2rem;
-              font-size: 2rem;
+              margin-top:
+                2rem !important;
+              font-size:
+                2rem !important;
             }
 
             .blog-content h2 {
-              margin-top: 2.1rem;
-              font-size: 1.65rem;
+              margin-top:
+                2.1rem !important;
+              font-size:
+                1.65rem !important;
             }
 
             .blog-content h3 {
-              margin-top: 1.8rem;
-              font-size: 1.3rem;
+              margin-top:
+                1.8rem !important;
+              font-size:
+                1.3rem !important;
             }
 
             .blog-content h4 {
-              font-size: 1.08rem;
+              font-size:
+                1.1rem !important;
             }
 
             .blog-content p {
-              margin-bottom: 1.15rem;
+              margin-bottom:
+                1.15rem;
             }
 
             .blog-content img {
               max-height: 420px;
-              margin-top: 1.5rem;
+              margin-top:
+                1.5rem !important;
             }
           }
 
@@ -2092,35 +3780,45 @@ const BlogDetails = () => {
             }
 
             .blog-content h1 {
-              font-size: 1.8rem;
+              font-size:
+                1.8rem !important;
             }
 
             .blog-content h2 {
-              font-size: 1.5rem;
+              font-size:
+                1.5rem !important;
             }
 
             .blog-content h3 {
-              font-size: 1.2rem;
+              font-size:
+                1.22rem !important;
             }
 
             .blog-content h4 {
-              font-size: 1.05rem;
+              font-size:
+                1.05rem !important;
             }
 
             .blog-content blockquote {
               margin: 1.35rem 0;
-              padding-left: 1rem;
+              padding:
+                0.85rem
+                0.85rem
+                0.85rem
+                1rem;
               font-size: 14px;
             }
 
             .blog-content ul,
             .blog-content ol {
-              padding-left: 1.2rem;
+              padding-left:
+                1.2rem;
             }
 
             .blog-content img {
               max-height: 330px;
-              border-radius: 0.65rem;
+              border-radius:
+                0.65rem;
             }
 
             .blog-content pre {
