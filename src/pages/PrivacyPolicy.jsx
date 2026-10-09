@@ -182,7 +182,7 @@ const PrivacyPolicy = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#04111a]/85" />
           </div>
 
-          <div className="relative max-w-[1100px] mx-auto px-5 sm:px-6 pt-20 sm:pt-24 lg:pt-24 pb-12 sm:pb-14 text-center">
+          <div className="relative max-w-[1100px] mx-auto px-5 sm:px-6 pt-23 sm:pt-24 lg:pt-24 pb-12 sm:pb-14 text-center">
             <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
               <ShieldCheck size={14} className="text-[#25c0ce]" />
               Privacy Policy

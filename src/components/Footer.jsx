@@ -241,24 +241,24 @@ const Footer = () => {
         </svg>
       ),
     },
-    {
-      label: "Fiverr",
-      href: "https://www.fiverr.com/sellers/devzore/",
-      icon: (
-        <span className="text-[10px] font-black">
-          fi
-        </span>
-      ),
-    },
-    {
-      label: "Upwork",
-      href: "https://www.upwork.com/freelancers/~012e5cc1a7d6ceb834",
-      icon: (
-        <span className="text-[9px] font-black">
-          up
-        </span>
-      ),
-    },
+    // {
+    //   label: "Fiverr",
+    //   href: "https://www.fiverr.com/sellers/devzore/",
+    //   icon: (
+    //     <span className="text-[10px] font-black">
+    //       fi
+    //     </span>
+    //   ),
+    // },
+    // {
+    //   label: "Upwork",
+    //   href: "https://www.upwork.com/freelancers/~012e5cc1a7d6ceb834",
+    //   icon: (
+    //     <span className="text-[9px] font-black">
+    //       up
+    //     </span>
+    //   ),
+    // },
   ];
 
   // ======================================================
