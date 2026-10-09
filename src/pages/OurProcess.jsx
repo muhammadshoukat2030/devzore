@@ -357,7 +357,7 @@ const OurProcess = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#04111a]/85" />
           </div>
 
-          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-20 sm:pt-24 lg:pt-28 pb-11 sm:pb-12">
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-20 sm:pt-24 lg:pt-25 pb-11 sm:pb-12">
             <div className="max-w-[900px] mx-auto text-center">
               <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
                 <Workflow size={14} className="text-[#25c0ce]" />
@@ -366,7 +366,7 @@ const OurProcess = () => {
 
               <h1
                 id="process-page-heading"
-                className="mt-5 text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[68px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                className="mt-5 text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[55px] leading-[1.04] font-semibold tracking-[-0.045em]"
               >
                 From idea to launch with a{" "}
                 <span className="text-[#22bdca]">
@@ -374,7 +374,7 @@ const OurProcess = () => {
                 </span>
               </h1>
 
-              <p className="max-w-[770px] mx-auto mt-5 text-[16px] sm:text-[17px] leading-7 text-slate-300">
+              <p className="max-w-[770px] mx-auto mt-5 text-[16px] sm:text-[15px] leading-7 text-slate-300">
                 DevZore follows a structured workflow from initial discovery
                 and planning through design, development, testing, deployment
                 and ongoing support.

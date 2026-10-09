@@ -634,7 +634,7 @@ ${formData.message}`
             <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/65" />
           </div>
 
-          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12 lg:pb-14">
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12 lg:pb-13">
             <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-7 lg:gap-10 items-center">
               {/* LEFT */}
 
@@ -651,7 +651,7 @@ ${formData.message}`
 
                 <h1
                   id="mobile-app-heading"
-                  className="max-w-[760px] text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[68px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                  className="max-w-[760px] text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[54px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
                   Mobile apps built for{" "}
                   <span className="text-[#23bfce]">
@@ -659,7 +659,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-2xl mt-5 text-[16px] sm:text-[17px] lg:text-[18px] leading-7 text-slate-300 font-normal">
+                <p className="max-w-2xl mt-5 text-[16px] sm:text-[17px] lg:text-[13.5px] leading-7 text-slate-300 font-normal">
                   DevZore develops custom mobile applications for startups and
                   businesses across iOS and Android using React Native and
                   modern backend technologies.

@@ -332,7 +332,7 @@ const Contact = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#04111a]/85" />
           </div>
 
-          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14">
+          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-20 sm:pt-24 lg:pt-24 pb-12 sm:pb-14">
             <div className="max-w-[900px] mx-auto text-center">
               <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
                 <Mail size={14} className="text-[#25c0ce]" />
@@ -341,7 +341,7 @@ const Contact = () => {
 
               <h1
                 id="contact-heading"
-                className="mt-5 text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[68px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                className="mt-5 text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[53px] leading-[1.04] font-semibold tracking-[-0.045em]"
               >
                 Have a digital product{" "}
                 <span className="text-[#22bdca]">
@@ -349,7 +349,7 @@ const Contact = () => {
                 </span>
               </h1>
 
-              <p className="max-w-[760px] mx-auto mt-5 text-[16px] sm:text-[17px] leading-7 text-slate-300">
+              <p className="max-w-[760px] mx-auto mt-4 text-[16px] sm:text-[13.5px] leading-7 text-slate-300">
                 Tell us about your website, application, SaaS product,
                 mobile app or custom software requirement and we can discuss
                 the appropriate next steps.

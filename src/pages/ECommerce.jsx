@@ -717,7 +717,7 @@ ${formData.message}`
 
                 <h1
                   id="ecommerce-heading"
-                  className="max-w-[790px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                  className="max-w-[790px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[54px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
                   E-commerce platforms built for{" "}
                   <span className="text-[#22bdca]">
@@ -725,7 +725,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-[700px] mt-5 text-[16px] sm:text-[17px] leading-7 font-normal text-slate-300">
+                <p className="max-w-[700px] mt-4 text-[13.5px] sm:text-[17px] leading-7 font-normal text-slate-300">
                   DevZore develops custom online stores, marketplaces and
                   commerce applications with product management, payments,
                   inventory, orders and administration.

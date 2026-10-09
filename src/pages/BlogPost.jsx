@@ -1116,7 +1116,7 @@ const BlogPost = () => {
             HERO
         ================================================= */}
 
-        <section className="relative overflow-hidden bg-[#04111a] pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14">
+        <section className="relative overflow-hidden bg-[#04111a] pt-20 sm:pt-24 lg:pt-21 pb-12 sm:pb-14">
           <div
             className="absolute inset-0 pointer-events-none opacity-65"
             style={darkGrid}
@@ -1137,7 +1137,7 @@ const BlogPost = () => {
                   DevZore Journal
                 </SectionLabel>
 
-                <h1 className="mt-4 max-w-4xl text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em] text-white">
+                <h1 className="mt-4 max-w-4xl text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[53px] leading-[1.04] font-semibold tracking-[-0.045em] text-white">
                   Practical insights
                   for{" "}
 
@@ -1147,7 +1147,7 @@ const BlogPost = () => {
                   </span>
                 </h1>
 
-                <p className="mt-5 max-w-3xl text-[13px] sm:text-[15px] leading-7 text-slate-300">
+                <p className="mt-4 max-w-3xl text-[13px] sm:text-[15px] leading-7 text-slate-300">
                   Explore practical
                   articles covering
                   software development,

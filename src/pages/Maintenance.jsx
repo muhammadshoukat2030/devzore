@@ -642,7 +642,7 @@ ${formData.message}`
             <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/70" />
           </div>
 
-          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14">
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-24 pb-12 sm:pb-13">
             <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-8 lg:gap-12 items-center">
               <div>
                 <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.16em] uppercase text-[#c4ced5] mb-5">
@@ -655,7 +655,7 @@ ${formData.message}`
 
                 <h1
                   id="maintenance-heading"
-                  className="max-w-[780px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                  className="max-w-[780px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[53px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
                   Keep your website{" "}
                   <span className="text-[#22bdca]">
@@ -663,7 +663,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-[700px] mt-5 text-[16px] sm:text-[17px] leading-7 text-slate-300">
+                <p className="max-w-[700px] mt-4 text-[16px] sm:text-[13.5px] leading-7 text-slate-300">
                   DevZore provides ongoing website maintenance and technical
                   support for business websites, SaaS products, dashboards,
                   APIs and custom web applications.

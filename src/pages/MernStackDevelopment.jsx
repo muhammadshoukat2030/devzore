@@ -756,7 +756,7 @@ ${formData.message}`
 
                 <h1
                   id="mern-heading"
-                  className="max-w-[780px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                  className="max-w-[780px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[53px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
                   Full-stack applications built with{" "}
                   <span className="text-[#22bdca]">
@@ -764,7 +764,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-[700px] mt-5 text-[16px] sm:text-[17px] leading-7 font-normal text-slate-300">
+                <p className="max-w-[700px] mt-4 text-[16px] sm:text-[13.5px] leading-7 font-normal text-slate-300">
                   DevZore develops custom MERN stack applications for startups,
                   SaaS products, dashboards, portals and businesses that need a
                   connected frontend, backend and database solution.

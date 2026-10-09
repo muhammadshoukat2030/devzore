@@ -594,10 +594,10 @@ ${formData.message}`
             <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/75" />
           </div>
 
-          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-28 pb-14 sm:pb-16 lg:pb-20">
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-28 pb-14 sm:pb-16 lg:pb-10">
             <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-8 lg:gap-12 items-center">
               <div className="relative z-10">
-                <div className="flex flex-wrap items-center gap-2.5 mb-6">
+                <div className="flex flex-wrap items-center gap-2.5 mb-5">
                   <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.15em] uppercase text-[#c4ced5]">
                     <Layers3
                       size={14}
@@ -610,7 +610,7 @@ ${formData.message}`
 
                 <h1
                   id="saas-development-heading"
-                  className="max-w-[760px] text-[42px] sm:text-[52px] lg:text-[64px] xl:text-[72px] leading-[1.055] font-semibold tracking-[-0.045em]"
+                  className="max-w-[760px] text-[42px] sm:text-[52px] lg:text-[64px] xl:text-[54px] leading-[1.055] font-semibold tracking-[-0.045em]"
                 >
                   Turn your product idea into a{" "}
                   <span className="text-[#22bdca]">
@@ -618,12 +618,12 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-[700px] mt-7 text-[17px] sm:text-[18px] lg:text-[19px] leading-8 font-normal text-slate-300">
+                <p className="max-w-[700px] mt-7 text-[17px] sm:text-[18px] lg:text-[13.5px] leading-8 font-normal text-slate-300">
                   Scalable SaaS products and subscription platforms built
                   around your requirements, users and business goals.
                 </p>
 
-                <p className="max-w-[650px] mt-3 text-[14px] sm:text-[15px] leading-7 font-normal text-slate-400">
+                <p className="max-w-[650px] mt-1 text-[14px] sm:text-[15px] leading-7 font-normal text-slate-400">
                   From SaaS MVP development to multi-tenant applications,
                   dashboards, subscriptions and APIs, DevZore develops the
                   product around the workflows your customers actually need.

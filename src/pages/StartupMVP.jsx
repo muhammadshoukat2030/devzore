@@ -624,7 +624,7 @@ ${formData.message}`
             <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/70" />
           </div>
 
-          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-14 sm:pt-16 lg:pt-20 pb-9 sm:pb-10 lg:pb-12">
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-14 sm:pt-16 lg:pt-25 pb-9 sm:pb-10 lg:pb-12">
             <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-7 lg:gap-10 items-center">
               <div className="relative z-10">
                 <div className="flex flex-wrap items-center gap-3 mb-4">
@@ -639,7 +639,7 @@ ${formData.message}`
 
                 <h1
                   id="startup-mvp-heading"
-                  className="max-w-[760px] text-[38px] sm:text-[46px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                  className="max-w-[760px] text-[38px] sm:text-[46px] lg:text-[58px] xl:text-[54px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
                   Turn your idea into a{" "}
                   <span className="text-[#22bdca]">
@@ -647,7 +647,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-[680px] mt-4 text-[15px] sm:text-[16px] lg:text-[17px] leading-7 font-normal text-slate-300">
+                <p className="max-w-[680px] mt-4 text-[15px] sm:text-[16px] lg:text-[13.5px] leading-7 font-normal text-slate-300">
                   DevZore develops focused startup MVPs for SaaS products, web
                   applications, mobile apps, marketplaces and custom software
                   ideas.

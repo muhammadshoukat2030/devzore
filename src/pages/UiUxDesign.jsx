@@ -640,7 +640,7 @@ ${formData.message}`
             <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/70" />
           </div>
 
-          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14">
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-24 pb-12 sm:pb-13">
             <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-8 lg:gap-12 items-center">
               <div className="relative z-10">
                 <div className="flex flex-wrap items-center gap-3 mb-5">
@@ -655,7 +655,7 @@ ${formData.message}`
 
                 <h1
                   id="uiux-heading"
-                  className="max-w-[800px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                  className="max-w-[800px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[53px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
                   Digital experiences designed for{" "}
                   <span className="text-[#22bdca]">
@@ -663,7 +663,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-[700px] mt-5 text-[16px] sm:text-[17px] leading-7 text-slate-300">
+                <p className="max-w-[700px] mt-5 text-[16px] sm:text-[13.5px] leading-7 text-slate-300">
                   DevZore designs user experiences and interfaces for business
                   websites, mobile applications, SaaS products, dashboards and
                   custom digital products.

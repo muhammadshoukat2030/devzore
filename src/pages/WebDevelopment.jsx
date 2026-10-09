@@ -630,7 +630,7 @@ ${formData.message}`
 
                 <h1
                   id="web-development-heading"
-                  className="max-w-3xl text-[40px] sm:text-[48px] lg:text-[60px] xl:text-[66px] leading-[1.03] font-semibold tracking-[-0.045em]"
+                  className="max-w-3xl text-[40px] sm:text-[48px] lg:text-[60px] xl:text-[56px] leading-[1.03] font-semibold tracking-[-0.045em]"
                 >
                   Websites built for{" "}
                   <span className="text-[#23bfce]">
@@ -638,7 +638,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-2xl mt-4 text-[15px] sm:text-[16px] lg:text-[17px] leading-7 text-slate-300 font-normal">
+                <p className="max-w-2xl mt-4 text-[15px] sm:text-[16px] lg:text-[13.5px] leading-7 text-slate-300 font-normal">
                   DevZore designs and develops professional business websites,
                   custom web applications, e-commerce platforms and SaaS
                   products around your users, goals and business workflows.

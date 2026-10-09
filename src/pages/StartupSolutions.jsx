@@ -527,7 +527,7 @@ ${formData.message}`
             <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/96 to-[#04111a]/75" />
           </div>
 
-          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-28 pb-11 sm:pb-13">
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-24 pb-11 sm:pb-13">
             <div className="grid lg:grid-cols-[0.98fr_1.02fr] gap-8 lg:gap-14 items-center">
               <div>
                 <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.16em] uppercase text-[#c4ced5] mb-5">
@@ -537,7 +537,7 @@ ${formData.message}`
 
                 <h1
                   id="startup-solutions-heading"
-                  className="max-w-[780px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                  className="max-w-[780px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[53px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
                   Turn your startup idea into a{" "}
                   <span className="text-[#22bdca]">
@@ -545,7 +545,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-[690px] mt-5 text-[16px] sm:text-[17px] leading-7 text-slate-300">
+                <p className="max-w-[690px] mt-4 text-[16px] sm:text-[13.5px] leading-7 text-slate-300">
                   From early-stage ideas and MVPs to SaaS platforms, web
                   applications, mobile products and selected AI features,
                   DevZore helps startups move from product planning to launch.

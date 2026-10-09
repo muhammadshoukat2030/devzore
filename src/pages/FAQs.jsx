@@ -339,7 +339,7 @@ const FAQs = () => {
 
               <h1
                 id="faq-page-heading"
-                className="mt-5 text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[68px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                className="mt-5 text-[40px] sm:text-[50px] lg:text-[62px] xl:text-[54px] leading-[1.04] font-semibold tracking-[-0.045em]"
               >
                 Answers to common questions about{" "}
                 <span className="text-[#22bdca]">
@@ -347,7 +347,7 @@ const FAQs = () => {
                 </span>
               </h1>
 
-              <p className="max-w-[760px] mx-auto mt-5 text-[16px] sm:text-[17px] leading-7 text-slate-300">
+              <p className="max-w-[760px] mx-auto mt-5 text-[16px] sm:text-[15px] leading-7 text-slate-300">
                 Find answers about our development services, project process,
                 pricing, SaaS, mobile apps, AI, e-commerce, maintenance and
                 ongoing support.

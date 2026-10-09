@@ -2238,7 +2238,7 @@ const BlogDetails = () => {
             TOP BAR
         ================================================= */}
 
-        <section className="bg-white pt-20 sm:pt-24 lg:pt-28">
+        <section className="bg-white pt-20 sm:pt-24 lg:pt-23">
           <div className="max-w-[1120px] mx-auto px-5 sm:px-6">
             <div className="flex items-center justify-between gap-4 pb-4 border-b border-slate-200">
               <button
@@ -2361,7 +2361,7 @@ const BlogDetails = () => {
               </p>
             )}
 
-            <h1 className="mt-4 max-w-[980px] text-[36px] sm:text-[46px] lg:text-[54px] xl:text-[58px] leading-[1.07] font-semibold tracking-[-0.045em] text-[#172126]">
+            <h1 className="mt-4 max-w-[980px] text-[36px] sm:text-[46px] lg:text-[54px] xl:text-[50px] leading-[1.07] font-semibold tracking-[-0.045em] text-[#172126]">
               {post?.title ||
                 "Untitled Article"}
             </h1>
@@ -2376,7 +2376,7 @@ const BlogDetails = () => {
 
             {/* META */}
 
-            <div className="mt-7 border-t border-slate-200 pt-5 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+            <div className="mt-3 border-t border-slate-200 pt-4 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
               <div className="flex items-center gap-3">
                 {authorAvatar ? (
                   <img
@@ -2489,7 +2489,7 @@ const BlogDetails = () => {
             ARTICLE
         ================================================= */}
 
-        <section className="border-t border-slate-100 bg-white py-9 md:py-12">
+        <section className="border-t border-slate-100 bg-white py-9 md:py-5">
           <div className="max-w-[1120px] mx-auto px-5 sm:px-6">
             <div className="grid lg:grid-cols-[220px_minmax(0,1fr)] gap-8 lg:gap-12 items-start">
               {/* LEFT SIDEBAR */}
@@ -2500,7 +2500,7 @@ const BlogDetails = () => {
                     .headings
                     .length >
                     0 && (
-                    <div className="pb-6 border-b border-slate-200">
+                    <div className="pb-5 border-b border-slate-200">
                       <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.17em] text-slate-500">
                         On This Page
                       </p>

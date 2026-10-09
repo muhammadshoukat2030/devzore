@@ -634,7 +634,7 @@ ${formData.message}`
             <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/70" />
           </div>
 
-          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-14 sm:pt-16 lg:pt-20 pb-9 sm:pb-10 lg:pb-12">
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-14 sm:pt-16 lg:pt-25 pb-9 sm:pb-10 lg:pb-11">
             <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-7 lg:gap-10 items-center">
               {/* LEFT */}
 
@@ -651,7 +651,7 @@ ${formData.message}`
 
                 <h1
                   id="generative-ai-heading"
-                  className="max-w-[780px] text-[38px] sm:text-[46px] lg:text-[58px] xl:text-[64px] leading-[1.04] font-semibold tracking-[-0.045em]"
+                  className="max-w-[780px] text-[38px] sm:text-[46px] lg:text-[58px] xl:text-[54px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
                   Generative AI built for{" "}
                   <span className="text-[#22bdca]">
@@ -659,7 +659,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-[680px] mt-4 text-[15px] sm:text-[16px] lg:text-[17px] leading-7 font-normal text-slate-300">
+                <p className="max-w-[680px] mt-4 text-[15px] sm:text-[16px] lg:text-[13.5px] leading-7 font-normal text-slate-300">
                   DevZore develops AI chatbots, LLM applications, RAG systems,
                   AI agents and AI-enabled SaaS products for businesses and
                   startups.
