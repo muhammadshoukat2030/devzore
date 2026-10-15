@@ -1562,7 +1562,7 @@ ${formData.message}`
                     />
                   </div>
 
-                  <div>
+                  {/* <div>
                     <label
                       htmlFor="saas-company"
                       className="block text-[10px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-2"
@@ -1579,7 +1579,7 @@ ${formData.message}`
                       placeholder="Company name"
                       className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-4 py-3.5 text-[13px] font-normal text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
                     />
-                  </div>
+                  </div> */}
 
                   <div>
                     <label

@@ -1611,7 +1611,7 @@ ${formData.message}`
                     />
                   </div>
 
-                  <div>
+                  {/* <div>
                     <label
                       htmlFor="ai-company"
                       className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
@@ -1628,7 +1628,7 @@ ${formData.message}`
                       placeholder="Company name"
                       className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
                     />
-                  </div>
+                  </div> */}
 
                   <div>
                     <label
@@ -1656,7 +1656,7 @@ ${formData.message}`
                     </select>
                   </div>
 
-                  <div className="md:col-span-2">
+                  <div className="md:col-span-1">
                     <label
                       htmlFor="ai-timeline"
                       className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"

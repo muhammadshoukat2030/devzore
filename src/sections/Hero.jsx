@@ -189,7 +189,7 @@ const Hero = () => {
             (current + 1) %
             slides.length
         );
-      }, 6500);
+      }, 5000);
 
     return () => {
       window.clearInterval(
@@ -524,7 +524,7 @@ const Hero = () => {
           className="
             flex
 
-            min-h-[405px]
+            min-h-[425px]
             sm:min-h-[500px]
             md:min-h-[540px]
 
@@ -536,7 +536,7 @@ const Hero = () => {
             pt-[82px]
             min-[380px]:pt-[86px]
             min-[430px]:pt-[90px]
-
+            // mt-[1px]
             pb-[90px]
 
             sm:pt-[94px]
@@ -674,9 +674,9 @@ const Hero = () => {
 
             <div
               className="
-                mt-4
+                mt-5
 
-                sm:mt-5
+                sm:mt-9
 
                 flex
                 flex-wrap

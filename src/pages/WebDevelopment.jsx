@@ -469,7 +469,7 @@ const WebDevelopment = ({ isDark }) => {
     const body = encodeURIComponent(
 `Name: ${formData.name}
 Email: ${formData.email}
-Company: ${formData.company || "Not provided"}
+              // Company: ${formData.company || "Not provided"}//
 Service: ${formData.service}
 Timeline: ${formData.timeline || "Not specified"}
 
@@ -1611,7 +1611,7 @@ ${formData.message}`
                     />
                   </div>
 
-                  <div>
+                  {/* <div>
                     <label
                       htmlFor="web-company"
                       className="block text-[9px] font-semibold tracking-[0.12em] uppercase text-slate-400 mb-1.5"
@@ -1628,7 +1628,7 @@ ${formData.message}`
                       placeholder="Company name"
                       className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
                     />
-                  </div>
+                  </div> */}
 
                   <div>
                     <label
@@ -1643,7 +1643,7 @@ ${formData.message}`
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
-                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
                     >
                       <option>Web Development</option>
                       <option>Business Website</option>
@@ -1656,7 +1656,7 @@ ${formData.message}`
                     </select>
                   </div>
 
-                  <div className="md:col-span-2">
+                  <div className="md:col-span-1">
                     <label
                       htmlFor="web-timeline"
                       className="block text-[9px] font-semibold tracking-[0.12em] uppercase text-slate-400 mb-1.5"
@@ -1669,7 +1669,7 @@ ${formData.message}`
                       name="timeline"
                       value={formData.timeline}
                       onChange={handleChange}
-                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
+                      className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-white placeholder:text-slate-600 outline-none focus:border-[#19b9c8]/70 transition-colors"
                     >
                       <option value="">Select a timeline</option>
                       <option>As soon as possible</option>
