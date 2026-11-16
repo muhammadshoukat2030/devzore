@@ -9,6 +9,23 @@ const DEFAULT_AUTHOR = "Muhammad Shoukat, Founder, DevZore";
 const DEFAULT_ROBOTS =
   "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 
+const LEGACY_CANONICAL_REDIRECTS = {
+  "/blog/how-much-does-a-website-cost-in-2026-complete-website-development-pricing-guide-1790762380934":
+    "/blog/how-much-does-a-website-cost-in-2026",
+  "/blog/how-a-professional-website-can-help-your-business-get-more-customers-1789029617095":
+    "/blog/how-a-professional-website-helps-your-business-get-more-customers",
+  "/blog/why-your-business-needs-a-professional-website-in-2026-1790435181732":
+    "/blog/why-your-business-needs-a-professional-website-in-2026",
+  "/blog/why-every-business-needs-a-professional-website-in-2026-1790507048277":
+    "/blog/why-your-business-needs-a-professional-website-in-2026",
+  "/blog/why-every-business-needs-a-professional-website-in-2026-1790598175467":
+    "/blog/why-your-business-needs-a-professional-website-in-2026",
+  "/blog/how-to-plan-saas-mvp-complete-guide":
+    "/blog/how-to-plan-saas-mvp-development",
+  "/blog/how-to-plan-a-saas-mvp-in-2026":
+    "/blog/how-to-plan-saas-mvp-development",
+};
+
 /**
  * Universal SEO & Head Component for DevZore
  * Direct DOM synchronization ("Find-and-update, never create")
@@ -33,15 +50,28 @@ export default function SEO({
     (description && String(description).trim()) || DEFAULT_DESCRIPTION;
   const safeImage = (ogImage && String(ogImage).trim()) || DEFAULT_IMAGE;
 
-  // Build canonical URL
+  // Build canonical URL with legacy redirect guard
   let safeCanonical = BASE_URL;
   if (canonical) {
-    if (canonical.startsWith("http")) {
-      safeCanonical = canonical.replace(/\/+$/, "");
-    } else {
-      const cleanPath = canonical.startsWith("/") ? canonical : `/${canonical}`;
-      safeCanonical = cleanPath === "/" ? `${BASE_URL}/` : `${BASE_URL}${cleanPath.replace(/\/+$/, "")}`;
+    let rawPath = canonical.startsWith("http")
+      ? canonical.replace(/^https?:\/\/[^/]+/, "")
+      : (canonical.startsWith("/") ? canonical : `/${canonical}`);
+    rawPath = rawPath.replace(/\/+$/, "") || "/";
+
+    // Normalize known legacy redirect slugs
+    if (LEGACY_CANONICAL_REDIRECTS[rawPath]) {
+      rawPath = LEGACY_CANONICAL_REDIRECTS[rawPath];
+    } else if (rawPath.startsWith("/blog/")) {
+      // Strip trailing numeric timestamp (13+ digits) if accidentally attached
+      const stripped = rawPath.replace(/-\d{13,}$/, "");
+      if (LEGACY_CANONICAL_REDIRECTS[stripped]) {
+        rawPath = LEGACY_CANONICAL_REDIRECTS[stripped];
+      } else {
+        rawPath = stripped;
+      }
     }
+
+    safeCanonical = rawPath === "/" ? `${BASE_URL}/` : `${BASE_URL}${rawPath}`;
   }
 
   useEffect(() => {

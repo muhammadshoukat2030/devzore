@@ -51,6 +51,32 @@ const PRODUCTION_API_URL =
 const LOCAL_API_URL =
   "http://localhost:5000";
 
+const SLUG_CLEAN_MAP = {
+  "how-much-does-a-website-cost-in-2026-complete-website-development-pricing-guide-1790762380934":
+    "how-much-does-a-website-cost-in-2026",
+  "how-a-professional-website-can-help-your-business-get-more-customers-1789029617095":
+    "how-a-professional-website-helps-your-business-get-more-customers",
+  "why-your-business-needs-a-professional-website-in-2026-1790435181732":
+    "why-your-business-needs-a-professional-website-in-2026",
+  "why-every-business-needs-a-professional-website-in-2026-1790507048277":
+    "why-your-business-needs-a-professional-website-in-2026",
+  "why-every-business-needs-a-professional-website-in-2026-1790598175467":
+    "why-your-business-needs-a-professional-website-in-2026",
+  "how-to-plan-saas-mvp-complete-guide":
+    "how-to-plan-saas-mvp-development",
+  "how-to-plan-a-saas-mvp-in-2026":
+    "how-to-plan-saas-mvp-development",
+};
+
+const resolveCleanSlug = (candidate) => {
+  if (!candidate) return "";
+  const raw = String(candidate).trim();
+  if (SLUG_CLEAN_MAP[raw]) return SLUG_CLEAN_MAP[raw];
+  const stripped = raw.replace(/-\d{13,}$/, "");
+  if (SLUG_CLEAN_MAP[stripped]) return SLUG_CLEAN_MAP[stripped];
+  return stripped || raw;
+};
+
 // ======================================================
 // SERVICES
 // ======================================================
@@ -630,6 +656,44 @@ const prepareArticleContent = (
           }
         }
       );
+
+    // ==============================================
+    // REMOVE ACCIDENTAL "ADDITIONAL DETAILS" METADATA DUMP
+    // ==============================================
+
+    doc
+      .querySelectorAll("div, section, article, table, dl, ul, aside")
+      .forEach((element) => {
+        const text = element.textContent || "";
+        if (
+          /Additional\s*Details/i.test(text) &&
+          (/Published/i.test(text) || /Updated/i.test(text) || /Description/i.test(text) || /Name/i.test(text))
+        ) {
+          element.remove();
+        }
+      });
+
+    doc
+      .querySelectorAll("h1, h2, h3, h4, h5, h6, p, div, strong")
+      .forEach((heading) => {
+        const headingText = (heading.textContent || "").trim();
+        if (/^Additional\s*Details:?$/i.test(headingText)) {
+          let sibling = heading.nextElementSibling;
+          while (
+            sibling &&
+            (/Name/i.test(sibling.textContent) ||
+              /Description/i.test(sibling.textContent) ||
+              /Published/i.test(sibling.textContent) ||
+              /Updated/i.test(sibling.textContent) ||
+              /Status/i.test(sibling.textContent))
+          ) {
+            const next = sibling.nextElementSibling;
+            sibling.remove();
+            sibling = next;
+          }
+          heading.remove();
+        }
+      });
 
     // ==============================================
     // OLD CONTENT H1 -> H2
@@ -1484,10 +1548,9 @@ const BlogDetails = () => {
         post?.title ||
         "DevZore Blog";
 
-      const canonicalSlug =
-        post?.slug ||
-        slug ||
-        "";
+      // Self-referencing clean canonical: NEVER use a legacy numeric redirect slug as canonical URL
+      const rawSlug = slug || post?.slug || "";
+      const canonicalSlug = resolveCleanSlug(rawSlug);
 
       return {
         title,

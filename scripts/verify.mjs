@@ -463,6 +463,7 @@ let noindexInSitemap = 0;
 let schemaPriceZeroCount = 0;
 let longTitles = 0;
 let longDescs = 0;
+let invalidCanonicalCount = 0;
 
 for (const match of locMatches) {
   const url = match[1];
@@ -501,6 +502,16 @@ for (const match of locMatches) {
   // Zero noindex in sitemap URLs
   if (html.includes('content="noindex') || html.includes("content='noindex")) noindexInSitemap++;
 
+  // Self-referencing clean canonical check (Fix 1)
+  const canonicalMatch = html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["'][^>]*>/i);
+  if (!canonicalMatch || canonicalMatch[1] !== url) {
+    console.error(`  ❌ Canonical mismatch in ${fileRelPath}: expected "${url}", found "${canonicalMatch ? canonicalMatch[1] : 'none'}"`);
+    invalidCanonicalCount++;
+  } else if (/1790\d{9}|1789\d{9}/.test(canonicalMatch[1])) {
+    console.error(`  ❌ Canonical points to legacy timestamped URL in ${fileRelPath}: ${canonicalMatch[1]}`);
+    invalidCanonicalCount++;
+  }
+
   // No offers: 0 or price: 0 in schema
   if (/["']price["']\s*:\s*["']?0["']?/i.test(html) || /Price:\s*0\s*USD/i.test(html)) {
     schemaPriceZeroCount++;
@@ -511,6 +522,7 @@ assert(duplicateTitles === 0, `Zero pages with multiple or missing <title> tags 
 assert(duplicateDescs === 0, `Zero pages with multiple or missing <meta name="description"> tags (failures: ${duplicateDescs})`);
 assert(missingLang === 0, `All sitemap HTML files have <html lang="en"> (missing: ${missingLang})`);
 assert(invalidH1Count === 0, `All sitemap HTML files have exactly one <h1> (invalid: ${invalidH1Count})`);
+assert(invalidCanonicalCount === 0, `All sitemap HTML files have exact self-referencing clean canonical URLs (failures: ${invalidCanonicalCount})`);
 assert(noindexInSitemap === 0, `Zero sitemap URLs contain noindex meta tag (found: ${noindexInSitemap})`);
 assert(schemaPriceZeroCount === 0, `Zero sitemap URLs contain price: 0 USD data leak or schema (found: ${schemaPriceZeroCount})`);
 assert(longTitles === 0, `Zero sitemap URLs have titles exceeding 60 characters (found: ${longTitles})`);
@@ -634,6 +646,7 @@ try {
     const domTitles = await page.$$eval("title", (els) => els.map((e) => e.textContent));
     const domDescs = await page.$$eval('meta[name="description"]', (els) => els.map((e) => e.getAttribute("content")));
     const domRobots = await page.$$eval('meta[name="robots"]', (els) => els.map((e) => e.getAttribute("content")));
+    const domCanonicals = await page.$$eval('link[rel="canonical"]', (els) => els.map((e) => e.getAttribute("href")));
 
     assert(
       domTitles.length === 1,
@@ -648,7 +661,35 @@ try {
       `Rendered DOM for ${r} does NOT contain noindex`
     );
 
-    if (domTitles.length !== 1 || domDescs.length !== 1) {
+    // Canonical assertions (Fix 1)
+    const expectedCanonical = r === "/" ? "https://devzore.com/" : `https://devzore.com${r}`;
+    assert(
+      domCanonicals.length === 1,
+      `Rendered DOM for ${r} has exactly one canonical tag (found ${domCanonicals.length})`
+    );
+    assert(
+      domCanonicals[0] === expectedCanonical,
+      `Rendered DOM for ${r} canonical strictly self-references "${expectedCanonical}" (found "${domCanonicals[0]}")`
+    );
+    assert(
+      !domCanonicals[0].includes("1790") && !domCanonicals[0].includes("1789"),
+      `Rendered DOM for ${r} canonical has NO numeric timestamps (found "${domCanonicals[0]}")`
+    );
+
+    // Fix 3: No visible "Additional Details" metadata dump in DOM
+    if (r.startsWith("/blog/")) {
+      const hasAdditionalDetails = await page.evaluate(() => {
+        const text = document.body ? document.body.innerText : "";
+        return /Additional\s*Details/i.test(text) && (/Published/i.test(text) || /Updated/i.test(text));
+      });
+      assert(
+        !hasAdditionalDetails,
+        `Rendered DOM for ${r} has NO visible "Additional Details" metadata dump`
+      );
+      if (hasAdditionalDetails) headlessPass = false;
+    }
+
+    if (domTitles.length !== 1 || domDescs.length !== 1 || domCanonicals[0] !== expectedCanonical) {
       headlessPass = false;
     }
   }
