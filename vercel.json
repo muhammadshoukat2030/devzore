@@ -26,6 +26,16 @@
       "source": "/blog/why-every-business-needs-a-professional-website-in-2026-1790598175467",
       "destination": "/blog/why-your-business-needs-a-professional-website-in-2026",
       "permanent": true
+    },
+    {
+      "source": "/blog/how-to-plan-saas-mvp-complete-guide",
+      "destination": "/blog/how-to-plan-saas-mvp-development",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-plan-a-saas-mvp-in-2026",
+      "destination": "/blog/how-to-plan-saas-mvp-development",
+      "permanent": true
     }
   ],
   "rewrites": [

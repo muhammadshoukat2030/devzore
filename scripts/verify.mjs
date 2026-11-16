@@ -1,6 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
+import http from "node:http";
 import { fileURLToPath } from "node:url";
+import puppeteer from "../node_modules/puppeteer-core/lib/puppeteer/puppeteer-core.js";
 import { announcement } from "../src/data/announcement.js";
 import { clients } from "../src/data/clients.js";
 import { team } from "../src/data/team.js";
@@ -520,6 +522,145 @@ assert(fs.existsSync(path.resolve(distDir, "4b8c9d2e1f0a7b5c8d6e3f2a1b9c8d7e.txt
 const robotsTxt = fs.readFileSync(path.resolve(distDir, "robots.txt"), "utf-8");
 assert(robotsTxt.includes("Disallow: /admin"), "robots.txt disallows /admin");
 assert(robotsTxt.includes("sitemap.xml"), "robots.txt references sitemap.xml");
+
+// 13. Internal Link Graph & Dead Link Checker (Fix 4 & Fix 7)
+console.log("\n--- TEST 13: Internal Link Graph & Dead Link Checker (Fix 4 & Fix 7) ---");
+const validSitemapPaths = new Set(
+  locMatches.map((m) => m[1].replace("https://devzore.com", "").replace(/\/$/, "") || "/")
+);
+const deliberateRedirects = new Set([
+  "/blog/how-much-does-a-website-cost-in-2026-complete-website-development-pricing-guide-1790762380934",
+  "/blog/how-a-professional-website-can-help-your-business-get-more-customers-1789029617095",
+  "/blog/why-your-business-needs-a-professional-website-in-2026-1790435181732",
+  "/blog/why-every-business-needs-a-professional-website-in-2026-1790507048277",
+  "/blog/why-every-business-needs-a-professional-website-in-2026-1790598175467",
+  "/blog/how-to-plan-saas-mvp-complete-guide",
+  "/blog/how-to-plan-a-saas-mvp-in-2026",
+]);
+
+const allHtmlList = getAllHtmlFiles(distDir);
+let brokenInternalLinks = 0;
+const linkInDegree = {};
+validSitemapPaths.forEach((p) => (linkInDegree[p] = new Set()));
+
+for (const filePath of allHtmlList) {
+  const content = fs.readFileSync(filePath, "utf-8");
+  const relSource = path.relative(distDir, filePath).replace(/\\/g, "/");
+  const sourcePath = "/" + relSource.replace(/\/index\.html$/, "").replace(/^index\.html$/, "");
+
+  const hrefMatches = content.matchAll(/<a\s+[^>]*href=["']([^"']+)["'][^>]*>/gi);
+  for (const match of hrefMatches) {
+    let href = match[1].trim();
+    if (href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("https://wa.me")) continue;
+    if (href.startsWith("http://") || (href.startsWith("https://") && !href.startsWith("https://devzore.com"))) continue;
+
+    let targetPath = href.replace("https://devzore.com", "").replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/$/, "") || "/";
+
+    if (!validSitemapPaths.has(targetPath) && !deliberateRedirects.has(targetPath)) {
+      console.error(`  ❌ Dead internal link found in ${relSource}: href="${href}"`);
+      brokenInternalLinks++;
+    } else if (validSitemapPaths.has(targetPath) && targetPath !== sourcePath) {
+      linkInDegree[targetPath].add(sourcePath);
+    }
+  }
+}
+
+assert(brokenInternalLinks === 0, `Zero dead internal links sitewide (found: ${brokenInternalLinks})`);
+
+// Assert no orphan pages or single-link pages among inner content routes
+let singleLinkPages = 0;
+for (const [routePath, sources] of Object.entries(linkInDegree)) {
+  if (routePath === "/") continue; // root homepage is the graph entry point
+  if (sources.size < 2) {
+    singleLinkPages++;
+    console.error(`  ❌ Route ${routePath} has only ${sources.size} incoming internal links`);
+  }
+}
+assert(singleLinkPages === 0, `Zero inner pages with fewer than 2 incoming internal links (found: ${singleLinkPages})`);
+
+// 14. Post-Hydration Headless DOM Title & Description Single Owner Check (Fix 1)
+console.log("\n--- TEST 14: Headless Chrome Rendered-DOM Verification (Fix 1) ---");
+const testServer = http.createServer((req, res) => {
+  let reqPath = req.url.split("?")[0];
+  if (reqPath === "/") reqPath = "/index.html";
+  let filePath = path.join(distDir, reqPath);
+  if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+    filePath = path.join(filePath, "index.html");
+  }
+  if (!fs.existsSync(filePath)) {
+    filePath = path.join(distDir, reqPath, "index.html");
+  }
+  if (!fs.existsSync(filePath)) {
+    res.writeHead(404);
+    res.end("Not found");
+    return;
+  }
+  const ext = path.extname(filePath);
+  const mime = ext === ".html" ? "text/html" : ext === ".js" ? "application/javascript" : ext === ".css" ? "text/css" : "application/octet-stream";
+  res.writeHead(200, { "Content-Type": mime });
+  res.end(fs.readFileSync(filePath));
+});
+
+await new Promise((resolve) => testServer.listen(9877, resolve));
+
+let headlessPass = true;
+let browserInstance;
+try {
+  browserInstance = await puppeteer.launch({
+    executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    headless: "new",
+    args: ["--no-sandbox", "--disable-gpu"],
+  });
+
+  const page = await browserInstance.newPage();
+  const testRoutes = [
+    "/",
+    "/about",
+    "/contact",
+    "/allservices",
+    "/projects",
+    "/projects/weldon-paints",
+    "/projects/desert-safari-qatar",
+    "/blog",
+    "/blog/how-much-does-a-website-cost-in-2026",
+    "/blog/why-your-business-needs-a-professional-website-in-2026",
+    "/blog/saas-architecture-guide-startups",
+    "/mern-stack-development",
+    "/nextjs-development",
+  ];
+
+  for (const r of testRoutes) {
+    await page.goto(`http://localhost:9877${r}`, { waitUntil: "networkidle0" });
+    const domTitles = await page.$$eval("title", (els) => els.map((e) => e.textContent));
+    const domDescs = await page.$$eval('meta[name="description"]', (els) => els.map((e) => e.getAttribute("content")));
+    const domRobots = await page.$$eval('meta[name="robots"]', (els) => els.map((e) => e.getAttribute("content")));
+
+    assert(
+      domTitles.length === 1,
+      `Rendered DOM for ${r} has exactly one <title> (found ${domTitles.length})`
+    );
+    assert(
+      domDescs.length === 1,
+      `Rendered DOM for ${r} has exactly one meta description (found ${domDescs.length})`
+    );
+    assert(
+      !domRobots.some((val) => val && val.includes("noindex")),
+      `Rendered DOM for ${r} does NOT contain noindex`
+    );
+
+    if (domTitles.length !== 1 || domDescs.length !== 1) {
+      headlessPass = false;
+    }
+  }
+} catch (e) {
+  console.error("Headless verification error:", e.message);
+  headlessPass = false;
+} finally {
+  if (browserInstance) await browserInstance.close();
+  testServer.close();
+}
+
+assert(headlessPass, "All tested routes pass post-hydration DOM single-title and single-meta-description check");
 
 console.log("\n=========================================");
 console.log(`VERIFICATION SUMMARY: ${passes} Passed, ${failures} Failed`);

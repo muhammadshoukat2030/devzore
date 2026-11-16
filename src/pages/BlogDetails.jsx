@@ -1171,15 +1171,14 @@ const BlogDetails = () => {
             err?.message ||
             "Blog post not found.";
 
-          setPost(null);
-
-          setRelatedPosts(
-            []
-          );
-
-          setError(
-            message
-          );
+          if (fallbackPost) {
+            setPost(fallbackPost);
+            setError("");
+          } else {
+            setPost(null);
+            setRelatedPosts([]);
+            setError(message);
+          }
         } finally {
           if (mounted) {
             setLoading(false);
@@ -1876,12 +1875,18 @@ const BlogDetails = () => {
   // SEO TITLE
   // ====================================================
 
-  const pageTitle =
+  const rawPageTitle =
     seo.title
       .toLowerCase()
       .includes("devzore")
       ? seo.title
       : `${seo.title} | DevZore`;
+
+  let pageTitle = rawPageTitle;
+  if (pageTitle.length > 60) {
+    const withoutSuffix = rawPageTitle.replace(/\s*\|\s*DevZore$/i, "");
+    pageTitle = `${withoutSuffix.slice(0, 50).trim()} | DevZore`;
+  }
 
   // ====================================================
   // SCHEMA

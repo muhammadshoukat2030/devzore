@@ -1279,6 +1279,16 @@ function AppContent() {
               }
             />
 
+            <Route
+              path="/blog/how-to-plan-saas-mvp-complete-guide"
+              element={
+                <Navigate
+                  to="/blog/how-to-plan-saas-mvp-development"
+                  replace
+                />
+              }
+            />
+
             {/* ============================================
                 LEGAL
                 ============================================ */}

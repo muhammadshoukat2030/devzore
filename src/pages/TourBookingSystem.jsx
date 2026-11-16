@@ -161,7 +161,7 @@ export default function TourBookingSystem() {
     },
   ];
 
-  const pageTitle = "Tour Booking System & Safari Software Development | DevZore";
+  const pageTitle = "Tour Booking System & Safari Software | DevZore";
   const pageDescription =
     "Custom tour booking systems, safari reservation portals, excursion catalogs, live calendars, and payment gateways for tour operators and agencies.";
 

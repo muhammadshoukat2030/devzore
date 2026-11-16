@@ -29,21 +29,51 @@ export default function ProjectDetail() {
     .filter((p) => p.slug !== slug)
     .slice(0, 3);
 
-  const title = `${project.title} Case Study | ${project.systemType} | DevZore`;
+  const projectShortTitles = {
+    "weldon-paints": "Weldon Paints Case Study | POS & Stock System | DevZore",
+    "sarab-express": "Sarab Express Case Study | Delivery & Logistics | DevZore",
+    "desert-safari-qatar": "Desert Safari Qatar Case Study | Tourism Booking | DevZore",
+    "gulf-dunes-tourism": "Gulf Dunes Tourism Case Study | Excursion Portal | DevZore",
+    frostyops: "FrostyOps Case Study | Route Logistics ERP | DevZore",
+    "installment-management": "Installment Management Case Study | Credit System | DevZore",
+  };
+
+  const title = projectShortTitles[project.slug] || `${project.title} Case Study | DevZore`;
   const description = `Read how DevZore built ${project.title}, a ${project.systemType} using ${project.technologies.slice(0, 3).join(", ")} for clients in ${project.location}.`;
 
-  const softwareSchema = {
+  const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: project.title,
-    applicationCategory: project.category,
-    operatingSystem: "Web",
+    "@type": "Article",
+    headline: title,
+    description: description,
+    url: `https://devzore.com/projects/${project.slug}`,
+    image: "https://devzore.com/logo.png",
     author: {
       "@type": "Organization",
       name: "DevZore",
       url: "https://devzore.com",
     },
-    description: project.description,
+    publisher: {
+      "@type": "Organization",
+      name: "DevZore",
+      url: "https://devzore.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://devzore.com/logo.png",
+      },
+    },
+    datePublished: "2026-01-15T00:00:00Z",
+    dateModified: "2026-03-20T00:00:00Z",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://devzore.com/projects/${project.slug}`,
+    },
+    about: {
+      "@type": "SoftwareApplication",
+      name: project.title,
+      applicationCategory: project.category,
+      operatingSystem: "Web",
+    },
   };
 
   const breadcrumbSchema = {
@@ -79,7 +109,7 @@ export default function ProjectDetail() {
         title={title}
         description={description}
         canonical={`https://devzore.com/projects/${project.slug}`}
-        schema={[softwareSchema, breadcrumbSchema]}
+        schema={[articleSchema, breadcrumbSchema]}
       />
 
       {/* HEADER HERO */}

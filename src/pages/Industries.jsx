@@ -157,7 +157,7 @@ const Industries = () => {
   return (
     <>
       <SEO
-        title="Industries We Serve | Specialized Software Engineering | DevZore"
+        title="Industries We Serve | Software Solutions | DevZore"
         description="Explore the sectors DevZore builds software for: manufacturing, food & wholesale distribution, tourism & hospitality, and consumer installment finance."
         canonical="/industries"
         schema={[breadcrumbSchema]}

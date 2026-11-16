@@ -153,7 +153,7 @@ export default function NextjsDevelopment() {
     },
   ];
 
-  const pageTitle = "Next.js Development Services | React SSR & Web Apps | DevZore";
+  const pageTitle = "Next.js Development Services | SSR React Apps | DevZore";
   const pageDescription =
     "Custom Next.js development services. High-performance SSR, Server Components, App Router web apps, SaaS platforms, and SEO-optimized web development.";
 

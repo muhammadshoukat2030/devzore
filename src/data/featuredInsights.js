@@ -20,7 +20,7 @@ export const featuredInsights = [
     title: "How to Plan a SaaS MVP: The Practical Step-by-Step Guide",
     summary:
       "How to define core user workflows, eliminate scope bloat, and build a production MVP ready for paying customers in 6 to 10 weeks.",
-    slug: "/blog/how-to-plan-saas-mvp-complete-guide",
+    slug: "/blog/how-to-plan-saas-mvp-development",
     readTime: "7 min read",
   },
   {

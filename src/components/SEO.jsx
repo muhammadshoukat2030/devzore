@@ -1,10 +1,9 @@
-import React from "react";
-import { Helmet } from "react-helmet-async";
+import React, { useEffect } from "react";
 
 const BASE_URL = "https://devzore.com";
-const DEFAULT_TITLE = "DevZore | Software Development Company";
+const DEFAULT_TITLE = "Software & Web Development Company | DevZore";
 const DEFAULT_DESCRIPTION =
-  "DevZore is a software development company building high-performance web applications, mobile apps, SaaS products, and custom software for businesses worldwide.";
+  "DevZore is a Pakistan-based software development company delivering custom web apps, mobile applications, SaaS platforms and AI solutions to clients worldwide.";
 const DEFAULT_IMAGE = `${BASE_URL}/logo.png`;
 const DEFAULT_AUTHOR = "Muhammad Shoukat, Founder, DevZore";
 const DEFAULT_ROBOTS =
@@ -12,7 +11,8 @@ const DEFAULT_ROBOTS =
 
 /**
  * Universal SEO & Head Component for DevZore
- * Ensures no page ever renders missing title, description, canonical, OG, or Twitter tags.
+ * Direct DOM synchronization ("Find-and-update, never create")
+ * Guarantees exactly ONE <title> and exactly ONE <meta name="description"> in both raw HTML and post-hydration DOM.
  */
 export default function SEO({
   title,
@@ -40,77 +40,119 @@ export default function SEO({
       safeCanonical = canonical.replace(/\/+$/, "");
     } else {
       const cleanPath = canonical.startsWith("/") ? canonical : `/${canonical}`;
-      safeCanonical = cleanPath === "/" ? BASE_URL : `${BASE_URL}${cleanPath.replace(/\/+$/, "")}`;
+      safeCanonical = cleanPath === "/" ? `${BASE_URL}/` : `${BASE_URL}${cleanPath.replace(/\/+$/, "")}`;
     }
   }
 
-  // Schema normalizer (accepts schema or jsonLd)
-  const rawSchema = schema || jsonLd;
-  const schemas = Array.isArray(rawSchema)
-    ? rawSchema.filter(Boolean)
-    : rawSchema
-    ? [rawSchema]
-    : [];
+  useEffect(() => {
+    if (typeof document === "undefined") return;
 
-  return (
-    <Helmet>
-      {/* HTML Lang */}
-      <html lang="en" />
+    // 1. Ensure <html lang="en">
+    if (document.documentElement) {
+      document.documentElement.lang = "en";
+    }
 
-      {/* Primary Meta Tags */}
-      <title>{safeTitle}</title>
-      <meta name="title" content={safeTitle} />
-      <meta name="description" content={safeDescription} />
-      {keywords && <meta name="keywords" content={keywords} />}
-      <meta name="author" content={author} />
+    // 2. Set title in place
+    document.title = safeTitle;
 
-      {/* Canonical */}
-      <link rel="canonical" href={safeCanonical} />
+    // Purge any extra <title> tags if any exist
+    const titles = document.querySelectorAll("title");
+    if (titles.length > 1) {
+      for (let i = 1; i < titles.length; i++) {
+        titles[i].remove();
+      }
+    }
 
-      {/* Robots */}
-      <meta name="robots" content={robots} />
-      <meta name="googlebot" content={robots} />
+    // Helper to find and update or create meta/link elements
+    const setMetaTag = (selector, attrName, attrVal, content) => {
+      if (!content) return;
+      let el = document.querySelector(selector);
+      if (el) {
+        el.setAttribute("content", content);
+      } else {
+        el = document.createElement("meta");
+        el.setAttribute(attrName, attrVal);
+        el.setAttribute("content", content);
+        document.head.appendChild(el);
+      }
+    };
 
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content={ogType} />
-      <meta property="og:site_name" content="DevZore" />
-      <meta property="og:title" content={safeTitle} />
-      <meta property="og:description" content={safeDescription} />
-      <meta property="og:url" content={safeCanonical} />
-      <meta property="og:image" content={safeImage} />
-      <meta property="og:image:alt" content={safeTitle} />
+    // 3. Meta description (find-and-update, ensure only 1 exists)
+    const descs = document.querySelectorAll('meta[name="description"]');
+    if (descs.length > 0) {
+      descs[0].setAttribute("content", safeDescription);
+      for (let i = 1; i < descs.length; i++) {
+        descs[i].remove();
+      }
+    } else {
+      const el = document.createElement("meta");
+      el.setAttribute("name", "description");
+      el.setAttribute("content", safeDescription);
+      document.head.appendChild(el);
+    }
 
-      {/* Twitter / X */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@devzore" />
-      <meta name="twitter:creator" content="@muhammadshoukat" />
-      <meta name="twitter:title" content={safeTitle} />
-      <meta name="twitter:description" content={safeDescription} />
-      <meta name="twitter:image" content={safeImage} />
+    // 4. Other core meta tags
+    setMetaTag('meta[name="title"]', "name", "title", safeTitle);
+    setMetaTag('meta[name="robots"]', "name", "robots", robots);
+    setMetaTag('meta[name="googlebot"]', "name", "googlebot", robots);
+    if (keywords) setMetaTag('meta[name="keywords"]', "name", "keywords", keywords);
+    if (author) setMetaTag('meta[name="author"]', "name", "author", author);
 
-      {/* Article dates */}
-      {ogType === "article" && publishedTime && (
-        <meta
-          property="article:published_time"
-          content={new Date(publishedTime).toISOString()}
-        />
-      )}
-      {ogType === "article" && modifiedTime && (
-        <meta
-          property="article:modified_time"
-          content={new Date(modifiedTime).toISOString()}
-        />
-      )}
-      {ogType === "article" && (
-        <meta property="article:author" content="Muhammad Shoukat" />
-      )}
+    // 5. Canonical Link (find-and-update, ensure only 1 exists)
+    const canonLinks = document.querySelectorAll('link[rel="canonical"]');
+    if (canonLinks.length > 0) {
+      canonLinks[0].setAttribute("href", safeCanonical);
+      for (let i = 1; i < canonLinks.length; i++) {
+        canonLinks[i].remove();
+      }
+    } else {
+      const link = document.createElement("link");
+      link.setAttribute("rel", "canonical");
+      link.setAttribute("href", safeCanonical);
+      document.head.appendChild(link);
+    }
 
-      {/* Structured Data (JSON-LD) */}
-      {schemas.map((s, index) => (
-        <script key={`schema-${index}`} type="application/ld+json">
-          {JSON.stringify(s)}
-        </script>
-      ))}
-    </Helmet>
-  );
+    // 6. OpenGraph tags
+    setMetaTag('meta[property="og:type"]', "property", "og:type", ogType);
+    setMetaTag('meta[property="og:site_name"]', "property", "og:site_name", "DevZore");
+    setMetaTag('meta[property="og:title"]', "property", "og:title", safeTitle);
+    setMetaTag('meta[property="og:description"]', "property", "og:description", safeDescription);
+    setMetaTag('meta[property="og:url"]', "property", "og:url", safeCanonical);
+    setMetaTag('meta[property="og:image"]', "property", "og:image", safeImage);
+
+    // 7. Twitter tags
+    setMetaTag('meta[name="twitter:card"]', "name", "twitter:card", "summary_large_image");
+    setMetaTag('meta[name="twitter:site"]', "name", "twitter:site", "@devzore");
+    setMetaTag('meta[name="twitter:creator"]', "name", "twitter:creator", "@muhammadshoukat");
+    setMetaTag('meta[name="twitter:title"]', "name", "twitter:title", safeTitle);
+    setMetaTag('meta[name="twitter:description"]', "name", "twitter:description", safeDescription);
+    setMetaTag('meta[name="twitter:image"]', "name", "twitter:image", safeImage);
+
+    // 8. Article dates
+    if (ogType === "article") {
+      if (publishedTime) {
+        setMetaTag('meta[property="article:published_time"]', "property", "article:published_time", new Date(publishedTime).toISOString());
+      }
+      if (modifiedTime) {
+        setMetaTag('meta[property="article:modified_time"]', "property", "article:modified_time", new Date(modifiedTime).toISOString());
+      }
+      setMetaTag('meta[property="article:author"]', "property", "article:author", "Muhammad Shoukat");
+    }
+
+    // 9. Structured Data JSON-LD
+    const rawSchema = schema || jsonLd;
+    const schemas = Array.isArray(rawSchema) ? rawSchema.filter(Boolean) : (rawSchema ? [rawSchema] : []);
+    if (schemas.length > 0) {
+      let schemaScript = document.getElementById("client-seo-schema");
+      if (!schemaScript) {
+        schemaScript = document.createElement("script");
+        schemaScript.id = "client-seo-schema";
+        schemaScript.type = "application/ld+json";
+        document.head.appendChild(schemaScript);
+      }
+      schemaScript.textContent = JSON.stringify(schemas.length === 1 ? schemas[0] : schemas);
+    }
+  }, [safeTitle, safeDescription, safeCanonical, safeImage, ogType, author, robots, keywords, publishedTime, modifiedTime, schema, jsonLd]);
+
+  return null;
 }
