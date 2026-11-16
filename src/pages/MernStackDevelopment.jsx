@@ -1443,7 +1443,7 @@ ${formData.message}`
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-amber-500 font-bold mt-0.5">•</span>
-                      <span><strong>Simple static brochure sites:</strong> Where server-rendered static HTML or Next.js SSG offers lighter maintenance.</span>
+                      <span><strong>SEO-first & server-rendered applications:</strong> Where instant server-side rendering is required, explore our <Link to="/nextjs-development" className="text-[#0796A8] font-semibold underline">Next.js Development Services</Link> or read our <Link to="/blog/mern-stack-vs-nextjs-business-guide" className="text-[#0796A8] font-semibold underline">MERN vs Next.js Guide</Link>.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-amber-500 font-bold mt-0.5">•</span>

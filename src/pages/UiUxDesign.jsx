@@ -26,6 +26,17 @@ import {
   Zap,
 } from "lucide-react";
 
+const SectionLabel = ({ children, light = false }) => (
+  <div
+    className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+      light ? "text-[#28c5d4]" : "text-[#07899a]"
+    }`}
+  >
+    <span className="w-5 h-[2px] bg-[#0796A8]" />
+    {children}
+  </div>
+);
+
 const UiUxDesign = () => {
   const [activeFaq, setActiveFaq] = useState(null);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
@@ -360,6 +371,16 @@ const UiUxDesign = () => {
     },
   ];
 
+  // DESIGN TOOLS & TECH STACK
+  const designTools = [
+    { name: "Figma", category: "Collaborative UI/UX & Design Systems" },
+    { name: "FigJam", category: "User Journey Mapping & Wireframing" },
+    { name: "Tailwind CSS Tokens", category: "Design-to-Code Styling Standardization" },
+    { name: "Framer", category: "Interactive Clickable Prototyping" },
+    { name: "WCAG 2.1 AA", category: "Accessibility & Color Contrast Standards" },
+    { name: "Lucide & SVG Icons", category: "Scalable Vector Interface Assets" },
+  ];
+
   // FAQ
 
   const faqs = [
@@ -587,19 +608,6 @@ ${formData.message}`
   };
 
   const visibleFaqs = showAllFaqs ? faqs : faqs.slice(0, 3);
-
-  // SECTION LABEL
-
-  const SectionLabel = ({ children, light = false }) => (
-    <div
-      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
-        light ? "text-[#28c5d4]" : "text-[#07899a]"
-      }`}
-    >
-      <span className="w-5 h-[2px] bg-[#0796A8]" />
-      {children}
-    </div>
-  );
 
   return (
     <>
@@ -1309,6 +1317,32 @@ ${formData.message}`
                     {item.desc}
                   </p>
                 </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* DESIGN TOOLS & TECHNOLOGY STACK */}
+        <section
+          aria-labelledby="uiux-tools-heading"
+          className="py-10 md:py-12 bg-white border-t border-slate-200"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-2xl mb-8">
+              <SectionLabel>Tools & Technology Stack</SectionLabel>
+              <h2
+                id="uiux-tools-heading"
+                className="text-[#071923] text-[28px] sm:text-[33px] md:text-[38px] font-semibold tracking-[-0.035em] mt-3"
+              >
+                Modern design software & interface specifications.
+              </h2>
+            </div>
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {designTools.map((t, idx) => (
+                <div key={idx} className="p-4 rounded-xl border border-slate-200 bg-[#f8fafc]">
+                  <div className="font-bold text-sm text-[#071923]">{t.name}</div>
+                  <div className="text-xs text-slate-500 mt-1">{t.category}</div>
+                </div>
               ))}
             </div>
           </div>

@@ -386,32 +386,32 @@ const ManagementSystems = () => {
 
   const relatedServices = [
     {
+      icon: <PackageSearch size={21} />,
+      title: "Inventory Management System",
+      description:
+        "Centralized multi-warehouse stock control, POS billing and batch tracking tailored for retailers.",
+      path: "/inventory-management-system",
+    },
+    {
+      icon: <Layers3 size={21} />,
+      title: "Distribution Management (DMS)",
+      description:
+        "Route dispatching, mobile driver manifests and wholesale fleet logistics software.",
+      path: "/distribution-management-system",
+    },
+    {
+      icon: <WalletCards size={21} />,
+      title: "Installment Management Software",
+      description:
+        "Automated EMI schedules, late fee calculations and customer credit repayment ledgers.",
+      path: "/installment-management-software",
+    },
+    {
       icon: <Settings size={21} />,
       title: "Custom Software Solutions",
       description:
         "Purpose-built software designed around unique business processes and operational requirements.",
       path: "/custom-software-solutions",
-    },
-    {
-      icon: <Layers3 size={21} />,
-      title: "Business Solutions",
-      description:
-        "Digital solutions for businesses that need websites, applications, automation and management platforms.",
-      path: "/business-solutions",
-    },
-    {
-      icon: <Database size={21} />,
-      title: "Backend & API Development",
-      description:
-        "Backend systems, databases, APIs, authentication and business logic for management software.",
-      path: "/backend-api",
-    },
-    {
-      icon: <Rocket size={21} />,
-      title: "SaaS Product Development",
-      description:
-        "Multi-user software products with dashboards, accounts, workflows and scalable application functionality.",
-      path: "/saas-product-development",
     },
   ];
 

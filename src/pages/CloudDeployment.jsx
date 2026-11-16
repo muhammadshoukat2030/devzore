@@ -39,12 +39,6 @@ export default function CloudDeployment() {
     message: "",
   });
 
-  const lightGrid = {
-    backgroundImage:
-      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
-    backgroundSize: "48px 48px",
-  };
-
   const darkGrid = {
     backgroundImage:
       "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
@@ -140,6 +134,59 @@ export default function CloudDeployment() {
       q: "What is your post-launch support for cloud infrastructure?",
       a: "Every deployment includes our post-launch warranty period covering configuration adjustments, domain re-pointing, and initial performance verification. We also provide ongoing maintenance plans for continuous updates, backup validation, and monitoring.",
     },
+    {
+      q: "Can you configure custom domain SSL and automated staging branch previews?",
+      a: "Yes. Every cloud setup includes enterprise-grade SSL/TLS certificates via Cloudflare, automated DNS record verification, and ephemeral branch preview deployments so your team can test every pull request on a live URL before merging to production.",
+    },
+  ];
+
+  const processSteps = [
+    {
+      step: "01",
+      title: "Infrastructure Audit & Scoping",
+      desc: "We analyze your repository, dependencies, database load, and traffic demands to map the optimal cloud topology.",
+    },
+    {
+      step: "02",
+      title: "Environment Provisioning & CI/CD",
+      desc: "We set up isolated staging and production environments, configure secrets vaults, and connect automated Git deployment hooks.",
+    },
+    {
+      step: "03",
+      title: "DNS, CDN & Security Hardening",
+      desc: "We route domains through Cloudflare, configure DDoS mitigation, enforce SSL/TLS, and establish database connection pooling.",
+    },
+    {
+      step: "04",
+      title: "Production Cutover & Verification",
+      desc: "We execute zero-downtime cutover, verify core workflows under live load, and hand over 100% credential control.",
+    },
+  ];
+
+  const buyerChallenges = [
+    {
+      title: "Deployment Downtime & Broken Builds",
+      desc: "Manual FTP uploads or fragile servers cause downtime and regressions with every code release.",
+    },
+    {
+      title: "Slow Page Speeds & High TTFB",
+      desc: "Un-cached origin servers in distant continents lead to high latency and poor Core Web Vitals.",
+    },
+    {
+      title: "Security & Leaked Secrets",
+      desc: "Hardcoded API keys and exposed database ports leave applications vulnerable to scraping and breaches.",
+    },
+    {
+      title: "Vendor Lock-In & Bloated Bills",
+      desc: "Over-engineered cloud instances that cost hundreds of dollars monthly with difficult maintenance overhead.",
+    },
+  ];
+
+  const whoThisIsFor = [
+    "Founders launching web or mobile applications who need zero-maintenance serverless infrastructure",
+    "Growing businesses migrating away from legacy, slow shared hosting or outdated VPS servers",
+    "Development teams needing automated GitHub Actions CI/CD pipelines and instant PR preview links",
+    "Enterprises requiring multi-region edge caching, DDoS protection, and managed MongoDB clusters",
   ];
 
   const handleChange = (e) => {
@@ -340,6 +387,73 @@ export default function CloudDeployment() {
                   </Link>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* BUYER CHALLENGES & SOLUTIONS */}
+        <section className="py-16 bg-[#05141c] border-t border-white/[0.08]">
+          <div className="max-w-[1240px] mx-auto px-5 sm:px-6">
+            <div className="max-w-2xl mb-10">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#1BBAC8]">
+                Infrastructure Challenges
+              </span>
+              <h2 className="mt-2 text-2xl sm:text-3xl font-black text-white">
+                Critical Cloud Roadblocks DevZore Solves
+              </h2>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {buyerChallenges.map((c, i) => (
+                <div key={i} className="p-5 rounded-xl border border-white/[0.08] bg-[#071d29]">
+                  <h3 className="text-sm font-bold text-white">{c.title}</h3>
+                  <p className="mt-2 text-xs text-slate-300 leading-relaxed">{c.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* WHO THIS IS FOR */}
+        <section className="py-16 bg-[#061923] border-t border-white/[0.08]">
+          <div className="max-w-[1240px] mx-auto px-5 sm:px-6">
+            <div className="max-w-2xl mb-8">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#1BBAC8]">
+                Target Audience
+              </span>
+              <h2 className="mt-2 text-2xl sm:text-3xl font-black text-white">
+                Who Our Cloud & Deployment Services Are For
+              </h2>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3.5">
+              {whoThisIsFor.map((item, i) => (
+                <div key={i} className="flex items-start gap-3 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
+                  <CheckCircle2 size={16} className="text-[#1bbac8] shrink-0 mt-0.5" />
+                  <span className="text-xs text-slate-200 leading-relaxed">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 4-STEP DELIVERY PROCESS */}
+        <section className="py-16 bg-[#05141c] border-t border-white/[0.08]">
+          <div className="max-w-[1240px] mx-auto px-5 sm:px-6">
+            <div className="max-w-2xl mb-10">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#1BBAC8]">
+                Deployment Workflow
+              </span>
+              <h2 className="mt-2 text-2xl sm:text-3xl font-black text-white">
+                4-Step Production Cloud Delivery
+              </h2>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {processSteps.map((st) => (
+                <div key={st.step} className="p-5 rounded-xl border border-white/[0.08] bg-[#071d29]">
+                  <div className="text-xl font-black text-[#1bbac8] mb-2">{st.step}</div>
+                  <h3 className="text-sm font-bold text-white mb-2">{st.title}</h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">{st.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

@@ -63,8 +63,16 @@ const Footer = () => {
       path: "/generative-ai-development",
     },
     {
+      label: "AI Integration & LLM Services",
+      path: "/ai-integration-services",
+    },
+    {
       label: "Web Development",
       path: "/web-development",
+    },
+    {
+      label: "Next.js Development",
+      path: "/nextjs-development",
     },
     {
       label: "Mobile App Development",
@@ -77,6 +85,26 @@ const Footer = () => {
     {
       label: "MERN Stack Development",
       path: "/mern-stack-development",
+    },
+    {
+      label: "Inventory Management Systems",
+      path: "/inventory-management-system",
+    },
+    {
+      label: "Distribution Management Systems",
+      path: "/distribution-management-system",
+    },
+    {
+      label: "Installment Management Software",
+      path: "/installment-management-software",
+    },
+    {
+      label: "Tour Booking Systems",
+      path: "/tour-booking-system",
+    },
+    {
+      label: "Online Food Ordering Systems",
+      path: "/food-ordering-system",
     },
     {
       label: "E-Commerce Development",
@@ -157,12 +185,20 @@ const Footer = () => {
       path: "/about",
     },
     {
+      label: "Industries We Serve",
+      path: "/industries",
+    },
+    {
       label: "Our Process",
       path: "/our-process",
     },
     {
       label: "Technologies",
       path: "/technologies",
+    },
+    {
+      label: "Careers",
+      path: "/careers",
     },
     {
       label: "Case Studies & Portfolio",
@@ -402,10 +438,7 @@ const Footer = () => {
               </Link>
 
               <p className="mt-4 max-w-[360px] text-xs sm:text-[13px] leading-6 text-[#8BA7B5]">
-                DevZore designs and develops modern websites,
-                web applications, mobile products, SaaS platforms,
-                AI-enabled solutions and custom software for
-                startups and businesses.
+                DevZore is a Pakistan-based software development company delivering web, mobile, SaaS and AI solutions to clients worldwide.
               </p>
 
               {/* CONTACT */}

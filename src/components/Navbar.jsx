@@ -39,8 +39,16 @@ const Navbar = () => {
       path: "/generative-ai-development",
     },
     {
+      name: "AI Integration & LLM Services",
+      path: "/ai-integration-services",
+    },
+    {
       name: "Web Development",
       path: "/web-development",
+    },
+    {
+      name: "Next.js Development",
+      path: "/nextjs-development",
     },
     {
       name: "Mobile App Development",
@@ -164,6 +172,10 @@ const Navbar = () => {
       path: "/about",
     },
     {
+      name: "Industries We Serve",
+      path: "/industries",
+    },
+    {
       name: "Case Studies & Projects",
       path: "/projects",
     },
@@ -174,6 +186,10 @@ const Navbar = () => {
     {
       name: "Technologies",
       path: "/technologies",
+    },
+    {
+      name: "Careers",
+      path: "/careers",
     },
     {
       name: "Contact Us",

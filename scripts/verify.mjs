@@ -1,6 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { announcement } from "../src/data/announcement.js";
+import { clients } from "../src/data/clients.js";
+import { team } from "../src/data/team.js";
+import { testimonials } from "../src/data/testimonials.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -155,7 +159,7 @@ assert(fs.existsSync(sitemapPath), "dist/sitemap.xml exists");
 if (fs.existsSync(sitemapPath)) {
   const xml = fs.readFileSync(sitemapPath, "utf-8");
   const urlMatches = xml.match(/<loc>(.*?)<\/loc>/g) || [];
-  assert(urlMatches.length >= 50, `Sitemap contains ${urlMatches.length} URLs (expected >= 50)`);
+  assert(urlMatches.length >= 65, `Sitemap contains ${urlMatches.length} URLs (expected >= 65)`);
 
   // Ensure no duplicate URLs
   const uniqueUrls = new Set(urlMatches);
@@ -263,6 +267,173 @@ if (fs.existsSync(llmsPath)) {
   const llmsContent = fs.readFileSync(llmsPath, "utf-8");
   assert(llmsContent.includes("120+ Projects Completed"), "llms.txt contains '120+ Projects Completed'");
 }
+
+// 9. Expansion Round: 7 New Pages, 20 Core Services & Worldwide Targeting
+console.log("\n--- TEST 9: Expansion Round (7 New Pages, 20 Services, Worldwide Framing) ---");
+const newRoutes = [
+  "ai-integration-services",
+  "inventory-management-system",
+  "distribution-management-system",
+  "installment-management-software",
+  "tour-booking-system",
+  "food-ordering-system",
+  "nextjs-development",
+];
+
+for (const route of newRoutes) {
+  const pagePath = path.resolve(distDir, route, "index.html");
+  assert(fs.existsSync(pagePath), `Expansion route exists: ${route}/index.html`);
+  if (fs.existsSync(pagePath)) {
+    const pageHtml = fs.readFileSync(pagePath, "utf-8");
+
+    // Title tag check
+    const titleMatch = pageHtml.match(/<title>(.*?)<\/title>/i);
+    assert(
+      titleMatch && titleMatch[1].length >= 35,
+      `Route /${route} has valid title: "${titleMatch ? titleMatch[1] : ""}"`
+    );
+
+    // Meta description check
+    const descMatch = pageHtml.match(/<meta name="description" content="(.*?)"/i);
+    assert(
+      descMatch && descMatch[1].length >= 80,
+      `Route /${route} has valid description (length ${descMatch ? descMatch[1].length : 0})`
+    );
+
+    // Canonical link check
+    const canonicalMatch = pageHtml.match(/<link rel="canonical" href="(.*?)"/i);
+    assert(
+      canonicalMatch && canonicalMatch[1] === `https://devzore.com/${route}`,
+      `Route /${route} has canonical https://devzore.com/${route}`
+    );
+
+    // Exactly one H1 check
+    const h1Matches = pageHtml.match(/<h1[\s>]/gi) || [];
+    assert(
+      h1Matches.length === 1,
+      `Route /${route} has exactly one H1 tag (found ${h1Matches.length})`
+    );
+  }
+}
+
+// 20 Core Services check in pre-rendered contact & allservices
+const allServicesUpdatedHtml = fs.readFileSync(path.resolve(distDir, "allservices/index.html"), "utf-8");
+assert(allServicesUpdatedHtml.includes("20"), "All Services page contains updated '20' services count");
+
+// Micro-fix check: zero pages leak "Price: 0 USD"
+let priceDumpCount = 0;
+for (const filePath of allHtmlFiles) {
+  const content = fs.readFileSync(filePath, "utf-8");
+  if (/Price:\s*0\s*USD/i.test(content)) {
+    priceDumpCount++;
+    console.error(`  Warning: Visible 'Price: 0 USD' found in ${filePath}`);
+  }
+}
+assert(priceDumpCount === 0, `Zero HTML files display visible raw 'Price: 0 USD' data leak (found ${priceDumpCount})`);
+
+// Worldwide targeting check in Homepage & Organization Schema
+assert(homeHtml.includes("clients worldwide"), "Homepage includes worldwide targeting framing");
+if (fs.existsSync(llmsPath)) {
+  const llmsContent = fs.readFileSync(llmsPath, "utf-8");
+  assert(llmsContent.includes("worldwide") || llmsContent.includes("Worldwide"), "llms.txt includes Worldwide service framing");
+  assert(llmsContent.includes("20 Core Services") || llmsContent.includes("20 Services"), "llms.txt includes '20 Core Services'");
+}
+
+// 10. Devsinc-Flow Trust & Authority Layer Verification
+console.log("\n--- TEST 10: Devsinc-Flow Trust & Authority Layer ---");
+
+// 10.1 Announcement Bar
+if (announcement && announcement.enabled) {
+  assert(homeHtml.includes(announcement.text), "Homepage pre-rendered HTML contains active announcement text");
+  assert(homeHtml.includes(announcement.linkUrl), "Homepage pre-rendered HTML links to announcement target URL");
+}
+
+// 10.2 Client Strip
+assert(homeHtml.includes("Systems Engineered for Real Businesses"), "Homepage contains 'Systems Engineered for Real Businesses' client strip");
+assert(clients.length === 6, `clients.js contains exactly 6 real case-study clients (found ${clients.length})`);
+for (const client of clients) {
+  assert(homeHtml.includes(client.name), `Homepage client strip includes real client: ${client.name}`);
+  assert(homeHtml.includes(client.caseStudyUrl), `Homepage client strip links to case study: ${client.caseStudyUrl}`);
+}
+
+// 10.3 Testimonials Pipeline
+assert(Array.isArray(testimonials), "testimonials.js exports valid testimonials array");
+assert(testimonials.length === 0, "testimonials array is empty by default (no fabricated reviews)");
+assert(!homeHtml.includes("Client Name"), "Homepage does NOT contain placeholder 'Client Name'");
+assert(!homeHtml.includes("Client Reviews & Feedback"), "Testimonials section stays absent from pre-rendered HTML while testimonials data is empty");
+
+// 10.4 Team Section on About
+const aboutHtml = fs.readFileSync(path.resolve(distDir, "about/index.html"), "utf-8");
+assert(aboutHtml.includes("Our Team & Leadership") || aboutHtml.includes("Meet the people behind DevZore"), "About page contains Team & Leadership section");
+assert(aboutHtml.includes("Muhammad Shoukat"), "Team section includes founder Muhammad Shoukat");
+assert(team.length === 1, `team.js contains exactly founder entry with zero invented team members (found ${team.length})`);
+
+// 10.5 Industries We Serve
+assert(homeHtml.includes("Industries We Serve"), "Homepage includes 'Industries We Serve' section");
+const allServicesHtmlForInd = fs.readFileSync(path.resolve(distDir, "allservices/index.html"), "utf-8");
+assert(allServicesHtmlForInd.includes("Industries We Serve"), "All Services page includes 'Industries We Serve' section");
+
+const requiredIndustries = [
+  "Manufacturing & Retail",
+  "Food, Beverage & Distribution",
+  "Tourism & Hospitality",
+  "Finance & Installment Sales",
+];
+for (const ind of requiredIndustries) {
+  assert(homeHtml.includes(ind), `Homepage contains industry: ${ind}`);
+}
+assert(homeHtml.includes("/projects/weldon-paints"), "Industries section links to Weldon Paints case study");
+assert(homeHtml.includes("/projects/sarab-express"), "Industries section links to Sarab Express case study");
+assert(homeHtml.includes("/projects/desert-safari-qatar"), "Industries section links to Desert Safari Qatar case study");
+assert(homeHtml.includes("/projects/installment-management"), "Industries section links to Installment Management case study");
+
+if (fs.existsSync(llmsPath)) {
+  const llmsContent = fs.readFileSync(llmsPath, "utf-8");
+  assert(llmsContent.includes("Industries We Serve"), "llms.txt includes 'Industries We Serve'");
+  for (const ind of requiredIndustries) {
+    assert(llmsContent.includes(ind), `llms.txt includes industry: ${ind}`);
+  }
+}
+
+// 11. Devsinc Blueprint Round 2 Verification
+console.log("\n--- TEST 11: Devsinc Blueprint Round 2 (Templates & Site Architecture) ---");
+
+// 11.1 New Hub Pages: /industries and /careers
+const industriesHtmlPath = path.resolve(distDir, "industries/index.html");
+assert(fs.existsSync(industriesHtmlPath), "dist/industries/index.html exists");
+if (fs.existsSync(industriesHtmlPath)) {
+  const indHtml = fs.readFileSync(industriesHtmlPath, "utf-8");
+  assert(indHtml.includes("Manufacturing & Retail"), "Industries page includes Manufacturing & Retail");
+  assert(indHtml.includes("Tourism & Hospitality"), "Industries page includes Tourism & Hospitality");
+  assert(indHtml.includes("/projects/weldon-paints"), "Industries page links to Weldon Paints case study");
+}
+
+const careersHtmlPath = path.resolve(distDir, "careers/index.html");
+assert(fs.existsSync(careersHtmlPath), "dist/careers/index.html exists");
+if (fs.existsSync(careersHtmlPath)) {
+  const careersHtml = fs.readFileSync(careersHtmlPath, "utf-8");
+  assert(careersHtml.includes("No open positions right now") || careersHtml.includes("No open roles"), "Careers page includes honest empty state");
+  assert(careersHtml.includes("hellodevzore@gmail.com"), "Careers page includes contact email for spontaneous applications");
+}
+
+// 11.2 Case Study "At a Glance" Box
+for (const slug of caseStudySlugs) {
+  const casePath = path.resolve(distDir, `projects/${slug}/index.html`);
+  if (fs.existsSync(casePath)) {
+    const caseHtml = fs.readFileSync(casePath, "utf-8");
+    assert(caseHtml.includes("At a Glance") || caseHtml.includes("at a Glance") || caseHtml.includes("Project Profile"), `projects/${slug} contains 'At a Glance' project profile box`);
+  }
+}
+
+// 11.3 Contact "Where We Work" Section
+const contactHtmlWork = fs.readFileSync(path.resolve(distDir, "contact/index.html"), "utf-8");
+assert(contactHtmlWork.includes("Where We Work") || contactHtmlWork.includes("where-we-work"), "Contact page includes 'Where We Work' global delivery section");
+assert(contactHtmlWork.includes("Pakistan"), "Where We Work includes Pakistan engineering hub");
+assert(contactHtmlWork.includes("Qatar"), "Where We Work includes Qatar regional footprint");
+
+// 11.4 Featured Insights on Homepage
+assert(homeHtml.includes("Featured Insights") || homeHtml.includes("Engineering Insights"), "Homepage includes Featured Insights section");
+assert(homeHtml.includes("SaaS Architecture Guide") || homeHtml.includes("/blog/saas-architecture-guide-startups"), "Featured Insights links to SaaS architecture guide");
 
 console.log("\n=========================================");
 console.log(`VERIFICATION SUMMARY: ${passes} Passed, ${failures} Failed`);

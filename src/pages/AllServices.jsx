@@ -5,6 +5,7 @@ import {
   Activity,
   ArrowRight,
   ArrowUpRight,
+  Boxes,
   BrainCircuit,
   Check,
   CheckCircle2,
@@ -12,6 +13,7 @@ import {
   ChevronUp,
   Cloud,
   Code2,
+  Compass,
   Gauge,
   Globe,
   HeartHandshake,
@@ -23,16 +25,20 @@ import {
   Palette,
   Plus,
   Rocket,
+  Scale,
   Send,
   Server,
   Shield,
   ShoppingCart,
   Smartphone,
   TrendingUp,
+  Truck,
   UsersRound,
+  UtensilsCrossed,
   Wrench,
   Zap,
 } from "lucide-react";
+import IndustriesWeServe from "../components/IndustriesWeServe";
 
 const AllServices = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -276,6 +282,111 @@ const AllServices = () => {
         "Digital strategy",
         "Paid campaigns",
         "Content marketing",
+      ],
+    },
+    {
+      icon: <BrainCircuit size={21} />,
+      number: "15",
+      title: "AI Integration & LLM Services",
+      subtitle: "OpenAI · Claude · RAG · APIs",
+      path: "/ai-integration-services",
+      filter: "AI",
+      desc:
+        "Connect OpenAI ChatGPT, Claude, and Gemini APIs into your existing web applications, CRMs, and management portals with zero platform rebuilds.",
+      points: [
+        "LLM API integration",
+        "RAG knowledge bases",
+        "AI customer support agents",
+      ],
+    },
+    {
+      icon: <Boxes size={21} />,
+      number: "16",
+      title: "Inventory Management Systems",
+      subtitle: "Warehouses · POS · Ledgers",
+      path: "/inventory-management-system",
+      filter: "Web",
+      desc:
+        "Custom web-based inventory management systems, multi-location stock tracking, point-of-sale billing, and dealer credit ledger platforms.",
+      points: [
+        "Multi-warehouse stock control",
+        "High-speed POS billing",
+        "Customer & dealer credit ledgers",
+      ],
+    },
+    {
+      icon: <Truck size={21} />,
+      number: "17",
+      title: "Distribution Management Systems",
+      subtitle: "Logistics · Fleet · Field Orders",
+      path: "/distribution-management-system",
+      filter: "Web",
+      desc:
+        "Custom wholesale distribution ERP platforms managing route fleet logistics, field salesman order booking apps, and cash recovery handovers.",
+      points: [
+        "Fleet delivery route manifests",
+        "Field salesman mobile booking",
+        "Retailer credit & cash recovery",
+      ],
+    },
+    {
+      icon: <Scale size={21} />,
+      number: "18",
+      title: "Installment Management Software",
+      subtitle: "Amortization · KYC · Collections",
+      path: "/installment-management-software",
+      filter: "Web",
+      desc:
+        "Custom consumer credit software with borrower KYC dossiers, automated amortization plan generation, daily overdue queues, and investor profit splits.",
+      points: [
+        "Automated amortization plans",
+        "Borrower & guarantor dossiers",
+        "Multi-investor profit splits",
+      ],
+    },
+    {
+      icon: <Compass size={21} />,
+      number: "19",
+      title: "Tour & Safari Booking Systems",
+      subtitle: "Excursions · Calendars · WhatsApp",
+      path: "/tour-booking-system",
+      filter: "Web",
+      desc:
+        "Commission-free tour booking platforms, safari excursion catalogs, real-time availability calendars, international card payments, and WhatsApp concierge.",
+      points: [
+        "Live availability calendars",
+        "0% commission direct bookings",
+        "Driver & safari guide dispatch",
+      ],
+    },
+    {
+      icon: <UtensilsCrossed size={21} />,
+      number: "20",
+      title: "Online Food Ordering Systems",
+      subtitle: "Menus · Kitchen KDS · WhatsApp",
+      path: "/food-ordering-system",
+      filter: "Web",
+      desc:
+        "Commission-free restaurant ordering web storefronts with visual menus, meal modifier engines, real-time Kitchen Display Systems (KDS), and WhatsApp routing.",
+      points: [
+        "Visual digital menus & modifiers",
+        "Kitchen Display System (KDS)",
+        "Zero aggregator commission fees",
+      ],
+    },
+    {
+      icon: <Rocket size={21} />,
+      number: "21",
+      title: "Next.js Development Services",
+      subtitle: "App Router · SSR · Server Actions",
+      path: "/nextjs-development",
+      filter: "Web",
+      desc:
+        "Full-stack React development with Next.js App Router, Server Components, sub-second SSR loading, edge caching, and perfect Core Web Vitals 95+.",
+      points: [
+        "React Server Components (RSC)",
+        "Sub-second SSR & edge caching",
+        "Built-in technical SEO 95+",
       ],
     },
   ];
@@ -1290,6 +1401,9 @@ ${formData.message}`
           </div>
         </section>
 
+        {/* INDUSTRIES WE SERVE */}
+        <IndustriesWeServe isLight={true} />
+
         {/* PROJECT ENQUIRY */}
 
         <section
@@ -1445,12 +1559,19 @@ ${formData.message}`
                       className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
                     >
                       <option>Generative AI Development</option>
+                      <option>AI Integration & LLM Services</option>
                       <option>Custom Web Development</option>
                       <option>Mobile App Development</option>
                       <option>E-Commerce Development</option>
                       <option>Backend & API Development</option>
                       <option>MERN Stack Development</option>
+                      <option>Next.js Development</option>
                       <option>SaaS Product Development</option>
+                      <option>Inventory Management Systems</option>
+                      <option>Distribution Management Systems</option>
+                      <option>Installment Management Software</option>
+                      <option>Tour & Safari Booking Systems</option>
+                      <option>Online Food Ordering Systems</option>
                       <option>UI/UX Design</option>
                       <option>Startup MVP Development</option>
                       <option>Cloud & Deployment</option>

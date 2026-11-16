@@ -524,6 +524,13 @@ const ReactDevelopment = () => {
 
   const relatedServices = [
     {
+      label: "SSR & FULL STACK",
+      title: "Next.js Development",
+      desc:
+        "Server-rendered React applications, App Router architecture and SEO-optimized web platforms.",
+      path: "/nextjs-development",
+    },
+    {
       label: "FULL STACK",
       title: "MERN Stack Development",
       desc:
@@ -543,13 +550,6 @@ const ReactDevelopment = () => {
       desc:
         "Custom SaaS products with React dashboards, authentication and backend systems.",
       path: "/saas-product-development",
-    },
-    {
-      label: "DESIGN",
-      title: "UI/UX Design",
-      desc:
-        "User flows, application interfaces and reusable product design systems.",
-      path: "/ui-ux-design",
     },
   ];
 

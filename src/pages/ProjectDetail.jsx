@@ -127,32 +127,48 @@ export default function ProjectDetail() {
             {project.description}
           </p>
 
-          {/* METADATA STRIP */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm">
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Business Client</p>
-              <p className="text-sm font-semibold text-white mt-1">{project.client}</p>
+          {/* AT A GLANCE (DEVSINC BLUEPRINT: 6-FIELD PROJECT PROFILE) */}
+          <div className="rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm p-5 sm:p-6">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-[#1BBAC8] mb-3 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#1BBAC8]" />
+              Project Profile at a Glance
             </div>
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Deployment Location</p>
-              <p className="text-sm font-semibold text-cyan-300 mt-1 flex items-center gap-1.5">
-                <FiMapPin className="w-3.5 h-3.5" /> {project.location}
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Delivery Model</p>
-              <p className="text-sm font-semibold text-white mt-1 flex items-center gap-1.5">
-                <FiClock className="w-3.5 h-3.5" /> {project.deliveryType}
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Matching Service</p>
-              <Link
-                to={project.serviceSlug}
-                className="text-sm font-semibold text-[#1BBAC8] hover:underline mt-1 block truncate"
-              >
-                {project.serviceName}
-              </Link>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Client</p>
+                <p className="text-xs sm:text-sm font-semibold text-white mt-1 truncate">{project.client || project.title}</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Industry</p>
+                <p className="text-xs sm:text-sm font-semibold text-cyan-300 mt-1 truncate">{project.industry}</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Location</p>
+                <p className="text-xs sm:text-sm font-semibold text-white mt-1 flex items-center gap-1">
+                  <FiMapPin className="w-3 h-3 text-[#1BBAC8]" /> {project.location}
+                </p>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Services Delivered</p>
+                <Link
+                  to={project.serviceSlug}
+                  className="text-xs sm:text-sm font-semibold text-[#1BBAC8] hover:underline mt-1 block truncate"
+                >
+                  {project.serviceName}
+                </Link>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Tech Stack</p>
+                <p className="text-xs font-semibold text-slate-200 mt-1 truncate">
+                  {project.technologies.slice(0, 3).join(", ")}
+                </p>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Delivery Model</p>
+                <p className="text-xs font-semibold text-white mt-1 truncate">
+                  {project.deliveryType || "Full-source handover"}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -273,6 +289,24 @@ export default function ProjectDetail() {
                 </div>
               )}
             </div>
+
+            {/* CONDITIONAL TESTIMONIAL SLOT (100% HIDDEN UNLESS REAL QUOTE SUPPLIED) */}
+            {project.clientQuote && (
+              <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-7">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#1BBAC8] mb-2">
+                  Client Feedback
+                </div>
+                <blockquote className="text-sm sm:text-base italic text-slate-200 leading-relaxed">
+                  "{project.clientQuote.quote}"
+                </blockquote>
+                <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs">
+                  <div>
+                    <div className="font-bold text-white">{project.clientQuote.author}</div>
+                    <div className="text-slate-400">{project.clientQuote.role}, {project.client}</div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* SIDEBAR (1 col) */}
@@ -315,7 +349,7 @@ export default function ProjectDetail() {
               </div>
               <h3 className="text-lg font-bold text-white mb-2">Build a Similar Platform</h3>
               <p className="text-xs text-slate-300 leading-relaxed mb-5">
-                Need a custom {project.systemType.toLowerCase()} tailored to your operational workflows?
+                Want a {project.industry} system like this? Talk to the lead engineer on WhatsApp.
               </p>
               <Link
                 to={project.serviceSlug}

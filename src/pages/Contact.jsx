@@ -21,6 +21,7 @@ import {
   Sparkles,
   Zap,
   Briefcase,
+  MapPin,
 } from "lucide-react";
 import SEO from "../components/SEO";
 import weldonPaint from "../assets/weldonpaint.webp";
@@ -47,19 +48,20 @@ const Contact = () => {
     backgroundSize: "48px 48px",
   };
 
-  const lightGrid = {
-    backgroundImage:
-      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
-    backgroundSize: "48px 48px",
-  };
-
-  // SERVICES (14 CORE SERVICES)
+  // SERVICES (20 CORE SERVICES)
   const services = [
     "Generative AI Development",
+    "AI Integration & LLM Services",
     "Custom Web Development",
     "Mobile App Development",
     "MERN Stack Development",
+    "Next.js Development",
     "SaaS Product Development",
+    "Inventory Management Systems",
+    "Distribution Management Systems",
+    "Installment Management Software",
+    "Tour & Safari Booking Systems",
+    "Online Food Ordering Systems",
     "E-Commerce Development",
     "UI/UX Design",
     "Startup MVP Development",
@@ -252,7 +254,7 @@ const Contact = () => {
         {/* ============================================================ */}
         <section
           aria-labelledby="contact-heading"
-          className="relative overflow-hidden pt-16 sm:pt-20 lg:pt-24 pb-12 sm:pb-16"
+          className="relative overflow-hidden pt-6 sm:pt-10 lg:pt-14 pb-10 sm:pb-14"
         >
           {/* Ambient Glows & Background Grid */}
           <div className="absolute inset-0 pointer-events-none" style={darkGrid} />
@@ -261,66 +263,66 @@ const Contact = () => {
 
           <div className="relative max-w-[1260px] mx-auto px-4 sm:px-6">
             {/* MAIN TWO-COLUMN GRID: LEFT INTRO/CONTACTS + RIGHT FORM */}
-            <div className="grid lg:grid-cols-[1fr_1.12fr] gap-8 lg:gap-12 items-start">
+            <div className="grid lg:grid-cols-[1fr_1.12fr] gap-6 lg:gap-10 items-start">
               {/* LEFT COLUMN: PUNCHY COPY, DIRECT CHANNELS & TRUST HIGHLIGHTS */}
-              <div className="space-y-5 lg:sticky lg:top-24">
+              <div className="space-y-4 lg:sticky lg:top-20">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[10px] sm:text-[11px] font-bold tracking-wider uppercase text-[#1bbac8]">
-                    <Sparkles size={13} />
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[10px] sm:text-[11px] font-bold tracking-wider uppercase text-[#1bbac8]">
+                    <Sparkles size={12} />
                     Direct Engineering Consultation
                   </div>
 
                   <h1
                     id="contact-heading"
-                    className="mt-3 text-[28px] sm:text-[38px] lg:text-[44px] font-bold tracking-[-0.035em] leading-[1.12] text-white"
+                    className="mt-2 text-[24px] sm:text-[34px] lg:text-[40px] font-bold tracking-[-0.035em] leading-[1.12] text-white"
                   >
                     Have a project in mind?{" "}
                     <span className="text-[#1bbac8]">Let's talk.</span>
                   </h1>
 
-                  <p className="mt-2 text-[13px] sm:text-[14px] leading-relaxed text-slate-300 max-w-xl">
-                    Tell us about your website, SaaS product, mobile app, or custom software requirement.
+                  <p className="mt-1.5 text-[12px] sm:text-[13px] leading-relaxed text-slate-300 max-w-xl">
+                    DevZore is a Pakistan-based software development company delivering web, mobile, SaaS and AI solutions to clients worldwide.
                     Speak directly with senior engineers — no sales middlemen or communication delays.
                   </p>
                 </div>
 
-                {/* FAST DIRECT CHANNELS (WHATSAPP & EMAIL) */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5">
+                {/* FAST DIRECT CHANNELS (WHATSAPP & EMAIL) - 2 COLS ON MOBILE */}
+                <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-2.5">
                   <a
                     href="https://wa.me/923348004300?text=Hi%20DevZore,%20I%20want%20to%20discuss%20a%20project."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-3 rounded-xl border border-emerald-500/25 bg-emerald-500/10 hover:bg-emerald-500/20 transition group"
+                    className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl border border-emerald-500/25 bg-emerald-500/10 hover:bg-emerald-500/20 transition group min-w-0"
                   >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500/20 text-[#25D366]">
-                        <MessageSquare size={17} />
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                      <div className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500/20 text-[#25D366]">
+                        <MessageSquare size={16} />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Instant WhatsApp</div>
-                        <div className="text-[12px] sm:text-[13px] font-bold text-white group-hover:text-emerald-300 transition truncate">+92 334 8004300</div>
+                        <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-emerald-400">WhatsApp</div>
+                        <div className="text-[11px] sm:text-[13px] font-bold text-white group-hover:text-emerald-300 transition truncate">+92 334 8004300</div>
                       </div>
                     </div>
                     <span className="text-[11px] font-semibold text-emerald-400 group-hover:translate-x-0.5 transition hidden sm:inline-flex items-center gap-1 shrink-0">
-                      Chat Now <ArrowRight size={12} />
+                      Chat <ArrowRight size={12} />
                     </span>
                   </a>
 
                   <a
                     href="mailto:hellodevzore@gmail.com"
-                    className="flex items-center justify-between p-3 rounded-xl border border-cyan-500/25 bg-cyan-500/10 hover:bg-cyan-500/20 transition group"
+                    className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl border border-cyan-500/25 bg-cyan-500/10 hover:bg-cyan-500/20 transition group min-w-0"
                   >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-cyan-500/20 text-[#1BBAC8]">
-                        <Mail size={17} />
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                      <div className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-lg bg-cyan-500/20 text-[#1BBAC8]">
+                        <Mail size={16} />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-cyan-400">Official Email</div>
-                        <div className="text-[12px] sm:text-[13px] font-bold text-white group-hover:text-cyan-300 transition truncate">hellodevzore@gmail.com</div>
+                        <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-cyan-400">Email</div>
+                        <div className="text-[11px] sm:text-[13px] font-bold text-white group-hover:text-cyan-300 transition truncate">hellodevzore@gmail.com</div>
                       </div>
                     </div>
                     <span className="text-[11px] font-semibold text-cyan-400 group-hover:translate-x-0.5 transition hidden sm:inline-flex items-center gap-1 shrink-0">
-                      Email Us <ArrowRight size={12} />
+                      Email <ArrowRight size={12} />
                     </span>
                   </a>
                 </div>
@@ -359,6 +361,17 @@ const Contact = () => {
                     </div>
                   </div>
 
+                  {/* WORKING WITH CLIENTS WORLDWIDE PROOF */}
+                  <div className="p-3.5 rounded-xl border border-cyan-500/20 bg-cyan-950/20">
+                    <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#1BBAC8] mb-1">
+                      <Globe size={13} className="text-[#1BBAC8]" />
+                      <span>Working With Clients Worldwide</span>
+                    </div>
+                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                      Remote delivery across time zones via WhatsApp, Slack, Google Meet & email with private staging links and progress demos. Active systems delivered for clients in Pakistan, Qatar and internationally.
+                    </p>
+                  </div>
+
                   <div className="flex items-center gap-4 pt-1 text-[11px] text-slate-400">
                     <span className="flex items-center gap-1.5"><Clock size={12} className="text-[#1bbac8]" /> &lt; 24h Response</span>
                     <span className="flex items-center gap-1.5"><Globe size={12} className="text-[#1bbac8]" /> PK, Qatar & Worldwide</span>
@@ -370,14 +383,14 @@ const Contact = () => {
               <div id="project-form" className="scroll-mt-20">
                 <form
                   onSubmit={handleSubmit}
-                  className="rounded-2xl border border-white/[0.1] bg-[#081d28]/95 p-4 sm:p-6 lg:p-7 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-md"
+                  className="rounded-2xl border border-white/[0.1] bg-[#081d28]/95 p-4 sm:p-5 lg:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-md"
                 >
-                  <div className="pb-3 sm:pb-4 border-b border-white/[0.08]">
+                  <div className="pb-2.5 sm:pb-3 border-b border-white/[0.08]">
                     <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">Project Inquiry Form</div>
-                    <h2 className="mt-0.5 text-[18px] sm:text-[22px] font-bold text-white tracking-tight">
+                    <h2 className="mt-0.5 text-[17px] sm:text-[20px] font-bold text-white tracking-tight">
                       Share Your Requirements
                     </h2>
-                    <p className="mt-0.5 text-[11px] sm:text-[12px] text-slate-400">
+                    <p className="mt-0.5 text-[11px] text-slate-400">
                       Fill out the fields below — we typically reply within a few hours.
                     </p>
                   </div>
@@ -592,7 +605,7 @@ const Contact = () => {
                   <Code2 size={20} />
                 </div>
                 <div>
-                  <div className="text-xl sm:text-2xl font-black text-white">14</div>
+                  <div className="text-xl sm:text-2xl font-black text-white">20</div>
                   <div className="text-[11px] font-bold text-[#1bbac8] uppercase tracking-wider">Core Services</div>
                   <div className="text-[10px] text-slate-400">Full-stack engineering & AI</div>
                 </div>
@@ -793,6 +806,78 @@ const Contact = () => {
         </section>
 
         {/* ============================================================ */}
+        {/* WHERE WE WORK: GLOBAL DELIVERY FOOTPRINT (ITEM 6) */}
+        {/* ============================================================ */}
+        <section
+          id="where-we-work"
+          aria-labelledby="where-we-work-heading"
+          className="py-14 sm:py-16 bg-[#061923] border-b border-white/[0.08]"
+          style={darkGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-4 sm:px-6">
+            <div className="max-w-[760px] mb-8 sm:mb-10">
+              <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">
+                <Globe size={14} className="text-[#1bbac8]" />
+                Global Presence & Delivery
+              </div>
+              <h2
+                id="where-we-work-heading"
+                className="mt-1 text-2xl sm:text-3xl font-bold tracking-tight text-white"
+              >
+                Where We Work — Engineering Hub & Worldwide Remote Delivery
+              </h2>
+              <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                DevZore operates an engineering hub in Pakistan with proven delivery across Pakistan, Qatar and international clients worldwide. Here is how our cross-border remote model works:
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-5">
+              <div className="p-6 rounded-2xl border border-white/[0.08] bg-[#071d29] hover:border-cyan-500/40 transition">
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-[#1bbac8] border border-cyan-500/20 flex items-center justify-center mb-4">
+                  <MapPin size={20} />
+                </div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">Engineering Hub</div>
+                <h3 className="mt-1 text-base font-bold text-white">Pakistan Base & Operations</h3>
+                <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                  Central architecture, core full-stack engineering, and product operations. Highly skilled engineers building robust web, mobile, SaaS, and AI systems with cost-efficient execution.
+                </p>
+                <div className="mt-4 pt-3 border-t border-white/[0.06] text-[11px] text-slate-400">
+                  <span className="font-semibold text-slate-200">Key hubs:</span> Lahore, Karachi, Rawalpindi / Islamabad
+                </div>
+              </div>
+
+              <div className="p-6 rounded-2xl border border-white/[0.08] bg-[#071d29] hover:border-cyan-500/40 transition">
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-[#1bbac8] border border-cyan-500/20 flex items-center justify-center mb-4">
+                  <Globe size={20} />
+                </div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">Regional Delivery</div>
+                <h3 className="mt-1 text-base font-bold text-white">Qatar & GCC Footprint</h3>
+                <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                  Delivered real production systems in Doha and the Gulf, including tourism booking systems, distribution management software, and consumer-facing food ordering platforms.
+                </p>
+                <div className="mt-4 pt-3 border-t border-white/[0.06] text-[11px] text-slate-400">
+                  <span className="font-semibold text-slate-200">Active regional systems:</span> Doha, GCC enterprise clients
+                </div>
+              </div>
+
+              <div className="p-6 rounded-2xl border border-white/[0.08] bg-[#071d29] hover:border-cyan-500/40 transition">
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-[#1bbac8] border border-cyan-500/20 flex items-center justify-center mb-4">
+                  <Clock size={20} />
+                </div>
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">Remote Operating Model</div>
+                <h3 className="mt-1 text-base font-bold text-white">Worldwide Collaboration</h3>
+                <p className="mt-2 text-xs text-slate-300 leading-relaxed">
+                  Async updates via Git, Slack and WhatsApp. Live staging preview links for every milestone. Daily or weekly progress calls scheduled across your local time zone with 100% code handover.
+                </p>
+                <div className="mt-4 pt-3 border-t border-white/[0.06] text-[11px] text-slate-400">
+                  <span className="font-semibold text-slate-200">Time zone overlap:</span> US, UK, Europe, GCC & Asia-Pacific
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
         {/* SECTION 3: FREQUENTLY ASKED QUESTIONS (ELEVATED DARK LUXURY) */}
         {/* ============================================================ */}
         <section aria-labelledby="faq-heading" className="py-14 sm:py-16 bg-[#05141c] border-b border-white/[0.08]">
@@ -859,7 +944,7 @@ const Contact = () => {
                 onClick={scrollTop}
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1bbac8] hover:text-white transition"
               >
-                <span>View all 14 services</span>
+                <span>View all 20 services</span>
                 <ArrowRight size={13} />
               </Link>
             </div>

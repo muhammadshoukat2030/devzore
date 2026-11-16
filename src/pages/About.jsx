@@ -31,6 +31,18 @@ import {
 } from "lucide-react";
 import SEO from "../components/SEO";
 import StatsStrip from "../components/StatsStrip";
+import { team } from "../data/team";
+
+const SectionLabel = ({ children, light = false }) => (
+  <div
+    className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+      light ? "text-[#28c5d4]" : "text-[#07899a]"
+    }`}
+  >
+    <span className="w-5 h-[2px] bg-[#0796A8]" />
+    {children}
+  </div>
+);
 
 const About = () => {
   const [activeFaq, setActiveFaq] = useState(null);
@@ -356,17 +368,6 @@ const About = () => {
       behavior: "smooth",
     });
   };
-
-  const SectionLabel = ({ children, light = false }) => (
-    <div
-      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
-        light ? "text-[#28c5d4]" : "text-[#07899a]"
-      }`}
-    >
-      <span className="w-5 h-[2px] bg-[#0796A8]" />
-      {children}
-    </div>
-  );
 
   // STRUCTURED DATA
 
@@ -811,6 +812,108 @@ const About = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* TEAM & LEADERSHIP SECTION (ITEM 4: MEET THE PEOPLE BEHIND DEVZORE) */}
+        {/* ============================================================ */}
+        <section
+          id="about-team"
+          aria-labelledby="about-team-heading"
+          className="py-12 md:py-16 bg-[#f8fafc] border-b border-slate-200"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-[800px] mb-8">
+              <SectionLabel>Our Team & Leadership</SectionLabel>
+              <h2
+                id="about-team-heading"
+                className="mt-3 text-[26px] sm:text-[32px] md:text-[36px] leading-[1.1] font-bold text-[#071923] tracking-[-0.03em]"
+              >
+                Meet the people behind DevZore.
+              </h2>
+              <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
+                Senior engineers and product builders directly accountable for every line of code deployed.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {team
+                .filter((member) => member.name && member.name.trim() && member.role && member.role.trim())
+                .map((member) => {
+                  const initials = member.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .slice(0, 2)
+                    .toUpperCase();
+
+                  return (
+                    <article
+                      key={member.name}
+                      className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-[#0796A8]/40 hover:-translate-y-0.5 transition-all flex flex-col justify-between"
+                    >
+                      <div>
+                        <div className="flex items-center gap-4 mb-4">
+                          {member.photoFile ? (
+                            <img
+                              src={member.photoFile}
+                              alt={member.name}
+                              className="w-16 h-16 rounded-full object-cover border-2 border-[#0796A8]/20"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#071923] to-[#0796A8] text-white flex items-center justify-center text-xl font-bold shadow-md border-2 border-white shrink-0">
+                              <span>{initials}</span>
+                            </div>
+                          )}
+                          <div>
+                            <h3 className="text-base font-bold text-[#071923]">
+                              {member.name}
+                            </h3>
+                            <p className="text-xs font-semibold text-[#0796A8]">
+                              {member.role}
+                            </p>
+                          </div>
+                        </div>
+
+                        {member.bio && (
+                          <p className="text-xs leading-relaxed text-slate-600">
+                            {member.bio}
+                          </p>
+                        )}
+                      </div>
+
+                      {(member.linkedin || member.github) && (
+                        <div className="mt-5 pt-3 border-t border-slate-100 flex items-center gap-3">
+                          {member.linkedin && (
+                            <a
+                              href={member.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[11px] font-semibold text-slate-600 hover:text-[#0796A8] transition flex items-center gap-1"
+                            >
+                              <span>LinkedIn</span>
+                              <ArrowUpRight size={11} />
+                            </a>
+                          )}
+                          {member.github && (
+                            <a
+                              href={member.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[11px] font-semibold text-slate-600 hover:text-[#0796A8] transition flex items-center gap-1"
+                            >
+                              <span>GitHub</span>
+                              <ArrowUpRight size={11} />
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </article>
+                  );
+                })}
             </div>
           </div>
         </section>

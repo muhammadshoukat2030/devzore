@@ -16,11 +16,15 @@ import { Helmet } from "react-helmet-async";
 // GLOBAL COMPONENTS
 // ======================================================
 
+import AnnouncementBar from "./components/AnnouncementBar";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import TrustBar from "./components/TrustBar";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import StatsStrip from "./components/StatsStrip";
+import ClientStrip from "./components/ClientStrip";
+import IndustriesWeServe from "./components/IndustriesWeServe";
+import FeaturedInsights from "./components/FeaturedInsights";
 
 // ======================================================
 // HOME SECTIONS - KEEP NORMAL IMPORTS
@@ -65,6 +69,13 @@ const StartupMVP = lazy(() => import("./pages/StartupMVP"));
 const CloudDeployment = lazy(() => import("./pages/CloudDeployment"));
 const SeoServices = lazy(() => import("./pages/SeoServices"));
 const DigitalMarketing = lazy(() => import("./pages/DigitalMarketing"));
+const AiIntegrationServices = lazy(() => import("./pages/AiIntegrationServices"));
+const InventoryManagementSystem = lazy(() => import("./pages/InventoryManagementSystem"));
+const DistributionManagementSystem = lazy(() => import("./pages/DistributionManagementSystem"));
+const InstallmentManagementSoftware = lazy(() => import("./pages/InstallmentManagementSoftware"));
+const TourBookingSystem = lazy(() => import("./pages/TourBookingSystem"));
+const FoodOrderingSystem = lazy(() => import("./pages/FoodOrderingSystem"));
+const NextjsDevelopment = lazy(() => import("./pages/NextjsDevelopment"));
 
 // ======================================================
 // PROJECT & CASE STUDY PAGES - LAZY LOADING
@@ -98,6 +109,8 @@ const Resources = lazy(() => import("./pages/Resources"));
 
 const OurProcess = lazy(() => import("./pages/OurProcess"));
 const Technologies = lazy(() => import("./pages/Technologies"));
+const Industries = lazy(() => import("./pages/Industries"));
+const Careers = lazy(() => import("./pages/Careers"));
 
 // ======================================================
 // LEGAL PAGES - LAZY LOADING
@@ -368,6 +381,64 @@ const seoData = {
       "digital marketing, digital marketing services, digital marketing company, digital marketing agency, online marketing, internet marketing, digital marketing solutions, social media marketing, content marketing, SEO marketing, search engine marketing, lead generation, online lead generation, business lead generation, digital advertising, brand marketing, performance marketing, marketing strategy, online business marketing, startup digital marketing, small business digital marketing",
   },
 
+  // EXPANDED SERVICES & NICHE PLATFORMS
+
+  "/ai-integration-services": {
+    title: "AI Integration & LLM Services | ChatGPT & API | DevZore",
+    description:
+      "Integrate LLM APIs, OpenAI ChatGPT, Claude, and Gemini into your existing web applications, CRMs, and business systems. Custom AI integration by DevZore.",
+    keywords:
+      "ai integration services, llm integration services, chatgpt integration services, openai api integration, claude integration, gemini api, rag knowledge base, ai chatbot integration",
+  },
+
+  "/inventory-management-system": {
+    title: "Inventory Management System Development Services | DevZore",
+    description:
+      "Custom inventory management system and POS software development. Multi-warehouse stock tracking, billing, ledgers, and reporting built with MERN stack.",
+    keywords:
+      "inventory management system development, custom inventory software, warehouse management system, POS software development, dealer credit ledger software",
+  },
+
+  "/distribution-management-system": {
+    title: "Distribution Management System Development | DevZore",
+    description:
+      "Custom distribution management software and ERP for wholesale logistics, field order booking, refrigerated fleet routing, and stock reconciliation.",
+    keywords:
+      "distribution management system, distribution ERP, wholesale distribution software, fleet route logistics, field salesman booking app",
+  },
+
+  "/installment-management-software": {
+    title: "Installment Management Software Development | DevZore",
+    description:
+      "Custom installment management software for consumer credit, monthly plan amortization, guarantor dossiers, investor shares, and overdue collections.",
+    keywords:
+      "installment management software, consumer credit software, installment sales system, loan amortization software, recovery management system",
+  },
+
+  "/tour-booking-system": {
+    title: "Tour Booking System & Safari Software Development | DevZore",
+    description:
+      "Custom tour booking systems, safari reservation portals, excursion catalogs, live calendars, and payment gateways for tour operators and agencies.",
+    keywords:
+      "tour booking system, safari booking software, excursion reservation platform, travel agency software, direct tour booking portal",
+  },
+
+  "/food-ordering-system": {
+    title: "Online Food Ordering System Development | DevZore",
+    description:
+      "Custom online food ordering system development for restaurants, cafes, and chains. Commission-free visual menus, kitchen displays, and instant checkout.",
+    keywords:
+      "online food ordering system development, custom restaurant ordering software, commission-free food ordering, kitchen display system, digital menu platform",
+  },
+
+  "/nextjs-development": {
+    title: "Next.js Development Services | React SSR & Web Apps | DevZore",
+    description:
+      "Custom Next.js development services. High-performance SSR, Server Components, App Router web apps, SaaS platforms, and SEO-optimized web development.",
+    keywords:
+      "nextjs development services, next.js developers, react server components, nextjs app router, nextjs saas development, server side rendering",
+  },
+
   // PROJECTS & CASE STUDIES
 
   "/projects": {
@@ -534,6 +605,24 @@ const seoData = {
 
     keywords:
       "DevZore terms and conditions, DevZore terms of service, software development terms",
+  },
+
+  // INDUSTRIES
+  "/industries": {
+    title: "Industries We Serve | Specialized Software Engineering | DevZore",
+    description:
+      "Explore the sectors DevZore builds software for: manufacturing, food & wholesale distribution, tourism & hospitality, and consumer installment finance.",
+    keywords:
+      "industries we serve, manufacturing software, food ordering platform, tourism booking engine, installment software development, distribution ERP",
+  },
+
+  // CAREERS
+  "/careers": {
+    title: "Careers at DevZore | Engineering & Technology Roles",
+    description:
+      "Explore engineering careers at DevZore. Build modern web applications, SaaS platforms, and operational systems for clients in Pakistan, Qatar and worldwide.",
+    keywords:
+      "careers at devzore, software engineering jobs, remote developer jobs pakistan, react jobs, nodejs jobs, full stack developer careers",
   },
 };
 
@@ -844,9 +933,12 @@ function HomePage() {
   return (
     <>
       <Hero />
+      <FeaturedInsights />
       <TrustBar />
       <StatsStrip />
+      <ClientStrip />
       <Services />
+      <IndustriesWeServe />
       <Solutions />
       <Projects />
       <WhyUs />
@@ -871,11 +963,14 @@ function AppContent() {
     <div className="min-h-screen font-sans flex flex-col bg-white text-[#071923] selection:bg-cyan-100">
 
       {/* ================================================
-          PUBLIC NAVBAR
+          PUBLIC NAVBAR & ANNOUNCEMENT
           ================================================ */}
 
       {!isAdminRoute && (
-        <Navbar />
+        <>
+          <AnnouncementBar />
+          <Navbar />
+        </>
       )}
 
       {/* ================================================
@@ -973,6 +1068,45 @@ function AppContent() {
             />
 
             {/* ============================================
+                EXPANDED SERVICES & NICHE PLATFORMS
+                ============================================ */}
+
+            <Route
+              path="/ai-integration-services"
+              element={<AiIntegrationServices />}
+            />
+
+            <Route
+              path="/inventory-management-system"
+              element={<InventoryManagementSystem />}
+            />
+
+            <Route
+              path="/distribution-management-system"
+              element={<DistributionManagementSystem />}
+            />
+
+            <Route
+              path="/installment-management-software"
+              element={<InstallmentManagementSoftware />}
+            />
+
+            <Route
+              path="/tour-booking-system"
+              element={<TourBookingSystem />}
+            />
+
+            <Route
+              path="/food-ordering-system"
+              element={<FoodOrderingSystem />}
+            />
+
+            <Route
+              path="/nextjs-development"
+              element={<NextjsDevelopment />}
+            />
+
+            {/* ============================================
                 SOLUTIONS
                 ============================================ */}
 
@@ -1037,6 +1171,16 @@ function AppContent() {
             <Route
               path="/technologies"
               element={<Technologies />}
+            />
+
+            <Route
+              path="/industries"
+              element={<Industries />}
+            />
+
+            <Route
+              path="/careers"
+              element={<Careers />}
             />
 
             {/* ============================================

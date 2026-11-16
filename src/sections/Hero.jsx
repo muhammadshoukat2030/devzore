@@ -31,7 +31,7 @@ const slides = [
       "Build practical AI solutions and modern software for your business.",
 
     description:
-      "Engineering custom web development, mobile apps, SaaS platforms and intelligent AI integrations designed around real business workflows.",
+      "DevZore is a Pakistan-based software development company delivering web, mobile, SaaS and AI solutions to clients worldwide.",
 
     buttonText:
       "Explore AI Development",

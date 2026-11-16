@@ -5,7 +5,7 @@ import { CheckCircle2, ShieldCheck, Globe, Code2, Headphones } from "lucide-reac
  * Factual Stats Strip for DevZore
  * Uses ONLY verified business facts:
  * - 120+ Projects Completed
- * - 14 Core Services
+ * - 20 Core Services
  * - Clients in Pakistan & Qatar (Remote Delivery)
  * - 100% source code handover
  * - Post-Launch Support
@@ -20,7 +20,7 @@ export default function StatsStrip({ className = "" }) {
     },
     {
       icon: <CheckCircle2 size={20} className="text-[#1BBAC8]" />,
-      value: "14",
+      value: "20",
       label: "Core Services",
       detail: "Full-stack engineering & AI",
     },

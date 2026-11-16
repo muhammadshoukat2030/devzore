@@ -398,7 +398,7 @@ const GenerativeAIDevelopment = () => {
     {
       q: "Can Generative AI be added to an existing application?",
       a:
-        "Yes. Existing React, Next.js, Node.js, MERN stack and other suitable web applications can be reviewed for AI integration. Implementation depends on the existing architecture and the AI feature you want to introduce.",
+        "Yes. Existing React, Next.js, Node.js, MERN stack and other web applications can be enhanced with AI features without a full rewrite. For dedicated integrations, see our specialized AI Integration & LLM Services (devzore.com/ai-integration-services).",
     },
     {
       q: "How much does Generative AI application development cost?",
@@ -837,6 +837,29 @@ ${formData.message}`
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* DIFFERENTIATION BANNER: NEW AI PRODUCTS VS AI INTEGRATION */}
+        <section className="bg-[#05141c] border-b border-white/[0.08] py-3.5">
+          <div className="max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs sm:text-sm">
+              <div className="text-slate-300">
+                <strong className="text-white">Already have an existing web application or software system?</strong>{" "}
+                If you need AI features, LLM APIs, or chatbots plugged into an existing product without rebuilding it, see our specialized{" "}
+                <Link to="/ai-integration-services" className="text-[#1bbac8] underline font-semibold hover:text-white transition">
+                  AI Integration & LLM Services
+                </Link>
+                .
+              </div>
+              <Link
+                to="/ai-integration-services"
+                className="inline-flex items-center gap-1 text-[#1bbac8] font-bold text-xs shrink-0 hover:underline"
+              >
+                <span>AI Integration</span>
+                <ArrowRight size={13} />
+              </Link>
             </div>
           </div>
         </section>

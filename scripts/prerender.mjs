@@ -1,6 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { announcement } from "../src/data/announcement.js";
+import { clients } from "../src/data/clients.js";
+import { team } from "../src/data/team.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -283,26 +286,63 @@ const staticPages = {
   "/": {
     title: "Software & Web Development Company for Businesses | DevZore",
     description:
-      "DevZore builds professional business websites, web applications, SaaS products, mobile apps and custom software for startups and businesses worldwide.",
+      "DevZore is a Pakistan-based software development company delivering web, mobile, SaaS and AI solutions to clients worldwide.",
     h1: "Software Development & Web Engineering for Modern Businesses",
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
         <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
           <div><strong>120+</strong> Projects Completed</div>
-          <div><strong>14</strong> Core Services</div>
-          <div><strong>Pakistan & Qatar</strong> Active Client Base</div>
+          <div><strong>20</strong> Core Services</div>
+          <div><strong>Worldwide Delivery</strong> Active PK & Qatar Track Record</div>
           <div><strong>100%</strong> Source Code Handover</div>
           <div><strong>Post-Launch Support</strong> Included</div>
         </div>
         <h2>Custom Web, Mobile & SaaS Engineering</h2>
-        <p>DevZore provides engineering-first software development services. Founded by Muhammad Shoukat, DevZore delivers full-stack web applications, SaaS platforms, mobile apps, and custom operational business software for clients in Pakistan, Qatar, and internationally.</p>
+        <p>DevZore is a Pakistan-based software development company delivering web, mobile, SaaS and AI solutions to clients worldwide. Founded by Muhammad Shoukat, DevZore delivers full-stack web applications, SaaS platforms, mobile apps, and custom operational business software for clients in Pakistan, Qatar, and internationally.</p>
+
+        <div style="margin: 30px 0; padding: 25px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
+          <h3>Featured Insights</h3>
+          <p>Technical engineering guides and architecture breakdowns by DevZore:</p>
+          <ul>
+            <li><a href="/blog/saas-architecture-guide-startups">SaaS Architecture Guide for Startups 2026</a></li>
+            <li><a href="/blog/how-to-plan-a-saas-mvp-in-2026">How to Plan a SaaS MVP in 2026</a></li>
+            <li><a href="/blog/how-to-integrate-ai-into-web-application">How to Integrate AI into a Web Application</a></li>
+          </ul>
+        </div>
+
+        <div style="margin: 30px 0; padding: 25px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
+          <h3>Systems Engineered for Real Businesses</h3>
+          <p>Production software systems engineered for verified clients across retail, logistics, tourism, and credit operations:</p>
+          <ul>
+            <li><a href="/projects/weldon-paints">Weldon Paints</a> — Manufacturing & Retail</li>
+            <li><a href="/projects/sarab-express">Sarab Express</a> — Food & Beverage</li>
+            <li><a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> — Travel & Hospitality</li>
+            <li><a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> — Travel & Tourism</li>
+            <li><a href="/projects/frostyops">FrostyOps</a> — Wholesale Distribution</li>
+            <li><a href="/projects/installment-management">Installment Management</a> — Consumer Credit & Finance</li>
+          </ul>
+        </div>
+
         <div>
           <h3>Our Core Capabilities</h3>
           <ul>
             <li><strong>MERN Stack Development:</strong> High-performance full-stack applications with MongoDB, Express.js, React, and Node.js.</li>
+            <li><strong>AI Integration & LLM Services:</strong> Connecting OpenAI ChatGPT, Claude, and Gemini APIs into web applications.</li>
+            <li><strong>Next.js Development:</strong> Fast server-rendered React applications with optimal Core Web Vitals.</li>
             <li><strong>SaaS Product Engineering:</strong> Multi-tenant SaaS architectures, subscription billing, and interactive dashboards.</li>
             <li><strong>Custom Web & Mobile Apps:</strong> Responsive React web applications and cross-platform mobile apps.</li>
             <li><strong>Cloud & Deployment:</strong> Robust hosting on Vercel, Cloudflare, and MongoDB Atlas with automated CI/CD.</li>
+          </ul>
+        </div>
+
+        <div style="margin: 30px 0;">
+          <h3>Industries We Serve</h3>
+          <p>Targeted software engineering across industries with proven production deliveries:</p>
+          <ul>
+            <li><strong>Manufacturing & Retail:</strong> Multi-warehouse stock control, formula cataloging, and POS billing. Proof: <a href="/projects/weldon-paints">Weldon Paints Case Study</a> | <a href="/inventory-management-system">Inventory Management System</a></li>
+            <li><strong>Food, Beverage & Distribution:</strong> Direct food ordering, Kitchen Display Systems (KDS), and wholesale fleet route ERPs. Proof: <a href="/projects/sarab-express">Sarab Express</a> & <a href="/projects/frostyops">FrostyOps</a> | <a href="/food-ordering-system">Food Ordering System</a> & <a href="/distribution-management-system">Distribution Management System</a></li>
+            <li><strong>Tourism & Hospitality:</strong> High-conversion booking engines, slot availability, and WhatsApp reservation pathways. Proof: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> | <a href="/tour-booking-system">Tour & Safari Booking System</a></li>
+            <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI schedules, and recovery ledgers. Proof: <a href="/projects/installment-management">Installment Management Case Study</a> | <a href="/installment-management-software">Installment Management Software</a></li>
           </ul>
         </div>
       </section>
@@ -311,19 +351,24 @@ const staticPages = {
   "/about": {
     title: "About DevZore | Software & Web Development Company",
     description:
-      "Learn about DevZore, a software development agency founded by Muhammad Shoukat, building web applications, SaaS platforms, and mobile apps worldwide.",
+      "DevZore is a Pakistan-based software development company delivering web, mobile, SaaS and AI solutions to clients worldwide. Founded by Muhammad Shoukat.",
     h1: "About DevZore: Engineering-First Software Development",
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
         <h2>Founder-Led Software Agency</h2>
-        <p>DevZore was founded by Muhammad Shoukat to provide engineering-first web, mobile, and SaaS software development to businesses without bureaucratic bloat, inflated retainer models, or junior outsourcing.</p>
-        <p>Headquartered with remote delivery across Pakistan, Qatar, and internationally, DevZore has engineered active business systems including Weldon Paints inventory management, FrostyOps logistics ERP, and tourism booking portals for Desert Safari Qatar and Gulf Dunes Tourism.</p>
+        <p>DevZore is a Pakistan-based software development company delivering web, mobile, SaaS and AI solutions to clients worldwide. Founded by Muhammad Shoukat, we provide engineering-first software development without bureaucratic bloat, inflated retainer models, or junior outsourcing.</p>
+        <p>Headquartered in Pakistan with remote delivery across time zones to clients in Pakistan, Qatar, and internationally, DevZore has engineered active business systems including Weldon Paints inventory management, FrostyOps logistics ERP, and tourism booking portals for Desert Safari Qatar and Gulf Dunes Tourism.</p>
         <h3>Areas We Serve</h3>
         <ul>
+          <li><strong>Worldwide Remote:</strong> Full-stack engineering for startups and modern companies across global time zones.</li>
           <li><strong>Pakistan:</strong> Retail, inventory, and financial management systems.</li>
           <li><strong>Qatar & GCC:</strong> Tourism, safari, and excursion booking web portals.</li>
-          <li><strong>Worldwide Remote:</strong> Full-stack engineering for startups and modern companies.</li>
         </ul>
+        <div style="margin-top: 30px; padding: 25px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
+          <h3>Our Team & Leadership</h3>
+          <p><strong>Muhammad Shoukat</strong> — Founder & Lead Software Engineer</p>
+          <p>Full-stack software engineer and cloud architect specializing in React, Node.js, Express, MongoDB, and modern web systems. Founded DevZore to deliver direct engineering excellence to clients worldwide.</p>
+        </div>
       </section>
     `,
   },
@@ -336,12 +381,12 @@ const staticPages = {
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
         <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
           <div><strong>120+</strong> Projects Completed</div>
-          <div><strong>14</strong> Core Services</div>
+          <div><strong>20</strong> Core Services</div>
           <div><strong>&lt; 24h</strong> Response Guarantee</div>
           <div><strong>Post-Launch Support</strong> Included</div>
         </div>
         <h2>Discuss Your Requirements With Our Engineering Team</h2>
-        <p>Reach out directly to discuss your web application, SaaS product, mobile app, or custom software requirements. We respond to all project inquiries within 24 hours.</p>
+        <p>DevZore is a Pakistan-based software development company delivering web, mobile, SaaS and AI solutions to clients worldwide. Reach out directly to discuss your web application, SaaS product, mobile app, or custom software requirements. We respond to all project inquiries within 24 hours.</p>
         <ul>
           <li><strong>WhatsApp Direct:</strong> +92 334 8004300</li>
           <li><strong>Email:</strong> hellodevzore@gmail.com</li>
@@ -354,34 +399,58 @@ const staticPages = {
           <li><a href="/projects/desert-safari-qatar">Desert Safari Qatar — Tourism & Excursion Booking Platform</a></li>
           <li><a href="/projects/sarab-express">Sarab Express — Digital Ordering & Delivery Platform</a></li>
         </ul>
+
+        <div style="margin-top: 30px; padding: 25px 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
+          <h3>Where We Work — Engineering Hub & Worldwide Delivery</h3>
+          <p><strong>Pakistan Engineering Base:</strong> Central software architecture, core full-stack engineering, and product operations in Pakistan.</p>
+          <p><strong>Qatar & Regional Footprint:</strong> Delivered production platforms in Doha, Qatar including excursion booking systems and restaurant platforms.</p>
+          <p><strong>Worldwide Remote Operating Model:</strong> Async Git updates, live preview staging links, and milestone reviews across US, UK, Europe, GCC, and global time zones with 100% source code handover.</p>
+        </div>
       </section>
     `,
   },
   "/allservices": {
     title: "Software Development Services | Web, Mobile & SaaS | DevZore",
     description:
-      "Explore DevZore services: web development, mobile apps, generative AI, e-commerce, MERN stack, React, SaaS, cloud deployment, UI/UX, SEO and support.",
+      "Explore DevZore services: web development, mobile apps, generative AI, AI integration, Next.js, e-commerce, MERN stack, SaaS, management systems, and SEO.",
     h1: "Software Development Services & Engineering Capabilities",
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
-        <h2>14 Specialized Software Engineering Services</h2>
-        <p>DevZore provides 14 end-to-end software development services tailored for startups and scaling businesses:</p>
+        <h2>20 Specialized Software Engineering Services</h2>
+        <p>DevZore provides 20 end-to-end software development services tailored for startups and scaling businesses:</p>
         <ol>
           <li>Generative AI Development</li>
+          <li>AI Integration & LLM Services</li>
           <li>Custom Web Development</li>
+          <li>Next.js Development</li>
           <li>Mobile App Development (iOS & Android)</li>
           <li>E-Commerce Platform Development</li>
           <li>Backend & REST API Development</li>
           <li>MERN Stack Development</li>
           <li>SaaS Product Development</li>
           <li>React Development</li>
-          <li>UI/UX Design & Prototyping</li>
+          <li>Custom Software Solutions</li>
+          <li>Management Systems</li>
+          <li>Inventory Management Systems</li>
+          <li>Distribution Management Systems (DMS)</li>
+          <li>Installment Management Software</li>
+          <li>Tour & Safari Booking Systems</li>
+          <li>Online Food Ordering Systems</li>
           <li>Startup MVP Development</li>
           <li>Cloud & Deployment Services</li>
-          <li>Website Maintenance & Technical Support</li>
           <li>SEO Services & Search Visibility</li>
-          <li>Digital Marketing & Growth</li>
         </ol>
+
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.08);">
+          <h3>Industries We Serve</h3>
+          <p>We build production-grade software engineered for specific sectors with verified client systems:</p>
+          <ul>
+            <li><strong>Manufacturing & Retail:</strong> Inventory control, formula cataloging, POS counter billing. Proof: <a href="/projects/weldon-paints">Weldon Paints</a> | <a href="/inventory-management-system">Inventory Management System</a></li>
+            <li><strong>Food, Beverage & Distribution:</strong> Digital food ordering, Kitchen Display Systems, route dispatching. Proof: <a href="/projects/sarab-express">Sarab Express</a> & <a href="/projects/frostyops">FrostyOps</a> | <a href="/food-ordering-system">Food Ordering System</a> & <a href="/distribution-management-system">Distribution Management System</a></li>
+            <li><strong>Tourism & Hospitality:</strong> Safari booking engines, slot availability, multi-currency checkout. Proof: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> | <a href="/tour-booking-system">Tour & Safari Booking System</a></li>
+            <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI repayment schedules, recovery ledgers. Proof: <a href="/projects/installment-management">Installment Management</a> | <a href="/installment-management-software">Installment Management Software</a></li>
+          </ul>
+        </div>
       </section>
     `,
   },
@@ -685,6 +754,237 @@ const staticPages = {
     h1: "DevZore Terms and Conditions",
     content: "<section style='padding:40px 20px; max-width:1200px; margin:0 auto;'><p>Terms of service governing DevZore software engineering agreements and client deliverables.</p></section>",
   },
+  "/ai-integration-services": {
+    title: "AI Integration Services | LLM & ChatGPT Web Integration | DevZore",
+    description:
+      "Production AI integration services for web apps, SaaS and enterprise software. Connect OpenAI, Claude, Gemini, custom LLMs, vector search and AI workflows.",
+    h1: "AI Integration & LLM Development Services",
+    answerBlock:
+      "DevZore delivers production AI integration services that embed Large Language Models (LLMs), ChatGPT APIs, Claude, Gemini, vector databases, and autonomous AI agents directly into existing web applications, mobile platforms, and enterprise workflows. We engineer secure, observable AI features including RAG pipelines, automated customer support assistants, document intelligence, and multi-step reasoning agents that run reliably without disrupting existing production architecture.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Enterprise-Grade LLM Integration & AI Workflow Automation</h2>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>What are AI integration services?</h3>
+          <p>AI integration services connect modern AI models—such as OpenAI GPT-4o, Anthropic Claude 3.5, Google Gemini, and open-source models (Llama 3, Mistral)—into production software. Rather than building models from scratch, integration engineers build the connective tissue: API orchestration, retrieval-augmented generation (RAG) vector pipelines, structured output validation, token cost tracking, rate-limiting, and privacy safeguards.</p>
+        </div>
+        <h3>Core AI Integration Capabilities</h3>
+        <ul>
+          <li><strong>LLM API & Provider Orchestration:</strong> Seamless integrations with OpenAI, Anthropic Claude, Google Gemini, and DeepSeek with fallback routing.</li>
+          <li><strong>Retrieval-Augmented Generation (RAG):</strong> Vector database embeddings using Pinecone, pgvector, and ChromaDB for private business documents.</li>
+          <li><strong>Autonomous AI Agents & Function Calling:</strong> Multi-step workflows where LLMs execute database queries, send emails, or trigger ERP tasks.</li>
+          <li><strong>Contextual AI Assistants:</strong> Conversational copilots integrated into React web apps and dashboards.</li>
+        </ul>
+        <p>Explore our related <a href="/generative-ai-development">Generative AI Development</a> capabilities or read our technical guide on <a href="/blog/how-to-integrate-ai-into-web-application">How to Integrate AI into a Web Application</a>.</p>
+      </section>
+    `,
+  },
+  "/inventory-management-system": {
+    title: "Inventory Management System Development | Custom POS & Stock Software | DevZore",
+    description:
+      "Custom inventory management system development for manufacturers, distributors and retail chains. Real-time stock tracking, multi-warehouse and POS sync.",
+    h1: "Custom Inventory Management System Development",
+    answerBlock:
+      "DevZore engineers custom inventory management systems tailored to manufacturers, retail chains, and wholesale distributors who have outgrown generic off-the-shelf software. Our platforms deliver real-time multi-warehouse stock tracking, automated reorder triggers, batch and barcode management, point-of-sale (POS) synchronization, formula and recipe cataloging, and end-to-end ledger audit trails engineered to eliminate stockouts and operational shrinkage.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Custom Multi-Warehouse Stock Control & POS Software Engineering</h2>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>Why build a custom inventory management system?</h3>
+          <p>Off-the-shelf ERP and inventory SaaS tools impose monthly per-seat licenses, rigid workflows, and slow database queries. Custom inventory software engineered by DevZore is built specifically around your warehouse topology, batch numbering, manufacturing formulas, and sales channels—giving you 100% source code ownership and zero subscription bloat.</p>
+        </div>
+        <h3>Key System Capabilities</h3>
+        <ul>
+          <li><strong>Real-Time Warehouse Stock Tracking:</strong> Multi-location inventory visibility with low-stock alerts and safety stock triggers.</li>
+          <li><strong>Barcode & Batch Tracking:</strong> High-speed SKU barcode scanning, lot traceability, and expiry date management.</li>
+          <li><strong>Integrated Point-of-Sale (POS):</strong> Fast counter billing with thermal receipt printing, cash drawer management, and offline cache support.</li>
+          <li><strong>Recipe & Manufacturing Formula Cataloging:</strong> Bill of materials (BOM) management and automated raw material depletion upon finished good production.</li>
+        </ul>
+        <h3>Verified Production Case Study: Weldon Paints</h3>
+        <p>DevZore engineered a unified inventory and POS platform for Weldon Paints, consolidating chemical formula cataloging, wholesale dispatching, and counter sales into a centralized MERN system. Read the <a href="/projects/weldon-paints">Weldon Paints Case Study</a>.</p>
+      </section>
+    `,
+  },
+  "/distribution-management-system": {
+    title: "Distribution Management System Development | Logistics & Route ERP | DevZore",
+    description:
+      "Custom distribution management system (DMS) development for wholesale distributors, fleets and FMCG brands. Route dispatching, driver apps and order tracking.",
+    h1: "Custom Distribution Management System (DMS) Development",
+    answerBlock:
+      "A Distribution Management System (DMS) engineered by DevZore automates the entire supply chain workflow from central warehouse dispatch to last-mile retailer delivery. We build custom DMS platforms featuring real-time vehicle route dispatching, mobile driver delivery manifests, proof-of-delivery capture, van sales billing, multi-tier pricing ledgers, and live distributor stock tracking built to handle high-velocity order distribution.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>High-Velocity Wholesale Logistics & Route Dispatch Software</h2>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>What is a Distribution Management System (DMS)?</h3>
+          <p>A Distribution Management System is specialized operational software that manages order collection from retail channels, warehouse picking, route planning, fleet vehicle loading, driver proof-of-delivery, and credit invoice reconciliation across wholesale and FMCG supply chains.</p>
+        </div>
+        <h3>System Architecture & Capabilities</h3>
+        <ul>
+          <li><strong>Intelligent Route Dispatching:</strong> Daily route optimization grouping orders by delivery territory, vehicle payload, and drop urgency.</li>
+          <li><strong>Mobile Delivery Manifests:</strong> Driver-facing responsive interfaces for digital order sign-off, return logging, and live GPS drop verification.</li>
+          <li><strong>Multi-Tier Wholesale Pricing:</strong> Customer-tier discount rules, credit limit enforcement, and automated payment recovery reminders.</li>
+          <li><strong>Van Sales & Secondary Billing:</strong> On-route cash invoice generation, stock reconciliation, and central ERP sync.</li>
+        </ul>
+        <h3>Verified Production Case Study: FrostyOps</h3>
+        <p>DevZore developed FrostyOps, an end-to-end route logistics and distribution ERP tailored for cold-chain wholesale delivery. Inspect the <a href="/projects/frostyops">FrostyOps Case Study</a>.</p>
+      </section>
+    `,
+  },
+  "/installment-management-software": {
+    title: "Installment Management Software Development | Credit & EMI System | DevZore",
+    description:
+      "Custom installment management software for electronics, appliance, vehicle and consumer credit retailers. Automated EMI schedules, recovery and penalty tracking.",
+    h1: "Custom Installment Management Software Development",
+    answerBlock:
+      "DevZore builds custom installment management software for retailers, consumer durable sellers, and private finance firms offering credit sales and equated monthly installment (EMI) plans. Our systems automate flexible repayment schedule generation, automated overdue penalty calculations, guarantor and collateral verification archives, field collection officer ledger sync, and SMS payment reminder triggers.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Automated Equated Monthly Installment (EMI) & Credit Ledger Software</h2>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>Why do installment retailers need dedicated credit software?</h3>
+          <p>Managing consumer credit sales on spreadsheets or basic accounting software leads to missed overdue penalties, lost recovery dates, unverified guarantors, and uncollected capital. Dedicated installment management software enforces underwriting discipline and tracks every rupee/dollar of customer debt in real time.</p>
+        </div>
+        <h3>Core Features & Underwriting Tools</h3>
+        <ul>
+          <li><strong>Dynamic Repayment Schedule Generators:</strong> Support for daily, weekly, and monthly EMI plans with customizable markup and down payment rules.</li>
+          <li><strong>Automated Overdue Penalty Calculations:</strong> Configurable grace periods and late-fee accruals calculated transparently on delinquent accounts.</li>
+          <li><strong>Guarantor & Collateral Verification Vault:</strong> Digital storage of national IDs, secondary guarantor contact details, and promissory notes.</li>
+          <li><strong>Field Recovery Sync:</strong> Fast mobile collection receipts with instant balance updates and SMS customer receipt confirmations.</li>
+        </ul>
+        <h3>Verified Production Case Study: Installment Management Platform</h3>
+        <p>Inspect our delivered <a href="/projects/installment-management">Installment Management Case Study</a> to see how we structured consumer credit workflows.</p>
+      </section>
+    `,
+  },
+  "/tour-booking-system": {
+    title: "Tour Booking System & Safari Booking Software Development | DevZore",
+    description:
+      "Custom tour booking system and safari reservation software development. Multi-currency checkout, dynamic calendar pricing and WhatsApp booking paths.",
+    h1: "Custom Tour Booking & Safari Reservation System Development",
+    answerBlock:
+      "DevZore builds custom tour booking systems and safari reservation platforms for tour operators, destination management companies (DMCs), and excursion agencies across the GCC and internationally. Our booking engines feature dynamic excursion package builders, real-time vehicle and guide slot availability, multi-currency payment gateway integrations, instant WhatsApp booking conversions, and automated voucher dispatching engineered for high-season traffic.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>High-Converting Travel, Excursion & Safari Booking Platforms</h2>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>What makes a successful tour and safari booking platform?</h3>
+          <p>International tourists require lightning-fast mobile loading, instant availability checks, transparent pricing in multiple currencies, and effortless communication via WhatsApp. DevZore creates custom booking platforms that maximize direct bookings and eliminate high third-party OTA commissions (e.g. Viator, GetYourGuide).</p>
+        </div>
+        <h3>Booking Engine Architecture & Features</h3>
+        <ul>
+          <li><strong>Dynamic Calendar & Slot Availability:</strong> Morning, afternoon, and sunset safari time-slot allocations with vehicle capacity limits.</li>
+          <li><strong>Instant WhatsApp Conversion Pathways:</strong> One-tap WhatsApp chat links pre-populated with package name, guest count, and selected dates.</li>
+          <li><strong>Multi-Currency & Regional Gateways:</strong> Support for QAR, AED, USD, EUR, and local card processors with automated currency conversion.</li>
+          <li><strong>Automated PDF Voucher Dispatch:</strong> Instant reservation confirmations with QR verification, meeting points, and driver contact instructions.</li>
+        </ul>
+        <h3>Verified Production Case Studies: Qatar Tourism</h3>
+        <p>Explore our work delivering live booking systems: <a href="/projects/desert-safari-qatar">Desert Safari Qatar Case Study</a> and the <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism Case Study</a>.</p>
+      </section>
+    `,
+  },
+  "/food-ordering-system": {
+    title: "Online Food Ordering System Development | Multi-Branch Delivery | DevZore",
+    description:
+      "Custom online food ordering system development for restaurants, dark kitchens and franchises. Commission-free ordering, live carts and kitchen dispatch.",
+    h1: "Custom Online Food Ordering & Restaurant Delivery Platform Development",
+    answerBlock:
+      "DevZore develops commission-free online food ordering systems for restaurants, cloud kitchen networks, and multi-branch food franchises seeking direct digital ownership of their customer base. Our platforms feature ultra-fast digital menu navigators, custom item addon builders, live order tracking, Kitchen Display System (KDS) integration, driver dispatch dashboards, and instant WhatsApp ordering channels.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Commission-Free Restaurant Ordering & Cloud Kitchen Dispatch Platforms</h2>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>Why launch a direct online food ordering system?</h3>
+          <p>Third-party food aggregators (Talabat, Foodpanda, UberEats) charge 25% to 35% commission on every order while withholding customer data. A custom food ordering system engineered by DevZore allows food brands to take direct orders, retain 100% of profit margins, build direct customer loyalty, and capture reorder revenue.</p>
+        </div>
+        <h3>Platform Capabilities & Kitchen Workflow</h3>
+        <ul>
+          <li><strong>Interactive Digital Menu & Customizers:</strong> Meal variations, crust selections, extra toppings, and spice-level modifiers with real-time price updates.</li>
+          <li><strong>Multi-Branch Delivery Routing:</strong> Customer address detection with automatic dispatch to the nearest operating branch or dark kitchen.</li>
+          <li><strong>Kitchen Display System (KDS) Routing:</strong> Digital order tickets routed instantly to kitchen display monitors or thermal ticket printers.</li>
+          <li><strong>Direct WhatsApp & Online Checkout:</strong> Dual checkout paths allowing customers to pay online or submit orders directly to the branch WhatsApp line.</li>
+        </ul>
+        <h3>Verified Production Case Study: Sarab Express</h3>
+        <p>Inspect how DevZore built the direct digital food ordering platform for Sarab Express: <a href="/projects/sarab-express">Sarab Express Case Study</a>.</p>
+      </section>
+    `,
+  },
+  "/nextjs-development": {
+    title: "Next.js Development Services | Full-Stack React & SSR Apps | DevZore",
+    description:
+      "Production Next.js development services for startups and high-growth companies. App Router, Server Components, SSR, static generation and SEO-optimized apps.",
+    h1: "Next.js Development Services",
+    answerBlock:
+      "DevZore provides production Next.js development services for businesses and SaaS founders who demand blazing-fast web applications, seamless server-side rendering (SSR), and top-tier Google search visibility. Utilizing Next.js App Router, React Server Components (RSC), incremental static regeneration (ISR), and Edge runtime deployment, we engineer high-performance web products that achieve near-perfect Core Web Vitals and scale effortlessly.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Enterprise-Grade Server-Side Rendered (SSR) React Applications</h2>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>When should you choose Next.js over standard React SPA?</h3>
+          <p>Standard client-side React applications render JavaScript in the browser, which can delay initial page paints and hinder search engine indexing for content-heavy sites. Next.js solves this by rendering HTML on the server or pre-rendering at build time, delivering sub-second Largest Contentful Paint (LCP) and indexable HTML for search engines.</p>
+        </div>
+        <h3>Next.js Architecture & Engineering Expertise</h3>
+        <ul>
+          <li><strong>App Router & React Server Components:</strong> Zero client-side JavaScript bundle for static content blocks with streaming data loading.</li>
+          <li><strong>Hybrid Rendering (SSR, SSG, ISR):</strong> Optimal rendering strategies chosen per route for speed and freshness.</li>
+          <li><strong>API Routes & Server Actions:</strong> Type-safe backend endpoints and server mutations without managing separate backend infrastructure.</li>
+          <li><strong>Core Web Vitals Optimization:</strong> Automatic image optimization, font preloading, and dynamic script chunking.</li>
+        </ul>
+        <p>Compare Next.js with other stacks in our engineering guide: <a href="/blog/mern-stack-vs-nextjs-business-guide">MERN Stack vs Next.js: Complete Business Guide</a>, or explore our <a href="/reactdevelopment">React Development Services</a> and <a href="/mern-stack-development">MERN Stack Development</a>.</p>
+      </section>
+    `,
+  },
+  "/industries": {
+    title: "Industries We Serve | Enterprise Software Engineering | DevZore",
+    description:
+      "Custom software engineering across manufacturing & retail, food & distribution, tourism & hospitality, and consumer finance. Proven production case studies.",
+    h1: "Industries We Serve: Custom Software Engineering for Real Businesses",
+    answerBlock:
+      "DevZore engineers mission-critical web applications, management systems, and digital platforms across four primary industry sectors: Manufacturing & Retail, Food Beverage & Distribution, Tourism & Hospitality, and Consumer Finance & Installment Sales. Every solution is purpose-built to solve real operational bottlenecks with 100% source code ownership.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Industry-Specific Software Solutions</h2>
+        <p>We build production web, mobile, SaaS, and operational platforms tailored to the exact regulatory, transactional, and workflow demands of key vertical industries.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 30px 0;">
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px;">
+            <h3>Manufacturing & Retail</h3>
+            <p>Warehouse inventory control, retail POS, formula cataloging, and dealer accounts. Verified case study: <a href="/projects/weldon-paints">Weldon Paints</a>.</p>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px;">
+            <h3>Food, Beverage & Distribution</h3>
+            <p>Direct ordering platforms and cold-chain route dispatch systems. Verified case studies: <a href="/projects/sarab-express">Sarab Express</a> & <a href="/projects/frostyops">FrostyOps</a>.</p>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px;">
+            <h3>Tourism & Hospitality</h3>
+            <p>Online excursion booking engines, multi-currency checkout, and driver manifests. Verified case studies: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes</a>.</p>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px;">
+            <h3>Finance & Installment Sales</h3>
+            <p>Underwriting ledgers, flexible EMI schedules, and guarantor records. Verified case study: <a href="/projects/installment-management">Installment Management</a>.</p>
+          </div>
+        </div>
+      </section>
+    `,
+  },
+  "/careers": {
+    title: "Careers at DevZore | Engineering & Technical Opportunities | DevZore",
+    description:
+      "Explore engineering careers and open technical roles at DevZore. Direct founder-led engineering culture, remote collaboration, and modern tech stacks.",
+    h1: "Careers at DevZore: Build Production Software with Senior Engineers",
+    answerBlock:
+      "DevZore is a founder-led software development company building production web, mobile, SaaS, and AI systems for clients in Pakistan, Qatar, and internationally. We maintain high standards of code craftsmanship, transparent milestone delivery, and direct engineer-to-client collaboration.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Join Our Engineering Team</h2>
+        <p>We work with senior engineers, passionate problem solvers, and detail-oriented developers who take pride in shipping robust, tested software.</p>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 24px; border-radius: 12px; margin: 30px 0;">
+          <h3>Current Openings</h3>
+          <p>No open positions right now. We hire deliberately and maintain a senior-led engineering team.</p>
+          <p>Interested in future opportunities? Send your CV and GitHub portfolio to <a href="mailto:hellodevzore@gmail.com">hellodevzore@gmail.com</a>.</p>
+        </div>
+      </section>
+    `,
+  },
 };
 
 /**
@@ -735,8 +1035,12 @@ function buildPageHtml(baseTemplate, route, meta, bodyHtml, schemaJson = null) {
   // Inject into </head>
   html = html.replace("</head>", `${headInject}\n</head>`);
 
+  const announcementHtml = announcement?.enabled
+    ? `<aside class="announcement-bar" style="background:#05141c; color:#fff; border-bottom:1px solid rgba(7,150,168,0.2); padding:8px 16px; font-size:12px; text-align:center;"><span>${announcement.text}</span>${announcement.linkUrl ? ` <a href="${announcement.linkUrl}" style="color:#1bbac8; font-weight:bold; margin-left:8px;">${announcement.linkText || "Explore Services"} →</a>` : ""}</aside>`
+    : "";
+
   // Inject pre-rendered body into <div id="root">
-  const rootReplacement = `<div id="root">${bodyHtml}</div>`;
+  const rootReplacement = `<div id="root">${announcementHtml}${bodyHtml}</div>`;
   html = html.replace(/<div id="root"><\/div>/i, rootReplacement);
 
   return html;
@@ -815,6 +1119,15 @@ async function run() {
         </div>
       </header>
       <main style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; margin-bottom: 30px;">
+          <h3>Project Profile at a Glance</h3>
+          <p><strong>Client:</strong> ${project.client || project.title}</p>
+          <p><strong>Industry:</strong> ${project.industry}</p>
+          <p><strong>Location:</strong> ${project.location}</p>
+          <p><strong>Services Delivered:</strong> ${project.serviceName}</p>
+          <p><strong>Tech Stack:</strong> ${project.technologies.join(" • ")}</p>
+          <p><strong>Delivery Model:</strong> ${project.deliveryType || "Full-source handover"}</p>
+        </div>
         <h2>The Challenge</h2>
         <p>${project.problem}</p>
         ${project.challenges ? `<ul>${project.challenges.map((c) => `<li>${c}</li>`).join("\n")}</ul>` : ""}
