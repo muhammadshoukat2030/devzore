@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import PricingBlock from "../components/PricingBlock";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -1441,6 +1442,9 @@ ${formData.message}`
             )}
           </div>
         </section>
+
+        {/* PRICING & SCOPE BLOCK */}
+        <PricingBlock serviceName="SaaS Product Development" />
 
         {/* PROJECT FORM */}
 

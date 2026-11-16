@@ -107,6 +107,10 @@ const Footer = () => {
       path: "/digital-marketing",
     },
     {
+      label: "Cloud & Deployment",
+      path: "/cloud-deployment",
+    },
+    {
       label: "Maintenance & Support",
       path: "/maintenance",
     },
@@ -161,8 +165,8 @@ const Footer = () => {
       path: "/technologies",
     },
     {
-      label: "Our Projects",
-      path: "/#projects",
+      label: "Case Studies & Portfolio",
+      path: "/projects",
     },
     {
       label: "Contact Us",
@@ -176,20 +180,24 @@ const Footer = () => {
 
   const resources = [
     {
-      label: "Resources",
+      label: "Case Studies",
+      path: "/projects",
+    },
+    {
+      label: "Resources Hub",
       path: "/resources",
     },
     {
-      label: "Blog",
+      label: "DevZore Journal (Blog)",
       path: "/blog",
     },
     {
       label: "Development Guides",
-      path: "/development-guides",
+      path: "/guides",
     },
     {
       label: "FAQs",
-      path: "/faq",
+      path: "/faqs",
     },
   ];
 

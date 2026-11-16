@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -24,7 +23,14 @@ import {
   Target,
   Users,
   Zap,
+  MapPin,
+  Award,
+  Phone,
+  Mail,
+  UserCheck,
 } from "lucide-react";
+import SEO from "../components/SEO";
+import StatsStrip from "../components/StatsStrip";
 
 const About = () => {
   const [activeFaq, setActiveFaq] = useState(null);
@@ -364,6 +370,32 @@ const About = () => {
 
   // STRUCTURED DATA
 
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "DevZore",
+    url: "https://devzore.com",
+    logo: "https://devzore.com/logo.png",
+    founder: {
+      "@type": "Person",
+      name: "Muhammad Shoukat",
+      jobTitle: "Founder & Lead Software Engineer",
+      url: "https://devzore.com/about",
+    },
+    areaServed: [
+      { "@type": "Country", name: "Pakistan" },
+      { "@type": "Country", name: "Qatar" },
+      { "@type": "Place", name: "Worldwide Remote" },
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+92 334 8004300",
+      contactType: "customer service",
+      email: "hellodevzore@gmail.com",
+      availableLanguage: ["English", "Urdu"],
+    },
+  };
+
   const aboutSchema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
@@ -371,7 +403,7 @@ const About = () => {
     url: "https://devzore.com/about",
     name: "About DevZore",
     description:
-      "Learn about DevZore, a software development agency building web applications, mobile applications, SaaS products, backend systems and custom digital solutions.",
+      "Learn about DevZore, a software development agency founded by Muhammad Shoukat, building web applications, mobile applications, SaaS products, backend systems and custom digital solutions.",
     isPartOf: {
       "@id": "https://devzore.com/#website",
     },
@@ -414,19 +446,12 @@ const About = () => {
 
   return (
     <>
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(aboutSchema)}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
+      <SEO
+        title="About DevZore | Software & Web Development Company"
+        description="Learn about DevZore, a software development agency founded by Muhammad Shoukat, building web applications, SaaS platforms, and mobile apps worldwide."
+        canonical="https://devzore.com/about"
+        jsonLd={[aboutSchema, orgSchema, breadcrumbSchema, faqSchema]}
+      />
 
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
@@ -623,6 +648,9 @@ const About = () => {
           </div>
         </section>
 
+        {/* FACTUAL STATS STRIP */}
+        <StatsStrip className="relative z-10" />
+
         {/* STORY */}
 
         <section
@@ -690,6 +718,98 @@ const About = () => {
                     </div>
                   </article>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            FOUNDER & LEADERSHIP
+        ===================================================== */}
+
+        <section
+          id="about-founder"
+          aria-labelledby="about-founder-heading"
+          className="py-12 md:py-16 bg-white border-y border-slate-200"
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-7 sm:p-10 lg:p-12 shadow-sm">
+              <div className="grid lg:grid-cols-[0.8fr_1.2fr] gap-8 lg:gap-14 items-center">
+                {/* Founder Visual Card */}
+                <div className="flex flex-col items-center text-center p-6 rounded-2xl bg-white border border-slate-200/80 shadow-inner">
+                  {/* Photo / Avatar Slot:
+                      [OWNER INPUT NEEDED: founder/team photo - currently displaying clean technical monogram avatar]
+                  */}
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-tr from-[#071923] to-[#0796A8] text-white flex items-center justify-center text-3xl sm:text-4xl font-black shadow-lg border-4 border-white mb-4">
+                    <span>MS</span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-[#071923]">
+                    Muhammad Shoukat
+                  </h3>
+                  <p className="text-xs font-semibold text-[#0796A8] uppercase tracking-wider mt-1">
+                    Founder & Lead Software Engineer
+                  </p>
+                  <p className="text-xs text-slate-500 mt-2 max-w-xs">
+                    Software engineer specializing in React, Node.js, Express, MongoDB & Cloud Architecture.
+                  </p>
+
+                  <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap justify-center gap-1.5 w-full">
+                    {["React", "Node.js", "MongoDB", "Express", "Next.js", "Vercel"].map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Founder Story & Philosophy */}
+                <div>
+                  <SectionLabel>Founder-Led Engineering</SectionLabel>
+
+                  <h2
+                    id="about-founder-heading"
+                    className="mt-3 text-[26px] sm:text-[32px] md:text-[36px] leading-[1.1] font-bold text-[#071923] tracking-[-0.03em]"
+                  >
+                    Engineering-first software development without agency overhead.
+                  </h2>
+
+                  <div className="mt-4 space-y-3.5 text-[14px] leading-relaxed text-slate-700">
+                    <p>
+                      DevZore was established by Muhammad Shoukat with a clear objective: provide businesses and startups with direct, high-caliber software engineering without bureaucratic bloat, inflated retainer models, or junior outsourcing.
+                    </p>
+                    <p>
+                      Every project is architected with production standards in mind. We prioritize modular React component architecture, performant RESTful APIs, properly indexed MongoDB database structures, and high-availability cloud deployments on Vercel and Cloudflare.
+                    </p>
+                    <p className="text-slate-600 font-medium">
+                      "Our commitment is simple: complete transparency, direct technical communication, milestones delivered on schedule, and 100% intellectual property ownership transferred to your company upon launch."
+                    </p>
+                  </div>
+
+                  <div className="mt-6 flex flex-wrap items-center gap-4">
+                    <Link
+                      to="/contact"
+                      onClick={scrollTop}
+                      className="inline-flex items-center gap-2 rounded-xl bg-[#071923] hover:bg-[#0796A8] px-5 py-3 text-xs font-bold text-white transition-colors"
+                    >
+                      <span>Discuss Your Project With Muhammad</span>
+                      <ArrowRight size={13} />
+                    </Link>
+
+                    <a
+                      href="https://wa.me/923348004300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl border border-slate-300 hover:border-emerald-500 hover:text-emerald-700 px-4 py-3 text-xs font-semibold text-slate-700 transition-colors"
+                    >
+                      <Phone size={14} className="text-emerald-600" />
+                      <span>WhatsApp Direct: +92 334 8004300</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -796,6 +916,84 @@ const About = () => {
                     </p>
                   </article>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            AREAS WE SERVE (LOCAL & INTERNATIONAL SEO)
+        ===================================================== */}
+
+        <section
+          id="areas-we-serve"
+          aria-labelledby="areas-we-serve-heading"
+          className="py-12 md:py-16 bg-[#f7f9fa] border-y border-slate-200"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="max-w-3xl mb-10">
+              <SectionLabel>Service Coverage</SectionLabel>
+
+              <h2
+                id="areas-we-serve-heading"
+                className="mt-3 text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold text-[#071923]"
+              >
+                Areas we serve: Pakistan, Qatar & remote delivery worldwide.
+              </h2>
+
+              <p className="mt-3 text-[14px] leading-6 text-slate-600">
+                DevZore operates as a modern remote-first software development agency. We engineer digital products for regional enterprises and international startups with structured delivery workflows.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Pakistan */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 hover:border-[#0796A8]/50 hover:shadow-md transition-all">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-700 flex items-center justify-center mb-4">
+                  <MapPin size={20} />
+                </div>
+                <h3 className="text-lg font-bold text-[#071923] mb-2">
+                  Pakistan
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  Delivering custom enterprise systems, inventory management platforms, retail billing software, and web applications for businesses nationwide.
+                </p>
+                <div className="text-[11px] font-semibold text-[#0796A8]">
+                  Verified Projects: Weldon Paints, FrostyOps, Installment Management
+                </div>
+              </div>
+
+              {/* Qatar */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 hover:border-[#0796A8]/50 hover:shadow-md transition-all">
+                <div className="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-100 text-[#0796A8] flex items-center justify-center mb-4">
+                  <MapPin size={20} />
+                </div>
+                <h3 className="text-lg font-bold text-[#071923] mb-2">
+                  Qatar & GCC
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  Engineering high-performance tourism portals, excursion booking platforms, and digital platforms tailored for clients across Doha and the Gulf.
+                </p>
+                <div className="text-[11px] font-semibold text-[#0796A8]">
+                  Verified Projects: Desert Safari Qatar, Gulf Dunes Tourism
+                </div>
+              </div>
+
+              {/* International Remote */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 hover:border-[#0796A8]/50 hover:shadow-md transition-all">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 text-blue-700 flex items-center justify-center mb-4">
+                  <Globe2 size={20} />
+                </div>
+                <h3 className="text-lg font-bold text-[#071923] mb-2">
+                  Worldwide Remote
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  Collaborating with founders and companies across the UK, US, Europe, and globally through async Git workflows, milestone sprints, and video reviews.
+                </p>
+                <div className="text-[11px] font-semibold text-[#0796A8]">
+                  Remote Model: Git Handover • Milestone Deliveries • Direct Support
+                </div>
               </div>
             </div>
           </div>

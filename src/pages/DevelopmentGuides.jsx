@@ -863,6 +863,8 @@ const DevelopmentGuides = () => {
                 ["MERN Stack", "/mern-stack-development"],
                 ["SEO Services", "/seo-services"],
                 ["DevZore Blog", "/blog"],
+                ["Frequently Asked Questions", "/faqs"],
+                ["Resources Hub", "/resources"],
                 ["Contact DevZore", "/contact"],
               ].map(([label, path]) => (
                 <Link

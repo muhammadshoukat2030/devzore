@@ -1,0 +1,75 @@
+# DevZore
+
+> DevZore is a software development company founded by Muhammad Shoukat, building web applications, mobile apps, SaaS products, generative AI solutions, and custom business management software. DevZore operates remotely, serving clients in Pakistan, Qatar, and worldwide.
+
+## Company Information
+- Name: DevZore
+- Founder: Muhammad Shoukat
+- Website: https://devzore.com
+- Email: hellodevzore@gmail.com
+- WhatsApp: +92 334 8004300
+- Business Model: Remote software engineering & digital product delivery
+- Geographic Service Areas: Pakistan, Qatar, and Worldwide (Remote)
+
+## Core Capabilities & Services (14 Services)
+1. Generative AI Development (https://devzore.com/generative-ai-development): AI chatbots, LLM integration, intelligent agents, RAG knowledge bases, and business automation.
+2. Custom Web Development (https://devzore.com/web-development): Fast business websites, web portals, custom web applications, and interactive digital experiences.
+3. Mobile App Development (https://devzore.com/mobile-apps): Cross-platform iOS and Android mobile applications built for modern digital products.
+4. E-Commerce Development (https://devzore.com/ecommerce): Custom online stores, product catalogs, shopping carts, payment gateways, and inventory integration.
+5. Backend & API Development (https://devzore.com/backend-api): Node.js and Express REST APIs, database architecture, authentication, and secure integrations.
+6. MERN Stack Development (https://devzore.com/mern-stack-development): Full-stack web applications using MongoDB, Express.js, React.js, and Node.js.
+7. SaaS Product Development (https://devzore.com/saas-product-development): Multi-tenant cloud SaaS platforms, subscription billing, customer dashboards, and APIs.
+8. UI/UX Design (https://devzore.com/ui-ux-design): User experience research, wireframing, Figma design systems, interactive prototypes, and UI handoff.
+9. Startup MVP Development (https://devzore.com/startup-mvp): Rapid MVP development and prototyping for startup founders to validate ideas and launch fast.
+10. Cloud & Deployment (https://devzore.com/cloud-deployment): Production hosting on Vercel, Cloudflare CDN/DNS, MongoDB Atlas, environment configuration, and CI/CD pipelines.
+11. Maintenance & Support (https://devzore.com/maintenance): Ongoing website and application maintenance, bug fixes, security updates, monitoring, and performance optimization.
+12. React Development (https://devzore.com/reactdevelopment): Component-driven frontend engineering, single-page applications, and interactive web dashboards.
+13. SEO Services (https://devzore.com/seo-services): Technical SEO, structured data JSON-LD, crawlability, on-page optimization, and Core Web Vitals speed.
+14. Digital Marketing (https://devzore.com/digital-marketing): Growth strategies, search visibility, content marketing, lead generation, and performance analytics.
+
+## Software Solutions
+- Startup Solutions (https://devzore.com/startup-solutions): Fast MVPs, early-stage SaaS architecture, and iterative product engineering.
+- Business Solutions (https://devzore.com/business-solutions): Internal software, business dashboards, operational workflows, and automation.
+- E-Commerce Solutions (https://devzore.com/ecommerce-solutions): Scalable e-commerce infrastructure, payment processing, and catalog management.
+- SaaS Solutions (https://devzore.com/saas-solutions): Cloud platforms, subscription billing, role-based access control, and API infrastructure.
+- Management Systems (https://devzore.com/management-systems): Tailored business management tools for inventory, sales, customer accounts, and reporting.
+- Custom Software Solutions (https://devzore.com/custom-software-solutions): Specialized digital platforms engineered around proprietary operational workflows.
+
+## Real Projects & Case Studies
+- Weldon Paints (https://devzore.com/projects/weldon-paints): Full-stack inventory and business management system engineered with React, Node.js, Express, and MongoDB.
+- Sarab Express (https://devzore.com/projects/sarab-express): High-speed food ordering and digital menu platform built with the MERN stack.
+- Desert Safari Qatar (https://devzore.com/projects/desert-safari-qatar): Qatar tourism, safari excursion, and booking portal built with React, Node.js, MongoDB, and SEO.
+- Gulf Dunes Tourism (https://devzore.com/projects/gulf-dunes-tourism): Qatar tourism platform and travel booking portal built with React, Node.js, MongoDB, and SEO.
+- FrostyOps (https://devzore.com/projects/frostyops): Comprehensive ice cream distribution and sales management system managing products, warehouse inventory, field salesmen, supplier invoicing, expenses, and operational analytics (MERN stack).
+- Installment Management (https://devzore.com/projects/installment-management): Financial sales and installment tracking system managing customer installment schedules, collections, investor accounts, payment records, and reporting (MERN stack).
+
+## Technology Stack
+- Frontend: React, Next.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Vite
+- Backend & APIs: Node.js, Express.js, REST APIs
+- Databases: MongoDB, Mongoose, MongoDB Atlas
+- Mobile: React Native
+- Cloud, Hosting & Infrastructure: Vercel, Cloudflare, Git, GitHub, NPM
+
+## Development Process
+1. Planning: Requirements analysis, technical scoping, timeline estimates, and database architecture.
+2. UI/UX Design: Low-fidelity wireframes, user interface design in Figma, and interactive prototypes.
+3. Engineering: Modern, maintainable full-stack development following clean code and security standards.
+4. Launch & Support: Production deployment, 100% source code handover, and post-launch maintenance.
+
+## Key Differentiators
+- 120+ Projects Completed across Pakistan, Qatar, and international markets.
+- Direct communication with founder and engineering lead (Muhammad Shoukat).
+- 100% full source code handover with zero vendor lock-in.
+- Transparent project scoping with fixed or milestone-based delivery.
+- Reliable post-launch warranty, maintenance, and technical support.
+
+## Key Links
+- Homepage: https://devzore.com/
+- About DevZore: https://devzore.com/about
+- All Services: https://devzore.com/allservices
+- Projects & Case Studies: https://devzore.com/projects
+- Technologies: https://devzore.com/technologies
+- Our Process: https://devzore.com/our-process
+- DevZore Journal / Blog: https://devzore.com/blog
+- FAQs: https://devzore.com/faqs
+- Contact: https://devzore.com/contact

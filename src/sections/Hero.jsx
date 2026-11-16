@@ -12,6 +12,7 @@ import {
   Code2,
   Smartphone,
   Layers3,
+  MessageSquare,
 } from "lucide-react";
 
 import aidevelopment from "../assets/ai-development.webp";
@@ -24,13 +25,13 @@ import webdevelopment from "../assets/web-development-bg.webp";
 
 const slides = [
   {
-    eyebrow: "GENERATIVE AI DEVELOPMENT",
+    eyebrow: "GENERATIVE AI & FULL-STACK ENGINEERING",
 
     title:
-      "Build practical AI solutions for modern businesses.",
+      "Build practical AI solutions and modern software for your business.",
 
     description:
-      "AI assistants, RAG systems and intelligent integrations designed around real business workflows.",
+      "Engineering custom web development, mobile apps, SaaS platforms and intelligent AI integrations designed around real business workflows.",
 
     buttonText:
       "Explore AI Development",
@@ -687,6 +688,40 @@ const Hero = () => {
                 sm:gap-3
               "
             >
+              {/* PRIMARY CTA: GET A FREE CONSULTATION ON WHATSAPP */}
+              <a
+                href="https://wa.me/923348004300?text=Hi%20DevZore,%20I%20would%20like%20to%20get%20a%20free%20consultation%20on%20my%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  group
+                  inline-flex
+                  min-h-[38px]
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-lg
+                  bg-[#25D366]
+                  hover:bg-[#20ba5a]
+                  px-4
+                  sm:px-5
+                  py-2
+                  sm:py-2.5
+                  text-[9px]
+                  min-[380px]:text-[9.5px]
+                  sm:text-[11.5px]
+                  font-semibold
+                  text-[#06101a]
+                  shadow-[0_10px_35px_rgba(37,211,102,0.25)]
+                  transition-all
+                  duration-200
+                  hover:-translate-y-0.5
+                "
+              >
+                <MessageSquare size={13} className="text-[#06101a]" />
+                Get a Free Consultation on WhatsApp
+              </a>
+
               {/* START PROJECT */}
 
               <Link

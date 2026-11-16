@@ -6,7 +6,15 @@ import {
   Quote,
 } from "lucide-react";
 
-const Testimonials = () => {
+// ======================================================
+// REVIEWS-READY SLOT (WORKSTREAM F5 & H2)
+// [OWNER INPUT NEEDED: Collect real client reviews from Google Business Profile or verified clients before enabling]
+// Set SHOW_TESTIMONIALS = true once real client names, companies, and quotes are added.
+// Never display placeholder 'Client Name' to visitors.
+// ======================================================
+const SHOW_TESTIMONIALS = false;
+
+const TestimonialsContent = () => {
   const [page, setPage] = useState(0);
   const [paused, setPaused] = useState(false);
   const timerRef = useRef(null);
@@ -653,6 +661,11 @@ const Testimonials = () => {
       </div>
     </section>
   );
+};
+
+const Testimonials = () => {
+  if (!SHOW_TESTIMONIALS) return null;
+  return <TestimonialsContent />;
 };
 
 export default Testimonials;

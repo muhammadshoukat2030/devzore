@@ -1,8 +1,37 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/blog/how-much-does-a-website-cost-in-2026-complete-website-development-pricing-guide-1790762380934",
+      "destination": "/blog/how-much-does-a-website-cost-in-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-a-professional-website-can-help-your-business-get-more-customers-1789029617095",
+      "destination": "/blog/how-a-professional-website-helps-your-business-get-more-customers",
+      "permanent": true
+    },
+    {
+      "source": "/blog/why-your-business-needs-a-professional-website-in-2026-1790435181732",
+      "destination": "/blog/why-your-business-needs-a-professional-website-in-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/why-every-business-needs-a-professional-website-in-2026-1790507048277",
+      "destination": "/blog/why-your-business-needs-a-professional-website-in-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/why-every-business-needs-a-professional-website-in-2026-1790598175467",
+      "destination": "/blog/why-your-business-needs-a-professional-website-in-2026",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/sitemap.xml",
-      "destination": "https://devzore-backend.vercel.app/api/sitemap"
+      "destination": "/sitemap.xml"
     },
     {
       "source": "/(.*)",

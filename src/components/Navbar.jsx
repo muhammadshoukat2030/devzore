@@ -79,6 +79,10 @@ const Navbar = () => {
       path: "/seo-services",
     },
     {
+      name: "Cloud & Deployment",
+      path: "/cloud-deployment",
+    },
+    {
       name: "Digital Marketing",
       path: "/digital-marketing",
     },
@@ -129,6 +133,10 @@ const Navbar = () => {
 
   const resources = [
     {
+      name: "Case Studies & Work",
+      path: "/projects",
+    },
+    {
       name: "Blog",
       path: "/blog",
     },
@@ -154,6 +162,10 @@ const Navbar = () => {
     {
       name: "About DevZore",
       path: "/about",
+    },
+    {
+      name: "Case Studies & Projects",
+      path: "/projects",
     },
     {
       name: "Our Process",
@@ -895,34 +907,32 @@ const Navbar = () => {
                 width="w-[500px]"
               />
 
-              {/* PORTFOLIO */}
+              {/* CASE STUDIES */}
 
               <li>
                 <Link
-                  to="/#projects"
+                  to="/projects"
                   onClick={() =>
-                    handleLinkClick("/#projects")
+                    handleLinkClick("/projects")
                   }
                   className={navLinkClass(
-                    location.pathname === "/" &&
-                      location.hash === "#projects"
+                    location.pathname.startsWith("/projects")
                   )}
                 >
-                  Portfolio
+                  Case Studies
 
-                  {location.pathname === "/" &&
-                    location.hash === "#projects" && (
-                      <span
-                        className="
-                          absolute
-                          bottom-0
-                          left-2.5
-                          right-2.5
-                          h-[2px]
-                          bg-[#19C3C8]
-                        "
-                      />
-                    )}
+                  {location.pathname.startsWith("/projects") && (
+                    <span
+                      className="
+                        absolute
+                        bottom-0
+                        left-2.5
+                        right-2.5
+                        h-[2px]
+                        bg-[#19C3C8]
+                      "
+                    />
+                  )}
                 </Link>
               </li>
 
@@ -1167,14 +1177,14 @@ const Navbar = () => {
             items={solutions}
           />
 
-          {/* PORTFOLIO */}
+          {/* CASE STUDIES */}
 
           <Link
-            to="/#projects"
+            to="/projects"
             onClick={() =>
-              handleLinkClick("/#projects")
+              handleLinkClick("/projects")
             }
-            className="
+            className={`
               flex
               items-center
               justify-between
@@ -1182,15 +1192,23 @@ const Navbar = () => {
               border-b
               border-white/[0.08]
               text-[14px]
-              font-medium
-              text-white
-            "
+              font-semibold
+              ${
+                location.pathname.startsWith("/projects")
+                  ? "text-[#19C3C8]"
+                  : "text-white"
+              }
+            `}
           >
-            Portfolio
+            <span className="flex items-center gap-2">
+              <span>Case Studies</span>
+              <span className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-[#19C3C8] text-[9px] font-bold">
+                6 Real Systems
+              </span>
+            </span>
 
-            <ArrowUpRight
+            <ArrowRight
               size={13}
-              className="text-[#91A5AE]"
             />
           </Link>
 

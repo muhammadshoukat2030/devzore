@@ -21,6 +21,8 @@ import {
 } from "lucide-react";
 
 import postService from "../services/postService";
+import fallbackPosts from "../data/blogPosts.json";
+import SEO from "../components/SEO";
 
 // ======================================================
 // CONFIG
@@ -530,12 +532,12 @@ const BlogPost = () => {
   const [
     allPosts,
     setAllPosts,
-  ] = useState([]);
+  ] = useState(() => (Array.isArray(fallbackPosts) && fallbackPosts.length > 0 ? fallbackPosts : []));
 
   const [
     loading,
     setLoading,
-  ] = useState(true);
+  ] = useState(() => !(Array.isArray(fallbackPosts) && fallbackPosts.length > 0));
 
   const [
     error,
@@ -974,136 +976,13 @@ const BlogPost = () => {
           SEO
       ================================================= */}
 
-      <Helmet>
-        <html lang="en" />
-
-        <title>
-          {BLOG_TITLE}
-        </title>
-
-        <meta
-          name="description"
-          content={
-            BLOG_DESCRIPTION
-          }
-        />
-
-        <link
-          rel="canonical"
-          href={`${BASE_URL}/blog`}
-        />
-
-        <meta
-          name="robots"
-          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-        />
-
-        <meta
-          name="googlebot"
-          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-        />
-
-        {/* OPEN GRAPH */}
-
-        <meta
-          property="og:type"
-          content="website"
-        />
-
-        <meta
-          property="og:site_name"
-          content="DevZore"
-        />
-
-        <meta
-          property="og:title"
-          content={
-            BLOG_TITLE
-          }
-        />
-
-        <meta
-          property="og:description"
-          content={
-            BLOG_DESCRIPTION
-          }
-        />
-
-        <meta
-          property="og:url"
-          content={`${BASE_URL}/blog`}
-        />
-
-        <meta
-          property="og:locale"
-          content="en_US"
-        />
-
-        {seoImage && (
-          <meta
-            property="og:image"
-            content={
-              seoImage
-            }
-          />
-        )}
-
-        {/* TWITTER */}
-
-        <meta
-          name="twitter:card"
-          content={
-            seoImage
-              ? "summary_large_image"
-              : "summary"
-          }
-        />
-
-        <meta
-          name="twitter:title"
-          content={
-            BLOG_TITLE
-          }
-        />
-
-        <meta
-          name="twitter:description"
-          content={
-            BLOG_DESCRIPTION
-          }
-        />
-
-        {seoImage && (
-          <meta
-            name="twitter:image"
-            content={
-              seoImage
-            }
-          />
-        )}
-
-        {/* STRUCTURED DATA */}
-
-        <script type="application/ld+json">
-          {JSON.stringify(
-            blogSchema
-          )}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify(
-            breadcrumbSchema
-          )}
-        </script>
-
-        {itemListSchema && (
-          <script type="application/ld+json">
-            {JSON.stringify(
-              itemListSchema
-            )}
-          </script>
-        )}
-      </Helmet>
+      <SEO
+        title="DevZore Blog | Web, SaaS & Software Development Insights"
+        description="Read DevZore articles on web engineering, SaaS product development, MERN stack, mobile apps, and technical SEO for modern businesses."
+        canonical="/blog"
+        ogImage={seoImage}
+        schema={[blogSchema, breadcrumbSchema, itemListSchema].filter(Boolean)}
+      />
 
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"

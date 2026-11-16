@@ -36,6 +36,8 @@ import {
 
 import postService from "../services/postService";
 import commentService from "../services/commentService";
+import SEO from "../components/SEO";
+import fallbackPosts from "../data/blogPosts.json";
 
 // ======================================================
 // CONFIG
@@ -964,32 +966,40 @@ const BlogDetails = () => {
   // POST
   // ====================================================
 
-  const [post, setPost] =
-    useState(null);
+  const cleanSlug = useMemo(() => {
+    return String(slug || "").toLowerCase().trim();
+  }, [slug]);
 
-  const [
-    loading,
-    setLoading,
-  ] = useState(true);
+  const fallbackPost = useMemo(() => {
+    if (!cleanSlug) return null;
+    return fallbackPosts.find((p) => p.slug === cleanSlug) || null;
+  }, [cleanSlug]);
 
-  const [
-    error,
-    setError,
-  ] = useState("");
+  const [post, setPost] = useState(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.__INITIAL_POST__ &&
+      window.__INITIAL_POST__.slug === cleanSlug
+    ) {
+      return window.__INITIAL_POST__;
+    }
+    return fallbackPost;
+  });
+
+  const [loading, setLoading] = useState(() => !post && !fallbackPost);
+
+  const [error, setError] = useState("");
 
   // ====================================================
   // RELATED
   // ====================================================
 
-  const [
-    relatedPosts,
-    setRelatedPosts,
-  ] = useState([]);
+  const [relatedPosts, setRelatedPosts] = useState(() => {
+    if (!cleanSlug) return [];
+    return fallbackPosts.filter((p) => p.slug !== cleanSlug).slice(0, 4);
+  });
 
-  const [
-    relatedLoading,
-    setRelatedLoading,
-  ] = useState(false);
+  const [relatedLoading, setRelatedLoading] = useState(false);
 
   // ====================================================
   // COMMENTS
@@ -1814,17 +1824,12 @@ const BlogDetails = () => {
   ) {
     return (
       <>
-        <Helmet>
-          <title>
-            Article Not Found |
-            DevZore
-          </title>
-
-          <meta
-            name="robots"
-            content="noindex, follow"
-          />
-        </Helmet>
+        <SEO
+          title="Article Not Found | DevZore"
+          description="The requested article could not be found on DevZore Journal. Explore our latest software engineering and product development articles."
+          canonical="/blog"
+          robots="noindex, follow"
+        />
 
         <div
           className="min-h-screen flex items-center justify-center bg-[#04111a] text-white px-6"
@@ -1838,9 +1843,9 @@ const BlogDetails = () => {
               DevZore Journal
             </span>
 
-            <h1 className="mt-4 text-[36px] sm:text-[48px] leading-[1.05] font-semibold tracking-[-0.04em]">
+            <h2 className="mt-4 text-[36px] sm:text-[48px] leading-[1.05] font-semibold tracking-[-0.04em]">
               Article Not Found
-            </h1>
+            </h2>
 
             <p className="mt-4 text-[13px] leading-6 text-slate-400">
               {error ||
@@ -1936,14 +1941,15 @@ const BlogDetails = () => {
     }),
 
     author: {
-      "@type":
-        "Organization",
-
-      name:
-        "DevZore Engineering Team",
-
-      url:
-        `${BASE_URL}/`,
+      "@type": "Person",
+      name: "Muhammad Shoukat",
+      jobTitle: "Founder & Lead Software Engineer",
+      url: `${BASE_URL}/about`,
+      worksFor: {
+        "@type": "Organization",
+        name: "DevZore",
+        url: `${BASE_URL}/`,
+      },
     },
 
     publisher: {
@@ -2044,188 +2050,18 @@ const BlogDetails = () => {
           SEO
       ================================================= */}
 
-      <Helmet>
-        <html lang="en" />
-
-        <title>
-          {pageTitle}
-        </title>
-
-        <meta
-          name="description"
-          content={
-            seo.description
-          }
-        />
-
-        {post?.seoKeywords?.trim() && (
-          <meta
-            name="keywords"
-            content={
-              post.seoKeywords.trim()
-            }
-          />
-        )}
-
-        <meta
-          name="author"
-          content="DevZore Engineering Team"
-        />
-
-        <meta
-          name="publisher"
-          content="DevZore"
-        />
-
-        <link
-          rel="canonical"
-          href={
-            seo.canonicalUrl
-          }
-        />
-
-        <meta
-          name="robots"
-          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-        />
-
-        <meta
-          name="googlebot"
-          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-        />
-
-        {/* OPEN GRAPH */}
-
-        <meta
-          property="og:type"
-          content="article"
-        />
-
-        <meta
-          property="og:site_name"
-          content="DevZore"
-        />
-
-        <meta
-          property="og:title"
-          content={
-            seo.title
-          }
-        />
-
-        <meta
-          property="og:description"
-          content={
-            seo.description
-          }
-        />
-
-        <meta
-          property="og:url"
-          content={
-            seo.canonicalUrl
-          }
-        />
-
-        <meta
-          property="og:locale"
-          content="en_US"
-        />
-
-        {seo.image && (
-          <meta
-            property="og:image"
-            content={
-              seo.image
-            }
-          />
-        )}
-
-        {seo.image &&
-          post?.coverImageAlt && (
-            <meta
-              property="og:image:alt"
-              content={
-                post.coverImageAlt
-              }
-            />
-          )}
-
-        {seo.datePublished && (
-          <meta
-            property="article:published_time"
-            content={
-              seo.datePublished
-            }
-          />
-        )}
-
-        {seo.dateModified && (
-          <meta
-            property="article:modified_time"
-            content={
-              seo.dateModified
-            }
-          />
-        )}
-
-        {categoryName && (
-          <meta
-            property="article:section"
-            content={
-              categoryName
-            }
-          />
-        )}
-
-        {/* TWITTER */}
-
-        <meta
-          name="twitter:card"
-          content={
-            seo.image
-              ? "summary_large_image"
-              : "summary"
-          }
-        />
-
-        <meta
-          name="twitter:title"
-          content={
-            seo.title
-          }
-        />
-
-        <meta
-          name="twitter:description"
-          content={
-            seo.description
-          }
-        />
-
-        {seo.image && (
-          <meta
-            name="twitter:image"
-            content={
-              seo.image
-            }
-          />
-        )}
-
-        {/* JSON-LD */}
-
-        <script type="application/ld+json">
-          {JSON.stringify(
-            blogPostingSchema
-          )}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify(
-            breadcrumbSchema
-          )}
-        </script>
-      </Helmet>
+      <SEO
+        title={pageTitle}
+        description={seo.description}
+        canonical={seo.canonicalUrl}
+        ogImage={seo.image}
+        ogType="article"
+        author="Muhammad Shoukat, Founder, DevZore"
+        publishedTime={seo.datePublished}
+        modifiedTime={seo.dateModified}
+        keywords={post?.seoKeywords?.trim() || undefined}
+        schema={[blogPostingSchema, breadcrumbSchema].filter(Boolean)}
+      />
 
       <div
         className="min-h-screen overflow-hidden bg-white text-[#071923] antialiased"
@@ -2398,13 +2234,14 @@ const BlogDetails = () => {
 
                 <div>
                   <p className="text-[11px] leading-5 text-slate-500">
-                    Written by{" "}
-
-                    <strong className="font-semibold text-[#071923]">
-                      DevZore
-                      Engineering
-                      Team
-                    </strong>
+                    By{" "}
+                    <Link
+                      to="/about"
+                      className="font-semibold text-[#071923] hover:text-[#07899a] transition-colors underline-offset-2 hover:underline"
+                    >
+                      Muhammad Shoukat
+                    </Link>
+                    <span className="text-slate-400">, Founder, DevZore</span>
                   </p>
 
                   <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] font-medium text-slate-400">
@@ -2640,48 +2477,38 @@ const BlogDetails = () => {
                   }}
                 />
 
-                {/* AUTHOR */}
+                {/* AUTHOR CREDIBILITY BLOCK (E-E-A-T) */}
+                <section className="mt-12 border-t border-slate-200 pt-7">
+                  <div className="flex flex-col sm:flex-row items-start gap-4 p-5 rounded-2xl bg-[#edf4f5]/60 border border-[#07899a]/15">
+                    <div className="w-14 h-14 shrink-0 rounded-full bg-[#071923] text-[#1BBAC8] flex items-center justify-center font-bold text-lg border border-[#07899a]/30">
+                      MS
+                    </div>
 
-                {authorBio && (
-                  <section className="mt-12 border-t border-slate-200 pt-7">
-                    <div className="flex items-start gap-4">
-                      {authorAvatar ? (
-                        <img
-                          src={
-                            authorAvatar
-                          }
-                          alt="DevZore Engineering Team"
-                          loading="lazy"
-                          decoding="async"
-                          className="w-12 h-12 shrink-0 rounded-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-12 h-12 shrink-0 rounded-full bg-[#edf4f5] text-[#07899a] flex items-center justify-center">
-                          <User
-                            size={17}
-                          />
-                        </div>
-                      )}
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#07899a]">
+                        Author & Founder
+                      </p>
 
-                      <div>
-                        <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-[#07899a]">
-                          About the
-                          Author
-                        </p>
+                      <h3 className="mt-0.5 text-[16px] font-bold text-[#071923]">
+                        Muhammad Shoukat
+                      </h3>
 
-                        <h2 className="mt-1 text-[15px] font-semibold text-[#071923]">
-                          DevZore
-                          Engineering
-                          Team
-                        </h2>
+                      <p className="mt-1 text-[12px] leading-relaxed text-slate-600">
+                        {authorBio ||
+                          "Muhammad Shoukat is the founder and lead software engineer at DevZore. He designs and builds scalable web applications, MERN stack platforms, SaaS architectures, and custom management systems for clients in Pakistan, Qatar, and internationally."}
+                      </p>
 
-                        <p className="mt-2 text-[11px] sm:text-[12px] leading-6 text-slate-600">
-                          {authorBio}
-                        </p>
+                      <div className="mt-3 flex items-center gap-4 text-[11px] font-medium text-[#07899a]">
+                        <Link to="/about" className="hover:underline flex items-center gap-1">
+                          About DevZore & Founder <ArrowRight size={11} />
+                        </Link>
+                        <Link to="/contact" className="hover:underline flex items-center gap-1">
+                          Work with Us <ArrowRight size={11} />
+                        </Link>
                       </div>
                     </div>
-                  </section>
-                )}
+                  </div>
+                </section>
 
                 {/* =================================================
                     RELATED ARTICLES

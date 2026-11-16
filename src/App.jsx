@@ -19,6 +19,8 @@ import { Helmet } from "react-helmet-async";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import TrustBar from "./components/TrustBar";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import StatsStrip from "./components/StatsStrip";
 
 // ======================================================
 // HOME SECTIONS - KEEP NORMAL IMPORTS
@@ -60,8 +62,16 @@ const ReactDevelopment = lazy(() => import("./pages/ReactDevelopment"));
 const UiUxDesign = lazy(() => import("./pages/UiUxDesign"));
 const Maintenance = lazy(() => import("./pages/Maintenance"));
 const StartupMVP = lazy(() => import("./pages/StartupMVP"));
+const CloudDeployment = lazy(() => import("./pages/CloudDeployment"));
 const SeoServices = lazy(() => import("./pages/SeoServices"));
 const DigitalMarketing = lazy(() => import("./pages/DigitalMarketing"));
+
+// ======================================================
+// PROJECT & CASE STUDY PAGES - LAZY LOADING
+// ======================================================
+
+const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 
 // ======================================================
 // SOLUTION PAGES - LAZY LOADING
@@ -141,10 +151,10 @@ const seoData = {
 
   "/about": {
     title:
-      "About DevZore | Software Development & Digital Solutions Company",
+      "About DevZore | Software & Web Development Company",
 
     description:
-      "Learn about DevZore, a software development company building professional websites, web applications, SaaS products, mobile apps and custom digital solutions.",
+      "Learn about DevZore, a software development agency founded by Muhammad Shoukat, building web applications, SaaS platforms, and mobile apps worldwide.",
 
     keywords:
       "DevZore, DevZore software company, DevZore software development, DevZore web development, software development company, software engineering company, digital solutions company, technology company, software development team, web development team, digital product development company",
@@ -154,7 +164,7 @@ const seoData = {
 
   "/contact": {
     title:
-      "Contact DevZore | Hire Web & Software Developers",
+      "Contact DevZore | Hire Web & Software Developers Today",
 
     description:
       "Contact DevZore to discuss your website, web application, SaaS, mobile app, e-commerce or custom software project and request a development quote.",
@@ -170,7 +180,7 @@ const seoData = {
       "Software Development Services | Web, Mobile & SaaS | DevZore",
 
     description:
-      "Explore DevZore services including web development, mobile apps, generative AI, e-commerce, MERN, React, backend APIs, SaaS, UI/UX, MVP development, SEO and support.",
+      "Explore DevZore services: web development, mobile apps, generative AI, e-commerce, MERN stack, React, SaaS, cloud deployment, UI/UX, SEO and support.",
 
     keywords:
       "software development services, web development services, website development services, mobile app development services, generative AI development, custom software development, SaaS development services, ecommerce development, backend development services, API development services, MERN stack development, React development services, UI UX design services, MVP development services, website maintenance services",
@@ -180,10 +190,10 @@ const seoData = {
 
   "/web-development": {
     title:
-      "Web Development Services | Business Websites & Web Apps | DevZore",
+      "Web Development Services | Websites & Web Apps | DevZore",
 
     description:
-      "Professional web development for businesses and startups. DevZore builds responsive business websites, custom web applications, e-commerce platforms and SaaS products.",
+      "Professional web development services for businesses and startups. DevZore builds responsive websites, custom web applications, e-commerce and SaaS.",
 
     keywords:
       "web development, web development services, web development company, web development agency, web developer, website development, website development services, website development company, website developer, custom web development, custom website development, professional web development, professional website development, business web development, business website development, business website design, corporate web development, responsive web development, modern web development, full stack web development, frontend development, backend development, dynamic website development, secure web development, scalable web development, mobile responsive web development, small business website development, startup website development, custom web application development, web application development, business web application",
@@ -209,7 +219,7 @@ const seoData = {
       "Generative AI Development Services | AI Solutions | DevZore",
 
     description:
-      "Custom generative AI development services for startups and businesses, including AI applications, AI assistants, chatbots, LLM integration and intelligent automation.",
+      "Custom generative AI development for startups and businesses. We build AI apps, intelligent chatbots, LLM integrations and automated business workflows.",
 
     keywords:
       "generative AI development, generative AI development services, generative AI development company, generative AI solutions, AI development services, AI development company, artificial intelligence development, artificial intelligence development company, custom AI development, custom AI solutions, AI application development, generative AI applications, AI software development, AI chatbot development, AI assistant development, custom AI chatbot, AI agent development, AI automation, intelligent automation, LLM development, LLM integration, large language model development, large language model integration, AI API integration, OpenAI API integration, ChatGPT integration, AI powered applications, AI powered software, AI SaaS development, generative AI SaaS development, business AI solutions, AI solutions for businesses, startup AI development, enterprise AI development, AI product development, AI web application development, generative AI consulting, hire AI developer, hire generative AI developer, generative AI development company worldwide",
@@ -245,7 +255,7 @@ const seoData = {
 
   "/mern-stack-development": {
     title:
-      "MERN Stack Development Services | MongoDB, React & Node | DevZore",
+      "MERN Stack Development Services | React & Node | DevZore",
 
     description:
       "Custom MERN stack development using MongoDB, Express, React and Node.js for scalable web applications, SaaS products, dashboards and business software.",
@@ -258,7 +268,7 @@ const seoData = {
 
   "/saas-product-development": {
     title:
-      "SaaS Product Development Services | Custom SaaS Platforms | DevZore",
+      "SaaS Product Development Services | Platforms | DevZore",
 
     description:
       "Custom SaaS product development with authentication, dashboards, subscriptions, APIs, user management and scalable web application architecture.",
@@ -271,7 +281,7 @@ const seoData = {
 
   "/reactdevelopment": {
     title:
-      "React Development Services | React.js Web Applications | DevZore",
+      "React Development Services | Web Applications | DevZore",
 
     description:
       "Professional React development for websites, dashboards, SaaS platforms and custom web applications using reusable components and modern frontend architecture.",
@@ -297,7 +307,7 @@ const seoData = {
 
   "/startup-mvp": {
     title:
-      "Startup MVP Development Services | Build & Launch Your MVP | DevZore",
+      "Startup MVP Development Services | Build & Launch | DevZore",
 
     description:
       "MVP development for startups from product planning and prototyping to web or app development, testing, deployment and future product iteration.",
@@ -306,11 +316,24 @@ const seoData = {
       "MVP development, MVP development company, MVP development services, startup MVP development, startup MVP developer, MVP software development, MVP app development, MVP web development, MVP product development, minimum viable product development, startup software development, startup web development, startup app development, startup product development, startup technology partner, startup development agency, prototype development, product prototype development, rapid MVP development, SaaS MVP development",
   },
 
+  // CLOUD & DEPLOYMENT
+
+  "/cloud-deployment": {
+    title:
+      "Cloud & Deployment Services | DevOps & Hosting | DevZore",
+
+    description:
+      "DevZore provides cloud architecture, CI/CD pipelines, Vercel, Cloudflare and MongoDB Atlas setup, server migration, monitoring and cloud optimization.",
+
+    keywords:
+      "cloud deployment services, cloud hosting, DevOps services, Vercel deployment, Cloudflare setup, MongoDB Atlas, AWS, cloud infrastructure, CI CD pipeline, cloud optimization, DevZore cloud",
+  },
+
   // MAINTENANCE
 
   "/maintenance": {
     title:
-      "Website Maintenance & Support Services | DevZore",
+      "Website Maintenance & Technical Support Services | DevZore",
 
     description:
       "Website and web application maintenance including bug fixes, updates, troubleshooting, performance optimization, monitoring and ongoing technical support.",
@@ -323,7 +346,7 @@ const seoData = {
 
   "/seo-services": {
     title:
-      "SEO Services | Technical SEO & Website Optimization | DevZore",
+      "SEO Services | Technical SEO & Search Optimization | DevZore",
 
     description:
       "Improve search visibility with technical SEO, on-page optimization, crawlability, structured data, website performance and search monitoring.",
@@ -343,6 +366,19 @@ const seoData = {
 
     keywords:
       "digital marketing, digital marketing services, digital marketing company, digital marketing agency, online marketing, internet marketing, digital marketing solutions, social media marketing, content marketing, SEO marketing, search engine marketing, lead generation, online lead generation, business lead generation, digital advertising, brand marketing, performance marketing, marketing strategy, online business marketing, startup digital marketing, small business digital marketing",
+  },
+
+  // PROJECTS & CASE STUDIES
+
+  "/projects": {
+    title:
+      "Software Development Projects & Case Studies | DevZore",
+
+    description:
+      "Explore DevZore case studies and real client projects across MERN stack development, SaaS platforms, inventory systems and tourism portals.",
+
+    keywords:
+      "DevZore projects, software case studies, web development portfolio, MERN stack portfolio, client case studies, custom software projects",
   },
 
   // SOLUTIONS
@@ -404,10 +440,10 @@ const seoData = {
 
   "/custom-software-solutions": {
     title:
-      "Custom Software Solutions & Development | DevZore",
+      "Custom Software Solutions & Development Company | DevZore",
 
     description:
-      "Custom software solutions designed around your business processes, workflows, customers and operational requirements.",
+      "Custom software development solutions tailored to your operational workflows, business processes, customer portals and enterprise digital infrastructure.",
 
     keywords:
       "custom software solutions, custom software development, business software solutions, bespoke software development, custom application development",
@@ -425,6 +461,8 @@ const seoData = {
     keywords:
       "software development guides, web development guides, React guides, MERN guides, SaaS guides, website development tutorials",
   },
+
+  // FAQS
 
   "/faqs": {
     title:
@@ -452,10 +490,10 @@ const seoData = {
 
   "/our-process": {
     title:
-      "Our Software Development Process | DevZore",
+      "Our Software Development Process & Methodology | DevZore",
 
     description:
-      "Learn how DevZore plans, designs, develops, tests, deploys and supports websites, applications, SaaS products and custom software.",
+      "Discover DevZore's 4-step software development process: strategic planning, UI/UX prototyping, full-stack engineering, and launch with ongoing support.",
 
     keywords:
       "software development process, web development process, DevZore process, software project process, application development process",
@@ -807,6 +845,7 @@ function HomePage() {
     <>
       <Hero />
       <TrustBar />
+      <StatsStrip />
       <Services />
       <Solutions />
       <Projects />
@@ -914,6 +953,11 @@ function AppContent() {
             />
 
             <Route
+              path="/cloud-deployment"
+              element={<CloudDeployment />}
+            />
+
+            <Route
               path="/seo-services"
               element={<SeoServices />}
             />
@@ -1015,6 +1059,20 @@ function AppContent() {
             />
 
             {/* ============================================
+                PROJECTS & CASE STUDIES (WORKSTREAM F3)
+                ============================================ */}
+
+            <Route
+              path="/projects"
+              element={<ProjectsPage />}
+            />
+
+            <Route
+              path="/projects/:slug"
+              element={<ProjectDetail />}
+            />
+
+            {/* ============================================
                 BLOG
                 ============================================ */}
 
@@ -1026,6 +1084,50 @@ function AppContent() {
             <Route
               path="/blog/:slug"
               element={<BlogDetails />}
+            />
+
+            {/* ============================================
+                PERMANENT 301 REDIRECTS (WORKSTREAM A6)
+                ============================================ */}
+
+            <Route
+              path="/blog/how-much-does-a-website-cost-in-2026-complete-website-development-pricing-guide-1790762380934"
+              element={
+                <Navigate
+                  to="/blog/how-much-does-a-website-cost-in-2026"
+                  replace
+                />
+              }
+            />
+
+            <Route
+              path="/blog/how-a-professional-website-can-help-your-business-get-more-customers-1789029617095"
+              element={
+                <Navigate
+                  to="/blog/how-a-professional-website-helps-your-business-get-more-customers"
+                  replace
+                />
+              }
+            />
+
+            <Route
+              path="/blog/why-your-business-needs-a-professional-website-in-2026-1790435181732"
+              element={
+                <Navigate
+                  to="/blog/why-your-business-needs-a-professional-website-in-2026"
+                  replace
+                />
+              }
+            />
+
+            <Route
+              path="/blog/why-every-business-needs-a-professional-website-in-2026-1790507048277"
+              element={
+                <Navigate
+                  to="/blog/why-your-business-needs-a-professional-website-in-2026"
+                  replace
+                />
+              }
             />
 
             {/* ============================================
@@ -1119,6 +1221,14 @@ function AppContent() {
 
       {!isAdminRoute && (
         <Footer />
+      )}
+
+      {/* ================================================
+          FLOATING WHATSAPP CTA (MOBILE & DESKTOP)
+          ================================================ */}
+
+      {!isAdminRoute && (
+        <FloatingWhatsApp />
       )}
     </div>
   );

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -27,7 +26,18 @@ import {
   TrendingUp,
   Users,
   Zap,
+  Phone,
+  HelpCircle,
+  AlertCircle,
+  FileCode,
 } from "lucide-react";
+import SEO from "../components/SEO";
+import PricingBlock from "../components/PricingBlock";
+import { projectsData } from "../data/projectsData";
+
+const mernProjects = projectsData.filter((p) =>
+  ["weldon-paints", "frostyops", "installment-management"].includes(p.slug)
+);
 
 const MernStackDevelopment = () => {
   const [activeFaq, setActiveFaq] = useState(null);
@@ -467,64 +477,36 @@ const MernStackDevelopment = () => {
 
   const faqs = [
     {
-      q: "What is MERN stack development?",
-      a:
-        "MERN stack development uses MongoDB for data storage, Express.js for backend application logic, React.js for frontend interfaces and Node.js as the server-side JavaScript runtime.",
-    },
-    {
-      q: "What MERN stack development services does DevZore provide?",
-      a:
-        "DevZore develops custom web applications, SaaS products, startup MVPs, dashboards, portals, REST APIs, MongoDB databases and other full-stack JavaScript applications.",
-    },
-    {
-      q: "What applications can be built with MERN?",
-      a:
-        "MERN can be used for SaaS platforms, business applications, customer portals, dashboards, e-commerce systems, internal tools, management software and startup products.",
+      q: "What is MERN stack development and who is it for?",
+      a: "MERN stack development is full-stack web engineering using MongoDB, Express.js, React, and Node.js. It is ideal for startups building MVPs, SaaS founders launching subscription platforms, and businesses requiring custom management systems, real-time dashboards, and secure REST APIs without fragmented technology overhead.",
     },
     {
       q: "How much does MERN stack development cost?",
-      a:
-        "Cost depends on application scope, features, user roles, UI requirements, integrations, backend complexity and deployment requirements. A project-specific estimate can be prepared after the requirements are reviewed.",
+      a: "Project costs typically range depending on application scope, user roles, integrations, and database complexity. A focused MVP or business dashboard is significantly more cost-effective than a large multi-tenant SaaS. DevZore provides clear, fixed-price milestone quotes with zero hidden charges.",
     },
     {
-      q: "How long does a MERN project take?",
-      a:
-        "The timeline depends on project complexity. A focused MVP normally requires less work than a large SaaS platform or multi-role business management application.",
+      q: "How long does a MERN stack project take to build?",
+      a: "A focused MVP or operational business portal typically takes 3 to 6 weeks from architecture design to production launch. Complex SaaS platforms with subscription billing, role hierarchies, and extensive third-party APIs typically take 8 to 12 weeks with weekly sprint demos.",
     },
     {
-      q: "Is MERN suitable for SaaS development?",
-      a:
-        "Yes. MERN can support SaaS products with user accounts, authentication, dashboards, subscriptions, APIs, permissions and other product-specific functionality.",
+      q: "Will I own the complete source code and repository?",
+      a: "Yes, 100%. Upon project completion and milestone handover, DevZore transfers full ownership of the Git repository, production deployment configurations, database schemas, and intellectual property directly to your team.",
     },
     {
-      q: "Can you build REST APIs for MERN applications?",
-      a:
-        "Yes. Node.js and Express.js can be used to develop REST APIs with authentication, validation, permissions, MongoDB operations and external service integrations.",
+      q: "Do you offer post-launch maintenance and support?",
+      a: "Yes. Every MERN project includes 30 days of complimentary post-launch bug fixing and monitoring. We also provide ongoing monthly support plans covering security patches, dependency upgrades, cloud performance tuning, and new feature development.",
     },
     {
-      q: "Can MERN applications integrate payment gateways?",
-      a:
-        "Yes. Supported payment providers can be integrated through their APIs and webhooks depending on the project requirements and provider availability.",
+      q: "Can DevZore migrate an existing application to the MERN stack?",
+      a: "Yes. We frequently modernize legacy PHP, WordPress, or outdated single-page apps to the modern MERN stack. We migrate databases to MongoDB Atlas, re-engineer backend logic into REST APIs with Node.js, and rebuild frontend interfaces in modern React.",
     },
     {
-      q: "Can DevZore work with an existing MERN project?",
-      a:
-        "Yes. Existing React, Node.js, Express.js and MongoDB applications can be reviewed for new features, bug fixes, API development, UI improvements and architecture improvements.",
+      q: "How does DevZore manage remote projects internationally?",
+      a: "We collaborate with clients across Pakistan, Qatar, the UK, the US, and internationally via structured GitHub repositories, sprint boards, staging URLs, WhatsApp, and asynchronous or scheduled video reviews.",
     },
     {
-      q: "Can DevZore build a MERN MVP for a startup?",
-      a:
-        "Yes. A focused MERN MVP can include the essential frontend, backend, database, authentication and product features required for the initial release.",
-    },
-    {
-      q: "Can DevZore work with clients remotely?",
-      a:
-        "Yes. MERN development projects can be managed remotely through online communication, shared repositories and organised project workflows.",
-    },
-    {
-      q: "Will I receive the source code?",
-      a:
-        "Source-code ownership, repositories, credentials and other project assets can be defined clearly in the project agreement before development begins.",
+      q: "Is MERN suitable for enterprise SaaS development?",
+      a: "Yes. With MongoDB indexing, Express middleware, React component state management, and Node.js event-driven concurrency, MERN reliably powers scalable SaaS platforms handling tens of thousands of active users.",
     },
   ];
 
@@ -699,19 +681,12 @@ ${formData.message}`
 
   return (
     <>
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(serviceSchema)}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbSchema)}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
+      <SEO
+        title="MERN Stack Development Services | React & Node | DevZore"
+        description="Custom MERN stack development services by DevZore. We build scalable SaaS platforms, dashboards, REST APIs and startup MVPs using MongoDB, Express, React and Node."
+        canonical="https://devzore.com/mern-stack-development"
+        jsonLd={[serviceSchema, breadcrumbSchema, faqSchema]}
+      />
 
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
@@ -750,7 +725,7 @@ ${formData.message}`
                       className="text-[#26becb]"
                     />
 
-                    MERN Stack Development
+                    DevZore Full-Stack Engineering
                   </div>
                 </div>
 
@@ -758,11 +733,12 @@ ${formData.message}`
                   id="mern-heading"
                   className="max-w-[780px] text-[40px] sm:text-[48px] lg:text-[58px] xl:text-[53px] leading-[1.04] font-semibold tracking-[-0.045em]"
                 >
-                  Full-stack applications built with{" "}
-                  <span className="text-[#22bdca]">
-                    MongoDB, Express, React & Node.
-                  </span>
+                  MERN Stack Development Services
                 </h1>
+
+                <p className="text-[17px] sm:text-[20px] font-medium text-[#22bdca] mt-2 mb-3">
+                  Full-stack applications built with MongoDB, Express, React & Node.
+                </p>
 
                 <p className="max-w-[700px] mt-4 text-[16px] sm:text-[13.5px] leading-7 font-normal text-slate-300">
                   DevZore develops custom MERN stack applications for startups,
@@ -973,14 +949,50 @@ ${formData.message}`
         </section>
 
         {/* =====================================================
-            INTRO
+            DIRECT-ANSWER BLOCK (D1) & INTRO
         ===================================================== */}
 
         <section
-          className="relative py-10 md:py-12 bg-[#f8fafb]"
+          className="relative py-12 md:py-16 bg-[#f8fafb]"
           style={lightGrid}
         >
           <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="rounded-2xl border-2 border-[#0796A8]/25 bg-white p-6 sm:p-9 shadow-sm mb-12">
+              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-[#0796A8] mb-3">
+                <HelpCircle size={16} />
+                <span>Executive Answer</span>
+              </div>
+
+              <h2 className="text-[#071923] text-[22px] sm:text-[26px] md:text-[30px] leading-[1.2] font-bold tracking-[-0.03em] mb-4">
+                What is MERN stack development and who is it for?
+              </h2>
+
+              <p className="text-[15px] sm:text-[16px] leading-7 font-normal text-slate-700 mb-6">
+                MERN stack development is full-stack software engineering using MongoDB, Express.js, React, and Node.js with unified JavaScript across frontend and backend. It is ideal for startups building MVPs, SaaS founders launching subscription platforms, and businesses requiring custom management systems, real-time dashboards, and secure REST APIs without fragmented technology overhead.
+              </p>
+
+              <div className="border-t border-slate-100 pt-5">
+                <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.16em] text-slate-500 mb-3">
+                  Ideal MERN Stack Use Cases:
+                </p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {[
+                    "SaaS products with subscription billing & multi-tenant data",
+                    "Operational management systems (inventory, billing, dispatch)",
+                    "Real-time analytics dashboards and client portals",
+                    "Startup MVPs requiring rapid time-to-market iteration",
+                    "Custom RESTful API backends connected to React SPAs",
+                    "Operational software requiring single-stack code maintenance",
+                  ].map((useCase, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5 text-[12px] text-slate-700">
+                      <CheckCircle2 size={14} className="text-[#0796A8] flex-shrink-0 mt-0.5" />
+                      <span>{useCase}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             <div className="grid lg:grid-cols-[0.72fr_1.28fr] gap-7 lg:gap-12">
               <div>
                 <SectionLabel>MERN Development</SectionLabel>
@@ -1079,6 +1091,119 @@ ${formData.message}`
                         </span>
                       </div>
                     ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================
+            REAL MERN PROJECTS (CASE STUDIES)
+        ===================================================== */}
+
+        <section
+          id="real-mern-projects"
+          aria-labelledby="real-mern-projects-heading"
+          className="py-12 md:py-16 bg-[#f7f9fa] border-y border-slate-200"
+          style={lightGrid}
+        >
+          <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+              <div>
+                <SectionLabel>Client Case Studies</SectionLabel>
+
+                <h2
+                  id="real-mern-projects-heading"
+                  className="text-[#071923] text-[28px] sm:text-[33px] md:text-[39px] leading-[1.08] tracking-[-0.035em] font-semibold mt-3"
+                >
+                  Real MERN projects built for active operations.
+                </h2>
+
+                <p className="text-slate-600 text-[14px] leading-6 mt-3 max-w-2xl">
+                  Inspect concrete systems engineered by DevZore with MongoDB, Express, React, and Node.js for client operations in Pakistan and internationally.
+                </p>
+              </div>
+
+              <Link
+                to="/projects"
+                onClick={scrollTop}
+                className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#07899a] hover:text-[#071923] transition-colors"
+              >
+                <span>View All Case Studies</span>
+                <ArrowRight size={13} />
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {mernProjects.map((project) => (
+                <article
+                  key={project.slug}
+                  className="rounded-2xl border border-slate-200 bg-white p-6 flex flex-col justify-between hover:border-[#0796A8]/50 hover:shadow-lg transition-all"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-cyan-50 text-[#0796A8] border border-cyan-100">
+                        {project.category}
+                      </span>
+                      <span className="text-[10px] text-slate-400 font-medium">
+                        {project.location} • Remote
+                      </span>
+                    </div>
+
+                    <h3 className="text-[#071923] text-[18px] font-bold leading-tight mb-1">
+                      {project.title}
+                    </h3>
+                    <p className="text-[12px] font-semibold text-[#0796A8] mb-3">
+                      {project.systemType}
+                    </p>
+
+                    <p className="text-[12px] text-slate-600 leading-relaxed mb-4">
+                      {project.problem}
+                    </p>
+
+                    <div className="space-y-1.5 mb-5 pt-3 border-t border-slate-100">
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+                        Key Features Built:
+                      </p>
+                      {project.builtFeatures.slice(0, 3).map((feat, idx) => (
+                        <div key={idx} className="flex items-start gap-2 text-[11px] text-slate-700">
+                          <CheckCircle2 size={13} className="text-[#0796A8] flex-shrink-0 mt-0.5" />
+                          <span className="line-clamp-1">{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Hidden results placeholder:
+                        [OWNER INPUT NEEDED: verified business outcome metrics before making visible]
+                    */}
+                    {project.hasRealResults && (
+                      <div className="mb-4 p-2.5 rounded-lg bg-emerald-50 text-emerald-800 text-[11px] font-medium">
+                        Verified business metrics will display here.
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.technologies.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2 py-0.5 rounded text-[9px] font-semibold bg-slate-100 text-slate-700"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <Link
+                      to={`/projects/${project.slug}`}
+                      onClick={scrollTop}
+                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#071923] hover:bg-[#0796A8] text-white text-[11px] font-semibold transition-colors"
+                    >
+                      <span>Read Case Study</span>
+                      <ArrowRight size={12} />
+                    </Link>
                   </div>
                 </article>
               ))}
@@ -1258,6 +1383,75 @@ ${formData.message}`
                   </p>
                 </article>
               ))}
+            </div>
+
+            {/* HONEST ENGINEERING COMPARISON */}
+            <div className="mt-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
+              <div className="max-w-3xl mb-6">
+                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#0796A8]">
+                  Architectural Decision Framework
+                </span>
+                <h3 className="text-[20px] sm:text-[24px] font-bold text-[#071923] mt-1">
+                  When MERN is the right choice — and when it isn't.
+                </h3>
+                <p className="text-[13px] text-slate-600 mt-2">
+                  Honest engineering requires choosing tools for the problem, not following trends. Here is how DevZore advises clients evaluating the MERN stack:
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Column 1: MERN is Ideal */}
+                <div className="p-5 rounded-xl bg-white border border-emerald-200 shadow-sm">
+                  <div className="flex items-center gap-2 text-emerald-800 font-bold text-[13px] mb-3">
+                    <CheckCircle2 size={16} className="text-emerald-600" />
+                    <span>When MERN is the Ideal Stack</span>
+                  </div>
+                  <ul className="space-y-2.5 text-[12px] text-slate-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-500 font-bold mt-0.5">•</span>
+                      <span><strong>SaaS platforms & portals:</strong> Subscription workflows, role-based dashboards, and interactive UI state.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-500 font-bold mt-0.5">•</span>
+                      <span><strong>Flexible data schemas:</strong> Applications where data models evolve rapidly without complex SQL migration locks.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-500 font-bold mt-0.5">•</span>
+                      <span><strong>Startup MVPs:</strong> Rapid prototyping with unified JavaScript across frontend, backend, and MongoDB.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-emerald-500 font-bold mt-0.5">•</span>
+                      <span><strong>High-concurrency APIs:</strong> Node.js non-blocking I/O handles numerous concurrent user connections efficiently.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 2: When Another Stack is Better */}
+                <div className="p-5 rounded-xl bg-white border border-amber-200 shadow-sm">
+                  <div className="flex items-center gap-2 text-amber-900 font-bold text-[13px] mb-3">
+                    <AlertCircle size={16} className="text-amber-600" />
+                    <span>When Another Stack is Recommended</span>
+                  </div>
+                  <ul className="space-y-2.5 text-[12px] text-slate-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-amber-500 font-bold mt-0.5">•</span>
+                      <span><strong>Relational accounting & banking:</strong> Complex multi-table financial ledgers strictly requiring PostgreSQL or MySQL ACID transactions.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-amber-500 font-bold mt-0.5">•</span>
+                      <span><strong>Heavy CPU data crunching:</strong> Machine learning, computer vision, or scientific computing (Python is superior).</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-amber-500 font-bold mt-0.5">•</span>
+                      <span><strong>Simple static brochure sites:</strong> Where server-rendered static HTML or Next.js SSG offers lighter maintenance.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-amber-500 font-bold mt-0.5">•</span>
+                      <span><strong>DevZore pledge:</strong> We review your operational scope first and recommend relational SQL or specialized backends whenever MERN is not the best fit.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -1663,6 +1857,11 @@ ${formData.message}`
         </section>
 
         {/* =====================================================
+            PRICING & SCOPE BLOCK (WORKSTREAM F9)
+        ===================================================== */}
+        <PricingBlock serviceName="MERN Stack Development" />
+
+        {/* =====================================================
             PROJECT ENQUIRY
         ===================================================== */}
 
@@ -1725,18 +1924,32 @@ ${formData.message}`
                   ))}
                 </div>
 
-                <div className="mt-6 pt-5 border-t border-white/[0.08]">
-                  <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-slate-500">
-                    Prefer a direct conversation?
+                <div className="mt-6 pt-5 border-t border-white/[0.08] space-y-3">
+                  <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-slate-400">
+                    Prefer an immediate response?
                   </p>
 
-                  <a
-                    href="mailto:hellodevzore@gmail.com"
-                    className="inline-flex items-center gap-2 mt-2 text-[12px] font-medium text-[#26c4d2]"
-                  >
-                    <Mail size={14} />
-                    hellodevzore@gmail.com
-                  </a>
+                  <div>
+                    <a
+                      href="https://wa.me/923348004300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-[12px] font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                    >
+                      <Phone size={14} />
+                      WhatsApp: +92 334 8004300
+                    </a>
+                  </div>
+
+                  <div>
+                    <a
+                      href="mailto:hellodevzore@gmail.com"
+                      className="inline-flex items-center gap-2 text-[12px] font-medium text-[#26c4d2] hover:text-white transition-colors"
+                    >
+                      <Mail size={14} />
+                      hellodevzore@gmail.com
+                    </a>
+                  </div>
                 </div>
               </div>
 

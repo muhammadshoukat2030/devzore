@@ -5,10 +5,12 @@ import {
   Activity,
   ArrowRight,
   ArrowUpRight,
+  BrainCircuit,
   Check,
   CheckCircle2,
   ChevronDown,
   ChevronUp,
+  Cloud,
   Code2,
   Gauge,
   Globe,
@@ -47,7 +49,7 @@ const AllServices = () => {
     message: "",
   });
 
-  const filters = ["All", "Web", "Mobile", "Backend", "Design", "Growth"];
+  const filters = ["All", "AI", "Web", "Mobile", "Backend", "Design", "Growth"];
 
   // BACKGROUND GRIDS
 
@@ -67,8 +69,23 @@ const AllServices = () => {
 
   const services = [
     {
-      icon: <Globe size={21} />,
+      icon: <BrainCircuit size={21} />,
       number: "01",
+      title: "Generative AI Development",
+      subtitle: "Chatbots · LLMs · Agents",
+      path: "/generative-ai-development",
+      filter: "AI",
+      desc:
+        "Custom AI chatbots, LLM integration, intelligent agents, RAG knowledge systems and automated workflows designed around real business processes.",
+      points: [
+        "AI chatbot development",
+        "LLM & model integration",
+        "RAG knowledge systems",
+      ],
+    },
+    {
+      icon: <Globe size={21} />,
+      number: "02",
       title: "Custom Web Development",
       subtitle: "React · Next.js · Node.js",
       path: "/web-development",
@@ -83,7 +100,7 @@ const AllServices = () => {
     },
     {
       icon: <Smartphone size={21} />,
-      number: "02",
+      number: "03",
       title: "Mobile App Development",
       subtitle: "React Native · iOS · Android",
       path: "/mobile-apps",
@@ -98,7 +115,7 @@ const AllServices = () => {
     },
     {
       icon: <ShoppingCart size={21} />,
-      number: "03",
+      number: "04",
       title: "E-Commerce Development",
       subtitle: "Stores · Payments · Orders",
       path: "/ecommerce",
@@ -113,7 +130,7 @@ const AllServices = () => {
     },
     {
       icon: <Server size={21} />,
-      number: "04",
+      number: "05",
       title: "Backend & API Development",
       subtitle: "Node.js · Express · APIs",
       path: "/backend-api",
@@ -128,7 +145,7 @@ const AllServices = () => {
     },
     {
       icon: <Layers size={21} />,
-      number: "05",
+      number: "06",
       title: "MERN Stack Development",
       subtitle: "MongoDB · Express · React · Node",
       path: "/mern-stack-development",
@@ -143,7 +160,7 @@ const AllServices = () => {
     },
     {
       icon: <TrendingUp size={21} />,
-      number: "06",
+      number: "07",
       title: "SaaS Product Development",
       subtitle: "Accounts · Dashboards · SaaS",
       path: "/saas-product-development",
@@ -158,7 +175,7 @@ const AllServices = () => {
     },
     {
       icon: <Palette size={21} />,
-      number: "07",
+      number: "08",
       title: "UI/UX Design",
       subtitle: "Figma · UX · Product Design",
       path: "/ui-ux-design",
@@ -173,7 +190,7 @@ const AllServices = () => {
     },
     {
       icon: <Rocket size={21} />,
-      number: "08",
+      number: "09",
       title: "Startup MVP Development",
       subtitle: "Planning · MVP · Launch",
       path: "/startup-mvp",
@@ -188,7 +205,7 @@ const AllServices = () => {
     },
     {
       icon: <Wrench size={21} />,
-      number: "09",
+      number: "10",
       title: "Maintenance & Support",
       subtitle: "Updates · Fixes · Performance",
       path: "/maintenance",
@@ -203,7 +220,7 @@ const AllServices = () => {
     },
     {
       icon: <Code2 size={21} />,
-      number: "10",
+      number: "11",
       title: "React Development",
       subtitle: "React · Components · Frontend",
       path: "/reactdevelopment",
@@ -217,23 +234,23 @@ const AllServices = () => {
       ],
     },
     {
-      icon: <Shield size={21} />,
-      number: "11",
+      icon: <Cloud size={21} />,
+      number: "12",
       title: "Cloud & Deployment",
       subtitle: "Deployment · Environments · CI/CD",
-      path: "/backend-api",
+      path: "/cloud-deployment",
       filter: "Backend",
       desc:
-        "Production deployment and infrastructure support covering application environments, cloud platforms and deployment workflows.",
+        "Production deployment, Cloudflare CDN/DNS security, MongoDB Atlas clusters, and automated CI/CD release pipelines.",
       points: [
-        "Production deployment",
-        "Environment setup",
-        "Deployment workflows",
+        "Vercel edge hosting",
+        "Cloudflare CDN & SSL",
+        "MongoDB Atlas clusters",
       ],
     },
     {
       icon: <TrendingUp size={21} />,
-      number: "12",
+      number: "13",
       title: "SEO Services",
       subtitle: "Technical · On-Page · Search",
       path: "/seo-services",
@@ -248,7 +265,7 @@ const AllServices = () => {
     },
     {
       icon: <Zap size={21} />,
-      number: "13",
+      number: "14",
       title: "Digital Marketing",
       subtitle: "Content · Social · Campaigns",
       path: "/digital-marketing",
@@ -1427,7 +1444,8 @@ ${formData.message}`
                       onChange={handleChange}
                       className="w-full rounded-lg border border-white/[0.1] bg-[#071923] px-3.5 py-3 text-[12px] text-slate-300 outline-none focus:border-[#19b9c8]/70 transition-colors"
                     >
-                      <option>Web Development</option>
+                      <option>Generative AI Development</option>
+                      <option>Custom Web Development</option>
                       <option>Mobile App Development</option>
                       <option>E-Commerce Development</option>
                       <option>Backend & API Development</option>
@@ -1435,6 +1453,7 @@ ${formData.message}`
                       <option>SaaS Product Development</option>
                       <option>UI/UX Design</option>
                       <option>Startup MVP Development</option>
+                      <option>Cloud & Deployment</option>
                       <option>Maintenance & Support</option>
                       <option>React Development</option>
                       <option>SEO Services</option>
