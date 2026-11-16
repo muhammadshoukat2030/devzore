@@ -410,7 +410,7 @@ const staticPages = {
     `,
   },
   "/allservices": {
-    title: "Software Development Services | Web, Mobile & SaaS | DevZore",
+    title: "Software Development Services | DevZore",
     description:
       "Explore DevZore services: web development, mobile apps, generative AI, AI integration, Next.js, e-commerce, MERN stack, SaaS, management systems, and SEO.",
     h1: "Software Development Services & Engineering Capabilities",
@@ -620,7 +620,7 @@ const staticPages = {
     `,
   },
   "/digital-marketing": {
-    title: "Digital Marketing Services | Online Business Growth | DevZore",
+    title: "Digital Marketing Services | Online Growth | DevZore",
     description:
       "Digital marketing services for businesses including strategy, social media, content marketing, campaigns, lead generation and performance reporting.",
     h1: "Digital Marketing & Client Growth Services",
@@ -652,7 +652,7 @@ const staticPages = {
     `,
   },
   "/blog": {
-    title: "DevZore Journal | Web Development & Software Engineering Insights",
+    title: "DevZore Journal | Software & AI Insights",
     description:
       "Read software engineering guides, SaaS architecture strategies, MERN stack tutorials, and technical insights from Muhammad Shoukat and the DevZore team.",
     h1: "DevZore Journal: Software Engineering & Architecture Insights",
@@ -660,6 +660,15 @@ const staticPages = {
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
         <h2>Practical Software Development Articles & Engineering Guides</h2>
         <p>Explore in-depth technical guides written for founders, CTOs, and developers covering full-stack architecture, MERN stack, SaaS development, and web performance.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 30px;">
+          ${blogPosts.map((post) => `
+            <article style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px;">
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;"><a href="/blog/${post.slug}" style="color: #00D2EF; text-decoration: none;">${post.title}</a></h3>
+              <p style="color: #94a3b8; font-size: 0.95rem; margin: 0 0 16px;">${post.excerpt || ""}</p>
+              <a href="/blog/${post.slug}" style="color: #ffffff; font-weight: bold; font-size: 0.9rem;">Read Article →</a>
+            </article>
+          `).join("\n")}
+        </div>
       </section>
     `,
   },
@@ -755,7 +764,7 @@ const staticPages = {
     content: "<section style='padding:40px 20px; max-width:1200px; margin:0 auto;'><p>Terms of service governing DevZore software engineering agreements and client deliverables.</p></section>",
   },
   "/ai-integration-services": {
-    title: "AI Integration Services | LLM & ChatGPT Web Integration | DevZore",
+    title: "AI Integration Services | LLM Solutions | DevZore",
     description:
       "Production AI integration services for web apps, SaaS and enterprise software. Connect OpenAI, Claude, Gemini, custom LLMs, vector search and AI workflows.",
     h1: "AI Integration & LLM Development Services",
@@ -780,7 +789,7 @@ const staticPages = {
     `,
   },
   "/inventory-management-system": {
-    title: "Inventory Management System Development | Custom POS & Stock Software | DevZore",
+    title: "Inventory Management System & POS Software | DevZore",
     description:
       "Custom inventory management system development for manufacturers, distributors and retail chains. Real-time stock tracking, multi-warehouse and POS sync.",
     h1: "Custom Inventory Management System Development",
@@ -806,7 +815,7 @@ const staticPages = {
     `,
   },
   "/distribution-management-system": {
-    title: "Distribution Management System Development | Logistics & Route ERP | DevZore",
+    title: "Distribution Management System (DMS) | DevZore",
     description:
       "Custom distribution management system (DMS) development for wholesale distributors, fleets and FMCG brands. Route dispatching, driver apps and order tracking.",
     h1: "Custom Distribution Management System (DMS) Development",
@@ -832,9 +841,9 @@ const staticPages = {
     `,
   },
   "/installment-management-software": {
-    title: "Installment Management Software Development | Credit & EMI System | DevZore",
+    title: "Installment Management Software & EMI Systems | DevZore",
     description:
-      "Custom installment management software for electronics, appliance, vehicle and consumer credit retailers. Automated EMI schedules, recovery and penalty tracking.",
+      "Custom installment management software for retailers. Automated EMI schedules, recovery tracking, payment reminders and transparent customer ledgers.",
     h1: "Custom Installment Management Software Development",
     answerBlock:
       "DevZore builds custom installment management software for retailers, consumer durable sellers, and private finance firms offering credit sales and equated monthly installment (EMI) plans. Our systems automate flexible repayment schedule generation, automated overdue penalty calculations, guarantor and collateral verification archives, field collection officer ledger sync, and SMS payment reminder triggers.",
@@ -858,7 +867,7 @@ const staticPages = {
     `,
   },
   "/tour-booking-system": {
-    title: "Tour Booking System & Safari Booking Software Development | DevZore",
+    title: "Tour Booking System & Safari Software | DevZore",
     description:
       "Custom tour booking system and safari reservation software development. Multi-currency checkout, dynamic calendar pricing and WhatsApp booking paths.",
     h1: "Custom Tour Booking & Safari Reservation System Development",
@@ -884,7 +893,7 @@ const staticPages = {
     `,
   },
   "/food-ordering-system": {
-    title: "Online Food Ordering System Development | Multi-Branch Delivery | DevZore",
+    title: "Online Food Ordering System Development | DevZore",
     description:
       "Custom online food ordering system development for restaurants, dark kitchens and franchises. Commission-free ordering, live carts and kitchen dispatch.",
     h1: "Custom Online Food Ordering & Restaurant Delivery Platform Development",
@@ -910,7 +919,7 @@ const staticPages = {
     `,
   },
   "/nextjs-development": {
-    title: "Next.js Development Services | Full-Stack React & SSR Apps | DevZore",
+    title: "Next.js Development Services | React & SSR Apps | DevZore",
     description:
       "Production Next.js development services for startups and high-growth companies. App Router, Server Components, SSR, static generation and SEO-optimized apps.",
     h1: "Next.js Development Services",
@@ -935,7 +944,7 @@ const staticPages = {
     `,
   },
   "/industries": {
-    title: "Industries We Serve | Enterprise Software Engineering | DevZore",
+    title: "Industries We Serve | DevZore Software",
     description:
       "Custom software engineering across manufacturing & retail, food & distribution, tourism & hospitality, and consumer finance. Proven production case studies.",
     h1: "Industries We Serve: Custom Software Engineering for Real Businesses",
@@ -967,7 +976,7 @@ const staticPages = {
     `,
   },
   "/careers": {
-    title: "Careers at DevZore | Engineering & Technical Opportunities | DevZore",
+    title: "Careers at DevZore | Engineering Roles | DevZore",
     description:
       "Explore engineering careers and open technical roles at DevZore. Direct founder-led engineering culture, remote collaboration, and modern tech stacks.",
     h1: "Careers at DevZore: Build Production Software with Senior Engineers",
@@ -1039,8 +1048,114 @@ function buildPageHtml(baseTemplate, route, meta, bodyHtml, schemaJson = null) {
     ? `<aside class="announcement-bar" style="background:#05141c; color:#fff; border-bottom:1px solid rgba(7,150,168,0.2); padding:8px 16px; font-size:12px; text-align:center;"><span>${announcement.text}</span>${announcement.linkUrl ? ` <a href="${announcement.linkUrl}" style="color:#1bbac8; font-weight:bold; margin-left:8px;">${announcement.linkText || "Explore Services"} →</a>` : ""}</aside>`
     : "";
 
+  const globalHeaderHtml = `
+    <header style="background:#071923; border-bottom:1px solid rgba(255,255,255,0.08); padding:16px 24px;">
+      <div style="max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+        <a href="/" style="color:#ffffff; font-size:20px; font-weight:bold; text-decoration:none; display:flex; align-items:center; gap:8px;">
+          <span style="color:#1bbac8;">DevZore</span>
+        </a>
+        <nav aria-label="Main Navigation" style="display:flex; align-items:center; gap:18px; flex-wrap:wrap; font-size:14px;">
+          <a href="/allservices" style="color:#e2e8f0; text-decoration:none;">Services</a>
+          <a href="/industries" style="color:#e2e8f0; text-decoration:none;">Industries</a>
+          <a href="/projects" style="color:#e2e8f0; text-decoration:none;">Case Studies</a>
+          <a href="/blog" style="color:#e2e8f0; text-decoration:none;">Insights</a>
+          <a href="/about" style="color:#e2e8f0; text-decoration:none;">About</a>
+          <a href="/careers" style="color:#e2e8f0; text-decoration:none;">Careers</a>
+          <a href="/contact" style="color:#e2e8f0; text-decoration:none;">Contact</a>
+          <a href="https://wa.me/923348004300?text=Hi%20DevZore,%20I%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" style="background:#25D366; color:#061923; padding:8px 16px; border-radius:8px; font-weight:bold; text-decoration:none;">WhatsApp</a>
+        </nav>
+      </div>
+    </header>
+  `;
+
+  const globalFooterHtml = `
+    <footer style="background:#02090D; color:#94a3b8; border-top:1px solid rgba(255,255,255,0.08); padding:50px 24px 30px; font-size:13px; line-height:1.7;">
+      <div style="max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:32px;">
+        <div>
+          <h4 style="color:#ffffff; font-size:16px; margin:0 0 12px; font-weight:bold;"><a href="/" style="color:#ffffff; text-decoration:none;">DevZore</a></h4>
+          <p style="margin:0 0 10px;">Pakistan-based software development company delivering web, mobile, SaaS and AI solutions to clients worldwide.</p>
+          <p style="margin:0 0 6px;"><strong>Engineering Base:</strong> Pakistan</p>
+          <p style="margin:0 0 6px;"><strong>Delivery Footprint:</strong> Pakistan, Qatar & Worldwide</p>
+          <p style="margin:0 0 6px;"><strong>WhatsApp:</strong> +92 334 8004300</p>
+          <p style="margin:0;"><strong>Email:</strong> hellodevzore@gmail.com</p>
+        </div>
+        <div>
+          <h4 style="color:#ffffff; font-size:14px; margin:0 0 12px; font-weight:bold;"><a href="/allservices" style="color:#1bbac8; text-decoration:none;">Core Services</a></h4>
+          <ul style="list-style:none; padding:0; margin:0; space-y:6px;">
+            <li><a href="/web-development" style="color:#cbd5e1; text-decoration:none;">Web Development</a></li>
+            <li><a href="/mobile-apps" style="color:#cbd5e1; text-decoration:none;">Mobile Applications</a></li>
+            <li><a href="/generative-ai-development" style="color:#cbd5e1; text-decoration:none;">Generative AI Development</a></li>
+            <li><a href="/ai-integration-services" style="color:#cbd5e1; text-decoration:none;">AI Integration & LLM Services</a></li>
+            <li><a href="/nextjs-development" style="color:#cbd5e1; text-decoration:none;">Next.js Development</a></li>
+            <li><a href="/mern-stack-development" style="color:#cbd5e1; text-decoration:none;">MERN Stack Development</a></li>
+            <li><a href="/backend-api" style="color:#cbd5e1; text-decoration:none;">Backend & API Engineering</a></li>
+            <li><a href="/ecommerce" style="color:#cbd5e1; text-decoration:none;">E-Commerce Platforms</a></li>
+            <li><a href="/saas-product-development" style="color:#cbd5e1; text-decoration:none;">SaaS Product Development</a></li>
+            <li><a href="/reactdevelopment" style="color:#cbd5e1; text-decoration:none;">React.js Web Applications</a></li>
+            <li><a href="/ui-ux-design" style="color:#cbd5e1; text-decoration:none;">UI/UX Design Systems</a></li>
+            <li><a href="/startup-mvp" style="color:#cbd5e1; text-decoration:none;">Startup MVP Development</a></li>
+            <li><a href="/cloud-deployment" style="color:#cbd5e1; text-decoration:none;">Cloud & DevOps Deployment</a></li>
+            <li><a href="/maintenance" style="color:#cbd5e1; text-decoration:none;">Maintenance & Support</a></li>
+            <li><a href="/seo-services" style="color:#cbd5e1; text-decoration:none;">Technical SEO Services</a></li>
+            <li><a href="/digital-marketing" style="color:#cbd5e1; text-decoration:none;">Digital Marketing Growth</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color:#ffffff; font-size:14px; margin:0 0 12px; font-weight:bold;">Solutions & Systems</h4>
+          <ul style="list-style:none; padding:0; margin:0; space-y:6px;">
+            <li><a href="/startup-solutions" style="color:#cbd5e1; text-decoration:none;">Startup Solutions</a></li>
+            <li><a href="/business-solutions" style="color:#cbd5e1; text-decoration:none;">Business Software</a></li>
+            <li><a href="/ecommerce-solutions" style="color:#cbd5e1; text-decoration:none;">E-Commerce Solutions</a></li>
+            <li><a href="/saas-solutions" style="color:#cbd5e1; text-decoration:none;">SaaS Architecture</a></li>
+            <li><a href="/management-systems" style="color:#cbd5e1; text-decoration:none;">Management Systems</a></li>
+            <li><a href="/custom-software-solutions" style="color:#cbd5e1; text-decoration:none;">Custom Software</a></li>
+            <li><a href="/inventory-management-system" style="color:#cbd5e1; text-decoration:none;">Inventory Management</a></li>
+            <li><a href="/distribution-management-system" style="color:#cbd5e1; text-decoration:none;">Distribution ERP (DMS)</a></li>
+            <li><a href="/installment-management-software" style="color:#cbd5e1; text-decoration:none;">Installment Software</a></li>
+            <li><a href="/tour-booking-system" style="color:#cbd5e1; text-decoration:none;">Tour Booking Systems</a></li>
+            <li><a href="/food-ordering-system" style="color:#cbd5e1; text-decoration:none;">Online Food Ordering</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color:#ffffff; font-size:14px; margin:0 0 12px; font-weight:bold;"><a href="/projects" style="color:#1bbac8; text-decoration:none;">Case Studies</a> & <a href="/industries" style="color:#1bbac8; text-decoration:none;">Industries</a></h4>
+          <ul style="list-style:none; padding:0; margin:0; space-y:6px;">
+            <li><a href="/projects/weldon-paints" style="color:#cbd5e1; text-decoration:none;">Weldon Paints POS & Stock</a></li>
+            <li><a href="/projects/sarab-express" style="color:#cbd5e1; text-decoration:none;">Sarab Express Food Ordering</a></li>
+            <li><a href="/projects/desert-safari-qatar" style="color:#cbd5e1; text-decoration:none;">Desert Safari Qatar Excursions</a></li>
+            <li><a href="/projects/frostyops" style="color:#cbd5e1; text-decoration:none;">FrostyOps Logistics ERP</a></li>
+            <li><a href="/projects/installment-management" style="color:#cbd5e1; text-decoration:none;">Installment Credit Platform</a></li>
+            <li><a href="/projects/gulf-dunes-tourism" style="color:#cbd5e1; text-decoration:none;">Gulf Dunes Tourism Portal</a></li>
+            <li><a href="/industries" style="color:#cbd5e1; text-decoration:none;">Manufacturing & Retail</a></li>
+            <li><a href="/industries" style="color:#cbd5e1; text-decoration:none;">Food, Beverage & Distribution</a></li>
+            <li><a href="/industries" style="color:#cbd5e1; text-decoration:none;">Tourism & Hospitality</a></li>
+            <li><a href="/industries" style="color:#cbd5e1; text-decoration:none;">Finance & Installment Sales</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color:#ffffff; font-size:14px; margin:0 0 12px; font-weight:bold;">Company & Knowledge</h4>
+          <ul style="list-style:none; padding:0; margin:0; space-y:6px;">
+            <li><a href="/about" style="color:#cbd5e1; text-decoration:none;">About DevZore</a></li>
+            <li><a href="/our-process" style="color:#cbd5e1; text-decoration:none;">Our Process</a></li>
+            <li><a href="/technologies" style="color:#cbd5e1; text-decoration:none;">Technology Stack</a></li>
+            <li><a href="/careers" style="color:#cbd5e1; text-decoration:none;">Careers & Roles</a></li>
+            <li><a href="/blog" style="color:#cbd5e1; text-decoration:none;">DevZore Journal</a></li>
+            <li><a href="/guides" style="color:#cbd5e1; text-decoration:none;">Development Guides</a></li>
+            <li><a href="/faqs" style="color:#cbd5e1; text-decoration:none;">Common FAQs</a></li>
+            <li><a href="/resources" style="color:#cbd5e1; text-decoration:none;">Developer Resources</a></li>
+            <li><a href="/contact" style="color:#cbd5e1; text-decoration:none;">Contact & Inquiries</a></li>
+            <li><a href="/privacy-policy" style="color:#cbd5e1; text-decoration:none;">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions" style="color:#cbd5e1; text-decoration:none;">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="max-width:1240px; margin:40px auto 0; padding-top:20px; border-top:1px solid rgba(255,255,255,0.06); text-align:center; font-size:12px; color:#64748b;">
+        © ${new Date().getFullYear()} DevZore. All rights reserved. Full source code handover with 100% intellectual property ownership.
+      </div>
+    </footer>
+  `;
+
   // Inject pre-rendered body into <div id="root">
-  const rootReplacement = `<div id="root">${announcementHtml}${bodyHtml}</div>`;
+  const rootReplacement = `<div id="root">${announcementHtml}${globalHeaderHtml}${bodyHtml}${globalFooterHtml}</div>`;
   html = html.replace(/<div id="root"><\/div>/i, rootReplacement);
 
   return html;
@@ -1104,8 +1219,17 @@ async function run() {
     const targetDir = path.resolve(distDir, "projects", project.slug);
     fs.mkdirSync(targetDir, { recursive: true });
 
+    const shortSystemType = {
+      "weldon-paints": "POS & Stock System",
+      "sarab-express": "Food Ordering System",
+      "desert-safari-qatar": "Booking Portal",
+      "gulf-dunes-tourism": "Excursion Portal",
+      "frostyops": "Route Logistics ERP",
+      "installment-management": "Credit System",
+    }[project.slug] || project.systemType;
+
     const meta = {
-      title: `${project.title} Case Study | ${project.systemType} | DevZore`,
+      title: `${project.title} Case Study | ${shortSystemType} | DevZore`,
       description: `Read how DevZore built ${project.title}, a ${project.systemType} using ${project.technologies.slice(0, 3).join(", ")} for clients in ${project.location}.`,
       ogType: "article",
     };
@@ -1155,7 +1279,6 @@ async function run() {
       name: project.title,
       applicationCategory: project.category,
       operatingSystem: "Web",
-      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       author: { "@type": "Organization", name: "DevZore", url: BASE_URL },
       description: project.description,
     };
@@ -1200,6 +1323,8 @@ async function run() {
       .replace(/<h1[\s>]/gi, "<h2 ")
       .replace(/<\/h1>/gi, "</h2>");
 
+    const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+
     const bodyHtml = `
       <article style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
         <header style="margin-bottom: 30px;">
@@ -1209,6 +1334,15 @@ async function run() {
         </header>
         <div class="article-content" style="line-height: 1.8; color: #1e293b;">
           ${cleanContent}
+        </div>
+        <div style="margin-top: 40px; padding: 24px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
+          <h3 style="margin: 0 0 12px; font-size: 1.1rem; color: #071923;">Related Engineering Insights</h3>
+          <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+            ${relatedPosts.map((r) => `<li><a href="/blog/${r.slug}" style="color: #0796A8; font-weight: 600; text-decoration: none;">${r.title}</a></li>`).join("\n")}
+          </ul>
+          <div style="margin-top: 16px;">
+            <a href="/blog" style="color: #0796A8; font-weight: bold; text-decoration: none;">← Explore all DevZore Journal articles</a>
+          </div>
         </div>
       </article>
     `;

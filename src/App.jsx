@@ -25,6 +25,8 @@ import StatsStrip from "./components/StatsStrip";
 import ClientStrip from "./components/ClientStrip";
 import IndustriesWeServe from "./components/IndustriesWeServe";
 import FeaturedInsights from "./components/FeaturedInsights";
+import SEO from "./components/SEO";
+import FinalCTA from "./components/FinalCTA";
 
 // ======================================================
 // HOME SECTIONS - KEEP NORMAL IMPORTS
@@ -932,19 +934,22 @@ function NotFound() {
 function HomePage() {
   return (
     <>
+      <SEO
+        title="DevZore | Software Development Company & AI Solutions"
+        description="DevZore is a Pakistan-based software development company delivering custom web apps, mobile applications, SaaS platforms and AI solutions to clients worldwide."
+        canonical="/"
+      />
       <Hero />
       <FeaturedInsights />
-      <TrustBar />
       <StatsStrip />
       <ClientStrip />
       <Services />
       <IndustriesWeServe />
-      <Solutions />
       <Projects />
       <WhyUs />
       <TechStack />
-      <Testimonials />
       <FAQ />
+      <FinalCTA />
     </>
   );
 }
@@ -1386,7 +1391,6 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <SEOManager />
       <AppContent />
     </BrowserRouter>
   );

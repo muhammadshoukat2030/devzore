@@ -26,8 +26,8 @@ export default function StatsStrip({ className = "" }) {
     },
     {
       icon: <Globe size={20} className="text-[#1BBAC8]" />,
-      value: "PK & QA",
-      label: "Regional Clients",
+      value: "Pakistan & Qatar",
+      label: "Active Client Base",
       detail: "Remote delivery worldwide",
     },
     {
@@ -60,7 +60,7 @@ export default function StatsStrip({ className = "" }) {
                 {stat.icon}
               </div>
               <div>
-                <div className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+                <div className="text-lg sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-white leading-tight">
                   {stat.value}
                 </div>
                 <div className="text-xs sm:text-sm font-bold text-slate-200 mt-0.5">

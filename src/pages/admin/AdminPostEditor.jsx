@@ -1317,6 +1317,17 @@ const AdminPostEditor = () => {
       return false;
     }
 
+    if (selectedStatus === "published") {
+      if (!formData.seoTitle.trim()) {
+        toast.error("SEO Title is required before publishing a post.");
+        return false;
+      }
+      if (!formData.seoDescription.trim()) {
+        toast.error("SEO Description is required before publishing a post.");
+        return false;
+      }
+    }
+
     if (
       selectedStatus ===
       "scheduled"
@@ -1511,8 +1522,9 @@ const AdminPostEditor = () => {
               .trim(),
         };
 
+        let response;
         if (isEditMode) {
-          await postService.updatePost(
+          response = await postService.updatePost(
             id,
             postData
           );
@@ -1524,6 +1536,12 @@ const AdminPostEditor = () => {
             toast.success(
               "Post updated and published successfully!"
             );
+            if (!response?.rebuildTriggered && !response?.data?.rebuildTriggered) {
+              toast(
+                "Notice: VERCEL_DEPLOY_HOOK_URL is not set in backend env. Trigger a deploy on Vercel to rebuild static pages.",
+                { icon: "⚠️", duration: 7000 }
+              );
+            }
           } else if (
             selectedStatus ===
             "scheduled"
@@ -1537,7 +1555,7 @@ const AdminPostEditor = () => {
             );
           }
         } else {
-          await postService.createPost(
+          response = await postService.createPost(
             postData
           );
 
@@ -1548,6 +1566,12 @@ const AdminPostEditor = () => {
             toast.success(
               "Post published successfully!"
             );
+            if (!response?.rebuildTriggered && !response?.data?.rebuildTriggered) {
+              toast(
+                "Notice: VERCEL_DEPLOY_HOOK_URL is not set in backend env. Trigger a deploy on Vercel to rebuild static pages.",
+                { icon: "⚠️", duration: 7000 }
+              );
+            }
           } else if (
             selectedStatus ===
             "scheduled"

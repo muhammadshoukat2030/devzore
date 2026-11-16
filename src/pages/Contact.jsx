@@ -244,10 +244,7 @@ const Contact = () => {
       />
 
       <div
-        className="min-h-screen bg-[#071923] text-white antialiased"
-        style={{
-          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
-        }}
+        className="min-h-screen bg-[#071923] text-white antialiased font-sans"
       >
         {/* ============================================================ */}
         {/* HERO + FORM SECTION (ELEVATED ABOVE-THE-FOLD ON DESKTOP & MOBILE) */}

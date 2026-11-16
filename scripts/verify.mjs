@@ -435,6 +435,92 @@ assert(contactHtmlWork.includes("Qatar"), "Where We Work includes Qatar regional
 assert(homeHtml.includes("Featured Insights") || homeHtml.includes("Engineering Insights"), "Homepage includes Featured Insights section");
 assert(homeHtml.includes("SaaS Architecture Guide") || homeHtml.includes("/blog/saas-architecture-guide-startups"), "Featured Insights links to SaaS architecture guide");
 
+// 12. Devsinc Typography & Ahrefs Recovery Integrity
+console.log("\n--- TEST 12: Devsinc Typography & Ahrefs Recovery Integrity ---");
+
+// 12.1 Typography Stack Check
+const indexHtmlSrc = fs.readFileSync(path.resolve(__dirname, "../index.html"), "utf-8");
+assert(indexHtmlSrc.includes("family=DM+Sans") && indexHtmlSrc.includes("family=DM+Mono"), "Google Fonts link loads DM Sans and DM Mono in index.html");
+
+const indexCssSrc = fs.readFileSync(path.resolve(__dirname, "../src/index.css"), "utf-8");
+assert(indexCssSrc.includes("--font-sans: \"DM Sans\"") || indexCssSrc.includes("--font-sans: 'DM Sans'"), "DM Sans configured in src/index.css");
+assert(indexCssSrc.includes("--font-mono: \"DM Mono\"") || indexCssSrc.includes("--font-mono: 'DM Mono'"), "DM Mono configured in src/index.css");
+
+// 12.2 Sitemap & HTML Integrity for all 67 URLs
+const distSitemapPath = path.resolve(distDir, "sitemap.xml");
+assert(fs.existsSync(distSitemapPath), "sitemap.xml exists in dist/");
+const sitemapContent = fs.readFileSync(distSitemapPath, "utf-8");
+const locMatches = [...sitemapContent.matchAll(/<loc>(https:\/\/devzore\.com[^<]*)<\/loc>/g)];
+assert(locMatches.length === 67, `sitemap.xml contains exactly 67 URLs (found ${locMatches.length})`);
+
+let duplicateTitles = 0;
+let duplicateDescs = 0;
+let missingLang = 0;
+let invalidH1Count = 0;
+let noindexInSitemap = 0;
+let schemaPriceZeroCount = 0;
+let longTitles = 0;
+let longDescs = 0;
+
+for (const match of locMatches) {
+  const url = match[1];
+  const urlPath = url.replace("https://devzore.com", "").replace(/\/$/, "");
+  const fileRelPath = urlPath === "" ? "index.html" : `${urlPath.replace(/^\//, "")}/index.html`;
+  const filePath = path.resolve(distDir, fileRelPath);
+
+  assert(fs.existsSync(filePath), `HTML file exists for sitemap URL: ${url}`);
+  if (!fs.existsSync(filePath)) continue;
+
+  const html = fs.readFileSync(filePath, "utf-8");
+
+  // Exactly one <title>
+  const titles = html.match(/<title>.*?<\/title>/gis) || [];
+  if (titles.length !== 1) duplicateTitles++;
+
+  // Title length <= 60
+  const titleContent = (titles[0] || "").replace(/<title>|<\/title>/gi, "");
+  if (titleContent.length > 60) longTitles++;
+
+  // Exactly one <meta name="description">
+  const descs = html.match(/<meta[^>]*name=["']description["'][^>]*>/gis) || [];
+  if (descs.length !== 1) duplicateDescs++;
+
+  // Description length <= 160
+  const descContentMatch = (descs[0] || "").match(/content="([^"]*)"/i);
+  if (descContentMatch && descContentMatch[1].length > 160) longDescs++;
+
+  // <html lang="en">
+  if (!/<html[^>]*lang=["']en["']/i.test(html)) missingLang++;
+
+  // Exactly one H1
+  const h1s = html.match(/<h1[\s>]/gi) || [];
+  if (h1s.length !== 1) invalidH1Count++;
+
+  // Zero noindex in sitemap URLs
+  if (html.includes('content="noindex') || html.includes("content='noindex")) noindexInSitemap++;
+
+  // No offers: 0 or price: 0 in schema
+  if (/["']price["']\s*:\s*["']?0["']?/i.test(html) || /Price:\s*0\s*USD/i.test(html)) {
+    schemaPriceZeroCount++;
+  }
+}
+
+assert(duplicateTitles === 0, `Zero pages with multiple or missing <title> tags (failures: ${duplicateTitles})`);
+assert(duplicateDescs === 0, `Zero pages with multiple or missing <meta name="description"> tags (failures: ${duplicateDescs})`);
+assert(missingLang === 0, `All sitemap HTML files have <html lang="en"> (missing: ${missingLang})`);
+assert(invalidH1Count === 0, `All sitemap HTML files have exactly one <h1> (invalid: ${invalidH1Count})`);
+assert(noindexInSitemap === 0, `Zero sitemap URLs contain noindex meta tag (found: ${noindexInSitemap})`);
+assert(schemaPriceZeroCount === 0, `Zero sitemap URLs contain price: 0 USD data leak or schema (found: ${schemaPriceZeroCount})`);
+assert(longTitles === 0, `Zero sitemap URLs have titles exceeding 60 characters (found: ${longTitles})`);
+assert(longDescs === 0, `Zero sitemap URLs have descriptions exceeding 160 characters (found: ${longDescs})`);
+
+// 12.3 IndexNow Key Files and Robots.txt Check
+assert(fs.existsSync(path.resolve(distDir, "devzore-indexnow-key.txt")), "devzore-indexnow-key.txt exists in dist/");
+assert(fs.existsSync(path.resolve(distDir, "4b8c9d2e1f0a7b5c8d6e3f2a1b9c8d7e.txt")), "UUID key file exists in dist/");
+const robotsTxt = fs.readFileSync(path.resolve(distDir, "robots.txt"), "utf-8");
+assert(robotsTxt.includes("Disallow: /admin"), "robots.txt disallows /admin");
+assert(robotsTxt.includes("sitemap.xml"), "robots.txt references sitemap.xml");
+
 console.log("\n=========================================");
 console.log(`VERIFICATION SUMMARY: ${passes} Passed, ${failures} Failed`);
 console.log("=========================================");

@@ -4,6 +4,7 @@ import {
   Outlet,
   useNavigate,
 } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 
@@ -47,7 +48,14 @@ const AdminLayout = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <>
+      <Helmet>
+        <html lang="en" />
+        <title>DevZore Admin</title>
+        <meta name="robots" content="noindex, nofollow, noarchive" />
+        <meta name="googlebot" content="noindex, nofollow, noarchive" />
+      </Helmet>
+      <div className="min-h-screen bg-slate-100 font-sans">
       {/* Mobile Overlay */}
       {sidebarOpen && (
         <div
@@ -195,6 +203,7 @@ const AdminLayout = () => {
         </main>
       </div>
     </div>
+    </>
   );
 };
 

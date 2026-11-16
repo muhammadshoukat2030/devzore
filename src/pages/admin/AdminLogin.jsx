@@ -4,6 +4,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 
@@ -195,7 +196,14 @@ const AdminLogin = () => {
   // LOGIN UI
   // ======================================================
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4 py-10 relative overflow-hidden">
+    <>
+      <Helmet>
+        <html lang="en" />
+        <title>Admin Login | DevZore</title>
+        <meta name="robots" content="noindex, nofollow, noarchive" />
+        <meta name="googlebot" content="noindex, nofollow, noarchive" />
+      </Helmet>
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4 py-10 relative overflow-hidden font-sans">
 
       {/* ==================================================
           BACKGROUND EFFECTS
@@ -368,6 +376,7 @@ const AdminLogin = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

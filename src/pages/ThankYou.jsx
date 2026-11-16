@@ -9,6 +9,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import SEO from "../components/SEO";
 
 const ThankYou = () => {
   // BACKGROUNDS
@@ -56,12 +57,16 @@ const ThankYou = () => {
   };
 
   return (
-    <div
-      className="relative min-h-screen overflow-hidden bg-[#04111a] text-white antialiased"
-      style={{
-        fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
-      }}
-    >
+    <>
+      <SEO
+        title="Thank You | DevZore"
+        description="Thank you for contacting DevZore. Your project inquiry has been received successfully."
+        canonical="/thank-you"
+        noindex={true}
+      />
+      <div
+        className="relative min-h-screen overflow-hidden bg-[#04111a] text-white antialiased font-sans"
+      >
       {/* BACKGROUND */}
 
       <div className="absolute inset-0 pointer-events-none">
@@ -241,6 +246,7 @@ const ThankYou = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
