@@ -269,7 +269,7 @@ export default function CloudDeployment() {
         {/* HERO SECTION */}
         <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24" style={darkGrid}>
           <div className="max-w-[1240px] mx-auto px-5 sm:px-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3.5 py-1 text-[11px] font-semibold text-[#1BBAC8] mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3.5 py-1 text-[13px] font-semibold text-[#1BBAC8] mb-6">
               <Cloud size={14} /> Production Infrastructure & Cloud Engineering
             </div>
 

@@ -588,12 +588,12 @@ const Hero = () => {
 
               <span
                 className="
-                  text-[8px]
+                  text-xs
 
-                  min-[360px]:text-[8.5px]
-                  min-[390px]:text-[9px]
+                  min-[360px]:text-xs
+                  min-[390px]:text-xs
 
-                  sm:text-[10px]
+                  sm:text-xs
 
                   font-bold
 
@@ -652,9 +652,9 @@ const Hero = () => {
 
                 max-w-[540px]
 
-                text-[10.5px]
+                text-xs
 
-                min-[390px]:text-[11px]
+                min-[390px]:text-[13px]
 
                 sm:text-[13px]
                 lg:text-[14px]
@@ -707,9 +707,9 @@ const Hero = () => {
                   sm:px-5
                   py-2
                   sm:py-2.5
-                  text-[9px]
-                  min-[380px]:text-[9.5px]
-                  sm:text-[11.5px]
+                  text-xs
+                  min-[380px]:text-xs
+                  sm:text-[13px]
                   font-semibold
                   text-[#06101a]
                   shadow-[0_10px_35px_rgba(37,211,102,0.25)]
@@ -752,11 +752,11 @@ const Hero = () => {
 
                   sm:py-2.5
 
-                  text-[9px]
+                  text-xs
 
-                  min-[380px]:text-[9.5px]
+                  min-[380px]:text-xs
 
-                  sm:text-[11.5px]
+                  sm:text-[13px]
 
                   font-semibold
 
@@ -810,12 +810,12 @@ const Hero = () => {
 
                   py-2
 
-                  text-[8px]
+                  text-xs
 
-                  min-[360px]:text-[8.5px]
-                  min-[390px]:text-[9px]
+                  min-[360px]:text-xs
+                  min-[390px]:text-xs
 
-                  sm:text-[11px]
+                  sm:text-[13px]
 
                   font-semibold
 
@@ -890,7 +890,7 @@ const Hero = () => {
               className="
                 mb-1.5
 
-                text-[7px]
+                text-xs
 
                 font-bold
 
@@ -974,7 +974,7 @@ const Hero = () => {
 
                             gap-1.5
 
-                            text-[8px]
+                            text-xs
 
                             font-semibold
 
@@ -1044,7 +1044,7 @@ const Hero = () => {
 
                             gap-1.5
 
-                            text-[8px]
+                            text-xs
 
                             font-semibold
 
@@ -1255,7 +1255,7 @@ const Hero = () => {
                   className="
                     mb-2
 
-                    text-[8px]
+                    text-xs
 
                     font-bold
 
@@ -1461,7 +1461,7 @@ const Hero = () => {
 
                           font-mono
 
-                          text-[7px]
+                          text-xs
 
                           text-slate-500
                         "
@@ -1474,8 +1474,8 @@ const Hero = () => {
                         className={`
                           block
 
-                          text-[9px]
-                          xl:text-[10px]
+                          text-xs
+                          xl:text-xs
 
                           font-semibold
 

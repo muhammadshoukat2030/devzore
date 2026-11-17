@@ -264,7 +264,7 @@ const Contact = () => {
               {/* LEFT COLUMN: PUNCHY COPY, DIRECT CHANNELS & TRUST HIGHLIGHTS */}
               <div className="space-y-4 lg:sticky lg:top-20">
                 <div>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[10px] sm:text-[11px] font-bold tracking-wider uppercase text-[#1bbac8]">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-xs sm:text-[13px] font-bold tracking-wider uppercase text-[#1bbac8]">
                     <Sparkles size={12} />
                     Direct Engineering Consultation
                   </div>
@@ -296,11 +296,11 @@ const Contact = () => {
                         <MessageSquare size={16} />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-emerald-400">WhatsApp</div>
-                        <div className="text-[11px] sm:text-[13px] font-bold text-white group-hover:text-emerald-300 transition truncate">+92 334 8004300</div>
+                        <div className="text-xs sm:text-xs font-bold uppercase tracking-wider text-emerald-400">WhatsApp</div>
+                        <div className="text-[13px] sm:text-[13px] font-bold text-white group-hover:text-emerald-300 transition truncate">+92 334 8004300</div>
                       </div>
                     </div>
-                    <span className="text-[11px] font-semibold text-emerald-400 group-hover:translate-x-0.5 transition hidden sm:inline-flex items-center gap-1 shrink-0">
+                    <span className="text-[13px] font-semibold text-emerald-400 group-hover:translate-x-0.5 transition hidden sm:inline-flex items-center gap-1 shrink-0">
                       Chat <ArrowRight size={12} />
                     </span>
                   </a>
@@ -314,11 +314,11 @@ const Contact = () => {
                         <Mail size={16} />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-cyan-400">Email</div>
-                        <div className="text-[11px] sm:text-[13px] font-bold text-white group-hover:text-cyan-300 transition truncate">hellodevzore@gmail.com</div>
+                        <div className="text-xs sm:text-xs font-bold uppercase tracking-wider text-cyan-400">Email</div>
+                        <div className="text-[13px] sm:text-[13px] font-bold text-white group-hover:text-cyan-300 transition truncate">hellodevzore@gmail.com</div>
                       </div>
                     </div>
-                    <span className="text-[11px] font-semibold text-cyan-400 group-hover:translate-x-0.5 transition hidden sm:inline-flex items-center gap-1 shrink-0">
+                    <span className="text-[13px] font-semibold text-cyan-400 group-hover:translate-x-0.5 transition hidden sm:inline-flex items-center gap-1 shrink-0">
                       Email <ArrowRight size={12} />
                     </span>
                   </a>
@@ -326,50 +326,50 @@ const Contact = () => {
 
                 {/* TRUST POINTS & GUARANTEES (DESKTOP VIEW) */}
                 <div className="hidden lg:block pt-3 border-t border-white/[0.08] space-y-3">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">What You Can Rely On</div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-400">What You Can Rely On</div>
                   <div className="grid grid-cols-2 gap-2.5 text-[12px] text-slate-300">
                     <div className="flex items-start gap-2">
                       <CheckCircle2 size={14} className="text-[#1bbac8] shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-white block font-semibold">Direct Engineers</strong>
-                        <span className="text-[11px] text-slate-400">Speak directly with builders.</span>
+                        <span className="text-[13px] text-slate-400">Speak directly with builders.</span>
                       </div>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 size={14} className="text-[#1bbac8] shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-white block font-semibold">100% Handover</strong>
-                        <span className="text-[11px] text-slate-400">Source code & IP rights.</span>
+                        <span className="text-[13px] text-slate-400">Source code & IP rights.</span>
                       </div>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 size={14} className="text-[#1bbac8] shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-white block font-semibold">Transparent Scope</strong>
-                        <span className="text-[11px] text-slate-400">Clear milestones, no surprises.</span>
+                        <span className="text-[13px] text-slate-400">Clear milestones, no surprises.</span>
                       </div>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 size={14} className="text-[#1bbac8] shrink-0 mt-0.5" />
                       <div>
                         <strong className="text-white block font-semibold">Post-Launch Care</strong>
-                        <span className="text-[11px] text-slate-400">Ongoing warranty & scaling.</span>
+                        <span className="text-[13px] text-slate-400">Ongoing warranty & scaling.</span>
                       </div>
                     </div>
                   </div>
 
                   {/* WORKING WITH CLIENTS WORLDWIDE PROOF */}
                   <div className="p-3.5 rounded-xl border border-cyan-500/20 bg-cyan-950/20">
-                    <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#1BBAC8] mb-1">
+                    <div className="flex items-center gap-1.5 text-[13px] font-bold uppercase tracking-wider text-[#1BBAC8] mb-1">
                       <Globe size={13} className="text-[#1BBAC8]" />
                       <span>Working With Clients Worldwide</span>
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-relaxed">
+                    <p className="text-[13px] text-slate-300 leading-relaxed">
                       Remote delivery across time zones via WhatsApp, Slack, Google Meet & email with private staging links and progress demos. Active systems delivered for clients in Pakistan, Qatar and internationally.
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-4 pt-1 text-[11px] text-slate-400">
+                  <div className="flex items-center gap-4 pt-1 text-[13px] text-slate-400">
                     <span className="flex items-center gap-1.5"><Clock size={12} className="text-[#1bbac8]" /> &lt; 24h Response</span>
                     <span className="flex items-center gap-1.5"><Globe size={12} className="text-[#1bbac8]" /> PK, Qatar & Worldwide</span>
                   </div>
@@ -383,11 +383,11 @@ const Contact = () => {
                   className="rounded-2xl border border-white/[0.1] bg-[#081d28]/95 p-4 sm:p-5 lg:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-md"
                 >
                   <div className="pb-2.5 sm:pb-3 border-b border-white/[0.08]">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">Project Inquiry Form</div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8]">Project Inquiry Form</div>
                     <h2 className="mt-0.5 text-[17px] sm:text-[20px] font-bold text-white tracking-tight">
                       Share Your Requirements
                     </h2>
-                    <p className="mt-0.5 text-[11px] text-slate-400">
+                    <p className="mt-0.5 text-[13px] text-slate-400">
                       Fill out the fields below — we typically reply within a few hours.
                     </p>
                   </div>
@@ -398,7 +398,7 @@ const Contact = () => {
                       <div>
                         <label
                           htmlFor="contact-name"
-                          className="block mb-1 text-[10px] font-bold uppercase tracking-wider text-slate-300"
+                          className="block mb-1 text-xs font-bold uppercase tracking-wider text-slate-300"
                         >
                           Your Name <span className="text-cyan-400">*</span>
                         </label>
@@ -418,7 +418,7 @@ const Contact = () => {
                       <div>
                         <label
                           htmlFor="contact-email"
-                          className="block mb-1 text-[10px] font-bold uppercase tracking-wider text-slate-300"
+                          className="block mb-1 text-xs font-bold uppercase tracking-wider text-slate-300"
                         >
                           Email Address <span className="text-cyan-400">*</span>
                         </label>
@@ -441,7 +441,7 @@ const Contact = () => {
                       <div>
                         <label
                           htmlFor="contact-service"
-                          className="block mb-1 text-[10px] font-bold uppercase tracking-wider text-slate-300"
+                          className="block mb-1 text-xs font-bold uppercase tracking-wider text-slate-300"
                         >
                           Service Needed
                         </label>
@@ -470,7 +470,7 @@ const Contact = () => {
                       <div>
                         <label
                           htmlFor="contact-timeline"
-                          className="block mb-1 text-[10px] font-bold uppercase tracking-wider text-slate-300"
+                          className="block mb-1 text-xs font-bold uppercase tracking-wider text-slate-300"
                         >
                           Target Timeline
                         </label>
@@ -501,7 +501,7 @@ const Contact = () => {
                     <div>
                       <label
                         htmlFor="contact-message"
-                        className="block mb-1 text-[10px] font-bold uppercase tracking-wider text-slate-300"
+                        className="block mb-1 text-xs font-bold uppercase tracking-wider text-slate-300"
                       >
                         Project Details <span className="text-cyan-400">*</span>
                       </label>
@@ -542,7 +542,7 @@ const Contact = () => {
                     </button>
 
                     {/* CONFIDENTIALITY GUARANTEE */}
-                    <div className="pt-1 flex items-center justify-center gap-2 text-center text-slate-400 text-[11px]">
+                    <div className="pt-1 flex items-center justify-center gap-2 text-center text-slate-400 text-[13px]">
                       <ShieldCheck size={14} className="text-[#1bbac8] shrink-0" />
                       <span>100% Confidential. NDA signed upon request. Zero spam guarantee.</span>
                     </div>
@@ -551,8 +551,8 @@ const Contact = () => {
 
                 {/* TRUST POINTS & GUARANTEES (MOBILE VIEW ONLY - SHOWN UNDER FORM) */}
                 <div className="lg:hidden mt-6 p-4 rounded-xl border border-white/[0.08] bg-white/[0.02] space-y-3">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">Why Clients Trust DevZore</div>
-                  <div className="grid grid-cols-2 gap-2.5 text-[11px] text-slate-300">
+                  <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8]">Why Clients Trust DevZore</div>
+                  <div className="grid grid-cols-2 gap-2.5 text-[13px] text-slate-300">
                     <div className="flex items-center gap-1.5">
                       <CheckCircle2 size={13} className="text-[#1bbac8] shrink-0" />
                       <span>Direct Engineers</span>
@@ -570,7 +570,7 @@ const Contact = () => {
                       <span>Post-Launch Support</span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between pt-2 border-t border-white/[0.06] text-[10px] text-slate-400">
+                  <div className="flex items-center justify-between pt-2 border-t border-white/[0.06] text-xs text-slate-400">
                     <span className="flex items-center gap-1"><Clock size={11} className="text-[#1bbac8]" /> &lt; 24h Response</span>
                     <span className="flex items-center gap-1"><Globe size={11} className="text-[#1bbac8]" /> PK, Qatar & Worldwide</span>
                   </div>
@@ -592,8 +592,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <div className="text-xl sm:text-2xl font-black text-white">120+</div>
-                  <div className="text-[11px] font-bold text-[#1bbac8] uppercase tracking-wider">Projects Completed</div>
-                  <div className="text-[10px] text-slate-400">Web, mobile & SaaS platforms</div>
+                  <div className="text-[13px] font-bold text-[#1bbac8] uppercase tracking-wider">Projects Completed</div>
+                  <div className="text-xs text-slate-400">Web, mobile & SaaS platforms</div>
                 </div>
               </div>
 
@@ -603,8 +603,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <div className="text-xl sm:text-2xl font-black text-white">20</div>
-                  <div className="text-[11px] font-bold text-[#1bbac8] uppercase tracking-wider">Core Services</div>
-                  <div className="text-[10px] text-slate-400">Full-stack engineering & AI</div>
+                  <div className="text-[13px] font-bold text-[#1bbac8] uppercase tracking-wider">Core Services</div>
+                  <div className="text-xs text-slate-400">Full-stack engineering & AI</div>
                 </div>
               </div>
 
@@ -614,8 +614,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <div className="text-xl sm:text-2xl font-black text-white">&lt; 24h</div>
-                  <div className="text-[11px] font-bold text-[#1bbac8] uppercase tracking-wider">Response Time</div>
-                  <div className="text-[10px] text-slate-400">Direct senior engineers</div>
+                  <div className="text-[13px] font-bold text-[#1bbac8] uppercase tracking-wider">Response Time</div>
+                  <div className="text-xs text-slate-400">Direct senior engineers</div>
                 </div>
               </div>
 
@@ -625,8 +625,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <div className="text-xl sm:text-2xl font-black text-white">PK & Qatar</div>
-                  <div className="text-[11px] font-bold text-[#1bbac8] uppercase tracking-wider">Regional & Global</div>
-                  <div className="text-[10px] text-slate-400">Remote delivery worldwide</div>
+                  <div className="text-[13px] font-bold text-[#1bbac8] uppercase tracking-wider">Regional & Global</div>
+                  <div className="text-xs text-slate-400">Remote delivery worldwide</div>
                 </div>
               </div>
             </div>
@@ -640,7 +640,7 @@ const Contact = () => {
           <div className="max-w-[1260px] mx-auto px-4 sm:px-6">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
               <div>
-                <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">
+                <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1bbac8]">
                   <Sparkles size={12} />
                   Verified Production Delivery
                 </div>
@@ -704,7 +704,7 @@ const Contact = () => {
                       />
                     </Link>
                     <div className="p-4 sm:p-5">
-                      <div className="text-[10px] font-bold text-[#1bbac8] uppercase tracking-wider mb-1">
+                      <div className="text-xs font-bold text-[#1bbac8] uppercase tracking-wider mb-1">
                         {item.industry}
                       </div>
                       <h3 className="text-base font-bold text-white group-hover:text-[#1bbac8] transition">
@@ -712,7 +712,7 @@ const Contact = () => {
                           {item.title}
                         </Link>
                       </h3>
-                      <p className="text-[11px] font-semibold text-slate-400 mb-2">{item.type}</p>
+                      <p className="text-[13px] font-semibold text-slate-400 mb-2">{item.type}</p>
                       <p className="text-xs text-slate-300 leading-relaxed line-clamp-2">
                         {item.teaser}
                       </p>
@@ -744,7 +744,7 @@ const Contact = () => {
         >
           <div className="max-w-[1260px] mx-auto px-4 sm:px-6">
             <div className="max-w-[700px] mb-8 sm:mb-10">
-              <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1bbac8]">
                 <span className="w-4 h-[2px] bg-[#1bbac8]" />
                 What Happens Next
               </div>
@@ -813,7 +813,7 @@ const Contact = () => {
         >
           <div className="max-w-[1260px] mx-auto px-4 sm:px-6">
             <div className="max-w-[760px] mb-8 sm:mb-10">
-              <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1bbac8]">
                 <Globe size={14} className="text-[#1bbac8]" />
                 Global Presence & Delivery
               </div>
@@ -833,12 +833,12 @@ const Contact = () => {
                 <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-[#1bbac8] border border-cyan-500/20 flex items-center justify-center mb-4">
                   <MapPin size={20} />
                 </div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">Engineering Hub</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8]">Engineering Hub</div>
                 <h3 className="mt-1 text-base font-bold text-white">Pakistan Base & Operations</h3>
                 <p className="mt-2 text-xs text-slate-300 leading-relaxed">
                   Central architecture, core full-stack engineering, and product operations. Highly skilled engineers building robust web, mobile, SaaS, and AI systems with cost-efficient execution.
                 </p>
-                <div className="mt-4 pt-3 border-t border-white/[0.06] text-[11px] text-slate-400">
+                <div className="mt-4 pt-3 border-t border-white/[0.06] text-[13px] text-slate-400">
                   <span className="font-semibold text-slate-200">Key hubs:</span> Lahore, Karachi, Rawalpindi / Islamabad
                 </div>
               </div>
@@ -847,12 +847,12 @@ const Contact = () => {
                 <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-[#1bbac8] border border-cyan-500/20 flex items-center justify-center mb-4">
                   <Globe size={20} />
                 </div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">Regional Delivery</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8]">Regional Delivery</div>
                 <h3 className="mt-1 text-base font-bold text-white">Qatar & GCC Footprint</h3>
                 <p className="mt-2 text-xs text-slate-300 leading-relaxed">
                   Delivered real production systems in Doha and the Gulf, including tourism booking systems, distribution management software, and consumer-facing food ordering platforms.
                 </p>
-                <div className="mt-4 pt-3 border-t border-white/[0.06] text-[11px] text-slate-400">
+                <div className="mt-4 pt-3 border-t border-white/[0.06] text-[13px] text-slate-400">
                   <span className="font-semibold text-slate-200">Active regional systems:</span> Doha, GCC enterprise clients
                 </div>
               </div>
@@ -861,12 +861,12 @@ const Contact = () => {
                 <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-[#1bbac8] border border-cyan-500/20 flex items-center justify-center mb-4">
                   <Clock size={20} />
                 </div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">Remote Operating Model</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8]">Remote Operating Model</div>
                 <h3 className="mt-1 text-base font-bold text-white">Worldwide Collaboration</h3>
                 <p className="mt-2 text-xs text-slate-300 leading-relaxed">
                   Async updates via Git, Slack and WhatsApp. Live staging preview links for every milestone. Daily or weekly progress calls scheduled across your local time zone with 100% code handover.
                 </p>
-                <div className="mt-4 pt-3 border-t border-white/[0.06] text-[11px] text-slate-400">
+                <div className="mt-4 pt-3 border-t border-white/[0.06] text-[13px] text-slate-400">
                   <span className="font-semibold text-slate-200">Time zone overlap:</span> US, UK, Europe, GCC & Asia-Pacific
                 </div>
               </div>
@@ -880,7 +880,7 @@ const Contact = () => {
         <section aria-labelledby="faq-heading" className="py-14 sm:py-16 bg-[#05141c] border-b border-white/[0.08]">
           <div className="max-w-[1260px] mx-auto px-4 sm:px-6">
             <div className="max-w-[700px] mb-8 sm:mb-10">
-              <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">
+              <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1bbac8]">
                 <HelpCircle size={14} className="text-[#1bbac8]" />
                 Common Questions
               </div>
@@ -925,7 +925,7 @@ const Contact = () => {
           <div className="max-w-[1260px] mx-auto px-4 sm:px-6">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
               <div>
-                <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">
+                <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1bbac8]">
                   <span className="w-4 h-[2px] bg-[#1bbac8]" />
                   Explore Capabilities
                 </div>
@@ -960,7 +960,7 @@ const Contact = () => {
                   <h3 className="mt-3 text-xs font-bold text-white group-hover:text-[#1bbac8] transition">
                     {service.title}
                   </h3>
-                  <p className="mt-1 text-[11px] leading-relaxed text-slate-400">{service.description}</p>
+                  <p className="mt-1 text-[13px] leading-relaxed text-slate-400">{service.description}</p>
                 </Link>
               ))}
             </div>
@@ -974,7 +974,7 @@ const Contact = () => {
           <div className="max-w-[1260px] mx-auto px-4 sm:px-6">
             <nav
               aria-label="DevZore contact related pages"
-              className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] font-medium text-slate-400"
+              className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-slate-400"
             >
               {[
                 ["Web Development", "/web-development"],

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+﻿import React, { useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
@@ -250,7 +250,7 @@ const FAQs = () => {
 
   const SectionLabel = ({ children, light = false }) => (
     <div
-      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+      className={`flex items-center gap-2.5 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase ${
         light ? "text-[#28c5d4]" : "text-[#07899a]"
       }`}
     >
@@ -308,7 +308,7 @@ const FAQs = () => {
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
         style={{
-          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+          fontFamily: '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* HERO */}
@@ -332,7 +332,7 @@ const FAQs = () => {
 
           <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-23 sm:pt-24 lg:pt-28 pb-10 sm:pb-12">
             <div className="max-w-[900px] mx-auto text-center">
-              <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+              <div className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
                 <CircleHelp size={14} className="text-[#25c0ce]" />
                 Frequently Asked Questions
               </div>
@@ -381,7 +381,7 @@ const FAQs = () => {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="inline-flex items-center gap-2 text-[10px] font-medium text-slate-400"
+                    className="inline-flex items-center gap-2 text-xs font-medium text-slate-400"
                   >
                     <CheckCircle2
                       size={12}
@@ -414,11 +414,11 @@ const FAQs = () => {
                         : ""
                     } ${index > 0 ? "lg:pl-7" : ""}`}
                   >
-                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-1">
+                    <span className="block text-xs font-semibold text-[#1bb8c7] mb-1">
                       {number}
                     </span>
 
-                    <span className="text-[11px] font-medium text-slate-300">
+                    <span className="text-[13px] font-medium text-slate-300">
                       {title}
                     </span>
                   </div>
@@ -473,7 +473,7 @@ const FAQs = () => {
                         className="text-[#07899a]"
                       />
 
-                      <span className="text-[10px] font-medium text-slate-700">
+                      <span className="text-xs font-medium text-slate-700">
                         {item}
                       </span>
                     </div>
@@ -541,7 +541,7 @@ const FAQs = () => {
                       setOpenFAQ(null);
                     }}
                     aria-pressed={active}
-                    className={`rounded-full border px-3 py-1.5 text-[9px] sm:text-[10px] font-semibold transition-all ${
+                    className={`rounded-full border px-3 py-1.5 text-xs sm:text-xs font-semibold transition-all ${
                       active
                         ? "bg-[#071923] border-[#071923] text-white"
                         : "border-slate-200 bg-white text-slate-600 hover:border-[#0796A8]/40 hover:text-[#07899a]"
@@ -554,7 +554,7 @@ const FAQs = () => {
             </div>
 
             <div className="text-center mt-4">
-              <span className="text-[10px] text-slate-400">
+              <span className="text-xs text-slate-400">
                 {filteredFAQs.length}{" "}
                 {filteredFAQs.length === 1 ? "question" : "questions"} found
               </span>
@@ -598,7 +598,7 @@ const FAQs = () => {
                         </div>
 
                         <div className="flex-1 min-w-0">
-                          <span className="block text-[8px] font-bold uppercase tracking-[0.16em] text-[#07899a] mb-1">
+                          <span className="block text-xs font-bold uppercase tracking-[0.16em] text-[#07899a] mb-1">
                             {faq.category}
                           </span>
 
@@ -634,7 +634,7 @@ const FAQs = () => {
                         <div className="overflow-hidden">
                           <div className="px-4 sm:px-5 pb-4 sm:pl-[68px]">
                             <div className="border-t border-[#0796A8]/15 pt-3">
-                              <p className="text-[11px] sm:text-[12px] leading-6 text-slate-600">
+                              <p className="text-[13px] sm:text-[12px] leading-6 text-slate-600">
                                 {faq.answer}
                               </p>
                             </div>
@@ -655,7 +655,7 @@ const FAQs = () => {
                   No questions found
                 </h2>
 
-                <p className="mt-2 text-[11px] text-slate-500">
+                <p className="mt-2 text-[13px] text-slate-500">
                   Try another keyword or select a different category.
                 </p>
 
@@ -666,7 +666,7 @@ const FAQs = () => {
                     setActiveCategory("All");
                     setOpenFAQ(0);
                   }}
-                  className="mt-4 inline-flex items-center justify-center rounded-lg bg-[#071923] px-4 py-2.5 text-[10px] font-semibold text-white hover:bg-[#0b2631] transition-colors"
+                  className="mt-4 inline-flex items-center justify-center rounded-lg bg-[#071923] px-4 py-2.5 text-xs font-semibold text-white hover:bg-[#0b2631] transition-colors"
                 >
                   Clear Filters
                 </button>
@@ -728,7 +728,7 @@ const FAQs = () => {
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[11px] leading-5 mt-2">
+                  <p className="text-slate-400 text-[13px] leading-5 mt-2">
                     {item.text}
                   </p>
                 </div>
@@ -755,7 +755,7 @@ const FAQs = () => {
                     Still have a question?
                   </h2>
 
-                  <p className="mt-1 max-w-xl text-[11px] sm:text-[12px] leading-6 text-slate-500">
+                  <p className="mt-1 max-w-xl text-[13px] sm:text-[12px] leading-6 text-slate-500">
                     Tell us about your project or question and we can discuss
                     your requirements, technical considerations and next steps.
                   </p>
@@ -765,7 +765,7 @@ const FAQs = () => {
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="group shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-[#071923] hover:bg-[#0b2631] px-5 py-3 text-[10px] font-semibold text-white transition-colors"
+                className="group shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-[#071923] hover:bg-[#0b2631] px-5 py-3 text-xs font-semibold text-white transition-colors"
               >
                 Contact DevZore
 
@@ -805,7 +805,7 @@ const FAQs = () => {
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[13px] font-semibold text-[#071923] transition-colors"
               >
                 Start Your Project
 
@@ -818,7 +818,7 @@ const FAQs = () => {
               <Link
                 to="/guides"
                 onClick={scrollTop}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[11px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[13px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
               >
                 Development Guides
 
@@ -852,7 +852,7 @@ const FAQs = () => {
                   key={path}
                   to={path}
                   onClick={scrollTop}
-                  className="text-[9px] font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
+                  className="text-xs font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
                 >
                   {label}
                 </Link>

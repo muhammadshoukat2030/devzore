@@ -196,8 +196,8 @@ const Services = () => {
 
             <p
               className="
-                text-[9px]
-                sm:text-[10px]
+                text-xs
+                sm:text-xs
                 font-bold
                 uppercase
                 tracking-[0.22em]
@@ -236,7 +236,7 @@ const Services = () => {
               className="
                 mt-4
                 max-w-[650px]
-                text-[11px]
+                text-[13px]
                 sm:text-[13px]
                 lg:text-[14px]
                 leading-[1.7]
@@ -442,8 +442,8 @@ const Services = () => {
                     className="
                       mt-3
 
-                      text-[10px]
-                      sm:text-[11px]
+                      text-xs
+                      sm:text-[13px]
                       lg:text-[12px]
 
                       leading-[1.65]
@@ -466,8 +466,8 @@ const Services = () => {
                       items-center
                       gap-1.5
 
-                      text-[9px]
-                      sm:text-[10px]
+                      text-xs
+                      sm:text-xs
 
                       font-semibold
 
@@ -538,7 +538,7 @@ const Services = () => {
         >
           <p
             className="
-              text-[8px]
+              text-xs
               uppercase
               tracking-[0.16em]
               font-semibold
@@ -581,7 +581,7 @@ const Services = () => {
           <div>
             <p
               className="
-                text-[8px]
+                text-xs
                 uppercase
                 tracking-[0.18em]
                 font-bold
@@ -594,8 +594,8 @@ const Services = () => {
             <p
               className="
                 mt-1
-                text-[10px]
-                sm:text-[11px]
+                text-xs
+                sm:text-[13px]
                 text-[#58666e]
               "
             >
@@ -639,8 +639,8 @@ const Services = () => {
                     border
                     border-[#dfe5e7]
 
-                    text-[9px]
-                    sm:text-[10px]
+                    text-xs
+                    sm:text-xs
 
                     font-medium
 
@@ -699,7 +699,7 @@ const Services = () => {
 
               text-white
 
-              text-[10px]
+              text-xs
               font-semibold
 
               transition-all

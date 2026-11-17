@@ -289,7 +289,7 @@ const Footer = () => {
     //   label: "Fiverr",
     //   href: "https://www.fiverr.com/sellers/devzore/",
     //   icon: (
-    //     <span className="text-[10px] font-black">
+    //     <span className="text-xs font-black">
     //       fi
     //     </span>
     //   ),
@@ -298,7 +298,7 @@ const Footer = () => {
     //   label: "Upwork",
     //   href: "https://www.upwork.com/freelancers/~012e5cc1a7d6ceb834",
     //   icon: (
-    //     <span className="text-[9px] font-black">
+    //     <span className="text-xs font-black">
     //       up
     //     </span>
     //   ),
@@ -310,7 +310,7 @@ const Footer = () => {
   // ======================================================
 
   const headingClass = `
-    text-[11px]
+    text-[13px]
     font-bold
     text-white
     mb-4
@@ -318,7 +318,7 @@ const Footer = () => {
 
   const linkClass = `
     inline-flex
-    text-[11px]
+    text-[13px]
     sm:text-[12px]
     leading-relaxed
     text-[#8BA7B5]
@@ -346,7 +346,7 @@ const Footer = () => {
           <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
             <div className="py-10 sm:py-12 lg:py-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-7">
               <div className="max-w-2xl">
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#20C7C7] mb-3">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#20C7C7] mb-3">
                   Start a project
                 </p>
 
@@ -431,7 +431,7 @@ const Footer = () => {
                     </span>
                   </div>
 
-                  <div className="text-[8px] uppercase tracking-[0.18em] mt-0.5 text-[#6F8A98]">
+                  <div className="text-xs uppercase tracking-[0.18em] mt-0.5 text-[#6F8A98]">
                     Software Agency
                   </div>
                 </div>
@@ -468,7 +468,7 @@ const Footer = () => {
               {/* SOCIAL */}
 
               <div className="mt-6">
-                <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#607B88] mb-3">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#607B88] mb-3">
                   Follow DevZore
                 </p>
 
@@ -683,7 +683,7 @@ const Footer = () => {
 
           <div className="mt-10 pt-5 border-t border-white/[0.08]">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-              <p className="text-[10px] sm:text-[11px] text-[#607B88]">
+              <p className="text-xs sm:text-[13px] text-[#607B88]">
                 © {year}{" "}
                 <span className="text-[#8BA7B5] font-semibold">
                   DevZore
@@ -695,7 +695,7 @@ const Footer = () => {
                 <Link
                   to="/privacy-policy"
                   onClick={scrollTop}
-                  className="text-[10px] sm:text-[11px] text-[#607B88] hover:text-[#20C7C7] transition-colors"
+                  className="text-xs sm:text-[13px] text-[#607B88] hover:text-[#20C7C7] transition-colors"
                 >
                   Privacy
                 </Link>
@@ -703,14 +703,14 @@ const Footer = () => {
                 <Link
                   to="/terms-and-conditions"
                   onClick={scrollTop}
-                  className="text-[10px] sm:text-[11px] text-[#607B88] hover:text-[#20C7C7] transition-colors"
+                  className="text-xs sm:text-[13px] text-[#607B88] hover:text-[#20C7C7] transition-colors"
                 >
                   Terms
                 </Link>
 
                 <a
                   href="/sitemap.xml"
-                  className="text-[10px] sm:text-[11px] text-[#607B88] hover:text-[#20C7C7] transition-colors"
+                  className="text-xs sm:text-[13px] text-[#607B88] hover:text-[#20C7C7] transition-colors"
                 >
                   Sitemap
                 </a>

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
@@ -520,7 +520,7 @@ const Technologies = () => {
 
   const SectionLabel = ({ children, light = false }) => (
     <div
-      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+      className={`flex items-center gap-2.5 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase ${
         light ? "text-[#28c5d4]" : "text-[#07899a]"
       }`}
     >
@@ -597,7 +597,7 @@ const Technologies = () => {
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
         style={{
-          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+          fontFamily: '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* HERO */}
@@ -622,7 +622,7 @@ const Technologies = () => {
           <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-23 sm:pt-24 lg:pt-24   pb-12 sm:pb-13">
             <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-14 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+                <div className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
                   <Code2 size={14} className="text-[#25c0ce]" />
                   Technologies
                 </div>
@@ -637,7 +637,7 @@ const Technologies = () => {
                   </span>
                 </h1>
 
-                <p className="max-w-[680px] mt-4 text-[16px] sm:text-[13.5px] leading-7 text-slate-300">
+                <p className="max-w-[680px] mt-4 text-[15px] sm:text-[16px] leading-7 text-slate-300">
                   DevZore works across frontend, backend, databases, mobile
                   development, APIs and deployment to build complete digital
                   products.
@@ -685,7 +685,7 @@ const Technologies = () => {
                   ].map((item) => (
                     <span
                       key={item}
-                      className="inline-flex items-center gap-2 text-[10px] font-medium text-slate-400"
+                      className="inline-flex items-center gap-2 text-xs font-medium text-slate-400"
                     >
                       <CheckCircle2
                         size={12}
@@ -704,7 +704,7 @@ const Technologies = () => {
                 <div className="rounded-[22px] border border-white/[0.1] bg-[#091d27]/95 p-5 shadow-[0_35px_90px_rgba(0,0,0,0.4)]">
                   <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
                     <div>
-                      <p className="text-[9px] uppercase tracking-[0.17em] font-semibold text-[#25c0ce]">
+                      <p className="text-xs uppercase tracking-[0.17em] font-semibold text-[#25c0ce]">
                         Product Architecture
                       </p>
 
@@ -749,11 +749,11 @@ const Technologies = () => {
                           {item.icon}
                         </div>
 
-                        <p className="mt-3 text-[11px] font-semibold text-white">
+                        <p className="mt-3 text-[13px] font-semibold text-white">
                           {item.title}
                         </p>
 
-                        <p className="mt-1 text-[8px] text-slate-500">
+                        <p className="mt-1 text-xs text-slate-500">
                           {item.text}
                         </p>
                       </div>
@@ -762,11 +762,11 @@ const Technologies = () => {
 
                   <div className="mt-3 rounded-xl border border-white/[0.07] bg-[#071923] p-3.5">
                     <div className="flex items-center justify-between">
-                      <span className="text-[9px] text-slate-400">
+                      <span className="text-xs text-slate-400">
                         Product requirement
                       </span>
 
-                      <span className="text-[8px] font-semibold text-[#25c0ce]">
+                      <span className="text-xs font-semibold text-[#25c0ce]">
                         Technology choice
                       </span>
                     </div>
@@ -799,11 +799,11 @@ const Technologies = () => {
                         : ""
                     } ${index > 0 ? "lg:pl-7" : ""}`}
                   >
-                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-1">
+                    <span className="block text-xs font-semibold text-[#1bb8c7] mb-1">
                       {number}
                     </span>
 
-                    <span className="text-[11px] font-medium text-slate-300">
+                    <span className="text-[13px] font-medium text-slate-300">
                       {label}
                     </span>
                   </div>
@@ -863,7 +863,7 @@ const Technologies = () => {
                         className="text-[#07899a]"
                       />
 
-                      <span className="text-[10px] font-medium text-slate-700">
+                      <span className="text-xs font-medium text-slate-700">
                         {item}
                       </span>
                     </div>
@@ -917,7 +917,7 @@ const Technologies = () => {
                       </div>
 
                       <div>
-                        <span className="text-[9px] font-semibold text-[#07899a]">
+                        <span className="text-xs font-semibold text-[#07899a]">
                           {category.number}
                         </span>
 
@@ -967,7 +967,7 @@ const Technologies = () => {
                             <Braces size={14} />
                           </div>
 
-                          <span className="text-[8px] uppercase tracking-[0.12em] font-semibold text-slate-400">
+                          <span className="text-xs uppercase tracking-[0.12em] font-semibold text-slate-400">
                             {technology.label}
                           </span>
                         </div>
@@ -976,7 +976,7 @@ const Technologies = () => {
                           {technology.name}
                         </h4>
 
-                        <p className="mt-2 text-[10px] leading-5 text-slate-500">
+                        <p className="mt-2 text-xs leading-5 text-slate-500">
                           {technology.description}
                         </p>
 
@@ -984,7 +984,7 @@ const Technologies = () => {
                           {technology.useCases.map((useCase) => (
                             <div
                               key={useCase}
-                              className="flex items-center gap-2 text-[9px] text-slate-500"
+                              className="flex items-center gap-2 text-xs text-slate-500"
                             >
                               <Check
                                 size={10}
@@ -1043,7 +1043,7 @@ const Technologies = () => {
                 <Link
                   to="/mern-stack-development"
                   onClick={scrollTop}
-                  className="group mt-5 inline-flex items-center gap-2 text-[10px] font-semibold text-[#28c5d4]"
+                  className="group mt-5 inline-flex items-center gap-2 text-xs font-semibold text-[#28c5d4]"
                 >
                   Explore MERN Stack Development
 
@@ -1065,7 +1065,7 @@ const Technologies = () => {
                         {item.letter}
                       </div>
 
-                      <span className="text-[8px] uppercase tracking-[0.14em] text-slate-500">
+                      <span className="text-xs uppercase tracking-[0.14em] text-slate-500">
                         {item.role}
                       </span>
                     </div>
@@ -1074,7 +1074,7 @@ const Technologies = () => {
                       {item.name}
                     </h3>
 
-                    <p className="mt-2 text-[10px] leading-5 text-slate-400">
+                    <p className="mt-2 text-xs leading-5 text-slate-400">
                       {item.description}
                     </p>
                   </article>
@@ -1126,7 +1126,7 @@ const Technologies = () => {
                     {item.title}
                   </h3>
 
-                  <p className="mt-2 text-[10px] leading-5 text-slate-500">
+                  <p className="mt-2 text-xs leading-5 text-slate-500">
                     {item.description}
                   </p>
                 </article>
@@ -1165,7 +1165,7 @@ const Technologies = () => {
                 <Link
                   to="/contact"
                   onClick={scrollTop}
-                  className="group mt-5 inline-flex items-center gap-2 text-[10px] font-semibold text-[#07899a]"
+                  className="group mt-5 inline-flex items-center gap-2 text-xs font-semibold text-[#07899a]"
                 >
                   Discuss Your Requirements
 
@@ -1182,7 +1182,7 @@ const Technologies = () => {
                     key={item.title}
                     className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4"
                   >
-                    <span className="text-[8px] font-semibold text-[#07899a]">
+                    <span className="text-xs font-semibold text-[#07899a]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
@@ -1190,7 +1190,7 @@ const Technologies = () => {
                       {item.title}
                     </h3>
 
-                    <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                    <p className="mt-1.5 text-xs leading-5 text-slate-500">
                       {item.description}
                     </p>
                   </article>
@@ -1267,11 +1267,11 @@ const Technologies = () => {
                     {service.title}
                   </h3>
 
-                  <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                  <p className="mt-1.5 text-xs leading-5 text-slate-500">
                     {service.desc}
                   </p>
 
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]">
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#07899a]">
                     Explore Service
                     <ArrowUpRight size={10} />
                   </span>
@@ -1310,7 +1310,7 @@ const Technologies = () => {
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[13px] font-semibold text-[#071923] transition-colors"
               >
                 Discuss Your Project
 
@@ -1323,7 +1323,7 @@ const Technologies = () => {
               <Link
                 to="/allservices"
                 onClick={scrollTop}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[11px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[13px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
               >
                 Explore Services
 
@@ -1357,7 +1357,7 @@ const Technologies = () => {
                   key={path}
                   to={path}
                   onClick={scrollTop}
-                  className="text-[9px] font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
+                  className="text-xs font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
                 >
                   {label}
                 </Link>

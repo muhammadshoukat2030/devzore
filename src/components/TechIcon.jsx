@@ -12,7 +12,7 @@ const TechIcon = ({ name, subtitle, icon, color }) => {
       <h4 className="font-bold text-lg text-white group-hover:text-purple-400 transition-colors">
         {name}
       </h4>
-      <p className="text-[10px] uppercase tracking-widest text-gray-500 font-semibold mt-1 italic">
+      <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mt-1 italic">
         {subtitle}
       </p>
     </div>

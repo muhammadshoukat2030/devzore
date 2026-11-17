@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -35,7 +35,7 @@ import { team } from "../data/team";
 
 const SectionLabel = ({ children, light = false }) => (
   <div
-    className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+    className={`flex items-center gap-2.5 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase ${
       light ? "text-[#28c5d4]" : "text-[#07899a]"
     }`}
   >
@@ -457,7 +457,7 @@ const About = () => {
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
         style={{
-          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+          fontFamily: '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* HERO */}
@@ -482,7 +482,7 @@ const About = () => {
           <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-23 sm:pt-24 lg:pt-23 pb-11 sm:pb-13">
             <div className="grid lg:grid-cols-[0.98fr_1.02fr] gap-8 lg:gap-14 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+                <div className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
                   <Globe2 size={14} className="text-[#25c0ce]" />
                   About DevZore
                 </div>
@@ -497,7 +497,7 @@ const About = () => {
                   </span>
                 </h1>
 
-                <p className="max-w-[690px] mt-4 text-[16px] sm:text-[13.5px] leading-7 text-slate-300">
+                <p className="max-w-[690px] mt-4 text-[15px] sm:text-[16px] leading-7 text-slate-300">
                   DevZore is a software development agency founded by Muhammad
                   Shoukat, focused on building practical web applications,
                   mobile applications, SaaS products and custom software.
@@ -537,7 +537,7 @@ const About = () => {
                   ].map((item) => (
                     <span
                       key={item}
-                      className="inline-flex items-center gap-1.5 text-[10px] font-medium text-slate-400"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400"
                     >
                       <CheckCircle2
                         size={12}
@@ -556,7 +556,7 @@ const About = () => {
                 <div className="relative rounded-[22px] border border-white/[0.1] bg-[#091d27]/95 p-5 sm:p-6 shadow-[0_35px_90px_rgba(0,0,0,0.4)]">
                   <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
                     <div>
-                      <p className="text-[9px] uppercase tracking-[0.17em] text-[#25c0ce] font-semibold">
+                      <p className="text-xs uppercase tracking-[0.17em] text-[#25c0ce] font-semibold">
                         What We Build
                       </p>
 
@@ -584,7 +584,7 @@ const About = () => {
                           {item.title}
                         </h2>
 
-                        <p className="mt-1.5 text-[9px] leading-4 text-slate-500">
+                        <p className="mt-1.5 text-xs leading-4 text-slate-500">
                           {item.desc}
                         </p>
                       </div>
@@ -601,11 +601,11 @@ const About = () => {
                         key={title}
                         className="rounded-lg border border-white/[0.07] bg-[#071923] px-3 py-2.5"
                       >
-                        <p className="text-[8px] font-semibold text-[#26c3d1]">
+                        <p className="text-xs font-semibold text-[#26c3d1]">
                           {title}
                         </p>
 
-                        <p className="text-[7px] text-slate-500 mt-0.5">
+                        <p className="text-xs text-slate-500 mt-0.5">
                           {label}
                         </p>
                       </div>
@@ -635,11 +635,11 @@ const About = () => {
                         : ""
                     } ${index > 0 ? "lg:pl-7" : ""}`}
                   >
-                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-1">
+                    <span className="block text-xs font-semibold text-[#1bb8c7] mb-1">
                       {number}
                     </span>
 
-                    <span className="text-[11px] font-medium text-slate-300">
+                    <span className="text-[13px] font-medium text-slate-300">
                       {title}
                     </span>
                   </div>
@@ -713,7 +713,7 @@ const About = () => {
                         {item.title}
                       </h3>
 
-                      <p className="mt-1 text-[11px] leading-5 text-slate-500">
+                      <p className="mt-1 text-[13px] leading-5 text-slate-500">
                         {item.text}
                       </p>
                     </div>
@@ -759,7 +759,7 @@ const About = () => {
                     {["React", "Node.js", "MongoDB", "Express", "Next.js", "Vercel"].map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700"
+                        className="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 text-slate-700"
                       >
                         {tech}
                       </span>
@@ -892,7 +892,7 @@ const About = () => {
                               href={member.linkedin}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[11px] font-semibold text-slate-600 hover:text-[#0796A8] transition flex items-center gap-1"
+                              className="text-[13px] font-semibold text-slate-600 hover:text-[#0796A8] transition flex items-center gap-1"
                             >
                               <span>LinkedIn</span>
                               <ArrowUpRight size={11} />
@@ -903,7 +903,7 @@ const About = () => {
                               href={member.github}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-[11px] font-semibold text-slate-600 hover:text-[#0796A8] transition flex items-center gap-1"
+                              className="text-[13px] font-semibold text-slate-600 hover:text-[#0796A8] transition flex items-center gap-1"
                             >
                               <span>GitHub</span>
                               <ArrowUpRight size={11} />
@@ -963,7 +963,7 @@ const About = () => {
                     {item.title}
                   </h3>
 
-                  <p className="mt-2 text-[11px] leading-5 text-slate-400">
+                  <p className="mt-2 text-[13px] leading-5 text-slate-400">
                     {item.desc}
                   </p>
                 </article>
@@ -1006,7 +1006,7 @@ const About = () => {
                     key={item.title}
                     className="rounded-xl border border-slate-200 bg-white p-4"
                   >
-                    <span className="text-[8px] font-semibold text-[#07899a]">
+                    <span className="text-xs font-semibold text-[#07899a]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
@@ -1014,7 +1014,7 @@ const About = () => {
                       {item.title}
                     </h3>
 
-                    <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                    <p className="mt-1.5 text-xs leading-5 text-slate-500">
                       {item.desc}
                     </p>
                   </article>
@@ -1062,7 +1062,7 @@ const About = () => {
                 <p className="text-xs text-slate-600 leading-relaxed mb-4">
                   Delivering custom enterprise systems, inventory management platforms, retail billing software, and web applications for businesses nationwide.
                 </p>
-                <div className="text-[11px] font-semibold text-[#0796A8]">
+                <div className="text-[13px] font-semibold text-[#0796A8]">
                   Verified Projects: Weldon Paints, FrostyOps, Installment Management
                 </div>
               </div>
@@ -1078,7 +1078,7 @@ const About = () => {
                 <p className="text-xs text-slate-600 leading-relaxed mb-4">
                   Engineering high-performance tourism portals, excursion booking platforms, and digital platforms tailored for clients across Doha and the Gulf.
                 </p>
-                <div className="text-[11px] font-semibold text-[#0796A8]">
+                <div className="text-[13px] font-semibold text-[#0796A8]">
                   Verified Projects: Desert Safari Qatar, Gulf Dunes Tourism
                 </div>
               </div>
@@ -1094,7 +1094,7 @@ const About = () => {
                 <p className="text-xs text-slate-600 leading-relaxed mb-4">
                   Collaborating with founders and companies across the UK, US, Europe, and globally through async Git workflows, milestone sprints, and video reviews.
                 </p>
-                <div className="text-[11px] font-semibold text-[#0796A8]">
+                <div className="text-[13px] font-semibold text-[#0796A8]">
                   Remote Model: Git Handover • Milestone Deliveries • Direct Support
                 </div>
               </div>
@@ -1138,7 +1138,7 @@ const About = () => {
                   key={step.number}
                   className="bg-[#071923] p-5 min-h-[175px] hover:bg-[#0a202a] transition-colors"
                 >
-                  <span className="text-[10px] font-semibold text-[#25bfce]">
+                  <span className="text-xs font-semibold text-[#25bfce]">
                     {step.number}
                   </span>
 
@@ -1146,7 +1146,7 @@ const About = () => {
                     {step.title}
                   </h3>
 
-                  <p className="mt-2 text-[11px] leading-5 text-slate-400">
+                  <p className="mt-2 text-[13px] leading-5 text-slate-400">
                     {step.desc}
                   </p>
                 </article>
@@ -1191,7 +1191,7 @@ const About = () => {
                       {item.title}
                     </h3>
 
-                    <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                    <p className="mt-1 text-xs leading-5 text-slate-500">
                       {item.desc}
                     </p>
                   </div>
@@ -1239,11 +1239,11 @@ const About = () => {
                     {service.title}
                   </h3>
 
-                  <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                  <p className="mt-1.5 text-xs leading-5 text-slate-500">
                     {service.desc}
                   </p>
 
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]">
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#07899a]">
                     Explore Service
                     <ArrowUpRight size={11} />
                   </span>
@@ -1351,7 +1351,7 @@ const About = () => {
                     setShowAllFaqs((current) => !current);
                     setActiveFaq(null);
                   }}
-                  className="inline-flex items-center gap-2 rounded-lg border border-[#071923]/15 bg-[#f8fafb] px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:border-[#0796A8]/50 transition-colors"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#071923]/15 bg-[#f8fafb] px-4 py-2.5 text-xs font-semibold text-[#071923] hover:border-[#0796A8]/50 transition-colors"
                 >
                   {showAllFaqs
                     ? "Show Less Questions"
@@ -1395,7 +1395,7 @@ const About = () => {
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[13px] font-semibold text-[#071923] transition-colors"
               >
                 Discuss Your Project
 
@@ -1408,7 +1408,7 @@ const About = () => {
               <Link
                 to="/allservices"
                 onClick={scrollTop}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[11px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[13px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
               >
                 Explore Our Services
 
@@ -1442,7 +1442,7 @@ const About = () => {
                   key={path}
                   to={path}
                   onClick={scrollTop}
-                  className="text-[9px] font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
+                  className="text-xs font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
                 >
                   {label}
                 </Link>

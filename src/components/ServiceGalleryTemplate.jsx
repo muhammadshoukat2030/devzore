@@ -158,7 +158,7 @@ const Services = ({ isDark }) => {
 
         {/* ── Header ── */}
         <div className="max-w-3xl mb-10 sm:mb-12">
-          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest border mb-4 ${
+          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[13px] font-bold uppercase tracking-widest border mb-4 ${
             d ? 'bg-purple-600/10 border-purple-500/20 text-purple-400' : 'bg-purple-50 border-purple-200 text-purple-700'
           }`}>
             <span className="w-1.5 h-1.5 rounded-full bg-purple-500"/>
@@ -193,7 +193,7 @@ const Services = ({ isDark }) => {
             >
               {f}
               {f === 'All' && (
-                <span className={`ml-1.5 text-[10px] px-1.5 py-0.5 rounded-full ${
+                <span className={`ml-1.5 text-xs px-1.5 py-0.5 rounded-full ${
                   activeFilter === 'All' ? 'bg-white/20' : d ? 'bg-white/[0.08] text-gray-600' : 'bg-slate-100 text-slate-400'
                 }`}>
                   {services.length}
@@ -219,7 +219,7 @@ const Services = ({ isDark }) => {
             >
               {/* Popular badge */}
               {svc.popular && (
-                <span className="absolute top-3 right-3 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-purple-600 text-white">
+                <span className="absolute top-3 right-3 text-xs font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-purple-600 text-white">
                   Popular
                 </span>
               )}
@@ -246,7 +246,7 @@ const Services = ({ isDark }) => {
               {/* Tags */}
               <div className="flex flex-wrap gap-1.5 mb-4">
                 {svc.tags.map((tag, j) => (
-                  <span key={j} className={`text-[10px] font-medium px-2 py-0.5 rounded-md border ${
+                  <span key={j} className={`text-xs font-medium px-2 py-0.5 rounded-md border ${
                     d ? 'bg-white/[0.04] border-white/[0.08] text-gray-500' : 'bg-slate-50 border-slate-200 text-slate-500'
                   }`}>
                     {tag}

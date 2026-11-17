@@ -70,7 +70,7 @@ export default function ProjectsPage() {
         {/* HERO SECTION */}
         <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-20 border-b border-white/[0.08]">
           <div className="max-w-[1240px] mx-auto px-5 sm:px-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3.5 py-1 text-[11px] font-semibold text-[#1BBAC8] mb-6">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3.5 py-1 text-[13px] font-semibold text-[#1BBAC8] mb-6">
               <Briefcase size={14} /> Proven Engineering Track Record
             </div>
 
@@ -157,7 +157,7 @@ export default function ProjectsPage() {
                     <div className="p-6">
                       <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
                         <span className="font-semibold text-[#1BBAC8]">{project.industry || project.category}</span>
-                        <span className="flex items-center gap-1 text-[11px]">
+                        <span className="flex items-center gap-1 text-[13px]">
                           <MapPin size={11} /> {project.location}
                         </span>
                       </div>
@@ -176,7 +176,7 @@ export default function ProjectsPage() {
                         {project.technologies.map((t) => (
                           <span
                             key={t}
-                            className="rounded bg-white/[0.04] px-2 py-0.5 text-[10px] text-slate-400 border border-white/[0.04]"
+                            className="rounded bg-white/[0.04] px-2 py-0.5 text-xs text-slate-400 border border-white/[0.04]"
                           >
                             {t}
                           </span>
@@ -198,7 +198,7 @@ export default function ProjectsPage() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-white transition"
+                        className="inline-flex items-center gap-1 text-[13px] text-slate-400 hover:text-white transition"
                       >
                         Live Site <ExternalLink size={11} />
                       </a>

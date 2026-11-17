@@ -138,7 +138,7 @@ export default function ProjectDetail() {
           </div>
 
           {/* ITEM 3: HEADER FACTS LINE */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide bg-cyan-950/80 text-[#1BBAC8] border border-cyan-700/40 mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[13px] font-semibold tracking-wide bg-cyan-950/80 text-[#1BBAC8] border border-cyan-700/40 mb-4">
             <FiLayers className="w-3.5 h-3.5" />
             <span>{project.headerFacts}</span>
           </div>
@@ -154,27 +154,27 @@ export default function ProjectDetail() {
 
           {/* AT A GLANCE (DEVSINC BLUEPRINT: 6-FIELD PROJECT PROFILE) */}
           <div className="rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm p-5 sm:p-6">
-            <div className="text-[10px] font-bold uppercase tracking-wider text-[#1BBAC8] mb-3 flex items-center gap-2">
+            <div className="text-xs font-bold uppercase tracking-wider text-[#1BBAC8] mb-3 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#1BBAC8]" />
               Project Profile at a Glance
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Client</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Client</p>
                 <p className="text-xs sm:text-sm font-semibold text-white mt-1 truncate">{project.client || project.title}</p>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Industry</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Industry</p>
                 <p className="text-xs sm:text-sm font-semibold text-cyan-300 mt-1 truncate">{project.industry}</p>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Location</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Location</p>
                 <p className="text-xs sm:text-sm font-semibold text-white mt-1 flex items-center gap-1">
                   <FiMapPin className="w-3 h-3 text-[#1BBAC8]" /> {project.location}
                 </p>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Services Delivered</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Services Delivered</p>
                 <Link
                   to={project.serviceSlug}
                   className="text-xs sm:text-sm font-semibold text-[#1BBAC8] hover:underline mt-1 block truncate"
@@ -183,13 +183,13 @@ export default function ProjectDetail() {
                 </Link>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Tech Stack</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Tech Stack</p>
                 <p className="text-xs font-semibold text-slate-200 mt-1 truncate">
                   {project.technologies.slice(0, 3).join(", ")}
                 </p>
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Delivery Model</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Delivery Model</p>
                 <p className="text-xs font-semibold text-white mt-1 truncate">
                   {project.deliveryType || "Full-source handover"}
                 </p>
@@ -235,7 +235,7 @@ export default function ProjectDetail() {
               <div className="space-y-3 pt-2 border-t border-white/[0.06]">
                 {project.challenges && project.challenges.map((c, i) => (
                   <div key={i} className="flex items-start gap-3 text-xs sm:text-sm text-slate-300">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-500/10 text-red-400 font-bold text-[10px] mt-0.5">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-500/10 text-red-400 font-bold text-xs mt-0.5">
                       ✕
                     </span>
                     <span className="leading-relaxed">{c}</span>
@@ -299,7 +299,7 @@ export default function ProjectDetail() {
               {project.liveUrl && (
                 <div className="mt-6 pt-5 border-t border-emerald-500/20 flex flex-wrap items-center justify-between gap-4">
                   <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Live Production Deployment</div>
+                    <div className="text-[13px] font-bold uppercase tracking-wider text-emerald-400">Live Production Deployment</div>
                     <div className="text-xs text-slate-300">Explore the verified active software instance.</div>
                   </div>
                   <a
@@ -318,7 +318,7 @@ export default function ProjectDetail() {
             {/* CONDITIONAL TESTIMONIAL SLOT (100% HIDDEN UNLESS REAL QUOTE SUPPLIED) */}
             {project.clientQuote && (
               <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-7">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-[#1BBAC8] mb-2">
+                <div className="text-xs font-bold uppercase tracking-wider text-[#1BBAC8] mb-2">
                   Client Feedback
                 </div>
                 <blockquote className="text-sm sm:text-base italic text-slate-200 leading-relaxed">
@@ -369,7 +369,7 @@ export default function ProjectDetail() {
 
             {/* SERVICE CROSS-LINK & CTA CARD */}
             <div className="p-6 rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-[#08222f] to-[#061923] relative overflow-hidden">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#1BBAC8] mb-1">
+              <div className="text-xs font-bold uppercase tracking-wider text-[#1BBAC8] mb-1">
                 Matching Service
               </div>
               <h3 className="text-lg font-bold text-white mb-2">Build a Similar Platform</h3>
@@ -397,7 +397,7 @@ export default function ProjectDetail() {
             {/* DIRECT CONTACT */}
             <div className="p-5 rounded-xl border border-white/[0.06] bg-white/[0.02]">
               <h4 className="text-xs font-bold text-white mb-1.5">Direct Engineering Delivery</h4>
-              <p className="text-[11px] text-slate-400 mb-3 leading-relaxed">
+              <p className="text-[13px] text-slate-400 mb-3 leading-relaxed">
                 We partner with founders in Pakistan, Qatar and worldwide with 100% source code handover and post-launch support.
               </p>
               <div className="space-y-1.5 text-xs">
@@ -441,7 +441,7 @@ export default function ProjectDetail() {
                 className="group p-5 rounded-xl border border-white/[0.08] bg-[#061923] hover:border-cyan-500/40 hover:-translate-y-1 transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-wider text-[#1BBAC8] mb-1">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#1BBAC8] mb-1">
                     {rel.category}
                   </div>
                   <h3 className="text-base font-bold text-white group-hover:text-[#1BBAC8] transition">

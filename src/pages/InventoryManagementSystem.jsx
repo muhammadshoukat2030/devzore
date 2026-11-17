@@ -230,7 +230,7 @@ export default function InventoryManagementSystem() {
 
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[11px] font-bold tracking-wider uppercase text-[#1bbac8] mb-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[13px] font-bold tracking-wider uppercase text-[#1bbac8] mb-5">
                 <Package size={13} />
                 Custom Operations Software
               </div>
@@ -343,7 +343,7 @@ export default function InventoryManagementSystem() {
                   <h3 className="text-base font-bold text-white mb-2">{m.title}</h3>
                   <p className="text-xs text-slate-300 leading-relaxed mb-5">{m.desc}</p>
                 </div>
-                <ul className="space-y-2 pt-4 border-t border-white/[0.06] text-[11px] text-slate-300">
+                <ul className="space-y-2 pt-4 border-t border-white/[0.06] text-[13px] text-slate-300">
                   {m.points.map((p, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <Check size={12} className="text-[#1bbac8] shrink-0 mt-0.5" />

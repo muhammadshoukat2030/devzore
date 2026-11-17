@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
@@ -89,7 +89,7 @@ const PrivacyPolicy = () => {
   };
 
   const SectionLabel = ({ children }) => (
-    <div className="flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase text-[#07899a]">
+    <div className="flex items-center gap-2.5 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase text-[#07899a]">
       <span className="w-5 h-[2px] bg-[#0796A8]" />
       {children}
     </div>
@@ -160,7 +160,7 @@ const PrivacyPolicy = () => {
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
         style={{
-          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+          fontFamily: '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* HERO */}
@@ -183,7 +183,7 @@ const PrivacyPolicy = () => {
           </div>
 
           <div className="relative max-w-[1100px] mx-auto px-5 sm:px-6 pt-23 sm:pt-24 lg:pt-24 pb-12 sm:pb-14 text-center">
-            <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+            <div className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
               <ShieldCheck size={14} className="text-[#25c0ce]" />
               Privacy Policy
             </div>
@@ -204,7 +204,7 @@ const PrivacyPolicy = () => {
               information may be used and the choices available to you.
             </p>
 
-            <div className="mt-6 inline-flex items-center gap-2 rounded-lg border border-white/[0.09] bg-white/[0.03] px-4 py-2.5 text-[10px] font-medium text-slate-400">
+            <div className="mt-6 inline-flex items-center gap-2 rounded-lg border border-white/[0.09] bg-white/[0.03] px-4 py-2.5 text-xs font-medium text-slate-400">
               <FileText size={12} className="text-[#25c0ce]" />
               Last updated: {lastUpdated}
             </div>
@@ -223,7 +223,7 @@ const PrivacyPolicy = () => {
 
               <aside className="hidden lg:block">
                 <div className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4">
-                  <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-slate-400 mb-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.17em] text-slate-400 mb-3">
                     Policy Contents
                   </p>
 
@@ -235,7 +235,7 @@ const PrivacyPolicy = () => {
                       <a
                         key={item.id}
                         href={`#${item.id}`}
-                        className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[11px] font-medium text-slate-600 hover:bg-[#edf4f5] hover:text-[#07899a] transition-colors"
+                        className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] font-medium text-slate-600 hover:bg-[#edf4f5] hover:text-[#07899a] transition-colors"
                       >
                         <span className="text-[#07899a]">
                           {item.icon}
@@ -247,11 +247,11 @@ const PrivacyPolicy = () => {
                   </nav>
 
                   <div className="mt-4 pt-4 border-t border-slate-200">
-                    <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                    <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
                       Last Updated
                     </p>
 
-                    <p className="mt-1 text-[11px] font-semibold text-[#071923]">
+                    <p className="mt-1 text-[13px] font-semibold text-[#071923]">
                       {lastUpdated}
                     </p>
                   </div>
@@ -259,13 +259,13 @@ const PrivacyPolicy = () => {
                   <div className="mt-4 rounded-xl border border-[#0796A8]/15 bg-[#edf6f7] p-4">
                     <Mail size={15} className="text-[#07899a]" />
 
-                    <p className="mt-2 text-[10px] leading-5 text-slate-600">
+                    <p className="mt-2 text-xs leading-5 text-slate-600">
                       Have a question about this policy?
                     </p>
 
                     <a
                       href="mailto:hellodevzore@gmail.com"
-                      className="block mt-1 text-[10px] font-semibold text-[#07899a] break-all"
+                      className="block mt-1 text-xs font-semibold text-[#07899a] break-all"
                     >
                       hellodevzore@gmail.com
                     </a>
@@ -289,7 +289,7 @@ const PrivacyPolicy = () => {
                         About This Privacy Policy
                       </h2>
 
-                      <p className="mt-2 text-[11px] sm:text-[12px] leading-6 text-slate-600">
+                      <p className="mt-2 text-[13px] sm:text-[12px] leading-6 text-slate-600">
                         This policy applies to information handled through
                         devzore.com and information you voluntarily provide
                         when contacting DevZore about software development,
@@ -342,7 +342,7 @@ const PrivacyPolicy = () => {
                             className="text-[#07899a] shrink-0 mt-1"
                           />
 
-                          <p className="text-[11px] leading-5 text-slate-600">
+                          <p className="text-[13px] leading-5 text-slate-600">
                             {item}
                           </p>
                         </div>
@@ -355,7 +355,7 @@ const PrivacyPolicy = () => {
                       Technical & Usage Information
                     </h3>
 
-                    <p className="text-[11px] leading-6 text-slate-600">
+                    <p className="text-[13px] leading-6 text-slate-600">
                       Depending on the technologies and analytics services
                       active on our website, certain technical information may
                       be processed automatically. This can include browser
@@ -370,7 +370,7 @@ const PrivacyPolicy = () => {
                       Avoid Sending Unnecessary Sensitive Information
                     </h3>
 
-                    <p className="text-[11px] leading-6 text-slate-600">
+                    <p className="text-[13px] leading-6 text-slate-600">
                       Please do not send passwords, payment card details,
                       private authentication credentials or sensitive personal
                       information unless it is genuinely required for an agreed
@@ -445,7 +445,7 @@ const PrivacyPolicy = () => {
                           {item.title}
                         </h3>
 
-                        <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                        <p className="mt-1.5 text-xs leading-5 text-slate-500">
                           {item.desc}
                         </p>
                       </article>
@@ -510,14 +510,14 @@ const PrivacyPolicy = () => {
                           {item.title}
                         </h3>
 
-                        <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                        <p className="mt-1.5 text-xs leading-5 text-slate-500">
                           {item.desc}
                         </p>
                       </article>
                     ))}
                   </div>
 
-                  <p className="mt-4 text-[10px] leading-5 text-slate-500">
+                  <p className="mt-4 text-xs leading-5 text-slate-500">
                     No internet transmission or storage system can be
                     guaranteed to be completely secure. We therefore cannot
                     guarantee absolute security of information transmitted or
@@ -567,13 +567,13 @@ const PrivacyPolicy = () => {
                         {item.title}
                       </h3>
 
-                      <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                      <p className="mt-1.5 text-xs leading-5 text-slate-500">
                         {item.desc}
                       </p>
                     </div>
                   ))}
 
-                  <p className="text-[10px] leading-5 text-slate-500">
+                  <p className="text-xs leading-5 text-slate-500">
                     You can usually control cookies through your browser
                     settings. Disabling certain storage technologies may affect
                     some website features.
@@ -635,7 +635,7 @@ const PrivacyPolicy = () => {
                           {item.title}
                         </h3>
 
-                        <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                        <p className="mt-1 text-xs leading-5 text-slate-500">
                           {item.desc}
                         </p>
                       </div>
@@ -643,7 +643,7 @@ const PrivacyPolicy = () => {
                   ))}
 
                   <div className="mt-4 rounded-xl border border-[#0796A8]/15 bg-[#edf6f7] p-4">
-                    <p className="text-[11px] leading-5 text-slate-600">
+                    <p className="text-[13px] leading-5 text-slate-600">
                       DevZore does not sell personal information as part of its
                       software development business.
                     </p>
@@ -695,7 +695,7 @@ const PrivacyPolicy = () => {
                         {item.title}
                       </h3>
 
-                      <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                      <p className="mt-1 text-xs leading-5 text-slate-500">
                         {item.desc}
                       </p>
                     </div>
@@ -762,14 +762,14 @@ const PrivacyPolicy = () => {
                           {item.title}
                         </h3>
 
-                        <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                        <p className="mt-1.5 text-xs leading-5 text-slate-500">
                           {item.desc}
                         </p>
                       </article>
                     ))}
                   </div>
 
-                  <p className="mt-4 text-[10px] leading-5 text-slate-500">
+                  <p className="mt-4 text-xs leading-5 text-slate-500">
                     To make a privacy-related request, contact us at{" "}
                     <a
                       href="mailto:hellodevzore@gmail.com"
@@ -895,13 +895,13 @@ const PrivacyPolicy = () => {
                       <div className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4">
                         <Mail size={14} className="text-[#07899a]" />
 
-                        <p className="mt-2 text-[8px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                        <p className="mt-2 text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
                           Email
                         </p>
 
                         <a
                           href="mailto:hellodevzore@gmail.com"
-                          className="block mt-1 text-[11px] font-semibold text-[#07899a] break-all"
+                          className="block mt-1 text-[13px] font-semibold text-[#07899a] break-all"
                         >
                           hellodevzore@gmail.com
                         </a>
@@ -910,13 +910,13 @@ const PrivacyPolicy = () => {
                       <div className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4">
                         <Globe2 size={14} className="text-[#07899a]" />
 
-                        <p className="mt-2 text-[8px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                        <p className="mt-2 text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
                           Website
                         </p>
 
                         <a
                           href="https://devzore.com"
-                          className="block mt-1 text-[11px] font-semibold text-[#07899a]"
+                          className="block mt-1 text-[13px] font-semibold text-[#07899a]"
                         >
                           devzore.com
                         </a>
@@ -928,7 +928,7 @@ const PrivacyPolicy = () => {
                     <Link
                       to="/contact"
                       onClick={scrollTop}
-                      className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[#0796A8] hover:bg-[#078899] px-5 py-3 text-[11px] font-semibold text-white transition-colors"
+                      className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[#0796A8] hover:bg-[#078899] px-5 py-3 text-[13px] font-semibold text-white transition-colors"
                     >
                       Contact DevZore
 
@@ -941,7 +941,7 @@ const PrivacyPolicy = () => {
                     <Link
                       to="/terms-and-conditions"
                       onClick={scrollTop}
-                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-[11px] font-semibold text-[#071923] hover:border-[#0796A8]/40 transition-colors"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-[13px] font-semibold text-[#071923] hover:border-[#0796A8]/40 transition-colors"
                     >
                       Terms & Conditions
                     </Link>
@@ -953,12 +953,12 @@ const PrivacyPolicy = () => {
                     <Link
                       to="/"
                       onClick={scrollTop}
-                      className="text-[10px] font-medium text-slate-500 hover:text-[#07899a] transition-colors"
+                      className="text-xs font-medium text-slate-500 hover:text-[#07899a] transition-colors"
                     >
                       ← Back to Home
                     </Link>
 
-                    <p className="text-[9px] text-slate-400 text-center">
+                    <p className="text-xs text-slate-400 text-center">
                       © 2026 DevZore · Privacy Policy · Last Updated{" "}
                       {lastUpdated}
                     </p>

@@ -66,7 +66,7 @@ export default function StatsStrip({ className = "" }) {
                 <div className="text-xs sm:text-sm font-bold text-slate-200 mt-0.5">
                   {stat.label}
                 </div>
-                <div className="text-[11px] text-slate-400 mt-0.5">
+                <div className="text-[13px] text-slate-400 mt-0.5">
                   {stat.detail}
                 </div>
               </div>

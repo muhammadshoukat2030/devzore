@@ -73,7 +73,7 @@ export default function PricingBlock({
 
       <div className="relative max-w-[1240px] mx-auto px-5 sm:px-6">
         <div className="max-w-2xl mx-auto text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[10px] sm:text-[11px] font-bold tracking-wider uppercase text-[#1bbac8]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-xs sm:text-[13px] font-bold tracking-wider uppercase text-[#1bbac8]">
             <ShieldCheck size={13} />
             Transparent Project Scoping
           </div>
@@ -99,7 +99,7 @@ export default function PricingBlock({
               }`}
             >
               {tier.recommended && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#1bbac8] text-[#061923] text-[10px] font-extrabold uppercase tracking-wider">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#1bbac8] text-[#061923] text-xs font-extrabold uppercase tracking-wider">
                   Most Popular
                 </div>
               )}
@@ -112,7 +112,7 @@ export default function PricingBlock({
 
                 {/* Price Display */}
                 <div className="mt-5 pb-5 border-b border-white/[0.08]">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
                     Investment Scope
                   </div>
                   {SHOW_PRICING_AMOUNTS ? (
@@ -124,11 +124,11 @@ export default function PricingBlock({
                       <span className="text-xl sm:text-2xl font-extrabold text-[#1bbac8]">
                         Custom Estimate
                       </span>
-                      <span className="text-[11px] text-slate-400">/ milestone based</span>
+                      <span className="text-[13px] text-slate-400">/ milestone based</span>
                     </div>
                   )}
 
-                  <div className="mt-2 flex items-center gap-1.5 text-[11px] font-medium text-slate-300">
+                  <div className="mt-2 flex items-center gap-1.5 text-[13px] font-medium text-slate-300">
                     <Clock size={13} className="text-[#1bbac8]" />
                     <span>Typical delivery: {tier.timeline}</span>
                   </div>
@@ -136,7 +136,7 @@ export default function PricingBlock({
 
                 {/* Deliverables List */}
                 <div className="mt-5 space-y-2.5">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+                  <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
                     What's Included:
                   </div>
                   {tier.deliverables.map((item) => (
@@ -168,7 +168,7 @@ export default function PricingBlock({
 
                 <Link
                   to="/contact"
-                  className="w-full py-2 px-4 rounded-lg text-slate-400 hover:text-white text-[11px] font-medium inline-flex items-center justify-center gap-1.5 transition"
+                  className="w-full py-2 px-4 rounded-lg text-slate-400 hover:text-white text-[13px] font-medium inline-flex items-center justify-center gap-1.5 transition"
                 >
                   <span>Request Written Proposal</span>
                   <ArrowRight size={12} />

@@ -267,3 +267,83 @@
               border-color 0.3s ease,
               box-shadow 0.3s ease !important;
 }
+
+/* ══════════════════════════════════════════════════
+   GLOBAL TYPOGRAPHY & FONT CONSISTENCY
+   Goal: DM Sans everywhere, consistent type scale,
+         no tiny unreadable text (min 12px) sitewide.
+   ══════════════════════════════════════════════════ */
+
+/* 1. Base font family: DM Sans on all text elements */
+body,
+button,
+input,
+textarea,
+select,
+p,
+span,
+h1, h2, h3, h4, h5, h6,
+a,
+li,
+label,
+td, th {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* 2. Code/mono elements strictly stay monospace */
+code, pre, kbd, samp,
+.font-mono, [class*="font-mono"] {
+  font-family: "DM Mono", "SFMono-Regular", Consolas, "Courier New", monospace !important;
+}
+
+/* 3. Universal minimum readable text sizes.
+      Eliminates micro-text (7px-11px) across all public pages,
+      ensuring uniform legibility and premium Devsinc-like feel. */
+.text-\[7px\],
+.text-\[8px\],
+.text-\[9px\] {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+.text-\[10px\],
+.text-\[11px\] {
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}
+
+@media (min-width: 640px) {
+  .sm\:text-\[7px\],
+  .sm\:text-\[8px\],
+  .sm\:text-\[9px\] {
+    font-size: 12px !important;
+  }
+  .sm\:text-\[10px\],
+  .sm\:text-\[11px\] {
+    font-size: 13px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:text-\[7px\],
+  .md\:text-\[8px\],
+  .md\:text-\[9px\] {
+    font-size: 12px !important;
+  }
+  .md\:text-\[10px\],
+  .md\:text-\[11px\] {
+    font-size: 13px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:text-\[7px\],
+  .lg\:text-\[8px\],
+  .lg\:text-\[9px\] {
+    font-size: 12px !important;
+  }
+  .lg\:text-\[10px\],
+  .lg\:text-\[11px\] {
+    font-size: 13px !important;
+  }
+}

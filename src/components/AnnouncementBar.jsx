@@ -39,11 +39,11 @@ const AnnouncementBar = () => {
     >
       <div className="max-w-[1260px] mx-auto flex items-center justify-between gap-3">
         <div className="flex-1 flex items-center justify-center gap-2 sm:gap-2.5 text-center min-w-0">
-          <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-cyan-500/15 text-[#1bbac8] text-[10px] font-bold uppercase tracking-wider shrink-0 border border-cyan-500/30">
+          <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-cyan-500/15 text-[#1bbac8] text-xs font-bold uppercase tracking-wider shrink-0 border border-cyan-500/30">
             <Sparkles size={11} />
             Update
           </span>
-          <span className="text-[11px] sm:text-[12px] font-medium text-slate-200 truncate sm:overflow-visible">
+          <span className="text-[13px] sm:text-[12px] font-medium text-slate-200 truncate sm:overflow-visible">
             {announcement.text}
           </span>
           {announcement.linkUrl && announcement.linkText && (

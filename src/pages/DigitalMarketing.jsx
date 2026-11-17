@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
@@ -579,7 +579,7 @@ ${formData.message}`
 
   const SectionLabel = ({ children, light = false }) => (
     <div
-      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+      className={`flex items-center gap-2.5 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase ${
         light ? "text-[#28c5d4]" : "text-[#07899a]"
       }`}
     >
@@ -607,7 +607,7 @@ ${formData.message}`
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
         style={{
-          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+          fontFamily: '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* HERO */}
@@ -631,7 +631,7 @@ ${formData.message}`
             <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-8 lg:gap-12 items-center">
               <div className="relative z-10">
                 <div className="flex flex-wrap items-center gap-3 mb-5">
-                  <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.16em] uppercase text-[#c4ced5]">
+                  <div className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.16em] uppercase text-[#c4ced5]">
                     <CircleCheck
                       size={14}
                       className="text-[#26becb]"
@@ -650,7 +650,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-[700px] mt-4 text-[16px] sm:text-[13.5px] leading-7 text-slate-300">
+                <p className="max-w-[700px] mt-4 text-[15px] sm:text-[16px] leading-7 text-slate-300">
                   DevZore provides social media marketing, paid advertising,
                   lead generation, content marketing and campaign analytics
                   for businesses looking to grow their digital presence.
@@ -689,7 +689,7 @@ ${formData.message}`
                   ].map((item) => (
                     <span
                       key={item}
-                      className="inline-flex items-center gap-1.5 text-[10px] font-medium text-slate-400"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400"
                     >
                       <CheckCircle2
                         size={12}
@@ -805,7 +805,7 @@ ${formData.message}`
                         className="text-[#29c7d5]"
                       />
 
-                      <p className="text-[9px] font-semibold mt-2">
+                      <p className="text-xs font-semibold mt-2">
                         Targeting
                       </p>
                     </div>
@@ -816,7 +816,7 @@ ${formData.message}`
                         className="text-[#29c7d5]"
                       />
 
-                      <p className="text-[9px] font-semibold mt-2">
+                      <p className="text-xs font-semibold mt-2">
                         Campaigns
                       </p>
                     </div>
@@ -827,7 +827,7 @@ ${formData.message}`
                         className="text-[#29c7d5]"
                       />
 
-                      <p className="text-[9px] font-semibold mt-2">
+                      <p className="text-xs font-semibold mt-2">
                         Analytics
                       </p>
                     </div>
@@ -856,11 +856,11 @@ ${formData.message}`
                         : ""
                     } ${index > 0 ? "lg:pl-7" : ""}`}
                   >
-                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-1">
+                    <span className="block text-xs font-semibold text-[#1bb8c7] mb-1">
                       {number}
                     </span>
 
-                    <span className="text-[11px] font-medium text-slate-300">
+                    <span className="text-[13px] font-medium text-slate-300">
                       {title}
                     </span>
                   </div>
@@ -944,7 +944,7 @@ ${formData.message}`
                       {service.icon}
                     </div>
 
-                    <span className="text-[10px] font-semibold text-slate-300">
+                    <span className="text-xs font-semibold text-slate-300">
                       {service.number}
                     </span>
                   </div>
@@ -968,7 +968,7 @@ ${formData.message}`
                           className="text-[#0796A8]"
                         />
 
-                        <span className="text-[10px] font-medium text-slate-600">
+                        <span className="text-xs font-medium text-slate-600">
                           {point}
                         </span>
                       </div>
@@ -1010,7 +1010,7 @@ ${formData.message}`
 
                 <a
                   href="#marketing-project-enquiry"
-                  className="inline-flex items-center gap-2 mt-5 text-[11px] font-semibold text-[#07899a] hover:text-[#071923] transition-colors"
+                  className="inline-flex items-center gap-2 mt-5 text-[13px] font-semibold text-[#07899a] hover:text-[#071923] transition-colors"
                 >
                   Discuss Your Marketing
                   <ArrowRight size={13} />
@@ -1031,7 +1031,7 @@ ${formData.message}`
                       {item.title}
                     </h3>
 
-                    <p className="text-slate-500 text-[11px] leading-5 mt-1.5">
+                    <p className="text-slate-500 text-[13px] leading-5 mt-1.5">
                       {item.desc}
                     </p>
                   </article>
@@ -1088,7 +1088,7 @@ ${formData.message}`
                     {item.title}
                   </h3>
 
-                  <p className="text-[11px] leading-5 text-slate-400 mt-1.5">
+                  <p className="text-[13px] leading-5 text-slate-400 mt-1.5">
                     {item.desc}
                   </p>
                 </article>
@@ -1132,7 +1132,7 @@ ${formData.message}`
               </div>
 
               <div className="rounded-2xl border border-slate-200 bg-[#f8fafb] p-5">
-                <p className="text-[#071923] text-[10px] font-semibold tracking-[0.16em] uppercase">
+                <p className="text-[#071923] text-xs font-semibold tracking-[0.16em] uppercase">
                   When marketing support can help
                 </p>
 
@@ -1147,7 +1147,7 @@ ${formData.message}`
                         className="text-[#0796A8] flex-shrink-0 mt-0.5"
                       />
 
-                      <span className="text-slate-600 text-[10px] leading-5">
+                      <span className="text-slate-600 text-xs leading-5">
                         {item}
                       </span>
                     </div>
@@ -1195,7 +1195,7 @@ ${formData.message}`
                   key={step.number}
                   className="relative bg-[#071923] p-5 min-h-[175px] hover:bg-[#0a202a] transition-colors"
                 >
-                  <span className="text-[10px] font-semibold text-[#22bfce]">
+                  <span className="text-xs font-semibold text-[#22bfce]">
                     {step.number}
                   </span>
 
@@ -1203,7 +1203,7 @@ ${formData.message}`
                     {step.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[11px] leading-5 mt-2">
+                  <p className="text-slate-400 text-[13px] leading-5 mt-2">
                     {step.desc}
                   </p>
                 </article>
@@ -1244,11 +1244,11 @@ ${formData.message}`
                     className="group flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 hover:border-[#0796A8]/40 transition-colors"
                   >
                     <div>
-                      <span className="text-[8px] font-semibold text-[#0796A8]">
+                      <span className="text-xs font-semibold text-[#0796A8]">
                         {String(index + 1).padStart(2, "0")}
                       </span>
 
-                      <h3 className="text-[#071923] text-[11px] font-semibold mt-1">
+                      <h3 className="text-[#071923] text-[13px] font-semibold mt-1">
                         {item}
                       </h3>
                     </div>
@@ -1305,7 +1305,7 @@ ${formData.message}`
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-500 text-[11px] leading-5 mt-1.5">
+                  <p className="text-slate-500 text-[13px] leading-5 mt-1.5">
                     {item.desc}
                   </p>
                 </article>
@@ -1336,7 +1336,7 @@ ${formData.message}`
               <Link
                 to="/allservices"
                 onClick={scrollTop}
-                className="inline-flex items-center gap-2 text-[11px] font-semibold text-[#07899a]"
+                className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#07899a]"
               >
                 View All Services
                 <ArrowRight size={13} />
@@ -1351,7 +1351,7 @@ ${formData.message}`
                   onClick={scrollTop}
                   className="group rounded-2xl border border-slate-200 bg-white p-5 hover:border-[#0796A8]/40 hover:-translate-y-1 transition-all"
                 >
-                  <span className="text-[8px] tracking-[0.15em] font-semibold text-[#0796A8]">
+                  <span className="text-xs tracking-[0.15em] font-semibold text-[#0796A8]">
                     {service.label}
                   </span>
 
@@ -1359,12 +1359,12 @@ ${formData.message}`
                     {service.title}
                   </h3>
 
-                  <p className="text-slate-500 text-[10px] leading-5 mt-2">
+                  <p className="text-slate-500 text-xs leading-5 mt-2">
                     {service.desc}
                   </p>
 
                   <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-100">
-                    <span className="text-[9px] font-medium text-slate-500 group-hover:text-[#07899a]">
+                    <span className="text-xs font-medium text-slate-500 group-hover:text-[#07899a]">
                       Explore service
                     </span>
 
@@ -1400,7 +1400,7 @@ ${formData.message}`
 
               <a
                 href="#marketing-project-enquiry"
-                className="self-start md:self-auto inline-flex items-center gap-2 rounded-lg bg-[#071923] px-4 py-2.5 text-[10px] font-semibold text-white"
+                className="self-start md:self-auto inline-flex items-center gap-2 rounded-lg bg-[#071923] px-4 py-2.5 text-xs font-semibold text-white"
               >
                 Ask Your Question
                 <ArrowRight size={12} />
@@ -1477,7 +1477,7 @@ ${formData.message}`
                     setShowAllFaqs((current) => !current);
                     setActiveFaq(null);
                   }}
-                  className="inline-flex items-center gap-2 rounded-lg border border-[#071923]/15 bg-[#f8fafb] px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:border-[#0796A8]/50 transition-colors"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#071923]/15 bg-[#f8fafb] px-4 py-2.5 text-xs font-semibold text-[#071923] hover:border-[#0796A8]/50 transition-colors"
                 >
                   {showAllFaqs
                     ? "Show Less Questions"
@@ -1547,7 +1547,7 @@ ${formData.message}`
                         />
                       </div>
 
-                      <span className="text-[11px] font-medium text-slate-300">
+                      <span className="text-[13px] font-medium text-slate-300">
                         {item}
                       </span>
                     </div>
@@ -1555,7 +1555,7 @@ ${formData.message}`
                 </div>
 
                 <div className="mt-6 pt-5 border-t border-white/[0.08]">
-                  <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-slate-500">
+                  <p className="text-xs uppercase tracking-[0.18em] font-semibold text-slate-500">
                     Prefer a direct conversation?
                   </p>
 
@@ -1579,7 +1579,7 @@ ${formData.message}`
                   <div>
                     <label
                       htmlFor="marketing-name"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Your Name *
                     </label>
@@ -1599,7 +1599,7 @@ ${formData.message}`
                   <div>
                     <label
                       htmlFor="marketing-email"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Email Address *
                     </label>
@@ -1619,7 +1619,7 @@ ${formData.message}`
                   {/* <div>
                     <label
                       htmlFor="marketing-company"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Company
                     </label>
@@ -1638,7 +1638,7 @@ ${formData.message}`
                   <div>
                     <label
                       htmlFor="marketing-service"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Marketing Requirement
                     </label>
@@ -1666,7 +1666,7 @@ ${formData.message}`
                   <div className="md:col-span-1">
                     <label
                       htmlFor="marketing-timeline"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Preferred Timeline
                     </label>
@@ -1690,7 +1690,7 @@ ${formData.message}`
                   <div className="md:col-span-2">
                     <label
                       htmlFor="marketing-message"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Marketing Details *
                     </label>
@@ -1709,7 +1709,7 @@ ${formData.message}`
                 </div>
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-4">
-                  <p className="text-[9px] leading-4 text-slate-500 max-w-sm">
+                  <p className="text-xs leading-4 text-slate-500 max-w-sm">
                     Share enough information for us to understand your business
                     and current marketing needs. The complete scope can be
                     discussed afterwards.
@@ -1717,7 +1717,7 @@ ${formData.message}`
 
                   <button
                     type="submit"
-                    className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#1bbdca] hover:bg-[#28c9d5] px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+                    className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#1bbdca] hover:bg-[#28c9d5] px-5 py-3 text-[13px] font-semibold text-[#071923] transition-colors"
                   >
                     Send Marketing Enquiry
                     <Send size={13} />
@@ -1738,7 +1738,7 @@ ${formData.message}`
                   Ready to improve your digital marketing?
                 </p>
 
-                <p className="text-slate-500 text-[10px] mt-1">
+                <p className="text-slate-500 text-xs mt-1">
                   Social media, paid campaigns, lead generation and marketing
                   support by DevZore.
                 </p>
@@ -1747,7 +1747,7 @@ ${formData.message}`
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="inline-flex self-start items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
+                className="inline-flex self-start items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-xs font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
               >
                 Contact DevZore
                 <ArrowUpRight size={12} />

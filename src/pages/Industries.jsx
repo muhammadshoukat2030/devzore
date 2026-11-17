@@ -170,7 +170,7 @@ const Industries = () => {
 
           <div className="relative max-w-[1260px] mx-auto px-4 sm:px-6">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[11px] font-bold tracking-wider uppercase text-[#1bbac8]">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[13px] font-bold tracking-wider uppercase text-[#1bbac8]">
                 <Sparkles size={12} />
                 <span>Sector-Specific Software Solutions</span>
               </div>
@@ -200,7 +200,7 @@ const Industries = () => {
                     {ind.icon}
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#1bbac8]">
                       Sector 0{index + 1}
                     </span>
                     <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-0.5">
@@ -269,7 +269,7 @@ const Industries = () => {
               {/* VERIFIED CASE STUDIES */}
               <div className="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mr-2">
+                  <span className="text-[13px] font-bold uppercase tracking-wider text-slate-400 mr-2">
                     Verified Production Proof:
                   </span>
                   {ind.caseStudies.map((cs) => (

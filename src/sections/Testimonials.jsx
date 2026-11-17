@@ -58,7 +58,7 @@ const TestimonialsContent = () => {
         {/* HEADER */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#1bbac8]">
+            <div className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#1bbac8]">
               <Star size={12} className="text-[#1bbac8] fill-[#1bbac8]" />
               <span>Verified Client Feedback</span>
             </div>
@@ -80,7 +80,7 @@ const TestimonialsContent = () => {
                 href={GOOGLE_REVIEW_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-cyan-400/30 bg-cyan-400/10 text-[11px] font-bold text-[#1bbac8] hover:bg-cyan-400/20 transition"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-cyan-400/30 bg-cyan-400/10 text-[13px] font-bold text-[#1bbac8] hover:bg-cyan-400/20 transition"
               >
                 <span>Review DevZore on Google</span>
                 <ExternalLink size={12} />
@@ -123,7 +123,7 @@ const TestimonialsContent = () => {
                     ))}
                   </div>
                   {item.source && (
-                    <span className="text-[10px] font-semibold text-slate-400 px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">
+                    <span className="text-xs font-semibold text-slate-400 px-2 py-0.5 rounded bg-white/[0.04] border border-white/[0.06]">
                       {item.source} Review
                     </span>
                   )}
@@ -141,7 +141,7 @@ const TestimonialsContent = () => {
                   <div className="text-xs font-bold text-white">
                     {item.personName}
                   </div>
-                  <div className="text-[10px] text-slate-400">
+                  <div className="text-xs text-slate-400">
                     {item.role ? `${item.role}, ` : ""}{item.company}
                   </div>
                 </div>

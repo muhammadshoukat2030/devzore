@@ -101,7 +101,7 @@ const ThankYou = () => {
 
             {/* LABEL */}
 
-            <div className="mt-6 inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-[#28c5d4]">
+            <div className="mt-6 inline-flex items-center gap-2 text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#28c5d4]">
               <span className="w-5 h-[2px] bg-[#0796A8]" />
               Project Inquiry Received
               <span className="w-5 h-[2px] bg-[#0796A8]" />
@@ -141,7 +141,7 @@ const ThankYou = () => {
                     {item.icon}
                   </div>
 
-                  <span className="text-[9px] font-semibold text-[#1bb8c7]">
+                  <span className="text-xs font-semibold text-[#1bb8c7]">
                     {item.number}
                   </span>
                 </div>
@@ -150,7 +150,7 @@ const ThankYou = () => {
                   {item.title}
                 </h2>
 
-                <p className="mt-2 text-[10px] sm:text-[11px] leading-5 text-slate-500">
+                <p className="mt-2 text-xs sm:text-[13px] leading-5 text-slate-500">
                   {item.description}
                 </p>
               </article>
@@ -163,7 +163,7 @@ const ThankYou = () => {
             <Link
               to="/"
               onClick={scrollTop}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[11px] sm:text-[12px] font-semibold text-[#071923] transition-colors"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[13px] sm:text-[12px] font-semibold text-[#071923] transition-colors"
             >
               <Home size={14} />
               Back to Home
@@ -177,7 +177,7 @@ const ThankYou = () => {
             <Link
               to="/allservices"
               onClick={scrollTop}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[11px] sm:text-[12px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[13px] sm:text-[12px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
             >
               Explore Our Services
 
@@ -198,11 +198,11 @@ const ThankYou = () => {
                 </div>
 
                 <div>
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
                     Need to add more details?
                   </p>
 
-                  <p className="mt-1 text-[11px] sm:text-[12px] text-slate-300">
+                  <p className="mt-1 text-[13px] sm:text-[12px] text-slate-300">
                     Contact DevZore by email
                   </p>
                 </div>
@@ -210,7 +210,7 @@ const ThankYou = () => {
 
               <a
                 href="mailto:hellodevzore@gmail.com"
-                className="text-[10px] sm:text-[11px] font-semibold text-[#28c5d4] hover:text-[#39d3df] transition-colors break-all"
+                className="text-xs sm:text-[13px] font-semibold text-[#28c5d4] hover:text-[#39d3df] transition-colors break-all"
               >
                 hellodevzore@gmail.com
               </a>
@@ -231,14 +231,14 @@ const ThankYou = () => {
                   key={path}
                   to={path}
                   onClick={scrollTop}
-                  className="text-[9px] font-medium text-slate-600 hover:text-[#25c0ce] transition-colors"
+                  className="text-xs font-medium text-slate-600 hover:text-[#25c0ce] transition-colors"
                 >
                   {label}
                 </Link>
               ))}
             </div>
 
-            <div className="mt-5 flex items-center justify-center gap-2 text-[9px] text-slate-700">
+            <div className="mt-5 flex items-center justify-center gap-2 text-xs text-slate-700">
               <Sparkles size={10} />
               <span>DevZore Software Development Agency</span>
             </div>

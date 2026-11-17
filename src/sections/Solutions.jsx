@@ -197,8 +197,8 @@ const Solutions = () => {
 
               <span
                 className="
-                  text-[9px]
-                  sm:text-[10px]
+                  text-xs
+                  sm:text-xs
                   font-black
                   uppercase
                   tracking-[0.2em]
@@ -272,7 +272,7 @@ const Solutions = () => {
 
               shadow-[0_3px_10px_rgba(6,25,35,0.07)]
 
-              text-[11px]
+              text-[13px]
               font-bold
               text-[#061923]
 
@@ -416,8 +416,8 @@ const Solutions = () => {
 
                   <span
                     className="
-                      text-[8px]
-                      sm:text-[9px]
+                      text-xs
+                      sm:text-xs
                       font-black
                       tracking-[0.08em]
                       text-slate-300
@@ -450,8 +450,8 @@ const Solutions = () => {
                         border
                         border-[#17bebb]/20
 
-                        text-[7px]
-                        sm:text-[8px]
+                        text-xs
+                        sm:text-xs
 
                         uppercase
                         font-black
@@ -487,8 +487,8 @@ const Solutions = () => {
                     className="
                       mt-1
 
-                      text-[8px]
-                      sm:text-[10px]
+                      text-xs
+                      sm:text-xs
 
                       font-semibold
                       text-slate-400
@@ -504,8 +504,8 @@ const Solutions = () => {
                       mt-2
                       sm:mt-3
 
-                      text-[9px]
-                      sm:text-[11px]
+                      text-xs
+                      sm:text-[13px]
 
                       leading-[1.55]
                       sm:leading-[1.65]
@@ -540,8 +540,8 @@ const Solutions = () => {
                         items-center
                         gap-1.5
 
-                        text-[8px]
-                        sm:text-[10px]
+                        text-xs
+                        sm:text-xs
 
                         font-medium
                         text-slate-600
@@ -575,8 +575,8 @@ const Solutions = () => {
                     items-center
                     gap-1.5
 
-                    text-[9px]
-                    sm:text-[10px]
+                    text-xs
+                    sm:text-xs
 
                     font-bold
                     text-[#061923]
@@ -660,8 +660,8 @@ const Solutions = () => {
           <div className="max-w-2xl">
             <span
               className="
-                text-[8px]
-                sm:text-[9px]
+                text-xs
+                sm:text-xs
 
                 uppercase
                 tracking-[0.18em]
@@ -693,8 +693,8 @@ const Solutions = () => {
               className="
                 mt-1
 
-                text-[10px]
-                sm:text-[11px]
+                text-xs
+                sm:text-[13px]
 
                 leading-relaxed
                 text-slate-500
@@ -732,8 +732,8 @@ const Solutions = () => {
 
               text-white
 
-              text-[10px]
-              sm:text-[11px]
+              text-xs
+              sm:text-[13px]
 
               font-bold
 
@@ -774,7 +774,7 @@ const Solutions = () => {
               border-slate-200
 
               text-[#061923]
-              text-[10px]
+              text-xs
               font-bold
 
               transition-all

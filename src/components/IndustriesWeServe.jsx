@@ -94,7 +94,7 @@ const IndustriesWeServe = ({ isLight = false }) => {
         {/* HEADER */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#1bbac8]">
+            <div className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#1bbac8]">
               <Sparkles size={12} className="text-[#1bbac8]" />
               <span>Targeted Sector Expertise</span>
             </div>
@@ -171,7 +171,7 @@ const IndustriesWeServe = ({ isLight = false }) => {
               >
                 <div>
                   <span
-                    className={`block text-[10px] font-bold uppercase tracking-wider mb-1 ${
+                    className={`block text-xs font-bold uppercase tracking-wider mb-1 ${
                       isLight ? "text-slate-400" : "text-slate-400"
                     }`}
                   >
@@ -183,7 +183,7 @@ const IndustriesWeServe = ({ isLight = false }) => {
                         key={cs.path}
                         to={cs.path}
                         onClick={scrollTop}
-                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#1bbac8] hover:text-white transition group/link block"
+                        className="inline-flex items-center gap-1 text-[13px] font-semibold text-[#1bbac8] hover:text-white transition group/link block"
                       >
                         <span className="truncate">{cs.name}</span>
                         <ArrowUpRight
@@ -197,7 +197,7 @@ const IndustriesWeServe = ({ isLight = false }) => {
 
                 <div className="pt-2 border-t border-dashed border-white/[0.08]">
                   <span
-                    className={`block text-[10px] font-bold uppercase tracking-wider mb-1 ${
+                    className={`block text-xs font-bold uppercase tracking-wider mb-1 ${
                       isLight ? "text-slate-400" : "text-slate-400"
                     }`}
                   >
@@ -206,7 +206,7 @@ const IndustriesWeServe = ({ isLight = false }) => {
                   <Link
                     to={ind.serviceLink.path}
                     onClick={scrollTop}
-                    className="inline-flex items-center gap-1 text-[11px] font-bold text-white hover:text-[#1bbac8] transition block"
+                    className="inline-flex items-center gap-1 text-[13px] font-bold text-white hover:text-[#1bbac8] transition block"
                   >
                     <span className="truncate">{ind.serviceLink.name}</span>
                     <ArrowRight size={11} className="shrink-0" />
@@ -215,7 +215,7 @@ const IndustriesWeServe = ({ isLight = false }) => {
                     <Link
                       to={ind.extraServiceLink.path}
                       onClick={scrollTop}
-                      className="inline-flex items-center gap-1 text-[11px] font-bold text-white hover:text-[#1bbac8] transition block mt-1"
+                      className="inline-flex items-center gap-1 text-[13px] font-bold text-white hover:text-[#1bbac8] transition block mt-1"
                     >
                       <span className="truncate">{ind.extraServiceLink.name}</span>
                       <ArrowRight size={11} className="shrink-0" />

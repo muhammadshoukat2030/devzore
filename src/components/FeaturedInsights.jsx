@@ -16,7 +16,7 @@ const FeaturedInsights = () => {
       <div className="max-w-[1260px] mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#1bbac8]">
+            <div className="inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#1bbac8]">
               <Sparkles size={12} className="text-[#1bbac8]" />
               <span>DevZore Engineering Knowledge</span>
             </div>
@@ -48,11 +48,11 @@ const FeaturedInsights = () => {
               className="group flex flex-col justify-between p-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] hover:border-cyan-500/40 transition-all duration-300"
             >
               <div>
-                <div className="flex items-center justify-between text-[11px] text-slate-400 mb-3">
-                  <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-[#1bbac8] font-bold text-[10px] uppercase tracking-wider border border-cyan-500/20">
+                <div className="flex items-center justify-between text-[13px] text-slate-400 mb-3">
+                  <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-[#1bbac8] font-bold text-xs uppercase tracking-wider border border-cyan-500/20">
                     {item.tag}
                   </span>
-                  <span className="flex items-center gap-1 text-[10px] text-slate-500">
+                  <span className="flex items-center gap-1 text-xs text-slate-500">
                     <Clock size={11} />
                     {item.readTime}
                   </span>

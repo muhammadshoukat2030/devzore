@@ -305,8 +305,8 @@ const FAQ = ({ isDark = true }) => {
             className={`inline-flex
               items-center
               gap-2
-              text-[9px]
-              sm:text-[10px]
+              text-xs
+              sm:text-xs
               font-black
               uppercase
               tracking-[0.2em]
@@ -366,7 +366,7 @@ const FAQ = ({ isDark = true }) => {
             className={`mt-4
               max-w-2xl
               mx-auto
-              text-[11px]
+              text-[13px]
               sm:text-[13px]
               lg:text-[14px]
               leading-6 sm:leading-7
@@ -428,7 +428,7 @@ const FAQ = ({ isDark = true }) => {
 
             <div className="min-w-0">
               <p
-                className={`text-[11px] sm:text-[12px] font-bold ${
+                className={`text-[13px] sm:text-[12px] font-bold ${
                   d ? "text-white" : "text-[#061923]"
                 }`}
               >
@@ -436,7 +436,7 @@ const FAQ = ({ isDark = true }) => {
               </p>
 
               <p
-                className={`text-[9px] mt-0.5 ${
+                className={`text-xs mt-0.5 ${
                   d ? "text-slate-500" : "text-slate-500"
                 }`}
               >
@@ -492,7 +492,7 @@ const FAQ = ({ isDark = true }) => {
 
             <div className="min-w-0">
               <p
-                className={`text-[11px] sm:text-[12px] font-bold ${
+                className={`text-[13px] sm:text-[12px] font-bold ${
                   d ? "text-white" : "text-[#061923]"
                 }`}
               >
@@ -500,7 +500,7 @@ const FAQ = ({ isDark = true }) => {
               </p>
 
               <p
-                className={`text-[9px] mt-0.5 ${
+                className={`text-xs mt-0.5 ${
                   d ? "text-slate-500" : "text-slate-500"
                 }`}
               >
@@ -556,7 +556,7 @@ const FAQ = ({ isDark = true }) => {
 
             <div className="min-w-0">
               <p
-                className={`text-[11px] sm:text-[12px] font-bold ${
+                className={`text-[13px] sm:text-[12px] font-bold ${
                   d ? "text-white" : "text-[#061923]"
                 }`}
               >
@@ -564,7 +564,7 @@ const FAQ = ({ isDark = true }) => {
               </p>
 
               <p
-                className={`text-[9px] mt-0.5 ${
+                className={`text-xs mt-0.5 ${
                   d ? "text-slate-500" : "text-slate-500"
                 }`}
               >
@@ -619,8 +619,8 @@ const FAQ = ({ isDark = true }) => {
                   py-1.5
                   rounded-lg
                   border
-                  text-[9px]
-                  sm:text-[10px]
+                  text-xs
+                  sm:text-xs
                   font-bold
                   transition-all
                   duration-200
@@ -638,7 +638,7 @@ const FAQ = ({ isDark = true }) => {
                 {category}
 
                 <span
-                  className={`text-[8px] ${
+                  className={`text-xs ${
                     selected
                       ? d
                         ? "text-[#061923]/60"
@@ -709,7 +709,7 @@ const FAQ = ({ isDark = true }) => {
                       className={`hidden
                         sm:inline-flex
                         shrink-0
-                        text-[8px]
+                        text-xs
                         font-bold
                         px-2
                         py-1
@@ -731,7 +731,7 @@ const FAQ = ({ isDark = true }) => {
                     {/* QUESTION TEXT */}
 
                     <span
-                      className={`text-[11px]
+                      className={`text-[13px]
                         sm:text-[12px]
                         lg:text-[13px]
                         font-bold
@@ -811,7 +811,7 @@ const FAQ = ({ isDark = true }) => {
                       `}
                     >
                       <p
-                        className={`text-[10px]
+                        className={`text-xs
                           sm:text-[12px]
                           leading-[1.8]
                           sm:leading-6
@@ -853,8 +853,8 @@ const FAQ = ({ isDark = true }) => {
                 py-2.5
                 rounded-lg
                 border
-                text-[10px]
-                sm:text-[11px]
+                text-xs
+                sm:text-[13px]
                 font-bold
                 transition-all
                 duration-200
@@ -883,7 +883,7 @@ const FAQ = ({ isDark = true }) => {
                   Show All FAQs
 
                   <span
-                    className={`text-[8px]
+                    className={`text-xs
                       px-1.5
                       py-0.5
                       rounded-full
@@ -907,8 +907,8 @@ const FAQ = ({ isDark = true }) => {
 
             {!showAll && activeCategory === "All" && (
               <p
-                className={`text-[9px]
-                  sm:text-[10px]
+                className={`text-xs
+                  sm:text-xs
                   mt-2.5
                   ${
                     d
@@ -1014,8 +1014,8 @@ const FAQ = ({ isDark = true }) => {
 
                 <p
                   className={`mt-1
-                    text-[10px]
-                    sm:text-[11px]
+                    text-xs
+                    sm:text-[13px]
                     leading-relaxed
                     ${
                       d
@@ -1052,8 +1052,8 @@ const FAQ = ({ isDark = true }) => {
                   sm:px-5
                   py-2.5
                   rounded-lg
-                  text-[9px]
-                  sm:text-[10px]
+                  text-xs
+                  sm:text-xs
                   font-black
                   transition-all
                   ${
@@ -1085,8 +1085,8 @@ const FAQ = ({ isDark = true }) => {
                   text-[#20b858]
                   font-black
                   rounded-lg
-                  text-[9px]
-                  sm:text-[10px]
+                  text-xs
+                  sm:text-xs
                   hover:bg-[#25D366]/15
                   transition-all
                 "

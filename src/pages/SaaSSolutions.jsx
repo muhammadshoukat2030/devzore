@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
@@ -512,7 +512,7 @@ ${formData.message}`
 
   const SectionLabel = ({ children, light = false }) => (
     <div
-      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+      className={`flex items-center gap-2.5 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase ${
         light ? "text-[#28c5d4]" : "text-[#07899a]"
       }`}
     >
@@ -544,7 +544,7 @@ ${formData.message}`
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
         style={{
-          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+          fontFamily: '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* HERO */}
@@ -564,7 +564,7 @@ ${formData.message}`
           <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-23 sm:pt-24 lg:pt-24 pb-11 sm:pb-13">
             <div className="grid lg:grid-cols-[0.98fr_1.02fr] gap-8 lg:gap-14 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.16em] uppercase text-[#c4ced5] mb-5">
+                <div className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.16em] uppercase text-[#c4ced5] mb-5">
                   <Cloud size={14} className="text-[#26becb]" />
                   SaaS Solutions
                 </div>
@@ -579,7 +579,7 @@ ${formData.message}`
                   </span>
                 </h1>
 
-                <p className="max-w-[690px] mt-4 text-[16px] sm:text-[13.5px] leading-7 text-slate-300">
+                <p className="max-w-[690px] mt-4 text-[15px] sm:text-[16px] leading-7 text-slate-300">
                   DevZore builds modern SaaS platforms with authentication,
                   dashboards, user management, subscriptions, product
                   workflows and scalable application architecture.
@@ -618,7 +618,7 @@ ${formData.message}`
                   ].map((item) => (
                     <span
                       key={item}
-                      className="inline-flex items-center gap-1.5 text-[10px] font-medium text-slate-400"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400"
                     >
                       <CheckCircle2
                         size={12}
@@ -660,7 +660,7 @@ ${formData.message}`
                             <div className="w-36 h-3 rounded bg-white/80" />
                           </div>
 
-                          <div className="rounded-lg border border-[#21bfcd]/20 bg-[#21bfcd]/10 px-3 py-1.5 text-[8px] font-semibold text-[#2bc6d3]">
+                          <div className="rounded-lg border border-[#21bfcd]/20 bg-[#21bfcd]/10 px-3 py-1.5 text-xs font-semibold text-[#2bc6d3]">
                             PRODUCT OVERVIEW
                           </div>
                         </div>
@@ -675,11 +675,11 @@ ${formData.message}`
                               key={title}
                               className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3"
                             >
-                              <p className="text-[7px] uppercase tracking-[0.14em] text-slate-500">
+                              <p className="text-xs uppercase tracking-[0.14em] text-slate-500">
                                 {title}
                               </p>
 
-                              <p className="text-[10px] font-semibold mt-1.5">
+                              <p className="text-xs font-semibold mt-1.5">
                                 {text}
                               </p>
                             </div>
@@ -689,7 +689,7 @@ ${formData.message}`
                         <div className="grid grid-cols-[1.3fr_0.7fr] gap-3">
                           <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-4">
                             <div className="flex items-center justify-between mb-4">
-                              <p className="text-[9px] font-semibold text-slate-300">
+                              <p className="text-xs font-semibold text-slate-300">
                                 Product Activity
                               </p>
 
@@ -715,7 +715,7 @@ ${formData.message}`
                           </div>
 
                           <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-4">
-                            <p className="text-[8px] font-semibold text-slate-400">
+                            <p className="text-xs font-semibold text-slate-400">
                               Product Health
                             </p>
 
@@ -734,7 +734,7 @@ ${formData.message}`
                               ))}
                             </div>
 
-                            <p className="text-[8px] font-semibold text-[#28c5d4] mt-4">
+                            <p className="text-xs font-semibold text-[#28c5d4] mt-4">
                               SaaS Ready
                             </p>
                           </div>
@@ -745,7 +745,7 @@ ${formData.message}`
                     <div className="absolute -left-5 top-20 rounded-xl border border-[#24c6d5]/25 bg-[#0b2833]/95 px-3 py-3 shadow-xl">
                       <Users size={17} className="text-[#29c7d5]" />
 
-                      <p className="text-[8px] font-semibold mt-2">
+                      <p className="text-xs font-semibold mt-2">
                         Users
                       </p>
                     </div>
@@ -756,7 +756,7 @@ ${formData.message}`
                         className="text-[#29c7d5]"
                       />
 
-                      <p className="text-[8px] font-semibold mt-2">
+                      <p className="text-xs font-semibold mt-2">
                         Plans
                       </p>
                     </div>
@@ -767,7 +767,7 @@ ${formData.message}`
                         className="text-[#29c7d5]"
                       />
 
-                      <p className="text-[8px] font-semibold mt-2">
+                      <p className="text-xs font-semibold mt-2">
                         Workflows
                       </p>
                     </div>
@@ -796,11 +796,11 @@ ${formData.message}`
                         : ""
                     } ${index > 0 ? "lg:pl-7" : ""}`}
                   >
-                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-1">
+                    <span className="block text-xs font-semibold text-[#1bb8c7] mb-1">
                       {number}
                     </span>
 
-                    <span className="text-[11px] font-medium text-slate-300">
+                    <span className="text-[13px] font-medium text-slate-300">
                       {title}
                     </span>
                   </div>
@@ -887,7 +887,7 @@ ${formData.message}`
                       {feature.icon}
                     </div>
 
-                    <span className="text-[10px] font-semibold text-slate-300">
+                    <span className="text-xs font-semibold text-slate-300">
                       {feature.number}
                     </span>
                   </div>
@@ -949,7 +949,7 @@ ${formData.message}`
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[11px] leading-5 mt-2">
+                  <p className="text-slate-400 text-[13px] leading-5 mt-2">
                     {item.description}
                   </p>
                 </article>
@@ -1001,7 +1001,7 @@ ${formData.message}`
                       {item.title}
                     </h3>
 
-                    <p className="text-slate-500 text-[10px] leading-5 mt-1.5">
+                    <p className="text-slate-500 text-xs leading-5 mt-1.5">
                       {item.description}
                     </p>
                   </article>
@@ -1054,7 +1054,7 @@ ${formData.message}`
                       <Check size={12} className="text-[#07899a]" />
                     </div>
 
-                    <span className="text-[11px] font-medium text-slate-700">
+                    <span className="text-[13px] font-medium text-slate-700">
                       {item}
                     </span>
                   </div>
@@ -1093,7 +1093,7 @@ ${formData.message}`
                     {benefit.title}
                   </h3>
 
-                  <p className="text-slate-500 text-[10px] leading-5 mt-1.5">
+                  <p className="text-slate-500 text-xs leading-5 mt-1.5">
                     {benefit.description}
                   </p>
                 </article>
@@ -1136,7 +1136,7 @@ ${formData.message}`
                   key={step.number}
                   className="bg-[#071923] p-5 min-h-[175px] hover:bg-[#0a202a] transition-colors"
                 >
-                  <span className="text-[10px] font-semibold text-[#22bfce]">
+                  <span className="text-xs font-semibold text-[#22bfce]">
                     {step.number}
                   </span>
 
@@ -1144,7 +1144,7 @@ ${formData.message}`
                     {step.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[11px] leading-5 mt-2">
+                  <p className="text-slate-400 text-[13px] leading-5 mt-2">
                     {step.description}
                   </p>
                 </article>
@@ -1187,11 +1187,11 @@ ${formData.message}`
                     key={item}
                     className="rounded-xl border border-slate-200 bg-white px-3.5 py-3.5"
                   >
-                    <span className="text-[8px] font-semibold text-[#0796A8]">
+                    <span className="text-xs font-semibold text-[#0796A8]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
-                    <p className="text-[11px] font-semibold text-[#071923] mt-1">
+                    <p className="text-[13px] font-semibold text-[#071923] mt-1">
                       {item}
                     </p>
                   </div>
@@ -1237,7 +1237,7 @@ ${formData.message}`
                       {item.title}
                     </h3>
 
-                    <p className="text-slate-500 text-[10px] leading-5 mt-1">
+                    <p className="text-slate-500 text-xs leading-5 mt-1">
                       {item.description}
                     </p>
                   </div>
@@ -1281,11 +1281,11 @@ ${formData.message}`
                     {service.title}
                   </h3>
 
-                  <p className="text-slate-500 text-[10px] leading-5 mt-1.5">
+                  <p className="text-slate-500 text-xs leading-5 mt-1.5">
                     {service.description}
                   </p>
 
-                  <span className="inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a] mt-3">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#07899a] mt-3">
                     Explore Service
                     <ArrowUpRight size={11} />
                   </span>
@@ -1392,7 +1392,7 @@ ${formData.message}`
                     setShowAllFaqs((current) => !current);
                     setActiveFaq(null);
                   }}
-                  className="inline-flex items-center gap-2 rounded-lg border border-[#071923]/15 bg-[#f8fafb] px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:border-[#0796A8]/50 transition-colors"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[#071923]/15 bg-[#f8fafb] px-4 py-2.5 text-xs font-semibold text-[#071923] hover:border-[#0796A8]/50 transition-colors"
                 >
                   {showAllFaqs
                     ? "Show Less Questions"
@@ -1461,7 +1461,7 @@ ${formData.message}`
                         />
                       </div>
 
-                      <span className="text-[11px] font-medium text-slate-300">
+                      <span className="text-[13px] font-medium text-slate-300">
                         {item}
                       </span>
                     </div>
@@ -1469,7 +1469,7 @@ ${formData.message}`
                 </div>
 
                 <div className="mt-6 pt-5 border-t border-white/[0.08]">
-                  <p className="text-[9px] uppercase tracking-[0.18em] font-semibold text-slate-500">
+                  <p className="text-xs uppercase tracking-[0.18em] font-semibold text-slate-500">
                     Prefer email?
                   </p>
 
@@ -1491,7 +1491,7 @@ ${formData.message}`
                   <div>
                     <label
                       htmlFor="saas-solution-name"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Your Name *
                     </label>
@@ -1511,7 +1511,7 @@ ${formData.message}`
                   <div>
                     <label
                       htmlFor="saas-solution-email"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Email Address *
                     </label>
@@ -1531,7 +1531,7 @@ ${formData.message}`
                   {/* <div>
                     <label
                       htmlFor="saas-solution-company"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Company
                     </label>
@@ -1550,7 +1550,7 @@ ${formData.message}`
                   <div>
                     <label
                       htmlFor="saas-solution-service"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Project Type
                     </label>
@@ -1576,7 +1576,7 @@ ${formData.message}`
                   <div className="md:col-span-1">
                     <label
                       htmlFor="saas-solution-timeline"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Timeline
                     </label>
@@ -1600,7 +1600,7 @@ ${formData.message}`
                   <div className="md:col-span-2">
                     <label
                       htmlFor="saas-solution-message"
-                      className="block text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
+                      className="block text-xs font-semibold tracking-[0.14em] uppercase text-slate-400 mb-1.5"
                     >
                       Product Requirements *
                     </label>
@@ -1619,7 +1619,7 @@ ${formData.message}`
                 </div>
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-4">
-                  <p className="text-[9px] leading-4 text-slate-500 max-w-sm">
+                  <p className="text-xs leading-4 text-slate-500 max-w-sm">
                     You do not need a complete technical specification. Share
                     the product idea and the main workflows you want users to
                     complete.
@@ -1627,7 +1627,7 @@ ${formData.message}`
 
                   <button
                     type="submit"
-                    className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#1bbdca] hover:bg-[#28c9d5] px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+                    className="inline-flex justify-center items-center gap-2 rounded-lg bg-[#1bbdca] hover:bg-[#28c9d5] px-5 py-3 text-[13px] font-semibold text-[#071923] transition-colors"
                   >
                     Send Project Enquiry
                     <Send size={13} />
@@ -1648,7 +1648,7 @@ ${formData.message}`
                   Have a SaaS idea you want to turn into a real product?
                 </p>
 
-                <p className="text-slate-500 text-[10px] mt-1">
+                <p className="text-slate-500 text-xs mt-1">
                   Share your idea and core requirements so we can discuss the
                   right product approach.
                 </p>
@@ -1657,7 +1657,7 @@ ${formData.message}`
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="inline-flex self-start items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-[10px] font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
+                className="inline-flex self-start items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-xs font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
               >
                 Discuss Your SaaS
                 <ArrowUpRight size={12} />

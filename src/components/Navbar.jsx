@@ -502,7 +502,7 @@ const Navbar = () => {
                   {language.name}
                 </span>
 
-                <span className="text-[10px] text-[#8B9BA2]">
+                <span className="text-xs text-[#8B9BA2]">
                   {language.code}
                 </span>
               </button>
@@ -857,7 +857,7 @@ const Navbar = () => {
               <span
                 className="
                   mt-1
-                  text-[7px]
+                  text-xs
                   font-semibold
                   uppercase
                   tracking-[0.2em]
@@ -993,8 +993,8 @@ const Navbar = () => {
                 rounded-[11px]
                 bg-white
                 text-[#071923]
-                text-[10px]
-                xl:text-[11px]
+                text-xs
+                xl:text-[13px]
                 font-bold
                 uppercase
                 tracking-[0.08em]
@@ -1114,7 +1114,7 @@ const Navbar = () => {
 
               <p
                 className="
-                  text-[7px]
+                  text-xs
                   uppercase
                   tracking-[0.18em]
                   text-[#91A5AE]
@@ -1218,7 +1218,7 @@ const Navbar = () => {
           >
             <span className="flex items-center gap-2">
               <span>Case Studies</span>
-              <span className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-[#19C3C8] text-[9px] font-bold">
+              <span className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-[#19C3C8] text-xs font-bold">
                 6 Real Systems
               </span>
             </span>
@@ -1270,7 +1270,7 @@ const Navbar = () => {
               rounded-[10px]
               bg-white
               text-[#071923]
-              text-[11px]
+              text-[13px]
               font-bold
               uppercase
               tracking-[0.08em]
@@ -1292,7 +1292,7 @@ const Navbar = () => {
               items-center
               justify-center
               gap-1.5
-              text-[11px]
+              text-[13px]
               font-medium
               text-[#19C3C8]
             "
@@ -1304,7 +1304,7 @@ const Navbar = () => {
           <p
             className="
               mt-3
-              text-[7px]
+              text-xs
               text-center
               uppercase
               tracking-[0.15em]

@@ -20,7 +20,7 @@ export default function FinalCTA() {
 
       <div className="relative max-w-[1240px] mx-auto px-5 sm:px-6">
         <div className="max-w-3xl mx-auto text-center space-y-6">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[11px] font-bold tracking-wider uppercase text-[#1bbac8]">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[13px] font-bold tracking-wider uppercase text-[#1bbac8]">
             <Sparkles size={12} />
             <span>Ready to Build or Scale?</span>
           </div>

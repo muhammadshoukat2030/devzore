@@ -1,4 +1,4 @@
-import {
+﻿import {
   useEffect,
   useMemo,
   useRef,
@@ -1862,13 +1862,13 @@ const BlogDetails = () => {
         className="min-h-screen flex items-center justify-center bg-white text-[#071923] antialiased"
         style={{
           fontFamily:
-            '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+            '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         <div className="text-center px-6">
           <div className="w-9 h-9 rounded-full border-[3px] border-slate-200 border-t-[#0796A8] mx-auto mb-4 animate-spin" />
 
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
             Loading Article
           </p>
         </div>
@@ -1897,11 +1897,11 @@ const BlogDetails = () => {
           className="min-h-screen flex items-center justify-center bg-[#04111a] text-white px-6"
           style={{
             fontFamily:
-              '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+              '"DM Sans", "Segoe UI", Arial, sans-serif',
           }}
         >
           <div className="max-w-xl text-center">
-            <span className="text-[#28c5d4] text-[10px] font-bold uppercase tracking-[0.2em]">
+            <span className="text-[#28c5d4] text-xs font-bold uppercase tracking-[0.2em]">
               DevZore Journal
             </span>
 
@@ -1919,7 +1919,7 @@ const BlogDetails = () => {
               onClick={
                 handleBackToBlog
               }
-              className="group mt-6 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-[11px] font-semibold text-[#071923]"
+              className="group mt-6 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-[13px] font-semibold text-[#071923]"
             >
               <ArrowLeft
                 size={13}
@@ -2135,7 +2135,7 @@ const BlogDetails = () => {
         className="min-h-screen overflow-hidden bg-white text-[#071923] antialiased"
         style={{
           fontFamily:
-            '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+            '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* =================================================
@@ -2150,7 +2150,7 @@ const BlogDetails = () => {
                 onClick={
                   handleBackToBlog
                 }
-                className="group inline-flex items-center gap-2 text-[10px] font-medium text-slate-500 transition-colors hover:text-[#07899a]"
+                className="group inline-flex items-center gap-2 text-xs font-medium text-slate-500 transition-colors hover:text-[#07899a]"
               >
                 <ArrowLeft
                   size={12}
@@ -2161,7 +2161,7 @@ const BlogDetails = () => {
               </button>
 
               {categoryName && (
-                <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#07899a]">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#07899a]">
                   {categoryName}
                 </span>
               )}
@@ -2179,7 +2179,7 @@ const BlogDetails = () => {
               aria-label="Breadcrumb"
               className="py-4"
             >
-              <div className="flex items-center gap-2 overflow-hidden text-[9px] text-slate-400">
+              <div className="flex items-center gap-2 overflow-hidden text-xs text-slate-400">
                 <Link
                   to="/"
                   onClick={
@@ -2250,7 +2250,7 @@ const BlogDetails = () => {
                   </div>
 
                   {post?.coverImageAlt && (
-                    <figcaption className="mt-2 text-[9px] italic leading-5 text-slate-400">
+                    <figcaption className="mt-2 text-xs italic leading-5 text-slate-400">
                       {
                         post.coverImageAlt
                       }
@@ -2260,7 +2260,7 @@ const BlogDetails = () => {
               )}
 
             {categoryName && (
-              <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-[#07899a]">
+              <p className="text-xs sm:text-[13px] font-bold uppercase tracking-[0.18em] text-[#07899a]">
                 {categoryName}
               </p>
             )}
@@ -2301,7 +2301,7 @@ const BlogDetails = () => {
                 )}
 
                 <div>
-                  <p className="text-[11px] leading-5 text-slate-500">
+                  <p className="text-[13px] leading-5 text-slate-500">
                     By{" "}
                     <Link
                       to="/about"
@@ -2312,7 +2312,7 @@ const BlogDetails = () => {
                     <span className="text-slate-400">, Founder, DevZore</span>
                   </p>
 
-                  <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] font-medium text-slate-400">
+                  <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-slate-400">
                     {publishedDate && (
                       <span className="inline-flex items-center gap-1">
                         <CalendarDays
@@ -2360,7 +2360,7 @@ const BlogDetails = () => {
                   onClick={
                     openComments
                   }
-                  className="group inline-flex min-h-[36px] items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-2 text-[9px] font-semibold text-slate-600 transition-all hover:border-[#0796A8]/40 hover:bg-[#0796A8]/5 hover:text-[#07899a]"
+                  className="group inline-flex min-h-[36px] items-center gap-2 rounded-full border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-600 transition-all hover:border-[#0796A8]/40 hover:bg-[#0796A8]/5 hover:text-[#07899a]"
                 >
                   <MessageCircle
                     size={12}
@@ -2368,7 +2368,7 @@ const BlogDetails = () => {
 
                   Comments
 
-                  <span className="inline-flex min-w-[18px] h-[18px] items-center justify-center rounded-full bg-[#edf4f5] px-1 text-[8px] font-bold text-[#07899a]">
+                  <span className="inline-flex min-w-[18px] h-[18px] items-center justify-center rounded-full bg-[#edf4f5] px-1 text-xs font-bold text-[#07899a]">
                     {
                       comments.length
                     }
@@ -2379,7 +2379,7 @@ const BlogDetails = () => {
                   (tag) => (
                     <span
                       key={tag}
-                      className="rounded-full bg-[#f4f6f7] px-3 py-2 text-[9px] font-medium text-slate-600"
+                      className="rounded-full bg-[#f4f6f7] px-3 py-2 text-xs font-medium text-slate-600"
                     >
                       {tag}
                     </span>
@@ -2406,7 +2406,7 @@ const BlogDetails = () => {
                     .length >
                     0 && (
                     <div className="pb-5 border-b border-slate-200">
-                      <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.17em] text-slate-500">
+                      <p className="mb-3 text-xs font-bold uppercase tracking-[0.17em] text-slate-500">
                         On This Page
                       </p>
 
@@ -2448,7 +2448,7 @@ const BlogDetails = () => {
                                   <span className="absolute -left-[1px] inset-y-0 w-[2px] bg-[#0796A8]" />
                                 )}
 
-                                <span className="block text-[10px] leading-[1.45]">
+                                <span className="block text-xs leading-[1.45]">
                                   {
                                     heading.text
                                   }
@@ -2464,7 +2464,7 @@ const BlogDetails = () => {
                   {/* RELATED SERVICES */}
 
                   <div className="py-6 border-b border-slate-200">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-slate-500">
+                    <p className="text-xs font-bold uppercase tracking-[0.17em] text-slate-500">
                       Related Services
                     </p>
 
@@ -2486,7 +2486,7 @@ const BlogDetails = () => {
                             onClick={
                               scrollTop
                             }
-                            className="group flex items-center gap-2 py-1.5 text-[10px] leading-5 text-slate-500 transition-colors hover:text-[#07899a]"
+                            className="group flex items-center gap-2 py-1.5 text-xs leading-5 text-slate-500 transition-colors hover:text-[#07899a]"
                           >
                             <ArrowRight
                               size={
@@ -2505,12 +2505,12 @@ const BlogDetails = () => {
                   </div>
 
                   <div className="pt-6">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-slate-500">
+                    <p className="text-xs font-bold uppercase tracking-[0.17em] text-slate-500">
                       Work With
                       DevZore
                     </p>
 
-                    <p className="mt-2 text-[10px] leading-5 text-slate-500">
+                    <p className="mt-2 text-xs leading-5 text-slate-500">
                       Planning a web,
                       mobile, SaaS or
                       custom software
@@ -2522,7 +2522,7 @@ const BlogDetails = () => {
                       onClick={
                         scrollTop
                       }
-                      className="mt-3 inline-flex items-center gap-2 text-[10px] font-semibold text-[#07899a]"
+                      className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#07899a]"
                     >
                       Discuss Project
 
@@ -2553,7 +2553,7 @@ const BlogDetails = () => {
                     </div>
 
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#07899a]">
+                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#07899a]">
                         Author & Founder
                       </p>
 
@@ -2566,7 +2566,7 @@ const BlogDetails = () => {
                           "Muhammad Shoukat is the founder and lead software engineer at DevZore. He designs and builds scalable web applications, MERN stack platforms, SaaS architectures, and custom management systems for clients in Pakistan, Qatar, and internationally."}
                       </p>
 
-                      <div className="mt-3 flex items-center gap-4 text-[11px] font-medium text-[#07899a]">
+                      <div className="mt-3 flex items-center gap-4 text-[13px] font-medium text-[#07899a]">
                         <Link to="/about" className="hover:underline flex items-center gap-1">
                           About DevZore & Founder <ArrowRight size={11} />
                         </Link>
@@ -2588,7 +2588,7 @@ const BlogDetails = () => {
                   <section className="mt-12 border-t border-slate-200 pt-8">
                     <div className="mb-5 flex items-end justify-between gap-4">
                       <div>
-                        <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-[#07899a]">
+                        <p className="text-xs font-bold uppercase tracking-[0.17em] text-[#07899a]">
                           Continue
                           Reading
                         </p>
@@ -2604,7 +2604,7 @@ const BlogDetails = () => {
                         onClick={
                           scrollTop
                         }
-                        className="hidden sm:inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]"
+                        className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-[#07899a]"
                       >
                         All Articles
 
@@ -2701,7 +2701,7 @@ const BlogDetails = () => {
 
                                   <div className="p-4">
                                     {relatedCategory && (
-                                      <p className="text-[8px] font-bold uppercase tracking-[0.14em] text-[#07899a]">
+                                      <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#07899a]">
                                         {
                                           relatedCategory
                                         }
@@ -2713,7 +2713,7 @@ const BlogDetails = () => {
                                         "DevZore Article"}
                                     </h3>
 
-                                    <span className="mt-3 inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]">
+                                    <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[#07899a]">
                                       Read
                                       Article
 
@@ -2740,7 +2740,7 @@ const BlogDetails = () => {
                 <section className="mt-12 border-t border-slate-200 pt-8">
                   <div className="mb-5 flex items-end justify-between gap-4">
                     <div>
-                      <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-[#07899a]">
+                      <p className="text-xs font-bold uppercase tracking-[0.17em] text-[#07899a]">
                         DevZore
                         Services
                       </p>
@@ -2757,7 +2757,7 @@ const BlogDetails = () => {
                       onClick={
                         scrollTop
                       }
-                      className="hidden sm:inline-flex items-center gap-1.5 text-[9px] font-semibold text-[#07899a]"
+                      className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-[#07899a]"
                     >
                       All Services
 
@@ -2800,7 +2800,7 @@ const BlogDetails = () => {
                                 />
                               </div>
 
-                              <span className="text-[8px] font-semibold text-slate-300">
+                              <span className="text-xs font-semibold text-slate-300">
                                 {String(
                                   index +
                                     1
@@ -2817,7 +2817,7 @@ const BlogDetails = () => {
                               }
                             </h3>
 
-                            <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                            <p className="mt-1.5 text-xs leading-5 text-slate-500">
                               {
                                 service.description
                               }
@@ -2860,7 +2860,7 @@ const BlogDetails = () => {
                         </div>
 
                         <div className="min-w-0">
-                          <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-[#07899a]">
+                          <p className="text-xs font-bold uppercase tracking-[0.17em] text-[#07899a]">
                             Discussion
                           </p>
 
@@ -2869,7 +2869,7 @@ const BlogDetails = () => {
                             conversation
                           </h2>
 
-                          <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                          <p className="mt-1 text-xs leading-5 text-slate-500">
                             Share a
                             thoughtful
                             question or
@@ -2880,7 +2880,7 @@ const BlogDetails = () => {
                       </div>
 
                       <div className="flex shrink-0 items-center gap-3">
-                        <span className="hidden sm:inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-[9px] font-semibold text-slate-500">
+                        <span className="hidden sm:inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-500">
                           {
                             comments.length
                           }{" "}
@@ -2921,7 +2921,7 @@ const BlogDetails = () => {
                               comment
                             </h3>
 
-                            <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                            <p className="mt-1 text-xs leading-5 text-slate-500">
                               Your email
                               address will
                               not be shown
@@ -2943,7 +2943,7 @@ const BlogDetails = () => {
                               <div>
                                 <label
                                   htmlFor="blog-comment-name"
-                                  className="mb-1.5 block text-[9px] font-bold uppercase tracking-[0.1em] text-slate-500"
+                                  className="mb-1.5 block text-xs font-bold uppercase tracking-[0.1em] text-slate-500"
                                 >
                                   Name
                                 </label>
@@ -2977,7 +2977,7 @@ const BlogDetails = () => {
                               <div>
                                 <label
                                   htmlFor="blog-comment-email"
-                                  className="mb-1.5 block text-[9px] font-bold uppercase tracking-[0.1em] text-slate-500"
+                                  className="mb-1.5 block text-xs font-bold uppercase tracking-[0.1em] text-slate-500"
                                 >
                                   Email
                                 </label>
@@ -3009,7 +3009,7 @@ const BlogDetails = () => {
                             <div className="mt-4">
                               <label
                                 htmlFor="blog-comment-content"
-                                className="mb-1.5 block text-[9px] font-bold uppercase tracking-[0.1em] text-slate-500"
+                                className="mb-1.5 block text-xs font-bold uppercase tracking-[0.1em] text-slate-500"
                               >
                                 Comment
                               </label>
@@ -3040,7 +3040,7 @@ const BlogDetails = () => {
                                 className="w-full resize-y rounded-lg border border-slate-200 bg-white px-3.5 py-3 text-[12px] leading-6 text-[#071923] outline-none placeholder:text-slate-400 transition-all focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10 disabled:bg-slate-50"
                               />
 
-                              <div className="mt-1.5 flex items-center justify-between text-[8px] text-slate-400">
+                              <div className="mt-1.5 flex items-center justify-between text-xs text-slate-400">
                                 <span>
                                   10–500
                                   characters
@@ -3058,7 +3058,7 @@ const BlogDetails = () => {
                             </div>
 
                             <div className="mt-4 flex items-center justify-between gap-4">
-                              <p className="hidden text-[9px] leading-5 text-slate-400 sm:block">
+                              <p className="hidden text-xs leading-5 text-slate-400 sm:block">
                                 Comments
                                 appear
                                 after
@@ -3070,7 +3070,7 @@ const BlogDetails = () => {
                                 disabled={
                                   commentSubmitting
                                 }
-                                className="inline-flex min-h-[42px] items-center justify-center gap-2 rounded-lg bg-[#0796A8] px-5 py-2.5 text-[10px] font-semibold text-white transition-all hover:bg-[#078899] disabled:cursor-not-allowed disabled:opacity-50"
+                                className="inline-flex min-h-[42px] items-center justify-center gap-2 rounded-lg bg-[#0796A8] px-5 py-2.5 text-xs font-semibold text-white transition-all hover:bg-[#078899] disabled:cursor-not-allowed disabled:opacity-50"
                               >
                                 {commentSubmitting ? (
                                   <>
@@ -3103,7 +3103,7 @@ const BlogDetails = () => {
                                 Comments
                               </h3>
 
-                              <span className="text-[9px] text-slate-400">
+                              <span className="text-xs text-slate-400">
                                 {
                                   comments.length
                                 }{" "}
@@ -3115,7 +3115,7 @@ const BlogDetails = () => {
                               <div className="rounded-xl border border-slate-200 bg-white px-4 py-6 text-center">
                                 <div className="mx-auto h-5 w-5 animate-spin rounded-full border-2 border-slate-200 border-t-[#0796A8]" />
 
-                                <p className="mt-2 text-[10px] text-slate-500">
+                                <p className="mt-2 text-xs text-slate-500">
                                   Loading
                                   comments...
                                 </p>
@@ -3124,7 +3124,7 @@ const BlogDetails = () => {
 
                             {!commentsLoading &&
                               commentsError && (
-                                <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-[10px] leading-5 text-red-600">
+                                <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-xs leading-5 text-red-600">
                                   {
                                     commentsError
                                   }
@@ -3151,7 +3151,7 @@ const BlogDetails = () => {
                                     yet
                                   </p>
 
-                                  <p className="mt-1 text-[10px] leading-5 text-slate-500">
+                                  <p className="mt-1 text-xs leading-5 text-slate-500">
                                     You can be
                                     the first
                                     to join the
@@ -3193,7 +3193,7 @@ const BlogDetails = () => {
                                           className="border-b border-slate-100 p-4 last:border-b-0 sm:p-5"
                                         >
                                           <div className="flex items-start gap-3">
-                                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#071923] text-[10px] font-bold text-[#28c5d4]">
+                                            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#071923] text-xs font-bold text-[#28c5d4]">
                                               {commentAuthor
                                                 .charAt(
                                                   0
@@ -3203,7 +3203,7 @@ const BlogDetails = () => {
 
                                             <div className="min-w-0 flex-1">
                                               <div className="flex flex-wrap items-center justify-between gap-2">
-                                                <h4 className="text-[11px] font-semibold text-[#071923]">
+                                                <h4 className="text-[13px] font-semibold text-[#071923]">
                                                   {
                                                     commentAuthor
                                                   }
@@ -3214,7 +3214,7 @@ const BlogDetails = () => {
                                                     dateTime={toISODate(
                                                       commentDate
                                                     )}
-                                                    className="text-[8px] text-slate-400"
+                                                    className="text-xs text-slate-400"
                                                   >
                                                     {formatDate(
                                                       commentDate
@@ -3223,7 +3223,7 @@ const BlogDetails = () => {
                                                 )}
                                               </div>
 
-                                              <p className="mt-2 whitespace-pre-wrap break-words text-[11px] leading-6 text-slate-600 sm:text-[12px]">
+                                              <p className="mt-2 whitespace-pre-wrap break-words text-[13px] leading-6 text-slate-600 sm:text-[12px]">
                                                 {comment?.content ||
                                                   ""}
                                               </p>
@@ -3250,7 +3250,7 @@ const BlogDetails = () => {
                     onClick={
                       handleBackToBlog
                     }
-                    className="group inline-flex items-center gap-2 text-[10px] font-semibold text-slate-500 transition-colors hover:text-[#07899a]"
+                    className="group inline-flex items-center gap-2 text-xs font-semibold text-slate-500 transition-colors hover:text-[#07899a]"
                   >
                     <ArrowLeft
                       size={12}
@@ -3277,7 +3277,7 @@ const BlogDetails = () => {
 
               <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-5">
                 <div className="max-w-2xl">
-                  <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#28c5d4]">
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#28c5d4]">
                     Work With
                     DevZore
                   </p>
@@ -3288,7 +3288,7 @@ const BlogDetails = () => {
                     project in mind?
                   </h2>
 
-                  <p className="mt-2 text-[11px] sm:text-[12px] leading-6 text-slate-400">
+                  <p className="mt-2 text-[13px] sm:text-[12px] leading-6 text-slate-400">
                     Share what you
                     are planning to
                     build and discuss
@@ -3304,7 +3304,7 @@ const BlogDetails = () => {
                   onClick={
                     scrollTop
                   }
-                  className="group shrink-0 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-[10px] font-semibold text-[#071923] transition-colors hover:bg-slate-100"
+                  className="group shrink-0 inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-xs font-semibold text-[#071923] transition-colors hover:bg-slate-100"
                 >
                   Discuss Your
                   Project
@@ -3357,7 +3357,7 @@ const BlogDetails = () => {
           .blog-content h6 {
             color: #071923 !important;
             font-family:
-              "Inter",
+              "DM Sans",
               "Segoe UI",
               Arial,
               Helvetica,

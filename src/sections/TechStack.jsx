@@ -150,7 +150,7 @@ const TechStack = ({ isDark = false }) => {
 
             <div
               className={`inline-flex items-center gap-2
-                text-[9px] sm:text-[10px]
+                text-xs sm:text-xs
                 font-black
                 uppercase
                 tracking-[0.2em]
@@ -229,7 +229,7 @@ const TechStack = ({ isDark = false }) => {
             className={`hidden lg:inline-flex
               items-center
               gap-2
-              text-[11px]
+              text-[13px]
               font-bold
               transition-colors
               ${
@@ -285,7 +285,7 @@ const TechStack = ({ isDark = false }) => {
               </div>
 
               <span
-                className={`text-[9px]
+                className={`text-xs
                   font-black
                   uppercase
                   tracking-[0.2em]
@@ -319,7 +319,7 @@ const TechStack = ({ isDark = false }) => {
 
               <p
                 className={`mt-3
-                  text-[11px]
+                  text-[13px]
                   sm:text-[12px]
                   leading-6
                   ${
@@ -357,7 +357,7 @@ const TechStack = ({ isDark = false }) => {
                     />
 
                     <span
-                      className={`text-[9px] sm:text-[10px] font-medium ${
+                      className={`text-xs sm:text-xs font-medium ${
                         d
                           ? "text-slate-400"
                           : "text-slate-600"
@@ -388,8 +388,8 @@ const TechStack = ({ isDark = false }) => {
                 "
               >
                 <p
-                  className={`text-[9px]
-                    sm:text-[10px]
+                  className={`text-xs
+                    sm:text-xs
                     uppercase
                     tracking-[0.18em]
                     font-black
@@ -441,8 +441,8 @@ const TechStack = ({ isDark = false }) => {
                         items-center
                         justify-center
                         shrink-0
-                        text-[8px]
-                        sm:text-[9px]
+                        text-xs
+                        sm:text-xs
                         font-black
                         ${
                           d
@@ -456,8 +456,8 @@ const TechStack = ({ isDark = false }) => {
 
                     <span
                       className={`truncate
-                        text-[10px]
-                        sm:text-[11px]
+                        text-xs
+                        sm:text-[13px]
                         font-bold
                         ${
                           d
@@ -491,8 +491,8 @@ const TechStack = ({ isDark = false }) => {
               >
                 <p
                   className={`hidden sm:block
-                    text-[9px]
-                    sm:text-[10px]
+                    text-xs
+                    sm:text-xs
                     ${
                       d
                         ? "text-slate-600"
@@ -510,8 +510,8 @@ const TechStack = ({ isDark = false }) => {
                     items-center
                     gap-2
                     ml-auto
-                    text-[10px]
-                    sm:text-[11px]
+                    text-xs
+                    sm:text-[13px]
                     font-bold
                     transition-colors
                     ${
@@ -601,8 +601,8 @@ const TechStack = ({ isDark = false }) => {
                 </div>
 
                 <h3
-                  className={`text-[10px]
-                    sm:text-[11px]
+                  className={`text-xs
+                    sm:text-[13px]
                     font-black
                     ${
                       d
@@ -616,8 +616,8 @@ const TechStack = ({ isDark = false }) => {
 
                 <p
                   className={`mt-1.5
-                    text-[8px]
-                    sm:text-[9px]
+                    text-xs
+                    sm:text-xs
                     leading-[1.6]
                     ${
                       d
@@ -667,8 +667,8 @@ const TechStack = ({ isDark = false }) => {
             />
 
             <p
-              className={`text-[9px]
-                sm:text-[10px]
+              className={`text-xs
+                sm:text-xs
                 leading-relaxed
                 ${
                   d
@@ -698,8 +698,8 @@ const TechStack = ({ isDark = false }) => {
               items-center
               gap-2
               shrink-0
-              text-[10px]
-              sm:text-[11px]
+              text-xs
+              sm:text-[13px]
               font-black
               ${
                 d
@@ -729,7 +729,7 @@ const TechStack = ({ isDark = false }) => {
             gap-2
             py-3
             rounded-lg
-            text-[10px]
+            text-xs
             font-bold
             border
             transition-colors

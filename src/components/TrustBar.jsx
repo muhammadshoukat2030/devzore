@@ -213,8 +213,8 @@ const TrustBar = ({ isDark = false }) => {
 
                 gap-2
 
-                text-[8px]
-                sm:text-[9px]
+                text-xs
+                sm:text-xs
 
                 font-bold
 
@@ -297,7 +297,7 @@ const TrustBar = ({ isDark = false }) => {
 
                 max-w-[690px]
 
-                text-[11px]
+                text-[13px]
                 sm:text-[12.5px]
                 lg:text-[13px]
 
@@ -452,7 +452,7 @@ const TrustBar = ({ isDark = false }) => {
 
                       <h3
                         className={`
-                          text-[10.5px]
+                          text-xs
                           sm:text-[12px]
                           lg:text-[13px]
 
@@ -476,9 +476,9 @@ const TrustBar = ({ isDark = false }) => {
                         className={`
                           mt-1.5
 
-                          text-[8.5px]
-                          sm:text-[9.5px]
-                          lg:text-[10px]
+                          text-xs
+                          sm:text-xs
+                          lg:text-xs
 
                           leading-[1.6]
 
@@ -538,8 +538,8 @@ const TrustBar = ({ isDark = false }) => {
                 className={`
                   shrink-0
 
-                  text-[8px]
-                  sm:text-[9px]
+                  text-xs
+                  sm:text-xs
 
                   font-bold
 
@@ -670,8 +670,8 @@ const TrustBar = ({ isDark = false }) => {
 
                       sm:px-3.5
 
-                      text-[8.5px]
-                      sm:text-[10px]
+                      text-xs
+                      sm:text-xs
 
                       font-semibold
 
@@ -772,8 +772,8 @@ const TrustBar = ({ isDark = false }) => {
 
                         gap-1.5
 
-                        text-[8.5px]
-                        sm:text-[10px]
+                        text-xs
+                        sm:text-xs
 
                         font-semibold
 
@@ -843,8 +843,8 @@ const TrustBar = ({ isDark = false }) => {
 
                     py-2
 
-                    text-[8.5px]
-                    sm:text-[10px]
+                    text-xs
+                    sm:text-xs
 
                     font-semibold
 
@@ -897,8 +897,8 @@ const TrustBar = ({ isDark = false }) => {
 
                     py-2
 
-                    text-[8.5px]
-                    sm:text-[10px]
+                    text-xs
+                    sm:text-xs
 
                     font-semibold
 

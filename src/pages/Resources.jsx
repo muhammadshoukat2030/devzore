@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
@@ -256,7 +256,7 @@ const Resources = () => {
 
   const SectionLabel = ({ children, light = false }) => (
     <div
-      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+      className={`flex items-center gap-2.5 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase ${
         light ? "text-[#28c5d4]" : "text-[#07899a]"
       }`}
     >
@@ -337,7 +337,7 @@ const Resources = () => {
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
         style={{
-          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+          fontFamily: '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* HERO */}
@@ -361,7 +361,7 @@ const Resources = () => {
 
           <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-23 sm:pt-24 lg:pt-28 pb-10 sm:pb-12">
             <div className="max-w-[900px] mx-auto text-center">
-              <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+              <div className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
                 <Lightbulb size={14} className="text-[#25c0ce]" />
                 Insights & Resources
               </div>
@@ -416,7 +416,7 @@ const Resources = () => {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="inline-flex items-center gap-2 text-[10px] font-medium text-slate-400"
+                    className="inline-flex items-center gap-2 text-xs font-medium text-slate-400"
                   >
                     <CheckCircle2
                       size={12}
@@ -449,11 +449,11 @@ const Resources = () => {
                         : ""
                     } ${index > 0 ? "lg:pl-7" : ""}`}
                   >
-                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-1">
+                    <span className="block text-xs font-semibold text-[#1bb8c7] mb-1">
                       {number}
                     </span>
 
-                    <span className="text-[11px] font-medium text-slate-300">
+                    <span className="text-[13px] font-medium text-slate-300">
                       {title}
                     </span>
                   </div>
@@ -509,7 +509,7 @@ const Resources = () => {
                         className="text-[#07899a]"
                       />
 
-                      <span className="text-[10px] font-medium text-slate-700">
+                      <span className="text-xs font-medium text-slate-700">
                         {item}
                       </span>
                     </div>
@@ -559,7 +559,7 @@ const Resources = () => {
                       {item.icon}
                     </div>
 
-                    <span className="text-[10px] font-semibold text-slate-300">
+                    <span className="text-xs font-semibold text-slate-300">
                       {item.number}
                     </span>
                   </div>
@@ -568,7 +568,7 @@ const Resources = () => {
                     {item.title}
                   </h3>
 
-                  <p className="mt-2 text-[11px] leading-5 text-slate-600">
+                  <p className="mt-2 text-[13px] leading-5 text-slate-600">
                     {item.description}
                   </p>
 
@@ -576,7 +576,7 @@ const Resources = () => {
                     {item.points.map((point) => (
                       <div
                         key={point}
-                        className="flex items-center gap-2 text-[10px] text-slate-600"
+                        className="flex items-center gap-2 text-xs text-slate-600"
                       >
                         <Check
                           size={11}
@@ -588,7 +588,7 @@ const Resources = () => {
                     ))}
                   </div>
 
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-[10px] font-semibold text-[#07899a]">
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-[#07899a]">
                     {item.linkText}
                     <ArrowUpRight size={11} />
                   </span>
@@ -648,7 +648,7 @@ const Resources = () => {
                         />
                       </div>
 
-                      <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                      <p className="mt-1.5 text-xs leading-5 text-slate-500">
                         {topic.description}
                       </p>
                     </div>
@@ -704,7 +704,7 @@ const Resources = () => {
                     {item.title}
                   </h3>
 
-                  <p className="mt-2 text-[11px] leading-5 text-slate-400">
+                  <p className="mt-2 text-[13px] leading-5 text-slate-400">
                     {item.description}
                   </p>
                 </article>
@@ -745,7 +745,7 @@ const Resources = () => {
                   key={step.number}
                   className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4"
                 >
-                  <span className="text-[9px] font-semibold text-[#07899a]">
+                  <span className="text-xs font-semibold text-[#07899a]">
                     {step.number}
                   </span>
 
@@ -753,7 +753,7 @@ const Resources = () => {
                     {step.title}
                   </h3>
 
-                  <p className="mt-1.5 text-[10px] leading-5 text-slate-500">
+                  <p className="mt-1.5 text-xs leading-5 text-slate-500">
                     {step.description}
                   </p>
                 </article>
@@ -800,11 +800,11 @@ const Resources = () => {
                     {item.title}
                   </h3>
 
-                  <p className="mt-2 text-[11px] leading-5 text-slate-500">
+                  <p className="mt-2 text-[13px] leading-5 text-slate-500">
                     {item.description}
                   </p>
 
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-[10px] font-semibold text-[#07899a]">
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#07899a]">
                     {item.linkText}
                     <ArrowUpRight size={11} />
                   </span>
@@ -833,12 +833,12 @@ const Resources = () => {
                   Looking for practical development guides?
                 </h2>
 
-                <p className="mt-2 text-[11px] leading-5 text-slate-500">
+                <p className="mt-2 text-[13px] leading-5 text-slate-500">
                   Explore focused guides covering development areas, product
                   planning and important technical concepts.
                 </p>
 
-                <span className="mt-4 inline-flex items-center gap-2 text-[10px] font-semibold text-[#07899a]">
+                <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-[#07899a]">
                   Explore Development Guides
                   <ArrowRight
                     size={11}
@@ -861,12 +861,12 @@ const Resources = () => {
                   Have a specific project question?
                 </h2>
 
-                <p className="mt-2 text-[11px] leading-5 text-slate-500">
+                <p className="mt-2 text-[13px] leading-5 text-slate-500">
                   Browse common questions about services, pricing, project
                   timelines, development and ongoing support.
                 </p>
 
-                <span className="mt-4 inline-flex items-center gap-2 text-[10px] font-semibold text-[#07899a]">
+                <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-[#07899a]">
                   Browse Frequently Asked Questions
                   <ArrowRight
                     size={11}
@@ -904,7 +904,7 @@ const Resources = () => {
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[11px] font-semibold text-[#071923] transition-colors"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-white hover:bg-slate-100 px-5 py-3 text-[13px] font-semibold text-[#071923] transition-colors"
               >
                 Discuss Your Project
 
@@ -917,7 +917,7 @@ const Resources = () => {
               <Link
                 to="/allservices"
                 onClick={scrollTop}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[11px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[13px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
               >
                 Explore Services
 
@@ -951,7 +951,7 @@ const Resources = () => {
                   key={path}
                   to={path}
                   onClick={scrollTop}
-                  className="text-[9px] font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
+                  className="text-xs font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
                 >
                   {label}
                 </Link>

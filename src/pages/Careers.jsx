@@ -50,7 +50,7 @@ const Careers = () => {
 
           <div className="relative max-w-[1260px] mx-auto px-4 sm:px-6">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[11px] font-bold tracking-wider uppercase text-[#1bbac8]">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[13px] font-bold tracking-wider uppercase text-[#1bbac8]">
                 <Sparkles size={12} />
                 <span>Join Our Engineering Team</span>
               </div>
@@ -87,7 +87,7 @@ const Careers = () => {
                 >
                   <div className="space-y-2">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="px-2.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-cyan-500/15 text-[#1bbac8] border border-cyan-500/30">
+                      <span className="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-cyan-500/15 text-[#1bbac8] border border-cyan-500/30">
                         {role.type}
                       </span>
                       <span className="text-xs text-slate-400 flex items-center gap-1">
@@ -108,7 +108,7 @@ const Careers = () => {
                         {role.stack.map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-0.5 rounded text-[10px] font-semibold bg-white/[0.05] text-slate-300 border border-white/[0.06]"
+                            className="px-2 py-0.5 rounded text-xs font-semibold bg-white/[0.05] text-slate-300 border border-white/[0.06]"
                           >
                             {tech}
                           </span>
@@ -155,7 +155,7 @@ const Careers = () => {
         <section className="py-14 sm:py-18 bg-[#05141c] border-t border-white/[0.08]">
           <div className="max-w-[1260px] mx-auto px-4 sm:px-6">
             <div className="max-w-2xl mb-10">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8]">
+              <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8]">
                 Engineering Culture
               </div>
               <h2 className="mt-1.5 text-2xl sm:text-3xl font-bold text-white tracking-tight">

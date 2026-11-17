@@ -179,7 +179,7 @@
 
 //               <span
 //                 className="
-//                   text-[9px] sm:text-[10px]
+//                   text-xs sm:text-xs
 //                   font-black uppercase
 //                   tracking-[0.20em]
 //                   text-[#061923]/60
@@ -246,7 +246,7 @@
 //               border border-slate-200
 //               shadow-sm
 
-//               text-[11px]
+//               text-[13px]
 //               font-bold
 //               text-[#061923]
 
@@ -323,7 +323,7 @@
 
 //                 <span
 //                   className="
-//                     text-[10px] sm:text-[11px]
+//                     text-xs sm:text-[13px]
 //                     font-bold
 //                     text-[#061923]
 
@@ -415,7 +415,7 @@
 
 //                   <span
 //                     className={`
-//                       text-[9px]
+//                       text-xs
 //                       font-black
 //                       tracking-[0.08em]
 
@@ -436,7 +436,7 @@
 
 //                 <h3
 //                   className={`
-//                     text-[11px] sm:text-[12px]
+//                     text-[13px] sm:text-[12px]
 //                     font-bold
 //                     leading-tight
 
@@ -458,7 +458,7 @@
 //                   className={`
 //                     hidden sm:block
 //                     mt-1
-//                     text-[8px] lg:text-[9px]
+//                     text-xs lg:text-xs
 //                     leading-4
 
 //                     transition-colors
@@ -540,7 +540,7 @@
 
 //                   <span
 //                     className="
-//                       text-[8px] sm:text-[9px]
+//                       text-xs sm:text-xs
 //                       font-black
 //                       uppercase
 //                       tracking-[0.18em]
@@ -565,7 +565,7 @@
 //                   <p
 //                     className="
 //                       mt-0.5
-//                       text-[10px] sm:text-[11px]
+//                       text-xs sm:text-[13px]
 //                       font-semibold
 //                       text-slate-500
 //                     "
@@ -581,7 +581,7 @@
 //                 className="
 //                   mt-4
 //                   max-w-xl
-//                   text-[11px] sm:text-[13px]
+//                   text-[13px] sm:text-[13px]
 //                   leading-[1.7]
 //                   text-slate-600
 //                 "
@@ -597,7 +597,7 @@
 //               <p
 //                 className="
 //                   mb-3
-//                   text-[8px] sm:text-[9px]
+//                   text-xs sm:text-xs
 //                   font-black
 //                   uppercase
 //                   tracking-[0.18em]
@@ -642,7 +642,7 @@
 
 //                     <span
 //                       className="
-//                         text-[9px] sm:text-[10px]
+//                         text-xs sm:text-xs
 //                         leading-relaxed
 //                         font-medium
 //                         text-slate-600
@@ -673,7 +673,7 @@
 //           >
 //             <span
 //               className="
-//                 text-[9px]
+//                 text-xs
 //                 font-bold
 //                 text-slate-400
 //                 whitespace-nowrap
@@ -713,7 +713,7 @@
 //                   inline-flex items-center gap-1.5
 //                   whitespace-nowrap
 
-//                   text-[9px] sm:text-[10px]
+//                   text-xs sm:text-xs
 //                   font-bold
 //                   text-[#061923]
 
@@ -740,7 +740,7 @@
 //                   inline-flex items-center gap-1.5
 //                   whitespace-nowrap
 
-//                   text-[9px] sm:text-[10px]
+//                   text-xs sm:text-xs
 //                   font-bold
 //                   text-[#061923]
 
@@ -786,7 +786,7 @@
 //           <p
 //             className="
 //               max-w-4xl
-//               text-[10px] sm:text-[11px]
+//               text-xs sm:text-[13px]
 //               leading-relaxed
 //               text-slate-500
 //             "
@@ -814,7 +814,7 @@
 //               border border-[#061923]
 //               text-[#061923]
 
-//               text-[10px]
+//               text-xs
 //               font-bold
 
 //               transition-all duration-200
@@ -858,7 +858,7 @@
 //               border border-[#061923]
 
 //               text-white
-//               text-[10px]
+//               text-xs
 //               font-bold
 
 //               transition-all duration-200

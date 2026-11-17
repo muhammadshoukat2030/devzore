@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
@@ -325,7 +325,7 @@ const DevelopmentGuides = () => {
 
   const SectionLabel = ({ children, light = false }) => (
     <div
-      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+      className={`flex items-center gap-2.5 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase ${
         light ? "text-[#28c5d4]" : "text-[#07899a]"
       }`}
     >
@@ -353,7 +353,7 @@ const DevelopmentGuides = () => {
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
         style={{
-          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+          fontFamily: '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* HERO */}
@@ -377,7 +377,7 @@ const DevelopmentGuides = () => {
 
           <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6 pt-23 sm:pt-24 lg:pt-28 pb-10 sm:pb-12">
             <div className="max-w-[900px] mx-auto text-center">
-              <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+              <div className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
                 <BookOpen size={14} className="text-[#25c0ce]" />
                 Development Guides
               </div>
@@ -432,7 +432,7 @@ const DevelopmentGuides = () => {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="inline-flex items-center gap-2 text-[10px] font-medium text-slate-400"
+                    className="inline-flex items-center gap-2 text-xs font-medium text-slate-400"
                   >
                     <CheckCircle2
                       size={12}
@@ -465,11 +465,11 @@ const DevelopmentGuides = () => {
                         : ""
                     } ${index > 0 ? "lg:pl-7" : ""}`}
                   >
-                    <span className="block text-[9px] font-semibold text-[#1bb8c7] mb-1">
+                    <span className="block text-xs font-semibold text-[#1bb8c7] mb-1">
                       {number}
                     </span>
 
-                    <span className="text-[11px] font-medium text-slate-300">
+                    <span className="text-[13px] font-medium text-slate-300">
                       {title}
                     </span>
                   </div>
@@ -528,7 +528,7 @@ const DevelopmentGuides = () => {
                         className="text-[#07899a]"
                       />
 
-                      <span className="text-[10px] font-medium text-slate-700">
+                      <span className="text-xs font-medium text-slate-700">
                         {item}
                       </span>
                     </div>
@@ -577,7 +577,7 @@ const DevelopmentGuides = () => {
                       {guide.icon}
                     </div>
 
-                    <span className="text-[10px] font-semibold text-slate-300">
+                    <span className="text-xs font-semibold text-slate-300">
                       {guide.number}
                     </span>
                   </div>
@@ -586,7 +586,7 @@ const DevelopmentGuides = () => {
                     {guide.title}
                   </h3>
 
-                  <p className="mt-2 text-[11px] leading-5 text-slate-600">
+                  <p className="mt-2 text-[13px] leading-5 text-slate-600">
                     {guide.description}
                   </p>
 
@@ -594,7 +594,7 @@ const DevelopmentGuides = () => {
                     {guide.topics.map((topic) => (
                       <div
                         key={topic}
-                        className="flex items-center gap-2 text-[10px] text-slate-600"
+                        className="flex items-center gap-2 text-xs text-slate-600"
                       >
                         <Check
                           size={11}
@@ -609,7 +609,7 @@ const DevelopmentGuides = () => {
                   <Link
                     to={guide.link}
                     onClick={scrollTop}
-                    className="inline-flex items-center gap-1.5 mt-5 text-[10px] font-semibold text-[#07899a] group/link"
+                    className="inline-flex items-center gap-1.5 mt-5 text-xs font-semibold text-[#07899a] group/link"
                   >
                     {guide.linkText}
 
@@ -666,7 +666,7 @@ const DevelopmentGuides = () => {
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[11px] leading-5 mt-2">
+                  <p className="text-slate-400 text-[13px] leading-5 mt-2">
                     {item.text}
                   </p>
                 </article>
@@ -709,7 +709,7 @@ const DevelopmentGuides = () => {
                     key={step.number}
                     className="rounded-xl border border-slate-200 bg-white p-4"
                   >
-                    <span className="text-[9px] font-semibold text-[#07899a]">
+                    <span className="text-xs font-semibold text-[#07899a]">
                       {step.number}
                     </span>
 
@@ -717,7 +717,7 @@ const DevelopmentGuides = () => {
                       {step.title}
                     </h3>
 
-                    <p className="text-slate-500 text-[10px] leading-5 mt-1.5">
+                    <p className="text-slate-500 text-xs leading-5 mt-1.5">
                       {step.description}
                     </p>
                   </article>
@@ -756,11 +756,11 @@ const DevelopmentGuides = () => {
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-500 text-[11px] leading-5 mt-2">
+                  <p className="text-slate-500 text-[13px] leading-5 mt-2">
                     {item.description}
                   </p>
 
-                  <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-[#07899a] mt-4">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#07899a] mt-4">
                     {item.linkText}
                     <ArrowUpRight size={11} />
                   </span>
@@ -794,7 +794,7 @@ const DevelopmentGuides = () => {
                 <Link
                   to="/blog"
                   onClick={scrollTop}
-                  className="inline-flex items-center gap-2 mt-4 rounded-lg bg-[#071923] px-4 py-2.5 text-[10px] font-semibold text-white hover:bg-[#0b2631] transition-colors"
+                  className="inline-flex items-center gap-2 mt-4 rounded-lg bg-[#071923] px-4 py-2.5 text-xs font-semibold text-white hover:bg-[#0b2631] transition-colors"
                 >
                   Visit DevZore Blog
                   <ArrowRight size={12} />
@@ -830,7 +830,7 @@ const DevelopmentGuides = () => {
               <Link
                 to="/contact"
                 onClick={scrollTop}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-[11px] font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-[13px] font-semibold text-[#071923] hover:bg-slate-100 transition-colors"
               >
                 Discuss Your Project
                 <ArrowRight size={13} />
@@ -839,7 +839,7 @@ const DevelopmentGuides = () => {
               <Link
                 to="/allservices"
                 onClick={scrollTop}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[11px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[13px] font-semibold text-white hover:border-[#23bfce]/40 hover:text-[#28c5d4] transition-colors"
               >
                 Explore Our Services
                 <ArrowRight size={13} />
@@ -871,7 +871,7 @@ const DevelopmentGuides = () => {
                   key={path}
                   to={path}
                   onClick={scrollTop}
-                  className="text-[9px] font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
+                  className="text-xs font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
                 >
                   {label}
                 </Link>

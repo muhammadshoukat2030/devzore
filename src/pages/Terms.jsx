@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
@@ -93,7 +93,7 @@ const Terms = () => {
   };
 
   const SectionLabel = ({ children }) => (
-    <div className="flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase text-[#07899a]">
+    <div className="flex items-center gap-2.5 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase text-[#07899a]">
       <span className="w-5 h-[2px] bg-[#0796A8]" />
       {children}
     </div>
@@ -164,7 +164,7 @@ const Terms = () => {
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
         style={{
-          fontFamily: '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+          fontFamily: '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* HERO */}
@@ -187,7 +187,7 @@ const Terms = () => {
           </div>
 
           <div className="relative max-w-[1100px] mx-auto px-5 sm:px-6 pt-20 sm:pt-24 lg:pt-24 pb-12 sm:pb-14 text-center">
-            <div className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
+            <div className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.17em] uppercase text-[#c2ccd2]">
               <FileText size={14} className="text-[#25c0ce]" />
               Terms & Conditions
             </div>
@@ -214,7 +214,7 @@ const Terms = () => {
               project agreement.
             </p>
 
-            <div className="mt-6 inline-flex items-center gap-2 rounded-lg border border-white/[0.09] bg-white/[0.03] px-4 py-2.5 text-[10px] font-medium text-slate-400">
+            <div className="mt-6 inline-flex items-center gap-2 rounded-lg border border-white/[0.09] bg-white/[0.03] px-4 py-2.5 text-xs font-medium text-slate-400">
               <FileText size={12} className="text-[#25c0ce]" />
               Last updated: {lastUpdated}
             </div>
@@ -233,7 +233,7 @@ const Terms = () => {
 
               <aside className="hidden lg:block">
                 <div className="sticky top-24 rounded-2xl border border-slate-200 bg-white p-4">
-                  <p className="text-[9px] font-bold uppercase tracking-[0.17em] text-slate-400 mb-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.17em] text-slate-400 mb-3">
                     Terms Contents
                   </p>
 
@@ -245,7 +245,7 @@ const Terms = () => {
                       <a
                         key={item.id}
                         href={`#${item.id}`}
-                        className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[11px] font-medium text-slate-600 hover:bg-[#edf4f5] hover:text-[#07899a] transition-colors"
+                        className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-[13px] font-medium text-slate-600 hover:bg-[#edf4f5] hover:text-[#07899a] transition-colors"
                       >
                         <span className="text-[#07899a]">
                           {item.icon}
@@ -257,11 +257,11 @@ const Terms = () => {
                   </nav>
 
                   <div className="mt-4 pt-4 border-t border-slate-200">
-                    <p className="text-[8px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                    <p className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
                       Last Updated
                     </p>
 
-                    <p className="mt-1 text-[11px] font-semibold text-[#071923]">
+                    <p className="mt-1 text-[13px] font-semibold text-[#071923]">
                       {lastUpdated}
                     </p>
                   </div>
@@ -269,7 +269,7 @@ const Terms = () => {
                   <div className="mt-4 rounded-xl border border-[#0796A8]/15 bg-[#edf6f7] p-4">
                     <Scale size={15} className="text-[#07899a]" />
 
-                    <p className="mt-2 text-[10px] leading-5 text-slate-600">
+                    <p className="mt-2 text-xs leading-5 text-slate-600">
                       These general terms may be supplemented by written terms
                       agreed for a specific project.
                     </p>
@@ -293,7 +293,7 @@ const Terms = () => {
                         Before Starting a Project
                       </h2>
 
-                      <p className="mt-2 text-[11px] sm:text-[12px] leading-6 text-slate-600">
+                      <p className="mt-2 text-[13px] sm:text-[12px] leading-6 text-slate-600">
                         If you have questions about these Terms or a
                         project-specific condition, please contact DevZore
                         before accepting a proposal or starting development.
@@ -378,7 +378,7 @@ const Terms = () => {
                             className="text-[#07899a] shrink-0 mt-1"
                           />
 
-                          <p className="text-[11px] leading-5 text-slate-600">
+                          <p className="text-[13px] leading-5 text-slate-600">
                             <strong className="font-semibold text-[#071923]">
                               {item.title}
                             </strong>{" "}
@@ -442,7 +442,7 @@ const Terms = () => {
                             className="text-[#07899a] shrink-0 mt-1"
                           />
 
-                          <p className="text-[11px] leading-5 text-slate-600">
+                          <p className="text-[13px] leading-5 text-slate-600">
                             {item}
                           </p>
                         </div>
@@ -472,7 +472,7 @@ const Terms = () => {
                             className="text-[#07899a] shrink-0 mt-1"
                           />
 
-                          <p className="text-[11px] leading-5 text-slate-600">
+                          <p className="text-[13px] leading-5 text-slate-600">
                             {item}
                           </p>
                         </div>
@@ -543,7 +543,7 @@ const Terms = () => {
                         {item.title}
                       </h3>
 
-                      <p className="mt-1.5 text-[10px] sm:text-[11px] leading-5 text-slate-500">
+                      <p className="mt-1.5 text-xs sm:text-[13px] leading-5 text-slate-500">
                         {item.desc}
                       </p>
                     </div>
@@ -581,7 +581,7 @@ const Terms = () => {
                           Custom Project Deliverables
                         </h3>
 
-                        <p className="mt-1.5 text-[10px] sm:text-[11px] leading-5 text-slate-600">
+                        <p className="mt-1.5 text-xs sm:text-[13px] leading-5 text-slate-600">
                           Unless a Project Agreement states otherwise,
                           ownership or licensing of custom deliverables will be
                           transferred as specified in the applicable Project
@@ -624,7 +624,7 @@ const Terms = () => {
                         {item.title}
                       </h3>
 
-                      <p className="mt-1.5 text-[10px] sm:text-[11px] leading-5 text-slate-500">
+                      <p className="mt-1.5 text-xs sm:text-[13px] leading-5 text-slate-500">
                         {item.desc}
                       </p>
                     </div>
@@ -684,7 +684,7 @@ const Terms = () => {
                         {item.title}
                       </h3>
 
-                      <p className="mt-1.5 text-[10px] sm:text-[11px] leading-5 text-slate-500">
+                      <p className="mt-1.5 text-xs sm:text-[13px] leading-5 text-slate-500">
                         {item.desc}
                       </p>
                     </div>
@@ -742,7 +742,7 @@ const Terms = () => {
                         {item.title}
                       </h3>
 
-                      <p className="mt-1.5 text-[10px] sm:text-[11px] leading-5 text-slate-500">
+                      <p className="mt-1.5 text-xs sm:text-[13px] leading-5 text-slate-500">
                         {item.desc}
                       </p>
                     </div>
@@ -788,7 +788,7 @@ const Terms = () => {
                           className="text-[#07899a] shrink-0 mt-0.5"
                         />
 
-                        <p className="text-[10px] sm:text-[11px] leading-5 text-slate-600">
+                        <p className="text-xs sm:text-[13px] leading-5 text-slate-600">
                           {item}
                         </p>
                       </div>
@@ -847,7 +847,7 @@ const Terms = () => {
                         {item.title}
                       </h3>
 
-                      <p className="mt-1.5 text-[10px] sm:text-[11px] leading-5 text-slate-500">
+                      <p className="mt-1.5 text-xs sm:text-[13px] leading-5 text-slate-500">
                         {item.desc}
                       </p>
                     </div>
@@ -886,13 +886,13 @@ const Terms = () => {
                       <div className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4">
                         <Mail size={14} className="text-[#07899a]" />
 
-                        <p className="mt-2 text-[8px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                        <p className="mt-2 text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
                           Email
                         </p>
 
                         <a
                           href="mailto:hellodevzore@gmail.com"
-                          className="block mt-1 text-[11px] font-semibold text-[#07899a] break-all"
+                          className="block mt-1 text-[13px] font-semibold text-[#07899a] break-all"
                         >
                           hellodevzore@gmail.com
                         </a>
@@ -901,13 +901,13 @@ const Terms = () => {
                       <div className="rounded-xl border border-slate-200 bg-[#fbfcfc] p-4">
                         <Globe2 size={14} className="text-[#07899a]" />
 
-                        <p className="mt-2 text-[8px] font-bold uppercase tracking-[0.15em] text-slate-400">
+                        <p className="mt-2 text-xs font-bold uppercase tracking-[0.15em] text-slate-400">
                           Website
                         </p>
 
                         <a
                           href="https://devzore.com"
-                          className="block mt-1 text-[11px] font-semibold text-[#07899a]"
+                          className="block mt-1 text-[13px] font-semibold text-[#07899a]"
                         >
                           devzore.com
                         </a>
@@ -919,7 +919,7 @@ const Terms = () => {
                     <Link
                       to="/contact"
                       onClick={scrollTop}
-                      className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[#0796A8] hover:bg-[#078899] px-5 py-3 text-[11px] font-semibold text-white transition-colors"
+                      className="group inline-flex items-center justify-center gap-2 rounded-lg bg-[#0796A8] hover:bg-[#078899] px-5 py-3 text-[13px] font-semibold text-white transition-colors"
                     >
                       Contact DevZore
 
@@ -932,7 +932,7 @@ const Terms = () => {
                     <Link
                       to="/privacy-policy"
                       onClick={scrollTop}
-                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-[11px] font-semibold text-[#071923] hover:border-[#0796A8]/40 transition-colors"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-3 text-[13px] font-semibold text-[#071923] hover:border-[#0796A8]/40 transition-colors"
                     >
                       Privacy Policy
                     </Link>
@@ -945,7 +945,7 @@ const Terms = () => {
                       Entire Agreement
                     </h3>
 
-                    <p className="mt-1.5 text-[10px] sm:text-[11px] leading-5 text-slate-500">
+                    <p className="mt-1.5 text-xs sm:text-[13px] leading-5 text-slate-500">
                       These Terms, together with any applicable written Project
                       Agreement, describe the terms relevant to the
                       relationship between DevZore and the Client.
@@ -961,12 +961,12 @@ const Terms = () => {
                     <Link
                       to="/"
                       onClick={scrollTop}
-                      className="text-[10px] font-medium text-slate-500 hover:text-[#07899a] transition-colors"
+                      className="text-xs font-medium text-slate-500 hover:text-[#07899a] transition-colors"
                     >
                       ← Back to Home
                     </Link>
 
-                    <p className="text-[9px] text-slate-400 text-center">
+                    <p className="text-xs text-slate-400 text-center">
                       © 2026 DevZore · Terms & Conditions · Last Updated{" "}
                       {lastUpdated}
                     </p>

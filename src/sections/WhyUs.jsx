@@ -138,12 +138,12 @@ const WhyUs = () => {
               className="
                 mb-3
                 font-mono
-                text-[9px]
+                text-xs
                 font-bold
                 uppercase
                 tracking-[0.18em]
                 text-cyan-400
-                sm:text-[10px]
+                sm:text-xs
               "
             >
               Why DevZore
@@ -172,7 +172,7 @@ const WhyUs = () => {
               className="
                 mt-4
                 max-w-lg
-                text-[11px]
+                text-[13px]
                 leading-[1.75]
                 text-slate-300
                 sm:text-[13px]
@@ -192,10 +192,10 @@ const WhyUs = () => {
                   key={item}
                   className="
                     flex items-center gap-2
-                    text-[9px]
+                    text-xs
                     font-medium
                     text-slate-300
-                    sm:text-[11px]
+                    sm:text-[13px]
                   "
                 >
                   <span
@@ -227,13 +227,13 @@ const WhyUs = () => {
                   rounded-lg
                   bg-white
                   px-5 py-3
-                  text-[10px]
+                  text-xs
                   font-bold
                   text-[#061923]
                   transition-all duration-200
                   hover:-translate-y-0.5
                   hover:bg-cyan-50
-                  sm:text-[11px]
+                  sm:text-[13px]
                 "
               >
                 Discuss Your Project
@@ -295,7 +295,7 @@ const WhyUs = () => {
                     className="
                       absolute right-3 top-3
                       font-mono
-                      text-[8px]
+                      text-xs
                       font-bold
                       text-white/20
                     "
@@ -327,7 +327,7 @@ const WhyUs = () => {
                   <h3
                     className="
                       pr-3
-                      text-[11px]
+                      text-[13px]
                       font-semibold
                       leading-tight
                       text-white
@@ -342,10 +342,10 @@ const WhyUs = () => {
                   <p
                     className="
                       mt-1.5
-                      text-[8.5px]
+                      text-xs
                       leading-[1.55]
                       text-slate-400
-                      sm:text-[10px]
+                      sm:text-xs
                     "
                   >
                     {reason.desc}
@@ -407,12 +407,12 @@ const WhyUs = () => {
               <p
                 className="
                   font-mono
-                  text-[8px]
+                  text-xs
                   font-bold
                   uppercase
                   tracking-[0.18em]
                   text-cyan-400
-                  sm:text-[9px]
+                  sm:text-xs
                 "
               >
                 Have a project in mind?
@@ -436,10 +436,10 @@ const WhyUs = () => {
                 className="
                   mt-2
                   max-w-xl
-                  text-[10px]
+                  text-xs
                   leading-[1.65]
                   text-slate-400
-                  sm:text-[11px]
+                  sm:text-[13px]
                 "
               >
                 Share your requirements and we can discuss the
@@ -462,7 +462,7 @@ const WhyUs = () => {
                   rounded-lg
                   bg-white
                   px-4 py-2.5
-                  text-[9px]
+                  text-xs
                   font-bold
                   text-[#061923]
                   transition-all duration-200
@@ -470,7 +470,7 @@ const WhyUs = () => {
                   hover:bg-cyan-50
                   sm:flex-none
                   sm:px-5
-                  sm:text-[10px]
+                  sm:text-xs
                 "
               >
                 Start a Project
@@ -497,7 +497,7 @@ const WhyUs = () => {
                   border border-cyan-400/25
                   bg-cyan-400/[0.07]
                   px-4 py-2.5
-                  text-[9px]
+                  text-xs
                   font-bold
                   text-cyan-300
                   transition-all duration-200
@@ -506,7 +506,7 @@ const WhyUs = () => {
                   hover:bg-cyan-400/[0.12]
                   sm:flex-none
                   sm:px-5
-                  sm:text-[10px]
+                  sm:text-xs
                 "
               >
                 WhatsApp

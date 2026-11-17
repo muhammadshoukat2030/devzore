@@ -243,7 +243,7 @@ export default function AiIntegrationServices() {
 
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[11px] font-bold tracking-wider uppercase text-[#1bbac8] mb-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-[13px] font-bold tracking-wider uppercase text-[#1bbac8] mb-5">
                 <BrainCircuit size={13} />
                 Intelligent Software Augmentation
               </div>
@@ -373,7 +373,7 @@ export default function AiIntegrationServices() {
                   </h3>
                   <p className="text-xs leading-relaxed text-slate-300 mb-5">{c.desc}</p>
                 </div>
-                <ul className="space-y-2 pt-4 border-t border-white/[0.06] text-[11px] text-slate-300">
+                <ul className="space-y-2 pt-4 border-t border-white/[0.06] text-[13px] text-slate-300">
                   {c.points.map((p, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <Check size={12} className="text-[#1bbac8] shrink-0 mt-0.5" />
@@ -411,7 +411,7 @@ export default function AiIntegrationServices() {
               to="/blog/how-to-integrate-ai-into-web-application"
               className="group p-6 rounded-2xl border border-white/[0.08] bg-[#071923] hover:border-cyan-500/40 transition block"
             >
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8] mb-2">Technical Guide</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8] mb-2">Technical Guide</div>
               <h3 className="text-lg font-bold text-white group-hover:text-[#1bbac8] transition mb-2">
                 How to Integrate AI Into a Web Application in 2026: A Practical Guide
               </h3>
@@ -428,7 +428,7 @@ export default function AiIntegrationServices() {
               to="/blog/add-ai-assistant-existing-react-app"
               className="group p-6 rounded-2xl border border-white/[0.08] bg-[#071923] hover:border-cyan-500/40 transition block"
             >
-              <div className="text-[10px] font-bold uppercase tracking-wider text-[#1bbac8] mb-2">React Engineering</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8] mb-2">React Engineering</div>
               <h3 className="text-lg font-bold text-white group-hover:text-[#1bbac8] transition mb-2">
                 How to Add an AI Assistant to an Existing React App Without Rebuilding It
               </h3>

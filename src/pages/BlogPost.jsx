@@ -1,4 +1,4 @@
-import {
+﻿import {
   useEffect,
   useMemo,
   useState,
@@ -72,7 +72,7 @@ const SectionLabel = ({
 }) => {
   return (
     <div
-      className={`flex items-center gap-2.5 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase ${
+      className={`flex items-center gap-2.5 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase ${
         light
           ? "text-[#28c5d4]"
           : "text-[#07899a]"
@@ -476,7 +476,7 @@ const BlogImage = ({
               />
             </div>
 
-            <span className="mt-2 hidden text-[9px] font-medium text-slate-500 sm:block">
+            <span className="mt-2 hidden text-xs font-medium text-slate-500 sm:block">
               Image unavailable
             </span>
           </div>
@@ -951,13 +951,13 @@ const BlogPost = () => {
         className="min-h-screen bg-[#f7f9fa] text-[#071923] flex items-center justify-center antialiased"
         style={{
           fontFamily:
-            '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+            '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         <div className="px-6 text-center">
           <div className="w-9 h-9 mx-auto mb-4 rounded-full border-[3px] border-slate-200 border-t-[#0796A8] animate-spin" />
 
-          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
             Loading DevZore
             Journal
           </p>
@@ -988,7 +988,7 @@ const BlogPost = () => {
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"
         style={{
           fontFamily:
-            '"Inter", "Segoe UI", Arial, Helvetica, sans-serif',
+            '"DM Sans", "Segoe UI", Arial, sans-serif',
         }}
       >
         {/* =================================================
@@ -1048,7 +1048,7 @@ const BlogPost = () => {
                         key={
                           item
                         }
-                        className="flex items-center gap-2 text-[10px] sm:text-[11px] font-medium text-slate-400"
+                        className="flex items-center gap-2 text-xs sm:text-[13px] font-medium text-slate-400"
                       >
                         <CheckCircle2
                           size={13}
@@ -1071,7 +1071,7 @@ const BlogPost = () => {
                   <div className="relative">
                     <div className="flex items-center justify-between border-b border-white/[0.07] pb-4">
                       <div>
-                        <p className="text-[10px] uppercase tracking-[0.18em] font-bold text-[#28c5d4]">
+                        <p className="text-xs uppercase tracking-[0.18em] font-bold text-[#28c5d4]">
                           DevZore
                           Editorial
                         </p>
@@ -1118,7 +1118,7 @@ const BlogPost = () => {
                             }
                             className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-4"
                           >
-                            <p className="text-[9px] text-slate-500">
+                            <p className="text-xs text-slate-500">
                               {label}
                             </p>
 
@@ -1175,7 +1175,7 @@ const BlogPost = () => {
                               category
                             )
                           }
-                          className={`relative px-4 sm:px-5 py-4 text-[10px] font-bold uppercase tracking-[0.12em] transition-colors ${
+                          className={`relative px-4 sm:px-5 py-4 text-xs font-bold uppercase tracking-[0.12em] transition-colors ${
                             active
                               ? "text-[#071923]"
                               : "text-slate-400 hover:text-[#07899a]"
@@ -1232,7 +1232,7 @@ const BlogPost = () => {
                         1
                     )
                   }
-                  className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#071923] px-4 py-2.5 text-[11px] font-semibold text-white transition-colors hover:bg-[#0b2633]"
+                  className="mt-4 inline-flex items-center gap-2 rounded-xl bg-[#071923] px-4 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#0b2633]"
                 >
                   <RefreshCw
                     size={13}
@@ -1276,7 +1276,7 @@ const BlogPost = () => {
                           "All"
                         )
                       }
-                      className="mt-4 text-[10px] font-semibold text-[#07899a]"
+                      className="mt-4 text-xs font-semibold text-[#07899a]"
                     >
                       View all
                       articles
@@ -1308,7 +1308,7 @@ const BlogPost = () => {
                       </h2>
                     </div>
 
-                    <span className="hidden sm:block text-[10px] font-semibold text-slate-400">
+                    <span className="hidden sm:block text-xs font-semibold text-slate-400">
                       {
                         filteredPosts.length
                       }{" "}
@@ -1353,7 +1353,7 @@ const BlogPost = () => {
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
                           />
 
-                          <span className="absolute top-4 left-4 rounded-lg bg-[#071923]/90 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-[#28c5d4] backdrop-blur-sm">
+                          <span className="absolute top-4 left-4 rounded-lg bg-[#071923]/90 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#28c5d4] backdrop-blur-sm">
                             {getCategoryName(
                               leadPost
                             )}
@@ -1381,7 +1381,7 @@ const BlogPost = () => {
                               }
                             />
 
-                            <span className="hidden sm:inline-flex items-center gap-2 text-[10px] font-semibold text-[#07899a]">
+                            <span className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold text-[#07899a]">
                               Read Article
 
                               <ArrowRight
@@ -1400,7 +1400,7 @@ const BlogPost = () => {
                       0 && (
                       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white self-start">
                         <div className="px-5 py-4 border-b border-slate-200">
-                          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#07899a]">
+                          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#07899a]">
                             Latest
                             Articles
                           </p>
@@ -1454,7 +1454,7 @@ const BlogPost = () => {
                     </h2>
                   </div>
 
-                  <span className="hidden sm:block text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">
+                  <span className="hidden sm:block text-xs font-bold uppercase tracking-[0.16em] text-slate-400">
                     {
                       activeCategory
                     }
@@ -1495,7 +1495,7 @@ const BlogPost = () => {
             <section className="pb-10 bg-[#f7f9fa]">
               <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
                 <div className="border-t border-slate-200 pt-5">
-                  <p className="text-[11px] text-slate-500">
+                  <p className="text-[13px] text-slate-500">
                     More articles
                     will appear here
                     as they are
@@ -1615,7 +1615,7 @@ const BlogPost = () => {
                             }
                           </h3>
 
-                          <p className="mt-2 text-[11px] leading-5 text-slate-400">
+                          <p className="mt-2 text-[13px] leading-5 text-slate-400">
                             {
                               item.text
                             }
@@ -1714,7 +1714,7 @@ const BlogPost = () => {
                             />
                           </div>
 
-                          <span className="text-[10px] font-semibold text-slate-300">
+                          <span className="text-xs font-semibold text-slate-300">
                             {String(
                               index +
                                 1
@@ -1737,7 +1737,7 @@ const BlogPost = () => {
                           }
                         </p>
 
-                        <span className="mt-4 inline-flex items-center gap-2 text-[10px] font-semibold text-[#07899a]">
+                        <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-[#07899a]">
                           Explore
 
                           <ArrowRight
@@ -1774,7 +1774,7 @@ const BlogPost = () => {
 
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-5">
                     <div className="max-w-2xl">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#28c5d4]">
+                      <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#28c5d4]">
                         Work With
                         DevZore
                       </p>
@@ -1806,7 +1806,7 @@ const BlogPost = () => {
                       onClick={
                         scrollTop
                       }
-                      className="group shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-[11px] font-semibold text-[#071923] transition-all hover:-translate-y-0.5 hover:bg-slate-100"
+                      className="group shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-[13px] font-semibold text-[#071923] transition-all hover:-translate-y-0.5 hover:bg-slate-100"
                     >
                       Discuss Your
                       Project
@@ -1889,7 +1889,7 @@ const ArticleMeta = ({
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[9px] sm:text-[10px] font-semibold text-slate-400">
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-xs font-semibold text-slate-400">
       {publishedDate && (
         <span className="flex items-center gap-1.5">
           <CalendarDays
@@ -1940,7 +1940,7 @@ const SecondaryStory = ({
       >
         <div className="grid grid-cols-[1fr_92px] gap-4 items-center">
           <div className="min-w-0">
-            <span className="text-[8px] font-bold uppercase tracking-[0.14em] text-[#07899a]">
+            <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#07899a]">
               {getCategoryName(
                 post
               )}
@@ -1952,7 +1952,7 @@ const SecondaryStory = ({
             </h3>
 
             {publishedDate && (
-              <span className="mt-2 block text-[9px] text-slate-400">
+              <span className="mt-2 block text-xs text-slate-400">
                 {publishedDate}
               </span>
             )}
@@ -2021,7 +2021,7 @@ const NewsRow = ({
           />
 
           <div className="min-w-0">
-            <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.14em] text-[#07899a]">
+            <span className="text-xs sm:text-xs font-bold uppercase tracking-[0.14em] text-[#07899a]">
               {getCategoryName(
                 post
               )}
@@ -2033,7 +2033,7 @@ const NewsRow = ({
             </h3>
 
             {post?.excerpt && (
-              <p className="hidden sm:block mt-2 max-w-3xl text-[11px] sm:text-[12px] leading-5 text-slate-600 line-clamp-2">
+              <p className="hidden sm:block mt-2 max-w-3xl text-[13px] sm:text-[12px] leading-5 text-slate-600 line-clamp-2">
                 {
                   post.excerpt
                 }
@@ -2041,7 +2041,7 @@ const NewsRow = ({
             )}
 
             <div className="mt-3 flex items-center justify-between gap-4">
-              <div className="flex flex-wrap items-center gap-3 text-[8px] sm:text-[9px] text-slate-400">
+              <div className="flex flex-wrap items-center gap-3 text-xs sm:text-xs text-slate-400">
                 {publishedDate && (
                   <span className="flex items-center gap-1">
                     <CalendarDays
