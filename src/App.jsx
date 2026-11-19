@@ -132,6 +132,8 @@ const AdminPosts = lazy(() => import("./pages/admin/AdminPosts"));
 const AdminPostEditor = lazy(() => import("./pages/admin/AdminPostEditor"));
 const AdminCategories = lazy(() => import("./pages/admin/AdminCategories"));
 const AdminComments = lazy(() => import("./pages/admin/AdminComments"));
+const AdminSEO = lazy(() => import("./pages/admin/AdminSEO"));
+const AdminAnalytics = lazy(() => import("./pages/admin/AdminAnalytics"));
 
 // ======================================================
 // SITE CONFIG
@@ -1381,6 +1383,16 @@ function AppContent() {
               <Route
                 path="comments"
                 element={<AdminComments />}
+              />
+
+              <Route
+                path="seo"
+                element={<AdminSEO />}
+              />
+
+              <Route
+                path="analytics"
+                element={<AdminAnalytics />}
               />
             </Route>
 

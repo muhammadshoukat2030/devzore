@@ -1,39 +1,72 @@
 import { useState, useEffect } from "react";
-import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, Outlet, useNavigate, useLocation, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import {
   LayoutDashboard,
   FileText,
-  Tag,
+  PenSquare,
+  FolderTree,
   MessageSquare,
+  SearchCheck,
+  BarChart3,
+  Globe,
   LogOut,
   Menu,
   ChevronLeft,
-  Globe,
+  ChevronRight,
+  PanelLeftClose,
+  PanelLeftOpen,
+  Sparkles,
+  ExternalLink,
+  Bell,
+  Search,
 } from "lucide-react";
 import useAuth from "../../hooks/useAuth";
 
-const navItems = [
-  { name: "Dashboard", path: "/admin/dashboard", icon: LayoutDashboard },
-  { name: "Posts", path: "/admin/posts", icon: FileText },
-  { name: "Categories", path: "/admin/categories", icon: Tag },
-  { name: "Comments", path: "/admin/comments", icon: MessageSquare },
+const NAV_GROUPS = [
+  {
+    group: "OVERVIEW",
+    items: [
+      { name: "Dashboard", path: "/admin/dashboard", icon: LayoutDashboard },
+    ],
+  },
+  {
+    group: "CONTENT",
+    items: [
+      { name: "All Posts", path: "/admin/posts", icon: FileText },
+      { name: "New Post", path: "/admin/posts/new", icon: PenSquare },
+      { name: "Categories", path: "/admin/categories", icon: FolderTree },
+      { name: "Comments", path: "/admin/comments", icon: MessageSquare },
+    ],
+  },
+  {
+    group: "PERFORMANCE",
+    items: [
+      { name: "SEO & Sitemap", path: "/admin/seo", icon: SearchCheck, badge: "67 URLs" },
+      { name: "Analytics & GSC", path: "/admin/analytics", icon: BarChart3, badge: "GSC" },
+    ],
+  },
 ];
 
 const getBreadcrumb = (pathname) => {
   if (pathname.includes("dashboard")) return "Dashboard";
-  if (pathname.includes("posts")) return "Posts";
+  if (pathname.includes("posts/new")) return "Create New Post";
+  if (pathname.includes("posts/edit")) return "Edit Post";
+  if (pathname.includes("posts")) return "Blog Posts";
   if (pathname.includes("categories")) return "Categories";
   if (pathname.includes("comments")) return "Comments";
+  if (pathname.includes("seo")) return "SEO & Sitemap";
+  if (pathname.includes("analytics")) return "Search Analytics";
   return "Admin Panel";
 };
 
 const AdminLayout = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false); // mobile drawer
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(() => {
     try {
-      return localStorage.getItem("adminSidebarCollapsed") === "true";
+      const saved = localStorage.getItem("adminSidebarCollapsed");
+      return saved === "true";
     } catch {
       return false;
     }
@@ -57,7 +90,9 @@ const AdminLayout = () => {
     navigate("/admin/login", { replace: true });
   };
 
-  const toggleCollapse = () => setCollapsed((prev) => !prev);
+  const toggleSidebar = () => {
+    setCollapsed((prev) => !prev);
+  };
 
   const breadcrumb = getBreadcrumb(location.pathname);
 
@@ -65,197 +100,277 @@ const AdminLayout = () => {
     <>
       <Helmet>
         <html lang="en" />
-        <title>DevZore Admin</title>
+        <title>DevZore Admin Portal</title>
         <meta name="robots" content="noindex, nofollow, noarchive" />
         <meta name="googlebot" content="noindex, nofollow, noarchive" />
       </Helmet>
 
-      <div className="min-h-screen bg-slate-100 font-sans">
-        {/* Mobile Overlay */}
-        {sidebarOpen && (
+      <div className="min-h-screen bg-slate-100 font-sans text-slate-800 flex">
+        {/* Mobile Backdrop */}
+        {mobileOpen && (
           <div
-            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
-            onClick={() => setSidebarOpen(false)}
+            className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 md:hidden transition-opacity"
+            onClick={() => setMobileOpen(false)}
           />
         )}
 
-        {/* ───────────── SIDEBAR ───────────── */}
+        {/* ========================================================
+            SIDEBAR (Desktop: Collapsible w-64 <-> w-20, Mobile: Drawer)
+            ======================================================== */}
         <aside
           className={`
-            fixed top-0 left-0 z-40 h-screen
-            bg-slate-950 text-white
-            transition-all duration-300
-            flex flex-col
-            ${collapsed ? "w-16" : "w-64"}
-            /* mobile: hidden off-screen, desktop: always visible */
-            -translate-x-full lg:translate-x-0
-            ${sidebarOpen ? "translate-x-0" : ""}
+            fixed top-0 bottom-0 left-0 z-50
+            bg-[#071923] text-white border-r border-white/10
+            transition-all duration-300 ease-in-out
+            flex flex-col select-none
+            ${collapsed ? "w-20" : "w-64"}
+            ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
           `}
         >
-          {/* Logo */}
+          {/* Sidebar Top: Logo + Toggle */}
           <div
-            className={`h-20 flex items-center border-b border-white/10 overflow-hidden ${
-              collapsed ? "px-0 justify-center" : "px-6"
+            className={`h-16 border-b border-white/10 flex items-center justify-between px-4 ${
+              collapsed ? "justify-center px-0" : "px-5"
             }`}
           >
             {collapsed ? (
-              <div className="w-10 h-10 rounded-xl bg-white text-slate-950 flex items-center justify-center font-bold text-lg select-none">
+              <button
+                onClick={toggleSidebar}
+                title="Expand Sidebar"
+                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#0796A8] to-cyan-400 text-slate-950 flex items-center justify-center font-bold text-lg shadow-md hover:scale-105 transition"
+              >
                 D
-              </div>
+              </button>
             ) : (
-              <div className="flex items-center gap-3 w-full">
-                <div className="w-10 h-10 rounded-xl bg-white text-slate-950 flex items-center justify-center font-bold flex-shrink-0">
-                  D
-                </div>
-                <div className="min-w-0">
-                  <h1 className="font-bold text-lg leading-tight">DevZore</h1>
-                  <p className="text-xs text-slate-400">Admin Panel</p>
-                </div>
-                {/* Mobile close button */}
+              <>
+                <Link to="/admin/dashboard" className="flex items-center gap-3 min-w-0">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#0796A8] to-cyan-400 text-slate-950 flex items-center justify-center font-bold text-lg shadow-md shrink-0">
+                    D
+                  </div>
+                  <div className="min-w-0">
+                    <h1 className="font-bold text-base leading-tight tracking-wide text-white truncate">
+                      DevZore
+                    </h1>
+                    <p className="text-[11px] text-cyan-300/80 font-medium tracking-wider uppercase">
+                      Admin Portal
+                    </p>
+                  </div>
+                </Link>
+
+                {/* Desktop Collapse Button */}
                 <button
-                  onClick={() => setSidebarOpen(false)}
-                  className="ml-auto lg:hidden text-slate-400 hover:text-white p-1"
-                  aria-label="Close sidebar"
+                  onClick={toggleSidebar}
+                  title="Collapse Sidebar"
+                  className="hidden md:flex w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 items-center justify-center text-slate-300 hover:text-white transition"
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft className="w-4 h-4" />
                 </button>
-              </div>
+
+                {/* Mobile Close Button */}
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="md:hidden w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center"
+                >
+                  ✕
+                </button>
+              </>
             )}
           </div>
 
-          {/* Navigation */}
-          <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
-            {!collapsed && (
-              <p className="px-3 text-[11px] uppercase tracking-wider text-slate-500 mb-3">
-                Management
-              </p>
-            )}
+          {/* Navigation Links */}
+          <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-6">
+            {NAV_GROUPS.map((group) => (
+              <div key={group.group} className="space-y-1.5">
+                {!collapsed && (
+                  <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400/80 mb-2">
+                    {group.group}
+                  </p>
+                )}
 
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setSidebarOpen(false)}
-                  title={collapsed ? item.name : undefined}
-                  className={({ isActive }) =>
-                    `flex items-center gap-3 rounded-xl text-sm font-medium transition-all duration-150
-                    ${collapsed ? "px-0 py-3 justify-center" : "px-4 py-3"}
-                    ${
-                      isActive
-                        ? "bg-white text-slate-950 shadow-lg"
-                        : "text-slate-300 hover:bg-white/10 hover:text-white"
-                    }`
-                  }
-                >
-                  <Icon size={20} className="flex-shrink-0" />
-                  {!collapsed && <span>{item.name}</span>}
-                </NavLink>
-              );
-            })}
+                {group.items.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <NavLink
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setMobileOpen(false)}
+                      title={collapsed ? item.name : undefined}
+                      className={({ isActive }) =>
+                        `flex items-center gap-3 rounded-xl text-sm font-medium transition-all duration-150 ${
+                          collapsed ? "px-0 py-3 justify-center" : "px-3.5 py-2.5"
+                        } ${
+                          isActive
+                            ? "bg-[#0796A8] text-white shadow-md shadow-[#0796A8]/20 font-semibold"
+                            : "text-slate-300 hover:bg-white/10 hover:text-white"
+                        }`
+                      }
+                    >
+                      <Icon className="w-5 h-5 shrink-0" />
+                      {!collapsed && (
+                        <span className="flex-1 truncate">{item.name}</span>
+                      )}
+                      {!collapsed && item.badge && (
+                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/15 text-cyan-200">
+                          {item.badge}
+                        </span>
+                      )}
+                    </NavLink>
+                  );
+                })}
+              </div>
+            ))}
           </nav>
 
-          {/* Bottom: View Site + Logout */}
-          <div className="p-3 border-t border-white/10 space-y-1">
-            {/* View Site */}
+          {/* Bottom Sidebar: Collapse bar + Live site + Profile */}
+          <div className="p-3 border-t border-white/10 space-y-2 bg-black/20">
+            {/* Live Site Link */}
             <a
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              title={collapsed ? "View Site" : undefined}
-              className={`flex items-center gap-3 rounded-xl text-sm font-medium transition-all duration-150
-                text-slate-300 hover:bg-white/10 hover:text-white
-                ${collapsed ? "px-0 py-3 justify-center" : "px-4 py-3"}`}
+              title={collapsed ? "View Live Site" : undefined}
+              className={`flex items-center gap-3 rounded-xl text-xs font-semibold text-cyan-300 hover:bg-cyan-500/10 transition py-2.5 ${
+                collapsed ? "justify-center px-0" : "px-3"
+              }`}
             >
-              <Globe size={20} className="flex-shrink-0" />
-              {!collapsed && <span>View Site</span>}
+              <Globe className="w-4 h-4 shrink-0 text-cyan-400" />
+              {!collapsed && <span>View devzore.com</span>}
+              {!collapsed && <ExternalLink className="w-3 h-3 ml-auto opacity-70" />}
             </a>
 
-            {/* Logout */}
+            {/* Expand / Collapse Toggle button for Desktop bottom */}
             <button
-              onClick={handleLogout}
-              title={collapsed ? "Logout" : undefined}
-              className={`w-full flex items-center gap-3 rounded-xl text-sm font-medium transition-all duration-150
-                text-slate-300 hover:bg-red-500/10 hover:text-red-400
-                ${collapsed ? "px-0 py-3 justify-center" : "px-4 py-3"}`}
+              onClick={toggleSidebar}
+              className={`hidden md:flex w-full items-center gap-3 rounded-xl text-xs text-slate-400 hover:text-white hover:bg-white/5 transition py-2 ${
+                collapsed ? "justify-center px-0" : "px-3"
+              }`}
             >
-              <LogOut size={20} className="flex-shrink-0" />
-              {!collapsed && <span>Logout</span>}
+              {collapsed ? (
+                <ChevronRight className="w-4 h-4" />
+              ) : (
+                <>
+                  <ChevronLeft className="w-4 h-4" />
+                  <span>Collapse Menu</span>
+                </>
+              )}
             </button>
+
+            {/* User & Logout */}
+            <div
+              className={`pt-2 border-t border-white/10 flex items-center gap-3 ${
+                collapsed ? "justify-center" : "justify-between px-2"
+              }`}
+            >
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-full bg-cyan-400 text-slate-950 font-bold text-xs flex items-center justify-center shrink-0">
+                  {(user?.name || "A").charAt(0).toUpperCase()}
+                </div>
+                {!collapsed && (
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold text-white truncate">
+                      {user?.name || "Admin"}
+                    </p>
+                    <p className="text-[10px] text-slate-400 truncate">
+                      {user?.email || "Super Admin"}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {!collapsed && (
+                <button
+                  onClick={handleLogout}
+                  title="Logout"
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              )}
+            </div>
           </div>
         </aside>
 
-        {/* ───────────── MAIN ───────────── */}
+        {/* ========================================================
+            MAIN WORKSPACE (Adjusts margin based on sidebar state)
+            ======================================================== */}
         <div
-          className={`transition-all duration-300 ${
-            collapsed ? "lg:ml-16" : "lg:ml-64"
+          className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ease-in-out ${
+            collapsed ? "md:ml-20" : "md:ml-64"
           }`}
         >
-          {/* Top Navbar */}
-          <header className="sticky top-0 z-20 h-16 bg-white border-b border-slate-200 shadow-sm">
-            <div className="h-full px-4 sm:px-6 flex items-center justify-between gap-4">
-              {/* Left: toggle + breadcrumb */}
-              <div className="flex items-center gap-3">
-                {/* Desktop collapse toggle */}
-                <button
-                  onClick={toggleCollapse}
-                  className="hidden lg:flex w-9 h-9 rounded-lg border border-slate-200 items-center justify-center text-slate-600 hover:bg-slate-100 transition"
-                  aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-                >
-                  {collapsed ? <Menu size={18} /> : <ChevronLeft size={18} />}
-                </button>
+          {/* Sticky Top Header */}
+          <header className="sticky top-0 z-30 h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between shadow-xs">
+            {/* Left: Sidebar toggle + Breadcrumbs */}
+            <div className="flex items-center gap-3">
+              {/* Mobile Drawer Trigger */}
+              <button
+                onClick={() => setMobileOpen(true)}
+                className="md:hidden p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 transition"
+                aria-label="Open mobile menu"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
 
-                {/* Mobile open toggle */}
-                <button
-                  onClick={() => setSidebarOpen(true)}
-                  className="lg:hidden flex w-9 h-9 rounded-lg border border-slate-200 items-center justify-center text-slate-600 hover:bg-slate-100 transition"
-                  aria-label="Open sidebar"
-                >
-                  <Menu size={18} />
-                </button>
+              {/* Desktop Collapse / Expand Toggle */}
+              <button
+                onClick={toggleSidebar}
+                className="hidden md:flex p-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition"
+                title={collapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+              >
+                {collapsed ? (
+                  <PanelLeftOpen className="w-5 h-5 text-[#0796A8]" />
+                ) : (
+                  <PanelLeftClose className="w-5 h-5 text-slate-600" />
+                )}
+              </button>
 
-                {/* Breadcrumb */}
-                <div>
-                  <p className="text-xs text-slate-400 leading-none mb-0.5">
-                    Admin Panel
-                  </p>
-                  <h2 className="font-semibold text-slate-900 text-sm leading-none">
-                    {breadcrumb}
-                  </h2>
+              {/* Breadcrumb Info */}
+              <div className="hidden sm:block">
+                <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
+                  <span>DevZore</span>
+                  <span>/</span>
+                  <span className="text-slate-700 font-semibold">{breadcrumb}</span>
                 </div>
               </div>
+            </div>
 
-              {/* Right: View Site + user */}
-              <div className="flex items-center gap-3">
-                <a
-                  href="/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden sm:flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-slate-50 transition"
-                >
-                  <Globe size={15} />
-                  <span>View Site</span>
-                </a>
+            {/* Right: Quick actions + Site link + Profile */}
+            <div className="flex items-center gap-3">
+              {/* New Post Button */}
+              <Link
+                to="/admin/posts/new"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#071923] text-white text-xs font-semibold hover:bg-[#0b2633] transition shadow-xs"
+              >
+                <PenSquare className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Write Post</span>
+              </Link>
 
-                <div className="hidden sm:block text-right">
-                  <p className="text-sm font-semibold text-slate-900 leading-tight">
-                    {user?.name || "Admin"}
-                  </p>
-                  <p className="text-xs text-slate-400 leading-tight">
-                    {user?.email || "Administrator"}
-                  </p>
-                </div>
+              {/* View Site Button */}
+              <a
+                href="/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 text-xs font-medium hover:bg-slate-50 transition"
+              >
+                <Globe className="w-3.5 h-3.5 text-[#0796A8]" />
+                <span>Live Site</span>
+              </a>
 
-                <div className="w-9 h-9 rounded-full bg-slate-950 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+              {/* User Avatar */}
+              <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
+                <div className="w-8 h-8 rounded-full bg-slate-950 text-white font-bold text-xs flex items-center justify-center">
                   {(user?.name || "A").charAt(0).toUpperCase()}
+                </div>
+                <div className="hidden md:block text-left text-xs">
+                  <p className="font-semibold text-slate-900 leading-tight">{user?.name || "Admin"}</p>
+                  <p className="text-[10px] text-slate-400 leading-tight">Superuser</p>
                 </div>
               </div>
             </div>
           </header>
 
-          {/* Page Content */}
-          <main className="p-4 sm:p-6 lg:p-8">
+          {/* Page Body */}
+          <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
             <Outlet />
           </main>
         </div>
