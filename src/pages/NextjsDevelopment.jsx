@@ -6,6 +6,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Boxes,
+  Building2,
   Check,
   CheckCircle2,
   ChevronDown,
@@ -520,9 +521,6 @@ ${formData.message}`
   return (
     <>
       <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <link rel="canonical" href="https://devzore.com/nextjs-development" />
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema)}
         </script>

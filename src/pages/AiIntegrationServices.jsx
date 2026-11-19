@@ -563,9 +563,6 @@ export default function AiIntegrationServices({ isDark }) {
   return (
     <>
       <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <link rel="canonical" href="https://devzore.com/ai-integration-services" />
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema)}
         </script>

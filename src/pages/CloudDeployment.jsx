@@ -18,6 +18,7 @@ import {
   Cpu,
   Database,
   ExternalLink,
+  FileText,
   Gauge,
   Globe2,
   KeyRound,
@@ -562,9 +563,6 @@ export default function CloudDeployment({ isDark }) {
   return (
     <>
       <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <link rel="canonical" href="https://devzore.com/cloud-deployment" />
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema)}
         </script>
