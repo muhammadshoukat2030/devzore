@@ -627,7 +627,7 @@ ${formData.message}`
             <div className="absolute inset-0 bg-gradient-to-r from-[#04111a] via-[#04111a]/95 to-[#04111a]/70" />
           </div>
 
-          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-23 sm:pt-20 lg:pt-24 pb-10 sm:pb-12">
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-[82px] sm:pt-[84px] lg:pt-[86px] pb-10 sm:pb-12">
             <div className="grid lg:grid-cols-[0.96fr_1.04fr] gap-8 lg:gap-12 items-center">
               <div className="relative z-10">
                 <div className="flex flex-wrap items-center gap-3 mb-5">

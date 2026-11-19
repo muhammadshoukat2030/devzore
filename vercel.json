@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/webdevelopment",
+      "destination": "/web-development",
+      "permanent": true
+    },
+    {
       "source": "/blog/how-much-does-a-website-cost-in-2026-complete-website-development-pricing-guide-1790762380934",
       "destination": "/blog/how-much-does-a-website-cost-in-2026",
       "permanent": true

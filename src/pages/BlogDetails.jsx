@@ -2142,7 +2142,7 @@ const BlogDetails = () => {
             TOP BAR
         ================================================= */}
 
-        <section className="bg-white pt-20 sm:pt-24 lg:pt-23">
+        <section className="bg-white pt-[82px] sm:pt-[84px] lg:pt-[86px]">
           <div className="max-w-[1120px] mx-auto px-5 sm:px-6">
             <div className="flex items-center justify-between gap-4 pb-4 border-b border-slate-200">
               <button

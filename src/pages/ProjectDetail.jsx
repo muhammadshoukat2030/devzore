@@ -113,7 +113,7 @@ export default function ProjectDetail() {
       />
 
       {/* HEADER HERO */}
-      <section className="relative overflow-hidden pt-23 sm:pt-20 lg:pt-24 pb-10 sm:pb-12 border-b border-white/[0.08]">
+      <section className="relative overflow-hidden pt-[82px] sm:pt-[84px] lg:pt-[86px] pb-10 sm:pb-12 border-b border-white/[0.08]">
         {/* Ambient glows */}
         <div className="absolute -top-32 left-[10%] w-[500px] h-[500px] rounded-full bg-[#0796A8]/15 blur-[160px] pointer-events-none" />
 

@@ -995,7 +995,7 @@ const BlogPost = () => {
             HERO
         ================================================= */}
 
-        <section className="relative overflow-hidden bg-[#04111a] pt-23 sm:pt-24 lg:pt-21 pb-12 sm:pb-14">
+        <section className="relative overflow-hidden bg-[#04111a] pt-[82px] sm:pt-[84px] lg:pt-[86px] pb-10 sm:pb-12">
           <div
             className="absolute inset-0 pointer-events-none opacity-65"
             style={darkGrid}

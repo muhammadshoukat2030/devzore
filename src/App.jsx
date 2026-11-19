@@ -769,6 +769,24 @@ function SEOManager() {
   const socialImage =
     page.ogImage || DEFAULT_OG_IMAGE;
 
+  // Direct DOM synchronization for client-side SPA navigation
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    if (page) {
+      document.title = page.title;
+      const descEl = document.querySelector('meta[name="description"]');
+      if (descEl) descEl.setAttribute("content", page.description);
+      const canonEl = document.querySelector('link[rel="canonical"]');
+      if (canonEl) canonEl.setAttribute("href", canonical);
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute("content", page.ogTitle || page.title);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute("content", page.ogDescription || page.description);
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute("content", canonical);
+    }
+  }, [currentPath, page, canonical]);
+
   // ====================================================
   // OUTPUT
   // ====================================================
@@ -934,11 +952,6 @@ function NotFound() {
 function HomePage() {
   return (
     <>
-      <SEO
-        title="DevZore | Software Development Company & AI Solutions"
-        description="DevZore is a Pakistan-based software development company delivering custom web apps, mobile applications, SaaS platforms and AI solutions to clients worldwide."
-        canonical="/"
-      />
       <Hero />
       <FeaturedInsights />
       <StatsStrip />
@@ -1238,6 +1251,16 @@ function AppContent() {
             {/* ============================================
                 PERMANENT 301 REDIRECTS (WORKSTREAM A6)
                 ============================================ */}
+
+            <Route
+              path="/webdevelopment"
+              element={
+                <Navigate
+                  to="/web-development"
+                  replace
+                />
+              }
+            />
 
             <Route
               path="/blog/how-much-does-a-website-cost-in-2026-complete-website-development-pricing-guide-1790762380934"

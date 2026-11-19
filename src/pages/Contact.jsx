@@ -251,7 +251,7 @@ const Contact = () => {
         {/* ============================================================ */}
         <section
           aria-labelledby="contact-heading"
-          className="relative overflow-hidden pt-6 sm:pt-10 lg:pt-14 pb-10 sm:pb-14"
+          className="relative overflow-hidden pt-[82px] sm:pt-[84px] lg:pt-[86px] pb-10 sm:pb-14"
         >
           {/* Ambient Glows & Background Grid */}
           <div className="absolute inset-0 pointer-events-none" style={darkGrid} />
