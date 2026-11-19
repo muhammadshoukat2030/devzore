@@ -191,17 +191,17 @@ const Projects = () => {
 
                 {/* CONTENT */}
                 <div className="p-5">
-                  <h3 className="text-[17px] font-bold leading-tight text-[#061923] group-hover:text-[#0796A8] transition">
+                  <h3 className="text-[18px] sm:text-[19px] font-bold leading-snug text-[#061923] group-hover:text-[#0796A8] transition">
                     <Link to={`/projects/${project.slug}`} onClick={scrollTop}>
                       {project.title}
                     </Link>
                   </h3>
 
-                  <p className="mt-1 text-[13px] font-bold text-[#0b9faa]">
+                  <p className="mt-1 text-[13px] sm:text-sm font-semibold text-[#079ea5]">
                     {project.systemType}
                   </p>
 
-                  <p className="mt-2 text-[12px] leading-relaxed line-clamp-3 text-slate-600">
+                  <p className="mt-2 text-[14px] sm:text-[14.5px] leading-relaxed line-clamp-3 text-[#374151]">
                     {project.teaser || project.description}
                   </p>
 

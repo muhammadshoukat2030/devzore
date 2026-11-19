@@ -953,7 +953,7 @@ const PrivacyPolicy = () => {
                     <Link
                       to="/"
                       onClick={scrollTop}
-                      className="text-xs font-medium text-slate-500 hover:text-[#07899a] transition-colors"
+                      className="text-[13px] font-medium text-slate-700 hover:text-[#07899a] transition-colors"
                     >
                       ← Back to Home
                     </Link>

@@ -197,11 +197,11 @@ const Services = () => {
             <p
               className="
                 text-xs
-                sm:text-xs
+                sm:text-[13px]
                 font-bold
                 uppercase
-                tracking-[0.22em]
-                text-[#16384a]
+                tracking-[0.18em]
+                text-[#079ea5]
                 mb-3
               "
             >
@@ -213,15 +213,14 @@ const Services = () => {
             <h2
               id="services-heading"
               className="
-                text-[#101820]
-                text-[28px]
-                min-[390px]:text-[31px]
-                sm:text-[38px]
-                lg:text-[44px]
-                xl:text-[48px]
-                leading-[1.06]
-                tracking-[-0.04em]
-                font-semibold
+                text-[#0c1f2a]
+                text-[30px]
+                min-[390px]:text-[34px]
+                sm:text-[40px]
+                lg:text-[46px]
+                leading-[1.1]
+                tracking-[-0.035em]
+                font-bold
               "
             >
               Engineering solutions
@@ -236,11 +235,10 @@ const Services = () => {
               className="
                 mt-4
                 max-w-[650px]
-                text-[13px]
-                sm:text-[13px]
-                lg:text-[14px]
-                leading-[1.7]
-                text-[#65727a]
+                text-[15px]
+                sm:text-[16px]
+                leading-[1.65]
+                text-[#374151]
               "
             >
               DevZore designs and develops modern software,
@@ -267,7 +265,7 @@ const Services = () => {
               border border-[#dfe4e7]
 
               text-[#0b2534]
-              text-[12px]
+              text-sm
               font-semibold
 
               shadow-[0_5px_18px_rgba(7,31,45,0.08)]
@@ -424,15 +422,12 @@ const Services = () => {
                   <h3
                     className="
                       text-[#0c1f2a]
-
-                      text-[15px]
-                      sm:text-[16px]
-                      lg:text-[17px]
-
-                      leading-tight
+                      text-[18px]
+                      sm:text-[19px]
+                      lg:text-[20px]
+                      leading-snug
                       font-semibold
-
-                      tracking-[-0.02em]
+                      tracking-[-0.015em]
                     "
                   >
                     {service.title}
@@ -441,14 +436,12 @@ const Services = () => {
                   <p
                     className="
                       mt-3
-
-                      text-xs
-                      sm:text-[13px]
-                      lg:text-[12px]
-
-                      leading-[1.65]
-
-                      text-[#66747c]
+                      text-[14px]
+                      sm:text-[14.5px]
+                      lg:text-[15px]
+                      leading-[1.6]
+                      text-[#374151]
+                      font-normal
                     "
                   >
                     {service.description}
@@ -465,26 +458,19 @@ const Services = () => {
                       inline-flex
                       items-center
                       gap-1.5
-
-                      text-xs
-                      sm:text-xs
-
+                      text-[13px]
+                      sm:text-sm
                       font-semibold
-
-                      text-[#0b536e]
-
-                      opacity-70
-
+                      text-[#079ea5]
                       transition-all
                       duration-200
-
-                      group-hover:opacity-100
+                      group-hover:text-[#0b536e]
                     "
                   >
                     Explore
 
                     <ArrowRight
-                      size={10}
+                      size={12}
                       className="
                         transition-transform
                         duration-200

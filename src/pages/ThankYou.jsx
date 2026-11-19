@@ -231,7 +231,7 @@ const ThankYou = () => {
                   key={path}
                   to={path}
                   onClick={scrollTop}
-                  className="text-xs font-medium text-slate-600 hover:text-[#25c0ce] transition-colors"
+                  className="text-[13px] font-medium text-slate-700 hover:text-[#25c0ce] transition-colors"
                 >
                   {label}
                 </Link>

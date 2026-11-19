@@ -1442,7 +1442,7 @@ const About = () => {
                   key={path}
                   to={path}
                   onClick={scrollTop}
-                  className="text-xs font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
+                  className="text-[13px] font-medium text-slate-700 hover:text-[#25bfce] transition-colors"
                 >
                   {label}
                 </Link>

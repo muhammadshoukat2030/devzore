@@ -961,7 +961,7 @@ ${formData.message}`
                     {solution.title}
                   </h3>
 
-                  <p className="text-slate-600 text-[12px] leading-5 mt-2">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-2">
                     {solution.description}
                   </p>
 
@@ -1021,7 +1021,7 @@ ${formData.message}`
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[13px] leading-5 mt-2">
+                  <p className="text-slate-300 text-[14px] sm:text-[14.5px] leading-[1.6] mt-2">
                     {item.description}
                   </p>
                 </article>
@@ -1072,7 +1072,7 @@ ${formData.message}`
                       {item.title}
                     </h3>
 
-                    <p className="text-slate-500 text-xs leading-5 mt-1.5">
+                    <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5">
                       {item.description}
                     </p>
                   </article>
@@ -1167,7 +1167,7 @@ ${formData.message}`
                     {benefit.title}
                   </h3>
 
-                  <p className="text-slate-500 text-xs leading-5 mt-1.5">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5">
                     {benefit.description}
                   </p>
                 </article>
@@ -1217,7 +1217,7 @@ ${formData.message}`
                       {item.title}
                     </h3>
 
-                    <p className="text-slate-500 text-xs leading-5 mt-1.5">
+                    <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5">
                       {item.description}
                     </p>
                   </article>
@@ -1324,7 +1324,7 @@ ${formData.message}`
                     {step.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[13px] leading-5 mt-2">
+                  <p className="text-slate-300 text-[14px] sm:text-[14.5px] leading-[1.6] mt-2">
                     {step.description}
                   </p>
                 </article>
@@ -1417,7 +1417,7 @@ ${formData.message}`
                       {item.title}
                     </h3>
 
-                    <p className="text-slate-500 text-xs leading-5 mt-1">
+                    <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1">
                       {item.description}
                     </p>
                   </div>
@@ -1461,7 +1461,7 @@ ${formData.message}`
                     {service.title}
                   </h3>
 
-                  <p className="text-slate-500 text-xs leading-5 mt-1.5">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5">
                     {service.description}
                   </p>
 

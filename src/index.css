@@ -274,7 +274,7 @@
          no tiny unreadable text (min 12px) sitewide.
    ══════════════════════════════════════════════════ */
 
-/* 1. Base font family: DM Sans on all text elements */
+/* 1. Base font family: DM Sans on all text elements with crisp Devsinc rendering */
 body,
 button,
 input,
@@ -288,6 +288,9 @@ li,
 label,
 td, th {
   font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* 2. Code/mono elements strictly stay monospace */
@@ -296,9 +299,9 @@ code, pre, kbd, samp,
   font-family: "DM Mono", "SFMono-Regular", Consolas, "Courier New", monospace !important;
 }
 
-/* 3. Universal minimum readable text sizes.
-      Eliminates micro-text (7px-11px) across all public pages,
-      ensuring uniform legibility and premium Devsinc-like feel. */
+/* 3. Universal minimum readable text sizes & Devsinc scale matching.
+      Eliminates micro-text (7px-11px) and ensures card descriptions
+      render at Devsinc's 14px-15px readable standard instead of tiny 12px. */
 .text-\[7px\],
 .text-\[8px\],
 .text-\[9px\] {
@@ -312,6 +315,12 @@ code, pre, kbd, samp,
   line-height: 1.5 !important;
 }
 
+.text-\[12px\],
+.text-\[12\.5px\] {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
 @media (min-width: 640px) {
   .sm\:text-\[7px\],
   .sm\:text-\[8px\],
@@ -321,6 +330,11 @@ code, pre, kbd, samp,
   .sm\:text-\[10px\],
   .sm\:text-\[11px\] {
     font-size: 13px !important;
+  }
+  .sm\:text-\[12px\],
+  .sm\:text-\[12\.5px\] {
+    font-size: 14.5px !important;
+    line-height: 1.6 !important;
   }
 }
 
@@ -334,6 +348,11 @@ code, pre, kbd, samp,
   .md\:text-\[11px\] {
     font-size: 13px !important;
   }
+  .md\:text-\[12px\],
+  .md\:text-\[12\.5px\] {
+    font-size: 14.5px !important;
+    line-height: 1.6 !important;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -345,5 +364,10 @@ code, pre, kbd, samp,
   .lg\:text-\[10px\],
   .lg\:text-\[11px\] {
     font-size: 13px !important;
+  }
+  .lg\:text-\[12px\],
+  .lg\:text-\[12\.5px\] {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
   }
 }

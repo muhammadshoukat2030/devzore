@@ -148,7 +148,7 @@ const IndustriesWeServe = ({ isLight = false }) => {
                 </div>
 
                 <h3
-                  className={`text-base font-bold mb-2 tracking-tight ${
+                  className={`text-[18px] sm:text-[19px] font-bold mb-2 tracking-tight ${
                     isLight ? "text-[#071923]" : "text-white"
                   }`}
                 >
@@ -156,8 +156,8 @@ const IndustriesWeServe = ({ isLight = false }) => {
                 </h3>
 
                 <p
-                  className={`text-xs leading-relaxed mb-4 ${
-                    isLight ? "text-slate-600" : "text-slate-300"
+                  className={`text-[14px] sm:text-[14.5px] leading-[1.6] mb-4 ${
+                    isLight ? "text-[#374151]" : "text-slate-300"
                   }`}
                 >
                   {ind.description}

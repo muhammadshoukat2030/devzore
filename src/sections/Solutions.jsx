@@ -468,12 +468,13 @@ const Solutions = () => {
 
                   <h3
                     className="
-                      text-[12px]
-                      sm:text-[16px]
+                      text-[17px]
+                      sm:text-[18px]
+                      lg:text-[19px]
 
                       font-bold
                       tracking-[-0.015em]
-                      leading-tight
+                      leading-snug
 
                       text-[#061923]
                     "
@@ -488,10 +489,10 @@ const Solutions = () => {
                       mt-1
 
                       text-xs
-                      sm:text-xs
+                      sm:text-[13px]
 
                       font-semibold
-                      text-slate-400
+                      text-[#079ea5]
                     "
                   >
                     {solution.subtitle}
@@ -504,13 +505,14 @@ const Solutions = () => {
                       mt-2
                       sm:mt-3
 
-                      text-xs
-                      sm:text-[13px]
+                      text-[14px]
+                      sm:text-[14.5px]
+                      lg:text-[15px]
 
-                      leading-[1.55]
-                      sm:leading-[1.65]
+                      leading-[1.6]
 
-                      text-slate-500
+                      text-[#374151]
+                      font-normal
                     "
                   >
                     {solution.description}
@@ -541,10 +543,7 @@ const Solutions = () => {
                         gap-1.5
 
                         text-xs
-                        sm:text-xs
-
-                        font-medium
-                        text-slate-600
+                        sm:text-[13px] font-medium text-slate-700
                       "
                     >
                       <CheckCircle2

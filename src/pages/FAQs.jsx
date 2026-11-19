@@ -728,7 +728,7 @@ const FAQs = () => {
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[13px] leading-5 mt-2">
+                  <p className="text-slate-300 text-[14px] sm:text-[14.5px] leading-[1.6] mt-2">
                     {item.text}
                   </p>
                 </div>
@@ -852,7 +852,7 @@ const FAQs = () => {
                   key={path}
                   to={path}
                   onClick={scrollTop}
-                  className="text-xs font-medium text-slate-500 hover:text-[#25bfce] transition-colors"
+                  className="text-[13px] font-medium text-slate-700 hover:text-[#25bfce] transition-colors"
                 >
                   {label}
                 </Link>

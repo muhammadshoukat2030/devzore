@@ -2150,7 +2150,7 @@ const BlogDetails = () => {
                 onClick={
                   handleBackToBlog
                 }
-                className="group inline-flex items-center gap-2 text-xs font-medium text-slate-500 transition-colors hover:text-[#07899a]"
+                className="group inline-flex items-center gap-2 text-[13px] font-medium text-slate-700 transition-colors hover:text-[#07899a]"
               >
                 <ArrowLeft
                   size={12}
@@ -2379,7 +2379,7 @@ const BlogDetails = () => {
                   (tag) => (
                     <span
                       key={tag}
-                      className="rounded-full bg-[#f4f6f7] px-3 py-2 text-xs font-medium text-slate-600"
+                      className="rounded-full bg-[#f4f6f7] px-3 py-2 text-[13px] font-medium text-slate-700"
                     >
                       {tag}
                     </span>

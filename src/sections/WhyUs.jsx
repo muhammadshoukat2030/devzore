@@ -327,11 +327,11 @@ const WhyUs = () => {
                   <h3
                     className="
                       pr-3
-                      text-[13px]
+                      text-[15px]
+                      sm:text-[16px]
                       font-semibold
-                      leading-tight
+                      leading-snug
                       text-white
-                      sm:text-[13px]
                     "
                   >
                     {reason.title}
@@ -342,10 +342,10 @@ const WhyUs = () => {
                   <p
                     className="
                       mt-1.5
-                      text-xs
-                      leading-[1.55]
-                      text-slate-400
-                      sm:text-xs
+                      text-[13px]
+                      sm:text-[14px]
+                      leading-relaxed
+                      text-slate-300
                     "
                   >
                     {reason.desc}

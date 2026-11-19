@@ -1026,11 +1026,11 @@ ${formData.message}`
                     </span>
                   </div>
 
-                  <h3 className="text-[#071923] text-[16px] leading-6 font-semibold mt-4">
+                  <h3 className="text-[#071923] text-[18px] sm:text-[19px] leading-snug font-semibold mt-4">
                     {service.title}
                   </h3>
 
-                  <p className="text-slate-600 text-[12px] leading-5 mt-2">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-2">
                     {service.desc}
                   </p>
 
@@ -1045,7 +1045,7 @@ ${formData.message}`
                           className="text-[#0796A8]"
                         />
 
-                        <span className="text-xs font-medium text-slate-600">
+                        <span className="text-[13px] font-medium text-slate-700">
                           {point}
                         </span>
                       </div>
@@ -1169,7 +1169,7 @@ ${formData.message}`
                       {item.title}
                     </h3>
 
-                    <p className="text-slate-500 text-[13px] leading-5 mt-1.5">
+                    <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5">
                       {item.desc}
                     </p>
                   </article>
@@ -1218,7 +1218,7 @@ ${formData.message}`
                     {gateway.name}
                   </h3>
 
-                  <p className="text-slate-500 text-xs leading-5 mt-1.5">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5">
                     {gateway.desc}
                   </p>
                 </article>
@@ -1267,7 +1267,7 @@ ${formData.message}`
                     {category.items.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-md border border-slate-200 bg-[#f8fafb] px-2.5 py-1.5 text-xs font-medium text-slate-600"
+                        className="rounded-md border border-slate-200 bg-[#f8fafb] px-2.5 py-1.5 text-[13px] font-medium text-slate-700"
                       >
                         {tech}
                       </span>
@@ -1326,7 +1326,7 @@ ${formData.message}`
                     {step.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[13px] leading-5 mt-2">
+                  <p className="text-slate-300 text-[14px] sm:text-[14.5px] leading-[1.6] mt-2">
                     {step.desc}
                   </p>
                 </article>
@@ -1431,7 +1431,7 @@ ${formData.message}`
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-500 text-[13px] leading-5 mt-1.5">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5">
                     {item.desc}
                   </p>
                 </article>
@@ -1487,12 +1487,12 @@ ${formData.message}`
                     {service.title}
                   </h3>
 
-                  <p className="text-slate-500 text-xs leading-5 mt-2">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-2">
                     {service.desc}
                   </p>
 
                   <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-100">
-                    <span className="text-xs font-medium text-slate-500 group-hover:text-[#07899a]">
+                    <span className="text-[13px] font-medium text-slate-700 group-hover:text-[#07899a]">
                       Explore service
                     </span>
 

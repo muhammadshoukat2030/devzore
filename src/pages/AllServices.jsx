@@ -1046,15 +1046,15 @@ ${formData.message}`
                     </span>
                   </div>
 
-                  <h3 className="text-[#071923] text-[16px] leading-6 font-semibold mt-4">
+                  <h3 className="text-[#071923] text-[18px] leading-snug font-semibold mt-4">
                     {service.title}
                   </h3>
 
-                  <p className="text-[#07899a] text-xs font-semibold tracking-[0.04em] mt-1">
+                  <p className="text-[#07899a] text-[13px] font-semibold tracking-[0.02em] mt-1">
                     {service.subtitle}
                   </p>
 
-                  <p className="text-slate-600 text-[12px] leading-5 mt-3">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-3">
                     {service.desc}
                   </p>
 
@@ -1065,11 +1065,11 @@ ${formData.message}`
                         className="flex items-center gap-2"
                       >
                         <CheckCircle2
-                          size={12}
+                          size={13}
                           className="text-[#0796A8]"
                         />
 
-                        <span className="text-xs font-medium text-slate-600">
+                        <span className="text-[13px] font-medium text-slate-700">
                           {point}
                         </span>
                       </div>
@@ -1161,7 +1161,7 @@ ${formData.message}`
                     {step.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[13px] leading-5 mt-2">
+                  <p className="text-slate-300 text-[14px] sm:text-[14.5px] leading-[1.6] mt-2">
                     {step.desc}
                   </p>
                 </article>
@@ -1209,7 +1209,7 @@ ${formData.message}`
                       {item.title}
                     </h3>
 
-                    <p className="text-slate-500 text-xs leading-5 mt-1.5">
+                    <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5">
                       {item.desc}
                     </p>
                   </article>
@@ -1271,7 +1271,7 @@ ${formData.message}`
                         {reason.title}
                       </h3>
 
-                      <p className="text-slate-500 text-xs leading-5 mt-1">
+                      <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1">
                         {reason.desc}
                       </p>
                     </div>

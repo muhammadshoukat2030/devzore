@@ -476,7 +476,7 @@ const BlogImage = ({
               />
             </div>
 
-            <span className="mt-2 hidden text-xs font-medium text-slate-500 sm:block">
+            <span className="mt-2 hidden text-[13px] font-medium text-slate-700 sm:block">
               Image unavailable
             </span>
           </div>
@@ -1725,7 +1725,7 @@ const BlogPost = () => {
                           </span>
                         </div>
 
-                        <h3 className="mt-4 text-[16px] leading-6 font-semibold text-[#071923]">
+                        <h3 className="mt-4 text-[18px] sm:text-[19px] leading-snug font-semibold text-[#071923]">
                           {
                             item.title
                           }

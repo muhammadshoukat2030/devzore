@@ -58,13 +58,13 @@ const FeaturedInsights = () => {
                   </span>
                 </div>
 
-                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#1bbac8] transition tracking-tight">
+                <h3 className="text-[17px] sm:text-[18px] font-bold text-white group-hover:text-[#1bbac8] transition tracking-tight">
                   <Link to={item.slug} onClick={scrollTop}>
                     {item.title}
                   </Link>
                 </h3>
 
-                <p className="mt-2.5 text-xs sm:text-[13px] leading-relaxed text-slate-300 line-clamp-3">
+                <p className="mt-2.5 text-[14px] sm:text-[14.5px] leading-relaxed text-slate-300 line-clamp-3">
                   {item.summary}
                 </p>
               </div>

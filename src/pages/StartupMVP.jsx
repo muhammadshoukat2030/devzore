@@ -934,11 +934,11 @@ ${formData.message}`
                     </span>
                   </div>
 
-                  <h3 className="text-[#071923] text-[16px] leading-6 font-semibold mt-3.5">
+                  <h3 className="text-[#071923] text-[18px] sm:text-[19px] leading-snug font-semibold mt-3.5">
                     {service.title}
                   </h3>
 
-                  <p className="text-slate-600 text-[12px] leading-5.5 mt-1.5 font-normal">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5 font-normal">
                     {service.desc}
                   </p>
 
@@ -953,7 +953,7 @@ ${formData.message}`
                           className="text-[#0796A8]"
                         />
 
-                        <span className="text-xs font-medium text-slate-600">
+                        <span className="text-[13px] font-medium text-slate-700">
                           {point}
                         </span>
                       </div>
@@ -1083,7 +1083,7 @@ ${formData.message}`
                       {item.title}
                     </h3>
 
-                    <p className="text-slate-500 text-[13px] leading-5 mt-1.5 font-normal">
+                    <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5 font-normal">
                       {item.desc}
                     </p>
                   </article>
@@ -1205,7 +1205,7 @@ ${formData.message}`
                     {step.title}
                   </h3>
 
-                  <p className="text-slate-400 text-[13px] leading-5 mt-1.5 font-normal">
+                  <p className="text-slate-300 text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5 font-normal">
                     {step.desc}
                   </p>
                 </article>
@@ -1311,7 +1311,7 @@ ${formData.message}`
                     {item.title}
                   </h3>
 
-                  <p className="text-slate-500 text-[13px] leading-5 mt-1.5 font-normal">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5 font-normal">
                     {item.desc}
                   </p>
                 </article>
@@ -1367,12 +1367,12 @@ ${formData.message}`
                     {service.title}
                   </h3>
 
-                  <p className="text-slate-500 text-xs leading-5 mt-1.5 font-normal">
+                  <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-1.5 font-normal">
                     {service.desc}
                   </p>
 
                   <div className="flex items-center justify-between mt-3.5 pt-3 border-t border-slate-100">
-                    <span className="text-xs font-medium text-slate-500 group-hover:text-[#07899a]">
+                    <span className="text-[13px] font-medium text-slate-700 group-hover:text-[#07899a]">
                       Explore service
                     </span>
 
@@ -1750,7 +1750,7 @@ ${formData.message}`
                   Have a startup idea? We’re here to help you build it.
                 </p>
 
-                <p className="text-slate-500 text-xs leading-5 mt-0.5 font-normal">
+                <p className="text-[#374151] text-[14px] sm:text-[14.5px] leading-[1.6] mt-0.5 font-normal">
                   MVP development, SaaS products and custom software by
                   DevZore.
                 </p>
