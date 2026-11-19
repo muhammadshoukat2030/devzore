@@ -386,7 +386,7 @@ const AdminPostEditor = () => {
     editorProps: {
       attributes: {
         class:
-          "admin-post-editor min-h-[420px] focus:outline-none px-5 sm:px-6 py-5",
+          "admin-post-editor min-h-[280px] focus:outline-none px-5 sm:px-6 py-5",
       },
     },
   });
@@ -1683,17 +1683,17 @@ const AdminPostEditor = () => {
           PAGE GRID
       ================================================= */}
 
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
         {/* ===============================================
             MAIN COLUMN
         =============================================== */}
 
-        <div className="min-w-0 space-y-6">
+        <div className="min-w-0 space-y-3.5">
           {/* =============================================
               POST INFORMATION
           ============================================= */}
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+          <section className="rounded-xl border border-slate-200 bg-white p-5 sm:p-4">
             <h2 className="mb-5 text-lg font-bold text-[#071923]">
               Post Information
             </h2>
@@ -1721,7 +1721,7 @@ const AdminPostEditor = () => {
                   }
                   placeholder="Enter post title"
                   maxLength={200}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[14px] outline-none transition focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
+                  className="w-full rounded-xl border border-slate-200 px-3 py-1.5 text-xs outline-none transition focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
                 />
               </div>
 
@@ -1746,7 +1746,7 @@ const AdminPostEditor = () => {
                     handleSlugChange
                   }
                   placeholder="your-post-slug"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[14px] outline-none transition focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
+                  className="w-full rounded-xl border border-slate-200 px-3 py-1.5 text-xs outline-none transition focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
                 />
 
                 <p className="mt-1.5 text-[11px] text-slate-400">
@@ -1788,7 +1788,7 @@ const AdminPostEditor = () => {
                   rows={4}
                   maxLength={300}
                   placeholder="Write a concise introduction that explains what the article covers..."
-                  className="w-full resize-none rounded-xl border border-slate-200 px-4 py-3 text-[14px] leading-6 outline-none transition focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
+                  className="w-full resize-none rounded-xl border border-slate-200 px-3 py-1.5 text-xs leading-6 outline-none transition focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
                 />
 
                 <p className="mt-1.5 text-[11px] leading-5 text-slate-400">
@@ -1805,7 +1805,7 @@ const AdminPostEditor = () => {
               ARTICLE EDITOR
           ============================================= */}
 
-          <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+          <section className="overflow-hidden rounded-xl border border-slate-200 bg-white">
             <div className="border-b border-slate-200 px-5 py-4 sm:px-6">
               <h2 className="text-lg font-bold text-[#071923]">
                 Article Content
@@ -2112,12 +2112,12 @@ const AdminPostEditor = () => {
             SIDEBAR
         =============================================== */}
 
-        <aside className="space-y-6">
+        <aside className="space-y-3.5">
           {/* =============================================
               PUBLISH
           ============================================= */}
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-5">
+          <section className="rounded-xl border border-slate-200 bg-white p-5">
             <h2 className="mb-5 text-lg font-bold text-[#071923]">
               Publish
             </h2>
@@ -2140,7 +2140,7 @@ const AdminPostEditor = () => {
                   onChange={
                     handleChange
                   }
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-[13px] outline-none transition focus:border-[#0796A8]"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs outline-none transition focus:border-[#0796A8]"
                 >
                   <option value="draft">
                     Draft
@@ -2258,7 +2258,7 @@ const AdminPostEditor = () => {
               CATEGORY
           ============================================= */}
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-5">
+          <section className="rounded-xl border border-slate-200 bg-white p-5">
             <h2 className="mb-4 text-lg font-bold text-[#071923]">
               Category
             </h2>
@@ -2271,7 +2271,7 @@ const AdminPostEditor = () => {
               onChange={
                 handleChange
               }
-              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-[13px] outline-none transition focus:border-[#0796A8]"
+              className="w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs outline-none transition focus:border-[#0796A8]"
             >
               <option value="">
                 Select category
@@ -2318,7 +2318,7 @@ const AdminPostEditor = () => {
               COVER IMAGE
           ============================================= */}
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-5">
+          <section className="rounded-xl border border-slate-200 bg-white p-5">
             <div className="mb-4 flex items-start justify-between gap-3">
               <div>
                 <h2 className="text-lg font-bold text-[#071923]">
@@ -2361,7 +2361,7 @@ const AdminPostEditor = () => {
 
             <label
               htmlFor="coverImageUpload"
-              className={`flex min-h-[46px] w-full items-center justify-center rounded-xl border border-dashed px-4 py-3 text-center text-[12px] font-semibold transition ${
+              className={`flex min-h-[46px] w-full items-center justify-center rounded-xl border border-dashed px-3 py-1.5 text-xs text-center text-[12px] font-semibold transition ${
                 uploadingCoverImage
                   ? "cursor-not-allowed border-slate-200 bg-slate-50 text-slate-400"
                   : "cursor-pointer border-[#0796A8]/40 bg-[#0796A8]/5 text-[#07899a] hover:bg-[#0796A8]/10"
@@ -2478,7 +2478,7 @@ const AdminPostEditor = () => {
               IMAGE SEO
           ============================================= */}
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-5">
+          <section className="rounded-xl border border-slate-200 bg-white p-5">
             <h2 className="mb-4 text-lg font-bold text-[#071923]">
               Image SEO
             </h2>
@@ -2502,7 +2502,7 @@ const AdminPostEditor = () => {
               }
               maxLength={160}
               placeholder="Describe the image naturally"
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[12px] outline-none transition focus:border-[#0796A8]"
+              className="w-full rounded-xl border border-slate-200 px-3 py-1.5 text-xs outline-none transition focus:border-[#0796A8]"
             />
 
             <p className="mt-2 text-[10px] leading-5 text-slate-400">
@@ -2516,7 +2516,7 @@ const AdminPostEditor = () => {
               TAGS
           ============================================= */}
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-5">
+          <section className="rounded-xl border border-slate-200 bg-white p-5">
             <h2 className="mb-4 text-lg font-bold text-[#071923]">
               Tags
             </h2>
@@ -2531,7 +2531,7 @@ const AdminPostEditor = () => {
                 handleChange
               }
               placeholder="web development, saas, seo"
-              className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[12px] outline-none transition focus:border-[#0796A8]"
+              className="w-full rounded-xl border border-slate-200 px-3 py-1.5 text-xs outline-none transition focus:border-[#0796A8]"
             />
 
             <p className="mt-2 text-[10px] text-slate-400">
@@ -2543,7 +2543,7 @@ const AdminPostEditor = () => {
               SEO SETTINGS
           ============================================= */}
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-5">
+          <section className="rounded-xl border border-slate-200 bg-white p-5">
             <h2 className="mb-5 text-lg font-bold text-[#071923]">
               SEO Settings
             </h2>
@@ -2578,7 +2578,7 @@ const AdminPostEditor = () => {
                   }
                   maxLength={70}
                   placeholder="SEO title"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[12px] outline-none transition focus:border-[#0796A8]"
+                  className="w-full rounded-xl border border-slate-200 px-3 py-1.5 text-xs outline-none transition focus:border-[#0796A8]"
                 />
               </div>
 
@@ -2611,7 +2611,7 @@ const AdminPostEditor = () => {
                   maxLength={160}
                   rows={4}
                   placeholder="SEO description"
-                  className="w-full resize-none rounded-xl border border-slate-200 px-4 py-3 text-[12px] leading-5 outline-none transition focus:border-[#0796A8]"
+                  className="w-full resize-none rounded-xl border border-slate-200 px-3 py-1.5 text-xs leading-5 outline-none transition focus:border-[#0796A8]"
                 />
               </div>
 
@@ -2632,7 +2632,7 @@ const AdminPostEditor = () => {
                     handleChange
                   }
                   placeholder="software development, web development"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-[12px] outline-none transition focus:border-[#0796A8]"
+                  className="w-full rounded-xl border border-slate-200 px-3 py-1.5 text-xs outline-none transition focus:border-[#0796A8]"
                 />
               </div>
             </div>

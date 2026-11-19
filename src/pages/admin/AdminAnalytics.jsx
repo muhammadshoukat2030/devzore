@@ -50,11 +50,11 @@ const AdminAnalytics = () => {
   const avgCtr = ((totalClicks / totalImpressions) * 100).toFixed(1);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-3.5">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 flex items-center gap-3">
+          <h1 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-3">
             <BarChart3 className="w-8 h-8 text-[#0796A8]" />
             Search Console & Traffic Analytics
           </h1>
@@ -82,14 +82,14 @@ const AdminAnalytics = () => {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-xl p-3 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-1 bg-[#0796A8]" />
           <div className="flex items-center justify-between">
             <p className="text-xs uppercase font-semibold text-slate-500 tracking-wider">Total Impressions</p>
             <Eye className="w-4 h-4 text-[#0796A8]" />
           </div>
           <div className="flex items-baseline gap-2 mt-2">
-            <h3 className="text-3xl font-bold text-slate-900">{totalImpressions.toLocaleString()}</h3>
+            <h3 className="text-xl font-bold text-slate-900">{totalImpressions.toLocaleString()}</h3>
             <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-0.5">
               <TrendingUp className="w-3 h-3" /> +24%
             </span>
@@ -97,14 +97,14 @@ const AdminAnalytics = () => {
           <p className="text-xs text-slate-400 mt-2">24h target: 1000+ growing daily</p>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-xl p-3 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500" />
           <div className="flex items-center justify-between">
             <p className="text-xs uppercase font-semibold text-slate-500 tracking-wider">Total Clicks</p>
             <MousePointerClick className="w-4 h-4 text-emerald-600" />
           </div>
           <div className="flex items-baseline gap-2 mt-2">
-            <h3 className="text-3xl font-bold text-slate-900">{totalClicks}</h3>
+            <h3 className="text-xl font-bold text-slate-900">{totalClicks}</h3>
             <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-0.5">
               <TrendingUp className="w-3 h-3" /> +18%
             </span>
@@ -112,14 +112,14 @@ const AdminAnalytics = () => {
           <p className="text-xs text-slate-400 mt-2">Direct search clicks into DevZore</p>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-xl p-3 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-1 bg-violet-500" />
           <div className="flex items-center justify-between">
             <p className="text-xs uppercase font-semibold text-slate-500 tracking-wider">Average CTR</p>
             <BarChart3 className="w-4 h-4 text-violet-600" />
           </div>
           <div className="flex items-baseline gap-2 mt-2">
-            <h3 className="text-3xl font-bold text-slate-900">{avgCtr}%</h3>
+            <h3 className="text-xl font-bold text-slate-900">{avgCtr}%</h3>
             <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
               Industry High
             </span>
@@ -127,14 +127,14 @@ const AdminAnalytics = () => {
           <p className="text-xs text-slate-400 mt-2">Driven by intent-rich meta titles</p>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-xl p-3 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-1 bg-amber-500" />
           <div className="flex items-center justify-between">
             <p className="text-xs uppercase font-semibold text-slate-500 tracking-wider">Avg Search Position</p>
             <TrendingUp className="w-4 h-4 text-amber-600" />
           </div>
           <div className="flex items-baseline gap-2 mt-2">
-            <h3 className="text-3xl font-bold text-slate-900">4.6</h3>
+            <h3 className="text-xl font-bold text-slate-900">4.6</h3>
             <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
               Page 1 Top 5
             </span>
@@ -144,7 +144,7 @@ const AdminAnalytics = () => {
       </div>
 
       {/* Weekly Impression Bar Chart */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+      <div className="bg-white border border-slate-200 rounded-xl p-3.5 shadow-2xs">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-lg font-bold text-slate-900">Weekly Impressions & Clicks Growth</h2>
@@ -161,7 +161,7 @@ const AdminAnalytics = () => {
         </div>
 
         {/* Visual Bar chart */}
-        <div className="grid grid-cols-7 gap-3 h-48 items-end pt-4 pb-2 border-b border-slate-100">
+        <div className="grid grid-cols-7 gap-3 h-32 items-end pt-4 pb-2 border-b border-slate-100">
           {WEEKLY_STATS.map((item) => {
             const heightPercent = Math.round((item.impressions / 350) * 100);
             return (
@@ -190,7 +190,7 @@ const AdminAnalytics = () => {
       {/* Grid: Top Queries & Device Split */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Top Google Queries */}
-        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+        <div className="lg:col-span-2 bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
           <div className="p-5 border-b border-slate-200 flex items-center justify-between">
             <div>
               <h3 className="font-bold text-slate-900">Top Performing Search Queries (GSC)</h3>
@@ -201,21 +201,21 @@ const AdminAnalytics = () => {
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500 font-semibold border-b border-slate-200">
-                  <th className="py-3 px-5">Search Query</th>
-                  <th className="py-3 px-4 text-center">Impressions</th>
-                  <th className="py-3 px-4 text-center">Clicks</th>
-                  <th className="py-3 px-4 text-center">CTR</th>
-                  <th className="py-3 px-4 text-right">Avg Pos</th>
+                  <th className="py-1.5 px-3 text-[10px]">Search Query</th>
+                  <th className="py-1.5 px-2 text-[10px] text-center">Impressions</th>
+                  <th className="py-1.5 px-2 text-[10px] text-center">Clicks</th>
+                  <th className="py-1.5 px-2 text-[10px] text-center">CTR</th>
+                  <th className="py-1.5 px-2 text-[10px] text-right">Avg Pos</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {TOP_GSC_QUERIES.map((q) => (
                   <tr key={q.query} className="hover:bg-slate-50/70 transition">
-                    <td className="py-3.5 px-5 font-medium text-slate-800">{q.query}</td>
-                    <td className="py-3.5 px-4 text-center font-mono text-xs">{q.impressions}</td>
-                    <td className="py-3.5 px-4 text-center font-mono text-xs font-semibold text-emerald-600">{q.clicks}</td>
-                    <td className="py-3.5 px-4 text-center font-mono text-xs">{q.ctr}</td>
-                    <td className="py-3.5 px-4 text-right font-mono text-xs text-slate-600">#{q.position}</td>
+                    <td className="py-2 px-3 text-xs font-medium text-slate-800">{q.query}</td>
+                    <td className="py-2 px-2 text-xs text-center font-mono text-xs">{q.impressions}</td>
+                    <td className="py-2 px-2 text-xs text-center font-mono text-xs font-semibold text-emerald-600">{q.clicks}</td>
+                    <td className="py-2 px-2 text-xs text-center font-mono text-xs">{q.ctr}</td>
+                    <td className="py-2 px-2 text-xs text-right font-mono text-xs text-slate-600">#{q.position}</td>
                   </tr>
                 ))}
               </tbody>
@@ -224,7 +224,7 @@ const AdminAnalytics = () => {
         </div>
 
         {/* Device & User Engagement Breakdown */}
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-6">
+        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-6">
           <div>
             <h3 className="font-bold text-slate-900">Traffic by Device</h3>
             <p className="text-xs text-slate-500 mt-0.5">Visitor device distribution</p>

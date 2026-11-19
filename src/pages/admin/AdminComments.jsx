@@ -251,9 +251,9 @@ const AdminComments = () => {
           Header
       ================================================== */}
 
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
+          <h1 className="text-base sm:text-lg font-bold text-slate-900">
             Comments
           </h1>
 
@@ -268,7 +268,7 @@ const AdminComments = () => {
           type="button"
           onClick={() => loadComments(true)}
           disabled={loading || refreshing}
-          className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg text-xs border border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <span
             className={
@@ -291,7 +291,7 @@ const AdminComments = () => {
       ================================================== */}
 
       {!loading && (
-        <div className="mb-6">
+        <div className="mb-2.5">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-sm">
             <span className="font-semibold text-slate-900">
               {comments.length}
@@ -308,7 +308,7 @@ const AdminComments = () => {
           Comments Container
       ================================================== */}
 
-      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
         {/* ==================================================
             Loading
         ================================================== */}
@@ -329,7 +329,7 @@ const AdminComments = () => {
 
         {!loading &&
           comments.length === 0 && (
-            <div className="py-16 px-6 text-center">
+            <div className="py-8 px-4 text-center">
               <div className="w-14 h-14 mx-auto rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-2xl mb-4">
                 💬
               </div>
@@ -366,7 +366,7 @@ const AdminComments = () => {
                 return (
                   <div
                     key={id}
-                    className="p-5 sm:p-6 hover:bg-slate-50/50 transition"
+                    className="p-3.5 sm:p-4 text-xs hover:bg-slate-50/50 transition"
                   >
                     <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5">
                       {/* ==================================================
@@ -454,7 +454,7 @@ const AdminComments = () => {
                               isApproving ||
                               isDeleting
                             }
-                            className="px-3 py-2 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="px-2.5 py-1 rounded-md text-xs bg-green-50 text-green-600 hover:bg-green-100 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed"
                           >
                             {isApproving
                               ? "Approving..."
@@ -473,7 +473,7 @@ const AdminComments = () => {
                             isDeleting ||
                             isApproving
                           }
-                          className="px-3 py-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="px-2.5 py-1 rounded-md text-xs bg-red-50 text-red-600 hover:bg-red-100 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           {isDeleting
                             ? "Deleting..."

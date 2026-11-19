@@ -84,11 +84,11 @@ const AdminSEO = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-3.5">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 flex items-center gap-3">
+          <h1 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-3">
             <SearchCheck className="w-8 h-8 text-[#0796A8]" />
             SEO & Indexing Manager
           </h1>
@@ -120,11 +120,11 @@ const AdminSEO = () => {
 
       {/* SEO Health KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-xl p-3 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500" />
           <p className="text-xs uppercase font-semibold text-slate-500 tracking-wider">Ahrefs Health Score</p>
           <div className="flex items-baseline gap-2 mt-2">
-            <h3 className="text-3xl font-bold text-slate-900">92</h3>
+            <h3 className="text-xl font-bold text-slate-900">92</h3>
             <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
               Zero 4xx Errors
             </span>
@@ -132,11 +132,11 @@ const AdminSEO = () => {
           <p className="text-xs text-slate-400 mt-2">Targeting 98+ on next crawl</p>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-xl p-3 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-1 bg-blue-500" />
           <p className="text-xs uppercase font-semibold text-slate-500 tracking-wider">Indexed Routes</p>
           <div className="flex items-baseline gap-2 mt-2">
-            <h3 className="text-3xl font-bold text-slate-900">67</h3>
+            <h3 className="text-xl font-bold text-slate-900">67</h3>
             <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
               100% In Sitemap
             </span>
@@ -144,11 +144,11 @@ const AdminSEO = () => {
           <p className="text-xs text-slate-400 mt-2">Zero orphaned content pages</p>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-xl p-3 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-1 bg-teal-500" />
           <p className="text-xs uppercase font-semibold text-slate-500 tracking-wider">IndexNow API</p>
           <div className="flex items-baseline gap-2 mt-2">
-            <h3 className="text-2xl font-bold text-slate-900">Connected</h3>
+            <h3 className="text-lg font-bold text-slate-900">Connected</h3>
             <span className="text-xs font-semibold text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full">
               Auto-Ping Active
             </span>
@@ -156,11 +156,11 @@ const AdminSEO = () => {
           <p className="text-xs text-slate-400 mt-2">devzore.com key validated</p>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-xl p-3 relative overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-1 bg-violet-500" />
           <p className="text-xs uppercase font-semibold text-slate-500 tracking-wider">Canonical Tags</p>
           <div className="flex items-baseline gap-2 mt-2">
-            <h3 className="text-2xl font-bold text-slate-900">Self-Ref</h3>
+            <h3 className="text-lg font-bold text-slate-900">Self-Ref</h3>
             <span className="text-xs font-semibold text-violet-600 bg-violet-50 px-2 py-0.5 rounded-full">
               67 / 67 Verified
             </span>
@@ -170,7 +170,7 @@ const AdminSEO = () => {
       </div>
 
       {/* SEO Guidelines & Tips */}
-      <div className="bg-gradient-to-r from-slate-900 to-[#071923] text-white rounded-2xl p-6 shadow-sm">
+      <div className="bg-gradient-to-r from-slate-900 to-[#071923] text-white rounded-xl p-3.5 shadow-2xs">
         <div className="flex items-start gap-4">
           <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
             <Sparkles className="w-5 h-5 text-teal-300" />
@@ -185,7 +185,7 @@ const AdminSEO = () => {
       </div>
 
       {/* Route Explorer Table */}
-      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
         {/* Controls */}
         <div className="p-5 border-b border-slate-200 flex flex-col md:flex-row gap-4 items-center justify-between">
           <div className="relative w-full md:w-96">
@@ -221,12 +221,12 @@ const AdminSEO = () => {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500 font-semibold border-b border-slate-200">
-                <th className="py-3.5 px-6">Route Path</th>
-                <th className="py-3.5 px-6">SEO Title (Target 40-60 chars)</th>
+                <th className="py-2 px-3 text-xs">Route Path</th>
+                <th className="py-2 px-3 text-xs">SEO Title (Target 40-60 chars)</th>
                 <th className="py-3.5 px-4 text-center">Type</th>
                 <th className="py-3.5 px-4 text-center">Priority</th>
                 <th className="py-3.5 px-4 text-center">Status</th>
-                <th className="py-3.5 px-6 text-right">Actions</th>
+                <th className="py-2 px-3 text-xs text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-sm">
@@ -235,10 +235,10 @@ const AdminSEO = () => {
                 const isOptimal = titleLength >= 35 && titleLength <= 60;
                 return (
                   <tr key={route.path} className="hover:bg-slate-50/70 transition">
-                    <td className="py-4 px-6 font-mono text-xs font-medium text-slate-900">
+                    <td className="py-2 px-3 text-xs font-mono text-xs font-medium text-slate-900">
                       {route.path}
                     </td>
-                    <td className="py-4 px-6">
+                    <td className="py-2 px-3 text-xs">
                       <div className="max-w-md">
                         <p className="text-slate-800 font-medium truncate">{route.title}</p>
                         <div className="flex items-center gap-2 mt-1">
@@ -259,21 +259,21 @@ const AdminSEO = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="py-4 px-4 text-center">
+                    <td className="py-2 px-2 text-xs text-center">
                       <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-700">
                         {route.type}
                       </span>
                     </td>
-                    <td className="py-4 px-4 text-center font-mono text-xs text-slate-500">
+                    <td className="py-2 px-2 text-xs text-center font-mono text-xs text-slate-500">
                       {route.priority}
                     </td>
-                    <td className="py-4 px-4 text-center">
+                    <td className="py-2 px-2 text-xs text-center">
                       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         {route.status}
                       </span>
                     </td>
-                    <td className="py-4 px-6 text-right">
+                    <td className="py-2 px-3 text-xs text-right">
                       <a
                         href={route.path}
                         target="_blank"

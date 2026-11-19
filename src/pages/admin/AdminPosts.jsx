@@ -237,7 +237,7 @@ const PostThumbnail = ({ post }) => {
   }, [imageUrl]);
 
   return (
-    <div className="w-16 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-slate-100 border border-slate-200">
+    <div className="w-10 h-8 rounded-lg overflow-hidden flex-shrink-0 bg-slate-100 border border-slate-200">
       {imageUrl && !imageFailed ? (
         <img
           src={imageUrl}
@@ -710,29 +710,16 @@ const AdminPosts = () => {
   // ====================================================
 
   const formatDate = (date) => {
-    if (!date) {
-      return "—";
-    }
-
-    const parsedDate =
-      new Date(date);
-
-    if (
-      Number.isNaN(
-        parsedDate.getTime()
-      )
-    ) {
-      return "—";
-    }
-
-    return parsedDate.toLocaleDateString(
-      "en-US",
-      {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      }
-    );
+    if (!date) return "—";
+    const parsedDate = new Date(date);
+    if (Number.isNaN(parsedDate.getTime())) return "—";
+    return parsedDate.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
   };
 
   // ====================================================
@@ -776,9 +763,9 @@ const AdminPosts = () => {
           HEADER
       ================================================ */}
 
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
+          <h1 className="text-base sm:text-lg font-bold text-slate-900">
             Posts
           </h1>
 
@@ -800,7 +787,7 @@ const AdminPosts = () => {
               loading ||
               refreshing
             }
-            className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <span
               className={
@@ -821,7 +808,7 @@ const AdminPosts = () => {
 
           <Link
             to="/admin/posts/new"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#071923] text-white font-semibold hover:bg-[#0b2633] transition"
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#071923] text-xs text-white font-semibold hover:bg-[#0b2633] transition"
           >
             <span className="text-lg leading-none">
               +
@@ -838,7 +825,7 @@ const AdminPosts = () => {
 
       <form
         onSubmit={handleSearch}
-        className="mb-6 flex flex-col sm:flex-row gap-3"
+        className="mb-3 flex flex-col sm:flex-row gap-3"
       >
         <div className="relative flex-1">
           <input
@@ -850,13 +837,13 @@ const AdminPosts = () => {
               )
             }
             placeholder="Search posts..."
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
+            className="w-full px-3 py-1.5 rounded-lg text-xs border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
           />
         </div>
 
         <button
           type="submit"
-          className="px-5 py-3 rounded-xl bg-[#071923] text-white font-semibold hover:bg-[#0b2633] transition"
+          className="px-4 py-1.5 rounded-lg bg-[#071923] text-white text-xs font-semibold hover:bg-[#0b2633] transition"
         >
           Search
         </button>
@@ -867,7 +854,7 @@ const AdminPosts = () => {
             onClick={
               clearSearch
             }
-            className="px-5 py-3 rounded-xl border border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition"
+            className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs bg-white text-slate-700 font-medium hover:bg-slate-50 transition"
           >
             Clear
           </button>
@@ -903,7 +890,7 @@ const AdminPosts = () => {
       ================================================ */}
 
       {!loading && (
-        <div className="mb-6 flex flex-wrap items-center gap-3">
+        <div className="mb-3 flex flex-wrap items-center gap-3">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-sm">
             <span className="font-semibold text-slate-900">
               {
@@ -985,31 +972,31 @@ const AdminPosts = () => {
                   </button>
                 </th>
 
-                <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500">
+                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
                   Post
                 </th>
 
-                <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500">
+                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
                   Category
                 </th>
 
-                <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500">
+                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
                   Status
                 </th>
 
-                <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500">
+                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
                   Words
                 </th>
 
-                <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500">
+                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
                   Views
                 </th>
 
-                <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500">
+                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
                   Date
                 </th>
 
-                <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500 text-right">
+                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500 text-right">
                   Actions
                 </th>
               </tr>
@@ -1074,7 +1061,7 @@ const AdminPosts = () => {
                       >
                         {/* CHECKBOX */}
 
-                        <td className="pl-4 pr-2 py-5">
+                        <td className="pl-3 pr-1 py-2">
                           <button
                             type="button"
                             onClick={() =>
@@ -1094,7 +1081,7 @@ const AdminPosts = () => {
 
                         {/* POST */}
 
-                        <td className="px-6 py-5">
+                        <td className="px-3 py-2 text-xs">
                           <div className="flex items-center gap-4">
                             <PostThumbnail
                               post={
@@ -1124,7 +1111,7 @@ const AdminPosts = () => {
 
                         {/* CATEGORY */}
 
-                        <td className="px-6 py-5 text-sm text-slate-600">
+                        <td className="px-3 py-2 text-xs text-sm text-slate-600">
                           {
                             categoryName
                           }
@@ -1132,7 +1119,7 @@ const AdminPosts = () => {
 
                         {/* STATUS */}
 
-                        <td className="px-6 py-5">
+                        <td className="px-3 py-2 text-xs">
                           <span
                             className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold capitalize ${getStatusClass(
                               status
@@ -1146,7 +1133,7 @@ const AdminPosts = () => {
 
                         {/* WORDS */}
 
-                        <td className="px-6 py-5 text-sm text-slate-500">
+                        <td className="px-3 py-2 text-xs text-sm text-slate-500">
                           {wordCount !== null
                             ? wordCount.toLocaleString()
                             : "—"}
@@ -1154,7 +1141,7 @@ const AdminPosts = () => {
 
                         {/* VIEWS */}
 
-                        <td className="px-6 py-5 text-sm text-slate-500">
+                        <td className="px-3 py-2 text-xs text-sm text-slate-500">
                           {typeof post?.views ===
                           "number"
                             ? post.views.toLocaleString()
@@ -1163,16 +1150,33 @@ const AdminPosts = () => {
 
                         {/* DATE */}
 
-                        <td className="px-6 py-5 text-sm text-slate-500">
-                          {formatDate(
-                            post?.publishedAt ||
-                              post?.createdAt
+                        <td className="px-3 py-2 text-xs text-slate-600 whitespace-nowrap">
+                          {post?.status === "scheduled" || post?.scheduledAt ? (
+                            <div className="space-y-0.5">
+                              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-cyan-700 bg-cyan-50 border border-cyan-200 px-1.5 py-0.5 rounded">
+                                ⏰ Sched: {formatDate(post?.scheduledAt || post?.createdAt)}
+                              </span>
+                              <p className="text-[9px] text-slate-400">Syncs sitemap on trigger</p>
+                            </div>
+                          ) : post?.status === "published" ? (
+                            <div className="space-y-0.5">
+                              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded">
+                                ✓ Pub: {formatDate(post?.publishedAt || post?.createdAt)}
+                              </span>
+                              <p className="text-[9px] text-emerald-600 font-mono">Sitemap: Synced</p>
+                            </div>
+                          ) : (
+                            <div className="space-y-0.5">
+                              <span className="inline-flex items-center gap-1 text-[10px] text-slate-500">
+                                Draft: {formatDate(post?.createdAt)}
+                              </span>
+                            </div>
                           )}
                         </td>
 
                         {/* ACTIONS */}
 
-                        <td className="px-6 py-5">
+                        <td className="px-3 py-2 text-xs">
                           <div className="flex items-center justify-end gap-2 flex-wrap">
                             {/* PREVIEW */}
                             <button
