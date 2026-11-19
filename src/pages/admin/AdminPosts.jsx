@@ -11,6 +11,15 @@ import {
 
 import toast from "react-hot-toast";
 
+import {
+  Eye,
+  ToggleLeft,
+  ToggleRight,
+  Trash2,
+  Square,
+  CheckSquare,
+} from "lucide-react";
+
 import postService from "../../services/postService";
 
 // ======================================================
@@ -199,6 +208,20 @@ const getBlogImageUrl = (post) => {
 };
 
 // ======================================================
+// WORD COUNT HELPER
+// ======================================================
+
+const getWordCount = (content) => {
+  if (!content) return null;
+  const count = content
+    .replace(/<[^>]*>/g, "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return count;
+};
+
+// ======================================================
 // POST THUMBNAIL
 // ======================================================
 
@@ -252,6 +275,17 @@ const PostThumbnail = ({ post }) => {
 };
 
 // ======================================================
+// STATUS FILTER TABS
+// ======================================================
+
+const STATUS_FILTERS = [
+  { label: "All", value: "all" },
+  { label: "Published", value: "published" },
+  { label: "Draft", value: "draft" },
+  { label: "Scheduled", value: "scheduled" },
+];
+
+// ======================================================
 // COMPONENT
 // ======================================================
 
@@ -273,6 +307,20 @@ const AdminPosts = () => {
 
   const [deletingId, setDeletingId] =
     useState(null);
+
+  const [togglingId, setTogglingId] =
+    useState(null);
+
+  // Status filter
+  const [statusFilter, setStatusFilter] =
+    useState("all");
+
+  // Bulk select
+  const [selectedIds, setSelectedIds] =
+    useState([]);
+
+  const [bulkDeleting, setBulkDeleting] =
+    useState(false);
 
   // Search
 
@@ -362,6 +410,7 @@ const AdminPosts = () => {
           extractPosts(response);
 
         setPosts(list);
+        setSelectedIds([]);
 
         setPagination({
           total:
@@ -430,6 +479,18 @@ const AdminPosts = () => {
       clearTimeout(timer);
     };
   }, [searchInput]);
+
+  // ====================================================
+  // CLIENT-SIDE FILTERED POSTS
+  // ====================================================
+
+  const filteredPosts =
+    statusFilter === "all"
+      ? posts
+      : posts.filter(
+          (post) =>
+            (post?.status || "draft") === statusFilter
+        );
 
   // ====================================================
   // DELETE POST
@@ -525,6 +586,106 @@ const AdminPosts = () => {
   };
 
   // ====================================================
+  // QUICK STATUS TOGGLE
+  // ====================================================
+
+  const handleStatusToggle = async (post) => {
+    const id = getPostId(post);
+    if (!id) return;
+
+    const currentStatus = post?.status || "draft";
+    const newStatus =
+      currentStatus === "published" ? "draft" : "published";
+
+    try {
+      setTogglingId(id);
+      await postService.updatePost(id, { status: newStatus });
+      toast.success(
+        newStatus === "published"
+          ? "Post published."
+          : "Post unpublished."
+      );
+      await loadPosts(true);
+    } catch (error) {
+      console.error("❌ Toggle status error:", error);
+      toast.error(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to update status."
+      );
+    } finally {
+      setTogglingId(null);
+    }
+  };
+
+  // ====================================================
+  // BULK SELECT HELPERS
+  // ====================================================
+
+  const allFilteredIds = filteredPosts.map(getPostId).filter(Boolean);
+  const allSelected =
+    allFilteredIds.length > 0 &&
+    allFilteredIds.every((id) => selectedIds.includes(id));
+
+  const toggleSelectAll = () => {
+    if (allSelected) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(allFilteredIds);
+    }
+  };
+
+  const toggleSelectOne = (id) => {
+    setSelectedIds((prev) =>
+      prev.includes(id)
+        ? prev.filter((i) => i !== id)
+        : [...prev, id]
+    );
+  };
+
+  // ====================================================
+  // BULK DELETE
+  // ====================================================
+
+  const handleBulkDelete = async () => {
+    if (selectedIds.length === 0) return;
+
+    const confirmed = window.confirm(
+      `Delete ${selectedIds.length} selected post${
+        selectedIds.length > 1 ? "s" : ""
+      }? This cannot be undone.`
+    );
+    if (!confirmed) return;
+
+    setBulkDeleting(true);
+    let successCount = 0;
+    let failCount = 0;
+
+    for (const id of selectedIds) {
+      try {
+        await postService.deletePost(id);
+        successCount++;
+      } catch {
+        failCount++;
+      }
+    }
+
+    setBulkDeleting(false);
+
+    if (successCount > 0) {
+      toast.success(
+        `${successCount} post${successCount > 1 ? "s" : ""} deleted.`
+      );
+    }
+    if (failCount > 0) {
+      toast.error(`${failCount} deletion${failCount > 1 ? "s" : ""} failed.`);
+    }
+
+    setSelectedIds([]);
+    await loadPosts(true);
+  };
+
+  // ====================================================
   // STATUS CLASS
   // ====================================================
 
@@ -597,6 +758,13 @@ const AdminPosts = () => {
     setSearch("");
     setPage(1);
   };
+
+  // ====================================================
+  // COLUMN COUNT (for colSpan)
+  // ====================================================
+
+  // checkbox + Post + Category + Status + Words + Views + Date + Actions = 8
+  const COL_COUNT = 8;
 
   // ====================================================
   // RENDER
@@ -707,11 +875,35 @@ const AdminPosts = () => {
       </form>
 
       {/* ================================================
+          STATUS FILTER
+      ================================================ */}
+
+      <div className="flex flex-wrap items-center gap-2 mb-5">
+        {STATUS_FILTERS.map((filter) => (
+          <button
+            key={filter.value}
+            type="button"
+            onClick={() => {
+              setStatusFilter(filter.value);
+              setSelectedIds([]);
+            }}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium border transition ${
+              statusFilter === filter.value
+                ? "bg-[#071923] text-white border-[#071923]"
+                : "bg-white text-slate-600 border-slate-200 hover:border-slate-400 hover:text-slate-900"
+            }`}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+
+      {/* ================================================
           STATS
       ================================================ */}
 
       {!loading && (
-        <div className="mb-6">
+        <div className="mb-6 flex flex-wrap items-center gap-3">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-sm">
             <span className="font-semibold text-slate-900">
               {
@@ -723,6 +915,46 @@ const AdminPosts = () => {
               ? "Post"
               : "Posts"}
           </div>
+
+          {statusFilter !== "all" && (
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 text-sm">
+              Showing{" "}
+              <span className="font-semibold text-slate-900">
+                {filteredPosts.length}
+              </span>{" "}
+              {statusFilter}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ================================================
+          BULK ACTION BAR
+      ================================================ */}
+
+      {selectedIds.length > 0 && (
+        <div className="mb-4 flex items-center gap-4 px-4 py-3 rounded-xl bg-red-50 border border-red-200">
+          <span className="text-sm font-medium text-red-700">
+            {selectedIds.length} post{selectedIds.length > 1 ? "s" : ""} selected
+          </span>
+
+          <button
+            type="button"
+            onClick={handleBulkDelete}
+            disabled={bulkDeleting}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <Trash2 className="w-4 h-4" />
+            {bulkDeleting ? "Deleting..." : "Delete Selected"}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSelectedIds([])}
+            className="ml-auto text-sm text-red-500 hover:text-red-700 transition"
+          >
+            Cancel
+          </button>
         </div>
       )}
 
@@ -732,11 +964,27 @@ const AdminPosts = () => {
 
       <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[900px]">
+          <table className="w-full min-w-[1000px]">
             {/* TABLE HEADER */}
 
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200 text-left">
+                {/* CHECKBOX */}
+                <th className="pl-4 pr-2 py-4 w-10">
+                  <button
+                    type="button"
+                    onClick={toggleSelectAll}
+                    className="text-slate-400 hover:text-slate-700 transition"
+                    aria-label="Select all"
+                  >
+                    {allSelected ? (
+                      <CheckSquare className="w-4 h-4 text-[#0796A8]" />
+                    ) : (
+                      <Square className="w-4 h-4" />
+                    )}
+                  </button>
+                </th>
+
                 <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500">
                   Post
                 </th>
@@ -747,6 +995,10 @@ const AdminPosts = () => {
 
                 <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500">
                   Status
+                </th>
+
+                <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500">
+                  Words
                 </th>
 
                 <th className="px-6 py-4 text-xs uppercase tracking-wider font-semibold text-slate-500">
@@ -769,7 +1021,7 @@ const AdminPosts = () => {
               {loading && (
                 <tr>
                   <td
-                    colSpan={6}
+                    colSpan={COL_COUNT}
                     className="text-center py-16"
                   >
                     <div className="flex flex-col items-center justify-center">
@@ -786,7 +1038,7 @@ const AdminPosts = () => {
               {/* POSTS */}
 
               {!loading &&
-                posts.map(
+                filteredPosts.map(
                   (post) => {
                     const id =
                       getPostId(
@@ -805,6 +1057,12 @@ const AdminPosts = () => {
                       post?.status ||
                       "draft";
 
+                    const isSelected =
+                      id && selectedIds.includes(id);
+
+                    const wordCount =
+                      getWordCount(post?.content);
+
                     return (
                       <tr
                         key={
@@ -812,8 +1070,28 @@ const AdminPosts = () => {
                           post?.slug ||
                           post?.title
                         }
-                        className="border-b border-slate-100 last:border-b-0 hover:bg-slate-50/70 transition"
+                        className="border-b border-slate-100 last:border-b-0 hover:bg-slate-50 transition"
                       >
+                        {/* CHECKBOX */}
+
+                        <td className="pl-4 pr-2 py-5">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              id && toggleSelectOne(id)
+                            }
+                            disabled={!id}
+                            className="text-slate-400 hover:text-slate-700 transition disabled:opacity-30"
+                            aria-label="Select post"
+                          >
+                            {isSelected ? (
+                              <CheckSquare className="w-4 h-4 text-[#0796A8]" />
+                            ) : (
+                              <Square className="w-4 h-4" />
+                            )}
+                          </button>
+                        </td>
+
                         {/* POST */}
 
                         <td className="px-6 py-5">
@@ -866,6 +1144,14 @@ const AdminPosts = () => {
                           </span>
                         </td>
 
+                        {/* WORDS */}
+
+                        <td className="px-6 py-5 text-sm text-slate-500">
+                          {wordCount !== null
+                            ? wordCount.toLocaleString()
+                            : "—"}
+                        </td>
+
                         {/* VIEWS */}
 
                         <td className="px-6 py-5 text-sm text-slate-500">
@@ -887,7 +1173,60 @@ const AdminPosts = () => {
                         {/* ACTIONS */}
 
                         <td className="px-6 py-5">
-                          <div className="flex items-center justify-end gap-2">
+                          <div className="flex items-center justify-end gap-2 flex-wrap">
+                            {/* PREVIEW */}
+                            <button
+                              type="button"
+                              onClick={() =>
+                                window.open(
+                                  "/blog/" + (post?.slug || ""),
+                                  "_blank"
+                                )
+                              }
+                              disabled={!post?.slug}
+                              title="Preview post"
+                              className="p-2 rounded-lg text-sm font-medium bg-slate-100 hover:bg-slate-200 text-slate-600 transition disabled:opacity-40 disabled:cursor-not-allowed"
+                            >
+                              <Eye className="w-4 h-4" />
+                            </button>
+
+                            {/* QUICK STATUS TOGGLE */}
+                            {status !== "scheduled" && (
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  handleStatusToggle(post)
+                                }
+                                disabled={
+                                  !id ||
+                                  togglingId === id ||
+                                  deletingId === id
+                                }
+                                title={
+                                  status === "published"
+                                    ? "Unpublish"
+                                    : "Publish"
+                                }
+                                className={`inline-flex items-center gap-1 px-2.5 py-2 rounded-lg text-xs font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed ${
+                                  status === "published"
+                                    ? "bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200"
+                                    : "bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200"
+                                }`}
+                              >
+                                {togglingId === id ? (
+                                  <span className="inline-block w-3 h-3 border border-current border-t-transparent rounded-full animate-spin" />
+                                ) : status === "published" ? (
+                                  <ToggleRight className="w-4 h-4" />
+                                ) : (
+                                  <ToggleLeft className="w-4 h-4" />
+                                )}
+                                {status === "published"
+                                  ? "Unpublish"
+                                  : "Publish"}
+                              </button>
+                            )}
+
+                            {/* EDIT */}
                             <button
                               type="button"
                               onClick={() =>
@@ -905,6 +1244,7 @@ const AdminPosts = () => {
                               Edit
                             </button>
 
+                            {/* DELETE */}
                             <button
                               type="button"
                               onClick={() =>
@@ -917,12 +1257,15 @@ const AdminPosts = () => {
                                 deletingId ===
                                   id
                               }
-                              className="px-3 py-2 rounded-lg text-sm font-medium bg-red-50 hover:bg-red-100 text-red-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                              className="p-2 rounded-lg text-sm font-medium bg-red-50 hover:bg-red-100 text-red-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                              title="Delete post"
                             >
                               {deletingId ===
-                              id
-                                ? "Deleting..."
-                                : "Delete"}
+                              id ? (
+                                <span className="inline-block w-4 h-4 border border-red-400 border-t-transparent rounded-full animate-spin" />
+                              ) : (
+                                <Trash2 className="w-4 h-4" />
+                              )}
                             </button>
                           </div>
                         </td>
@@ -934,11 +1277,11 @@ const AdminPosts = () => {
               {/* EMPTY */}
 
               {!loading &&
-                posts.length ===
+                filteredPosts.length ===
                   0 && (
                   <tr>
                     <td
-                      colSpan={6}
+                      colSpan={COL_COUNT}
                       className="text-center py-16 px-6"
                     >
                       <div className="flex flex-col items-center">
@@ -947,7 +1290,7 @@ const AdminPosts = () => {
                         </div>
 
                         <p className="font-semibold text-slate-700">
-                          {search
+                          {search || statusFilter !== "all"
                             ? "No matching posts"
                             : "No posts yet"}
                         </p>
@@ -955,10 +1298,12 @@ const AdminPosts = () => {
                         <p className="text-sm text-slate-400 mt-1">
                           {search
                             ? "Try a different search term."
+                            : statusFilter !== "all"
+                            ? `No ${statusFilter} posts found.`
                             : "Create your first blog post."}
                         </p>
 
-                        {!search && (
+                        {!search && statusFilter === "all" && (
                           <Link
                             to="/admin/posts/new"
                             className="mt-5 px-4 py-2.5 rounded-lg bg-[#071923] text-white text-sm font-semibold hover:bg-[#0b2633] transition"
