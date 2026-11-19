@@ -1,4 +1,5 @@
 ﻿import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -31,7 +32,6 @@ import {
   AlertCircle,
   FileCode,
 } from "lucide-react";
-import SEO from "../components/SEO";
 import PricingBlock from "../components/PricingBlock";
 import { projectsData } from "../data/projectsData";
 
@@ -681,12 +681,17 @@ ${formData.message}`
 
   return (
     <>
-      <SEO
-        title="MERN Stack Development Services | React & Node | DevZore"
-        description="Custom MERN stack development services by DevZore. We build scalable SaaS platforms, dashboards, APIs and MVPs using MongoDB, Express, React and Node."
-        canonical="https://devzore.com/mern-stack-development"
-        jsonLd={[serviceSchema, breadcrumbSchema, faqSchema]}
-      />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
 
       <div
         className="min-h-screen overflow-hidden bg-[#f7f9fa] text-[#071923] antialiased"

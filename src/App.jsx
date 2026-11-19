@@ -153,10 +153,10 @@ const seoData = {
 
   "/": {
     title:
-      "Software & Web Development Company for Businesses | DevZore",
+      "Software & Web Development Company | DevZore",
 
     description:
-      "DevZore builds professional business websites, web applications, SaaS products, mobile apps and custom software for startups and businesses worldwide.",
+      "DevZore builds custom business websites, scalable SaaS platforms, mobile apps and AI solutions. Engineered for high performance and growth.",
 
     keywords:
       "software development company, web development company, website development company, professional website development, business website development, custom software development, custom web development, web application development, website developer, web developer, website design company, web development agency, software development agency, digital solutions company",
@@ -205,10 +205,10 @@ const seoData = {
 
   "/web-development": {
     title:
-      "Web Development Services | Websites & Web Apps | DevZore",
+      "Custom Web Development Services Company | DevZore",
 
     description:
-      "Professional web development services for businesses and startups. DevZore builds responsive websites, custom web applications, e-commerce and SaaS.",
+      "High-performance modern business websites and custom web applications. Fast Core Web Vitals, mobile-first UX, and SEO foundations built in.",
 
     keywords:
       "web development, web development services, web development company, web development agency, web developer, website development, website development services, website development company, website developer, custom web development, custom website development, professional web development, professional website development, business web development, business website development, business website design, corporate web development, responsive web development, modern web development, full stack web development, frontend development, backend development, dynamic website development, secure web development, scalable web development, mobile responsive web development, small business website development, startup website development, custom web application development, web application development, business web application",
@@ -257,10 +257,10 @@ const seoData = {
 
   "/backend-api": {
     title:
-      "Backend & API Development Services | Node.js APIs | DevZore",
+      "Backend & REST API Development Services | DevZore",
 
     description:
-      "Custom backend and API development services using Node.js, Express.js, REST APIs, GraphQL, MongoDB and PostgreSQL for web, mobile and SaaS applications.",
+      "High-throughput REST and GraphQL backend architectures, database schemas, and microservices powering enterprise web platforms. Fast and secure.",
 
     keywords:
       "backend development, backend development company, backend development services, custom backend development, web backend development, application backend development, API development, API development company, API development services, custom API development, REST API development, RESTful API development, backend API development, API integration, third party API integration, database development, database integration, server side development, Node.js development, Express.js development, secure backend development, scalable backend development",
@@ -270,10 +270,10 @@ const seoData = {
 
   "/mern-stack-development": {
     title:
-      "MERN Stack Development Services | React & Node | DevZore",
+      "MERN Stack Development Services Company | DevZore",
 
     description:
-      "Custom MERN stack development using MongoDB, Express, React and Node.js for scalable web applications, SaaS products, dashboards and business software.",
+      "Custom MERN stack development for scalable SaaS platforms, business dashboards, and REST APIs. MongoDB, Express, React, Node.js. Hire experts.",
 
     keywords:
       "MERN stack development, MERN stack development company, MERN stack developer, MERN development company, MERN stack agency, MERN stack web development, MERN stack application development, MERN stack services, MERN stack development services, custom MERN application, MERN web application development, MERN software development, MongoDB React Node Express development, React Node MongoDB development, full stack MERN development, MERN stack developer for startup, MERN stack developer for business, hire MERN developer",
@@ -283,10 +283,10 @@ const seoData = {
 
   "/saas-product-development": {
     title:
-      "SaaS Product Development Services | Platforms | DevZore",
+      "SaaS Product Development Services & MVP | DevZore",
 
     description:
-      "Custom SaaS product development with authentication, dashboards, subscriptions, APIs, user management and scalable web application architecture.",
+      "Full-cycle SaaS product development: multi-tenant architecture, Stripe billing, admin portals, and secure APIs. Launch your startup MVP in weeks.",
 
     keywords:
       "SaaS development, SaaS development company, SaaS product development, SaaS application development, SaaS software development, SaaS development services, SaaS developer, SaaS product development company, custom SaaS development, SaaS platform development, SaaS application developer, B2B SaaS development, B2C SaaS development, SaaS MVP development, SaaS UI UX design, SaaS web application development, cloud software development, subscription software development",
@@ -322,10 +322,10 @@ const seoData = {
 
   "/startup-mvp": {
     title:
-      "Startup MVP Development Services | Build & Launch | DevZore",
+      "Startup MVP Development Services Company | DevZore",
 
     description:
-      "MVP development for startups from product planning and prototyping to web or app development, testing, deployment and future product iteration.",
+      "Turn your product idea into a market-ready MVP in 3 to 4 weeks. Lean architecture, rapid prototyping, investor-ready UI/UX, and scalable code.",
 
     keywords:
       "MVP development, MVP development company, MVP development services, startup MVP development, startup MVP developer, MVP software development, MVP app development, MVP web development, MVP product development, minimum viable product development, startup software development, startup web development, startup app development, startup product development, startup technology partner, startup development agency, prototype development, product prototype development, rapid MVP development, SaaS MVP development",
@@ -335,10 +335,10 @@ const seoData = {
 
   "/cloud-deployment": {
     title:
-      "Cloud & Deployment Services | DevOps & Hosting | DevZore",
+      "Cloud & Deployment Services | DevOps | DevZore",
 
     description:
-      "DevZore provides cloud architecture, CI/CD pipelines, Vercel, Cloudflare and MongoDB Atlas setup, server migration, monitoring and cloud optimization.",
+      "Production cloud architecture, automated CI/CD pipelines, Docker containerization, AWS, and Vercel edge deployments. Fast, resilient and secure.",
 
     keywords:
       "cloud deployment services, cloud hosting, DevOps services, Vercel deployment, Cloudflare setup, MongoDB Atlas, AWS, cloud infrastructure, CI CD pipeline, cloud optimization, DevZore cloud",
@@ -386,9 +386,9 @@ const seoData = {
   // EXPANDED SERVICES & NICHE PLATFORMS
 
   "/ai-integration-services": {
-    title: "AI Integration & LLM Services | ChatGPT & API | DevZore",
+    title: "AI Integration & LLM Services Company | DevZore",
     description:
-      "Integrate LLM APIs, OpenAI ChatGPT, Claude, and Gemini into your existing web applications, CRMs, and business systems. Custom AI integration by DevZore.",
+      "Integrate custom LLMs, OpenAI ChatGPT, Claude, and Gemini APIs into your existing web apps, CRMs, and business systems. Production RAG pipelines.",
     keywords:
       "ai integration services, llm integration services, chatgpt integration services, openai api integration, claude integration, gemini api, rag knowledge base, ai chatbot integration",
   },
@@ -434,9 +434,9 @@ const seoData = {
   },
 
   "/nextjs-development": {
-    title: "Next.js Development Services | React SSR & Web Apps | DevZore",
+    title: "Next.js Development Services & Web Apps | DevZore",
     description:
-      "Custom Next.js development services. High-performance SSR, Server Components, App Router web apps, SaaS platforms, and SEO-optimized web development.",
+      "Specialized Next.js development for startups and businesses. High-performance SSR, Server Components, App Router architecture, and edge deploys.",
     keywords:
       "nextjs development services, next.js developers, react server components, nextjs app router, nextjs saas development, server side rendering",
   },
