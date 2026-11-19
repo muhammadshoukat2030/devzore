@@ -545,7 +545,7 @@ ${formData.message}`
 
         <section
           aria-labelledby="nextjs-heading"
-          className="relative overflow-hidden bg-[#04111a] text-white pt-24 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20"
+          className="relative overflow-hidden bg-[#04111a] text-white"
         >
           <div
             className="absolute inset-0 opacity-80 pointer-events-none"
@@ -554,7 +554,7 @@ ${formData.message}`
 
           <div className="absolute -top-32 left-[8%] w-[550px] h-[550px] rounded-full bg-[#0796A8]/15 blur-[160px] pointer-events-none" />
 
-          <div className="relative max-w-[1260px] mx-auto px-5 sm:px-6">
+          <div className="relative max-w-[1380px] mx-auto px-5 sm:px-6 lg:px-10 pt-23 sm:pt-20 lg:pt-24 pb-10 sm:pb-12">
             <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-12 items-center">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] text-xs font-medium text-slate-300 mb-4">

@@ -223,7 +223,7 @@ export default function FoodOrderingSystem() {
 
       <div className="min-h-screen bg-[#061923] text-white antialiased">
         {/* HERO */}
-        <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-24 border-b border-white/[0.08]">
+        <section className="relative overflow-hidden pt-23 sm:pt-20 lg:pt-24 pb-10 sm:pb-12 border-b border-white/[0.08]">
           <div className="absolute inset-0 pointer-events-none" style={darkGrid} />
           <div className="absolute -top-32 left-[10%] w-[520px] h-[520px] rounded-full bg-[#0796A8]/15 blur-[160px] pointer-events-none" />
 

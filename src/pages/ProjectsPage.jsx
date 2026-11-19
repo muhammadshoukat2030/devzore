@@ -68,7 +68,7 @@ export default function ProjectsPage() {
 
       <div className="min-h-screen bg-[#061923] text-white">
         {/* HERO SECTION */}
-        <section className="relative overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-20 border-b border-white/[0.08]">
+        <section className="relative overflow-hidden pt-23 sm:pt-20 lg:pt-24 pb-10 sm:pb-12 border-b border-white/[0.08]">
           <div className="max-w-[1240px] mx-auto px-5 sm:px-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3.5 py-1 text-[13px] font-semibold text-[#1BBAC8] mb-6">
               <Briefcase size={14} /> Proven Engineering Track Record
