@@ -7,10 +7,10 @@ const distDir = path.resolve(__dirname, "../dist");
 
 const pages = [
   "index.html",
+  "qatar-software-development/index.html",
   "mern-stack-development/index.html",
-  "saas-product-development/index.html",
-  "projects/weldon-paints/index.html",
-  "blog/why-your-business-needs-a-professional-website-in-2026/index.html"
+  "projects/desert-safari-qatar/index.html",
+  "blog/how-to-hire-a-software-development-company-checklist/index.html"
 ];
 
 for (const p of pages) {
