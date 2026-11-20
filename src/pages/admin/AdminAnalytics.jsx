@@ -26,18 +26,27 @@ const GSC_QUERIES = [
   { query: "custom erp software developers", impressions: 120, clicks: 8, ctr: "6.7%", position: 5.9 },
 ];
 
+let analyticsPostsCache = null;
+let analyticsCacheTime = 0;
+const ANALYTICS_CACHE_TTL = 45000;
+
 const AdminAnalytics = () => {
   const [timeRange, setTimeRange] = useState("Last 7 Days");
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState(() => analyticsPostsCache || []);
+  const [loading, setLoading] = useState(() => !analyticsPostsCache);
 
   useEffect(() => {
     const fetchRealData = async () => {
       try {
-        setLoading(true);
-        const res = await postService.getPosts();
+        const isFresh = analyticsPostsCache && (Date.now() - analyticsCacheTime < ANALYTICS_CACHE_TTL);
+        if (isFresh) return;
+
+        if (!analyticsPostsCache) setLoading(true);
+        const res = await postService.getPosts(1, 100);
         const list = Array.isArray(res) ? res : res?.data || res?.posts || [];
         setPosts(list);
+        analyticsPostsCache = list;
+        analyticsCacheTime = Date.now();
       } catch (err) {
         console.error("Analytics fetch error:", err);
       } finally {

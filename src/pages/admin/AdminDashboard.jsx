@@ -23,20 +23,26 @@ import postService from "../../services/postService";
 import categoryService from "../../services/categoryService";
 import commentService from "../../services/commentService";
 
+let dashboardCache = null;
+let dashboardCacheTime = 0;
+const CACHE_TTL = 45000; // 45 seconds
+
 const AdminDashboard = () => {
   const navigate = useNavigate();
 
-  const [stats, setStats] = useState({
-    posts: 0,
-    categories: 0,
-    comments: 0,
-    published: 0,
-    drafts: 0,
-    scheduled: 0,
+  const [stats, setStats] = useState(() => {
+    return dashboardCache?.stats || {
+      posts: 0,
+      categories: 0,
+      comments: 0,
+      published: 0,
+      drafts: 0,
+      scheduled: 0,
+    };
   });
 
-  const [recentPosts, setRecentPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [recentPosts, setRecentPosts] = useState(() => dashboardCache?.recentPosts || []);
+  const [loading, setLoading] = useState(() => !dashboardCache);
 
   const extractArray = (data) => {
     if (Array.isArray(data)) return data;
@@ -52,32 +58,21 @@ const AdminDashboard = () => {
   useEffect(() => {
     const loadDashboard = async () => {
       try {
-        setLoading(true);
-
-        let postsData = [];
-        let categoriesData = [];
-        let commentsData = [];
-
-        try {
-          const postsResult = await postService.getPosts();
-          postsData = extractArray(postsResult);
-        } catch (err) {
-          console.error("Posts load error:", err);
+        const isFresh = dashboardCache && (Date.now() - dashboardCacheTime < CACHE_TTL);
+        if (!isFresh) {
+          if (!dashboardCache) setLoading(true);
         }
 
-        try {
-          const catsResult = await categoryService.getCategories();
-          categoriesData = extractArray(catsResult);
-        } catch (err) {
-          console.error("Categories load error:", err);
-        }
+        // Parallelize all 3 requests for 3x faster load
+        const [postsSettled, catsSettled, commentsSettled] = await Promise.allSettled([
+          postService.getPosts(1, 100),
+          categoryService.getCategories(),
+          commentService.getComments(),
+        ]);
 
-        try {
-          const commentsResult = await commentService.getComments();
-          commentsData = extractArray(commentsResult);
-        } catch (err) {
-          console.error("Comments load error:", err);
-        }
+        const postsData = postsSettled.status === "fulfilled" ? extractArray(postsSettled.value) : [];
+        const categoriesData = catsSettled.status === "fulfilled" ? extractArray(catsSettled.value) : [];
+        const commentsData = commentsSettled.status === "fulfilled" ? extractArray(commentsSettled.value) : [];
 
         const published = postsData.filter(
           (post) => post.status === "published" || post.published === true
@@ -91,16 +86,23 @@ const AdminDashboard = () => {
             (!post.published && post.status !== "scheduled" && !post.scheduledAt)
         );
 
-        setStats({
+        const newStats = {
           posts: postsData.length,
           categories: categoriesData.length,
           comments: commentsData.length,
           published: published.length,
           drafts: drafts.length,
           scheduled: scheduled.length,
-        });
+        };
 
-        setRecentPosts(postsData.slice(0, 10));
+        const newRecent = postsData.slice(0, 10);
+
+        setStats(newStats);
+        setRecentPosts(newRecent);
+
+        // Update module cache
+        dashboardCache = { stats: newStats, recentPosts: newRecent };
+        dashboardCacheTime = Date.now();
       } catch (error) {
         console.error("Dashboard error:", error);
       } finally {

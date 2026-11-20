@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 import postService from "../services/postService";
-import fallbackPosts from "../data/blogPosts.json";
+import fallbackPosts from "../data/blogPostsSummary.json";
 import SEO from "../components/SEO";
 
 // ======================================================

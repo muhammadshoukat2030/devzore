@@ -167,15 +167,19 @@ const Hero = () => {
   ] = useState(false);
 
   // ====================================================
-  // PRELOAD IMAGES
+  // PRELOAD BACKGROUND SLIDES AFTER LCP
   // ====================================================
 
   useEffect(() => {
-    slides.forEach((slide) => {
-      const image = new Image();
+    // Only preload subsequent slides after the critical initial hero slide has rendered
+    const timer = setTimeout(() => {
+      slides.slice(1).forEach((slide) => {
+        const image = new Image();
+        image.src = slide.image;
+      });
+    }, 2000);
 
-      image.src = slide.image;
-    });
+    return () => clearTimeout(timer);
   }, []);
 
   // ====================================================
