@@ -78,6 +78,7 @@ const InstallmentManagementSoftware = lazy(() => import("./pages/InstallmentMana
 const TourBookingSystem = lazy(() => import("./pages/TourBookingSystem"));
 const FoodOrderingSystem = lazy(() => import("./pages/FoodOrderingSystem"));
 const NextjsDevelopment = lazy(() => import("./pages/NextjsDevelopment"));
+const QatarSoftwareDevelopment = lazy(() => import("./pages/QatarSoftwareDevelopment"));
 
 // ======================================================
 // PROJECT & CASE STUDY PAGES - LAZY LOADING
@@ -441,6 +442,14 @@ const seoData = {
       "Specialized Next.js development for startups and businesses. High-performance SSR, Server Components, App Router architecture, and edge deploys.",
     keywords:
       "nextjs development services, next.js developers, react server components, nextjs app router, nextjs saas development, server side rendering",
+  },
+
+  "/qatar-software-development": {
+    title: "Software Development Company in Qatar | DevZore",
+    description:
+      "Custom web platforms, SaaS products, and booking systems for businesses in Qatar and the GCC. Local client experience, English/Arabic ready.",
+    keywords:
+      "software development company qatar, web development qatar, saas development qatar, tour booking software qatar, software agency doha, qatar software developers",
   },
 
   // PROJECTS & CASE STUDIES
@@ -1124,6 +1133,11 @@ function AppContent() {
             <Route
               path="/nextjs-development"
               element={<NextjsDevelopment />}
+            />
+
+            <Route
+              path="/qatar-software-development"
+              element={<QatarSoftwareDevelopment />}
             />
 
             {/* ============================================

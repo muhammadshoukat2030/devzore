@@ -40,6 +40,7 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
+import { trackLeadSubmission } from "../utils/analytics";
 
 export default function NextjsDevelopment({ isDark }) {
   const [activeFaq, setActiveFaq] = useState(null);
@@ -430,6 +431,11 @@ export default function NextjsDevelopment({ isDark }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    trackLeadSubmission("nextjs_page_form", {
+      service: formData.service,
+      timeline: formData.timeline,
+    });
+
     const subject = encodeURIComponent(
       `Next.js Development Enquiry - ${formData.name}`
     );
@@ -445,7 +451,7 @@ Project Details:
 ${formData.message}`
     );
 
-    window.location.href = `mailto:hellodevzore@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hello@devzore.com?subject=${subject}&body=${body}`;
   };
 
   const scrollTop = () => {

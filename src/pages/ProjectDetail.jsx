@@ -16,6 +16,7 @@ import {
 } from "react-icons/fi";
 import { projectsData } from "../data/projectsData";
 import SEO from "../components/SEO";
+import ProjectBriefCTA from "../components/ProjectBriefCTA";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -402,11 +403,11 @@ export default function ProjectDetail() {
               </p>
               <div className="space-y-1.5 text-xs">
                 <a
-                  href="mailto:hellodevzore@gmail.com"
+                  href="mailto:hello@devzore.com"
                   className="flex items-center gap-2 text-slate-300 hover:text-[#1BBAC8] transition font-medium"
                 >
                   <FiMail className="w-3.5 h-3.5 text-[#1BBAC8]" />
-                  <span>hellodevzore@gmail.com</span>
+                  <span>hello@devzore.com</span>
                 </a>
                 <Link
                   to="/contact"
@@ -458,6 +459,15 @@ export default function ProjectDetail() {
               </Link>
             ))}
           </div>
+        </div>
+
+        {/* PROJECT INQUIRY BRIEF */}
+        <div className="mt-16 pt-10 border-t border-white/[0.08]">
+          <ProjectBriefCTA
+            serviceContext={`${project.title} (${project.serviceName})`}
+            title={`Ready to Build a System Like ${project.title}?`}
+            subtitle="Discuss your business requirements, architecture, and milestone delivery timeline with our senior engineering team."
+          />
         </div>
       </section>
     </div>

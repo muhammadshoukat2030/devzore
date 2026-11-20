@@ -133,6 +133,10 @@ const Navbar = () => {
       name: "Custom Software Solutions",
       path: "/custom-software-solutions",
     },
+    {
+      name: "Qatar & GCC Software",
+      path: "/qatar-software-development",
+    },
   ];
 
   // ======================================================

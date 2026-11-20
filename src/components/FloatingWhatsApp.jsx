@@ -1,5 +1,6 @@
 import React from "react";
 import { MessageCircle } from "lucide-react";
+import { trackWhatsAppClick } from "../utils/analytics";
 
 /**
  * Mobile-safe Floating WhatsApp Button
@@ -15,6 +16,7 @@ export default function FloatingWhatsApp() {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackWhatsAppClick("floating_button")}
         aria-label="Chat with DevZore on WhatsApp"
         className="group relative flex items-center gap-2.5 rounded-full bg-[#25D366] px-4 py-3 text-white shadow-[0_8px_30px_rgba(37,211,102,0.35)] transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_12px_36px_rgba(37,211,102,0.45)] focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"
       >

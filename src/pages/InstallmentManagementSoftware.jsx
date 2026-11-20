@@ -28,6 +28,7 @@ import {
   Users,
 } from "lucide-react";
 import SEO from "../components/SEO";
+import ProjectBriefCTA from "../components/ProjectBriefCTA";
 
 export default function InstallmentManagementSoftware() {
   const [activeFaq, setActiveFaq] = useState(null);
@@ -447,33 +448,12 @@ export default function InstallmentManagementSoftware() {
         </section>
 
         {/* CTA FORM */}
-        <section id="system-form" className="py-16 px-4 sm:px-6 max-w-4xl mx-auto border-t border-white/[0.08]">
-          <div className="p-6 sm:p-10 rounded-3xl border border-cyan-500/20 bg-[#081d28] shadow-2xl text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-              Ready to Automate Your Installment Sales & Collections?
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto mb-8">
-              Discuss your amortization models, borrower verification workflow, and collection staff management with our engineering team.
-            </p>
-
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-[#061923] text-sm font-bold transition shadow-lg shadow-[#25D366]/20"
-            >
-              <span>Discuss on WhatsApp (+92 334 8004300)</span>
-              <ArrowRight size={15} />
-            </a>
-
-            <div className="mt-6 text-xs text-slate-400">
-              Or submit a scope inquiry via our{" "}
-              <Link to="/contact" className="text-[#1bbac8] underline font-bold hover:text-white">
-                Contact Page
-              </Link>
-              .
-            </div>
-          </div>
+        <section id="system-form" className="py-16 px-4 sm:px-6 max-w-5xl mx-auto border-t border-white/[0.08]">
+          <ProjectBriefCTA
+            serviceContext="Installment Management & Retail Credit Software"
+            title="Ready to Automate Your Installment Sales & Collections?"
+            subtitle="Discuss your amortization models, borrower verification workflow, and collection staff management with our engineering team."
+          />
         </section>
       </div>
     </>

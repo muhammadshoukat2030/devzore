@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import PricingBlock from "../components/PricingBlock";
 import { projectsData } from "../data/projectsData";
+import { trackLeadSubmission } from "../utils/analytics";
 
 const mernProjects = projectsData.filter((p) =>
   ["weldon-paints", "frostyops", "installment-management"].includes(p.slug)
@@ -569,6 +570,11 @@ const MernStackDevelopment = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    trackLeadSubmission("mern_page_form", {
+      service: formData.service,
+      timeline: formData.timeline,
+    });
+
     const subject = encodeURIComponent(
       `MERN Stack Development Enquiry - ${formData.name}`
     );
@@ -584,7 +590,7 @@ Project Details:
 ${formData.message}`
     );
 
-    window.location.href = `mailto:hellodevzore@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hello@devzore.com?subject=${subject}&body=${body}`;
   };
 
   /* =========================================================

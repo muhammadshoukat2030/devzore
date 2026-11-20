@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, MessageSquare, Mail, Sparkles, CheckCircle2 } from "lucide-react";
+import { trackWhatsAppClick } from "../utils/analytics";
 
 export default function FinalCTA() {
   const scrollTop = () => {
@@ -39,6 +40,7 @@ export default function FinalCTA() {
               href="https://wa.me/923348004300?text=Hi%20DevZore,%20I%20would%20like%20to%20get%20a%20free%20consultation%20on%20my%20project."
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppClick("final_cta")}
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-[#06101a] font-bold text-sm sm:text-base shadow-[0_10px_35px_rgba(37,211,102,0.25)] transition-all duration-200 hover:-translate-y-0.5"
             >
               <MessageSquare size={18} />

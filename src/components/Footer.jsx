@@ -173,6 +173,10 @@ const Footer = () => {
       label: "Custom Software Solutions",
       path: "/custom-software-solutions",
     },
+    {
+      label: "Qatar & GCC Software",
+      path: "/qatar-software-development",
+    },
   ];
 
   // ======================================================

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import PricingBlock from "../components/PricingBlock";
+import { trackLeadSubmission } from "../utils/analytics";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -484,7 +485,13 @@ export default function AiIntegrationServices({ isDark }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const mailtoUrl = `mailto:contact@devzore.com?subject=AI%20Integration%20Project%20Enquiry%20-%20${encodeURIComponent(
+
+    trackLeadSubmission("ai_integration_form", {
+      service: formData.service,
+      timeline: formData.timeline,
+    });
+
+    const mailtoUrl = `mailto:hello@devzore.com?subject=AI%20Integration%20Project%20Enquiry%20-%20${encodeURIComponent(
       formData.name
     )}&body=${encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nService: ${formData.service}\nTimeline: ${formData.timeline}\n\nProject Details:\n${formData.message}`

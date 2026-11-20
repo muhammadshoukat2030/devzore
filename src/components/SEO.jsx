@@ -38,13 +38,15 @@ export default function SEO({
   ogImage,
   ogType = "website",
   author = DEFAULT_AUTHOR,
-  robots = DEFAULT_ROBOTS,
+  robots: customRobots,
+  noindex = false,
   publishedTime,
   modifiedTime,
   schema,
   jsonLd,
   keywords,
 }) {
+  const robots = noindex ? "noindex, follow" : (customRobots || DEFAULT_ROBOTS);
   const safeTitle = (title && String(title).trim()) || DEFAULT_TITLE;
   const safeDescription =
     (description && String(description).trim()) || DEFAULT_DESCRIPTION;

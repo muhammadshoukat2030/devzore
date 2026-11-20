@@ -33,6 +33,7 @@ import {
   Workflow,
   Zap,
 } from "lucide-react";
+import { trackLeadSubmission } from "../utils/analytics";
 
 const SaaSProductDevelopment = () => {
   const [activeFaq, setActiveFaq] = useState(null);
@@ -450,6 +451,11 @@ const SaaSProductDevelopment = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    trackLeadSubmission("saas_page_form", {
+      service: formData.service,
+      timeline: formData.timeline,
+    });
+
     const subject = encodeURIComponent(
       `SaaS Product Development Enquiry - ${formData.name}`
     );
@@ -466,7 +472,7 @@ ${formData.message}`
     );
 
     window.location.href =
-      `mailto:hellodevzore@gmail.com?subject=${subject}&body=${body}`;
+      `mailto:hello@devzore.com?subject=${subject}&body=${body}`;
   };
 
   // SCHEMA

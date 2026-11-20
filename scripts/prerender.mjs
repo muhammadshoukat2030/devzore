@@ -291,8 +291,8 @@ const staticPages = {
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
         <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
-          <div><strong>120+</strong> Projects Completed</div>
-          <div><strong>20</strong> Core Services</div>
+          <div><strong>Production</strong> Custom Systems</div>
+          <div><strong>Enterprise</strong> Modern Tech Stacks</div>
           <div><strong>Worldwide Delivery</strong> Active PK & Qatar Track Record</div>
           <div><strong>100%</strong> Source Code Handover</div>
           <div><strong>Post-Launch Support</strong> Included</div>
@@ -368,6 +368,7 @@ const staticPages = {
           <h3>Our Team & Leadership</h3>
           <p><strong>Muhammad Shoukat</strong> — Founder & Lead Software Engineer</p>
           <p>Full-stack software engineer and cloud architect specializing in React, Node.js, Express, MongoDB, and modern web systems. Founded DevZore to deliver direct engineering excellence to clients worldwide.</p>
+          <p style="margin-top: 12px;"><a href="/blog/how-to-hire-a-software-development-company-checklist" style="color: #00D2EF; text-decoration: none; font-weight: bold;">Read Our Guide: How to Hire a Software Development Company →</a></p>
         </div>
       </section>
     `,
@@ -380,8 +381,8 @@ const staticPages = {
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
         <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
-          <div><strong>120+</strong> Projects Completed</div>
-          <div><strong>20</strong> Core Services</div>
+          <div><strong>Production</strong> Custom Systems</div>
+          <div><strong>Enterprise</strong> Modern Stacks</div>
           <div><strong>&lt; 24h</strong> Response Guarantee</div>
           <div><strong>Post-Launch Support</strong> Included</div>
         </div>
@@ -577,6 +578,7 @@ const staticPages = {
           <li><a href="/ai-integration-services">AI Integration & LLM Services</a> for existing production software.</li>
           <li><a href="/blog/generative-ai-for-business-guide">Generative AI for Business: The Practical 2026 Guide</a></li>
           <li><a href="/blog/ai-agents-vs-ai-chatbots-business-guide">AI Agents vs AI Chatbots: Which Does Your Business Need?</a></li>
+          <li><a href="/blog/ai-chatbot-development-business-websites">AI Chatbot Development for Business Websites</a></li>
           <li><a href="/blog/add-ai-assistant-existing-react-app">How to Add an AI Assistant to an Existing React Application</a></li>
           <li><a href="/blog/how-to-integrate-ai-into-web-application">How to Integrate AI into a Web Application</a></li>
         </ul>
@@ -852,7 +854,7 @@ const staticPages = {
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
         <h2>Active Software Systems Engineered for Real Clients</h2>
-        <p>DevZore has completed 120+ software engineering projects company-wide. Inspect 6 of our deep-dive case studies across Pakistan, Qatar, and remote delivery worldwide:</p>
+        <p>DevZore engineers mission-critical software systems across industries. Inspect 6 of our deep-dive case studies across Pakistan, Qatar, and remote delivery worldwide:</p>
         <ul>
           <li><strong>Weldon Paints:</strong> Inventory & POS Management System (Manufacturing & Retail)</li>
           <li><strong>Sarab Express:</strong> Digital Ordering & Delivery Platform (Food & Beverage)</li>
@@ -1055,6 +1057,7 @@ const staticPages = {
 
         <h3>Explore Delivered Systems Built With Our Process</h3>
         <p>Inspect case studies: <a href="/projects/weldon-paints">Weldon Paints</a> | <a href="/projects/frostyops">FrostyOps</a> | <a href="/projects/sarab-express">Sarab Express</a> | <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a></p>
+        <p>Learn how to evaluate agency partners in our guide: <a href="/blog/how-to-hire-a-software-development-company-checklist">How to Hire a Software Development Company Checklist</a>.</p>
       </section>
     `,
   },
@@ -1213,7 +1216,7 @@ const staticPages = {
           <li><strong>Autonomous AI Agents & Function Calling:</strong> Multi-step workflows where LLMs execute database queries, send emails, or trigger ERP tasks.</li>
           <li><strong>Contextual AI Assistants:</strong> Conversational copilots integrated into React web apps and dashboards.</li>
         </ul>
-        <p>Explore our related <a href="/generative-ai-development">Generative AI Development</a> capabilities or read our technical guide on <a href="/blog/how-to-integrate-ai-into-web-application">How to Integrate AI into a Web Application</a>.</p>
+        <p>Explore our related <a href="/generative-ai-development">Generative AI Development</a> capabilities, read our guide on <a href="/blog/ai-chatbot-development-business-websites">AI Chatbot Development for Websites</a>, or review our technical blueprint on <a href="/blog/how-to-integrate-ai-into-web-application">How to Integrate AI into a Web Application</a>.</p>
       </section>
     `,
   },
@@ -1317,7 +1320,7 @@ const staticPages = {
           <li><strong>Automated PDF Voucher Dispatch:</strong> Instant reservation confirmations with QR verification, meeting points, and driver contact instructions.</li>
         </ul>
         <h3>Verified Production Case Studies: Qatar Tourism</h3>
-        <p>Explore our work delivering live booking systems: <a href="/projects/desert-safari-qatar">Desert Safari Qatar Case Study</a> and the <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism Case Study</a>.</p>
+        <p>Explore our work delivering live booking systems: <a href="/projects/desert-safari-qatar">Desert Safari Qatar Case Study</a>, the <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism Case Study</a>, and our regional hub for <a href="/qatar-software-development">Qatar Software Development</a>.</p>
       </section>
     `,
   },
@@ -1369,6 +1372,43 @@ const staticPages = {
           <li><strong>Core Web Vitals Optimization:</strong> Automatic image optimization, font preloading, and dynamic script chunking.</li>
         </ul>
         <p>Compare Next.js with other stacks in our engineering guide: <a href="/blog/mern-stack-vs-nextjs-business-guide">MERN Stack vs Next.js: Complete Business Guide</a>, or explore our <a href="/reactdevelopment">React Development Services</a> and <a href="/mern-stack-development">MERN Stack Development</a>.</p>
+      </section>
+    `,
+  },
+  "/qatar-software-development": {
+    title: "Software Development Company in Qatar | DevZore",
+    description:
+      "Custom web platforms, SaaS products, and booking systems for businesses in Qatar and the GCC. Local client experience, English/Arabic ready.",
+    h1: "Software Development Company in Qatar",
+    answerBlock:
+      "DevZore provides specialized custom software development services for enterprises, tour operators, and high-growth businesses in Qatar and across the GCC. Operating with full time-zone alignment (UTC+5 / UTC+3, only 2 hours difference), we deliver high-performance Next.js and MERN web applications, custom safari and tour booking engines, distribution logistics ERPs, and commission-free ordering platforms with 100% intellectual property handover.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Custom Software Engineering for Businesses in Qatar & the GCC</h2>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>Why do Qatar businesses partner with DevZore?</h3>
+          <p>DevZore offers businesses in Doha and the GCC an agile, engineering-first partnership. We eliminate the 3x to 5x pricing markups and bureaucratic lag common among local agencies while providing senior full-stack engineers who collaborate directly during Qatar working hours. You get full source code ownership, clean milestone billing, and proven Gulf delivery experience.</p>
+        </div>
+
+        <h3>Tailored Software Capabilities for Qatar</h3>
+        <ul>
+          <li><strong>Tourism & Safari Booking Systems:</strong> Real-time booking engines with WhatsApp voucher dispatch, excursion catalogs, dynamic slot availability, and regional gateway integrations. Proven delivery: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> and <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a>.</li>
+          <li><strong>Bilingual Arabic & English Web Platforms:</strong> Right-to-Left (RTL) typography, localized numeric formats, and multi-currency checkouts (QAR, SAR, AED, USD).</li>
+          <li><strong>Distribution & Logistics ERP:</strong> Multi-warehouse stock tracking, driver route manifests, customer credit ledgers, and delivery sign-offs. Proven delivery: <a href="/projects/frostyops">FrostyOps</a>.</li>
+          <li><strong>Commission-Free Food Ordering:</strong> Direct digital ordering systems saving 25%+ on aggregator commissions with kitchen display queues. Proven delivery: <a href="/projects/sarab-express">Sarab Express</a>.</li>
+        </ul>
+
+        <h3>Regional Advantages</h3>
+        <ul>
+          <li><strong>2-Hour Time Zone Alignment:</strong> Full business day overlap between Pakistan (UTC+5) and Qatar (UTC+3) ensures instant daily communication via WhatsApp and Google Meet.</li>
+          <li><strong>GCC Payment Gateway Integration:</strong> Tap Payments, Moyasar, Checkout.com, Stripe, and direct bank transfer workflows.</li>
+          <li><strong>100% Source Code & IP Handover:</strong> Full ownership of all repositories, database schemas, and documentation from day one.</li>
+        </ul>
+
+        <h3>Frequently Asked Questions</h3>
+        <p><strong>How do we communicate during development?</strong> We maintain dedicated WhatsApp groups and Slack channels with weekly sprint video demos and staging links.</p>
+        <p><strong>Do you sign Non-Disclosure Agreements (NDAs)?</strong> Yes, standard mutual NDAs are signed before project specifications or sensitive data are shared.</p>
+        <p>Ready to discuss your project? <a href="/contact">Request a Consultation</a> or <a href="https://wa.me/923348004300">chat on WhatsApp</a>.</p>
       </section>
     `,
   },
@@ -1538,6 +1578,7 @@ function buildPageHtml(baseTemplate, route, meta, bodyHtml, schemaJson = null) {
             <li><a href="/saas-solutions" style="color:#cbd5e1; text-decoration:none;">SaaS Architecture</a></li>
             <li><a href="/management-systems" style="color:#cbd5e1; text-decoration:none;">Management Systems</a></li>
             <li><a href="/custom-software-solutions" style="color:#cbd5e1; text-decoration:none;">Custom Software</a></li>
+            <li><a href="/qatar-software-development" style="color:#cbd5e1; text-decoration:none;">Qatar & GCC Software</a></li>
             <li><a href="/inventory-management-system" style="color:#cbd5e1; text-decoration:none;">Inventory Management</a></li>
             <li><a href="/distribution-management-system" style="color:#cbd5e1; text-decoration:none;">Distribution ERP (DMS)</a></li>
             <li><a href="/installment-management-software" style="color:#cbd5e1; text-decoration:none;">Installment Software</a></li>

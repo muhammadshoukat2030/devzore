@@ -38,6 +38,7 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
+import { trackLeadSubmission } from "../utils/analytics";
 
 const WebDevelopment = ({ isDark }) => {
   const [activeFaq, setActiveFaq] = useState(null);
@@ -463,6 +464,11 @@ const WebDevelopment = ({ isDark }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    trackLeadSubmission("webdev_page_form", {
+      service: formData.service,
+      timeline: formData.timeline,
+    });
+
     const subject = encodeURIComponent(
       `Web Development Enquiry - ${formData.name}`
     );
@@ -470,7 +476,6 @@ const WebDevelopment = ({ isDark }) => {
     const body = encodeURIComponent(
 `Name: ${formData.name}
 Email: ${formData.email}
-              // Company: ${formData.company || "Not provided"}//
 Service: ${formData.service}
 Timeline: ${formData.timeline || "Not specified"}
 
@@ -479,7 +484,7 @@ ${formData.message}`
     );
 
     window.location.href =
-      `mailto:hellodevzore@gmail.com?subject=${subject}&body=${body}`;
+      `mailto:hello@devzore.com?subject=${subject}&body=${body}`;
   };
 
   /* =========================================================

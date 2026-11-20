@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -10,8 +10,16 @@ import {
   Sparkles,
 } from "lucide-react";
 import SEO from "../components/SEO";
+import { trackLeadSubmission } from "../utils/analytics";
 
 const ThankYou = () => {
+  // Fire primary lead conversion event on load
+  useEffect(() => {
+    trackLeadSubmission("thank_you_page", {
+      value: 1,
+      currency: "USD",
+    });
+  }, []);
   // BACKGROUNDS
 
   const darkGrid = {
