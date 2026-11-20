@@ -14,8 +14,8 @@ export default function StatsStrip({ className = "" }) {
   const stats = [
     {
       icon: <Code2 size={20} className="text-[#1BBAC8]" />,
-      value: "120+",
-      label: "Projects Completed",
+      value: "Production",
+      label: "Custom Systems",
       detail: "Web, mobile & SaaS platforms",
     },
     {

@@ -389,7 +389,7 @@ const staticPages = {
         <p>DevZore is a Pakistan-based software development company delivering web, mobile, SaaS and AI solutions to clients worldwide. Reach out directly to discuss your web application, SaaS product, mobile app, or custom software requirements. We respond to all project inquiries within 24 hours.</p>
         <ul>
           <li><strong>WhatsApp Direct:</strong> +92 334 8004300</li>
-          <li><strong>Email:</strong> hellodevzore@gmail.com</li>
+          <li><strong>Email:</strong> hello@devzore.com</li>
           <li><strong>Website:</strong> devzore.com</li>
           <li><strong>Delivery Locations:</strong> Pakistan, Qatar & Worldwide Remote</li>
         </ul>
@@ -1158,7 +1158,7 @@ const staticPages = {
         <p>Last updated: November 2026. DevZore ("we", "our", or "us") respects your privacy and is committed to protecting the personal and project information you share with us through our website (devzore.com) and software development engagements.</p>
         
         <h3>Information We Collect</h3>
-        <p>We only collect personal information that you voluntarily provide to us when submitting inquiries, requesting consultations, or communicating via our contact forms, email (hellodevzore@gmail.com), or WhatsApp (+92 334 8004300). This may include your name, email address, phone number, company name, and project requirements.</p>
+        <p>We only collect personal information that you voluntarily provide to us when submitting inquiries, requesting consultations, or communicating via our contact forms, email (hello@devzore.com), or WhatsApp (+92 334 8004300). This may include your name, email address, phone number, company name, and project requirements.</p>
 
         <h3>How We Use Your Information</h3>
         <p>We use your information solely to respond to project inquiries, prepare development proposals, execute agreed software contracts, and provide ongoing technical support. We never sell, rent, or trade your personal data to third parties.</p>
@@ -1166,7 +1166,7 @@ const staticPages = {
         <h3>Data Security & Retention</h3>
         <p>We implement industry-standard encryption, SSL protocols, and access controls to safeguard your data against unauthorized access, loss, or disclosure.</p>
 
-        <p>For privacy inquiries, contact us at: <strong>hellodevzore@gmail.com</strong>.</p>
+        <p>For privacy inquiries, contact us at: <strong>hello@devzore.com</strong>.</p>
       </section>
     `,
   },
@@ -1188,7 +1188,7 @@ const staticPages = {
         <h3>Warranty & Bug-Fix Period</h3>
         <p>All software delivered by DevZore includes a standard 30-day post-launch warranty period during which any defects or discrepancies from the agreed project scope are resolved at no additional charge.</p>
 
-        <p>For questions regarding these terms, contact: <strong>hellodevzore@gmail.com</strong>.</p>
+        <p>For questions regarding these terms, contact: <strong>hello@devzore.com</strong>.</p>
       </section>
     `,
   },
@@ -1418,7 +1418,7 @@ const staticPages = {
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 24px; border-radius: 12px; margin: 30px 0;">
           <h3>Current Openings</h3>
           <p>No open positions right now. We hire deliberately and maintain a senior-led engineering team.</p>
-          <p>Interested in future opportunities? Send your CV and GitHub portfolio to <a href="mailto:hellodevzore@gmail.com">hellodevzore@gmail.com</a>.</p>
+          <p>Interested in future opportunities? Send your CV and GitHub portfolio to <a href="mailto:hello@devzore.com">hello@devzore.com</a>.</p>
         </div>
       </section>
     `,
@@ -1506,7 +1506,7 @@ function buildPageHtml(baseTemplate, route, meta, bodyHtml, schemaJson = null) {
           <p style="margin:0 0 6px;"><strong>Engineering Base:</strong> Pakistan</p>
           <p style="margin:0 0 6px;"><strong>Delivery Footprint:</strong> Pakistan, Qatar & Worldwide</p>
           <p style="margin:0 0 6px;"><strong>WhatsApp:</strong> +92 334 8004300</p>
-          <p style="margin:0;"><strong>Email:</strong> hellodevzore@gmail.com</p>
+          <p style="margin:0;"><strong>Email:</strong> hello@devzore.com</p>
         </div>
         <div>
           <h4 style="color:#ffffff; font-size:14px; margin:0 0 12px; font-weight:bold;"><a href="/allservices" style="color:#1bbac8; text-decoration:none;">Core Services</a></h4>

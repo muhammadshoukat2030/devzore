@@ -188,7 +188,7 @@ const Contact = () => {
     } catch (error) {
       console.error("EmailJS Error:", error);
       alert(
-        "Sorry, your inquiry could not be sent. Please contact us directly on WhatsApp (+92 334 8004300) or email hellodevzore@gmail.com."
+        "Sorry, your inquiry could not be sent. Please contact us directly on WhatsApp (+92 334 8004300) or email hello@devzore.com."
       );
     } finally {
       setLoading(false);
@@ -306,7 +306,7 @@ const Contact = () => {
                   </a>
 
                   <a
-                    href="mailto:hellodevzore@gmail.com"
+                    href="mailto:hello@devzore.com"
                     className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl border border-cyan-500/25 bg-cyan-500/10 hover:bg-cyan-500/20 transition group min-w-0"
                   >
                     <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -315,7 +315,7 @@ const Contact = () => {
                       </div>
                       <div className="min-w-0">
                         <div className="text-xs sm:text-xs font-bold uppercase tracking-wider text-cyan-400">Email</div>
-                        <div className="text-[13px] sm:text-[13px] font-bold text-white group-hover:text-cyan-300 transition truncate">hellodevzore@gmail.com</div>
+                        <div className="text-[13px] sm:text-[13px] font-bold text-white group-hover:text-cyan-300 transition truncate">hello@devzore.com</div>
                       </div>
                     </div>
                     <span className="text-[13px] font-semibold text-cyan-400 group-hover:translate-x-0.5 transition hidden sm:inline-flex items-center gap-1 shrink-0">
