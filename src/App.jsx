@@ -114,6 +114,12 @@ const OurProcess = lazy(() => import("./pages/OurProcess"));
 const Technologies = lazy(() => import("./pages/Technologies"));
 const Industries = lazy(() => import("./pages/Industries"));
 const Careers = lazy(() => import("./pages/Careers"));
+const JobDetail = lazy(() => import("./pages/JobDetail"));
+const HireEngineers = lazy(() => import("./pages/HireEngineers"));
+const HireMernDevelopers = lazy(() => import("./pages/HireMernDevelopers"));
+const HireReactDevelopers = lazy(() => import("./pages/HireReactDevelopers"));
+const HireNextjsDevelopers = lazy(() => import("./pages/HireNextjsDevelopers"));
+const HireNodejsDevelopers = lazy(() => import("./pages/HireNodejsDevelopers"));
 
 // ======================================================
 // LEGAL PAGES - LAZY LOADING
@@ -631,11 +637,48 @@ const seoData = {
 
   // CAREERS
   "/careers": {
-    title: "Careers at DevZore | Engineering & Technology Roles",
+    title: "Careers at DevZore | Software Engineering Roles",
     description:
-      "Explore engineering careers at DevZore. Build modern web applications, SaaS platforms, and operational systems for clients in Pakistan, Qatar and worldwide.",
+      "Join DevZore's engineering team. Build production MERN, Next.js, and AI software for clients across Pakistan, Qatar, and worldwide.",
     keywords:
       "careers at devzore, software engineering jobs, remote developer jobs pakistan, react jobs, nodejs jobs, full stack developer careers",
+  },
+
+  // HIRE TALENT
+  "/hire-engineers": {
+    title: "Hire Dedicated Software Engineers | DevZore Talent",
+    description:
+      "Hire vetted senior MERN, React, Next.js, and Node.js developers. Dedicated monthly talent, team augmentation, and 100% IP ownership.",
+    keywords:
+      "hire software engineers, hire dedicated developers, hire remote engineers, staff augmentation pakistan, hire mern stack developers",
+  },
+  "/hire-mern-stack-developers": {
+    title: "Hire MERN Stack Developers | Senior Dedicated Talent",
+    description:
+      "Hire dedicated full-stack MERN developers. Vetted experts in MongoDB, Express, React, and Node.js. 180+ projects delivered, 100% IP ownership.",
+    keywords:
+      "hire mern stack developers, hire react node developers, dedicated mern developer, remote mern engineers, hire mongodb express developer",
+  },
+  "/hire-react-developers": {
+    title: "Hire React Developers | Dedicated React.js Engineers",
+    description:
+      "Hire dedicated React.js developers. Specialists in React 18, Tailwind CSS, high-speed single-page apps, and complex UI dashboards.",
+    keywords:
+      "hire react developers, hire react js engineer, dedicated frontend developer, remote react developer, hire react programmer",
+  },
+  "/hire-nextjs-developers": {
+    title: "Hire Next.js Developers | Dedicated Next.js Engineers",
+    description:
+      "Hire dedicated Next.js developers. Specialists in App Router, Server Components, SSR/SSG, and Core Web Vitals. 100% IP ownership.",
+    keywords:
+      "hire nextjs developers, next.js agency, hire nextjs engineers, hire react server components developer, dedicated nextjs programmer",
+  },
+  "/hire-nodejs-developers": {
+    title: "Hire Node.js Developers | Backend Software Engineers",
+    description:
+      "Hire dedicated Node.js backend developers. Experts in REST APIs, microservices, MongoDB, PostgreSQL, and high-throughput systems.",
+    keywords:
+      "hire nodejs developers, hire node js backend developer, dedicated node engineers, remote backend developer, hire express js developer",
   },
 };
 
@@ -1215,6 +1258,36 @@ function AppContent() {
             <Route
               path="/careers"
               element={<Careers />}
+            />
+
+            <Route
+              path="/careers/:slug"
+              element={<JobDetail />}
+            />
+
+            <Route
+              path="/hire-engineers"
+              element={<HireEngineers />}
+            />
+
+            <Route
+              path="/hire-mern-stack-developers"
+              element={<HireMernDevelopers />}
+            />
+
+            <Route
+              path="/hire-react-developers"
+              element={<HireReactDevelopers />}
+            />
+
+            <Route
+              path="/hire-nextjs-developers"
+              element={<HireNextjsDevelopers />}
+            />
+
+            <Route
+              path="/hire-nodejs-developers"
+              element={<HireNodejsDevelopers />}
             />
 
             {/* ============================================

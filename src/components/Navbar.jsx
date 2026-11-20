@@ -99,6 +99,10 @@ const Navbar = () => {
       path: "/maintenance",
     },
     {
+      name: "Hire Dedicated Engineers",
+      path: "/hire-engineers",
+    },
+    {
       name: "All Services",
       path: "/allservices",
     },
@@ -956,6 +960,35 @@ const Navbar = () => {
                 </Link>
               </li>
 
+              {/* HIRE ENGINEERS */}
+
+              <li>
+                <Link
+                  to="/hire-engineers"
+                  onClick={() =>
+                    handleLinkClick("/hire-engineers")
+                  }
+                  className={navLinkClass(
+                    location.pathname.startsWith("/hire-")
+                  )}
+                >
+                  Hire Engineers
+
+                  {location.pathname.startsWith("/hire-") && (
+                    <span
+                      className="
+                        absolute
+                        bottom-0
+                        left-2.5
+                        right-2.5
+                        h-[2px]
+                        bg-[#19C3C8]
+                      "
+                    />
+                  )}
+                </Link>
+              </li>
+
               {/* RESOURCES */}
 
               <DesktopDropdown
@@ -1230,6 +1263,39 @@ const Navbar = () => {
             <ArrowRight
               size={13}
             />
+          </Link>
+
+          {/* HIRE ENGINEERS */}
+
+          <Link
+            to="/hire-engineers"
+            onClick={() =>
+              handleLinkClick("/hire-engineers")
+            }
+            className={`
+              flex
+              items-center
+              justify-between
+              py-3.5
+              border-b
+              border-white/[0.08]
+              text-[14px]
+              font-semibold
+              ${
+                location.pathname.startsWith("/hire-")
+                  ? "text-[#19C3C8]"
+                  : "text-white"
+              }
+            `}
+          >
+            <span className="flex items-center gap-2">
+              <span>Hire Engineers</span>
+              <span className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-[#19C3C8] text-[11px] font-bold">
+                Talent
+              </span>
+            </span>
+
+            <ArrowRight size={13} />
           </Link>
 
           <MobileGroup

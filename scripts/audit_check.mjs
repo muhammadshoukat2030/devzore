@@ -10,7 +10,10 @@ const pages = [
   "qatar-software-development/index.html",
   "mern-stack-development/index.html",
   "projects/desert-safari-qatar/index.html",
-  "blog/how-to-hire-a-software-development-company-checklist/index.html"
+  "blog/how-to-hire-a-software-development-company-checklist/index.html",
+  "careers/index.html",
+  "hire-engineers/index.html",
+  "hire-mern-stack-developers/index.html",
 ];
 
 for (const p of pages) {
@@ -22,7 +25,7 @@ for (const p of pages) {
   const html = fs.readFileSync(filePath, "utf8");
   const titleMatch = html.match(/<title>([^<]*)<\/title>/i);
   const title = titleMatch ? titleMatch[1] : "";
-  const descMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i);
+  const descMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content="([^"]*)"/i) || html.match(/<meta[^>]*name=["']description["'][^>]*content='([^']*)'/i);
   const desc = descMatch ? descMatch[1] : "";
   const canonicalMatch = html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["']/i);
   const canonical = canonicalMatch ? canonicalMatch[1] : "";

@@ -76,11 +76,11 @@ const qatarFaqs = [
   },
   {
     q: "Can you build Arabic and English bilingual software?",
-    a: "Yes. We engineer multi-language architectures with Right-to-Left (RTL) layout support, dynamic language switching, and localized currency formatting for QAR, SAR, AED, and USD.",
+    a: "Yes. We engineer multi-language architectures with Right-to-Left (RTL) layout support, dynamic language switching, and localized currency formatting for QAR, SAR, AED, and USD [OWNER TO CONFIRM].",
   },
   {
     q: "What payment gateways can you integrate for Qatar?",
-    a: "We integrate Stripe, Tap Payments, Checkout.com, Moyasar, and Qatar National Bank (QNB) payment gateways alongside direct cash-on-delivery and bank transfer workflows.",
+    a: "We integrate Stripe, Tap Payments, Checkout.com, Moyasar, and Qatar National Bank (QNB) payment gateways alongside direct cash-on-delivery and bank transfer workflows [OWNER TO CONFIRM].",
   },
   {
     q: "Who owns the code and intellectual property?",

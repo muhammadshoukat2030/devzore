@@ -291,7 +291,7 @@ const staticPages = {
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
         <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
-          <div><strong>Production</strong> Custom Systems</div>
+          <div><strong>180+</strong> Projects Delivered</div>
           <div><strong>Enterprise</strong> Modern Tech Stacks</div>
           <div><strong>Worldwide Delivery</strong> Active PK & Qatar Track Record</div>
           <div><strong>100%</strong> Source Code Handover</div>
@@ -381,7 +381,7 @@ const staticPages = {
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
         <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px;">
-          <div><strong>Production</strong> Custom Systems</div>
+          <div><strong>180+</strong> Projects Delivered</div>
           <div><strong>Enterprise</strong> Modern Stacks</div>
           <div><strong>&lt; 24h</strong> Response Guarantee</div>
           <div><strong>Post-Launch Support</strong> Included</div>
@@ -854,7 +854,7 @@ const staticPages = {
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
         <h2>Active Software Systems Engineered for Real Clients</h2>
-        <p>DevZore engineers mission-critical software systems across industries. Inspect 6 of our deep-dive case studies across Pakistan, Qatar, and remote delivery worldwide:</p>
+        <p>DevZore engineers mission-critical software systems across industries. Inspect 6 selected case studies from 180+ delivered projects across Pakistan, Qatar, and remote delivery worldwide:</p>
         <ul>
           <li><strong>Weldon Paints:</strong> Inventory & POS Management System (Manufacturing & Retail)</li>
           <li><strong>Sarab Express:</strong> Digital Ordering & Delivery Platform (Food & Beverage)</li>
@@ -1401,13 +1401,13 @@ const staticPages = {
         <h3>Regional Advantages</h3>
         <ul>
           <li><strong>2-Hour Time Zone Alignment:</strong> Full business day overlap between Pakistan (UTC+5) and Qatar (UTC+3) ensures instant daily communication via WhatsApp and Google Meet.</li>
-          <li><strong>GCC Payment Gateway Integration:</strong> Tap Payments, Moyasar, Checkout.com, Stripe, and direct bank transfer workflows.</li>
+          <li><strong>GCC Payment Gateway Integration:</strong> Tap Payments, Moyasar, Checkout.com, Stripe, and direct bank transfer workflows [OWNER TO CONFIRM].</li>
           <li><strong>100% Source Code & IP Handover:</strong> Full ownership of all repositories, database schemas, and documentation from day one.</li>
         </ul>
 
         <h3>Frequently Asked Questions</h3>
         <p><strong>How do we communicate during development?</strong> We maintain dedicated WhatsApp groups and Slack channels with weekly sprint video demos and staging links.</p>
-        <p><strong>Do you sign Non-Disclosure Agreements (NDAs)?</strong> Yes, standard mutual NDAs are signed before project specifications or sensitive data are shared.</p>
+        <p><strong>Do you sign Non-Disclosure Agreements (NDAs)?</strong> Yes, standard mutual NDAs are available upon request before project specifications or sensitive data are shared.</p>
         <p>Ready to discuss your project? <a href="/contact">Request a Consultation</a> or <a href="https://wa.me/923348004300">chat on WhatsApp</a>.</p>
       </section>
     `,
@@ -1445,21 +1445,220 @@ const staticPages = {
     `,
   },
   "/careers": {
-    title: "Careers at DevZore | Engineering Roles | DevZore",
+    title: "Careers at DevZore | Software Engineering Roles",
     description:
-      "Explore engineering careers and open technical roles at DevZore. Direct founder-led engineering culture, remote collaboration, and modern tech stacks.",
+      "Join DevZore's engineering team. Build production MERN, Next.js, and AI software for clients across Pakistan, Qatar, and worldwide.",
     h1: "Careers at DevZore: Build Production Software with Senior Engineers",
     answerBlock:
-      "DevZore is a founder-led software development company building production web, mobile, SaaS, and AI systems for clients in Pakistan, Qatar, and internationally. We maintain high standards of code craftsmanship, transparent milestone delivery, and direct engineer-to-client collaboration.",
+      "DevZore is a software engineering company building production web, mobile, SaaS, and AI systems for clients in Pakistan, Qatar, and internationally. We maintain high standards of code craftsmanship, transparent milestone delivery, and direct engineer-to-client collaboration.",
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
-        <h2>Join Our Engineering Team</h2>
-        <p>We work with senior engineers, passionate problem solvers, and detail-oriented developers who take pride in shipping robust, tested software.</p>
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 24px; border-radius: 12px; margin: 30px 0;">
-          <h3>Current Openings</h3>
-          <p>No open positions right now. We hire deliberately and maintain a senior-led engineering team.</p>
-          <p>Interested in future opportunities? Send your CV and GitHub portfolio to <a href="mailto:hello@devzore.com">hello@devzore.com</a>.</p>
+        <h2>Build Production Software with Senior Engineers</h2>
+        <p>We work with senior engineers, passionate problem solvers, and detail-oriented developers who take pride in shipping robust, tested software. Our engineering culture values clean architecture, transparent communication, and high autonomy.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 30px 0;">
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); padding: 20px; border-radius: 12px;">
+            <h3>Engineering-First Culture</h3>
+            <p>Work directly under founder and senior lead engineering without bureaucratic layers or arbitrary deadlines.</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); padding: 20px; border-radius: 12px;">
+            <h3>Real Production Software</h3>
+            <p>Build systems deployed for real operational companies across retail, logistics, tourism, and consumer finance.</p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); padding: 20px; border-radius: 12px;">
+            <h3>Remote-Friendly Autonomy</h3>
+            <p>Clear asynchronous communication over Slack, GitHub, and WhatsApp. Focus on clean code and measurable milestones.</p>
+          </div>
         </div>
+
+        <h3>Upcoming Roles & Talent Bench Profiles</h3>
+        <ul>
+          <li><strong>Senior MERN Stack Developer:</strong> Full-stack architecture, React UI, Node.js REST APIs, MongoDB aggregation.</li>
+          <li><strong>React & Next.js Frontend Engineer:</strong> App Router, Server Components, Core Web Vitals, Tailwind CSS.</li>
+          <li><strong>Senior Node.js Backend Engineer:</strong> Microservices, database schema design, Redis, payment integrations.</li>
+          <li><strong>UI/UX & Product Designer:</strong> Design systems, Figma interactive prototypes, operational ERP workflows.</li>
+        </ul>
+
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 24px; border-radius: 12px; margin: 30px 0;">
+          <h3>5-Step Transparent Hiring Process</h3>
+          <ol>
+            <li><strong>Application Review:</strong> Portfolio and GitHub screen within 5 business days [OWNER TO CONFIRM].</li>
+            <li><strong>Technical Conversation:</strong> 30–45 minute video call discussing past system architectures.</li>
+            <li><strong>Practical Code Challenge:</strong> Real-world development assignment simulating an actual sprint.</li>
+            <li><strong>Alignment Chat:</strong> Culture, working rhythms, and compensation expectations.</li>
+            <li><strong>Offer & Onboarding:</strong> Direct repository access and immediate integration into active development.</li>
+          </ol>
+        </div>
+
+        <p>Interested in joining our team? Send your CV and GitHub portfolio to <a href="mailto:hello@devzore.com">hello@devzore.com</a>.</p>
+        <p>Looking to hire dedicated developers for your project instead? Explore our <a href="/hire-engineers">Hire Dedicated Engineers</a> solutions.</p>
+      </section>
+    `,
+  },
+  "/hire-engineers": {
+    title: "Hire Dedicated Software Engineers | DevZore Talent",
+    description:
+      "Hire vetted senior MERN, React, Next.js, and Node.js developers. Dedicated monthly talent, team augmentation, and 100% IP ownership.",
+    h1: "Hire Dedicated Senior Software Engineers",
+    answerBlock:
+      "DevZore provides vetted senior software engineers on dedicated monthly or team augmentation models. Specializing in MERN stack, React, Next.js, and Node.js, our developers work directly within your repositories and timezones with 100% source code ownership.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Dedicated Senior Engineering Talent for Startups and Scale-ups</h2>
+        <p>Scale your technical velocity with vetted full-stack engineers. DevZore provides dedicated senior developers across MERN stack, React.js, Next.js, and Node.js backend engineering with seamless timezone overlap for businesses across the GCC, UK, Europe, and North America.</p>
+
+        <h3>Flexible Engagement Models</h3>
+        <ul>
+          <li><strong>Dedicated Full-Time:</strong> 40 hours/week dedicated senior developer integrated into your daily standups and repositories.</li>
+          <li><strong>Team Augmentation:</strong> Plug specialized senior engineers into your existing sprints to accelerate roadmap milestones.</li>
+          <li><strong>Part-Time / Fractional:</strong> 20 hours/week senior development capacity for early-stage MVPs and ongoing maintenance.</li>
+          <li><strong>Project-Based Delivery:</strong> Fixed milestone delivery with guaranteed timelines and architectural accountability.</li>
+          <li><strong>Risk-Free Trial:</strong> 1–2 week evaluation period on active sprint tasks [OWNER TO CONFIRM].</li>
+        </ul>
+
+        <h3>Specialized Talent Roles</h3>
+        <ul>
+          <li><a href="/hire-mern-stack-developers">Hire MERN Stack Developers</a> — Full-stack MongoDB, Express, React, Node.js architects.</li>
+          <li><a href="/hire-react-developers">Hire React Developers</a> — Frontend specialists in React 18, Tailwind CSS, and complex dashboards.</li>
+          <li><a href="/hire-nextjs-developers">Hire Next.js Developers</a> — App Router, Server Components, SSR/SSG, and Core Web Vitals experts.</li>
+          <li><a href="/hire-nodejs-developers">Hire Node.js Developers</a> — High-throughput REST APIs, database schemas, and microservices engineers.</li>
+        </ul>
+
+        <h3>Why DevZore Engineers</h3>
+        <ul>
+          <li><strong>180+ Delivered Projects:</strong> Proven experience delivering mission-critical commercial platforms.</li>
+          <li><strong>Direct Communication:</strong> Direct developer sync on Slack, Teams, WhatsApp, and Google Meet.</li>
+          <li><strong>Timezone Overlap:</strong> Complete business day alignment with Qatar, UAE, UK, and European timezones.</li>
+          <li><strong>100% IP & Code Ownership:</strong> All code is committed directly to your private GitHub/GitLab repositories.</li>
+          <li><strong>Replacement Guarantee:</strong> Immediate replacement if an engineer does not meet expectations [OWNER TO CONFIRM].</li>
+        </ul>
+
+        <p>Ready to build your team? <a href="/contact">Request Developer Profiles</a> or discuss requirements with our lead architect on <a href="https://wa.me/923348004300">WhatsApp</a>.</p>
+        <p>Looking for open engineering positions? Visit our <a href="/careers">Careers Page</a>.</p>
+      </section>
+    `,
+  },
+  "/hire-mern-stack-developers": {
+    title: "Hire MERN Stack Developers | Senior Dedicated Talent",
+    description:
+      "Hire dedicated full-stack MERN developers. Vetted experts in MongoDB, Express, React, and Node.js. 180+ projects delivered, 100% IP ownership.",
+    h1: "Hire Dedicated MERN Stack Developers",
+    answerBlock:
+      "DevZore provides senior MERN stack developers experienced in architecting full-stack MongoDB, Express.js, React.js, and Node.js platforms. From inventory ERPs to SaaS products, hire dedicated developers with transparent pricing and full code ownership.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Senior MERN Stack Developers for Complex Web Platforms</h2>
+        <p>Deploy battle-tested full-stack JavaScript engineers. Our MERN developers architect scalable database models, robust RESTful APIs, and responsive React user interfaces tailored to your business workflows.</p>
+
+        <h3>Technical Standards & Vetting</h3>
+        <ul>
+          <li><strong>React & Modern UI:</strong> Component composition, custom hooks, Tailwind CSS, and performance profiling.</li>
+          <li><strong>Node.js & Express:</strong> Secure RESTful APIs, JWT authentication, rate limiting, and defensive input validation.</li>
+          <li><strong>MongoDB Modeling:</strong> Complex aggregation pipelines, compound indexing, and high-concurrency performance.</li>
+          <li><strong>Production Reliability:</strong> Automated unit testing, CI/CD deployment pipelines, and zero-downtime releases.</li>
+        </ul>
+
+        <h3>Delivered MERN Case Studies</h3>
+        <p>Inspect production MERN systems delivered by DevZore:</p>
+        <ul>
+          <li><a href="/projects/weldon-paints">Weldon Paints Case Study</a> — Multi-warehouse inventory and counter POS platform.</li>
+          <li><a href="/projects/frostyops">FrostyOps Case Study</a> — Route logistics and wholesale distribution ERP.</li>
+          <li><a href="/projects/installment-management">Installment Management Case Study</a> — Consumer credit financing and repayment schedules.</li>
+        </ul>
+
+        <p>Explore our main <a href="/hire-engineers">Hire Engineers</a> hub or <a href="/contact">Contact Our Team</a> to receive shortlisted profiles within 24–48 hours.</p>
+      </section>
+    `,
+  },
+  "/hire-react-developers": {
+    title: "Hire React Developers | Dedicated React.js Engineers",
+    description:
+      "Hire dedicated React.js developers. Specialists in React 18, Tailwind CSS, high-speed single-page apps, and complex UI dashboards.",
+    h1: "Hire Dedicated React.js Developers",
+    answerBlock:
+      "DevZore provides senior React.js developers specializing in React 18, Tailwind CSS, single-page web applications, and data-dense dashboards. Hire vetted frontend engineers with direct communication and 100% IP handover.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Senior React Developers for High-Performance Web Applications</h2>
+        <p>Build sub-second, accessible, and responsive user interfaces with dedicated senior React engineers. From SaaS dashboards to customer-facing e-commerce portals, our frontend developers translate complex Figma designs into clean, maintainable code.</p>
+
+        <h3>Core Frontend Capabilities</h3>
+        <ul>
+          <li><strong>React 18 & State Management:</strong> Modern hooks, custom state stores (Zustand, Redux Toolkit), and clean component hierarchy.</li>
+          <li><strong>Core Web Vitals Speed:</strong> Code splitting, WebP image optimization, bundle reduction, and sub-second rendering.</li>
+          <li><strong>Tailwind CSS & Accessibility:</strong> Pixel-perfect responsive designs meeting W3C WCAG accessibility standards.</li>
+          <li><strong>API Integration:</strong> Asynchronous data fetching, optimistic UI updates, and error boundary protections.</li>
+        </ul>
+
+        <h3>Featured React Deployments</h3>
+        <ul>
+          <li><a href="/projects/desert-safari-qatar">Desert Safari Qatar Case Study</a> — Excursion booking engine with dynamic seat allocation.</li>
+          <li><a href="/projects/weldon-paints">Weldon Paints POS</a> — High-speed counter sales and formula search interface.</li>
+          <li><a href="/projects/sarab-express">Sarab Express Case Study</a> — Digital food ordering and live kitchen status dashboard.</li>
+        </ul>
+
+        <p>Explore our complete <a href="/hire-engineers">Hire Engineers Hub</a> or <a href="/contact">Request Developer Profiles</a> today.</p>
+      </section>
+    `,
+  },
+  "/hire-nextjs-developers": {
+    title: "Hire Next.js Developers | Dedicated Next.js Engineers",
+    description:
+      "Hire dedicated Next.js developers. Specialists in App Router, Server Components, SSR/SSG, and Core Web Vitals. 100% IP ownership.",
+    h1: "Hire Dedicated Next.js Developers",
+    answerBlock:
+      "DevZore provides dedicated Next.js developers specializing in the App Router, React Server Components (RSC), hybrid SSR/SSG rendering, and technical SEO. Scale your modern web application with vetted senior engineers.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Senior Next.js Engineers for Modern Web Platforms</h2>
+        <p>Harness the full power of the modern React ecosystem with dedicated Next.js developers. We build SEO-optimized, lightning-fast web applications utilizing App Router, Server Components, streaming rendering, and Vercel edge infrastructure.</p>
+
+        <h3>Next.js Architectural Mastery</h3>
+        <ul>
+          <li><strong>App Router & RSC:</strong> Nested layouts, Server Components, Server Actions, and route handlers.</li>
+          <li><strong>Hybrid Rendering:</strong> Static Site Generation (SSG), Incremental Static Regeneration (ISR), and dynamic SSR.</li>
+          <li><strong>Technical SEO:</strong> Dynamic Open Graph generation, automatic XML sitemaps, and JSON-LD schema integration.</li>
+          <li><strong>Edge Performance:</strong> Sub-second LCP scores, asset compression, and edge middleware caching.</li>
+        </ul>
+
+        <h3>Proven Next.js Deliveries</h3>
+        <ul>
+          <li><a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> — Pre-rendered excursion landing pages with sub-second page loads.</li>
+          <li><a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism Portal</a> — Tourism excursion platform with localized checkout.</li>
+        </ul>
+
+        <p>Learn more at our <a href="/hire-engineers">Hire Engineers Directory</a> or <a href="/contact">Request a Next.js Quote</a>.</p>
+      </section>
+    `,
+  },
+  "/hire-nodejs-developers": {
+    title: "Hire Node.js Developers | Backend Software Engineers",
+    description:
+      "Hire dedicated Node.js backend developers. Experts in REST APIs, microservices, MongoDB, PostgreSQL, and high-throughput systems.",
+    h1: "Hire Dedicated Node.js Backend Developers",
+    answerBlock:
+      "DevZore provides senior Node.js backend developers experienced in architecting scalable microservices, high-throughput REST APIs, database schemas, and cloud deployments. Full source code handover with 100% IP ownership.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Senior Node.js Backend Developers for Enterprise Software</h2>
+        <p>Build scalable, secure, and fault-tolerant server architectures with vetted Node.js developers. Our backend engineers design robust database schemas, high-throughput API endpoints, and event-driven microservices for high-growth businesses.</p>
+
+        <h3>Backend Technical Standards</h3>
+        <ul>
+          <li><strong>REST & Microservice Architecture:</strong> Modular Express/Fastify routing, clean service layers, and async queue workers.</li>
+          <li><strong>Database Engineering:</strong> Complex MongoDB aggregations, PostgreSQL relational schemas, indexing, and connection pooling.</li>
+          <li><strong>Security & Authentication:</strong> JWT, OAuth2, bcrypt hashing, Helmet protection, and rate limiting.</li>
+          <li><strong>Integrations & Payments:</strong> Webhook listeners, Stripe/Tap payment processing, and ERP synchronization.</li>
+        </ul>
+
+        <h3>Delivered Backend Case Studies</h3>
+        <ul>
+          <li><a href="/projects/weldon-paints">Weldon Paints Warehouse Core</a> — High-volume inventory transactions and credit ledgers.</li>
+          <li><a href="/projects/frostyops">FrostyOps Distribution Engine</a> — Real-time order dispatching and salesman tracking.</li>
+          <li><a href="/projects/installment-management">Installment Management Engine</a> — Automated consumer financing and amortization calculations.</li>
+        </ul>
+
+        <p>Browse all talent in our <a href="/hire-engineers">Hire Engineers Hub</a> or <a href="/contact">Request Backend Profiles</a>.</p>
       </section>
     `,
   },
@@ -1527,6 +1726,7 @@ function buildPageHtml(baseTemplate, route, meta, bodyHtml, schemaJson = null) {
           <a href="/allservices" style="color:#e2e8f0; text-decoration:none;">Services</a>
           <a href="/industries" style="color:#e2e8f0; text-decoration:none;">Industries</a>
           <a href="/projects" style="color:#e2e8f0; text-decoration:none;">Case Studies</a>
+          <a href="/hire-engineers" style="color:#1bbac8; font-weight:bold; text-decoration:none;">Hire Engineers</a>
           <a href="/blog" style="color:#e2e8f0; text-decoration:none;">Insights</a>
           <a href="/about" style="color:#e2e8f0; text-decoration:none;">About</a>
           <a href="/careers" style="color:#e2e8f0; text-decoration:none;">Careers</a>
@@ -1599,6 +1799,16 @@ function buildPageHtml(baseTemplate, route, meta, bodyHtml, schemaJson = null) {
             <li><a href="/industries" style="color:#cbd5e1; text-decoration:none;">Food, Beverage & Distribution</a></li>
             <li><a href="/industries" style="color:#cbd5e1; text-decoration:none;">Tourism & Hospitality</a></li>
             <li><a href="/industries" style="color:#cbd5e1; text-decoration:none;">Finance & Installment Sales</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color:#ffffff; font-size:14px; margin:0 0 12px; font-weight:bold;"><a href="/hire-engineers" style="color:#1bbac8; text-decoration:none;">Hire Talent</a></h4>
+          <ul style="list-style:none; padding:0; margin:0; space-y:6px;">
+            <li><a href="/hire-engineers" style="color:#cbd5e1; text-decoration:none;">Hire Dedicated Engineers</a></li>
+            <li><a href="/hire-mern-stack-developers" style="color:#cbd5e1; text-decoration:none;">MERN Stack Developers</a></li>
+            <li><a href="/hire-react-developers" style="color:#cbd5e1; text-decoration:none;">React Developers</a></li>
+            <li><a href="/hire-nextjs-developers" style="color:#cbd5e1; text-decoration:none;">Next.js Developers</a></li>
+            <li><a href="/hire-nodejs-developers" style="color:#cbd5e1; text-decoration:none;">Node.js Developers</a></li>
           </ul>
         </div>
         <div>

@@ -259,6 +259,29 @@ const Contact = () => {
           <div className="absolute top-1/4 right-[5%] w-[460px] h-[460px] rounded-full bg-[#20bdcb]/10 blur-[150px] pointer-events-none" />
 
           <div className="relative max-w-[1260px] mx-auto px-4 sm:px-6">
+            {/* VISITOR INTENT CHOOSER */}
+            <div className="mb-6 flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] max-w-2xl">
+              <span className="text-xs font-semibold text-slate-400 px-3 py-1">What are you looking for?</span>
+              <button
+                type="button"
+                className="px-3.5 py-1.5 rounded-xl bg-[#0796A8] text-white text-xs font-bold shadow-md shadow-[#0796A8]/20 transition"
+              >
+                Start a Project
+              </button>
+              <Link
+                to="/hire-engineers"
+                className="px-3.5 py-1.5 rounded-xl bg-white/[0.04] hover:bg-cyan-500/15 hover:text-[#1bbac8] text-slate-300 text-xs font-semibold transition border border-transparent hover:border-cyan-500/30"
+              >
+                Hire Engineers
+              </Link>
+              <Link
+                to="/careers"
+                className="px-3.5 py-1.5 rounded-xl bg-white/[0.04] hover:bg-cyan-500/15 hover:text-[#1bbac8] text-slate-300 text-xs font-semibold transition border border-transparent hover:border-cyan-500/30"
+              >
+                Join Our Team
+              </Link>
+            </div>
+
             {/* MAIN TWO-COLUMN GRID: LEFT INTRO/CONTACTS + RIGHT FORM */}
             <div className="grid lg:grid-cols-[1fr_1.12fr] gap-6 lg:gap-10 items-start">
               {/* LEFT COLUMN: PUNCHY COPY, DIRECT CHANNELS & TRUST HIGHLIGHTS */}
@@ -591,8 +614,8 @@ const Contact = () => {
                   <Rocket size={20} />
                 </div>
                 <div>
-                  <div className="text-xl sm:text-2xl font-black text-white">120+</div>
-                  <div className="text-[13px] font-bold text-[#1bbac8] uppercase tracking-wider">Projects Completed</div>
+                  <div className="text-xl sm:text-2xl font-black text-white">180+</div>
+                  <div className="text-[13px] font-bold text-[#1bbac8] uppercase tracking-wider">Projects Delivered</div>
                   <div className="text-xs text-slate-400">Web, mobile & SaaS platforms</div>
                 </div>
               </div>

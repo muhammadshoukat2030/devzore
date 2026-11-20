@@ -86,7 +86,7 @@ const Projects = () => {
 
             {/* DESCRIPTION */}
             <p className="mt-3 max-w-2xl text-[13px] sm:text-[14px] leading-relaxed text-slate-600">
-              Explore 6 verified business systems, digital ordering platforms, and tourism engines delivered by DevZore. Read full technical case studies, system challenges, and module architectures.
+              Explore 6 selected case studies from 180+ delivered projects worldwide. Read full technical case studies, system challenges, and module architectures.
             </p>
           </div>
 

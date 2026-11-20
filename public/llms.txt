@@ -70,7 +70,7 @@
 4. Launch & Support: Production deployment, 100% source code handover, and post-launch maintenance.
 
 ## Key Differentiators
-- 120+ Projects Completed across Pakistan, Qatar, and international markets.
+- 180+ Projects Delivered across Pakistan, Qatar, and international markets.
 - Direct communication with founder and engineering lead (Muhammad Shoukat).
 - 100% full source code handover with zero vendor lock-in.
 - Transparent project scoping with fixed or milestone-based delivery.
@@ -83,6 +83,7 @@
 - Projects & Case Studies: https://devzore.com/projects
 - Technologies: https://devzore.com/technologies
 - Our Process: https://devzore.com/our-process
+- Hire Dedicated Engineers: https://devzore.com/hire-engineers
 - DevZore Journal / Blog: https://devzore.com/blog
 - Industries We Serve: https://devzore.com/industries
 - Careers: https://devzore.com/careers

@@ -1418,6 +1418,28 @@ const About = () => {
                 />
               </Link>
             </div>
+
+            {/* HIRE ENGINEERS SECONDARY CTA */}
+            <div className="mt-8 pt-6 border-t border-white/[0.08] max-w-lg mx-auto">
+              <div className="p-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
+                <div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#1bbac8]">
+                    Team Augmentation
+                  </div>
+                  <div className="text-xs text-slate-200 mt-0.5">
+                    Need dedicated engineers for your team?
+                  </div>
+                </div>
+                <Link
+                  to="/hire-engineers"
+                  onClick={scrollTop}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-[#1bbac8] border border-cyan-500/30 text-xs font-bold transition shrink-0"
+                >
+                  <span>Hire DevZore Talent</span>
+                  <ArrowRight size={12} />
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1435,6 +1457,7 @@ const About = () => {
                 ["Mobile Apps", "/mobile-apps"],
                 ["SaaS Development", "/saas-product-development"],
                 ["Custom Software", "/custom-software-solutions"],
+                ["Hire Engineers", "/hire-engineers"],
                 ["Resources", "/resources"],
                 ["Contact DevZore", "/contact"],
               ].map(([label, path]) => (

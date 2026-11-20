@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   MessageSquare,
   Send,
@@ -73,7 +73,7 @@ export default function ProjectBriefCTA({
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/10 text-xs font-bold uppercase tracking-wider text-[#1bbac8]">
               <Clock size={12} />
-              <span>Response within 2–4 hours</span>
+              <span>Target response within 24h [OWNER TO CONFIRM]</span>
             </div>
 
             <h2
@@ -117,6 +117,27 @@ export default function ProjectBriefCTA({
               <div className="flex items-center gap-2">
                 <Globe2 size={14} className="text-[#1bbac8] shrink-0" />
                 <span>Seamless remote delivery across GCC, UK, North America & PK</span>
+              </div>
+            </div>
+
+            {/* SECONDARY CTA: HIRE TALENT */}
+            <div className="pt-2">
+              <div className="p-3.5 rounded-xl border border-white/[0.08] bg-white/[0.02] flex items-center justify-between gap-3">
+                <div>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#1bbac8]">
+                    Staff Augmentation
+                  </div>
+                  <div className="text-xs text-slate-200 mt-0.5">
+                    Need dedicated engineers for your team?
+                  </div>
+                </div>
+                <Link
+                  to="/hire-engineers"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-[#1bbac8] border border-cyan-500/30 text-xs font-bold transition shrink-0"
+                >
+                  <span>Hire Developers</span>
+                  <ArrowRight size={12} />
+                </Link>
               </div>
             </div>
           </div>

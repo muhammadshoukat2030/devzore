@@ -79,7 +79,7 @@ export default function ProjectsPage() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-base sm:text-lg text-slate-300 leading-relaxed">
-              Explore 6 real-world systems engineered by DevZore. From full-stack MERN business software and distribution logistics to digital food ordering platforms and international tourism portals.
+              Explore 6 selected case studies from 180+ delivered projects worldwide. From full-stack MERN business software and distribution logistics to digital food ordering platforms and international tourism portals.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">

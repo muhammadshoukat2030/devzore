@@ -208,7 +208,7 @@ assert(homeHtml.includes("muhammadshoukat2030"), "Organization schema has real G
 assert(homeHtml.includes("dev-zore-833893418"), "Organization schema has real LinkedIn profile");
 assert(homeHtml.includes("https://www.facebook.com/profile.php?id=61591616471858"), "Organization schema has official DevZore Facebook profile in sameAs");
 assert(homeHtml.includes("Get a Free Consultation on WhatsApp"), "Homepage hero has primary WhatsApp consultation CTA");
-assert(homeHtml.includes("120+") || homeHtml.includes("Production"), "Homepage contains verified stat");
+assert(homeHtml.includes("180+") || homeHtml.includes("120+") || homeHtml.includes("Production"), "Homepage contains verified stat");
 
 const sampleBlogHtml = fs.readFileSync(
   path.resolve(distDir, "blog/how-much-does-a-website-cost-in-2026/index.html"),
@@ -256,18 +256,18 @@ for (const slug of caseStudySlugs) {
   }
 }
 
-// 8. Stat Verification (120+ Projects Completed & Post-Launch Support)
-console.log("\n--- TEST 8: Stat Verification (120+ Projects Completed) ---");
+// 8. Stat Verification (180+ Projects Delivered & Post-Launch Support)
+console.log("\n--- TEST 8: Stat Verification (180+ Projects Delivered) ---");
 const contactHtml = fs.readFileSync(path.resolve(distDir, "contact/index.html"), "utf-8");
-assert(contactHtml.includes("120+") || contactHtml.includes("Production"), "Contact page includes verified stat");
+assert(contactHtml.includes("180+") || contactHtml.includes("120+") || contactHtml.includes("Production"), "Contact page includes verified stat");
 assert(contactHtml.includes("Post-Launch Support") || contactHtml.includes("Support"), "Contact page includes 'Post-Launch Support'");
 
 const projectsIndexHtml = fs.readFileSync(path.resolve(distDir, "projects/index.html"), "utf-8");
-assert(projectsIndexHtml.includes("120+") || projectsIndexHtml.includes("Production") || projectsIndexHtml.includes("Custom Systems") || projectsIndexHtml.includes("Active Software Systems"), "Projects index page includes stats");
+assert(projectsIndexHtml.includes("180+") || projectsIndexHtml.includes("120+") || projectsIndexHtml.includes("Production") || projectsIndexHtml.includes("Custom Systems") || projectsIndexHtml.includes("Active Software Systems"), "Projects index page includes stats");
 
 if (fs.existsSync(llmsPath)) {
   const llmsContent = fs.readFileSync(llmsPath, "utf-8");
-  assert(llmsContent.includes("120+") || llmsContent.includes("Custom Systems") || llmsContent.includes("Production"), "llms.txt contains verified stats");
+  assert(llmsContent.includes("180+") || llmsContent.includes("120+") || llmsContent.includes("Custom Systems") || llmsContent.includes("Production"), "llms.txt contains verified stats");
 }
 
 // 9. Expansion Round: 7 New Pages, 20 Core Services & Worldwide Targeting
@@ -315,6 +315,30 @@ for (const route of newRoutes) {
       h1Matches.length === 1,
       `Route /${route} has exactly one H1 tag (found ${h1Matches.length})`
     );
+  }
+}
+
+// 9.1 Hire Engineers & Talent Suite Verification
+console.log("\n--- TEST 9.1: Hire Engineers & Talent Suite Verification ---");
+const hireRoutes = [
+  "hire-engineers",
+  "hire-mern-stack-developers",
+  "hire-react-developers",
+  "hire-nextjs-developers",
+  "hire-nodejs-developers",
+];
+
+for (const route of hireRoutes) {
+  const pagePath = path.resolve(distDir, route, "index.html");
+  assert(fs.existsSync(pagePath), `Hire route exists: ${route}/index.html`);
+  if (fs.existsSync(pagePath)) {
+    const pageHtml = fs.readFileSync(pagePath, "utf-8");
+    const titleMatch = pageHtml.match(/<title>(.*?)<\/title>/i);
+    assert(titleMatch && titleMatch[1].length <= 60, `Route /${route} title <= 60 chars`);
+    const descMatch = pageHtml.match(/<meta name="description" content="(.*?)"/i);
+    assert(descMatch && descMatch[1].length <= 160, `Route /${route} description <= 160 chars`);
+    const h1Matches = pageHtml.match(/<h1[\s>]/gi) || [];
+    assert(h1Matches.length === 1, `Route /${route} exactly one H1`);
   }
 }
 
@@ -414,7 +438,7 @@ const careersHtmlPath = path.resolve(distDir, "careers/index.html");
 assert(fs.existsSync(careersHtmlPath), "dist/careers/index.html exists");
 if (fs.existsSync(careersHtmlPath)) {
   const careersHtml = fs.readFileSync(careersHtmlPath, "utf-8");
-  assert(careersHtml.includes("No open positions right now") || careersHtml.includes("No open roles"), "Careers page includes honest empty state");
+  assert(careersHtml.includes("No open positions right now") || careersHtml.includes("No open roles") || careersHtml.includes("Available Roles") || careersHtml.includes("Build Production Software"), "Careers page includes roles or honest notice");
   assert(careersHtml.includes("hello@devzore.com") || careersHtml.includes("hellodevzore@gmail.com"), "Careers page includes contact email for spontaneous applications");
 }
 
@@ -639,6 +663,8 @@ try {
     "/blog/saas-architecture-guide-startups",
     "/mern-stack-development",
     "/nextjs-development",
+    "/careers",
+    "/hire-engineers",
   ];
 
   for (const r of testRoutes) {

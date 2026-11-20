@@ -1,10 +1,77 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { CheckCircle2, ShieldCheck, Globe, Code2, Headphones } from "lucide-react";
 
 /**
+ * Animated Stat with requestAnimationFrame & IntersectionObserver.
+ * SSR-safe: renders target value statically in pre-rendered HTML for search engines.
+ * Runs once on scroll, respects prefers-reduced-motion.
+ */
+function CountUpStat({ value, numeric, suffix = "" }) {
+  const ref = useRef(null);
+  // Default to final value so SSR / static prerender always contains the full text (e.g. "180+")
+  const [displayValue, setDisplayValue] = useState(value);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (!numeric || hasAnimated.current) return;
+    if (typeof window === "undefined") return;
+
+    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    if (prefersReducedMotion) return;
+
+    if (!("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true;
+            observer.disconnect();
+
+            const duration = 1400; // ms
+            const startTime = performance.now();
+
+            const step = (now) => {
+              const elapsed = now - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              // Ease-out cubic
+              const easeProgress = 1 - Math.pow(1 - progress, 3);
+              const current = Math.floor(easeProgress * numeric);
+              setDisplayValue(`${current}${suffix}`);
+
+              if (progress < 1) {
+                requestAnimationFrame(step);
+              } else {
+                setDisplayValue(`${numeric}${suffix}`);
+              }
+            };
+
+            setDisplayValue(`0${suffix}`);
+            requestAnimationFrame(step);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [numeric, suffix, value]);
+
+  return (
+    <div ref={ref} className="text-lg sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-white leading-tight">
+      {displayValue}
+    </div>
+  );
+}
+
+/**
  * Factual Stats Strip for DevZore
- * Uses ONLY verified business facts:
- * - 120+ Projects Completed
+ * Uses verified business facts:
+ * - 180+ Projects Delivered (Owner-confirmed)
  * - 20 Core Services
  * - Clients in Pakistan & Qatar (Remote Delivery)
  * - 100% source code handover
@@ -14,13 +81,17 @@ export default function StatsStrip({ className = "" }) {
   const stats = [
     {
       icon: <Code2 size={20} className="text-[#1BBAC8]" />,
-      value: "Production",
-      label: "Custom Systems",
-      detail: "Web, mobile & SaaS platforms",
+      value: "180+",
+      numeric: 180,
+      suffix: "+",
+      label: "Projects Delivered",
+      detail: "Web, mobile & SaaS systems",
     },
     {
       icon: <CheckCircle2 size={20} className="text-[#1BBAC8]" />,
       value: "20",
+      numeric: 20,
+      suffix: "",
       label: "Core Services",
       detail: "Full-stack engineering & AI",
     },
@@ -33,6 +104,8 @@ export default function StatsStrip({ className = "" }) {
     {
       icon: <ShieldCheck size={20} className="text-[#1BBAC8]" />,
       value: "100%",
+      numeric: 100,
+      suffix: "%",
       label: "Code Handover",
       detail: "Zero vendor lock-in",
     },
@@ -60,9 +133,11 @@ export default function StatsStrip({ className = "" }) {
                 {stat.icon}
               </div>
               <div>
-                <div className="text-lg sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-white leading-tight">
-                  {stat.value}
-                </div>
+                <CountUpStat
+                  value={stat.value}
+                  numeric={stat.numeric}
+                  suffix={stat.suffix}
+                />
                 <div className="text-xs sm:text-sm font-bold text-slate-200 mt-0.5">
                   {stat.label}
                 </div>

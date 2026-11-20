@@ -145,6 +145,33 @@ const Footer = () => {
   ];
 
   // ======================================================
+  // HIRE TALENT
+  // ======================================================
+
+  const hireTalent = [
+    {
+      label: "Hire Engineers (Hub)",
+      path: "/hire-engineers",
+    },
+    {
+      label: "MERN Stack Developers",
+      path: "/hire-mern-stack-developers",
+    },
+    {
+      label: "React Developers",
+      path: "/hire-react-developers",
+    },
+    {
+      label: "Next.js Developers",
+      path: "/hire-nextjs-developers",
+    },
+    {
+      label: "Node.js Developers",
+      path: "/hire-nodejs-developers",
+    },
+  ];
+
+  // ======================================================
   // SOLUTIONS
   // ======================================================
 
@@ -187,6 +214,10 @@ const Footer = () => {
     {
       label: "About DevZore",
       path: "/about",
+    },
+    {
+      label: "Hire Dedicated Engineers",
+      path: "/hire-engineers",
     },
     {
       label: "Industries We Serve",
@@ -519,7 +550,7 @@ const Footer = () => {
                 grid
                 grid-cols-2
                 sm:grid-cols-3
-                lg:grid-cols-4
+                lg:grid-cols-6
                 gap-x-6
                 gap-y-9
               "
@@ -540,6 +571,28 @@ const Footer = () => {
                         className={linkClass}
                       >
                         {service.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* HIRE TALENT */}
+
+              <div>
+                <h3 className={headingClass}>
+                  Hire Talent
+                </h3>
+
+                <ul className="space-y-2.5">
+                  {hireTalent.map((item) => (
+                    <li key={item.path}>
+                      <Link
+                        to={item.path}
+                        onClick={scrollTop}
+                        className={linkClass}
+                      >
+                        {item.label}
                       </Link>
                     </li>
                   ))}

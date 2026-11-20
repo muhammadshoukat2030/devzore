@@ -217,7 +217,7 @@ const newPosts = [
       <p>Consider a business with 12 active terminals and 3 warehouse facilities:</p>
       <ul>
         <li><strong>Off-the-Shelf SaaS Solution:</strong> $1,500/month in seat licenses + $8,000 initial customization and connector fees = <strong>$62,000 over 3 years</strong>, with zero code ownership.</li>
-        <li><strong>DevZore Custom MERN System:</strong> $7,000 to $12,000 one-time engineering milestone cost + $50/month basic cloud hosting = <strong>~$10,000 over 3 years</strong>, with 100% source code ownership and zero ongoing software licensing fees.</li>
+        <li><strong>DevZore Custom MERN System:</strong> $7,000 to $12,000 one-time engineering milestone cost [OWNER TO CONFIRM: Illustrative estimate based on scope] + $50/month basic cloud hosting = <strong>~$10,000 over 3 years</strong>, with 100% source code ownership and zero ongoing software licensing fees.</li>
       </ul>
 
       <h2>Summary & Next Steps</h2>
