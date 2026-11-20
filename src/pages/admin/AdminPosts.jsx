@@ -3,14 +3,8 @@ import {
   useEffect,
   useState,
 } from "react";
-
-import {
-  Link,
-  useNavigate,
-} from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
 import {
   Eye,
   ToggleLeft,
@@ -18,31 +12,19 @@ import {
   Trash2,
   Square,
   CheckSquare,
+  Plus,
+  RefreshCw,
+  Search,
+  FileText,
+  Clock,
+  CheckCircle2,
 } from "lucide-react";
-
 import postService from "../../services/postService";
-
-// ======================================================
-// API CONFIG
-// ======================================================
-//
-// Local:
-// http://localhost:5000/api
-//
-// Production:
-// https://devzore-backend.vercel.app/api
-//
-// Production value VITE_API_URL se aayegi.
-// ======================================================
 
 const API_URL = (
   import.meta.env.VITE_API_URL ||
   "http://localhost:5000/api"
 ).replace(/\/+$/, "");
-
-// ======================================================
-// IMAGE HELPERS
-// ======================================================
 
 const safeDecodeURIComponent = (value = "") => {
   try {
@@ -52,126 +34,35 @@ const safeDecodeURIComponent = (value = "") => {
   }
 };
 
-// ------------------------------------------------------
-// Old saved image URL se Google Drive File ID nikalna.
-//
-// Supports:
-//
-// http://localhost:5000/api/upload/image/FILE_ID
-// https://backend.com/api/upload/image/FILE_ID
-// /api/upload/image/FILE_ID
-// /upload/image/FILE_ID
-// ------------------------------------------------------
-
 const extractImageFileId = (value = "") => {
-  if (!value) {
-    return "";
-  }
-
+  if (!value) return "";
   const imageUrl = String(value).trim();
+  if (!imageUrl) return "";
 
-  if (!imageUrl) {
-    return "";
-  }
-
-  const markers = [
-    "/api/upload/image/",
-    "/upload/image/",
-  ];
-
+  const markers = ["/api/upload/image/", "/upload/image/"];
   for (const marker of markers) {
-    const markerIndex =
-      imageUrl.indexOf(marker);
-
-    if (markerIndex === -1) {
-      continue;
-    }
-
-    const start =
-      markerIndex + marker.length;
-
-    const remainder =
-      imageUrl.slice(start);
-
-    const fileId =
-      remainder
-        .split("?")[0]
-        .split("#")[0]
-        .split("/")[0]
-        .trim();
-
-    if (fileId) {
-      return safeDecodeURIComponent(fileId);
-    }
+    const markerIndex = imageUrl.indexOf(marker);
+    if (markerIndex === -1) continue;
+    const start = markerIndex + marker.length;
+    const remainder = imageUrl.slice(start);
+    const fileId = remainder.split("?")[0].split("#")[0].split("/")[0].trim();
+    if (fileId) return safeDecodeURIComponent(fileId);
   }
-
   return "";
 };
 
-// ------------------------------------------------------
-// FINAL BLOG IMAGE URL
-// ------------------------------------------------------
-//
-// Priority:
-//
-// 1. coverImagePublicId
-// 2. File ID extracted from old coverImage URL
-// 3. External/custom coverImage URL
-//
-// This prevents localhost URLs stored in MongoDB from
-// breaking production images.
-// ------------------------------------------------------
-
 const getBlogImageUrl = (post) => {
-  if (!post) {
-    return "";
-  }
-
-  // ----------------------------------------------------
-  // 1. Google Drive File ID saved separately
-  // ----------------------------------------------------
-
-  const publicId =
-    typeof post.coverImagePublicId === "string"
-      ? post.coverImagePublicId.trim()
-      : "";
-
+  if (!post) return "";
+  const publicId = typeof post.coverImagePublicId === "string" ? post.coverImagePublicId.trim() : "";
   if (publicId) {
-    return `${API_URL}/upload/image/${encodeURIComponent(
-      publicId
-    )}`;
+    return `${API_URL}/upload/image/${encodeURIComponent(publicId)}`;
   }
-
-  // ----------------------------------------------------
-  // 2. Existing cover image
-  // ----------------------------------------------------
-
-  const coverImage =
-    typeof post.coverImage === "string"
-      ? post.coverImage.trim()
-      : "";
-
-  if (!coverImage) {
-    return "";
-  }
-
-  // ----------------------------------------------------
-  // 3. Old backend image URL
-  // ----------------------------------------------------
-
-  const extractedFileId =
-    extractImageFileId(coverImage);
-
+  const coverImage = typeof post.coverImage === "string" ? post.coverImage.trim() : "";
+  if (!coverImage) return "";
+  const extractedFileId = extractImageFileId(coverImage);
   if (extractedFileId) {
-    return `${API_URL}/upload/image/${encodeURIComponent(
-      extractedFileId
-    )}`;
+    return `${API_URL}/upload/image/${encodeURIComponent(extractedFileId)}`;
   }
-
-  // ----------------------------------------------------
-  // 4. Normal remote URL
-  // ----------------------------------------------------
-
   if (
     coverImage.startsWith("http://") ||
     coverImage.startsWith("https://") ||
@@ -180,103 +71,46 @@ const getBlogImageUrl = (post) => {
   ) {
     return coverImage;
   }
-
-  // ----------------------------------------------------
-  // 5. Relative /api/... URL
-  // ----------------------------------------------------
-
   if (coverImage.startsWith("/api/")) {
-    const backendOrigin =
-      API_URL.replace(/\/api\/?$/, "");
-
+    const backendOrigin = API_URL.replace(/\/api\/?$/, "");
     return `${backendOrigin}${coverImage}`;
   }
-
-  // ----------------------------------------------------
-  // 6. Relative /upload/... URL
-  // ----------------------------------------------------
-
   if (coverImage.startsWith("/upload/")) {
     return `${API_URL}${coverImage}`;
   }
-
-  // ----------------------------------------------------
-  // Fallback
-  // ----------------------------------------------------
-
   return coverImage;
 };
 
-// ======================================================
-// WORD COUNT HELPER
-// ======================================================
-
 const getWordCount = (content) => {
   if (!content) return null;
-  const count = content
-    .replace(/<[^>]*>/g, "")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean).length;
-  return count;
+  return content.replace(/<[^>]*>/g, "").trim().split(/\s+/).filter(Boolean).length;
 };
 
-// ======================================================
-// POST THUMBNAIL
-// ======================================================
-
 const PostThumbnail = ({ post }) => {
-  const imageUrl =
-    getBlogImageUrl(post);
-
-  const [imageFailed, setImageFailed] =
-    useState(false);
+  const imageUrl = getBlogImageUrl(post);
+  const [imageFailed, setImageFailed] = useState(false);
 
   useEffect(() => {
     setImageFailed(false);
   }, [imageUrl]);
 
   return (
-    <div className="w-10 h-8 rounded-lg overflow-hidden flex-shrink-0 bg-slate-100 border border-slate-200">
+    <div className="w-9 h-8 rounded-lg overflow-hidden shrink-0 bg-slate-100 border border-slate-200 flex items-center justify-center">
       {imageUrl && !imageFailed ? (
         <img
           src={imageUrl}
-          alt={
-            post?.coverImageAlt ||
-            post?.title ||
-            "Post cover"
-          }
+          alt={post?.coverImageAlt || post?.title || "Post cover"}
           className="w-full h-full object-cover"
           loading="lazy"
           decoding="async"
-          onError={() => {
-            console.warn(
-              "⚠️ Admin thumbnail failed:",
-              {
-                title: post?.title,
-                imageUrl,
-                publicId:
-                  post?.coverImagePublicId,
-              }
-            );
-
-            setImageFailed(true);
-          }}
+          onError={() => setImageFailed(true)}
         />
       ) : (
-        <div className="w-full h-full flex items-center justify-center bg-slate-50">
-          <span className="text-[10px] font-medium text-slate-400">
-            No Image
-          </span>
-        </div>
+        <FileText className="w-4 h-4 text-slate-400" />
       )}
     </div>
   );
 };
-
-// ======================================================
-// STATUS FILTER TABS
-// ======================================================
 
 const STATUS_FILTERS = [
   { label: "All", value: "all" },
@@ -285,164 +119,57 @@ const STATUS_FILTERS = [
   { label: "Scheduled", value: "scheduled" },
 ];
 
-// ======================================================
-// COMPONENT
-// ======================================================
-
 const AdminPosts = () => {
   const navigate = useNavigate();
 
-  // ====================================================
-  // STATE
-  // ====================================================
-
-  const [posts, setPosts] =
-    useState([]);
-
-  const [loading, setLoading] =
-    useState(true);
-
-  const [refreshing, setRefreshing] =
-    useState(false);
-
-  const [deletingId, setDeletingId] =
-    useState(null);
-
-  const [togglingId, setTogglingId] =
-    useState(null);
-
-  // Status filter
-  const [statusFilter, setStatusFilter] =
-    useState("all");
-
-  // Bulk select
-  const [selectedIds, setSelectedIds] =
-    useState([]);
-
-  const [bulkDeleting, setBulkDeleting] =
-    useState(false);
-
-  // Search
-
-  const [searchInput, setSearchInput] =
-    useState("");
-
-  const [search, setSearch] =
-    useState("");
-
-  // Pagination
-
-  const [page, setPage] =
-    useState(1);
-
-  const [pagination, setPagination] =
-    useState({
-      total: 0,
-      page: 1,
-      pages: 1,
-      limit: 10,
-    });
-
-  // ====================================================
-  // EXTRACT POSTS
-  // ====================================================
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+  const [deletingId, setDeletingId] = useState(null);
+  const [togglingId, setTogglingId] = useState(null);
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [bulkDeleting, setBulkDeleting] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState({
+    total: 0,
+    page: 1,
+    pages: 1,
+    limit: 20,
+  });
 
   const extractPosts = (response) => {
-    if (Array.isArray(response)) {
-      return response;
-    }
-
-    if (Array.isArray(response?.data)) {
-      return response.data;
-    }
-
-    if (
-      Array.isArray(response?.posts)
-    ) {
-      return response.posts;
-    }
-
-    if (
-      Array.isArray(
-        response?.data?.posts
-      )
-    ) {
-      return response.data.posts;
-    }
-
+    if (Array.isArray(response)) return response;
+    if (Array.isArray(response?.data)) return response.data;
+    if (Array.isArray(response?.posts)) return response.posts;
+    if (Array.isArray(response?.data?.posts)) return response.data.posts;
     return [];
   };
 
-  // ====================================================
-  // GET POST ID
-  // ====================================================
-
-  const getPostId = (post) => {
-    return (
-      post?._id ||
-      post?.id ||
-      null
-    );
-  };
-
-  // ====================================================
-  // LOAD POSTS
-  // ====================================================
+  const getPostId = (post) => post?._id || post?.id || null;
 
   const loadPosts = useCallback(
     async (showRefresh = false) => {
       try {
-        if (showRefresh) {
-          setRefreshing(true);
-        } else {
-          setLoading(true);
-        }
+        if (showRefresh) setRefreshing(true);
+        else setLoading(true);
 
-        const response =
-          await postService.getAdminPosts(
-            page,
-            10,
-            "",
-            search
-          );
-
-        const list =
-          extractPosts(response);
-
+        const response = await postService.getAdminPosts(page, 20, "", search);
+        const list = extractPosts(response);
         setPosts(list);
         setSelectedIds([]);
 
         setPagination({
-          total:
-            response?.pagination
-              ?.total || 0,
-
-          page:
-            response?.pagination
-              ?.page || page,
-
-          pages: Math.max(
-            response?.pagination
-              ?.pages || 1,
-            1
-          ),
-
-          limit:
-            response?.pagination
-              ?.limit || 10,
+          total: response?.pagination?.total || list.length,
+          page: response?.pagination?.page || page,
+          pages: Math.max(response?.pagination?.pages || 1, 1),
+          limit: response?.pagination?.limit || 20,
         });
       } catch (error) {
-        console.error(
-          "❌ Load admin posts error:",
-          error
-        );
-
-        toast.error(
-          error?.response?.data
-            ?.message ||
-            error?.message ||
-            "Failed to load posts."
-        );
+        console.error("Load admin posts error:", error);
+        toast.error(error?.response?.data?.message || "Failed to load posts.");
       } finally {
         setLoading(false);
         setRefreshing(false);
@@ -451,269 +178,134 @@ const AdminPosts = () => {
     [page, search]
   );
 
-  // ====================================================
-  // LOAD
-  // ====================================================
-
   useEffect(() => {
     loadPosts();
   }, [loadPosts]);
 
-  // ====================================================
-  // LIVE SEARCH
-  // ====================================================
-
   useEffect(() => {
-    const timer = setTimeout(
-      () => {
-        setPage(1);
-
-        setSearch(
-          searchInput.trim()
-        );
-      },
-      300
-    );
-
-    return () => {
-      clearTimeout(timer);
-    };
+    const timer = setTimeout(() => {
+      setPage(1);
+      setSearch(searchInput.trim());
+    }, 300);
+    return () => clearTimeout(timer);
   }, [searchInput]);
 
-  // ====================================================
-  // CLIENT-SIDE FILTERED POSTS
-  // ====================================================
-
-  const filteredPosts =
-    statusFilter === "all"
-      ? posts
-      : posts.filter(
-          (post) =>
-            (post?.status || "draft") === statusFilter
-        );
-
-  // ====================================================
-  // DELETE POST
-  // ====================================================
+  const filteredPosts = posts.filter((post) => {
+    if (statusFilter === "all") return true;
+    if (statusFilter === "published") {
+      return post?.status === "published" || post?.published === true;
+    }
+    if (statusFilter === "draft") {
+      return (
+        post?.status === "draft" ||
+        (!post?.published && post?.status !== "scheduled" && !post?.scheduledAt)
+      );
+    }
+    if (statusFilter === "scheduled") {
+      return post?.status === "scheduled" || Boolean(post?.scheduledAt);
+    }
+    return true;
+  });
 
   const handleDelete = async (id) => {
-    if (!id) {
-      toast.error(
-        "Invalid post ID."
-      );
-
-      return;
-    }
-
-    const post = posts.find(
-      (item) =>
-        getPostId(item) === id
-    );
-
-    const title =
-      post?.title ||
-      "this post";
-
-    const confirmed =
-      window.confirm(
-        `Are you sure you want to delete "${title}"?`
-      );
-
-    if (!confirmed) {
-      return;
-    }
+    if (!id) return;
+    const post = posts.find((item) => getPostId(item) === id);
+    const title = post?.title || "this post";
+    const confirmed = window.confirm(`Delete "${title}"? This cannot be undone.`);
+    if (!confirmed) return;
 
     try {
       setDeletingId(id);
-
-      await postService.deletePost(
-        id
-      );
-
-      toast.success(
-        "Post deleted successfully."
-      );
-
-      // If this was the last post on a page,
-      // go to previous page.
-      if (
-        posts.length === 1 &&
-        page > 1
-      ) {
-        setPage(
-          (current) =>
-            Math.max(
-              current - 1,
-              1
-            )
-        );
+      await postService.deletePost(id);
+      toast.success("Post deleted.");
+      if (posts.length === 1 && page > 1) {
+        setPage((c) => Math.max(c - 1, 1));
       } else {
         await loadPosts(true);
       }
     } catch (error) {
-      console.error(
-        "❌ Delete post error:",
-        error
-      );
-
-      toast.error(
-        error?.response?.data
-          ?.message ||
-          error?.message ||
-          "Failed to delete post."
-      );
+      toast.error(error?.response?.data?.message || "Failed to delete post.");
     } finally {
       setDeletingId(null);
     }
   };
 
-  // ====================================================
-  // EDIT POST
-  // ====================================================
-
   const handleEdit = (id) => {
-    if (!id) {
-      toast.error(
-        "Invalid post ID."
-      );
-
-      return;
-    }
-
-    navigate(
-      `/admin/posts/edit/${id}`
-    );
+    if (!id) return;
+    navigate(`/admin/posts/edit/${id}`);
   };
-
-  // ====================================================
-  // QUICK STATUS TOGGLE
-  // ====================================================
 
   const handleStatusToggle = async (post) => {
     const id = getPostId(post);
     if (!id) return;
-
-    const currentStatus = post?.status || "draft";
-    const newStatus =
-      currentStatus === "published" ? "draft" : "published";
+    const currentStatus = post?.status || (post?.published ? "published" : "draft");
+    const newStatus = currentStatus === "published" ? "draft" : "published";
 
     try {
       setTogglingId(id);
       await postService.updatePost(id, { status: newStatus });
-      toast.success(
-        newStatus === "published"
-          ? "Post published."
-          : "Post unpublished."
-      );
+      toast.success(newStatus === "published" ? "Post published." : "Post unpublished.");
       await loadPosts(true);
     } catch (error) {
-      console.error("❌ Toggle status error:", error);
-      toast.error(
-        error?.response?.data?.message ||
-          error?.message ||
-          "Failed to update status."
-      );
+      toast.error(error?.response?.data?.message || "Failed to update status.");
     } finally {
       setTogglingId(null);
     }
   };
 
-  // ====================================================
-  // BULK SELECT HELPERS
-  // ====================================================
-
   const allFilteredIds = filteredPosts.map(getPostId).filter(Boolean);
   const allSelected =
-    allFilteredIds.length > 0 &&
-    allFilteredIds.every((id) => selectedIds.includes(id));
+    allFilteredIds.length > 0 && allFilteredIds.every((id) => selectedIds.includes(id));
 
   const toggleSelectAll = () => {
-    if (allSelected) {
-      setSelectedIds([]);
-    } else {
-      setSelectedIds(allFilteredIds);
-    }
+    if (allSelected) setSelectedIds([]);
+    else setSelectedIds(allFilteredIds);
   };
 
   const toggleSelectOne = (id) => {
     setSelectedIds((prev) =>
-      prev.includes(id)
-        ? prev.filter((i) => i !== id)
-        : [...prev, id]
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
     );
   };
 
-  // ====================================================
-  // BULK DELETE
-  // ====================================================
-
   const handleBulkDelete = async () => {
     if (selectedIds.length === 0) return;
-
     const confirmed = window.confirm(
-      `Delete ${selectedIds.length} selected post${
-        selectedIds.length > 1 ? "s" : ""
-      }? This cannot be undone.`
+      `Delete ${selectedIds.length} selected post${selectedIds.length > 1 ? "s" : ""}?`
     );
     if (!confirmed) return;
 
     setBulkDeleting(true);
     let successCount = 0;
-    let failCount = 0;
-
     for (const id of selectedIds) {
       try {
         await postService.deletePost(id);
         successCount++;
-      } catch {
-        failCount++;
+      } catch (err) {
+        console.error(err);
       }
     }
-
     setBulkDeleting(false);
-
-    if (successCount > 0) {
-      toast.success(
-        `${successCount} post${successCount > 1 ? "s" : ""} deleted.`
-      );
-    }
-    if (failCount > 0) {
-      toast.error(`${failCount} deletion${failCount > 1 ? "s" : ""} failed.`);
-    }
-
+    toast.success(`${successCount} post(s) deleted.`);
     setSelectedIds([]);
     await loadPosts(true);
   };
 
-  // ====================================================
-  // STATUS CLASS
-  // ====================================================
-
-  const getStatusClass = (
-    status
-  ) => {
-    switch (status) {
-      case "published":
-        return "bg-emerald-50 text-emerald-700 border border-emerald-200";
-
-      case "scheduled":
-        return "bg-cyan-50 text-[#07899a] border border-cyan-200";
-
-      case "draft":
-      default:
-        return "bg-amber-50 text-amber-700 border border-amber-200";
+  const getStatusClass = (status, scheduledAt) => {
+    if (status === "published") {
+      return "bg-emerald-50 text-emerald-700 border-emerald-200";
     }
+    if (status === "scheduled" || scheduledAt) {
+      return "bg-cyan-50 text-cyan-700 border-cyan-200";
+    }
+    return "bg-amber-50 text-amber-700 border-amber-200";
   };
-
-  // ====================================================
-  // FORMAT DATE
-  // ====================================================
 
   const formatDate = (date) => {
     if (!date) return "—";
-    const parsedDate = new Date(date);
-    if (Number.isNaN(parsedDate.getTime())) return "—";
-    return parsedDate.toLocaleDateString("en-US", {
+    const d = new Date(date);
+    if (Number.isNaN(d.getTime())) return "—";
+    return d.toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
       year: "numeric",
@@ -722,713 +314,334 @@ const AdminPosts = () => {
     });
   };
 
-  // ====================================================
-  // SEARCH SUBMIT
-  // ====================================================
-
-  const handleSearch = (event) => {
-    event.preventDefault();
-
-    setPage(1);
-
-    setSearch(
-      searchInput.trim()
-    );
-  };
-
-  // ====================================================
-  // CLEAR SEARCH
-  // ====================================================
-
-  const clearSearch = () => {
-    setSearchInput("");
-    setSearch("");
-    setPage(1);
-  };
-
-  // ====================================================
-  // COLUMN COUNT (for colSpan)
-  // ====================================================
-
-  // checkbox + Post + Category + Status + Words + Views + Date + Actions = 8
-  const COL_COUNT = 8;
-
-  // ====================================================
-  // RENDER
-  // ====================================================
-
   return (
-    <div>
-      {/* ================================================
-          HEADER
-      ================================================ */}
-
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3">
-        <div>
-          <h1 className="text-base sm:text-lg font-bold text-slate-900">
-            Posts
+    <div className="space-y-3">
+      {/* Top Header Row */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5">
+        <div className="flex items-center gap-2">
+          <h1 className="text-sm sm:text-base font-bold text-slate-900 uppercase tracking-wider">
+            Blog Posts
           </h1>
-
-          <p className="text-slate-500 mt-1">
-            Create and manage your
-            blog posts.
-          </p>
+          <span className="text-[11px] font-semibold text-slate-500 bg-slate-200/70 px-2 py-0.5 rounded-full">
+            {pagination.total} Total
+          </span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
-          {/* REFRESH */}
-
+        <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={() =>
-              loadPosts(true)
-            }
-            disabled={
-              loading ||
-              refreshing
-            }
-            className="inline-flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs border-slate-200 bg-white text-slate-700 font-medium hover:bg-slate-50 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={() => loadPosts(true)}
+            disabled={loading || refreshing}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 bg-white text-slate-700 text-xs font-medium hover:bg-slate-50 transition disabled:opacity-50"
           >
-            <span
-              className={
-                refreshing
-                  ? "inline-block animate-spin"
-                  : ""
-              }
-            >
-              ↻
-            </span>
-
-            {refreshing
-              ? "Refreshing..."
-              : "Refresh"}
+            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? "animate-spin" : ""}`} />
+            <span>{refreshing ? "Refreshing..." : "Refresh"}</span>
           </button>
-
-          {/* CREATE */}
 
           <Link
             to="/admin/posts/new"
-            className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#071923] text-xs text-white font-semibold hover:bg-[#0b2633] transition"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#071923] text-white text-xs font-semibold hover:bg-[#0b2633] transition"
           >
-            <span className="text-lg leading-none">
-              +
-            </span>
-
-            Create Post
+            <Plus className="w-3.5 h-3.5" />
+            <span>Create Post</span>
           </Link>
         </div>
       </div>
 
-      {/* ================================================
-          SEARCH
-      ================================================ */}
+      {/* Unified Toolbar: Tabs Left + Search Right */}
+      <div className="bg-white border border-slate-200 rounded-xl p-2 flex flex-col sm:flex-row items-center justify-between gap-2 shadow-2xs">
+        {/* Status Filter Tabs */}
+        <div className="flex items-center gap-1 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
+          {STATUS_FILTERS.map((filter) => {
+            const isActive = statusFilter === filter.value;
+            return (
+              <button
+                key={filter.value}
+                type="button"
+                onClick={() => {
+                  setStatusFilter(filter.value);
+                  setSelectedIds([]);
+                }}
+                className={`px-3 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition ${
+                  isActive
+                    ? "bg-[#071923] text-white shadow-2xs"
+                    : "text-slate-600 hover:bg-slate-100"
+                }`}
+              >
+                {filter.label}
+              </button>
+            );
+          })}
+        </div>
 
-      <form
-        onSubmit={handleSearch}
-        className="mb-3 flex flex-col sm:flex-row gap-3"
-      >
-        <div className="relative flex-1">
+        {/* Compact Search Input */}
+        <div className="relative w-full sm:w-64">
+          <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="search"
             value={searchInput}
-            onChange={(event) =>
-              setSearchInput(
-                event.target.value
-              )
-            }
+            onChange={(e) => setSearchInput(e.target.value)}
             placeholder="Search posts..."
-            className="w-full px-3 py-1.5 rounded-lg text-xs border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 outline-none transition focus:border-[#0796A8] focus:ring-4 focus:ring-[#0796A8]/10"
+            className="w-full pl-8 pr-7 py-1 text-xs border border-slate-200 rounded-lg bg-slate-50/50 text-slate-900 placeholder:text-slate-400 outline-none focus:bg-white focus:border-[#0796A8] transition"
           />
-        </div>
-
-        <button
-          type="submit"
-          className="px-4 py-1.5 rounded-lg bg-[#071923] text-white text-xs font-semibold hover:bg-[#0b2633] transition"
-        >
-          Search
-        </button>
-
-        {search && (
-          <button
-            type="button"
-            onClick={
-              clearSearch
-            }
-            className="px-3 py-1.5 rounded-lg border border-slate-200 text-xs bg-white text-slate-700 font-medium hover:bg-slate-50 transition"
-          >
-            Clear
-          </button>
-        )}
-      </form>
-
-      {/* ================================================
-          STATUS FILTER
-      ================================================ */}
-
-      <div className="flex flex-wrap items-center gap-2 mb-5">
-        {STATUS_FILTERS.map((filter) => (
-          <button
-            key={filter.value}
-            type="button"
-            onClick={() => {
-              setStatusFilter(filter.value);
-              setSelectedIds([]);
-            }}
-            className={`px-4 py-1.5 rounded-full text-sm font-medium border transition ${
-              statusFilter === filter.value
-                ? "bg-[#071923] text-white border-[#071923]"
-                : "bg-white text-slate-600 border-slate-200 hover:border-slate-400 hover:text-slate-900"
-            }`}
-          >
-            {filter.label}
-          </button>
-        ))}
-      </div>
-
-      {/* ================================================
-          STATS
-      ================================================ */}
-
-      {!loading && (
-        <div className="mb-3 flex flex-wrap items-center gap-3">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-sm">
-            <span className="font-semibold text-slate-900">
-              {
-                pagination.total
-              }
-            </span>
-
-            {pagination.total === 1
-              ? "Post"
-              : "Posts"}
-          </div>
-
-          {statusFilter !== "all" && (
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 text-sm">
-              Showing{" "}
-              <span className="font-semibold text-slate-900">
-                {filteredPosts.length}
-              </span>{" "}
-              {statusFilter}
-            </div>
+          {searchInput && (
+            <button
+              type="button"
+              onClick={() => {
+                setSearchInput("");
+                setSearch("");
+              }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 text-xs"
+            >
+              ✕
+            </button>
           )}
         </div>
-      )}
+      </div>
 
-      {/* ================================================
-          BULK ACTION BAR
-      ================================================ */}
-
+      {/* Bulk Action Bar */}
       {selectedIds.length > 0 && (
-        <div className="mb-4 flex items-center gap-4 px-4 py-3 rounded-xl bg-red-50 border border-red-200">
-          <span className="text-sm font-medium text-red-700">
+        <div className="flex items-center justify-between px-3 py-1.5 rounded-lg bg-red-50 border border-red-200 text-xs">
+          <span className="font-semibold text-red-700">
             {selectedIds.length} post{selectedIds.length > 1 ? "s" : ""} selected
           </span>
-
-          <button
-            type="button"
-            onClick={handleBulkDelete}
-            disabled={bulkDeleting}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <Trash2 className="w-4 h-4" />
-            {bulkDeleting ? "Deleting..." : "Delete Selected"}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setSelectedIds([])}
-            className="ml-auto text-sm text-red-500 hover:text-red-700 transition"
-          >
-            Cancel
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleBulkDelete}
+              disabled={bulkDeleting}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-red-600 text-white font-semibold hover:bg-red-700 transition disabled:opacity-50"
+            >
+              <Trash2 className="w-3.5 h-3.5" />
+              {bulkDeleting ? "Deleting..." : "Delete Selected"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedIds([])}
+              className="text-slate-500 hover:text-slate-700 font-medium px-2 py-1"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       )}
 
-      {/* ================================================
-          TABLE
-      ================================================ */}
-
-      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+      {/* Table Container */}
+      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-2xs">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[1000px]">
-            {/* TABLE HEADER */}
-
+          <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-left">
-                {/* CHECKBOX */}
-                <th className="pl-4 pr-2 py-4 w-10">
+              <tr className="bg-slate-50 border-b border-slate-200 text-[10px] uppercase tracking-wider font-semibold text-slate-500">
+                <th className="pl-3 pr-1 py-2 w-8">
                   <button
                     type="button"
                     onClick={toggleSelectAll}
-                    className="text-slate-400 hover:text-slate-700 transition"
+                    className="text-slate-400 hover:text-slate-700 flex items-center"
                     aria-label="Select all"
                   >
                     {allSelected ? (
-                      <CheckSquare className="w-4 h-4 text-[#0796A8]" />
+                      <CheckSquare className="w-3.5 h-3.5 text-[#0796A8]" />
                     ) : (
-                      <Square className="w-4 h-4" />
+                      <Square className="w-3.5 h-3.5" />
                     )}
                   </button>
                 </th>
-
-                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
-                  Post
-                </th>
-
-                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
-                  Category
-                </th>
-
-                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
-                  Status
-                </th>
-
-                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
-                  Words
-                </th>
-
-                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
-                  Views
-                </th>
-
-                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500">
-                  Date
-                </th>
-
-                <th className="px-3 py-2 text-[10px] text-xs uppercase tracking-wider font-semibold text-slate-500 text-right">
-                  Actions
-                </th>
+                <th className="px-3 py-2">Post</th>
+                <th className="px-3 py-2">Category</th>
+                <th className="px-2 py-2 text-center">Status</th>
+                <th className="px-2 py-2 text-center">Words</th>
+                <th className="px-2 py-2 text-center">Views</th>
+                <th className="px-3 py-2 text-center">Schedule / Publish</th>
+                <th className="px-3 py-2 text-right">Actions</th>
               </tr>
             </thead>
 
-            <tbody>
-              {/* LOADING */}
-
+            <tbody className="divide-y divide-slate-100">
               {loading && (
                 <tr>
-                  <td
-                    colSpan={COL_COUNT}
-                    className="text-center py-16"
-                  >
-                    <div className="flex flex-col items-center justify-center">
-                      <div className="w-7 h-7 border-2 border-slate-200 border-t-[#0796A8] rounded-full animate-spin mb-3" />
-
-                      <p className="text-slate-400">
-                        Loading posts...
-                      </p>
-                    </div>
+                  <td colSpan={8} className="text-center py-12 text-slate-400 text-xs">
+                    <div className="inline-block w-5 h-5 border-2 border-slate-200 border-t-[#0796A8] rounded-full animate-spin mb-2" />
+                    <p>Loading posts...</p>
                   </td>
                 </tr>
               )}
 
-              {/* POSTS */}
+              {!loading && filteredPosts.length === 0 && (
+                <tr>
+                  <td colSpan={8} className="text-center py-10 text-slate-400 text-xs">
+                    No posts found.
+                  </td>
+                </tr>
+              )}
 
               {!loading &&
-                filteredPosts.map(
-                  (post) => {
-                    const id =
-                      getPostId(
-                        post
-                      );
+                filteredPosts.map((post) => {
+                  const id = getPostId(post);
+                  const categoryName =
+                    post?.category?.name ||
+                    (typeof post?.category === "string" ? post.category : "Web Dev");
+                  const status = post?.status || (post?.published ? "published" : "draft");
+                  const isSelected = id && selectedIds.includes(id);
+                  const wordCount = getWordCount(post?.content);
+                  const isScheduled = status === "scheduled" || Boolean(post?.scheduledAt);
 
-                    const categoryName =
-                      post?.category
-                        ?.name ||
-                      (typeof post?.category ===
-                      "string"
-                        ? post.category
-                        : "Uncategorized");
+                  return (
+                    <tr
+                      key={id || post?.slug || post?.title}
+                      className="hover:bg-slate-50/70 transition"
+                    >
+                      {/* Checkbox */}
+                      <td className="pl-3 pr-1 py-2">
+                        <button
+                          type="button"
+                          onClick={() => id && toggleSelectOne(id)}
+                          disabled={!id}
+                          className="text-slate-400 hover:text-slate-700 transition disabled:opacity-30 flex items-center"
+                          aria-label="Select row"
+                        >
+                          {isSelected ? (
+                            <CheckSquare className="w-3.5 h-3.5 text-[#0796A8]" />
+                          ) : (
+                            <Square className="w-3.5 h-3.5" />
+                          )}
+                        </button>
+                      </td>
 
-                    const status =
-                      post?.status ||
-                      "draft";
+                      {/* Post Title & Slug */}
+                      <td className="px-3 py-2">
+                        <div className="flex items-center gap-2.5 max-w-sm">
+                          <PostThumbnail post={post} />
+                          <div className="min-w-0 flex-1">
+                            <p className="font-semibold text-slate-900 truncate text-xs leading-snug">
+                              {post?.title || "Untitled"}
+                            </p>
+                            <p className="text-[10px] text-slate-400 font-mono truncate">
+                              /{post?.slug || "no-slug"}
+                            </p>
+                            {post?.featured && (
+                              <span className="inline-block text-[9px] font-bold text-cyan-700 bg-cyan-50 px-1.5 rounded border border-cyan-100">
+                                Featured
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </td>
 
-                    const isSelected =
-                      id && selectedIds.includes(id);
+                      {/* Category */}
+                      <td className="px-3 py-2 text-slate-600 text-[11px] truncate max-w-[120px]">
+                        {categoryName}
+                      </td>
 
-                    const wordCount =
-                      getWordCount(post?.content);
+                      {/* Status */}
+                      <td className="px-2 py-2 text-center whitespace-nowrap">
+                        <span
+                          className={`inline-flex px-2 py-0.5 rounded text-[10px] font-semibold border capitalize ${getStatusClass(
+                            status,
+                            post?.scheduledAt
+                          )}`}
+                        >
+                          {status}
+                        </span>
+                      </td>
 
-                    return (
-                      <tr
-                        key={
-                          id ||
-                          post?.slug ||
-                          post?.title
-                        }
-                        className="border-b border-slate-100 last:border-b-0 hover:bg-slate-50 transition"
-                      >
-                        {/* CHECKBOX */}
+                      {/* Words */}
+                      <td className="px-2 py-2 text-center font-mono text-[11px] text-slate-500 whitespace-nowrap">
+                        {wordCount ? wordCount.toLocaleString() : "—"}
+                      </td>
 
-                        <td className="pl-3 pr-1 py-2">
+                      {/* Views */}
+                      <td className="px-2 py-2 text-center font-mono text-[11px] text-slate-600 whitespace-nowrap">
+                        {typeof post?.views === "number" ? post.views.toLocaleString() : "0"}
+                      </td>
+
+                      {/* Date / Schedule & Sitemap */}
+                      <td className="px-3 py-2 text-center whitespace-nowrap">
+                        {isScheduled && post?.scheduledAt ? (
+                          <div className="space-y-0.5">
+                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-cyan-700 bg-cyan-50 border border-cyan-200 px-1.5 py-0.5 rounded">
+                              <Clock className="w-2.5 h-2.5" />
+                              Sched: {formatDate(post?.scheduledAt)}
+                            </span>
+                            <p className="text-[9px] text-slate-400 font-mono">Syncs sitemap on trigger</p>
+                          </div>
+                        ) : status === "published" ? (
+                          <div className="space-y-0.5">
+                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded">
+                              <CheckCircle2 className="w-2.5 h-2.5" />
+                              Pub: {formatDate(post?.publishedAt || post?.createdAt)}
+                            </span>
+                            <p className="text-[9px] text-emerald-600 font-mono">Sitemap: Synced</p>
+                          </div>
+                        ) : (
+                          <span className="text-[10px] text-slate-400">
+                            Draft: {formatDate(post?.createdAt)}
+                          </span>
+                        )}
+                      </td>
+
+                      {/* Actions: Clean single horizontal flex row */}
+                      <td className="px-3 py-2 text-right whitespace-nowrap">
+                        <div className="inline-flex items-center gap-1 justify-end">
+                          {/* Live Preview */}
                           <button
                             type="button"
-                            onClick={() =>
-                              id && toggleSelectOne(id)
-                            }
-                            disabled={!id}
-                            className="text-slate-400 hover:text-slate-700 transition disabled:opacity-30"
-                            aria-label="Select post"
+                            onClick={() => window.open("/blog/" + (post?.slug || ""), "_blank")}
+                            disabled={!post?.slug}
+                            title="Preview Post"
+                            className="p-1 rounded text-slate-400 hover:text-[#0796A8] hover:bg-slate-100 transition disabled:opacity-30"
                           >
-                            {isSelected ? (
-                              <CheckSquare className="w-4 h-4 text-[#0796A8]" />
-                            ) : (
-                              <Square className="w-4 h-4" />
-                            )}
+                            <Eye className="w-3.5 h-3.5" />
                           </button>
-                        </td>
 
-                        {/* POST */}
-
-                        <td className="px-3 py-2 text-xs">
-                          <div className="flex items-center gap-4">
-                            <PostThumbnail
-                              post={
-                                post
-                              }
-                            />
-
-                            <div className="min-w-0">
-                              <p className="font-semibold text-slate-900 line-clamp-1">
-                                {post?.title ||
-                                  "Untitled"}
-                              </p>
-
-                              <p className="text-xs text-slate-400 mt-1 line-clamp-1">
-                                {post?.slug ||
-                                  "No slug"}
-                              </p>
-
-                              {post?.featured && (
-                                <span className="inline-flex mt-2 px-2.5 py-0.5 rounded-full bg-cyan-50 border border-cyan-100 text-[#07899a] text-[10px] font-semibold">
-                                  Featured
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                        </td>
-
-                        {/* CATEGORY */}
-
-                        <td className="px-3 py-2 text-xs text-sm text-slate-600">
-                          {
-                            categoryName
-                          }
-                        </td>
-
-                        {/* STATUS */}
-
-                        <td className="px-3 py-2 text-xs">
-                          <span
-                            className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold capitalize ${getStatusClass(
-                              status
-                            )}`}
-                          >
-                            {
-                              status
-                            }
-                          </span>
-                        </td>
-
-                        {/* WORDS */}
-
-                        <td className="px-3 py-2 text-xs text-sm text-slate-500">
-                          {wordCount !== null
-                            ? wordCount.toLocaleString()
-                            : "—"}
-                        </td>
-
-                        {/* VIEWS */}
-
-                        <td className="px-3 py-2 text-xs text-sm text-slate-500">
-                          {typeof post?.views ===
-                          "number"
-                            ? post.views.toLocaleString()
-                            : "0"}
-                        </td>
-
-                        {/* DATE */}
-
-                        <td className="px-3 py-2 text-xs text-slate-600 whitespace-nowrap">
-                          {post?.status === "scheduled" || post?.scheduledAt ? (
-                            <div className="space-y-0.5">
-                              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-cyan-700 bg-cyan-50 border border-cyan-200 px-1.5 py-0.5 rounded">
-                                ⏰ Sched: {formatDate(post?.scheduledAt || post?.createdAt)}
-                              </span>
-                              <p className="text-[9px] text-slate-400">Syncs sitemap on trigger</p>
-                            </div>
-                          ) : post?.status === "published" ? (
-                            <div className="space-y-0.5">
-                              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded">
-                                ✓ Pub: {formatDate(post?.publishedAt || post?.createdAt)}
-                              </span>
-                              <p className="text-[9px] text-emerald-600 font-mono">Sitemap: Synced</p>
-                            </div>
-                          ) : (
-                            <div className="space-y-0.5">
-                              <span className="inline-flex items-center gap-1 text-[10px] text-slate-500">
-                                Draft: {formatDate(post?.createdAt)}
-                              </span>
-                            </div>
+                          {/* Quick Publish / Unpublish Toggle */}
+                          {status !== "scheduled" && (
+                            <button
+                              type="button"
+                              onClick={() => handleStatusToggle(post)}
+                              disabled={!id || togglingId === id || deletingId === id}
+                              title={status === "published" ? "Unpublish Post" : "Publish Post"}
+                              className={`px-1.5 py-0.5 rounded text-[10px] font-semibold border transition disabled:opacity-50 ${
+                                status === "published"
+                                  ? "bg-amber-50 hover:bg-amber-100 text-amber-700 border-amber-200"
+                                  : "bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border-emerald-200"
+                              }`}
+                            >
+                              {togglingId === id
+                                ? "..."
+                                : status === "published"
+                                ? "Unpublish"
+                                : "Publish"}
+                            </button>
                           )}
-                        </td>
 
-                        {/* ACTIONS */}
-
-                        <td className="px-3 py-2 text-xs">
-                          <div className="flex items-center justify-end gap-2 flex-wrap">
-                            {/* PREVIEW */}
-                            <button
-                              type="button"
-                              onClick={() =>
-                                window.open(
-                                  "/blog/" + (post?.slug || ""),
-                                  "_blank"
-                                )
-                              }
-                              disabled={!post?.slug}
-                              title="Preview post"
-                              className="p-2 rounded-lg text-sm font-medium bg-slate-100 hover:bg-slate-200 text-slate-600 transition disabled:opacity-40 disabled:cursor-not-allowed"
-                            >
-                              <Eye className="w-4 h-4" />
-                            </button>
-
-                            {/* QUICK STATUS TOGGLE */}
-                            {status !== "scheduled" && (
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  handleStatusToggle(post)
-                                }
-                                disabled={
-                                  !id ||
-                                  togglingId === id ||
-                                  deletingId === id
-                                }
-                                title={
-                                  status === "published"
-                                    ? "Unpublish"
-                                    : "Publish"
-                                }
-                                className={`inline-flex items-center gap-1 px-2.5 py-2 rounded-lg text-xs font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed ${
-                                  status === "published"
-                                    ? "bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200"
-                                    : "bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200"
-                                }`}
-                              >
-                                {togglingId === id ? (
-                                  <span className="inline-block w-3 h-3 border border-current border-t-transparent rounded-full animate-spin" />
-                                ) : status === "published" ? (
-                                  <ToggleRight className="w-4 h-4" />
-                                ) : (
-                                  <ToggleLeft className="w-4 h-4" />
-                                )}
-                                {status === "published"
-                                  ? "Unpublish"
-                                  : "Publish"}
-                              </button>
-                            )}
-
-                            {/* EDIT */}
-                            <button
-                              type="button"
-                              onClick={() =>
-                                handleEdit(
-                                  id
-                                )
-                              }
-                              disabled={
-                                !id ||
-                                deletingId ===
-                                  id
-                              }
-                              className="px-3 py-2 rounded-lg text-sm font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                              Edit
-                            </button>
-
-                            {/* DELETE */}
-                            <button
-                              type="button"
-                              onClick={() =>
-                                handleDelete(
-                                  id
-                                )
-                              }
-                              disabled={
-                                !id ||
-                                deletingId ===
-                                  id
-                              }
-                              className="p-2 rounded-lg text-sm font-medium bg-red-50 hover:bg-red-100 text-red-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                              title="Delete post"
-                            >
-                              {deletingId ===
-                              id ? (
-                                <span className="inline-block w-4 h-4 border border-red-400 border-t-transparent rounded-full animate-spin" />
-                              ) : (
-                                <Trash2 className="w-4 h-4" />
-                              )}
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  }
-                )}
-
-              {/* EMPTY */}
-
-              {!loading &&
-                filteredPosts.length ===
-                  0 && (
-                  <tr>
-                    <td
-                      colSpan={COL_COUNT}
-                      className="text-center py-16 px-6"
-                    >
-                      <div className="flex flex-col items-center">
-                        <div className="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-2xl mb-4">
-                          ✎
-                        </div>
-
-                        <p className="font-semibold text-slate-700">
-                          {search || statusFilter !== "all"
-                            ? "No matching posts"
-                            : "No posts yet"}
-                        </p>
-
-                        <p className="text-sm text-slate-400 mt-1">
-                          {search
-                            ? "Try a different search term."
-                            : statusFilter !== "all"
-                            ? `No ${statusFilter} posts found.`
-                            : "Create your first blog post."}
-                        </p>
-
-                        {!search && statusFilter === "all" && (
-                          <Link
-                            to="/admin/posts/new"
-                            className="mt-5 px-4 py-2.5 rounded-lg bg-[#071923] text-white text-sm font-semibold hover:bg-[#0b2633] transition"
+                          {/* Edit */}
+                          <button
+                            type="button"
+                            onClick={() => handleEdit(id)}
+                            disabled={!id || deletingId === id}
+                            className="px-2 py-0.5 rounded text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition disabled:opacity-50"
                           >
-                            Create
-                            Post
-                          </Link>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                )}
+                            Edit
+                          </button>
+
+                          {/* Delete */}
+                          <button
+                            type="button"
+                            onClick={() => handleDelete(id)}
+                            disabled={!id || deletingId === id}
+                            title="Delete Post"
+                            className="p-1 rounded text-red-400 hover:text-red-600 hover:bg-red-50 transition disabled:opacity-50"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </div>
-
-        {/* ==============================================
-            PAGINATION
-        ============================================== */}
-
-        {!loading &&
-          pagination.pages > 1 && (
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 border-t border-slate-200 bg-slate-50/50">
-              <p className="text-sm text-slate-500">
-                Page{" "}
-                <span className="font-semibold text-slate-900">
-                  {
-                    pagination.page
-                  }
-                </span>{" "}
-                of{" "}
-                <span className="font-semibold text-slate-900">
-                  {
-                    pagination.pages
-                  }
-                </span>
-              </p>
-
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                <button
-                  type="button"
-                  onClick={() =>
-                    setPage(
-                      (
-                        previous
-                      ) =>
-                        Math.max(
-                          previous -
-                            1,
-                          1
-                        )
-                    )
-                  }
-                  disabled={
-                    page <= 1
-                  }
-                  className="px-4 py-2 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  Previous
-                </button>
-
-                {Array.from(
-                  {
-                    length:
-                      pagination.pages,
-                  },
-                  (_, index) =>
-                    index + 1
-                ).map(
-                  (
-                    pageNumber
-                  ) => (
-                    <button
-                      key={
-                        pageNumber
-                      }
-                      type="button"
-                      onClick={() =>
-                        setPage(
-                          pageNumber
-                        )
-                      }
-                      className={`min-w-10 px-3 py-2 rounded-lg text-sm font-semibold transition ${
-                        pageNumber ===
-                        pagination.page
-                          ? "bg-[#071923] text-white"
-                          : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
-                      }`}
-                    >
-                      {
-                        pageNumber
-                      }
-                    </button>
-                  )
-                )}
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    setPage(
-                      (
-                        previous
-                      ) =>
-                        Math.min(
-                          previous +
-                            1,
-                          pagination.pages
-                        )
-                    )
-                  }
-                  disabled={
-                    page >=
-                    pagination.pages
-                  }
-                  className="px-4 py-2 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  Next
-                </button>
-              </div>
-            </div>
-          )}
       </div>
     </div>
   );
