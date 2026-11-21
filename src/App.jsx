@@ -17,7 +17,7 @@ import { Helmet } from "react-helmet-async";
 // ======================================================
 
 import AnnouncementBar from "./components/AnnouncementBar";
-import Navbar from "./components/Navbar";
+import Navbar, { ScrollToTopButton } from "./components/Navbar";
 import Footer from "./components/Footer";
 import TrustBar from "./components/TrustBar";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
@@ -1510,6 +1510,11 @@ function AppContent() {
 
       {!isAdminRoute && (
         <FloatingWhatsApp />
+      )}
+
+      {/* Scroll-to-top button — stacks above WhatsApp with 12px gap */}
+      {!isAdminRoute && (
+        <ScrollToTopButton />
       )}
     </div>
   );

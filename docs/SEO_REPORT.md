@@ -1,9 +1,40 @@
 # DevZore SEO & Global Client Acquisition Audit Report
 
-**Date:** November 20, 2026  
+**Date:** November 21, 2026 (updated)
 **Website:** https://devzore.com  
 **Repository Branch:** `seo-overhaul`  
 **Goal:** Transform devzore.com into a high-converting global client acquisition engine (Focus markets: Qatar/GCC, UK, USA, Canada, Australia, Pakistan) while strengthening and protecting DevZore's reputation.
+
+---
+
+## 0. Navigation Redesign (November 21, 2026)
+
+Complete `Navbar.jsx` redesign resolving all issues found on the live site:
+
+| Issue | Fix Applied |
+| :--- | :--- |
+| Dropdown panels misaligned to trigger | Each simple dropdown (`left-0`) anchored to its own trigger. Services mega-menu `fixed left-1/2 -translate-x-1/2` centered under the 1280 px header container. |
+| Duplicate links — Case Studies in 3 places | Kept only as a **direct top-level link**. Removed from Resources and Company. |
+| Duplicate links — Hire Engineers in 2 places | Kept only as a **direct top-level link**. Removed "Hire Dedicated Engineers" from Services list. |
+| External-link arrow on internal links | `ArrowUpRight` removed from all internal `<Link>` elements. Only `ChevronRight` used as page indicator on mobile. |
+| Services: flat list of 20, niche services missing | Replaced with a **4-column mega-menu** (AI & Product, Web & Mobile, Business Systems, Growth & Support). All 5 niche services (Inventory, Distribution, Installment, Tour Booking, Food Ordering) added. |
+| "Home" active underline always visible | `Home` link removed from desktop nav entirely. Active underline only renders for the **current page's section**. |
+| "START A PROJECT" button clipped | Header container capped at `max-w-[1280px]`, `overflow-x-hidden`. CTA uses `flex-shrink-0` and `whitespace-nowrap`. |
+| WhatsApp overlaps scroll-to-top | New `ScrollToTopButton` exported from Navbar, placed in `App.jsx` above `FloatingWhatsApp`. WhatsApp at `bottom-6`; scroll-to-top at `bottom-96px` (60px + 24px gap + 12px extra) — vertically stacked with 12 px gap. Scroll-to-top only visible after 1 screen scroll. |
+| Language switcher — only placeholder | **Language switcher removed.** No real translations exist. See note below. |
+| Hover closes immediately (flicker) | 120 ms close-delay `useCloseDelay` hook + invisible hover-bridge `<div>` above panel prevents flicker when moving mouse from trigger to panel. |
+| No keyboard / ARIA support | `aria-expanded`, `aria-haspopup`, `aria-current`, `aria-label` added. Focus rings visible. `Escape` closes all. Mobile drawer uses `inert` attribute. |
+
+### Language Switcher — Removal Note
+The language selector was a **placeholder only** (toggled between EN / FR / ES labels with no actual i18n routing or translated content). Keeping it misleads users and can harm E-E-A-T. It has been removed from both desktop and mobile nav. When real internationalized routes exist, it should be re-introduced with `hreflang` tags and actual translated pages.
+
+### Responsive Breakpoints
+- **≥ 1180 px (lg):** Full desktop nav with mega-menu and dropdowns.
+- **< 1180 px:** Hamburger button, full-height right drawer with accordion groups, 44 px+ tap targets, CTA pinned bottom, body scroll locked, focus trap via `inert` attribute.
+
+### Build & Test Results (post-redesign)
+- `npm run build`: ✅ 7.86 s, 78 routes pre-rendered, 0 warnings.
+- `node scripts/verify.mjs`: ✅ **443 Passed, 0 Failed**.
 
 ---
 
