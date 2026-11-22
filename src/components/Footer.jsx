@@ -831,44 +831,6 @@ const Footer = () => {
           />
         </Link>
       </div>
-
-      {/* ==================================================
-          DESKTOP BACK TO TOP
-      ================================================== */}
-
-      <button
-        type="button"
-        onClick={scrollTop}
-        aria-label="Back to top"
-        title="Back to top"
-        className="
-          hidden
-          md:flex
-          fixed
-          z-50
-          right-5
-          bottom-5
-          w-10
-          h-10
-          rounded-full
-          items-center
-          justify-center
-          border
-          border-white/10
-          bg-[#061923]/95
-          text-[#A9BBC4]
-          shadow-lg
-          backdrop-blur-md
-          hover:bg-[#20C7C7]
-          hover:text-[#061923]
-          hover:border-[#20C7C7]
-          transition-all
-          duration-300
-          hover:-translate-y-1
-        "
-      >
-        <ArrowUp size={17} />
-      </button>
     </>
   );
 };

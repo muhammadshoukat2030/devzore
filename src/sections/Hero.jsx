@@ -632,11 +632,11 @@ const Hero = () => {
                 lg:text-[46px]
                 xl:text-[50px]
 
-                leading-[1.055]
+                leading-[1.12]
 
-                sm:leading-[1.045]
+                sm:leading-[1.14]
 
-                tracking-[-0.038em]
+                tracking-[-0.01em]
 
                 font-semibold
 

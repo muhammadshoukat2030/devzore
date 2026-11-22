@@ -1,40 +1,51 @@
 # DevZore SEO & Global Client Acquisition Audit Report
 
-**Date:** November 21, 2026 (updated)
+**Date:** November 22, 2026 (finalized)  
 **Website:** https://devzore.com  
-**Repository Branch:** `seo-overhaul`  
+**Repository Branch:** `main` (fast-forward merged from `seo-overhaul`)  
 **Goal:** Transform devzore.com into a high-converting global client acquisition engine (Focus markets: Qatar/GCC, UK, USA, Canada, Australia, Pakistan) while strengthening and protecting DevZore's reputation.
 
 ---
 
-## 0. Navigation Redesign (November 21, 2026)
+## 0. Navigation, Typography & UI/UX Audit & Resolution (November 22, 2026)
 
-Complete `Navbar.jsx` redesign resolving all issues found on the live site:
+### 0.1 Root Cause Diagnosis: Broken Dropdown Visibility
+1. **Clipping Ancestor (`overflow-x: hidden`)**:
+   - The header container had `overflow-x: hidden` with `height: 72px`. In the CSS box model, setting `overflow-x: hidden` forces `overflow-y` to compute to `hidden` or `auto`.
+   - Compact dropdown panels positioned with `position: absolute; top: 100%` placed their content at vertical coordinate `y = 72px`, placing them entirely outside the parent's box. The ancestor's computed overflow clipped them completely from the viewport.
+   - The Services mega-menu rendered only because it used `position: fixed`, which breaks out of ancestor overflow clipping.
+2. **Sub-Component Scope Re-creation**:
+   - `SimpleDropdown` had previously been declared inside the `Navbar` component body, causing React to treat it as a new component type on each state update. This triggered unmount/remount cycles during hover interactions, destroying panel state.
+3. **Duplicate Back-To-Top Button in Footer**:
+   - `Footer.jsx` contained a hardcoded legacy `<button aria-label="Back to top">` fixed at `bottom-5 right-5`, which directly conflicted with and visually overlapped `FloatingWhatsApp` at `bottom-6 right-5`.
+4. **Hero Heading Letter-Spacing**:
+   - `Hero.jsx` had `tracking-[-0.038em]` (-3.8% letter spacing) with `leading-[1.055]`, causing letters to appear squeezed and tightly spaced.
 
-| Issue | Fix Applied |
-| :--- | :--- |
-| Dropdown panels misaligned to trigger | Each simple dropdown (`left-0`) anchored to its own trigger. Services mega-menu `fixed left-1/2 -translate-x-1/2` centered under the 1280 px header container. |
-| Duplicate links — Case Studies in 3 places | Kept only as a **direct top-level link**. Removed from Resources and Company. |
-| Duplicate links — Hire Engineers in 2 places | Kept only as a **direct top-level link**. Removed "Hire Dedicated Engineers" from Services list. |
-| External-link arrow on internal links | `ArrowUpRight` removed from all internal `<Link>` elements. Only `ChevronRight` used as page indicator on mobile. |
-| Services: flat list of 20, niche services missing | Replaced with a **4-column mega-menu** (AI & Product, Web & Mobile, Business Systems, Growth & Support). All 5 niche services (Inventory, Distribution, Installment, Tour Booking, Food Ordering) added. |
-| "Home" active underline always visible | `Home` link removed from desktop nav entirely. Active underline only renders for the **current page's section**. |
-| "START A PROJECT" button clipped | Header container capped at `max-w-[1280px]`, `overflow-x-hidden`. CTA uses `flex-shrink-0` and `whitespace-nowrap`. |
-| WhatsApp overlaps scroll-to-top | New `ScrollToTopButton` exported from Navbar, placed in `App.jsx` above `FloatingWhatsApp`. WhatsApp at `bottom-6`; scroll-to-top at `bottom-96px` (60px + 24px gap + 12px extra) — vertically stacked with 12 px gap. Scroll-to-top only visible after 1 screen scroll. |
-| Language switcher — only placeholder | **Language switcher removed.** No real translations exist. See note below. |
-| Hover closes immediately (flicker) | 120 ms close-delay `useCloseDelay` hook + invisible hover-bridge `<div>` above panel prevents flicker when moving mouse from trigger to panel. |
-| No keyboard / ARIA support | `aria-expanded`, `aria-haspopup`, `aria-current`, `aria-label` added. Focus rings visible. `Escape` closes all. Mobile drawer uses `inert` attribute. |
+### 0.2 Implemented Architectural Fixes
+1. **Unified Dropdown Component (`NavDropdown`)**:
+   - Defined strictly at module scope with consistent behavior across Services (mega-menu) and compact dropdowns (Solutions, Resources, Company).
+   - Removed `overflow-x: hidden` from the header flex container.
+   - Solutions and Resources panels are anchored with `left: 0`, and Company is anchored with `right: 0` to prevent viewport overflow on the right edge.
+   - Integrated transparent 8px hover-bridge and 120ms close-delay (`useCloseDelay`) for smooth mouse transition from trigger to panel.
+   - Click/tap toggle, Escape key, and outside pointerdown listeners.
+2. **Services Mega-Menu Grid Expansion**:
+   - Widen mega-panel container to `min(1080px, calc(100vw - 32px))`.
+   - Dedicated 4-column minmax CSS grid: `minmax(210px, 1fr) minmax(215px, 1.05fr) minmax(260px, 1.35fr) minmax(190px, 0.95fr)` with `gap-x-8`.
+   - Long labels such as *"Distribution Management System"* and *"Installment Management Software"* have 260px+ dedicated space with zero column crowding or line wrapping.
+3. **Hero Heading Typography**:
+   - Updated letter-spacing from `-0.038em` to `tracking-[-0.01em]` (maximum -0.01em as specified).
+   - Updated line-height to `leading-[1.12] sm:leading-[1.14]` (within 1.10–1.15 target range) for comfortable readability on mobile and desktop.
+4. **Clean Floating Button Stacking**:
+   - Removed redundant duplicate fixed button from `Footer.jsx`.
+   - Maintained single `ScrollToTopButton` exported from `Navbar.jsx`, mounted in `App.jsx`.
+   - Stacked vertically above `FloatingWhatsApp`: WhatsApp at `bottom: 24px` (height 46px, top at 70px); Scroll-to-top at `bottom: 82px` (44px x 44px), providing an exact 12px vertical gap.
+   - Only appears after scrolling one full screen (`window.scrollY > window.innerHeight`).
+5. **Mobile Drawer (< 1180px)**:
+   - Hamburger menu toggle, full-height drawer with accordion groups, 48px+ tap targets, pinned CTA button, body scroll lock, and keyboard focus trap.
 
-### Language Switcher — Removal Note
-The language selector was a **placeholder only** (toggled between EN / FR / ES labels with no actual i18n routing or translated content). Keeping it misleads users and can harm E-E-A-T. It has been removed from both desktop and mobile nav. When real internationalized routes exist, it should be re-introduced with `hreflang` tags and actual translated pages.
-
-### Responsive Breakpoints
-- **≥ 1180 px (lg):** Full desktop nav with mega-menu and dropdowns.
-- **< 1180 px:** Hamburger button, full-height right drawer with accordion groups, 44 px+ tap targets, CTA pinned bottom, body scroll locked, focus trap via `inert` attribute.
-
-### Build & Test Results (post-redesign)
-- `npm run build`: ✅ 7.86 s, 78 routes pre-rendered, 0 warnings.
-- `node scripts/verify.mjs`: ✅ **443 Passed, 0 Failed**.
+### 0.3 Build & Verification Results
+- `npm run build`: ✅ Succeeded in 9.48s. Pre-rendered 78 public routes; generated `sitemap.xml` with 78 entries.
+- `node scripts/verify.mjs`: ✅ **443 Passed, 0 Failed**. (All HTML files, single H1 tags, clean canonical URLs, noindex hygiene, dense internal link graph, and headless Chrome post-hydration checks passed).
 
 ---
 

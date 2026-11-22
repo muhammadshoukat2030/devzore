@@ -668,7 +668,8 @@ try {
   ];
 
   for (const r of testRoutes) {
-    await page.goto(`http://localhost:9877${r}`, { waitUntil: "networkidle0" });
+    await page.goto(`http://localhost:9877${r}`, { waitUntil: "load" });
+    await new Promise((resolve) => setTimeout(resolve, 200));
     const domTitles = await page.$$eval("title", (els) => els.map((e) => e.textContent));
     const domDescs = await page.$$eval('meta[name="description"]', (els) => els.map((e) => e.getAttribute("content")));
     const domRobots = await page.$$eval('meta[name="robots"]', (els) => els.map((e) => e.getAttribute("content")));
