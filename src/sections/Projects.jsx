@@ -22,7 +22,7 @@ const Projects = () => {
     "Management Systems",
     "E-Commerce",
     "Travel & Tourism",
-    "Financial Systems",
+    "Healthcare Systems",
   ];
 
   // FILTERED PROJECTS
