@@ -6,27 +6,15 @@ import {
   Boxes,
   Building2,
   Calculator,
-  Calendar,
   Check,
   CheckCircle2,
   ChevronDown,
   ChevronUp,
-  Clock,
   CreditCard,
-  Database,
-  ExternalLink,
-  FileCheck,
-  FileText,
-  Layers3,
-  Lock,
   PackageCheck,
   Receipt,
-  RefreshCw,
   Scale,
-  Server,
-  Shield,
   ShieldAlert,
-  ShieldCheck,
   ShoppingCart,
   Smartphone,
   Sparkles,
@@ -41,11 +29,31 @@ import ProjectBriefCTA from "../components/ProjectBriefCTA";
 export default function InstallmentManagementSoftware() {
   const [activeFaq, setActiveFaq] = useState(null);
 
+  // Background grids for rhythmic section alternating
+  const lightGrid = {
+    backgroundImage:
+      "linear-gradient(rgba(7,25,35,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(7,25,35,0.045) 1px, transparent 1px)",
+    backgroundSize: "48px 48px",
+  };
+
   const darkGrid = {
     backgroundImage:
       "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
     backgroundSize: "52px 52px",
   };
+
+  const SectionLabel = ({ children, light = false }) => (
+    <div
+      className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3 ${
+        light
+          ? "bg-white/[0.08] text-[#22bdca] border border-white/[0.12]"
+          : "bg-[#071923]/5 text-[#0796A8] border border-[#0796A8]/20"
+      }`}
+    >
+      <span className="w-1.5 h-1.5 rounded-full bg-[#18bdcb]" />
+      {children}
+    </div>
+  );
 
   const whatsappUrl =
     "https://wa.me/923348004300?text=Hi%20DevZore,%20I%20want%20to%20discuss%20custom%20software%20for%20an%20owner%20and%20multi-investor%20installment%20sales%20business.";
@@ -53,28 +61,28 @@ export default function InstallmentManagementSoftware() {
   const workflowSteps = [
     {
       step: "01",
-      icon: <Wallet size={22} className="text-[#1bbac8]" />,
+      icon: <Wallet size={22} className="text-[#07899a]" />,
       title: "Investors Deposit Capital",
       tag: "Capital Inflow",
       desc: "Owner onboards multiple private investors. Each investor's capital deposit is credited to an individual equity account with agreed profit-sharing ratios and terms.",
     },
     {
       step: "02",
-      icon: <ShoppingCart size={22} className="text-[#1bbac8]" />,
+      icon: <ShoppingCart size={22} className="text-[#07899a]" />,
       title: "Purchase Products in Quantity",
       tag: "Inventory Procurement",
       desc: "Owner purchases product stock (smartphones, motorcycles, appliances, solar systems) using investor capital. Each batch tracks purchase cost, quantities, and fund allocations.",
     },
     {
       step: "03",
-      icon: <PackageCheck size={22} className="text-[#1bbac8]" />,
+      icon: <PackageCheck size={22} className="text-[#07899a]" />,
       title: "Sell to Customers on Installment",
       tag: "Customer Sales & KYC",
       desc: "Products are sold on 3–24 month installment plans with upfront down payments, verified customer KYC (CNIC + 2 guarantors), and automated inventory stock auto-deduction.",
     },
     {
       step: "04",
-      icon: <Scale size={22} className="text-[#1bbac8]" />,
+      icon: <Scale size={22} className="text-[#07899a]" />,
       title: "Collect & Auto-Split Profits",
       tag: "Payout & Ledger Sync",
       desc: "As monthly installments are collected, the engine automatically returns principal to the investor's balance and splits the profit markup between the Owner and Investor.",
@@ -182,32 +190,32 @@ export default function InstallmentManagementSoftware() {
 
   const industries = [
     {
-      icon: <Smartphone size={22} className="text-[#1bbac8]" />,
+      icon: <Smartphone size={22} className="text-[#07899a]" />,
       title: "Smartphones, Laptops & Electronics",
       desc: "Purchasing mobile phones and laptops in bulk with investor capital and selling on 3–12 month installment plans with IMEI tracking and instant KYC.",
     },
     {
-      icon: <Building2 size={22} className="text-[#1bbac8]" />,
+      icon: <Building2 size={22} className="text-[#07899a]" />,
       title: "Motorcycles, Rickshaws & Auto Dealerships",
       desc: "Funding two-wheeler and vehicle stock using investor capital, tracking engine/chassis numbers, asset collateral, and collecting monthly EMIs.",
     },
     {
-      icon: <BadgePercent size={22} className="text-[#1bbac8]" />,
+      icon: <BadgePercent size={22} className="text-[#07899a]" />,
       title: "Solar Systems & Renewable Energy Packages",
       desc: "Procuring solar inverters, lithium batteries, and solar panels with investor funds and offering structured residential/commercial installment financing.",
     },
     {
-      icon: <Boxes size={22} className="text-[#1bbac8]" />,
+      icon: <Boxes size={22} className="text-[#07899a]" />,
       title: "Home Appliances & Bridal Furniture Sets",
       desc: "Refrigerators, AC units, washing machines, and furniture packages purchased in quantity and sold on long-term deferred payment contracts.",
     },
     {
-      icon: <CreditCard size={22} className="text-[#1bbac8]" />,
+      icon: <CreditCard size={22} className="text-[#07899a]" />,
       title: "Private Credit Syndicates & Merchant BNPL",
       desc: "Groups of private investors pooling capital with a managing operator to finance customer purchases across partner retail store networks.",
     },
     {
-      icon: <Users size={22} className="text-[#1bbac8]" />,
+      icon: <Users size={22} className="text-[#07899a]" />,
       title: "Wholesale Distributor Dealer Credit Accounts",
       desc: "Distributors financing retailer stock purchases with credit terms, tracking shopkeeper aging balances, and distributing returns to backers.",
     },
@@ -364,9 +372,11 @@ export default function InstallmentManagementSoftware() {
         schema={[serviceSchema, faqSchema, breadcrumbSchema]}
       />
 
-      <div className="min-h-screen bg-[#061923] text-white antialiased">
-        {/* HERO */}
-        <section className="relative overflow-hidden pt-[82px] sm:pt-[84px] lg:pt-[86px] pb-12 sm:pb-16 border-b border-white/[0.08]">
+      <div className="min-h-screen bg-white text-slate-900 antialiased selection:bg-[#0796A8]/20 selection:text-[#071923]">
+        {/* ========================================================================= */}
+        {/* SECTION 1: HERO (HIGH-IMPACT DARK NAVY) */}
+        {/* ========================================================================= */}
+        <section className="relative overflow-hidden pt-[82px] sm:pt-[84px] lg:pt-[86px] pb-12 sm:pb-16 bg-[#04111a] text-white border-b border-white/[0.08]">
           <div className="absolute inset-0 pointer-events-none" style={darkGrid} />
           <div className="absolute -top-32 left-[10%] w-[540px] h-[540px] rounded-full bg-[#0796A8]/15 blur-[160px] pointer-events-none" />
           <div className="absolute top-1/2 right-[5%] w-[420px] h-[420px] rounded-full bg-[#20bdcb]/8 blur-[140px] pointer-events-none" />
@@ -379,7 +389,7 @@ export default function InstallmentManagementSoftware() {
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-6 leading-[1.12]">
-                Multi-Investor Financial & <span className="text-[#1bbac8]">Installment Sales Software</span> Development
+                Multi-Investor Financial & <span className="text-[#22bdca]">Installment Sales Software</span> Development
               </h1>
 
               <p className="text-base sm:text-lg text-slate-300 leading-relaxed mb-8">
@@ -427,222 +437,273 @@ export default function InstallmentManagementSoftware() {
           </div>
         </section>
 
-        {/* WORKFLOW: HOW THE OWNER & MULTI-INVESTOR MODEL WORKS */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 max-w-6xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8] mb-2">Operational Workflow</div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">
-              How the Owner & Multi-Investor Installment Cycle Operates
-            </h2>
-            <p className="mt-3 text-xs sm:text-sm text-slate-400">
-              A transparent, automated cycle connecting investor capital, inventory procurement, customer sales, and automated profit returns.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workflowSteps.map((wf, idx) => (
-              <div
-                key={idx}
-                className="relative rounded-2xl border border-white/[0.08] bg-[#071923] p-6 hover:border-cyan-500/30 transition flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-11 h-11 rounded-xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20">
-                      {wf.icon}
-                    </div>
-                    <span className="text-xs font-mono font-bold text-slate-500">STEP {wf.step}</span>
-                  </div>
-                  <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#1bbac8] mb-2">
-                    {wf.tag}
-                  </span>
-                  <h3 className="text-base font-bold text-white mb-2">{wf.title}</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">{wf.desc}</p>
-                </div>
-                <div className="mt-5 pt-3 border-t border-white/[0.05] text-[11px] font-semibold text-slate-500 flex items-center gap-1.5">
-                  <CheckCircle2 size={12} className="text-[#1bbac8]" /> Automated in System
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* AEO ANSWER BLOCK */}
-        <section className="py-8 sm:py-12 px-4 sm:px-6 max-w-6xl mx-auto">
-          <div className="rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-[#08222f] to-[#061923] p-6 sm:p-9">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1bbac8] mb-3">
-              <Sparkles size={14} className="text-[#1bbac8]" />
-              Executive Business Summary
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-              What Is an Owner & Multi-Investor Installment Management Platform?
-            </h2>
-            <div className="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed">
-              <p>
-                An <strong>Owner & Multi-Investor Installment Platform</strong> is specialized financial software engineered for businesses where an operating Owner partners with multiple private financial investors to buy high-demand product inventory (smartphones, bikes, electronics, solar equipment, appliances) and sell those items to customers on monthly installment contracts.
-              </p>
-              <p>
-                Instead of confusing paper ledgers and disputed spreadsheet math, the platform tracks every investor&apos;s deposited capital, maps which product inventory was procured with those funds, registers customer down payments and monthly installment collections, and <strong>automatically divides every collected payment into principal capital recovery and profit-sharing payouts</strong> for the owner and investors.
+        {/* ========================================================================= */}
+        {/* SECTION 2: WORKFLOW (LIGHT SLATE WITH SUBTLE GRID) */}
+        {/* ========================================================================= */}
+        <section className="py-12 sm:py-16 bg-[#f8fafb] border-b border-slate-200" style={lightGrid}>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <SectionLabel>Operational Workflow</SectionLabel>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#071923] tracking-tight">
+                How the Owner & Multi-Investor <span className="text-[#0796A8]">Installment Cycle Operates</span>
+              </h2>
+              <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                A transparent, automated cycle connecting investor capital, inventory procurement, customer sales, and automated profit returns.
               </p>
             </div>
-          </div>
-        </section>
 
-        {/* SYSTEM MODULES */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-white/[0.08]">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8] mb-2">System Architecture</div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">
-              End-to-End Modules Engineered for Owners & Multi-Investor Businesses
-            </h2>
-            <p className="mt-3 text-xs sm:text-sm text-slate-400">
-              Tailored around your specific procurement workflows, profit-sharing ratios, down payment rules, and field collection operations.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {modules.map((m, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-2xl border border-white/[0.08] bg-[#071923] hover:border-cyan-500/30 transition flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-[#1bbac8] border border-cyan-500/20">
-                      {m.icon}
-                    </div>
-                    <span className="text-xs font-mono font-bold text-slate-500">{m.number}</span>
-                  </div>
-                  <h3 className="text-base font-bold text-white mb-2">{m.title}</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed mb-5">{m.desc}</p>
-                </div>
-                <ul className="space-y-2 pt-4 border-t border-white/[0.06] text-xs text-slate-300">
-                  {m.points.map((p, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <Check size={12} className="text-[#1bbac8] shrink-0 mt-0.5" />
-                      <span>{p}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* COMPARISON MATRIX: SPREADSHEETS VS DEVZORE PLATFORM */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-white/[0.08]">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8] mb-2">Operational Comparison</div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">
-              Manual Spreadsheets vs Custom Multi-Investor Platform
-            </h2>
-            <p className="mt-3 text-xs sm:text-sm text-slate-400">
-              Why business owners switch from messy Excel spreadsheets to an automated financial and inventory management system.
-            </p>
-          </div>
-
-          <div className="overflow-x-auto rounded-2xl border border-white/[0.08] bg-[#071923]">
-            <table className="w-full text-left text-xs sm:text-sm text-slate-300">
-              <thead className="bg-[#05151e] text-xs uppercase tracking-wider text-slate-400 border-b border-white/[0.08]">
-                <tr>
-                  <th className="py-4 px-5">Operational Function</th>
-                  <th className="py-4 px-5 text-rose-300">Manual Spreadsheets / Paper Files</th>
-                  <th className="py-4 px-5 text-[#1bbac8]">DevZore Multi-Investor Platform</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/[0.06]">
-                {comparisonRows.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-white/[0.02] transition">
-                    <td className="py-4 px-5 font-semibold text-white whitespace-nowrap">{row.feature}</td>
-                    <td className="py-4 px-5 text-slate-400">{row.spreadsheet}</td>
-                    <td className="py-4 px-5 text-[#1bbac8] font-medium">{row.devzore}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* TARGET INDUSTRIES */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-white/[0.08]">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8] mb-2">Products & Verticals</div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">
-              What Products Are Financed on This Platform?
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {industries.map((ind, i) => (
-              <div key={i} className="p-6 rounded-2xl border border-white/[0.08] bg-[#071923] hover:border-cyan-500/30 transition">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 text-[#1bbac8] flex items-center justify-center mb-4 border border-cyan-500/20">
-                  {ind.icon}
-                </div>
-                <h3 className="text-base font-bold text-white mb-2">{ind.title}</h3>
-                <p className="text-xs text-slate-300 leading-relaxed">{ind.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* PROCESS */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-white/[0.08]">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8] mb-2">Implementation</div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">
-              How We Engineer Your Multi-Investor Platform
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((p, idx) => (
-              <div key={idx} className="p-6 rounded-2xl border border-white/[0.08] bg-[#071923]">
-                <div className="text-2xl font-black text-cyan-400/40 font-mono mb-3">{p.step}</div>
-                <h3 className="text-base font-bold text-white mb-2">{p.title}</h3>
-                <p className="text-xs text-slate-300 leading-relaxed">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* BUYER FAQ */}
-        <section className="py-12 sm:py-16 px-4 sm:px-6 max-w-4xl mx-auto border-t border-white/[0.08]">
-          <div className="text-center mb-10">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#1bbac8] mb-2">FAQ</div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">Frequently Asked Questions</h2>
-          </div>
-
-          <div className="space-y-3">
-            {faqs.map((faq, idx) => (
-              <div key={idx} className="rounded-xl border border-white/[0.08] bg-[#071923] overflow-hidden">
-                <button
-                  type="button"
-                  onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                  className="w-full flex items-center justify-between p-4 sm:p-5 text-left text-sm sm:text-base font-bold text-white hover:text-[#1bbac8] transition"
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {workflowSteps.map((wf, idx) => (
+                <div
+                  key={idx}
+                  className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-[#0796A8]/40 hover:-translate-y-0.5 transition-all flex flex-col justify-between"
                 >
-                  <span>{faq.q}</span>
-                  {activeFaq === idx ? (
-                    <ChevronUp size={18} className="text-[#1bbac8] shrink-0 ml-3" />
-                  ) : (
-                    <ChevronDown size={18} className="text-slate-400 shrink-0 ml-3" />
-                  )}
-                </button>
-                {activeFaq === idx && (
-                  <div className="p-4 sm:p-5 pt-0 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/[0.04]">
-                    {faq.a}
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-11 h-11 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center border border-slate-200/80">
+                        {wf.icon}
+                      </div>
+                      <span className="text-xs font-mono font-bold text-slate-400">STEP {wf.step}</span>
+                    </div>
+                    <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#0796A8] mb-1.5">
+                      {wf.tag}
+                    </span>
+                    <h3 className="text-base font-bold text-[#071923] mb-2">{wf.title}</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">{wf.desc}</p>
                   </div>
-                )}
-              </div>
-            ))}
+                  <div className="mt-5 pt-3 border-t border-slate-100 text-[11px] font-semibold text-slate-500 flex items-center gap-1.5">
+                    <CheckCircle2 size={13} className="text-[#07899a]" /> Automated in System
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* CTA FORM */}
-        <section id="system-form" className="py-16 px-4 sm:px-6 max-w-5xl mx-auto border-t border-white/[0.08]">
-          <ProjectBriefCTA
-            serviceContext="Owner & Multi-Investor Installment Sales & Product Procurement Software"
-            title="Ready to Scale Your Multi-Investor Installment Business?"
-            subtitle="Discuss your investor capital pooling, product procurement workflow, down payment calculations, and profit-sharing models with our software engineering team."
-          />
+        {/* ========================================================================= */}
+        {/* SECTION 3: SYSTEM MODULES (CRISP CLEAN WHITE) */}
+        {/* ========================================================================= */}
+        <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <SectionLabel>System Architecture</SectionLabel>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#071923] tracking-tight">
+                End-to-End Modules Engineered for <span className="text-[#0796A8]">Owners & Multi-Investor Businesses</span>
+              </h2>
+              <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Tailored around your specific procurement workflows, profit-sharing ratios, down payment rules, and field collection operations.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {modules.map((m, idx) => (
+                <article
+                  key={idx}
+                  className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-[0_18px_50px_rgba(7,25,35,0.08)] hover:border-[#0796A8]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#071923] to-[#18bdcb]" />
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#edf4f5] text-[#07899a] group-hover:bg-[#071923] group-hover:text-[#28c5d4] transition-colors">
+                        {m.icon}
+                      </div>
+                      <span className="text-xs font-mono font-bold text-slate-400">{m.number}</span>
+                    </div>
+                    <h3 className="text-base font-bold text-[#071923] mb-2">{m.title}</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mb-5">{m.desc}</p>
+                  </div>
+                  <ul className="space-y-2 pt-4 border-t border-slate-100 text-xs text-slate-700">
+                    {m.points.map((p, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <Check size={13} className="text-[#07899a] shrink-0 mt-0.5" />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* SECTION 4: EXECUTIVE SUMMARY (HIGH-IMPACT DARK NAVY BAND) */}
+        {/* ========================================================================= */}
+        <section className="relative py-12 sm:py-16 bg-[#071923] text-white border-b border-white/[0.08]">
+          <div className="absolute inset-0 pointer-events-none" style={darkGrid} />
+          <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-[#0796A8]/10 blur-[140px] pointer-events-none" />
+
+          <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
+            <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#092230] to-[#05141c] p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+              <div className="w-[300px] h-[300px] bg-[#0796A8]/15 blur-[100px] pointer-events-none absolute -top-20 -right-20 rounded-full" />
+              <SectionLabel light>Executive Business Summary</SectionLabel>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
+                What Is an Owner & Multi-Investor <span className="text-[#25bfce]">Installment Management Platform?</span>
+              </h2>
+              <div className="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+                <p>
+                  An <strong className="text-white">Owner & Multi-Investor Installment Platform</strong> is specialized financial software engineered for businesses where an operating Owner partners with multiple private financial investors to buy high-demand product inventory (smartphones, bikes, electronics, solar equipment, appliances) and sell those items to customers on monthly installment contracts.
+                </p>
+                <p>
+                  Instead of confusing paper ledgers and disputed spreadsheet math, the platform tracks every investor&apos;s deposited capital, maps which product inventory was procured with those funds, registers customer down payments and monthly installment collections, and <strong className="text-[#20bdcb]">automatically divides every collected payment into principal capital recovery and profit-sharing payouts</strong> for the owner and investors.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* SECTION 5: OPERATIONAL COMPARISON (LIGHT SLATE WITH SUBTLE GRID) */}
+        {/* ========================================================================= */}
+        <section className="py-12 sm:py-16 bg-[#f7f9fa] border-b border-slate-200" style={lightGrid}>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <SectionLabel>Operational Comparison</SectionLabel>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#071923] tracking-tight">
+                Manual Spreadsheets vs <span className="text-[#0796A8]">Custom Multi-Investor Platform</span>
+              </h2>
+              <p className="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Why business owners switch from messy Excel spreadsheets to an automated financial and inventory management system.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <table className="w-full text-left text-xs sm:text-sm text-slate-700">
+                <thead className="bg-[#f1f5f9] text-xs uppercase tracking-wider text-slate-700 border-b border-slate-200">
+                  <tr>
+                    <th className="py-4 px-5 font-bold">Operational Function</th>
+                    <th className="py-4 px-5 text-rose-700 font-bold">Manual Spreadsheets / Paper Files</th>
+                    <th className="py-4 px-5 text-[#07899a] font-bold">DevZore Multi-Investor Platform</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {comparisonRows.map((row, idx) => (
+                    <tr key={idx} className="hover:bg-slate-50/80 transition">
+                      <td className="py-4 px-5 font-semibold text-slate-900 whitespace-nowrap">{row.feature}</td>
+                      <td className="py-4 px-5 text-slate-600">{row.spreadsheet}</td>
+                      <td className="py-4 px-5 text-[#07899a] font-semibold">{row.devzore}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* SECTION 6: TARGET PRODUCTS (CRISP CLEAN WHITE) */}
+        {/* ========================================================================= */}
+        <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-2xl mx-auto mb-10">
+              <SectionLabel>Products & Verticals</SectionLabel>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#071923] tracking-tight">
+                What Products Are Financed on <span className="text-[#0796A8]">This Platform?</span>
+              </h2>
+              <p className="mt-2 text-xs sm:text-sm text-slate-600">
+                High-turnover consumer and business assets procured with investor capital and sold on structured installments.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {industries.map((ind, i) => (
+                <div
+                  key={i}
+                  className="p-6 rounded-2xl border border-slate-200 bg-white hover:border-[#0796A8]/50 hover:shadow-md hover:-translate-y-0.5 transition-all"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-[#edf4f5] text-[#07899a] flex items-center justify-center mb-4 border border-slate-200/80">
+                    {ind.icon}
+                  </div>
+                  <h3 className="text-base font-bold text-[#071923] mb-2">{ind.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{ind.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* SECTION 7: IMPLEMENTATION PROCESS (HIGH-IMPACT DARK NAVY) */}
+        {/* ========================================================================= */}
+        <section className="relative py-12 sm:py-16 bg-[#071923] text-white border-b border-white/[0.08]">
+          <div className="absolute inset-0 pointer-events-none" style={darkGrid} />
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <SectionLabel light>Implementation</SectionLabel>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                How We Engineer Your <span className="text-[#25bfce]">Multi-Investor Platform</span>
+              </h2>
+              <p className="mt-2 text-xs sm:text-sm text-slate-400">
+                From initial investor profit math to POS hardware sync and secure cloud deployment.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.08] border border-white/[0.08] rounded-2xl overflow-hidden">
+              {processSteps.map((p, idx) => (
+                <article
+                  key={idx}
+                  className="p-6 bg-[#071923] hover:bg-[#0a202a] transition-colors flex flex-col justify-between min-h-[190px]"
+                >
+                  <div>
+                    <div className="text-2xl font-black text-[#20becd]/60 font-mono mb-3">{p.step}</div>
+                    <h3 className="text-base font-bold text-white mb-2">{p.title}</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">{p.desc}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* SECTION 8: FAQ (CRISP CLEAN WHITE) */}
+        {/* ========================================================================= */}
+        <section className="py-12 sm:py-16 bg-white border-b border-slate-200">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-10">
+              <SectionLabel>FAQ</SectionLabel>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#071923] tracking-tight">
+                Frequently Asked <span className="text-[#0796A8]">Questions</span>
+              </h2>
+            </div>
+
+            <div className="space-y-3">
+              {faqs.map((faq, idx) => (
+                <div key={idx} className="rounded-xl border border-slate-200 bg-[#f8fafb] overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                    className="w-full flex items-center justify-between p-4 sm:p-5 text-left text-sm sm:text-base font-bold text-[#071923] hover:text-[#0796A8] transition"
+                  >
+                    <span>{faq.q}</span>
+                    {activeFaq === idx ? (
+                      <ChevronUp size={18} className="text-[#0796A8] shrink-0 ml-3" />
+                    ) : (
+                      <ChevronDown size={18} className="text-slate-400 shrink-0 ml-3" />
+                    )}
+                  </button>
+                  {activeFaq === idx && (
+                    <div className="p-4 sm:p-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200/60 bg-white">
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* SECTION 9: CTA FORM (DARK NAVY ANCHOR) */}
+        {/* ========================================================================= */}
+        <section id="system-form" className="py-16 px-4 sm:px-6 bg-[#06151d] text-white">
+          <div className="max-w-5xl mx-auto">
+            <ProjectBriefCTA
+              serviceContext="Owner & Multi-Investor Installment Sales & Product Procurement Software"
+              title="Ready to Scale Your Multi-Investor Installment Business?"
+              subtitle="Discuss your investor capital pooling, product procurement workflow, down payment calculations, and profit-sharing models with our software engineering team."
+            />
+          </div>
         </section>
       </div>
     </>
