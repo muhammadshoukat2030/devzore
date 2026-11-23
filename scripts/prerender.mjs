@@ -1226,7 +1226,7 @@ const staticPages = {
     title: "Inventory Management System & POS Software | DevZore",
     description:
       "Custom inventory management system development for manufacturers, distributors and retail chains. Real-time stock tracking, multi-warehouse and POS sync.",
-    h1: "Custom Inventory Management System Development",
+    h1: "Custom Inventory Management System & POS Software Development",
     answerBlock:
       "DevZore engineers custom inventory management systems tailored to manufacturers, retail chains, and wholesale distributors who have outgrown generic off-the-shelf software. Our platforms deliver real-time multi-warehouse stock tracking, automated reorder triggers, batch and barcode management, point-of-sale (POS) synchronization, formula and recipe cataloging, and end-to-end ledger audit trails engineered to eliminate stockouts and operational shrinkage.",
     content: `
