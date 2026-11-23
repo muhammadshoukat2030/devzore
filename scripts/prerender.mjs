@@ -1280,21 +1280,22 @@ const staticPages = {
       "Custom financial management & installment credit software. Automate loan amortization, borrower KYC, collection queues, investor shares and audit ledgers.",
     h1: "Financial Management & Installment Credit Software Development",
     answerBlock:
-      "DevZore engineers custom financial management and installment credit software for retailers, consumer durable sellers, and private finance firms offering credit sales and equated monthly installment (EMI) plans. Our systems automate flexible repayment schedule generation, borrower KYC and guarantor verification archives, daily recovery queue dashboards, multi-investor profit-sharing ledgers, field collection officer sync, and double-entry bookkeeping.",
+      "DevZore engineers custom financial and installment sales management software for store owners and multi-investor retail enterprises. Our platform connects owner operations with private investor capital pools: purchasing high-quantity product inventory (smartphones, electronics, appliances, solar systems), executing installment sales with down payments and verified customer KYC, and automatically distributing monthly principal returns and profit splits between the owner and investors.",
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
-        <h2>Financial Management & Credit Platform for Consumer Lending & Retail Installments</h2>
+        <h2>Owner & Multi-Investor Installment Sales, Procurement & Profit-Sharing Platform</h2>
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
-          <h3>Why do installment retailers need dedicated financial management software?</h3>
-          <p>Managing consumer credit sales on spreadsheets or basic accounting software leads to missed overdue penalties, lost recovery dates, unverified guarantors, and uncollected capital. Dedicated financial management software enforces underwriting discipline, tracks every installment in real time, and eliminates disputed balances through audited double-entry ledgers.</p>
+          <h3>How does the Owner & Multi-Investor installment business model work?</h3>
+          <p>In high-demand retail installment businesses, an operating business owner partners with multiple private investors who provide equity capital. The owner procures product inventory in bulk quantities (mobile phones, laptops, motorbikes, home appliances) using investor capital. Products are then sold to verified retail customers on 3 to 24-month equated monthly installment (EMI) plans. As customer monthly payments are collected, the software automatically recovers the investor's principal capital and distributes the net profit margin between the store owner and the respective investor based on agreed sharing ratios.</p>
         </div>
-        <h3>Core Financial Architecture & Modules</h3>
+        <h3>Core Architecture & Workflow Modules</h3>
         <ul>
-          <li><strong>Dynamic Amortization & Repayment Schedules:</strong> Support for daily, weekly, and monthly equated installments with customizable flat or reducing markups and Shariah Murabaha options.</li>
-          <li><strong>Borrower KYC & Guarantor Verification Vault:</strong> Digital storage of national identity cards, employment verifications, residential utility bills, and dual guarantor documentation.</li>
-          <li><strong>Daily Recovery Operations & Overdue Queues:</strong> Real-time collection calendars categorized by delinquency tiers (30/60/90+ days) with automated WhatsApp and SMS reminders.</li>
-          <li><strong>Multi-Investor Capital Ledgers:</strong> Segregated investor equity accounts with automated monthly profit share distribution and net yield statements.</li>
-          <li><strong>Tamper-Proof Double-Entry Ledgers:</strong> Audited transaction logs, thermal receipt printing (80mm), and digital client passbooks with QR verification.</li>
+          <li><strong>Multi-Investor Capital Ledgers & Portfolios:</strong> Segregated investor accounts tracking contributed capital, deployed inventory funds, idle cash, monthly return rates, and digital passbooks.</li>
+          <li><strong>Product Procurement & Quantity Inventory Management:</strong> Complete stock control linking product purchasing directly to investor capital pools with serial/IMEI tracking, supplier invoices, and real-time unit stock levels.</li>
+          <li><strong>Customer Installment Sales & Dynamic EMI Engine:</strong> Fast POS sales generation with upfront down payment processing, flexible repayment tenures (3, 6, 12, 24 months), and Shariah-compliant Murabaha markup calculations.</li>
+          <li><strong>Borrower KYC & Dual Guarantor Vault:</strong> Digital identity verification (CNIC/Passport), residential utility bill audits, employer verification, and dual guarantor documentation before contract approval.</li>
+          <li><strong>Automated Profit Splitting & Investor Return Engine:</strong> Real-time ledger calculations that instantly return principal to investor accounts and split profits between owner and investors upon monthly installment collection.</li>
+          <li><strong>Overdue Recovery Queues & Thermal Receipt Printing:</strong> Delinquency dashboards (30/60/90+ days), automated WhatsApp payment reminders, field collection logs, and 80mm thermal receipt printing with QR code verification.</li>
         </ul>
         <h3>Verified Production Architecture: Financial Credit System</h3>
         <p>Inspect our delivered <a href="/projects/installment-management">Installment Management Case Study</a> to see how we structured consumer credit workflows.</p>
