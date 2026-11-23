@@ -1382,7 +1382,7 @@ const staticPages = {
   "/qatar-software-development": {
     title: "Software Development Company in Qatar | DevZore",
     description:
-      "Custom web platforms, SaaS products, and booking systems for businesses in Qatar and the GCC. Local client experience, English/Arabic ready.",
+      "Custom software development for businesses in Qatar & the GCC. High-performance web apps, tour booking engines, SaaS & ERP systems with local Qatar delivery.",
     h1: "Software Development Company in Qatar",
     answerBlock:
       "DevZore provides specialized custom software development services for enterprises, tour operators, and high-growth businesses in Qatar and across the GCC. Operating with full time-zone alignment (UTC+5 / UTC+3, only 2 hours difference), we deliver high-performance Next.js and MERN web applications, custom safari and tour booking engines, distribution logistics ERPs, and commission-free ordering platforms with 100% intellectual property handover.",
