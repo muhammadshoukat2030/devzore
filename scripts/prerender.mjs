@@ -236,48 +236,48 @@ const projectsData = [
       "Comprehensive distribution and inventory management system handling multi-route logistics, sales reconciliations, and supplier accounting.",
   },
   {
-    slug: "installment-management",
-    title: "Installment Management",
-    businessName: "Installment Sales Client",
-    industry: "Consumer Finance & Retail Lending",
+    slug: "prime-dental",
+    title: "Prime Dental",
+    businessName: "Prime Dental Clinic",
+    industry: "Healthcare & Dental Care",
     country: "Pakistan",
-    location: "Pakistan",
-    systemType: "Sales & Installment Credit Platform",
-    headerFacts: "Installment Management · Consumer Finance · Pakistan · Sales & Installment Credit Platform",
-    client: "Installment Sales Client",
+    location: "Islamabad, Pakistan",
+    systemType: "Dental Clinic Web Platform & Appointment Booking",
+    headerFacts: "Prime Dental · Healthcare & Dental Care · Islamabad, Pakistan · Dental Clinic Web Platform",
+    client: "Prime Dental Clinic",
     deliveryType: "Remote Full-Stack Delivery",
-    category: "Financial Systems",
-    serviceSlug: "/mern-stack-development",
-    serviceName: "MERN Stack Development",
+    category: "Healthcare Systems",
+    serviceSlug: "/web-development",
+    serviceName: "Healthcare Web Development",
     challenges: [
-      "Managing monthly installment repayment plans for hundreds of retail customers on spreadsheets led to missed payment follow-ups and unrecorded defaults.",
-      "High credit default risk caused by lack of structured borrower dossiers, unverified guarantor details, and missing residence documentation.",
-      "Complex, error-prone manual calculations required to allocate monthly profit shares and principal returns across multiple private investors.",
-      "Customer disputes over historical payment dates and remaining balances due to handwritten paper passbooks.",
+      "Prospective dental patients struggled to find clear treatment descriptions, doctor qualifications, and transparent pricing on generic directory listings.",
+      "High no-show rates and scheduling conflicts caused by manual telephone appointment booking during busy clinic surgery hours.",
+      "Patients experiencing dental pain or dental emergencies abandoned inquiry forms on competitor sites due to slow mobile load speeds and complex forms.",
+      "Lack of educational guidance around cosmetic dentistry, orthodontics, and dental implants led to patient hesitation before booking consultations.",
     ],
     problem:
-      "Consumer installment sales businesses face high default risk when payment schedules, customer records, and guarantor identities are managed manually. The business required an automated system to generate amortization schedules and track overdue installments.",
+      "Prime Dental Clinic required a modern, patient-centered digital web platform to establish a trusted clinical brand in Islamabad. The platform needed to showcase specialized dental treatments, display certified doctor credentials, provide transparent treatment tiers, and enable seamless 24/7 online appointment booking across all devices.",
     modules: [
-      { name: "Customer Identity & Guarantor Dossier Engine", description: "Structured borrower profiling with CNIC verification, employment records, residence verification, and dual guarantor documentation." },
-      { name: "Flexible Amortization & Plan Generator", description: "Automated installment calculation supporting custom down payments, repayment tenures, markup rates, and penalty rules." },
-      { name: "Daily Collection & Overdue Alert Dashboard", description: "Visual daily calendar displaying due payments, grace periods, overdue accounts, and priority collection call queues." },
-      { name: "Investor Capital & Profit Sharing Engine", description: "Multi-investor account ledgers tracking invested principal, monthly profit distributions, recovery deductions, and net yield." },
-      { name: "Payment Receipting & Balance Ledger", description: "Instant payment recording with printed/SMS payment confirmation slips and tamper-proof customer balance ledger." },
-      { name: "Portfolio Risk & Defaulter Analytics", description: "Aging analysis reports, default probability metrics, collection efficiency scores, and bad-debt write-off tracking." },
+      { name: "Online Appointment & Consultation Scheduler", description: "Streamlined booking funnel capturing patient contact information, preferred dental treatment, date and time slots, and emergency notes with instant confirmation routing." },
+      { name: "Comprehensive Dental Procedure Catalog", description: "Visual clinical showcases for Orthodontics (braces and clear aligners), Cosmetic Dentistry (veneers, whitening), Dental Implants, Oral Hygiene, and Restorative Cavity Care." },
+      { name: "Specialist Dentist & Doctor Profiles", description: "Verified practitioner credentials, clinical certifications, specialized dental training, and areas of expertise to instill patient confidence." },
+      { name: "Transparent Care Plans & Pricing Matrix", description: "Interactive treatment package comparisons detailing inclusions, diagnostic exams, scaling, fillings, and cosmetic smile makeover consultations." },
+      { name: "Patient Education & Clinical Blog Hub", description: "Search-optimized dental health library addressing cavity prevention, wisdom tooth extraction recovery, smile makeovers, and pediatric oral hygiene." },
+      { name: "Mobile-First Clinical Experience & Emergency Triggers", description: "High-contrast clinical UI loading in under 1.5 seconds on mobile networks with one-tap WhatsApp and phone calling triggers for urgent dental pain." },
     ],
     builtFeatures: [
-      "Customer profiling with CNIC/identity records and verified guarantor details",
-      "Flexible installment plan generator (down payments, monthly schedules, markup rates)",
-      "Daily collection dashboard alerting staff to due and overdue customer payments",
-      "Multi-investor account management with capital returns and profit shares",
-      "Automated SMS/receipt generation upon receiving installment payments",
-      "Financial collection reporting, portfolio risk analysis, and defaulter tracking",
+      "Interactive online dental appointment booking and consultation scheduler",
+      "Categorized dental treatment catalog (Orthodontics, Implants, Cosmetic, Surgery)",
+      "Verified specialist dentist profiles with clinical credentials and specialties",
+      "Transparent treatment package pricing tables with detailed procedure inclusions",
+      "Patient education journal covering oral hygiene, cavity care, and recovery guides",
+      "Mobile-responsive clinic interface with instant WhatsApp and emergency call pathways",
     ],
     outcomeNarrative:
-      "Automated the entire consumer installment financing cycle from customer onboarding and credit risk assessment to daily collection follow-ups and investor yield payouts. Staff receive daily automated collection queues, eliminating delinquent payment oversights and disputed ledger balances.",
-    technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+      "Successfully launched an authoritative, patient-first clinical web portal that positions Prime Dental as a premier dental practice in Islamabad. Patients can easily research specialized procedures, compare treatment tiers, inspect doctor credentials, and book appointments within seconds on their smartphones, significantly reducing front-desk telephone overhead and accelerating patient acquisition.",
+    technologies: ["React", "Node.js", "Express", "Tailwind CSS", "Technical SEO"],
     description:
-      "Custom financial business system for managing installment schedules, customer credit accounts, investor shares, and overdue collections.",
+      "Modern dental clinic web platform engineered with React and Tailwind CSS, featuring online appointment scheduling, treatment showcases, and patient education.",
   },
 ];
 
@@ -319,7 +319,7 @@ const staticPages = {
             <li><a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> — Travel & Hospitality</li>
             <li><a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> — Travel & Tourism</li>
             <li><a href="/projects/frostyops">FrostyOps</a> — Wholesale Distribution</li>
-            <li><a href="/projects/installment-management">Installment Management</a> — Consumer Credit & Finance</li>
+            <li><a href="/projects/prime-dental">Prime Dental</a> — Healthcare & Dental Clinic</li>
           </ul>
         </div>
 
@@ -342,7 +342,8 @@ const staticPages = {
             <li><strong>Manufacturing & Retail:</strong> Multi-warehouse stock control, formula cataloging, and POS billing. Proof: <a href="/projects/weldon-paints">Weldon Paints Case Study</a> | <a href="/inventory-management-system">Inventory Management System</a></li>
             <li><strong>Food, Beverage & Distribution:</strong> Direct food ordering, Kitchen Display Systems (KDS), and wholesale fleet route ERPs. Proof: <a href="/projects/sarab-express">Sarab Express</a> & <a href="/projects/frostyops">FrostyOps</a> | <a href="/food-ordering-system">Food Ordering System</a> & <a href="/distribution-management-system">Distribution Management System</a></li>
             <li><strong>Tourism & Hospitality:</strong> High-conversion booking engines, slot availability, and WhatsApp reservation pathways. Proof: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> | <a href="/tour-booking-system">Tour & Safari Booking System</a></li>
-            <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI schedules, and recovery ledgers. Proof: <a href="/projects/installment-management">Installment Management Case Study</a> | <a href="/installment-management-software">Installment Management Software</a></li>
+            <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI schedules, and recovery ledgers. Proof: <a href="/installment-management-software">Installment Management Software</a></li>
+            <li><strong>Healthcare & Dental Practice:</strong> Modern clinic web portals, online appointment booking, and treatment showcases. Proof: <a href="/projects/prime-dental">Prime Dental Case Study</a> | <a href="/web-development">Healthcare Web Development</a></li>
           </ul>
         </div>
       </section>
@@ -449,7 +450,8 @@ const staticPages = {
             <li><strong>Manufacturing & Retail:</strong> Inventory control, formula cataloging, POS counter billing. Proof: <a href="/projects/weldon-paints">Weldon Paints</a> | <a href="/inventory-management-system">Inventory Management System</a></li>
             <li><strong>Food, Beverage & Distribution:</strong> Digital food ordering, Kitchen Display Systems, route dispatching. Proof: <a href="/projects/sarab-express">Sarab Express</a> & <a href="/projects/frostyops">FrostyOps</a> | <a href="/food-ordering-system">Food Ordering System</a> & <a href="/distribution-management-system">Distribution Management System</a></li>
             <li><strong>Tourism & Hospitality:</strong> Safari booking engines, slot availability, multi-currency checkout. Proof: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> | <a href="/tour-booking-system">Tour & Safari Booking System</a></li>
-            <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI repayment schedules, recovery ledgers. Proof: <a href="/projects/installment-management">Installment Management</a> | <a href="/installment-management-software">Installment Management Software</a></li>
+            <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI repayment schedules, recovery ledgers. Proof: <a href="/installment-management-software">Installment Management Software</a></li>
+            <li><strong>Healthcare & Dental Practice:</strong> Clinical patient portals, treatment showcases, online appointments. Proof: <a href="/projects/prime-dental">Prime Dental</a> | <a href="/web-development">Healthcare Web Development</a></li>
           </ul>
         </div>
       </section>
@@ -1437,8 +1439,12 @@ const staticPages = {
             <p>Online excursion booking engines, multi-currency checkout, and driver manifests. Verified case studies: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes</a>.</p>
           </div>
           <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px;">
+            <h3>Healthcare & Dental Care</h3>
+            <p>Clinical patient intake, doctor credentials, and online appointment booking. Verified case study: <a href="/projects/prime-dental">Prime Dental</a>.</p>
+          </div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px;">
             <h3>Finance & Installment Sales</h3>
-            <p>Underwriting ledgers, flexible EMI schedules, and guarantor records. Verified case study: <a href="/projects/installment-management">Installment Management</a>.</p>
+            <p>Underwriting ledgers, flexible EMI schedules, and guarantor records. Specialized software: <a href="/installment-management-software">Installment Management Software</a>.</p>
           </div>
         </div>
       </section>
@@ -1563,7 +1569,7 @@ const staticPages = {
         <ul>
           <li><a href="/projects/weldon-paints">Weldon Paints Case Study</a> — Multi-warehouse inventory and counter POS platform.</li>
           <li><a href="/projects/frostyops">FrostyOps Case Study</a> — Route logistics and wholesale distribution ERP.</li>
-          <li><a href="/projects/installment-management">Installment Management Case Study</a> — Consumer credit financing and repayment schedules.</li>
+          <li><a href="/projects/prime-dental">Prime Dental Case Study</a> — Modern dental clinic web platform and appointment scheduler.</li>
         </ul>
 
         <p>Explore our main <a href="/hire-engineers">Hire Engineers</a> hub or <a href="/contact">Contact Our Team</a> to receive shortlisted profiles within 24–48 hours.</p>
@@ -1655,7 +1661,7 @@ const staticPages = {
         <ul>
           <li><a href="/projects/weldon-paints">Weldon Paints Warehouse Core</a> — High-volume inventory transactions and credit ledgers.</li>
           <li><a href="/projects/frostyops">FrostyOps Distribution Engine</a> — Real-time order dispatching and salesman tracking.</li>
-          <li><a href="/projects/installment-management">Installment Management Engine</a> — Automated consumer financing and amortization calculations.</li>
+          <li><a href="/projects/prime-dental">Prime Dental Clinical Core</a> — Appointment scheduling API, doctor directories, and patient consultation intake.</li>
         </ul>
 
         <p>Browse all talent in our <a href="/hire-engineers">Hire Engineers Hub</a> or <a href="/contact">Request Backend Profiles</a>.</p>
@@ -1793,7 +1799,7 @@ function buildPageHtml(baseTemplate, route, meta, bodyHtml, schemaJson = null) {
             <li><a href="/projects/sarab-express" style="color:#cbd5e1; text-decoration:none;">Sarab Express Food Ordering</a></li>
             <li><a href="/projects/desert-safari-qatar" style="color:#cbd5e1; text-decoration:none;">Desert Safari Qatar Excursions</a></li>
             <li><a href="/projects/frostyops" style="color:#cbd5e1; text-decoration:none;">FrostyOps Logistics ERP</a></li>
-            <li><a href="/projects/installment-management" style="color:#cbd5e1; text-decoration:none;">Installment Credit Platform</a></li>
+            <li><a href="/projects/prime-dental" style="color:#cbd5e1; text-decoration:none;">Prime Dental Clinic Portal</a></li>
             <li><a href="/projects/gulf-dunes-tourism" style="color:#cbd5e1; text-decoration:none;">Gulf Dunes Tourism Portal</a></li>
             <li><a href="/industries" style="color:#cbd5e1; text-decoration:none;">Manufacturing & Retail</a></li>
             <li><a href="/industries" style="color:#cbd5e1; text-decoration:none;">Food, Beverage & Distribution</a></li>
@@ -1905,6 +1911,7 @@ async function run() {
       "desert-safari-qatar": "Tourism Booking",
       "gulf-dunes-tourism": "Excursion Portal",
       "frostyops": "Route Logistics ERP",
+      "prime-dental": "Clinic Web Platform",
       "installment-management": "Credit System",
     }[project.slug] || project.systemType;
 
@@ -1996,6 +2003,14 @@ async function run() {
       changefreq: "monthly",
       priority: "0.8",
     });
+  }
+
+  // Ensure legacy /projects/installment-management route also has valid HTML fallback
+  const legacyInstallmentDir = path.resolve(distDir, "projects", "installment-management");
+  if (!fs.existsSync(legacyInstallmentDir)) {
+    fs.mkdirSync(legacyInstallmentDir, { recursive: true });
+    const primeDentalHtml = fs.readFileSync(path.resolve(distDir, "projects", "prime-dental", "index.html"), "utf-8");
+    fs.writeFileSync(path.resolve(legacyInstallmentDir, "index.html"), primeDentalHtml, "utf-8");
   }
 
   // 3. Process Blog Posts

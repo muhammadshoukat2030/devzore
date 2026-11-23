@@ -107,10 +107,10 @@ export default function HireMernDevelopers() {
       link: "/projects/frostyops",
     },
     {
-      title: "Installment Management",
-      tag: "Consumer Credit Fintech",
-      desc: "Consumer installment sales ledger, automated payment plans, guarantor dossiers, and overdue collection dashboards.",
-      link: "/projects/installment-management",
+      title: "Prime Dental",
+      tag: "Healthcare & Clinic Web Platform",
+      desc: "Patient appointment scheduling, specialist dentist profiles, treatment procedure showcases, and responsive clinical portal.",
+      link: "/projects/prime-dental",
     },
   ];
 

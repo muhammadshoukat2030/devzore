@@ -20,14 +20,15 @@ import ProjectBriefCTA from "../components/ProjectBriefCTA";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
-  const project = projectsData.find((p) => p.slug === slug);
+  const effectiveSlug = slug === "installment-management" ? "prime-dental" : slug;
+  const project = projectsData.find((p) => p.slug === effectiveSlug);
 
   if (!project) {
     return <Navigate to="/projects" replace />;
   }
 
   const relatedProjects = projectsData
-    .filter((p) => p.slug !== slug)
+    .filter((p) => p.slug !== project.slug)
     .slice(0, 3);
 
   const projectShortTitles = {
@@ -36,7 +37,8 @@ export default function ProjectDetail() {
     "desert-safari-qatar": "Desert Safari Qatar Case Study | Tourism Booking | DevZore",
     "gulf-dunes-tourism": "Gulf Dunes Tourism Case Study | Excursion Portal | DevZore",
     frostyops: "FrostyOps Case Study | Route Logistics ERP | DevZore",
-    "installment-management": "Installment Management Case Study | Credit System | DevZore",
+    "prime-dental": "Prime Dental Case Study | Dental Clinic Web Platform | DevZore",
+    "installment-management": "Prime Dental Case Study | Dental Clinic Web Platform | DevZore",
   };
 
   const title = projectShortTitles[project.slug] || `${project.title} Case Study | DevZore`;

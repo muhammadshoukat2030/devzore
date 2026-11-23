@@ -109,10 +109,10 @@ export default function HireNodejsDevelopers() {
       link: "/projects/frostyops",
     },
     {
-      title: "Installment Credit Platform",
-      tag: "Fintech Engine",
-      desc: "Automated amortization schedule generators, penalty calculation jobs, investor portfolio accounting, and recovery tracking.",
-      link: "/projects/installment-management",
+      title: "Prime Dental",
+      tag: "Healthcare Web Platform",
+      desc: "Online appointment scheduling engine, doctor profile directory, dental treatment catalogs, and instant WhatsApp booking integration.",
+      link: "/projects/prime-dental",
     },
   ];
 

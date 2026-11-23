@@ -240,6 +240,7 @@ const caseStudySlugs = [
   "desert-safari-qatar",
   "gulf-dunes-tourism",
   "frostyops",
+  "prime-dental",
   "installment-management",
 ];
 
@@ -411,7 +412,7 @@ for (const ind of requiredIndustries) {
 assert(homeHtml.includes("/projects/weldon-paints"), "Industries section links to Weldon Paints case study");
 assert(homeHtml.includes("/projects/sarab-express"), "Industries section links to Sarab Express case study");
 assert(homeHtml.includes("/projects/desert-safari-qatar"), "Industries section links to Desert Safari Qatar case study");
-assert(homeHtml.includes("/projects/installment-management"), "Industries section links to Installment Management case study");
+assert(homeHtml.includes("/projects/prime-dental") || homeHtml.includes("/projects/installment-management"), "Industries section links to Prime Dental case study");
 
 if (fs.existsSync(llmsPath)) {
   const llmsContent = fs.readFileSync(llmsPath, "utf-8");
@@ -565,6 +566,7 @@ const validSitemapPaths = new Set(
   locMatches.map((m) => m[1].replace("https://devzore.com", "").replace(/\/$/, "") || "/")
 );
 const deliberateRedirects = new Set([
+  "/projects/installment-management",
   "/blog/how-much-does-a-website-cost-in-2026-complete-website-development-pricing-guide-1790762380934",
   "/blog/how-a-professional-website-can-help-your-business-get-more-customers-1789029617095",
   "/blog/why-your-business-needs-a-professional-website-in-2026-1790435181732",

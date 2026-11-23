@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
+  Activity,
   ArrowRight,
   ArrowUpRight,
   Briefcase,
@@ -72,6 +73,20 @@ const industries = [
     serviceLink: {
       name: "Installment Management Software",
       path: "/installment-management-software",
+    },
+  },
+  {
+    id: "healthcare-dental-care",
+    icon: <Activity size={22} className="text-[#1bbac8]" />,
+    title: "Healthcare & Dental Care",
+    description:
+      "Modern clinical web platforms, online patient appointment scheduling, specialist doctor showcases, and clinical treatment guides.",
+    caseStudies: [
+      { name: "Prime Dental", path: "/projects/prime-dental" },
+    ],
+    serviceLink: {
+      name: "Healthcare Web Development",
+      path: "/web-development",
     },
   },
 ];

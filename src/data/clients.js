@@ -43,9 +43,9 @@ export const clients = [
     logoApproved: false,
   },
   {
-    name: "Installment Management",
-    industry: "Consumer Credit & Finance",
-    caseStudyUrl: "/projects/installment-management",
+    name: "Prime Dental",
+    industry: "Healthcare & Dental Care",
+    caseStudyUrl: "/projects/prime-dental",
     logoFile: null,
     logoApproved: false,
   },

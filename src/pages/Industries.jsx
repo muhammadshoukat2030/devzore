@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
+  Activity,
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
@@ -127,6 +128,31 @@ const industriesData = [
     ],
     serviceUrl: "/installment-management-software",
     serviceName: "Installment Management Software",
+  },
+  {
+    id: "healthcare-dental",
+    icon: <Activity size={26} className="text-[#1bbac8]" />,
+    title: "Healthcare & Dental Care",
+    tagline: "Modern clinic web platforms, patient appointment scheduling and specialized treatment showcases.",
+    challenges: [
+      "Manual phone-call scheduling during busy clinical surgery hours causing lost patient inquiries.",
+      "Patients struggling to evaluate specialized dental treatments, pricing tiers, and dentist credentials.",
+      "Slow, unresponsive clinical web pages resulting in high bounce rates for emergency dental pain.",
+    ],
+    solutions: [
+      "Online appointment and consultation booking engine capturing treatment preferences and pain notes.",
+      "Comprehensive treatment catalogs for Orthodontics, Smile Design, Implants, and Oral Hygiene.",
+      "Verified specialist doctor profiles and transparent treatment package comparisons.",
+    ],
+    caseStudies: [
+      {
+        title: "Prime Dental",
+        desc: "Modern clinical web platform featuring online patient appointment booking, doctor credentials, and dental procedure showcases.",
+        url: "/projects/prime-dental",
+      },
+    ],
+    serviceUrl: "/web-development",
+    serviceName: "Healthcare Web Development",
   },
 ];
 

@@ -37,7 +37,7 @@ import { projectsData } from "../data/projectsData";
 import { trackLeadSubmission } from "../utils/analytics";
 
 const mernProjects = projectsData.filter((p) =>
-  ["weldon-paints", "frostyops", "installment-management"].includes(p.slug)
+  ["weldon-paints", "frostyops", "prime-dental"].includes(p.slug)
 );
 
 const MernStackDevelopment = () => {
