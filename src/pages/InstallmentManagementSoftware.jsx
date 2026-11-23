@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import SEO from "../components/SEO";
 import ProjectBriefCTA from "../components/ProjectBriefCTA";
+import installmentSoftware from "../assets/installment_software.webp";
 
 export default function InstallmentManagementSoftware() {
   const [activeFaq, setActiveFaq] = useState(null);
@@ -527,26 +528,105 @@ export default function InstallmentManagementSoftware() {
         </section>
 
         {/* ========================================================================= */}
-        {/* SECTION 4: EXECUTIVE SUMMARY (HIGH-IMPACT DARK NAVY BAND) */}
+        {/* SECTION 4: PRODUCTION SYSTEM SHOWCASE & PROOF (HIGH-IMPACT DARK NAVY BAND) */}
         {/* ========================================================================= */}
-        <section className="relative py-12 sm:py-16 bg-[#071923] text-white border-b border-white/[0.08]">
+        <section className="relative py-14 sm:py-20 bg-[#071923] text-white border-b border-white/[0.08]">
           <div className="absolute inset-0 pointer-events-none" style={darkGrid} />
-          <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-[#0796A8]/10 blur-[140px] pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[550px] h-[450px] bg-[#0796A8]/12 blur-[150px] pointer-events-none" />
+          <div className="absolute bottom-0 left-[5%] w-[400px] h-[400px] bg-[#22bdca]/8 blur-[140px] pointer-events-none" />
 
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
-            <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#092230] to-[#05141c] p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-              <div className="w-[300px] h-[300px] bg-[#0796A8]/15 blur-[100px] pointer-events-none absolute -top-20 -right-20 rounded-full" />
-              <SectionLabel light>Executive Business Summary</SectionLabel>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
-                What Is an Owner & Multi-Investor <span className="text-[#25bfce]">Installment Management Platform?</span>
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <SectionLabel light>Verified Production Architecture · Live Client Proof</SectionLabel>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
+                Production System: <span className="text-[#25bfce]">Amjad Afridi Multi-Investor Platform</span>
               </h2>
-              <div className="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed">
-                <p>
-                  An <strong className="text-white">Owner & Multi-Investor Installment Platform</strong> is specialized financial software engineered for businesses where an operating Owner partners with multiple private financial investors to buy high-demand product inventory (smartphones, bikes, electronics, solar equipment, appliances) and sell those items to customers on monthly installment contracts.
-                </p>
-                <p>
-                  Instead of confusing paper ledgers and disputed spreadsheet math, the platform tracks every investor&apos;s deposited capital, maps which product inventory was procured with those funds, registers customer down payments and monthly installment collections, and <strong className="text-[#20bdcb]">automatically divides every collected payment into principal capital recovery and profit-sharing payouts</strong> for the owner and investors.
-                </p>
+              <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+                Engineered by DevZore for commercial consumer finance and retail installment sales. The platform features an operating Owner master admin, dedicated multi-investor transparency portals, customer contract underwriting, and automated profit-splitting ledgers.
+              </p>
+            </div>
+
+            {/* HIGH-IMPACT SYSTEM SCREENSHOT MOCKUP */}
+            <div className="rounded-3xl border border-white/15 bg-gradient-to-b from-[#0a2332] to-[#04121a] p-4 sm:p-7 shadow-2xl backdrop-blur-sm">
+              {/* Window Controls Header */}
+              <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-4 border-b border-white/10 text-xs text-slate-400">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-rose-500/80" />
+                  <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+                  <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                  <span className="ml-2 font-mono text-[11px] text-slate-300 hidden sm:inline">
+                    Amjad Afridi Multi-Device Production Dashboard (Laptop · Tablet · Mobile)
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-[11px]">
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 font-semibold border border-emerald-500/20">
+                    Live Role: Owner
+                  </span>
+                  <span className="text-slate-400 hidden sm:inline">Active Contracts: 2</span>
+                </div>
+              </div>
+
+              {/* Elevated Mockup Frame */}
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#020b10] shadow-inner group">
+                <img
+                  src={installmentSoftware}
+                  alt="Amjad Afridi Multi-Investor Installment Management Platform Dashboard on Laptop, Tablet, and Mobile"
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* 4 LIVE FINANCIAL METRICS FROM SYSTEM */}
+              <div className="mt-6 pt-6 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Sales</div>
+                  <div className="text-lg sm:text-xl font-black text-white mt-1">PKR 182,000</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Financed product contracts</div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Product Cost</div>
+                  <div className="text-lg sm:text-xl font-black text-white mt-1">PKR 140,000</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Funded via investor capital</div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Total Collected</div>
+                  <div className="text-lg sm:text-xl font-black text-emerald-400 mt-1">PKR 52,000</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Down payments & EMIs</div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Net Expected Profit</div>
+                  <div className="text-lg sm:text-xl font-black text-[#25bfce] mt-1">PKR 42,000</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Automated profit-sharing</div>
+                </div>
+              </div>
+
+              {/* CASE STUDY LINK AND ACTION BAR */}
+              <div className="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-2 text-xs text-slate-300">
+                  <CheckCircle2 size={15} className="text-[#20bdcb]" />
+                  <span>Real-time tracking of Paid, Partial, Pending (12), and Overdue (PKR 10,000) installments</span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <Link
+                    to="/projects/installment-management"
+                    className="inline-flex items-center gap-2 rounded-xl bg-[#0796A8] hover:bg-[#18bdcb] px-5 py-2.5 text-xs font-bold text-white transition shadow-lg shadow-[#0796A8]/20"
+                  >
+                    <span>Read Full Case Study</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                  <a
+                    href="https://wa.me/923348004300?text=Hi%20DevZore,%20I%20am%20interested%20in%20an%20Owner%20and%20Multi-Investor%20Installment%20System."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-white/20 hover:bg-white/10 px-4 py-2.5 text-xs font-semibold text-white transition"
+                  >
+                    <span>Chat on WhatsApp</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

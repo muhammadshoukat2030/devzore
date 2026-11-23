@@ -19,7 +19,7 @@ import ProjectBriefCTA from "../components/ProjectBriefCTA";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
-  const effectiveSlug = slug === "installment-management" ? "prime-dental" : slug;
+  const effectiveSlug = slug;
   const project = projectsData.find((p) => p.slug === effectiveSlug);
 
   if (!project) {
@@ -63,7 +63,7 @@ export default function ProjectDetail() {
     "gulf-dunes-tourism": "Gulf Dunes Tourism Case Study | Excursion Portal | DevZore",
     frostyops: "FrostyOps Case Study | Route Logistics ERP | DevZore",
     "prime-dental": "Prime Dental Case Study | Dental Clinic Web Platform | DevZore",
-    "installment-management": "Prime Dental Case Study | Dental Clinic Web Platform | DevZore",
+    "installment-management": "Installment Management Platform Case Study | DevZore",
   };
 
   const title = projectShortTitles[project.slug] || `${project.title} Case Study | DevZore`;

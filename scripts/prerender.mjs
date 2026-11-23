@@ -279,6 +279,50 @@ const projectsData = [
     description:
       "Modern dental clinic web platform engineered with React and Tailwind CSS, featuring online appointment scheduling, treatment showcases, and patient education.",
   },
+  {
+    slug: "installment-management",
+    title: "Installment Management",
+    businessName: "Amjad Afridi Installment Financing",
+    industry: "Consumer Finance & Retail Lending",
+    country: "Pakistan",
+    location: "Pakistan",
+    systemType: "Owner & Multi-Investor Platform",
+    headerFacts: "Installment Management · Finance & Retail Lending · Pakistan · Multi-Investor Platform",
+    client: "Amjad Afridi Trading",
+    deliveryType: "Remote Full-Stack Delivery",
+    category: "Management Systems",
+    serviceSlug: "/installment-management-software",
+    serviceName: "Financial & Installment Software",
+    challenges: [
+      "Managing multiple private investors' capital pools and calculating individual profit shares manually on loose paper ledgers caused frequent formula disputes.",
+      "Zero real-time connection between procured product inventory (smartphones, electronics, appliances) and the specific investor funds used to purchase them.",
+      "Customer installment collections, down payments, and overdue defaults were tracked across scattered notebook registers, leading to uncollected balances.",
+      "Lack of transparent reporting left investors in the dark about how their capital was deployed and when profit distributions were due.",
+    ],
+    problem:
+      "The business required a centralized, secure web and mobile platform for an operating owner and multiple private financial investors to track capital deposits, link procured product stock quantities to investor accounts, generate customer installment contracts, and automatically split collected payments into capital recovery and investor profit payouts.",
+    modules: [
+      { name: "Owner & Multi-Investor Equity Ledger", description: "Capital deposits, investor equity shares, automated profit-sharing splits, and withdrawal audit logs for full financial transparency." },
+      { name: "Product Procurement & Inventory Tagging", description: "Purchase orders, stock quantities, IMEI/serial tracking, and direct linking of inventory to specific investor funds." },
+      { name: "Customer Underwriting & Contract Generator", description: "CNIC document capture, dual guarantor records, dynamic EMI amortization schedule generation, and automated down payment receipting." },
+      { name: "Installment Payment & Overdue Collection Queue", description: "Paid, partial, pending, missed, and overdue status queues with overdue amount tracking and automated collection notifications." },
+      { name: "Thermal Receipt & PDF Voucher Engine", description: "Instant 80mm thermal receipt printing, installment passbooks with QR codes, and digital customer payment ledgers." },
+      { name: "Executive Financial Dashboard & Reports", description: "Live business financials: Total Sales PKR 182,000, Total Product Cost PKR 140,000, Total Collected PKR 52,000, Expected Profit PKR 42,000, and individual investor yield statements." },
+    ],
+    builtFeatures: [
+      "Multi-investor capital deposit and profit-sharing allocation engine",
+      "Product inventory procurement and stock quantity deduction",
+      "Digital customer KYC underwriting with CNIC and guarantor verification",
+      "Automated EMI repayment amortization schedule generator",
+      "Delinquency recovery queues with real-time overdue alerts",
+      "Thermal receipt printing and digital payment passbooks",
+    ],
+    outcomeNarrative:
+      "Successfully replaced manual paper registers and spreadsheet formulas with an automated MERN financial platform. The operating owner manages active contracts and inventory seamlessly, while multiple private investors enjoy total transparency over their deployed capital, monthly collections, and profit distributions.",
+    technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+    description:
+      "A complete custom financial and installment management system engineered with the MERN stack for owner and multi-investor product financing.",
+  },
 ];
 
 // Static pages metadata
@@ -2007,13 +2051,7 @@ async function run() {
     });
   }
 
-  // Ensure legacy /projects/installment-management route also has valid HTML fallback
-  const legacyInstallmentDir = path.resolve(distDir, "projects", "installment-management");
-  if (!fs.existsSync(legacyInstallmentDir)) {
-    fs.mkdirSync(legacyInstallmentDir, { recursive: true });
-    const primeDentalHtml = fs.readFileSync(path.resolve(distDir, "projects", "prime-dental", "index.html"), "utf-8");
-    fs.writeFileSync(path.resolve(legacyInstallmentDir, "index.html"), primeDentalHtml, "utf-8");
-  }
+
 
   // 3. Process Blog Posts
   for (const post of blogPosts) {
