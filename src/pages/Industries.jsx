@@ -127,7 +127,7 @@ const industriesData = [
       },
     ],
     serviceUrl: "/installment-management-software",
-    serviceName: "Installment Management Software",
+    serviceName: "Financial & Installment Software",
   },
   {
     id: "healthcare-dental",

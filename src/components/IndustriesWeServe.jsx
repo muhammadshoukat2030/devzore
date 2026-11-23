@@ -71,7 +71,7 @@ const industries = [
       { name: "Installment Management", path: "/projects/installment-management" },
     ],
     serviceLink: {
-      name: "Installment Management Software",
+      name: "Financial & Installment Software",
       path: "/installment-management-software",
     },
   },

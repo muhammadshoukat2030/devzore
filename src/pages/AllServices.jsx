@@ -332,12 +332,12 @@ const AllServices = () => {
     {
       icon: <Scale size={21} />,
       number: "18",
-      title: "Installment Management Software",
-      subtitle: "Amortization · KYC · Collections",
+      title: "Financial & Installment Software",
+      subtitle: "Credit · Amortization · Collections",
       path: "/installment-management-software",
       filter: "Web",
       desc:
-        "Custom consumer credit software with borrower KYC dossiers, automated amortization plan generation, daily overdue queues, and investor profit splits.",
+        "Financial management software for consumer credit, loan amortization, borrower KYC dossiers, daily overdue recovery queues, and investor profit splits.",
       points: [
         "Automated amortization plans",
         "Borrower & guarantor dossiers",

@@ -419,11 +419,11 @@ const seoData = {
   },
 
   "/installment-management-software": {
-    title: "Installment Management Software Development | DevZore",
+    title: "Financial Management & Installment Software | DevZore",
     description:
-      "Custom installment management software for consumer credit, monthly plan amortization, guarantor dossiers, investor shares, and overdue collections.",
+      "Custom financial management & installment credit software. Automate loan amortization, borrower KYC, collection queues, investor shares and audit ledgers.",
     keywords:
-      "installment management software, consumer credit software, installment sales system, loan amortization software, recovery management system",
+      "financial management software, installment credit software, consumer lending platform, loan amortization software, recovery management system, investor profit sharing ledger, credit underwriting software",
   },
 
   "/tour-booking-system": {

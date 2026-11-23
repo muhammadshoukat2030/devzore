@@ -61,7 +61,7 @@ export const SERVICES_GROUPS = [
     items: [
       { name: "Inventory Management System",     path: "/inventory-management-system" },
       { name: "Distribution Management System",  path: "/distribution-management-system" },
-      { name: "Installment Management Software", path: "/installment-management-software" },
+      { name: "Financial & Installment Software", path: "/installment-management-software" },
       { name: "Tour Booking Systems",            path: "/tour-booking-system" },
       { name: "Online Food Ordering Systems",    path: "/food-ordering-system" },
     ],

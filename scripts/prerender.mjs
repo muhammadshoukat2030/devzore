@@ -342,7 +342,7 @@ const staticPages = {
             <li><strong>Manufacturing & Retail:</strong> Multi-warehouse stock control, formula cataloging, and POS billing. Proof: <a href="/projects/weldon-paints">Weldon Paints Case Study</a> | <a href="/inventory-management-system">Inventory Management System</a></li>
             <li><strong>Food, Beverage & Distribution:</strong> Direct food ordering, Kitchen Display Systems (KDS), and wholesale fleet route ERPs. Proof: <a href="/projects/sarab-express">Sarab Express</a> & <a href="/projects/frostyops">FrostyOps</a> | <a href="/food-ordering-system">Food Ordering System</a> & <a href="/distribution-management-system">Distribution Management System</a></li>
             <li><strong>Tourism & Hospitality:</strong> High-conversion booking engines, slot availability, and WhatsApp reservation pathways. Proof: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> | <a href="/tour-booking-system">Tour & Safari Booking System</a></li>
-            <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI schedules, and recovery ledgers. Proof: <a href="/installment-management-software">Installment Management Software</a></li>
+            <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI schedules, and recovery ledgers. Proof: <a href="/installment-management-software">Financial & Installment Software</a></li>
             <li><strong>Healthcare & Dental Practice:</strong> Modern clinic web portals, online appointment booking, and treatment showcases. Proof: <a href="/projects/prime-dental">Prime Dental Case Study</a> | <a href="/web-development">Healthcare Web Development</a></li>
           </ul>
         </div>
@@ -450,7 +450,7 @@ const staticPages = {
             <li><strong>Manufacturing & Retail:</strong> Inventory control, formula cataloging, POS counter billing. Proof: <a href="/projects/weldon-paints">Weldon Paints</a> | <a href="/inventory-management-system">Inventory Management System</a></li>
             <li><strong>Food, Beverage & Distribution:</strong> Digital food ordering, Kitchen Display Systems, route dispatching. Proof: <a href="/projects/sarab-express">Sarab Express</a> & <a href="/projects/frostyops">FrostyOps</a> | <a href="/food-ordering-system">Food Ordering System</a> & <a href="/distribution-management-system">Distribution Management System</a></li>
             <li><strong>Tourism & Hospitality:</strong> Safari booking engines, slot availability, multi-currency checkout. Proof: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> | <a href="/tour-booking-system">Tour & Safari Booking System</a></li>
-            <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI repayment schedules, recovery ledgers. Proof: <a href="/installment-management-software">Installment Management Software</a></li>
+            <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI repayment schedules, recovery ledgers. Proof: <a href="/installment-management-software">Financial & Installment Software</a></li>
             <li><strong>Healthcare & Dental Practice:</strong> Clinical patient portals, treatment showcases, online appointments. Proof: <a href="/projects/prime-dental">Prime Dental</a> | <a href="/web-development">Healthcare Web Development</a></li>
           </ul>
         </div>
@@ -1275,27 +1275,28 @@ const staticPages = {
     `,
   },
   "/installment-management-software": {
-    title: "Installment Management Software & EMI Systems | DevZore",
+    title: "Financial Management & Installment Software | DevZore",
     description:
-      "Custom installment management software for retailers. Automated EMI schedules, recovery tracking, payment reminders and transparent customer ledgers.",
-    h1: "Custom Installment Management Software Development",
+      "Custom financial management & installment credit software. Automate loan amortization, borrower KYC, collection queues, investor shares and audit ledgers.",
+    h1: "Financial Management & Installment Credit Software Development",
     answerBlock:
-      "DevZore builds custom installment management software for retailers, consumer durable sellers, and private finance firms offering credit sales and equated monthly installment (EMI) plans. Our systems automate flexible repayment schedule generation, automated overdue penalty calculations, guarantor and collateral verification archives, field collection officer ledger sync, and SMS payment reminder triggers.",
+      "DevZore engineers custom financial management and installment credit software for retailers, consumer durable sellers, and private finance firms offering credit sales and equated monthly installment (EMI) plans. Our systems automate flexible repayment schedule generation, borrower KYC and guarantor verification archives, daily recovery queue dashboards, multi-investor profit-sharing ledgers, field collection officer sync, and double-entry bookkeeping.",
     content: `
       <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
-        <h2>Automated Equated Monthly Installment (EMI) & Credit Ledger Software</h2>
+        <h2>Financial Management & Credit Platform for Consumer Lending & Retail Installments</h2>
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
-          <h3>Why do installment retailers need dedicated credit software?</h3>
-          <p>Managing consumer credit sales on spreadsheets or basic accounting software leads to missed overdue penalties, lost recovery dates, unverified guarantors, and uncollected capital. Dedicated installment management software enforces underwriting discipline and tracks every rupee/dollar of customer debt in real time.</p>
+          <h3>Why do installment retailers need dedicated financial management software?</h3>
+          <p>Managing consumer credit sales on spreadsheets or basic accounting software leads to missed overdue penalties, lost recovery dates, unverified guarantors, and uncollected capital. Dedicated financial management software enforces underwriting discipline, tracks every installment in real time, and eliminates disputed balances through audited double-entry ledgers.</p>
         </div>
-        <h3>Core Features & Underwriting Tools</h3>
+        <h3>Core Financial Architecture & Modules</h3>
         <ul>
-          <li><strong>Dynamic Repayment Schedule Generators:</strong> Support for daily, weekly, and monthly EMI plans with customizable markup and down payment rules.</li>
-          <li><strong>Automated Overdue Penalty Calculations:</strong> Configurable grace periods and late-fee accruals calculated transparently on delinquent accounts.</li>
-          <li><strong>Guarantor & Collateral Verification Vault:</strong> Digital storage of national IDs, secondary guarantor contact details, and promissory notes.</li>
-          <li><strong>Field Recovery Sync:</strong> Fast mobile collection receipts with instant balance updates and SMS customer receipt confirmations.</li>
+          <li><strong>Dynamic Amortization & Repayment Schedules:</strong> Support for daily, weekly, and monthly equated installments with customizable flat or reducing markups and Shariah Murabaha options.</li>
+          <li><strong>Borrower KYC & Guarantor Verification Vault:</strong> Digital storage of national identity cards, employment verifications, residential utility bills, and dual guarantor documentation.</li>
+          <li><strong>Daily Recovery Operations & Overdue Queues:</strong> Real-time collection calendars categorized by delinquency tiers (30/60/90+ days) with automated WhatsApp and SMS reminders.</li>
+          <li><strong>Multi-Investor Capital Ledgers:</strong> Segregated investor equity accounts with automated monthly profit share distribution and net yield statements.</li>
+          <li><strong>Tamper-Proof Double-Entry Ledgers:</strong> Audited transaction logs, thermal receipt printing (80mm), and digital client passbooks with QR verification.</li>
         </ul>
-        <h3>Verified Production Case Study: Installment Management Platform</h3>
+        <h3>Verified Production Architecture: Financial Credit System</h3>
         <p>Inspect our delivered <a href="/projects/installment-management">Installment Management Case Study</a> to see how we structured consumer credit workflows.</p>
       </section>
     `,
@@ -1444,7 +1445,7 @@ const staticPages = {
           </div>
           <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px;">
             <h3>Finance & Installment Sales</h3>
-            <p>Underwriting ledgers, flexible EMI schedules, and guarantor records. Specialized software: <a href="/installment-management-software">Installment Management Software</a>.</p>
+            <p>Underwriting ledgers, flexible EMI schedules, and guarantor records. Specialized software: <a href="/installment-management-software">Financial & Installment Software</a>.</p>
           </div>
         </div>
       </section>
@@ -1787,7 +1788,7 @@ function buildPageHtml(baseTemplate, route, meta, bodyHtml, schemaJson = null) {
             <li><a href="/qatar-software-development" style="color:#cbd5e1; text-decoration:none;">Qatar & GCC Software</a></li>
             <li><a href="/inventory-management-system" style="color:#cbd5e1; text-decoration:none;">Inventory Management</a></li>
             <li><a href="/distribution-management-system" style="color:#cbd5e1; text-decoration:none;">Distribution ERP (DMS)</a></li>
-            <li><a href="/installment-management-software" style="color:#cbd5e1; text-decoration:none;">Installment Software</a></li>
+            <li><a href="/installment-management-software" style="color:#cbd5e1; text-decoration:none;">Financial & Installment Software</a></li>
             <li><a href="/tour-booking-system" style="color:#cbd5e1; text-decoration:none;">Tour Booking Systems</a></li>
             <li><a href="/food-ordering-system" style="color:#cbd5e1; text-decoration:none;">Online Food Ordering</a></li>
           </ul>

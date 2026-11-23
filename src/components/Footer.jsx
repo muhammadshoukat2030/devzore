@@ -95,7 +95,7 @@ const Footer = () => {
       path: "/distribution-management-system",
     },
     {
-      label: "Installment Management Software",
+      label: "Financial & Installment Software",
       path: "/installment-management-software",
     },
     {
