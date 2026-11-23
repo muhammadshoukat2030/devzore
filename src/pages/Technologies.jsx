@@ -12,6 +12,7 @@ import {
   Database,
   Gauge,
   GitBranch,
+  Infinity as InfinityIcon,
   Layers3,
   MonitorSmartphone,
   Network,
@@ -281,6 +282,82 @@ const Technologies = () => {
     },
     {
       number: "05",
+      icon: <InfinityIcon size={20} />,
+      title: "DevOps & CI/CD Automation",
+      shortTitle: "DevOps",
+      description:
+        "DevOps bridges development and operations through automated testing, containerization, continuous integration, infrastructure as code, and production monitoring for reliable, zero-downtime releases.",
+      technologies: [
+        {
+          name: "Docker & Containers",
+          label: "Containerization",
+          description:
+            "Docker standardizes application environments across development, staging and production, eliminating configuration drift and simplifying scaling.",
+          useCases: [
+            "Containerized services",
+            "Environment parity",
+            "Microservice isolation",
+          ],
+        },
+        {
+          name: "CI/CD Pipelines",
+          label: "Continuous Integration",
+          description:
+            "Automated test suites, linting, build verification and zero-downtime deployment workflows triggered on every code push or pull request.",
+          useCases: [
+            "Automated testing",
+            "Continuous deployment",
+            "Zero-downtime releases",
+          ],
+        },
+        {
+          name: "NGINX & Reverse Proxy",
+          label: "Web Server & Gateway",
+          description:
+            "NGINX manages incoming web traffic, SSL termination, reverse proxy routing, rate limiting and load balancing across application processes.",
+          useCases: [
+            "Reverse proxy routing",
+            "SSL termination",
+            "Traffic load balancing",
+          ],
+        },
+        {
+          name: "PM2 Process Manager",
+          label: "Runtime Orchestration",
+          description:
+            "Production process manager for Node.js applications ensuring continuous uptime, cluster mode load balancing, automatic restarts and log management.",
+          useCases: [
+            "Process clustering",
+            "Automatic restart",
+            "Production uptime",
+          ],
+        },
+        {
+          name: "Security & Secret Management",
+          label: "Infrastructure Security",
+          description:
+            "Best-practice secret isolation, environment segregation, HTTPS/HSTS enforcement, secure headers and role-based access to deployment targets.",
+          useCases: [
+            "Secret protection",
+            "SSL & security headers",
+            "Environment isolation",
+          ],
+        },
+        {
+          name: "Monitoring & Observability",
+          label: "System Health",
+          description:
+            "Real-time server resource monitoring, uptime tracking, error alerting and centralized logging to diagnose and resolve incidents quickly.",
+          useCases: [
+            "Uptime monitoring",
+            "Error tracking",
+            "Performance metrics",
+          ],
+        },
+      ],
+    },
+    {
+      number: "06",
       icon: <Cloud size={20} />,
       title: "Deployment & Infrastructure",
       shortTitle: "Deployment",
@@ -334,7 +411,7 @@ const Technologies = () => {
       ],
     },
     {
-      number: "06",
+      number: "07",
       icon: <GitBranch size={20} />,
       title: "Development Workflow",
       shortTitle: "Workflow",
@@ -473,6 +550,16 @@ const Technologies = () => {
       description:
         "Focused first versions of digital products designed around essential functionality.",
     },
+    {
+      title: "DevOps & Cloud Automation",
+      description:
+        "CI/CD pipelines, containerization, web server setup and automated zero-downtime deployment.",
+    },
+    {
+      title: "System Modernization & Migration",
+      description:
+        "Upgrading legacy codebases, cloud migrations, database optimization and performance tuning.",
+    },
   ];
 
   // MERN STACK
@@ -538,7 +625,7 @@ const Technologies = () => {
     url: "https://devzore.com/technologies",
     name: "Technologies Used by DevZore",
     description:
-      "Explore the frontend, backend, database, mobile, deployment and development technologies DevZore uses to build modern digital products.",
+      "Explore the frontend, backend, database, mobile, devops, deployment and development technologies DevZore uses to build modern digital products.",
     isPartOf: {
       "@id": "https://devzore.com/#website",
     },
@@ -639,7 +726,7 @@ const Technologies = () => {
 
                 <p className="max-w-[680px] mt-4 text-[15px] sm:text-[16px] leading-7 text-slate-300">
                   DevZore works across frontend, backend, databases, mobile
-                  development, APIs and deployment to build complete digital
+                  development, DevOps, APIs and deployment to build complete digital
                   products.
                 </p>
 
@@ -681,6 +768,7 @@ const Technologies = () => {
                     "Frontend",
                     "Backend",
                     "Database",
+                    "DevOps & CI/CD",
                     "Deployment",
                   ].map((item) => (
                     <span
@@ -736,6 +824,16 @@ const Technologies = () => {
                         text: "Application data",
                       },
                       {
+                        icon: <InfinityIcon size={17} />,
+                        title: "DevOps & CI/CD",
+                        text: "Pipelines & uptime",
+                      },
+                      {
+                        icon: <Smartphone size={17} />,
+                        title: "Mobile Apps",
+                        text: "Cross-platform systems",
+                      },
+                      {
                         icon: <Cloud size={17} />,
                         title: "Deployment",
                         text: "Production delivery",
@@ -743,17 +841,17 @@ const Technologies = () => {
                     ].map((item) => (
                       <div
                         key={item.title}
-                        className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-4"
+                        className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-3.5"
                       >
                         <div className="w-8 h-8 rounded-lg bg-[#0c2a35] text-[#28c5d4] flex items-center justify-center">
                           {item.icon}
                         </div>
 
-                        <p className="mt-3 text-[13px] font-semibold text-white">
+                        <p className="mt-2.5 text-[13px] font-semibold text-white">
                           {item.title}
                         </p>
 
-                        <p className="mt-1 text-xs text-slate-500">
+                        <p className="mt-0.5 text-xs text-slate-500">
                           {item.text}
                         </p>
                       </div>
@@ -784,17 +882,18 @@ const Technologies = () => {
 
           <div className="relative border-t border-white/[0.08] bg-[#06151d]/90">
             <div className="max-w-[1260px] mx-auto px-5 sm:px-6">
-              <div className="grid grid-cols-2 lg:grid-cols-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
                 {[
                   ["01", "User Interface"],
                   ["02", "Application Logic"],
                   ["03", "Data Layer"],
-                  ["04", "Production"],
+                  ["04", "DevOps & Automation"],
+                  ["05", "Cloud & Production"],
                 ].map(([number, label], index) => (
                   <div
                     key={label}
                     className={`py-4 ${
-                      index !== 3
+                      index !== 4
                         ? "lg:border-r border-white/[0.07]"
                         : ""
                     } ${index > 0 ? "lg:pl-7" : ""}`}
@@ -1347,6 +1446,7 @@ const Technologies = () => {
               {[
                 ["Web Development", "/web-development"],
                 ["MERN Stack", "/mern-stack-development"],
+                ["Cloud & DevOps", "/cloud-deployment"],
                 ["React Development", "/reactdevelopment"],
                 ["Mobile Apps", "/mobile-apps"],
                 ["Backend & API", "/backend-api"],
