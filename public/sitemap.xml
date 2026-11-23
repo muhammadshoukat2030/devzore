@@ -325,6 +325,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://devzore.com/projects/installment-management</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://devzore.com/blog/distribution-management-erp-software-guide</loc>
     <lastmod>2026-11-14</lastmod>
     <changefreq>monthly</changefreq>
