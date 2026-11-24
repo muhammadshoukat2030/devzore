@@ -13,9 +13,6 @@ import {
 const Footer = () => {
   const year = new Date().getFullYear();
 
-  const footerRef = useRef(null);
-  const [footerVisible, setFooterVisible] = useState(false);
-
   // ======================================================
   // SCROLL TO TOP
   // ======================================================
@@ -27,31 +24,6 @@ const Footer = () => {
       behavior: "smooth",
     });
   };
-
-  // ======================================================
-  // HIDE MOBILE CTA WHEN FOOTER ENTERS VIEW
-  // ======================================================
-
-  useEffect(() => {
-    const footer = footerRef.current;
-
-    if (!footer) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setFooterVisible(entry.isIntersecting);
-      },
-      {
-        root: null,
-        threshold: 0,
-        rootMargin: "0px 0px -40px 0px",
-      }
-    );
-
-    observer.observe(footer);
-
-    return () => observer.disconnect();
-  }, []);
 
   // ======================================================
   // SERVICES
@@ -373,7 +345,6 @@ const Footer = () => {
   return (
     <>
       <footer
-        ref={footerRef}
         aria-label="DevZore website footer"
         className="relative bg-[#02090D] text-white mt-6"
       >
@@ -780,61 +751,6 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-
-      {/* ==================================================
-          MOBILE STICKY CONTACT BUTTON
-          ONLY MOBILE
-          HIDES WHEN FOOTER IS VISIBLE
-      ================================================== */}
-
-      <div
-        className={`
-          md:hidden
-          fixed
-          left-3
-          right-3
-          bottom-3
-          z-[60]
-          transition-all
-          duration-300
-          ${
-            footerVisible
-              ? "opacity-0 translate-y-6 pointer-events-none"
-              : "opacity-100 translate-y-0"
-          }
-        `}
-      >
-        <Link
-          to="/contact"
-          onClick={scrollTop}
-          className="
-            group
-            flex
-            items-center
-            justify-center
-            gap-2
-            w-full
-            h-12
-            rounded-xl
-            bg-[#20C7C7]
-            text-[#061923]
-            text-[13px]
-            font-bold
-            shadow-[0_10px_35px_rgba(0,0,0,0.28)]
-            border
-            border-[#36D5D5]
-            transition-all
-            active:scale-[0.98]
-          "
-        >
-          Contact Us
-
-          <ArrowRight
-            size={14}
-            className="transition-transform group-hover:translate-x-1"
-          />
-        </Link>
-      </div>
     </>
   );
 };

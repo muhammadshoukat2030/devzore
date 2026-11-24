@@ -141,13 +141,13 @@ const Projects = () => {
 
               <div>
                 {/* PROJECT IMAGE */}
-                <div className="relative h-[230px] sm:h-[250px] overflow-hidden bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e8edf2] border-b border-slate-200 flex items-center justify-center p-2.5">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 border-b border-slate-200">
                   {project.image ? (
                     <Link
                       to={`/projects/${project.slug}`}
                       onClick={scrollTop}
                       aria-label={`Read ${project.title} case study`}
-                      className="w-full h-full flex items-center justify-center"
+                      className="block w-full h-full"
                     >
                       <img
                         src={project.image}
@@ -155,8 +155,8 @@ const Projects = () => {
                         loading="lazy"
                         decoding="async"
                         width="600"
-                        height="375"
-                        className="w-full h-full object-contain object-center cursor-pointer transition-transform duration-500 group-hover:scale-[1.03]"
+                        height="450"
+                        className="w-full h-full object-cover object-center cursor-pointer transition-transform duration-500 group-hover:scale-[1.03]"
                       />
                     </Link>
                   ) : (

@@ -197,13 +197,15 @@ export default function ProjectsPage() {
                     {project.image ? (
                       <Link
                         to={`/projects/${project.slug}`}
-                        className="block aspect-[16/10] overflow-hidden bg-gradient-to-b from-[#f8fafc] via-[#f1f5f9] to-[#e8edf2] border-b border-slate-100 p-2.5 flex items-center justify-center"
+                        className="block aspect-[4/3] w-full overflow-hidden bg-slate-100 border-b border-slate-100 relative"
                       >
                         <img
                           src={project.image}
                           alt={`${project.title} - ${project.systemType}`}
-                          className="h-full w-full object-contain object-center transition duration-500 group-hover:scale-105"
+                          className="h-full w-full object-cover object-center transition duration-500 group-hover:scale-105"
                           loading="lazy"
+                          width="600"
+                          height="450"
                         />
                       </Link>
                     ) : (
