@@ -64,6 +64,7 @@ export const SERVICES_GROUPS = [
       { name: "Financial & Installment Software", path: "/installment-management-software" },
       { name: "Tour Booking Systems",            path: "/tour-booking-system" },
       { name: "Online Food Ordering Systems",    path: "/food-ordering-system" },
+      { name: "Taekwondo Academy Systems",       path: "/taekwondo-academy-management-system" },
     ],
   },
   {

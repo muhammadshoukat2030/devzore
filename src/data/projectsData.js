@@ -5,8 +5,85 @@ import gulfDunes from "../assets/gulf-dunes.webp";
 import quickBite from "../assets/food.webp";
 import qatarTourist from "../assets/qatar_tourist_agency.webp";
 import installmentSoftware from "../assets/installment_software.webp";
+import taekwondoManagement from "../assets/taekwondo_management.webp";
 
 export const projectsData = [
+  {
+    id: "taekwondo-academy-management",
+    slug: "taekwondo-academy-management",
+    title: "Al Murtaza Shah Taekwondo Academy",
+    businessName: "Al Murtaza Shah Taekwondo Academy (AMOT)",
+    industry: "Martial Arts & Sports Academies",
+    country: "Pakistan",
+    location: "Kohat, Pakistan",
+    systemType: "Taekwondo Academy Management System",
+    headerFacts: "AMOT · PTF & KPTA Accredited · Kohat, Pakistan · Academy Management ERP",
+    client: "Master Murtaza Hassan Bangash (7th Dan PTF / Kukkiwon)",
+    deliveryType: "Remote Full-Stack Delivery",
+    category: "Management Systems",
+    serviceSlug: "/taekwondo-academy-management-system",
+    serviceName: "Academy Management Systems",
+    liveUrl: "https://taekwondo-academy-management-571x.vercel.app",
+    image: taekwondoManagement,
+    teaser: "Enterprise martial arts academy ERP with biometric facial attendance, bilingual Urdu admissions, baqaya fee arrears with dual-part receipts, and PTF belt certificates.",
+    challenges: [
+      "Manual paper registers caused lost admission records, missing student medical histories, and misplaced guardian emergency contact details.",
+      "Tracking daily student attendance across morning and evening training batches manually led to disputed attendance percentages before belt examinations.",
+      "Monthly fee collection and carry-forward of unpaid Baqaya arrears resulted in revenue leakage and awkward manual payment dispute discussions.",
+      "Generating official Pakistan Taekwondo Federation (PTF) belt promotion certificates required slow, error-prone manual calligraphy on pre-printed forms.",
+    ],
+    problem:
+      "Al Murtaza Shah Taekwondo Academy (المرتضیٰ شاہ تائیکوانڈو اکیڈمی کوہاٹ) required an enterprise-grade full-stack automation software to modernize its martial arts operations in Kohat, accredited under the Pakistan Taekwondo Federation (PTF) and Khyber Pakhtunkhwa Taekwondo Association (KPTA). The academy needed to automate student admissions with bilingual English/Nastaliq Urdu layouts, integrate biometric facial/fingerprint attendance terminals, reconcile monthly fee collections with perforated dual-part receipts, and generate authentic 1:1 PTF belt promotion certificates with Korean Hangul calligraphy and zero-margin A4 portrait printing.",
+    modules: [
+      {
+        name: "Biometric & Digital Attendance Terminal",
+        description: "Smart terminal ready for facial recognition, digital fingerprint scanners, and numeric roll check-ins, logging 281+ synchronized attendance events with Present, Absent, Late, and Leave statuses.",
+      },
+      {
+        name: "Official Bilingual Urdu/English Admission Desk",
+        description: "Four-stage verification capturing student CNIC/B-Form, auto-calculated age, guardian contacts, prior sports experience, chronic illness disclosures, and automatic AMS-2026 serial ledger creation.",
+      },
+      {
+        name: "Fee Desk, Baqaya Arrears & Dual-Slip Receipts",
+        description: "Automated billing cycle with carry-forward of unpaid arrears, instant defaulters desk with WhatsApp payment reminders, and dual-part perforated receipts (Academy Audit Copy + Student Copy).",
+      },
+      {
+        name: "Official PTF & KPTA Belt Promotion Certificate Engine",
+        description: "Exact 1:1 physical replica of official PTF & KPTA certificates with dynamic belt themes (Yellow, Green, Blue, Red, Black), Korean martial arts watermarks (跆, 拳, 道), 32-point gold scalloped seal, and strict A4 portrait zero-margin print CSS.",
+      },
+      {
+        name: "Student Registry & Athlete Dossier Modal",
+        description: "Full search and filter by belt rank (White to Black/Dan) with student photo avatars, emergency medical notes, complete billing ledger history, and competition medal distinctions.",
+      },
+      {
+        name: "Executive Analytics & Financial Audit Dashboard",
+        description: "Real-time KPI cards tracking active enrolled roster, collected revenue (PKR 43,500), pending baqaya (PKR 15,000), 6-month cash recovery charts, and belt rank distribution analytics.",
+      },
+    ],
+    builtFeatures: [
+      "Biometric facial and fingerprint terminal with real-time audit logging",
+      "Bilingual English and Nastaliq Urdu 4-stage admission desk",
+      "Fee management engine with Baqaya arrears carry-forward",
+      "Dual-part perforated thermal and A4 receipts (Academy Copy & Student Copy)",
+      "Official PTF & KPTA belt promotion certificate generator with Hangul seals",
+      "Student athlete profile dossier with tournament medals and attendance records",
+    ],
+    outcomeNarrative:
+      "Successfully replaced paper notebooks and manual certificate writing with a high-availability MERN web ERP. Academy leadership monitors active attendance and cash recovery in real time, student dues are transparently audited with automated WhatsApp notifications, and students receive officially accredited PTF belt promotion certificates printed directly from the system with zero margin errors.",
+    hasRealResults: true,
+    resultsPlaceholder: "",
+    technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "A4 Print CSS"],
+    deliverables: [
+      "Enterprise Martial Arts Academy Web Application",
+      "Smart Biometric Attendance Terminal Interface",
+      "Bilingual Admission Engine & Student Ledger Initialization",
+      "Dual-Part Perforated Receipt & Defaulter Queue Engine",
+      "Official PTF/KPTA Belt Certificate Print Suite (A4 Zero-Margin)",
+      "Production Deployment on Vercel with MongoDB Atlas",
+    ],
+    description:
+      "Full-stack martial arts academy automation software featuring biometric attendance, bilingual admissions, dual-part fee receipts, and official PTF belt promotion certificates.",
+  },
   {
     id: "weldon-paints",
     slug: "weldon-paints",

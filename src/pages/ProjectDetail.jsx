@@ -57,12 +57,13 @@ export default function ProjectDetail() {
     .slice(0, 3);
 
   const projectShortTitles = {
+    "taekwondo-academy-management": "Al Murtaza Taekwondo Academy System Case Study | DevZore",
     "weldon-paints": "Weldon Paints Case Study | POS & Stock System | DevZore",
     "sarab-express": "Sarab Express Case Study | Delivery & Logistics | DevZore",
     "desert-safari-qatar": "Desert Safari Qatar Case Study | Tourism Booking | DevZore",
     "gulf-dunes-tourism": "Gulf Dunes Tourism Case Study | Excursion Portal | DevZore",
     frostyops: "FrostyOps Case Study | Route Logistics ERP | DevZore",
-    "prime-dental": "Prime Dental Case Study | Dental Clinic Web Platform | DevZore",
+    "prime-dental": "Prime Dental Case Study | Clinic Web Platform | DevZore",
     "installment-management": "Installment Management Platform Case Study | DevZore",
   };
 

@@ -20,6 +20,50 @@ const blogPosts = JSON.parse(fs.readFileSync(blogPostsFile, "utf-8"));
 // Real projects data
 const projectsData = [
   {
+    slug: "taekwondo-academy-management",
+    title: "Al Murtaza Shah Taekwondo Academy",
+    businessName: "Al Murtaza Shah Taekwondo Academy (AMOT)",
+    industry: "Martial Arts & Sports Academies",
+    country: "Pakistan",
+    location: "Kohat, Pakistan",
+    systemType: "Taekwondo Academy Management System",
+    headerFacts: "AMOT · PTF & KPTA Accredited · Kohat, Pakistan · Academy Management ERP",
+    client: "Master Murtaza Hassan Bangash (7th Dan PTF / Kukkiwon)",
+    deliveryType: "Remote Full-Stack Delivery",
+    category: "Management Systems",
+    serviceSlug: "/taekwondo-academy-management-system",
+    serviceName: "Academy Management Systems",
+    challenges: [
+      "Manual paper registers caused lost admission records, missing student medical histories, and misplaced guardian emergency contact details.",
+      "Tracking daily student attendance across morning and evening training batches manually led to disputed attendance percentages before belt examinations.",
+      "Monthly fee collection and carry-forward of unpaid Baqaya arrears resulted in revenue leakage and awkward manual payment dispute discussions.",
+      "Generating official Pakistan Taekwondo Federation (PTF) belt promotion certificates required slow, error-prone manual calligraphy on pre-printed forms.",
+    ],
+    problem:
+      "Al Murtaza Shah Taekwondo Academy (المرتضیٰ شاہ تائیکوانڈو اکیڈمی کوہاٹ) required an enterprise-grade full-stack automation software to modernize its martial arts operations in Kohat, accredited under the Pakistan Taekwondo Federation (PTF) and Khyber Pakhtunkhwa Taekwondo Association (KPTA). The academy needed to automate student admissions with bilingual English/Nastaliq Urdu layouts, integrate biometric facial/fingerprint attendance terminals, reconcile monthly fee collections with perforated dual-part receipts, and generate authentic 1:1 PTF belt promotion certificates with Korean Hangul calligraphy and zero-margin A4 portrait printing.",
+    modules: [
+      { name: "Biometric & Digital Attendance Terminal", description: "Smart terminal ready for facial recognition, digital fingerprint scanners, and numeric roll check-ins, logging 281+ synchronized attendance events with Present, Absent, Late, and Leave statuses." },
+      { name: "Official Bilingual Urdu/English Admission Desk", description: "Four-stage verification capturing student CNIC/B-Form, auto-calculated age, guardian contacts, prior sports experience, chronic illness disclosures, and automatic AMS-2026 serial ledger creation." },
+      { name: "Fee Desk, Baqaya Arrears & Dual-Slip Receipts", description: "Automated billing cycle with carry-forward of unpaid arrears, instant defaulters desk with WhatsApp payment reminders, and dual-part perforated receipts (Academy Audit Copy + Student Copy)." },
+      { name: "Official PTF & KPTA Belt Promotion Certificate Engine", description: "Exact 1:1 physical replica of official PTF & KPTA certificates with dynamic belt themes (Yellow, Green, Blue, Red, Black), Korean martial arts watermarks (跆, 拳, 道), 32-point gold scalloped seal, and strict A4 portrait zero-margin print CSS." },
+      { name: "Student Registry & Athlete Dossier Modal", description: "Full search and filter by belt rank (White to Black/Dan) with student photo avatars, emergency medical notes, complete billing ledger history, and competition medal distinctions." },
+      { name: "Executive Analytics & Financial Audit Dashboard", description: "Real-time KPI cards tracking active enrolled roster, collected revenue (PKR 43,500), pending baqaya (PKR 15,000), 6-month cash recovery charts, and belt rank distribution analytics." },
+    ],
+    builtFeatures: [
+      "Biometric facial and fingerprint terminal with real-time audit logging",
+      "Bilingual English and Nastaliq Urdu 4-stage admission desk",
+      "Fee management engine with Baqaya arrears carry-forward",
+      "Dual-part perforated thermal and A4 receipts (Academy Copy & Student Copy)",
+      "Official PTF & KPTA belt promotion certificate generator with Hangul seals",
+      "Student athlete profile dossier with tournament medals and attendance records",
+    ],
+    outcomeNarrative:
+      "Successfully replaced paper notebooks and manual certificate writing with a high-availability MERN web ERP. Academy leadership monitors active attendance and cash recovery in real time, student dues are transparently audited with automated WhatsApp notifications, and students receive officially accredited PTF belt promotion certificates printed directly from the system with zero margin errors.",
+    technologies: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "A4 Print CSS"],
+    description:
+      "Full-stack martial arts academy automation software featuring biometric attendance, bilingual admissions, dual-part fee receipts, and official PTF belt promotion certificates.",
+  },
+  {
     slug: "weldon-paints",
     title: "Weldon Paints",
     businessName: "Weldon Paints",
@@ -383,6 +427,7 @@ const staticPages = {
           <h3>Industries We Serve</h3>
           <p>Targeted software engineering across industries with proven production deliveries:</p>
           <ul>
+            <li><strong>Martial Arts & Sports Academies:</strong> Full-stack academy ERPs, biometric facial & fingerprint attendance, dual-part fee receipts, and PTF belt certificates. Proof: <a href="/projects/taekwondo-academy-management">Al Murtaza Taekwondo Academy</a> | <a href="/taekwondo-academy-management-system">Taekwondo Academy Management System</a></li>
             <li><strong>Manufacturing & Retail:</strong> Multi-warehouse stock control, formula cataloging, and POS billing. Proof: <a href="/projects/weldon-paints">Weldon Paints Case Study</a> | <a href="/inventory-management-system">Inventory Management System</a></li>
             <li><strong>Food, Beverage & Distribution:</strong> Direct food ordering, Kitchen Display Systems (KDS), and wholesale fleet route ERPs. Proof: <a href="/projects/sarab-express">Sarab Express</a> & <a href="/projects/frostyops">FrostyOps</a> | <a href="/food-ordering-system">Food Ordering System</a> & <a href="/distribution-management-system">Distribution Management System</a></li>
             <li><strong>Tourism & Hospitality:</strong> High-conversion booking engines, slot availability, and WhatsApp reservation pathways. Proof: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> | <a href="/tour-booking-system">Tour & Safari Booking System</a></li>
@@ -491,6 +536,7 @@ const staticPages = {
           <h3>Industries We Serve</h3>
           <p>We build production-grade software engineered for specific sectors with verified client systems:</p>
           <ul>
+            <li><strong>Martial Arts & Sports Academies:</strong> Academy management ERPs, biometric attendance, dual-part perforated receipts, PTF certificates. Proof: <a href="/projects/taekwondo-academy-management">Al Murtaza Taekwondo Academy</a> | <a href="/taekwondo-academy-management-system">Taekwondo Academy Management System</a></li>
             <li><strong>Manufacturing & Retail:</strong> Inventory control, formula cataloging, POS counter billing. Proof: <a href="/projects/weldon-paints">Weldon Paints</a> | <a href="/inventory-management-system">Inventory Management System</a></li>
             <li><strong>Food, Beverage & Distribution:</strong> Digital food ordering, Kitchen Display Systems, route dispatching. Proof: <a href="/projects/sarab-express">Sarab Express</a> & <a href="/projects/frostyops">FrostyOps</a> | <a href="/food-ordering-system">Food Ordering System</a> & <a href="/distribution-management-system">Distribution Management System</a></li>
             <li><strong>Tourism & Hospitality:</strong> Safari booking engines, slot availability, multi-currency checkout. Proof: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> | <a href="/tour-booking-system">Tour & Safari Booking System</a></li>
@@ -1460,6 +1506,32 @@ const staticPages = {
       </section>
     `,
   },
+  "/taekwondo-academy-management-system": {
+    title: "Taekwondo Academy Management System Development | DevZore",
+    description:
+      "Custom martial arts & taekwondo academy management software. Biometric attendance, bilingual Urdu admissions, baqaya fee ledgers, and PTF belt certificates.",
+    h1: "Taekwondo Academy Management System Development",
+    answerBlock:
+      "DevZore engineers enterprise-grade martial arts and taekwondo academy management software for combat dojangs and athletic training centers. Featuring biometric facial and fingerprint attendance terminals, bilingual English/Nastaliq Urdu admissions, automated monthly fee ledgers with baqaya arrears carry-forward, dual-part perforated receipts, and authentic 1:1 Pakistan Taekwondo Federation (PTF) belt promotion certificates with zero-margin A4 portrait printing.",
+    content: `
+      <section style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2>Full-Stack Martial Arts & Taekwondo Academy ERP</h2>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3>Why modernize martial arts academy operations with custom software?</h3>
+          <p>Traditional martial arts academies suffer from lost student medical records, inaccurate manual attendance roll calls before belt tests, unpaid fee leakage, and slow handwritten federation certificates. Our automated MERN web ERP unifies admissions, biometric terminal tracking, dual-part fee receipts, and official PTF/KPTA belt certificate printing.</p>
+        </div>
+        <h3>Core Academy Automation Modules</h3>
+        <ul>
+          <li><strong>Biometric Facial & Fingerprint Terminal:</strong> Real-time attendance check-in terminal with 281+ synchronized logs, morning/evening batch management, and automatic belt test qualification calculations.</li>
+          <li><strong>Bilingual English & Nastaliq Urdu Admissions:</strong> 4-stage admission desk capturing CNIC/B-Form, age calculation, guardian contacts, prior martial arts history, and medical health disclosures.</li>
+          <li><strong>Fee Desk, Baqaya Arrears & Dual-Slip Receipts:</strong> Automated billing cycles, carry-forward of unpaid dues, and perforated dual-part receipts (Academy Copy + Student/Guardian Copy).</li>
+          <li><strong>Official PTF & KPTA Belt Promotion Certificates:</strong> Exact 1:1 replica of official Pakistan Taekwondo Federation certificates with dynamic belt themes (Yellow to Black Dan), Korean Hangul watermarks (跆, 拳, 道), 32-point gold scalloped seal, and strict A4 portrait zero-margin print CSS.</li>
+        </ul>
+        <h3>Verified Live Production Proof: Al Murtaza Shah Taekwondo Academy</h3>
+        <p>Inspect our live production delivery: <a href="/projects/taekwondo-academy-management">Al Murtaza Shah Taekwondo Academy Case Study</a> or launch the live system at <a href="https://taekwondo-academy-management-571x.vercel.app">AMOT Academy Portal</a>.</p>
+      </section>
+    `,
+  },
   "/industries": {
     title: "Industries We Serve | DevZore Software",
     description:
@@ -1836,11 +1908,13 @@ function buildPageHtml(baseTemplate, route, meta, bodyHtml, schemaJson = null) {
             <li><a href="/installment-management-software" style="color:#cbd5e1; text-decoration:none;">Financial & Installment Software</a></li>
             <li><a href="/tour-booking-system" style="color:#cbd5e1; text-decoration:none;">Tour Booking Systems</a></li>
             <li><a href="/food-ordering-system" style="color:#cbd5e1; text-decoration:none;">Online Food Ordering</a></li>
+            <li><a href="/taekwondo-academy-management-system" style="color:#cbd5e1; text-decoration:none;">Academy Management Systems</a></li>
           </ul>
         </div>
         <div>
           <h4 style="color:#ffffff; font-size:14px; margin:0 0 12px; font-weight:bold;"><a href="/projects" style="color:#1bbac8; text-decoration:none;">Case Studies</a> & <a href="/industries" style="color:#1bbac8; text-decoration:none;">Industries</a></h4>
           <ul style="list-style:none; padding:0; margin:0; space-y:6px;">
+            <li><a href="/projects/taekwondo-academy-management" style="color:#cbd5e1; text-decoration:none;">Al Murtaza Taekwondo Academy</a></li>
             <li><a href="/projects/weldon-paints" style="color:#cbd5e1; text-decoration:none;">Weldon Paints POS & Stock</a></li>
             <li><a href="/projects/sarab-express" style="color:#cbd5e1; text-decoration:none;">Sarab Express Food Ordering</a></li>
             <li><a href="/projects/desert-safari-qatar" style="color:#cbd5e1; text-decoration:none;">Desert Safari Qatar Excursions</a></li>
@@ -1951,18 +2025,19 @@ async function run() {
     const targetDir = path.resolve(distDir, "projects", project.slug);
     fs.mkdirSync(targetDir, { recursive: true });
 
-    const shortSystemType = {
-      "weldon-paints": "POS & Stock System",
-      "sarab-express": "Delivery & Logistics",
-      "desert-safari-qatar": "Tourism Booking",
-      "gulf-dunes-tourism": "Excursion Portal",
-      "frostyops": "Route Logistics ERP",
-      "prime-dental": "Clinic Web Platform",
-      "installment-management": "Credit System",
-    }[project.slug] || project.systemType;
+    const projectShortTitles = {
+      "taekwondo-academy-management": "Al Murtaza Taekwondo Academy System Case Study | DevZore",
+      "weldon-paints": "Weldon Paints Case Study | POS & Stock System | DevZore",
+      "sarab-express": "Sarab Express Case Study | Delivery & Logistics | DevZore",
+      "desert-safari-qatar": "Desert Safari Qatar Case Study | Tourism Booking | DevZore",
+      "gulf-dunes-tourism": "Gulf Dunes Tourism Case Study | Excursion Portal | DevZore",
+      "frostyops": "FrostyOps Case Study | Route Logistics ERP | DevZore",
+      "prime-dental": "Prime Dental Case Study | Clinic Web Platform | DevZore",
+      "installment-management": "Installment Management Platform Case Study | DevZore",
+    };
 
     const meta = {
-      title: `${project.title} Case Study | ${shortSystemType} | DevZore`,
+      title: projectShortTitles[project.slug] || `${project.title} Case Study | DevZore`,
       description: `Read how DevZore built ${project.title}, a ${project.systemType} using ${project.technologies.slice(0, 3).join(", ")} for clients in ${project.location}.`,
       ogType: "article",
     };

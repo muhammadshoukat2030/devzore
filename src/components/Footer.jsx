@@ -107,6 +107,10 @@ const Footer = () => {
       path: "/food-ordering-system",
     },
     {
+      label: "Taekwondo Academy Systems",
+      path: "/taekwondo-academy-management-system",
+    },
+    {
       label: "E-Commerce Development",
       path: "/ecommerce",
     },

@@ -4,6 +4,7 @@ import {
   Activity,
   ArrowRight,
   ArrowUpRight,
+  Award,
   Briefcase,
   Compass,
   CreditCard,
@@ -13,6 +14,20 @@ import {
 } from "lucide-react";
 
 const industries = [
+  {
+    id: "sports-martial-arts",
+    icon: <Award size={22} className="text-[#1bbac8]" />,
+    title: "Martial Arts & Sports Academies",
+    description:
+      "Full-stack academy ERPs, biometric facial & fingerprint attendance, dual-part perforated fee receipts, and PTF belt certification engines.",
+    caseStudies: [
+      { name: "Al Murtaza Taekwondo Academy", path: "/projects/taekwondo-academy-management" },
+    ],
+    serviceLink: {
+      name: "Taekwondo Academy Management",
+      path: "/taekwondo-academy-management-system",
+    },
+  },
   {
     id: "manufacturing-retail",
     icon: <Factory size={22} className="text-[#1bbac8]" />,
@@ -135,13 +150,13 @@ const IndustriesWeServe = ({ isLight = false }) => {
             onClick={scrollTop}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1bbac8] hover:text-white transition shrink-0"
           >
-            <span>View all 6 case studies</span>
+            <span>View all 7 case studies</span>
             <ArrowRight size={13} />
           </Link>
         </div>
 
-        {/* 4 INDUSTRY CARDS */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* 6 INDUSTRY CARDS */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {industries.map((ind) => (
             <article
               key={ind.id}
@@ -210,7 +225,7 @@ const IndustriesWeServe = ({ isLight = false }) => {
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-dashed border-white/[0.08]">
+                <div className={`pt-2 border-t border-dashed ${isLight ? "border-slate-200" : "border-white/[0.08]"}`}>
                   <span
                     className={`block text-xs font-bold uppercase tracking-wider mb-1 ${
                       isLight ? "text-slate-400" : "text-slate-400"
@@ -221,7 +236,9 @@ const IndustriesWeServe = ({ isLight = false }) => {
                   <Link
                     to={ind.serviceLink.path}
                     onClick={scrollTop}
-                    className="inline-flex items-center gap-1 text-[13px] font-bold text-white hover:text-[#1bbac8] transition block"
+                    className={`inline-flex items-center gap-1 text-[13px] font-bold ${
+                      isLight ? "text-[#071923] hover:text-[#0796A8]" : "text-white hover:text-[#1bbac8]"
+                    } transition block`}
                   >
                     <span className="truncate">{ind.serviceLink.name}</span>
                     <ArrowRight size={11} className="shrink-0" />
@@ -230,7 +247,9 @@ const IndustriesWeServe = ({ isLight = false }) => {
                     <Link
                       to={ind.extraServiceLink.path}
                       onClick={scrollTop}
-                      className="inline-flex items-center gap-1 text-[13px] font-bold text-white hover:text-[#1bbac8] transition block mt-1"
+                      className={`inline-flex items-center gap-1 text-[13px] font-bold ${
+                        isLight ? "text-[#071923] hover:text-[#0796A8]" : "text-white hover:text-[#1bbac8]"
+                      } transition block mt-1`}
                     >
                       <span className="truncate">{ind.extraServiceLink.name}</span>
                       <ArrowRight size={11} className="shrink-0" />

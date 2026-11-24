@@ -79,6 +79,7 @@ const TourBookingSystem = lazy(() => import("./pages/TourBookingSystem"));
 const FoodOrderingSystem = lazy(() => import("./pages/FoodOrderingSystem"));
 const NextjsDevelopment = lazy(() => import("./pages/NextjsDevelopment"));
 const QatarSoftwareDevelopment = lazy(() => import("./pages/QatarSoftwareDevelopment"));
+const TaekwondoAcademyManagementSystem = lazy(() => import("./pages/TaekwondoAcademyManagementSystem"));
 
 // ======================================================
 // PROJECT & CASE STUDY PAGES - LAZY LOADING
@@ -440,6 +441,14 @@ const seoData = {
       "Custom online food ordering system development for restaurants, cafes, and chains. Commission-free visual menus, kitchen displays, and instant checkout.",
     keywords:
       "online food ordering system development, custom restaurant ordering software, commission-free food ordering, kitchen display system, digital menu platform",
+  },
+
+  "/taekwondo-academy-management-system": {
+    title: "Taekwondo Academy Management System Development | DevZore",
+    description:
+      "Custom martial arts & taekwondo academy management software. Biometric attendance, bilingual Urdu admissions, baqaya fee ledgers, and PTF belt certificates.",
+    keywords:
+      "taekwondo academy management system, martial arts software, biometric attendance martial arts, student belt certificate generator, academy fee management, dojang management software",
   },
 
   "/nextjs-development": {
@@ -1181,6 +1190,11 @@ function AppContent() {
             <Route
               path="/qatar-software-development"
               element={<QatarSoftwareDevelopment />}
+            />
+
+            <Route
+              path="/taekwondo-academy-management-system"
+              element={<TaekwondoAcademyManagementSystem />}
             />
 
             {/* ============================================
