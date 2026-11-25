@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  ExternalLink,
   Globe2,
   Code2,
   ChevronDown,
@@ -176,21 +175,22 @@ const Projects = () => {
                       </p>
                     </Link>
                   )}
-
-                  {/* LOCATION BADGE */}
-                  <span className="absolute z-20 top-3 left-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#061923]/90 backdrop-blur-md border border-white/10 text-white text-xs font-bold pointer-events-none">
-                    <Globe2 size={10} />
-                    {project.location}
-                  </span>
-
-                  {/* CATEGORY BADGE */}
-                  <span className="absolute z-20 top-3 right-3 px-2.5 py-1 rounded-md bg-[#17bebb] text-[#061923] text-xs font-black pointer-events-none">
-                    {project.category}
-                  </span>
                 </div>
 
                 {/* CONTENT */}
                 <div className="p-5">
+                  <div className="flex items-center justify-between text-xs mb-2.5">
+                    <span className="font-bold text-[#0796A8]">
+                      {project.category}
+                    </span>
+                    {project.location && (
+                      <span className="flex items-center gap-1 text-[12px] text-slate-500 font-medium">
+                        <Globe2 size={11} className="text-[#0796A8]" />
+                        {project.location}
+                      </span>
+                    )}
+                  </div>
+
                   <h3 className="text-[18px] sm:text-[19px] font-bold leading-snug text-[#061923] group-hover:text-[#0796A8] transition">
                     <Link to={`/projects/${project.slug}`} onClick={scrollTop}>
                       {project.title}
@@ -226,29 +226,16 @@ const Projects = () => {
                 </div>
               </div>
 
-              {/* ACTION BUTTONS (IMPOSSIBLE TO MISS CASE STUDY LINK) */}
-              <div className="p-5 pt-0 mt-auto flex items-center gap-2">
+              {/* ACTION BUTTON */}
+              <div className="p-5 pt-0 mt-auto">
                 <Link
                   to={`/projects/${project.slug}`}
                   onClick={scrollTop}
-                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-[#061923] hover:bg-[#0796A8] text-white text-[13px] font-bold transition shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#061923] hover:bg-[#0796A8] text-white text-[13px] font-bold transition shadow-sm group/btn"
                 >
                   <span>Read Case Study</span>
-                  <ArrowRight size={12} />
+                  <ArrowRight size={13} className="transition-transform group-hover/btn:translate-x-1" />
                 </Link>
-
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`View ${project.title} live platform`}
-                    className="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-lg border border-slate-200 hover:border-slate-400 text-slate-700 text-[13px] font-semibold transition"
-                  >
-                    <span>Live</span>
-                    <ExternalLink size={11} />
-                  </a>
-                )}
               </div>
             </article>
           ))}

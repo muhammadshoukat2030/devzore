@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Briefcase,
-  ExternalLink,
   Layers3,
   MapPin,
   CheckCircle,
@@ -259,21 +258,11 @@ export default function ProjectsPage() {
                   <div className="p-6 pt-0 border-t border-slate-100 flex items-center justify-between mt-4">
                     <Link
                       to={`/projects/${project.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0796A8] hover:text-[#071923] transition"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0796A8] hover:text-[#071923] transition group/link"
                     >
-                      Read Case Study <ArrowRight size={13} />
+                      <span>Read Case Study</span>
+                      <ArrowRight size={13} className="transition-transform group-hover/link:translate-x-1" />
                     </Link>
-
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[12px] font-semibold text-slate-500 hover:text-slate-900 transition"
-                      >
-                        Live Site <ExternalLink size={11} />
-                      </a>
-                    )}
                   </div>
                 </article>
               ))}

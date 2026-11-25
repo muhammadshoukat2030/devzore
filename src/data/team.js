@@ -20,7 +20,7 @@
 
 export const team = [
   {
-    name: "Muhammad Shoukat",
+    name: "M Shoukat",
     role: "Founder & Lead Software Engineer",
     bio: "Full-stack software engineer and cloud architect specializing in React, Node.js, Express, MongoDB, and modern web systems. Founded DevZore to deliver direct engineering excellence to clients worldwide.",
     photoFile: null, // [OWNER INPUT NEEDED: Add real founder photo asset; defaults to clean monogram avatar]
