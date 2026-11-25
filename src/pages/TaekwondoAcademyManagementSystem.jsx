@@ -426,7 +426,7 @@ export default function TaekwondoAcademyManagementSystem() {
                 Production System: <span className="text-[#25bfce]">Al Murtaza Shah Taekwondo Academy</span>
               </h2>
               <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
-                Deployed and verified on MongoDB production clusters for Grand Master Murtaza Hassan Bangash (7th Dan PTF / Kukkiwon Korea) in Kohat, accredited under the Pakistan Taekwondo Federation (PTF) and Khyber Pakhtunkhwa Taekwondo Association (KPTA).
+                Deployed and verified on MongoDB production clusters for Grand Master Murtaza Hassan Bangash (7th Dan PTF / Kukkiwon Korea) in Pakistan, accredited under the Pakistan Taekwondo Federation (PTF) and Khyber Pakhtunkhwa Taekwondo Association (KPTA).
               </p>
             </div>
 

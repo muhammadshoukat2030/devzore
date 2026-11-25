@@ -16,9 +16,9 @@ export const projectsData = [
     businessName: "Al Murtaza Shah Taekwondo Academy (AMOT)",
     industry: "Martial Arts & Sports Academies",
     country: "Pakistan",
-    location: "Kohat, Pakistan",
+    location: "Pakistan",
     systemType: "Taekwondo Academy Management System",
-    headerFacts: "AMOT · PTF & KPTA Accredited · Kohat, Pakistan · Academy Management ERP",
+    headerFacts: "AMOT · PTF & KPTA Accredited · Pakistan · Academy Management ERP",
     client: "Master Murtaza Hassan Bangash (7th Dan PTF / Kukkiwon)",
     deliveryType: "Remote Full-Stack Delivery",
     category: "Management Systems",
@@ -34,7 +34,7 @@ export const projectsData = [
       "Generating official Pakistan Taekwondo Federation (PTF) belt promotion certificates required slow, error-prone manual calligraphy on pre-printed forms.",
     ],
     problem:
-      "Al Murtaza Shah Taekwondo Academy (المرتضیٰ شاہ تائیکوانڈو اکیڈمی کوہاٹ) required an enterprise-grade full-stack automation software to modernize its martial arts operations in Kohat, accredited under the Pakistan Taekwondo Federation (PTF) and Khyber Pakhtunkhwa Taekwondo Association (KPTA). The academy needed to automate student admissions with bilingual English/Nastaliq Urdu layouts, integrate biometric facial/fingerprint attendance terminals, reconcile monthly fee collections with perforated dual-part receipts, and generate authentic 1:1 PTF belt promotion certificates with Korean Hangul calligraphy and zero-margin A4 portrait printing.",
+      "Al Murtaza Shah Taekwondo Academy (المرتضیٰ شاہ تائیکوانڈو اکیڈمی) required an enterprise-grade full-stack automation software to modernize its martial arts operations in Pakistan, accredited under the Pakistan Taekwondo Federation (PTF) and Khyber Pakhtunkhwa Taekwondo Association (KPTA). The academy needed to automate student admissions with bilingual English/Nastaliq Urdu layouts, integrate biometric facial/fingerprint attendance terminals, reconcile monthly fee collections with perforated dual-part receipts, and generate authentic 1:1 PTF belt promotion certificates with Korean Hangul calligraphy and zero-margin A4 portrait printing.",
     modules: [
       {
         name: "Biometric & Digital Attendance Terminal",
