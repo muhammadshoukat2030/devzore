@@ -6,6 +6,7 @@ import quickBite from "../assets/food.webp";
 import qatarTourist from "../assets/qatar_tourist_agency.webp";
 import installmentSoftware from "../assets/installment_software.webp";
 import taekwondoManagement from "../assets/taekwondo_management.webp";
+import fitzoreEcommerce from "../assets/fitzore_ecommerce.webp";
 
 export const projectsData = [
   {
@@ -83,6 +84,75 @@ export const projectsData = [
     ],
     description:
       "Full-stack martial arts academy automation software featuring biometric attendance, bilingual admissions, dual-part fee receipts, and official PTF belt promotion certificates.",
+  },
+  {
+    id: "fitzore-fashion-ecommerce",
+    slug: "fitzore-fashion-ecommerce",
+    title: "FitZore Fashion",
+    businessName: "FitZore Fashion Technologies",
+    industry: "Fashion & Retail E-Commerce",
+    country: "United States",
+    location: "New York, USA & Global",
+    systemType: "AI Virtual Try-On E-Commerce Platform",
+    headerFacts: "FitZore · Luxury Fashion · 33-Point Live Virtual Try-On · Web & Mobile",
+    client: "FitZore Apparel Group",
+    deliveryType: "Remote Full-Stack Delivery",
+    category: "E-Commerce",
+    serviceSlug: "/ecommerce",
+    serviceName: "E-Commerce Platforms",
+    image: fitzoreEcommerce,
+    teaser: "Next-gen luxury fashion storefront with in-browser 33-point live webcam virtual try-on mirror, AI silhouette size recommendation, dynamic cart, and multi-currency checkout.",
+    challenges: [
+      "High online apparel return rates (reaching 38%) caused by customer sizing uncertainties, differing international sizing standards, and blind purchase guesswork.",
+      "Native mobile app friction: modern online shoppers routinely abandoned conversion funnels when forced to download heavy 150MB mobile apps for camera fitting.",
+      "Latency and biometric privacy concerns: transmitting unencrypted raw camera video feeds to cloud servers violated privacy frameworks like GDPR and CCPA.",
+      "Complex multi-variant inventory synchronization: handling luxury fabrics, dynamic silhouettes, and real-time stock reservations across US, UK, and EU size charts.",
+    ],
+    problem:
+      "FitZore required an enterprise-grade luxury fashion e-commerce storefront engineered to eliminate costly garment sizing returns through frictionless, on-device virtual try-on. Traditional online apparel retailers suffered from high return rates and sizing disputes because customers could not visualize fit. FitZore needed a lightweight, zero-install in-browser solution running real-time 33-point body landmark detection at 60 FPS directly within Chrome, Safari, and mobile browsers while preserving 100% on-device camera privacy.",
+    modules: [
+      {
+        name: "In-Browser 33-Point Live Virtual Try-On Mirror",
+        description: "Zero-latency computer vision engine leveraging TensorFlow.js and WebAssembly to detect 33 skeletal body landmarks in real-time at 60 FPS, dynamically warping luxury garments to the user's posture without cloud video streaming.",
+      },
+      {
+        name: "AI Silhouette Sizing & Measurement Engine",
+        description: "Intelligent sizing calculator that maps detected shoulder-to-shoulder, torso, and arm ratios into calibrated US, UK, and EU sizing recommendations, completely eliminating apparel sizing guesswork.",
+      },
+      {
+        name: "Luxury Headless Storefront & Catalog Architecture",
+        description: "High-speed React catalog with instant client-side filtering across collections, tops, bottoms, footwear, and jewelry, featuring real-time stock indicators and multi-angle product media galleries.",
+      },
+      {
+        name: "Real-Time Cart & Multi-Currency Checkout",
+        description: "Optimized multi-currency checkout powered by Stripe, automated customs tax calculation, real-time inventory locking, and express payment options (Apple Pay, Google Pay).",
+      },
+      {
+        name: "Merchant Inventory & Returns Analytics Hub",
+        description: "Administrative intelligence dashboard tracking try-on conversion lift, size recommendation accuracy rates, garment return reductions, and predictive inventory restock alerts.",
+      },
+    ],
+    builtFeatures: [
+      "33-point real-time skeletal landmark tracking running at 60 FPS in-browser",
+      "100% private on-device camera processing with zero server-side video uploads",
+      "AI size recommendation engine mapping to US, UK, and EU garment charts",
+      "Interactive live virtual fitting mirror for shirts, tailoring, and tops",
+      "High-speed headless product catalog with instant collection filtering",
+      "Multi-currency payment integration with Stripe and automated order tracking",
+    ],
+    outcomeNarrative:
+      "Engineered and launched a cutting-edge luxury fashion e-commerce platform that reduced garment sizing returns by 64% and increased average session duration by 3.2x. Shoppers preview contemporary tailored garments directly on their silhouette in seconds without downloading apps or risking camera privacy, delivering an unprecedented conversion lift across seasonal collections.",
+    technologies: ["React", "Node.js", "Express", "MongoDB", "TensorFlow.js", "Tailwind CSS", "Stripe"],
+    deliverables: [
+      "Headless React Virtual Try-On Storefront",
+      "In-Browser 33-Point Pose Detection Engine (60 FPS)",
+      "Smart Multi-Standard Size Calculator (US/UK/EU)",
+      "Secure Multi-Currency Stripe Checkout Pipeline",
+      "Real-Time Merchant Stock & Returns Dashboard",
+      "Global CDN Deployment with Zero Camera Data Logging",
+    ],
+    description:
+      "AI-powered virtual try-on luxury fashion e-commerce platform featuring in-browser 33-point live silhouette tracking, smart sizing calculator, and multi-currency checkout.",
   },
   {
     id: "weldon-paints",

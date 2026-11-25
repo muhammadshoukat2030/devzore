@@ -58,6 +58,7 @@ export default function ProjectDetail() {
 
   const projectShortTitles = {
     "taekwondo-academy-management": "Al Murtaza Taekwondo Academy System Case Study | DevZore",
+    "fitzore-fashion-ecommerce": "FitZore Fashion Case Study | AI Try-On Platform | DevZore",
     "weldon-paints": "Weldon Paints Case Study | POS & Stock System | DevZore",
     "sarab-express": "Sarab Express Case Study | Delivery & Logistics | DevZore",
     "desert-safari-qatar": "Desert Safari Qatar Case Study | Tourism Booking | DevZore",

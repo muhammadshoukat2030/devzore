@@ -236,6 +236,7 @@ assert(allServicesHtml.includes('"@type":"BreadcrumbList"'), "All Services has B
 console.log("\n--- TEST 7: Case Study Big-Company Upgrade Verification ---");
 const caseStudySlugs = [
   "taekwondo-academy-management",
+  "fitzore-fashion-ecommerce",
   "weldon-paints",
   "sarab-express",
   "desert-safari-qatar",

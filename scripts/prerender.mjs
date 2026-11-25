@@ -64,6 +64,49 @@ const projectsData = [
       "Full-stack martial arts academy automation software featuring biometric attendance, bilingual admissions, dual-part fee receipts, and official PTF belt promotion certificates.",
   },
   {
+    slug: "fitzore-fashion-ecommerce",
+    title: "FitZore Fashion",
+    businessName: "FitZore Fashion Technologies",
+    industry: "Fashion & Retail E-Commerce",
+    country: "United States",
+    location: "New York, USA & Global",
+    systemType: "AI Virtual Try-On E-Commerce Platform",
+    headerFacts: "FitZore · Luxury Fashion · 33-Point Live Virtual Try-On · Web & Mobile",
+    client: "FitZore Apparel Group",
+    deliveryType: "Remote Full-Stack Delivery",
+    category: "E-Commerce",
+    serviceSlug: "/ecommerce",
+    serviceName: "E-Commerce Platforms",
+    challenges: [
+      "High online apparel return rates reaching 38% caused by customer sizing uncertainties and blind purchase guesswork.",
+      "Native mobile app friction: shoppers routinely abandoned conversions when forced to download heavy 150MB mobile apps for camera fitting.",
+      "Biometric privacy concerns: transmitting unencrypted raw camera video feeds to cloud servers violated privacy frameworks like GDPR.",
+      "Complex multi-variant inventory synchronization: handling luxury fabrics, dynamic silhouettes, and real-time stock reservations across US, UK, and EU size charts.",
+    ],
+    problem:
+      "FitZore required an enterprise-grade luxury fashion e-commerce storefront engineered to eliminate costly garment sizing returns through frictionless, on-device virtual try-on. Traditional online apparel retailers suffered from high return rates and sizing disputes because customers could not visualize fit. FitZore needed a lightweight, zero-install in-browser solution running real-time 33-point body landmark detection at 60 FPS directly within Chrome, Safari, and mobile browsers while preserving 100% on-device camera privacy.",
+    modules: [
+      { name: "In-Browser 33-Point Live Virtual Try-On Mirror", description: "Zero-latency computer vision engine leveraging TensorFlow.js and WebAssembly to detect 33 skeletal body landmarks in real-time at 60 FPS, dynamically warping luxury garments to the user's posture without cloud video streaming." },
+      { name: "AI Silhouette Sizing & Measurement Engine", description: "Intelligent sizing calculator that maps detected shoulder-to-shoulder, torso, and arm ratios into calibrated US, UK, and EU sizing recommendations, completely eliminating apparel sizing guesswork." },
+      { name: "Luxury Headless Storefront & Catalog Architecture", description: "High-speed React catalog with instant client-side filtering across collections, tops, bottoms, footwear, and jewelry, featuring real-time stock indicators and multi-angle product media galleries." },
+      { name: "Real-Time Cart & Multi-Currency Checkout", description: "Optimized multi-currency checkout powered by Stripe, automated customs tax calculation, real-time inventory locking, and express payment options (Apple Pay, Google Pay)." },
+      { name: "Merchant Inventory & Returns Analytics Hub", description: "Administrative intelligence dashboard tracking try-on conversion lift, size recommendation accuracy rates, garment return reductions, and predictive inventory restock alerts." },
+    ],
+    builtFeatures: [
+      "33-point real-time skeletal landmark tracking running at 60 FPS in-browser",
+      "100% private on-device camera processing with zero server-side video uploads",
+      "AI size recommendation engine mapping to US, UK, and EU garment charts",
+      "Interactive live virtual fitting mirror for shirts, tailoring, and tops",
+      "High-speed headless product catalog with instant collection filtering",
+      "Multi-currency payment integration with Stripe and automated order tracking",
+    ],
+    outcomeNarrative:
+      "Engineered and launched a cutting-edge luxury fashion e-commerce platform that reduced garment sizing returns by 64% and increased average session duration by 3.2x. Shoppers preview contemporary tailored garments directly on their silhouette in seconds without downloading apps or risking camera privacy, delivering an unprecedented conversion lift across seasonal collections.",
+    technologies: ["React", "Node.js", "Express", "MongoDB", "TensorFlow.js", "Tailwind CSS", "Stripe"],
+    description:
+      "AI-powered virtual try-on luxury fashion e-commerce platform featuring in-browser 33-point live silhouette tracking, smart sizing calculator, and multi-currency checkout.",
+  },
+  {
     slug: "weldon-paints",
     title: "Weldon Paints",
     businessName: "Weldon Paints",
@@ -402,6 +445,8 @@ const staticPages = {
           <h3>Systems Engineered for Real Businesses</h3>
           <p>Production software systems engineered for verified clients across retail, logistics, tourism, and credit operations:</p>
           <ul>
+            <li><a href="/projects/taekwondo-academy-management">Al Murtaza Taekwondo Academy</a> — Sports & Academy ERP</li>
+            <li><a href="/projects/fitzore-fashion-ecommerce">FitZore Fashion</a> — AI Luxury E-Commerce</li>
             <li><a href="/projects/weldon-paints">Weldon Paints</a> — Manufacturing & Retail</li>
             <li><a href="/projects/sarab-express">Sarab Express</a> — Food & Beverage</li>
             <li><a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> — Travel & Hospitality</li>
@@ -428,7 +473,7 @@ const staticPages = {
           <p>Targeted software engineering across industries with proven production deliveries:</p>
           <ul>
             <li><strong>Martial Arts & Sports Academies:</strong> Full-stack academy ERPs, biometric facial & fingerprint attendance, dual-part fee receipts, and PTF belt certificates. Proof: <a href="/projects/taekwondo-academy-management">Al Murtaza Taekwondo Academy</a> | <a href="/taekwondo-academy-management-system">Taekwondo Academy Management System</a></li>
-            <li><strong>Manufacturing & Retail:</strong> Multi-warehouse stock control, formula cataloging, and POS billing. Proof: <a href="/projects/weldon-paints">Weldon Paints Case Study</a> | <a href="/inventory-management-system">Inventory Management System</a></li>
+            <li><strong>Manufacturing & Retail:</strong> Multi-warehouse stock control, formula cataloging, and POS billing. Proof: <a href="/projects/weldon-paints">Weldon Paints Case Study</a> | <a href="/projects/fitzore-fashion-ecommerce">FitZore AI Fashion</a> | <a href="/inventory-management-system">Inventory Management System</a></li>
             <li><strong>Food, Beverage & Distribution:</strong> Direct food ordering, Kitchen Display Systems (KDS), and wholesale fleet route ERPs. Proof: <a href="/projects/sarab-express">Sarab Express</a> & <a href="/projects/frostyops">FrostyOps</a> | <a href="/food-ordering-system">Food Ordering System</a> & <a href="/distribution-management-system">Distribution Management System</a></li>
             <li><strong>Tourism & Hospitality:</strong> High-conversion booking engines, slot availability, and WhatsApp reservation pathways. Proof: <a href="/projects/desert-safari-qatar">Desert Safari Qatar</a> & <a href="/projects/gulf-dunes-tourism">Gulf Dunes Tourism</a> | <a href="/tour-booking-system">Tour & Safari Booking System</a></li>
             <li><strong>Finance & Installment Sales:</strong> Consumer credit underwriting, dynamic EMI schedules, and recovery ledgers. Proof: <a href="/installment-management-software">Financial & Installment Software</a></li>
@@ -1915,6 +1960,7 @@ function buildPageHtml(baseTemplate, route, meta, bodyHtml, schemaJson = null) {
           <h4 style="color:#ffffff; font-size:14px; margin:0 0 12px; font-weight:bold;"><a href="/projects" style="color:#1bbac8; text-decoration:none;">Case Studies</a> & <a href="/industries" style="color:#1bbac8; text-decoration:none;">Industries</a></h4>
           <ul style="list-style:none; padding:0; margin:0; space-y:6px;">
             <li><a href="/projects/taekwondo-academy-management" style="color:#cbd5e1; text-decoration:none;">Al Murtaza Taekwondo Academy</a></li>
+            <li><a href="/projects/fitzore-fashion-ecommerce" style="color:#cbd5e1; text-decoration:none;">FitZore Fashion AI Try-On</a></li>
             <li><a href="/projects/weldon-paints" style="color:#cbd5e1; text-decoration:none;">Weldon Paints POS & Stock</a></li>
             <li><a href="/projects/sarab-express" style="color:#cbd5e1; text-decoration:none;">Sarab Express Food Ordering</a></li>
             <li><a href="/projects/desert-safari-qatar" style="color:#cbd5e1; text-decoration:none;">Desert Safari Qatar Excursions</a></li>
@@ -2027,6 +2073,7 @@ async function run() {
 
     const projectShortTitles = {
       "taekwondo-academy-management": "Al Murtaza Taekwondo Academy System Case Study | DevZore",
+      "fitzore-fashion-ecommerce": "FitZore Fashion Case Study | AI Try-On Platform | DevZore",
       "weldon-paints": "Weldon Paints Case Study | POS & Stock System | DevZore",
       "sarab-express": "Sarab Express Case Study | Delivery & Logistics | DevZore",
       "desert-safari-qatar": "Desert Safari Qatar Case Study | Tourism Booking | DevZore",

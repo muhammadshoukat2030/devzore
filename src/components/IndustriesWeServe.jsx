@@ -36,10 +36,15 @@ const industries = [
       "Centralized multi-warehouse stock control, formula cataloging, barcode batching, and point-of-sale (POS) counter billing systems.",
     caseStudies: [
       { name: "Weldon Paints Case Study", path: "/projects/weldon-paints" },
+      { name: "FitZore AI Fashion", path: "/projects/fitzore-fashion-ecommerce" },
     ],
     serviceLink: {
       name: "Inventory Management System",
       path: "/inventory-management-system",
+    },
+    extraServiceLink: {
+      name: "E-Commerce Platforms",
+      path: "/ecommerce",
     },
   },
   {
@@ -150,7 +155,7 @@ const IndustriesWeServe = ({ isLight = false }) => {
             onClick={scrollTop}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1bbac8] hover:text-white transition shrink-0"
           >
-            <span>View all 7 case studies</span>
+            <span>Explore all case studies</span>
             <ArrowRight size={13} />
           </Link>
         </div>
